@@ -1,0 +1,556 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Basics &#8212; nnsight 0.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/basics';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Searching for Induction Heads" href="induction.html" />
+    <link rel="prev" title="Tutorials" href="../tutorials.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="light">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Your text here..."
+         aria-label="Your text here..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">nnsight</p>
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../start.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../documentation.html">
+                        Documentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../tutorials.html">
+                        Tutorials
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../start.html">
+                        Getting Started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../documentation.html">
+                        Documentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../tutorials.html">
+                        Tutorials
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="induction.html">Searching for Induction Heads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main_demo.html">NDIF Main Demo Notebook</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="patching.html">Patching</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumbs">
+  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../tutorials.html" class="nav-link">Tutorials</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Basics</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="basics">
+<h1>Basics<a class="headerlink" href="#basics" title="Permalink to this heading">#</a></h1>
+<p>This notebook covers the basic features of the Engine API. If you’d like to follow along, check out the <a class="reference external" href="https://colab.research.google.com/drive/1A3Q7jDIjtyPCaY842c27fEhCWrZFVM5E?usp=sharing">Colab</a>.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#loading-models"><span class="std std-ref">Loading Models</span></a></p></li>
+<li><p><a class="reference internal" href="#accessing-activations"><span class="std std-ref">Accessing Activations</span></a></p></li>
+<li><p><a class="reference internal" href="#intervening"><span class="std std-ref">Intervening on Activations</span></a></p></li>
+</ul>
+<section id="loading-models">
+<span id="id1"></span><h2>Loading Models<a class="headerlink" href="#loading-models" title="Permalink to this heading">#</a></h2>
+<p>With nnsight, you can access open source LLMs by referencing a Hugging Face repo ID.
+For this demo we’ll look at <a class="reference external" href="https://huggingface.co/gpt2">GPT-2 Small</a>, an 80M parameter model.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Declare the model and load onto device</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s1">&#39;gpt2&#39;</span><span class="p">,</span><span class="n">device_map</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Generate some text.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span>
+
+<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">generator</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">generator</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
+        <span class="n">hidden_states</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="n">output</span> <span class="o">=</span> <span class="n">generator</span><span class="o">.</span><span class="n">output</span>
+
+<span class="nb">print</span><span class="p">([</span><span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">output</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="s1">&#39;The Eiffel Tower is in the city of Paris&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Let’s break this down piece by piece.</p>
+<p><strong>We create a generation context block</strong> by calling <code class="docutils literal notranslate"><span class="pre">.generate(...)</span></code> on the model object. This denotes that we wish to generate tokens given some prompts.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">generator</span><span class="p">:</span>
+</pre></div>
+</div>
+<p>Calling <code class="docutils literal notranslate"><span class="pre">.generate(...)</span></code> does not actually initialize or run the model. Only after the block is exited is the model actually loaded and run. All operations in the block are proxies which create a graph of operations to be carried out later.</p>
+<p><strong>Within the generation context,</strong> we create invocation contexts to specify the actual prompts we want to run.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">generator</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
+</pre></div>
+</div>
+<p><strong>Within an invoke context</strong>, all operations/interventions will be applied to the processing of the prompt. Models can be run on a variety of input formats. See model inputs for more.</p>
+<p>Finally, we can access raw tensors and activations at any point in the model. <em>But what can we do with these activations?</em></p>
+</section>
+<section id="accessing-activations">
+<span id="id2"></span><h2>Accessing Activations<a class="headerlink" href="#accessing-activations" title="Permalink to this heading">#</a></h2>
+<p>The first basic feature is to break open the black box and look at all of the internal activations of the model.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">gpt2_text</span> <span class="o">=</span> <span class="s2">&quot;Natural language processing tasks, such as...&quot;</span>
+<span class="n">gpt2_tokens</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">gpt2_text</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">generator</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">generator</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">gpt2_tokens</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
+<span class="hll">        <span class="n">hidden_states</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</span></pre></div>
+</div>
+<p>Lets focus on the highlighted line.</p>
+<p><strong>First,</strong> <code class="docutils literal notranslate"><span class="pre">model.transformer.h[-1]</span></code> accesses a module in the computation graph, specifically the last transformer layer <code class="docutils literal notranslate"><span class="pre">h[-1]</span></code>.</p>
+<p><strong>Then,</strong> <code class="docutils literal notranslate"><span class="pre">.output</span></code> returns a proxy for the output of this module. In other words, when we get to the output of this module during inference, grab it and perform any operations we define on it. The outputs become operational proxies, one for getting the 0th index of the output, and another for saving the output.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">768</span><span class="p">]),</span> \
+    <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">64</span><span class="p">]),</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">64</span><span class="p">])))</span>
+</pre></div>
+</div>
+<p>We take the 0th index because the output of gpt2 transformer layers are a <em>tuple</em> where the first index is the actual hidden states and the last two are from attention.</p>
+<blockquote>
+<div><p><strong>Other Operations on Proxies</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">.shape</span></code> can be called on any proxy to get what shape the value will eventually be.</p>
+<p><code class="docutils literal notranslate"><span class="pre">.input</span></code> similarly returns a proxy for the inputs to this module.</p>
+</div></blockquote>
+<p><strong>Finally,</strong> <code class="docutils literal notranslate"><span class="pre">.save()</span></code> informs the computation graph to clone the value of a proxy, allowing us to access the value of a proxy after generation. During processing of the intervention computational graph, when the value of a proxy is no longer ever needed, its value is dereferenced and destroyed.</p>
+<p>After exiting the generator context, the model is ran with the specified arguments and intervention graph. <code class="docutils literal notranslate"><span class="pre">generator.output</span></code> is populated with the actual output and <code class="docutils literal notranslate"><span class="pre">hidden_states.value</span></code> will contain the value.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">output</span> <span class="o">=</span> <span class="n">generator</span><span class="o">.</span><span class="n">output</span>
+<span class="n">hidden_states</span> <span class="o">=</span> <span class="n">hidden_states</span><span class="o">.</span><span class="n">value</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">tensor</span><span class="p">([[</span><span class="mi">35364</span><span class="p">,</span>  <span class="mi">3303</span><span class="p">,</span>  <span class="mi">7587</span><span class="p">,</span>  <span class="mi">8861</span><span class="p">,</span>    <span class="mi">11</span><span class="p">,</span>   <span class="mi">884</span><span class="p">,</span>   <span class="mi">355</span><span class="p">,</span>  <span class="mi">1808</span><span class="p">,</span> <span class="mi">18877</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span>
+      <span class="mi">4572</span><span class="p">,</span> <span class="mi">11059</span><span class="p">,</span>    <span class="mi">11</span><span class="p">,</span>  <span class="mi">3555</span><span class="p">,</span> <span class="mi">35915</span><span class="p">,</span>    <span class="mi">11</span><span class="p">,</span>   <span class="mi">290</span><span class="p">,</span> <span class="mi">15676</span><span class="p">,</span>  <span class="mi">1634</span><span class="p">,</span>    <span class="mi">11</span><span class="p">,</span>
+       <span class="mi">389</span><span class="p">,</span>  <span class="mi">6032</span><span class="p">,</span> <span class="mi">10448</span><span class="p">,</span>   <span class="mi">351</span><span class="p">,</span> <span class="mi">28679</span><span class="p">,</span>  <span class="mi">4673</span><span class="p">,</span>   <span class="mi">319</span><span class="p">,</span>  <span class="mi">8861</span><span class="p">,</span>   <span class="mi">431</span><span class="p">,</span>  <span class="mi">7790</span><span class="p">,</span>
+     <span class="mi">40522</span><span class="p">,</span>    <span class="mi">13</span><span class="p">,</span>  <span class="mi">2102</span><span class="p">]],</span> <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cuda:0&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">hidden_states</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">tensor</span><span class="p">([[[</span> <span class="o">-</span><span class="mf">0.2059</span><span class="p">,</span>   <span class="mf">0.1688</span><span class="p">,</span>  <span class="o">-</span><span class="mf">2.0503</span><span class="p">,</span>  <span class="o">...</span><span class="p">,</span>  <span class="o">-</span><span class="mf">0.3703</span><span class="p">,</span>  <span class="o">-</span><span class="mf">0.2015</span><span class="p">,</span>  <span class="o">-</span><span class="mf">1.6594</span><span class="p">],</span>
+        <span class="p">[</span> <span class="o">-</span><span class="mf">3.9412</span><span class="p">,</span>  <span class="o">-</span><span class="mf">0.2137</span><span class="p">,</span>  <span class="o">-</span><span class="mf">8.5667</span><span class="p">,</span>  <span class="o">...</span><span class="p">,</span>   <span class="mf">6.3562</span><span class="p">,</span>   <span class="mf">4.1276</span><span class="p">,</span>   <span class="mf">3.6006</span><span class="p">],</span>
+        <span class="p">[</span> <span class="o">-</span><span class="mf">2.0798</span><span class="p">,</span>  <span class="o">-</span><span class="mf">1.5781</span><span class="p">,</span>  <span class="o">-</span><span class="mf">6.1944</span><span class="p">,</span>  <span class="o">...</span><span class="p">,</span>   <span class="mf">4.8023</span><span class="p">,</span>   <span class="mf">5.6864</span><span class="p">,</span>  <span class="o">-</span><span class="mf">2.6289</span><span class="p">],</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="p">[</span> <span class="o">-</span><span class="mf">2.1180</span><span class="p">,</span>  <span class="o">-</span><span class="mf">6.4320</span><span class="p">,</span> <span class="o">-</span><span class="mf">20.7147</span><span class="p">,</span>  <span class="o">...</span><span class="p">,</span>   <span class="mf">8.7145</span><span class="p">,</span>   <span class="mf">2.3738</span><span class="p">,</span>   <span class="mf">3.4004</span><span class="p">],</span>
+        <span class="p">[</span> <span class="o">-</span><span class="mf">1.1358</span><span class="p">,</span>  <span class="o">-</span><span class="mf">3.9569</span><span class="p">,</span> <span class="o">-</span><span class="mf">20.3060</span><span class="p">,</span>  <span class="o">...</span><span class="p">,</span>   <span class="mf">7.1600</span><span class="p">,</span>   <span class="mf">1.6868</span><span class="p">,</span>   <span class="mf">0.9850</span><span class="p">],</span>
+        <span class="p">[</span> <span class="o">-</span><span class="mf">1.7206</span><span class="p">,</span>  <span class="o">-</span><span class="mf">4.7800</span><span class="p">,</span>  <span class="o">-</span><span class="mf">1.1185</span><span class="p">,</span>  <span class="o">...</span><span class="p">,</span>   <span class="mf">3.1680</span><span class="p">,</span>   <span class="mf">3.7024</span><span class="p">,</span>   <span class="mf">0.2865</span><span class="p">]]],</span>
+    <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cuda:0&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="intervening-on-activations">
+<span id="intervening"></span><h2>Intervening on Activations<a class="headerlink" href="#intervening-on-activations" title="Permalink to this heading">#</a></h2>
+<p>The key features here are <strong>operation</strong> and <strong>setting</strong>. Within an invoke context, most basic operations and torch operations work on proxies and are added to the computation graph. We can also use the assignment <code class="docutils literal notranslate"><span class="pre">=</span></code> operator to edit and intervene on the flow of information.</p>
+<p>As a basic example, let’s <a class="reference external" href="https://dynalist.io/d/n2ZWtnoYHrU1s4vnFSAQ519J#z=fh-HJyz1CgUVrXuoiban6bYx">ablate</a> head 7 in layer 0 on the text above.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">layer_to_ablate</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">head_index_to_ablate</span> <span class="o">=</span> <span class="mi">7</span>
+
+<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">generator</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">generator</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">gpt2_tokens</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
+        <span class="n">normal_lm_head</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+    <span class="k">with</span> <span class="n">generator</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">gpt2_tokens</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
+        <span class="n">attention_pattern</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="n">layer_to_ablate</span><span class="p">]</span><span class="o">.</span><span class="n">attn</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">output</span>
+        <span class="n">attention_pattern</span><span class="p">[:,</span><span class="n">head_index_to_ablate</span><span class="p">,:,:]</span> <span class="o">=</span> <span class="mf">0.</span>
+        <span class="n">ablated_lm_head</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="n">normal_lm_head</span> <span class="o">=</span> <span class="n">normal_lm_head</span><span class="o">.</span><span class="n">value</span>
+<span class="n">ablated_lm_head</span> <span class="o">=</span> <span class="n">ablated_lm_head</span><span class="o">.</span><span class="n">value</span>
+</pre></div>
+</div>
+<p>As a result of ablating the head, we observe a noticable change in loss.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tensor_tokens</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">gpt2_tokens</span><span class="p">])</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cross_entropy_loss</span><span class="p">(</span><span class="n">normal_lm_head</span><span class="p">,</span> <span class="n">tensor_tokens</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">4.0187</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">cross_entropy_loss</span><span class="p">(</span><span class="n">ablated_lm_head</span><span class="p">,</span> <span class="n">tensor_tokens</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">tensor</span><span class="p">(</span><span class="mf">4.2913</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../tutorials.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Tutorials</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="induction.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Searching for Induction Heads</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-models">Loading Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-activations">Accessing Activations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intervening-on-activations">Intervening on Activations</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="../_sources/tutorials/basics.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright 2023, Jaden Fiotto-Kaufman.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
