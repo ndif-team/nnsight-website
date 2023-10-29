@@ -1,15 +1,14 @@
 nnsight.tracing
 ---------------
 
-
-.. automodule:: nnsight.fx
+.. automodule:: nnsight.tracing
    :members:
 
-.. automodule:: nnsight.fx.Graph.Graph
+.. automodule:: nnsight.tracing.Graph.Graph
    :members:
 
-.. automodule:: nnsight.fx.Node.Node
+.. automodule:: nnsight.tracing.Node.Node
    :members:
 
-.. automodule:: nnsight.fx.Proxy.Proxy
+.. automodule:: nnsight.tracing.Proxy.Proxy
    :members:

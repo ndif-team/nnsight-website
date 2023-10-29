@@ -47,7 +47,6 @@
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/design-tabs.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'documentation/util';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -319,6 +318,7 @@ document.write(`
                   
   <section id="module-nnsight.util">
 <span id="nnsight-util"></span><h1>nnsight.util<a class="headerlink" href="#module-nnsight.util" title="Permalink to this heading">#</a></h1>
+<p>Module for utility functions and classes used throughout the package.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="nnsight.util.WrapperModule">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.util.</span></span><span class="sig-name descname"><span class="pre">WrapperModule</span></span><a class="headerlink" href="#nnsight.util.WrapperModule" title="Permalink to this definition">#</a></dt>
@@ -353,7 +353,7 @@ registered hooks while the latter silently ignores them.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Same kind of collection as data, after then fn has been applied to memebers of given type.</p>
+<dd class="field-even"><p>Same kind of collection as data, after then fn has been applied to members of given type.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Collection</p>
@@ -387,12 +387,12 @@ registered hooks while the latter silently ignores them.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="nnsight.util.fetch_attr">
 <span class="sig-prename descclassname"><span class="pre">nnsight.util.</span></span><span class="sig-name descname"><span class="pre">fetch_attr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#nnsight.util.fetch_attr" title="Permalink to this definition">#</a></dt>
-<dd><p>Retrieves an attribute from an object hierarchy given an attribute path. Levels are seperated by ‘.’ e.x (transformer.h.1)</p>
+<dd><p>Retrieves an attribute from an object hierarchy given an attribute path. Levels are separated by ‘.’ e.x (transformer.h.1)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>object</strong> (<em>object</em>) – Root object to get attribute from.</p></li>
-<li><p><strong>target</strong> (<em>str</em>) – Attribute path as ‘.’ seperated string.</p></li>
+<li><p><strong>target</strong> (<em>str</em>) – Attribute path as ‘.’ separated string.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>

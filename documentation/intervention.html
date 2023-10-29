@@ -47,7 +47,6 @@
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/design-tabs.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'documentation/intervention';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -319,7 +318,11 @@ document.write(`
                   
   <section id="nnsight-intervention">
 <h1>nnsight.intervention<a class="headerlink" href="#nnsight-intervention" title="Permalink to this heading">#</a></h1>
-<span class="target" id="module-nnsight.intervention"></span><dl class="py class">
+<span class="target" id="module-nnsight.intervention"></span><p>This module contains logic to interleave a computation graph (an intervention graph) with the computation graph of a model.</p>
+<p>The class InterventionProxy extends the functionality of a base nnsight.fx.Proxy.Proxy object and makes it easier for users to interact with.</p>
+<p>The intervene function is the entry hook into the models computation graph in order to interleave an intervention graph.</p>
+<p>The class HookModel provides a context manager for adding input and output hooks to modules and removing them upon context exit.</p>
+<dl class="py class">
 <dt class="sig sig-object py" id="nnsight.intervention.HookModel">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.intervention.</span></span><span class="sig-name descname"><span class="pre">HookModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modules</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_hook</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_hook</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nnsight.intervention.HookModel" title="Permalink to this definition">#</a></dt>
 <dd><p>Context manager that applies input and/or output hooks to modules in a model.</p>
@@ -413,7 +416,7 @@ Had you not called .save(), calling .value would have thrown an error.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="nnsight.intervention.InterventionProxy.save">
 <span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="headerlink" href="#nnsight.intervention.InterventionProxy.save" title="Permalink to this definition">#</a></dt>
-<dd><p>Method when called, indicates to the intervention graph to clone and not delete the tensor values of the result.</p>
+<dd><p>Method when called, indicates to the intervention graph to not delete the tensor values of the result.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Save proxy.</p>
@@ -449,7 +452,7 @@ Had you not called .save(), calling .value would have thrown an error.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">token</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nnsight.intervention.TokenIndexer" title="nnsight.intervention.TokenIndexer"><span class="pre">TokenIndexer</span></a></em><a class="headerlink" href="#nnsight.intervention.InterventionProxy.token" title="Permalink to this definition">#</a></dt>
 <dd><p>Property used to do token based indexing on a proxy.
 Directly indexes the second dimension of tensors.
-Makes positive indicies negative as tokens are padded on the left.</p>
+Makes positive indices negative as tokens are padded on the left.</p>
 <p class="rubric">Example</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">mlp</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">token</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
@@ -488,9 +491,9 @@ Makes positive indicies negative as tokens are padded on the left.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="nnsight.intervention.TokenIndexer">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.intervention.</span></span><span class="sig-name descname"><span class="pre">TokenIndexer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proxy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nnsight.intervention.TokenIndexer" title="Permalink to this definition">#</a></dt>
-<dd><p>Helper class to directly access token indicies of hidden states.
+<dd><p>Helper class to directly access token indices of hidden states.
 Directly indexes the second dimension of tensors.
-Makes positive indicies negative as tokens are padded on the left.</p>
+Makes positive indices negative as tokens are padded on the left.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>proxy</strong> (<a class="reference internal" href="#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><em>InterventionProxy</em></a>) – Proxy to aid in token indexing.</p>
@@ -511,7 +514,7 @@ Using batch_size and batch_start, apply torch.narrow to tensors in activations t
 <div><p>only batch indexed tensors relevant to this intervention node. Sets the value of a node
 using the indexed values. Using torch.narrow returns a view of the tensors as opposed to a copy allowing
 subsequent downstream nodes to make edits to the values only in the relevant tensors, and have it update the original
-tensors. This both prevents interventions from effecting bathes outside their perview and allows edits
+tensors. This both prevents interventions from effecting bathes outside their preview and allows edits
 to the output from downstream intervention nodes in the graph.</p>
 </div></blockquote>
 <dl class="field-list simple">

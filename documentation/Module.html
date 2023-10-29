@@ -47,7 +47,6 @@
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/design-tabs.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'documentation/Module';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -319,6 +318,25 @@ document.write(`
                   
   <section id="module-nnsight.Module">
 <span id="nnsight-module"></span><h1>nnsight.Module<a class="headerlink" href="#module-nnsight.Module" title="Permalink to this heading">#</a></h1>
+<p>The Module object acts as the entrypoint into the interwoven intervention graph for manipulating the inputs and outputs of Modules as a model is running.
+Specifically, the <cite>.output</cite> and <cite>.input</cite> attributes are the root nodes of the intervention graph, and all operation performed on these Proxy objects are the downstream nodes that populate the graph.
+Requires a <code class="docutils literal notranslate"><span class="pre">Tracer</span></code> object to add the correct proxies to the intervention graph.</p>
+<p class="rubric">Examples</p>
+<p>Below example shows accessing the input and output of a gpt2 module, saving them during execution, and printing the resulting values after execution:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">()</span> <span class="k">as</span> <span class="n">generator</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="k">with</span> <span class="n">generator</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>       <span class="n">hidden_states</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span>       <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">hidden_states</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">logits</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Below example shows accessing the output of a gpt2 module and setting the values to zero:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">()</span> <span class="k">as</span> <span class="n">generator</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="k">with</span> <span class="n">generator</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>       <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
 <dl class="py class">
 <dt class="sig sig-object py" id="nnsight.Module.Module">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.Module.</span></span><span class="sig-name descname"><span class="pre">Module</span></span><a class="headerlink" href="#nnsight.Module.Module" title="Permalink to this definition">#</a></dt>
@@ -327,7 +345,7 @@ Proxies of it’s output and input are accessed by <cite>.output</cite> and <cit
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nnsight.Module.Module.module_path">
 <span class="sig-name descname"><span class="pre">module_path</span></span><a class="headerlink" href="#nnsight.Module.Module.module_path" title="Permalink to this definition">#</a></dt>
-<dd><p>String representing the attribute path of this module relative the the root model. Seperarated by ‘.’ e.x (‘transformer.h.0.mlp’). Set by AbstractModel on intialization of meta model.</p>
+<dd><p>String representing the attribute path of this module relative the the root model. Separated by ‘.’ e.x (‘transformer.h.0.mlp’). Set by AbstractModel on initialization of meta model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>

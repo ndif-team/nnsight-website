@@ -47,7 +47,6 @@
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/design-tabs.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'documentation/models';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -396,13 +395,13 @@ We also perform a <code class="docutils literal notranslate"><span class="pre">.
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="s2">&quot;The Eiffel Tower is in the city of&quot;</span><span class="p">,</span> <span class="n">inference</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">runner</span><span class="p">:</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">logits</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">runner</span><span class="o">.</span><span class="n">output</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>See <code class="xref py py-mod docutils literal notranslate"><span class="pre">nnsight.contexts</span></code></p>
 <span class="target" id="module-nnsight.models.AbstractModel"></span><dl class="py class">
 <dt class="sig sig-object py" id="nnsight.models.AbstractModel.AbstractModel">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.models.AbstractModel.</span></span><span class="sig-name descname"><span class="pre">AbstractModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">repoid_path_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Module</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokenizer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nnsight.models.AbstractModel.AbstractModel" title="Permalink to this definition">#</a></dt>
-<dd><p>Abstract class to be implmented for pytorch models wishing to gain this package’s functionality.</p>
+<dd><p>Abstract class to be implemented for pytorch models wishing to gain this package’s functionality.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nnsight.models.AbstractModel.AbstractModel.repoid_path_clsname">
 <span class="sig-name descname"><span class="pre">repoid_path_clsname</span></span><a class="headerlink" href="#nnsight.models.AbstractModel.AbstractModel.repoid_path_clsname" title="Permalink to this definition">#</a></dt>
@@ -496,7 +495,7 @@ device. All modules are wrapped in nnsight.Module adding interleaving operation 
 <dt class="sig sig-object py" id="nnsight.models.AbstractModel.AbstractModel.local_model">
 <span class="sig-name descname"><span class="pre">local_model</span></span><a class="headerlink" href="#nnsight.models.AbstractModel.AbstractModel.local_model" title="Permalink to this definition">#</a></dt>
 <dd><p>Locally loaded and dispatched model. Only loaded and dispatched on first use.
-This is the actual model that is ran with hooks added to it to enter the intervetnion graph.</p>
+This is the actual model that is ran with hooks added to it to enter the intervention graph.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>torch.nn.Module</p>
@@ -576,7 +575,62 @@ This is the actual model that is ran with hooks added to it to enter the interve
 <span class="target" id="module-nnsight.models.LanguageModel"></span><dl class="py class">
 <dt class="sig sig-object py" id="nnsight.models.LanguageModel.LanguageModel">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.models.LanguageModel.</span></span><span class="sig-name descname"><span class="pre">LanguageModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nnsight.models.LanguageModel.LanguageModel" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
+<dd><p>LanguageModels are nnsight wrappers around AutoModelForCausalLM models.</p>
+<dl class="simple">
+<dt>Inputs can be in the form of:</dt><dd><p>Prompt: (str)
+Prompts: (List[str])
+Batched prompts: (List[List[str]])
+Tokenized prompt: (Union[List[int], torch.Tensor])
+Tokenized prompts: (Union[List[List[int]], torch.Tensor])
+Direct input: (Dict[str,Any])</p>
+</dd>
+</dl>
+<p>Calls to generate pass arguments downstream to <code class="xref py py-func docutils literal notranslate"><span class="pre">AutoModelForCausalLM.generate()</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.models.LanguageModel.LanguageModel.config">
+<span class="sig-name descname"><span class="pre">config</span></span><a class="headerlink" href="#nnsight.models.LanguageModel.LanguageModel.config" title="Permalink to this definition">#</a></dt>
+<dd><p>Huggingface config file loaded from repository or checkpoint.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>PretrainedConfig</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.models.LanguageModel.LanguageModel.tokenizer">
+<span class="sig-name descname"><span class="pre">tokenizer</span></span><a class="headerlink" href="#nnsight.models.LanguageModel.LanguageModel.tokenizer" title="Permalink to this definition">#</a></dt>
+<dd><p>Tokenizer for LMs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>PreTrainedTokenizer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.models.LanguageModel.LanguageModel.meta_model">
+<span class="sig-name descname"><span class="pre">meta_model</span></span><a class="headerlink" href="#nnsight.models.LanguageModel.LanguageModel.meta_model" title="Permalink to this definition">#</a></dt>
+<dd><p>Meta version of underlying AutoModelForCausalLM model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>PreTrainedModel</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.models.LanguageModel.LanguageModel.local_model">
+<span class="sig-name descname"><span class="pre">local_model</span></span><a class="headerlink" href="#nnsight.models.LanguageModel.LanguageModel.local_model" title="Permalink to this definition">#</a></dt>
+<dd><p>Local version of underlying AutoModelForCausalLM model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>PreTrainedModel</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
 
 <span class="target" id="module-nnsight.models.DiffuserModel"></span><dl class="py class">
 <dt class="sig sig-object py" id="nnsight.models.DiffuserModel.Diffuser">
@@ -658,7 +712,13 @@ This is the actual model that is ran with hooks added to it to enter the interve
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.AbstractModel.AbstractModel.modulize"><code class="docutils literal notranslate"><span class="pre">AbstractModel.modulize()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.LanguageModel.LanguageModel"><code class="docutils literal notranslate"><span class="pre">LanguageModel</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.LanguageModel.LanguageModel"><code class="docutils literal notranslate"><span class="pre">LanguageModel</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.LanguageModel.LanguageModel.config"><code class="docutils literal notranslate"><span class="pre">LanguageModel.config</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.LanguageModel.LanguageModel.tokenizer"><code class="docutils literal notranslate"><span class="pre">LanguageModel.tokenizer</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.LanguageModel.LanguageModel.meta_model"><code class="docutils literal notranslate"><span class="pre">LanguageModel.meta_model</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.LanguageModel.LanguageModel.local_model"><code class="docutils literal notranslate"><span class="pre">LanguageModel.local_model</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.DiffuserModel.Diffuser"><code class="docutils literal notranslate"><span class="pre">Diffuser</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.DiffuserModel.DiffuserModel"><code class="docutils literal notranslate"><span class="pre">DiffuserModel</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.DiffuserModel.DiffuserModel.to_image"><code class="docutils literal notranslate"><span class="pre">DiffuserModel.to_image()</span></code></a></li>

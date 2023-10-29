@@ -47,7 +47,6 @@
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/design-tabs.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'documentation/patching';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -319,7 +318,19 @@ document.write(`
                   
   <section id="nnsight-patching">
 <h1>nnsight.patching<a class="headerlink" href="#nnsight-patching" title="Permalink to this heading">#</a></h1>
-<span class="target" id="module-nnsight.patching"></span><dl class="py class">
+<span class="target" id="module-nnsight.patching"></span><p>Patching module handles patching of classes and functions in modules.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.patching.DEFAULT_PATCHER">
+<span class="sig-prename descclassname"><span class="pre">nnsight.patching.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_PATCHER</span></span><a class="headerlink" href="#nnsight.patching.DEFAULT_PATCHER" title="Permalink to this definition">#</a></dt>
+<dd><p>The default patcher that patches some torch functions on initialization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#nnsight.patching.Patcher" title="nnsight.patching.Patcher">Patcher</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="nnsight.patching.Patch">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.patching.</span></span><span class="sig-name descname"><span class="pre">Patch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replacement</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nnsight.patching.Patch" title="Permalink to this definition">#</a></dt>
 <dd><p>Class representing a replacement of an attribute on a module.</p>
@@ -348,7 +359,7 @@ document.write(`
 <dl class="py method">
 <dt class="sig sig-object py" id="nnsight.patching.Patch.patch">
 <span class="sig-name descname"><span class="pre">patch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#nnsight.patching.Patch.patch" title="Permalink to this definition">#</a></dt>
-<dd><p>Carries out the replacment of an object in a module.</p>
+<dd><p>Carries out the replacement of an object in a module.</p>
 <dl>
 <dt>Imports the objects module with:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="vm">__module__</span><span class="p">)</span>
 </pre></div>
@@ -364,7 +375,7 @@ document.write(`
 <dl class="py method">
 <dt class="sig sig-object py" id="nnsight.patching.Patch.restore">
 <span class="sig-name descname"><span class="pre">restore</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#nnsight.patching.Patch.restore" title="Permalink to this definition">#</a></dt>
-<dd><p>Carries out the restoration of nthe original object on the objects module.</p>
+<dd><p>Carries out the restoration of the original object on the objects module.</p>
 <dl>
 <dt>Imports the objects module with:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="vm">__module__</span><span class="p">)</span>
 </pre></div>
@@ -455,6 +466,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.patching.DEFAULT_PATCHER"><code class="docutils literal notranslate"><span class="pre">DEFAULT_PATCHER</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.patching.Patch"><code class="docutils literal notranslate"><span class="pre">Patch</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.patching.Patch.obj"><code class="docutils literal notranslate"><span class="pre">Patch.obj</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.patching.Patch.replacement"><code class="docutils literal notranslate"><span class="pre">Patch.replacement</span></code></a></li>
