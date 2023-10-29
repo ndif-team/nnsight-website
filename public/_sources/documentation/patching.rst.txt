@@ -1,5 +1,5 @@
 nnsight.patching
-------------
+----------------
 
 
 .. automodule:: nnsight.patching
