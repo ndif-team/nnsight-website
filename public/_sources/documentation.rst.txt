@@ -5,7 +5,8 @@ Documentation
    :titlesonly:
 
    documentation/models
-   documentation/Module
+   documentation/module
+   documentation/contexts
    documentation/util
    documentation/intervention
    documentation/tracing

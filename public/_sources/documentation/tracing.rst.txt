@@ -4,11 +4,11 @@ nnsight.tracing
 .. automodule:: nnsight.tracing
    :members:
 
-.. automodule:: nnsight.tracing.Graph.Graph
+.. automodule:: nnsight.tracing.Graph
    :members:
 
-.. automodule:: nnsight.tracing.Node.Node
+.. automodule:: nnsight.tracing.Node
    :members:
 
-.. automodule:: nnsight.tracing.Proxy.Proxy
+.. automodule:: nnsight.tracing.Proxy
    :members:

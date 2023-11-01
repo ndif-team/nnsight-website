@@ -1,6 +1,5 @@
-nnsight.Module
+nnsight.module
 --------------
-
 
 .. automodule:: nnsight.Module
    :members:
