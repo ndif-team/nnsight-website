@@ -1,11 +1,8 @@
 nnsight.contexts
-------------
+----------------
 
 
 .. automodule:: nnsight.contexts
-   :members:
-
-.. automodule:: nnsight.contexts.Generator
    :members:
 
 .. automodule:: nnsight.contexts.Runner

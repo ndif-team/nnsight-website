@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 
 
@@ -7,9 +6,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>nnsight.contexts &#8212; nnsight 0.1 documentation</title>
+    <title>nnsight.contexts &#8212; nnsight 0.0.6 documentation</title>
   
   
   
@@ -19,35 +18,35 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=331c24ed" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/design-tabs.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=5a9e2183"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'documentation/contexts';</script>
+    <link rel="icon" href="../../_static/icon.ico"/>
     <link rel="index" title="Index" href="../../genindex/" />
     <link rel="search" title="Search" href="../../search/" />
     <link rel="next" title="nnsight.util" href="../util/" />
@@ -62,6 +61,15 @@
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -86,8 +94,8 @@
          class="form-control"
          name="q"
          id="search-input"
-         placeholder="Your text here..."
-         aria-label="Your text here..."
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
          autocomplete="off"
          autocorrect="off"
          autocapitalize="off"
@@ -102,12 +110,14 @@
     <span class="fa-solid fa-bars"></span>
   </label>
   
-  <div class="navbar-header-items__start">
+  
+  <div class=" navbar-header-items__start">
     
       <div class="navbar-item">
   
 
 <a class="navbar-brand logo" href="../../">
+  
   
   
   
@@ -119,8 +129,7 @@
     
   </div>
   
-  
-  <div class="col-lg-9 navbar-header-items">
+  <div class=" navbar-header-items">
     
     <div class="me-auto navbar-header-items__center">
       
@@ -163,15 +172,33 @@
       
         <div class="navbar-item navbar-persistent--container">
           
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
         </div>
       
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/JadenFiotto-Kaufman/nnsight" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
       
     </div>
     
@@ -179,18 +206,20 @@ document.write(`
   
   
     <div class="navbar-persistent--mobile">
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
     </div>
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
       <span class="fa-solid fa-outdent"></span>
     </label>
   
@@ -246,6 +275,26 @@ document.write(`
     
     
     
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/JadenFiotto-Kaufman/nnsight" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
@@ -289,8 +338,8 @@ document.write(`
 
 
 
-<nav aria-label="Breadcrumbs">
-  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
     
     <li class="breadcrumb-item breadcrumb-home">
       <a href="../../" class="nav-link" aria-label="Home">
@@ -317,28 +366,47 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="nnsight-contexts">
-<h1>nnsight.contexts<a class="headerlink" href="#nnsight-contexts" title="Permalink to this heading">#</a></h1>
-<span class="target" id="module-nnsight.contexts"></span><span class="target" id="module-nnsight.contexts.Generator"></span><dl class="py class">
-<dt class="sig sig-object py" id="nnsight.contexts.Generator.Generator">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.contexts.Generator.</span></span><span class="sig-name descname"><span class="pre">Generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">server</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nnsight.contexts.Generator.Generator" title="Permalink to this definition">#</a></dt>
-<dd><p>_summary_</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.contexts.Generator.Generator.model">
-<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#nnsight.contexts.Generator.Generator.model" title="Permalink to this definition">#</a></dt>
-<dd><p>Model object this is a generator for.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Model</p>
-</dd>
-</dl>
-</dd></dl>
+  <section id="module-nnsight.contexts">
+<span id="nnsight-contexts"></span><h1>nnsight.contexts<a class="headerlink" href="#module-nnsight.contexts" title="Permalink to this heading">#</a></h1>
+<p>The contexts module contains logic for managing the tracing and running of models with <a class="reference internal" href="../tracing/#module-nnsight.tracing" title="nnsight.tracing"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nnsight.tracing</span></code></a> and <a class="reference internal" href="../module/#module-nnsight.module" title="nnsight.module"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nnsight.module</span></code></a></p>
+<p>The primary two classes involved here are <a class="reference internal" href="#nnsight.contexts.Tracer.Tracer" title="nnsight.contexts.Tracer.Tracer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tracer</span></code></a> and <a class="reference internal" href="#nnsight.contexts.Invoker.Invoker" title="nnsight.contexts.Invoker.Invoker"><code class="xref py py-class docutils literal notranslate"><span class="pre">Invoker</span></code></a>.</p>
+<p>The <a class="reference internal" href="#nnsight.contexts.Tracer.Tracer" title="nnsight.contexts.Tracer.Tracer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tracer</span></code></a> class creates a <a class="reference internal" href="../tracing/#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><code class="xref py py-class docutils literal notranslate"><span class="pre">Graph</span></code></a> around the meta_model of an <a class="reference internal" href="../models/#nnsight.models.AbstractModel.AbstractModel" title="nnsight.models.AbstractModel.AbstractModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractModel</span></code></a>. The graph tracks and manages the operations performed on the inputs and outputs of said model.
+Modules in the meta_model expose their <code class="docutils literal notranslate"><span class="pre">.output</span></code> and <code class="docutils literal notranslate"><span class="pre">.input</span></code> attributes which when accessed, adding to the computation graph of the tracer.
+To do this, they need to know about the current Tracer object, so each Module’s <code class="docutils literal notranslate"><span class="pre">.tracer</span></code> object is set to be the current Tracer.</p>
+<p>The Tracer object also keeps track of the batch_size of the most recent input, the generation index for multi iteration generations, and all of the inputs made during its context in the <code class="docutils literal notranslate"><span class="pre">.batched_input</span></code> attribute. Inputs added to this attribute should be in a format where each index is a batch index and allows the model to batch all of the inputs together.</p>
+<p>This is to keep things consistent. If two different inputs are in two different valid formats, they both become the same format and are easy to batch.
+In the case of LanguageModels, regardless of whether the input are string prompts, pre-processed dictionaries, or input ids, the batched input is only input ids.
+On exiting the Tracer context, the Tracer object should use the information and inputs provided to it to carry out the execution of the model and update its <code class="docutils literal notranslate"><span class="pre">.output</span></code> attribute with the result.</p>
+<p>The <a class="reference internal" href="#nnsight.contexts.Invoker.Invoker" title="nnsight.contexts.Invoker.Invoker"><code class="xref py py-class docutils literal notranslate"><span class="pre">Invoker</span></code></a> class is what actually accepts inputs to the model/graph, and it updates its parent Tracer object with the appropriate information about respective inputs. On entering the invoker context with some input, the invoker leverages the model to pre-process and prepare the input to the model. Using the prepared inputs, it updates its Tracer object with a batched version of the input, the size of the batched input, and the current generation index. It also runs a ‘meta’ version of the input through the model’s meta_model. This updates the sizes/dtypes of all of the Module’s inputs and outputs based on the characteristics of the input.</p>
+<p>nnsight comes with an implementation of a Tracer which can access a models <code class="docutils literal notranslate"><span class="pre">._generation</span></code> or <code class="docutils literal notranslate"><span class="pre">._forward</span></code> method.</p>
+<p>The <a class="reference internal" href="#nnsight.contexts.Runner.Runner" title="nnsight.contexts.Runner.Runner"><code class="xref py py-class docutils literal notranslate"><span class="pre">Runner</span></code></a> class is a feature rich context manager built for multi-iteration and multi-input executions of the model.
+Each Runner context uses invoker contexts within to add new inputs to the eventual execution like <code class="docutils literal notranslate"><span class="pre">generator.invoke(...)</span></code>
+The Runner object also has logic to perform the execution of the traced computation graph on NDIF remote servers (assuming they are running!).</p>
+<span class="target" id="module-nnsight.contexts.Runner"></span><dl class="py class">
+<dt class="sig sig-object py" id="nnsight.contexts.Runner.Runner">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.contexts.Runner.</span></span><span class="sig-name descname"><span class="pre">Runner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">server</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nnsight.contexts.Runner.Runner" title="Permalink to this definition">#</a></dt>
+<dd><p>The Runner object manages the intervention tracing for a given model’s _generation method or _run_local method.</p>
+<p class="rubric">Examples</p>
+<p>Below example shows accessing the input and output of a gpt2 module, saving them during execution, and printing the resulting values after execution:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">()</span> <span class="k">as</span> <span class="n">generator</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">generator</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
+        <span class="n">hidden_states</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
+<span class="nb">print</span><span class="p">(</span><span class="n">hidden_states</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">logits</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Below example shows accessing the output of a gpt2 module and setting the values to zero:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">forward</span><span class="p">()</span> <span class="k">as</span> <span class="n">runner</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">runner</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.contexts.Generator.Generator.blocking">
-<span class="sig-name descname"><span class="pre">blocking</span></span><a class="headerlink" href="#nnsight.contexts.Generator.Generator.blocking" title="Permalink to this definition">#</a></dt>
-<dd><p>If when using device_map=’server’, block and wait form responses. Otherwise have to manually
-request a response.</p>
+<dt class="sig sig-object py" id="nnsight.contexts.Runner.Runner.generation">
+<span class="sig-name descname"><span class="pre">generation</span></span><a class="headerlink" href="#nnsight.contexts.Runner.Runner.generation" title="Permalink to this definition">#</a></dt>
+<dd><p>If to use the _generation method of the model. Otherwise the _run_local method</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
@@ -347,9 +415,65 @@ request a response.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.contexts.Generator.Generator.args">
-<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#nnsight.contexts.Generator.Generator.args" title="Permalink to this definition">#</a></dt>
-<dd><p>Arguments for calling the model.</p>
+<dt class="sig sig-object py" id="nnsight.contexts.Runner.Runner.server">
+<span class="sig-name descname"><span class="pre">server</span></span><a class="headerlink" href="#nnsight.contexts.Runner.Runner.server" title="Permalink to this definition">#</a></dt>
+<dd><p>If to use the remote NDIF server for execution of model and computation graph. (Assuming it’s running/working)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.contexts.Runner.Runner.blocking">
+<span class="sig-name descname"><span class="pre">blocking</span></span><a class="headerlink" href="#nnsight.contexts.Runner.Runner.blocking" title="Permalink to this definition">#</a></dt>
+<dd><p>If when using the server option, to hang until job completion or return information you can use to retrieve the job result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.Runner.Runner.run_local">
+<span class="sig-name descname"><span class="pre">run_local</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nnsight.contexts.Runner.Runner.run_local" title="Permalink to this definition">#</a></dt>
+<dd><p>Runs the local_model using it’s chosen method.</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-nnsight.contexts.Tracer"></span><dl class="py class">
+<dt class="sig sig-object py" id="nnsight.contexts.Tracer.Tracer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.contexts.Tracer.</span></span><span class="sig-name descname"><span class="pre">Tracer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../models/#nnsight.models.AbstractModel.AbstractModel" title="nnsight.models.AbstractModel.AbstractModel"><span class="pre">AbstractModel</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer" title="Permalink to this definition">#</a></dt>
+<dd><p>The Tracer class creates a <a class="reference internal" href="../tracing/#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><code class="xref py py-class docutils literal notranslate"><span class="pre">nnsight.tracing.Graph.Graph</span></code></a> around the meta_model of a <a class="reference internal" href="../models/#nnsight.models.AbstractModel.AbstractModel" title="nnsight.models.AbstractModel.AbstractModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">nnsight.models.AbstractModel.AbstractModel</span></code></a> which tracks and manages the operations performed on the inputs and outputs of said model.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.contexts.Tracer.Tracer.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer.model" title="Permalink to this definition">#</a></dt>
+<dd><p>nnsight Model object that ths context manager traces and executes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../models/#nnsight.models.AbstractModel.AbstractModel" title="nnsight.models.AbstractModel.AbstractModel">nnsight.models.AbstractModel.AbstractModel</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.contexts.Tracer.Tracer.graph">
+<span class="sig-name descname"><span class="pre">graph</span></span><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer.graph" title="Permalink to this definition">#</a></dt>
+<dd><p>Graph which operations performed on the input and output of Modules are added and later executed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../tracing/#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph">nnsight.tracing.Graph.Graph</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.contexts.Tracer.Tracer.args">
+<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer.args" title="Permalink to this definition">#</a></dt>
+<dd><p>Positional arguments to be passed to function that executes the model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>List[Any]</p>
@@ -358,9 +482,9 @@ request a response.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.contexts.Generator.Generator.kwargs">
-<span class="sig-name descname"><span class="pre">kwargs</span></span><a class="headerlink" href="#nnsight.contexts.Generator.Generator.kwargs" title="Permalink to this definition">#</a></dt>
-<dd><p>Keyword arguments for calling the model.</p>
+<dt class="sig sig-object py" id="nnsight.contexts.Tracer.Tracer.kwargs">
+<span class="sig-name descname"><span class="pre">kwargs</span></span><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer.kwargs" title="Permalink to this definition">#</a></dt>
+<dd><p>Keyword arguments to be passed to function that executes the model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Dict[str,Any]</p>
@@ -369,10 +493,9 @@ request a response.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.contexts.Generator.Generator.generation_idx">
-<span class="sig-name descname"><span class="pre">generation_idx</span></span><a class="headerlink" href="#nnsight.contexts.Generator.Generator.generation_idx" title="Permalink to this definition">#</a></dt>
-<dd><p>Keeps track of what iteration of generation to do interventions at. Used by the Module class
-to specify generation_idx for interventions and changed by the Invoker class using invoker.next().</p>
+<dt class="sig sig-object py" id="nnsight.contexts.Tracer.Tracer.batch_size">
+<span class="sig-name descname"><span class="pre">batch_size</span></span><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer.batch_size" title="Permalink to this definition">#</a></dt>
+<dd><p>Batch size of the most recent input. Used by Module to create input/output proxies.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int</p>
@@ -381,9 +504,9 @@ to specify generation_idx for interventions and changed by the Invoker class usi
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.contexts.Generator.Generator.batch_size">
-<span class="sig-name descname"><span class="pre">batch_size</span></span><a class="headerlink" href="#nnsight.contexts.Generator.Generator.batch_size" title="Permalink to this definition">#</a></dt>
-<dd><p>Current size of invocation batch. To be used by Module node creation</p>
+<dt class="sig sig-object py" id="nnsight.contexts.Tracer.Tracer.generation_idx">
+<span class="sig-name descname"><span class="pre">generation_idx</span></span><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer.generation_idx" title="Permalink to this definition">#</a></dt>
+<dd><p>Current generation idx for multi-iteration generation. Used by Module to create input/output proxies.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int</p>
@@ -392,62 +515,130 @@ to specify generation_idx for interventions and changed by the Invoker class usi
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.contexts.Generator.Generator.prompts">
-<span class="sig-name descname"><span class="pre">prompts</span></span><a class="headerlink" href="#nnsight.contexts.Generator.Generator.prompts" title="Permalink to this definition">#</a></dt>
-<dd><p>Keeps track of prompts used by invokers.</p>
+<dt class="sig sig-object py" id="nnsight.contexts.Tracer.Tracer.batched_input">
+<span class="sig-name descname"><span class="pre">batched_input</span></span><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer.batched_input" title="Permalink to this definition">#</a></dt>
+<dd><p>Batched version of all inputs involved in this Tracer.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>List[str]</p>
+<dd class="field-odd"><p>List[Any]</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.contexts.Generator.Generator.graph">
-<span class="sig-name descname"><span class="pre">graph</span></span><a class="headerlink" href="#nnsight.contexts.Generator.Generator.graph" title="Permalink to this definition">#</a></dt>
-<dd><p>Graph of all user intervention operations.</p>
+<dt class="sig sig-object py" id="nnsight.contexts.Tracer.Tracer.output">
+<span class="sig-name descname"><span class="pre">output</span></span><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer.output" title="Permalink to this definition">#</a></dt>
+<dd><p>Output of execution after __exit__</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="../tracing/#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph">Graph</a></p>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-nnsight.contexts.Invoker"></span><dl class="py class">
+<dt class="sig sig-object py" id="nnsight.contexts.Invoker.Invoker">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.contexts.Invoker.</span></span><span class="sig-name descname"><span class="pre">Invoker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tracer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.contexts.Tracer.Tracer" title="nnsight.contexts.Tracer.Tracer"><span class="pre">Tracer</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scan</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nnsight.contexts.Invoker.Invoker" title="Permalink to this definition">#</a></dt>
+<dd><p>An Invoker is meant to work in tandem with a <a class="reference internal" href="#nnsight.contexts.Tracer.Tracer" title="nnsight.contexts.Tracer.Tracer"><code class="xref py py-class docutils literal notranslate"><span class="pre">nnsight.contexts.Tracer.Tracer</span></code></a> to enter input and manage intervention tracing.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.contexts.Invoker.Invoker.tracer">
+<span class="sig-name descname"><span class="pre">tracer</span></span><a class="headerlink" href="#nnsight.contexts.Invoker.Invoker.tracer" title="Permalink to this definition">#</a></dt>
+<dd><p>Tracer object to enter input and manage context.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#nnsight.contexts.Tracer.Tracer" title="nnsight.contexts.Tracer.Tracer">nnsight.contexts.Tracer.Tracer</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.contexts.Generator.Generator.output">
-<span class="sig-name descname"><span class="pre">output</span></span><a class="headerlink" href="#nnsight.contexts.Generator.Generator.output" title="Permalink to this definition">#</a></dt>
-<dd><p>desc</p>
+<dt class="sig sig-object py" id="nnsight.contexts.Invoker.Invoker.input">
+<span class="sig-name descname"><span class="pre">input</span></span><a class="headerlink" href="#nnsight.contexts.Invoker.Invoker.input" title="Permalink to this definition">#</a></dt>
+<dd><p>Initially entered input, then post-processed input from model’s _prepare_inputs method.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>??</p>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.contexts.Invoker.Invoker.scan">
+<span class="sig-name descname"><span class="pre">scan</span></span><a class="headerlink" href="#nnsight.contexts.Invoker.Invoker.scan" title="Permalink to this definition">#</a></dt>
+<dd><p>If to use a ‘meta’ version of the  post-processed input to run through the model using it’s _scan method,
+in order to update the potential sizes/dtypes of all module’s inputs/outputs as well as validate things work correctly.
+Scanning is not free computation wise so you may want to turn this to false when running in a loop.
+When making interventions, you made get shape errors if scan is false as it validates operations based on shapes so
+for looped calls where shapes are consistent, you may want to have scan=True for the first loop. Defaults to True.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.contexts.Invoker.Invoker.args">
+<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#nnsight.contexts.Invoker.Invoker.args" title="Permalink to this definition">#</a></dt>
+<dd><p>Positional arguments passed to the model’s _prepare_inputs method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.contexts.Invoker.Invoker.kwargs">
+<span class="sig-name descname"><span class="pre">kwargs</span></span><a class="headerlink" href="#nnsight.contexts.Invoker.Invoker.kwargs" title="Permalink to this definition">#</a></dt>
+<dd><p>Keyword arguments passed to the model’s _prepare_inputs method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[str,Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.Invoker.Invoker.next">
+<span class="sig-name descname"><span class="pre">next</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">increment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#nnsight.contexts.Invoker.Invoker.next" title="Permalink to this definition">#</a></dt>
+<dd><p>Designates subsequent interventions should be applied to the next generation for multi-iteration generation runs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>increment</strong> (<em>int</em>) – How many generation_idx to increment at once. Defaults to 1.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.Invoker.Invoker.save_all">
+<span class="sig-name descname"><span class="pre">save_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../tracing/#nnsight.tracing.Proxy.Proxy" title="nnsight.tracing.Proxy.Proxy"><span class="pre">Proxy</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#nnsight.contexts.Invoker.Invoker.save_all" title="Permalink to this definition">#</a></dt>
+<dd><p>Saves the output of all modules and returns a dictionary of [module_path -&gt; save proxy]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dictionary of all modules saved, keyed by their module_path.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dict[str, <a class="reference internal" href="../tracing/#nnsight.tracing.Proxy.Proxy" title="nnsight.tracing.Proxy.Proxy">Proxy</a>]</p>
 </dd>
 </dl>
 </dd></dl>
 
 </dd></dl>
 
-<span class="target" id="module-nnsight.contexts.Runner"></span><dl class="py class">
-<dt class="sig sig-object py" id="nnsight.contexts.Runner.Runner">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.contexts.Runner.</span></span><span class="sig-name descname"><span class="pre">Runner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../models/#nnsight.models.AbstractModel.AbstractModel" title="nnsight.models.AbstractModel.AbstractModel"><span class="pre">AbstractModel</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inference</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nnsight.contexts.Runner.Runner" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-<span class="target" id="module-nnsight.contexts.Tracer"></span><dl class="py class">
-<dt class="sig sig-object py" id="nnsight.contexts.Tracer.Tracer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.contexts.Tracer.</span></span><span class="sig-name descname"><span class="pre">Tracer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../models/#nnsight.models.AbstractModel.AbstractModel" title="nnsight.models.AbstractModel.AbstractModel"><span class="pre">AbstractModel</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer" title="Permalink to this definition">#</a></dt>
-<dd></dd></dl>
-
-<span class="target" id="module-nnsight.contexts.Invoker"></span></section>
+</section>
 
 
                 </article>
               
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="../module/"
@@ -467,10 +658,7 @@ to specify generation_idx for interventions and changed by the Invoker class usi
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -485,20 +673,34 @@ to specify generation_idx for interventions and changed by the Invoker class usi
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Generator.Generator"><code class="docutils literal notranslate"><span class="pre">Generator</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Generator.Generator.model"><code class="docutils literal notranslate"><span class="pre">Generator.model</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Generator.Generator.blocking"><code class="docutils literal notranslate"><span class="pre">Generator.blocking</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Generator.Generator.args"><code class="docutils literal notranslate"><span class="pre">Generator.args</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Generator.Generator.kwargs"><code class="docutils literal notranslate"><span class="pre">Generator.kwargs</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Generator.Generator.generation_idx"><code class="docutils literal notranslate"><span class="pre">Generator.generation_idx</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Generator.Generator.batch_size"><code class="docutils literal notranslate"><span class="pre">Generator.batch_size</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Generator.Generator.prompts"><code class="docutils literal notranslate"><span class="pre">Generator.prompts</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Generator.Generator.graph"><code class="docutils literal notranslate"><span class="pre">Generator.graph</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Generator.Generator.output"><code class="docutils literal notranslate"><span class="pre">Generator.output</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Runner.Runner"><code class="docutils literal notranslate"><span class="pre">Runner</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Runner.Runner.generation"><code class="docutils literal notranslate"><span class="pre">Runner.generation</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Runner.Runner.server"><code class="docutils literal notranslate"><span class="pre">Runner.server</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Runner.Runner.blocking"><code class="docutils literal notranslate"><span class="pre">Runner.blocking</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Runner.Runner.run_local"><code class="docutils literal notranslate"><span class="pre">Runner.run_local()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Runner.Runner"><code class="docutils literal notranslate"><span class="pre">Runner</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Tracer.Tracer"><code class="docutils literal notranslate"><span class="pre">Tracer</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Tracer.Tracer"><code class="docutils literal notranslate"><span class="pre">Tracer</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Tracer.Tracer.model"><code class="docutils literal notranslate"><span class="pre">Tracer.model</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Tracer.Tracer.graph"><code class="docutils literal notranslate"><span class="pre">Tracer.graph</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Tracer.Tracer.args"><code class="docutils literal notranslate"><span class="pre">Tracer.args</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Tracer.Tracer.kwargs"><code class="docutils literal notranslate"><span class="pre">Tracer.kwargs</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Tracer.Tracer.batch_size"><code class="docutils literal notranslate"><span class="pre">Tracer.batch_size</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Tracer.Tracer.generation_idx"><code class="docutils literal notranslate"><span class="pre">Tracer.generation_idx</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Tracer.Tracer.batched_input"><code class="docutils literal notranslate"><span class="pre">Tracer.batched_input</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Tracer.Tracer.output"><code class="docutils literal notranslate"><span class="pre">Tracer.output</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Invoker.Invoker"><code class="docutils literal notranslate"><span class="pre">Invoker</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Invoker.Invoker.tracer"><code class="docutils literal notranslate"><span class="pre">Invoker.tracer</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Invoker.Invoker.input"><code class="docutils literal notranslate"><span class="pre">Invoker.input</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Invoker.Invoker.scan"><code class="docutils literal notranslate"><span class="pre">Invoker.scan</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Invoker.Invoker.args"><code class="docutils literal notranslate"><span class="pre">Invoker.args</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Invoker.Invoker.kwargs"><code class="docutils literal notranslate"><span class="pre">Invoker.kwargs</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Invoker.Invoker.next"><code class="docutils literal notranslate"><span class="pre">Invoker.next()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Invoker.Invoker.save_all"><code class="docutils literal notranslate"><span class="pre">Invoker.save_all()</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
@@ -523,8 +725,8 @@ to specify generation_idx for interventions and changed by the Invoker class usi
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -542,7 +744,7 @@ to specify generation_idx for interventions and changed by the Invoker class usi
       
         <div class="footer-item">
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2.
     <br/>
   </p>
 </div>
@@ -550,10 +752,11 @@ to specify generation_idx for interventions and changed by the Invoker class usi
     </div>
   
   
+  
     <div class="footer-items__end">
       
         <div class="footer-item"><p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.3.
 </p></div>
       
     </div>

@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 
 
@@ -7,9 +6,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>nnsight.tracing &#8212; nnsight 0.1 documentation</title>
+    <title>nnsight.tracing &#8212; nnsight 0.0.6 documentation</title>
   
   
   
@@ -19,35 +18,35 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=331c24ed" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/design-tabs.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=5a9e2183"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'documentation/tracing';</script>
+    <link rel="icon" href="../../_static/icon.ico"/>
     <link rel="index" title="Index" href="../../genindex/" />
     <link rel="search" title="Search" href="../../search/" />
     <link rel="next" title="nnsight.patching" href="../patching/" />
@@ -62,6 +61,15 @@
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -86,8 +94,8 @@
          class="form-control"
          name="q"
          id="search-input"
-         placeholder="Your text here..."
-         aria-label="Your text here..."
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
          autocomplete="off"
          autocorrect="off"
          autocapitalize="off"
@@ -102,12 +110,14 @@
     <span class="fa-solid fa-bars"></span>
   </label>
   
-  <div class="navbar-header-items__start">
+  
+  <div class=" navbar-header-items__start">
     
       <div class="navbar-item">
   
 
 <a class="navbar-brand logo" href="../../">
+  
   
   
   
@@ -119,8 +129,7 @@
     
   </div>
   
-  
-  <div class="col-lg-9 navbar-header-items">
+  <div class=" navbar-header-items">
     
     <div class="me-auto navbar-header-items__center">
       
@@ -163,15 +172,33 @@
       
         <div class="navbar-item navbar-persistent--container">
           
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
         </div>
       
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/JadenFiotto-Kaufman/nnsight" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
       
     </div>
     
@@ -179,18 +206,20 @@ document.write(`
   
   
     <div class="navbar-persistent--mobile">
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
     </div>
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
       <span class="fa-solid fa-outdent"></span>
     </label>
   
@@ -246,6 +275,26 @@ document.write(`
     
     
     
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/JadenFiotto-Kaufman/nnsight" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
@@ -289,8 +338,8 @@ document.write(`
 
 
 
-<nav aria-label="Breadcrumbs">
-  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
     
     <li class="breadcrumb-item breadcrumb-home">
       <a href="../../" class="nav-link" aria-label="Home">
@@ -320,34 +369,38 @@ document.write(`
   <section id="module-nnsight.tracing">
 <span id="nnsight-tracing"></span><h1>nnsight.tracing<a class="headerlink" href="#module-nnsight.tracing" title="Permalink to this heading">#</a></h1>
 <p>The nnsight.tracing module involves tracking operations on a torch.nn.Module in order to form a computation graph.</p>
-<p>The <a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><code class="xref py py-class docutils literal notranslate"><span class="pre">nnsight.tracing.Graph.Graph</span></code></a> class adds and stores each operation or node. It has a ‘module’ node which acts as the root object on which the computation graph is performing.
+<p>The <a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><code class="xref py py-class docutils literal notranslate"><span class="pre">Graph</span></code></a> class adds and stores each operation or node. It has a ‘module’ node which acts as the root object on which the computation graph is performing.
 It has ‘argument’ nodes which act as entry points for data to flow into the graph.</p>
-<p>The <a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">nnsight.tracing.Node.Node</span></code></a> class are nodes in the graph both representing the operations (and the resulting output of said operations) they are tracing AND nodes that actually execute the operations when running the graph on a model.
-Nodes have a <code class="docutils literal notranslate"><span class="pre">.proxy_value</span></code> attribute that are a result of the tracing operation, and are ‘meta’ tensors allowing you to view the shape and datatypes of the actual resulting value that will be populated when the node’ operation is executed.
-Nodes carry out their operation in <code class="docutils literal notranslate"><span class="pre">.execute()</span></code> where their arguments are pre-processed and their value is set in <code class="docutils literal notranslate"><span class="pre">.set_value()</span></code>.
-Arguments passed to the node can be and are other nodes, where a bi-directional dependency graph is formed. During execution pre-processing, the arguments that are nodes and converted to their value.
-Nodes are responsible for updating their listeners that one of their dependencies are completed, and if all are completed that they should execute.
-Same with updating their dependencies that a listener of theirs is no longer “listening”. If the node has no listeners, it’s value is destroyed by calling <code class="docutils literal notranslate"><span class="pre">.destroy()</span></code> in order to free memory.
-When re-executing the same graph and therefore the same nodes, the remaining listeners and dependencies are reset on each node.</p>
-<p><a class="reference internal" href="#nnsight.tracing.Proxy.Proxy" title="nnsight.tracing.Proxy.Proxy"><code class="xref py py-class docutils literal notranslate"><span class="pre">nnsight.tracing.Proxy.Proxy</span></code></a> class objects are the actual objects that interact with operations in order to update the graph to create new nodes. Each Node has it’s own proxy object.
-The operations that are traceable on base Proxy objects are many python built-in and magic methods, as well as implementing __torch_function__ to trace torch operations.
-When an operation is traced, arguments are converted into their ‘meta’ tensor values and ran through the operation in order to find out the shames and data types of the result.</p>
+<p>The <a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a> class represents nodes in the graph. The class represents the operations (and the resulting output of said operations) they are tracing AND nodes that actually execute the operations when running the graph on a model.</p>
+<ul class="simple">
+<li><p>Nodes have a <code class="docutils literal notranslate"><span class="pre">.proxy_value</span></code> attribute that are a result of the tracing operation, and are ‘meta’ tensors allowing you to view the shape and datatypes of the actual resulting value that will be populated when the node’ operation is executed.</p></li>
+<li><p>Nodes carry out their operation in <code class="docutils literal notranslate"><span class="pre">.execute()</span></code> where their arguments are pre-processed and their value is set in <code class="docutils literal notranslate"><span class="pre">.set_value()</span></code>.</p></li>
+<li><p>Arguments passed to the node are other nodes, where a bi-directional dependency graph is formed. During execution pre-processing, the arguments that are nodes and converted to their value.</p></li>
+<li><p>Nodes are responsible for updating their listeners that one of their dependencies are completed, and if all are completed that they should execute. Similarly, nodes must inform their dependencies when one of their listeners has ceased “listening.” If the node has no listeners, it’s value is destroyed by calling <code class="docutils literal notranslate"><span class="pre">.destroy()</span></code> in order to free memory. When re-executing the same graph and therefore the same nodes, the remaining listeners and dependencies are reset on each node.</p></li>
+</ul>
+<p><a class="reference internal" href="#nnsight.tracing.Proxy.Proxy" title="nnsight.tracing.Proxy.Proxy"><code class="xref py py-class docutils literal notranslate"><span class="pre">Proxy</span></code></a> class objects are the actual objects that interact with operations in order to update the graph to create new nodes. Each Node has it’s own proxy object. The operations that are traceable on base Proxy objects are many python built-in and magic methods, as well as implementing __torch_function__ to trace torch operations. When an operation is traced, arguments are converted into their ‘meta’ tensor values and ran through the operation in order to find out the shames and data types of the result.</p>
 <span class="target" id="module-nnsight.tracing.Graph"></span><dl class="py class">
 <dt class="sig sig-object py" id="nnsight.tracing.Graph.Graph">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.tracing.Graph.</span></span><span class="sig-name descname"><span class="pre">Graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module:</span> <span class="pre">~torch.nn.modules.module.Module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proxy_class:</span> <span class="pre">~typing.Type[~nnsight.tracing.Proxy.Proxy]</span> <span class="pre">=</span> <span class="pre">&lt;class</span> <span class="pre">'nnsight.tracing.Proxy.Proxy'&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nnsight.tracing.Graph.Graph" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.tracing.Graph.</span></span><span class="sig-name descname"><span class="pre">Graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module:</span> <span class="pre">~torch.nn.modules.module.Module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proxy_class:</span> <span class="pre">~typing.Type[~nnsight.tracing.Proxy.Proxy]</span> <span class="pre">=</span> <span class="pre">&lt;class</span> <span class="pre">'nnsight.tracing.Proxy.Proxy'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nnsight.tracing.Graph.Graph" title="Permalink to this definition">#</a></dt>
 <dd><p>Represents a computation graph involving a torch.nn.module.</p>
-<dl>
-<dt>Reserve target names:</dt><dd><dl class="simple">
-<dt>‘module’<span class="classifier">There should only be the single root module as a node in the graph for tracing . Added on __init__ and when compiling,</span></dt><dd><p>the node’s value is set to to be whatever module that is being interleaved with this computation graph.</p>
-</dd>
-<dt>‘argument’<span class="classifier">There can be multiple argument nodes. Their first argument needs to be the argument name which acts as a key in graph.argument_node_names.</span></dt><dd><p>which maps to a list of names for nodes that depend on it’s value. These nodes values need to be set outside of the computation graph
-as entry points to kick of the execution of the graph.</p>
+<p>Reserved target names:</p>
+<ul class="simple">
+<li><p>‘module’ : There should only be the single root module as a node in the graph for tracing. Added on __init__ and when compiling, the node’s value is set to to be whatever module that is being interleaved with this computation graph.</p></li>
+<li><p>‘argument’ : There can be multiple argument nodes. Their first argument needs to be the argument name which acts as a key in graph.argument_node_names which maps to a list of names for nodes that depend on it’s value. These nodes values need to be set outside of the computation graph as entry points to kick of the execution of the graph.</p></li>
+<li><p>‘rtn’ : Should only be one ‘rtn’ target named node as this is what is used.</p></li>
+<li><p>‘null’ : Null nodes never get executed and therefore their listeners never get destroyed.</p></li>
+</ul>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.tracing.Graph.Graph.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><a class="headerlink" href="#nnsight.tracing.Graph.Graph.validate" title="Permalink to this definition">#</a></dt>
+<dd><p>If to execute nodes as they are added with their proxy values in order to check if the executions are possible (i.e shape errors etc). Defaults to True.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
-<p>‘rtn’ : Should only be one ‘rtn’ target named node as this is what is used.
-‘null’ : Null nodes never get executed and therefore their listeners never get destroyed.</p>
-</dd>
-</dl>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nnsight.tracing.Graph.Graph.proxy_class">
 <span class="sig-name descname"><span class="pre">proxy_class</span></span><a class="headerlink" href="#nnsight.tracing.Graph.Graph.proxy_class" title="Permalink to this definition">#</a></dt>
@@ -417,7 +470,7 @@ Used so names are unique.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nnsight.tracing.Graph.Graph.add">
-<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nnsight.tracing.Proxy.Proxy" title="nnsight.tracing.Proxy.Proxy"><span class="pre">Proxy</span></a></span></span><a class="headerlink" href="#nnsight.tracing.Graph.Graph.add" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nnsight.tracing.Proxy.Proxy" title="nnsight.tracing.Proxy.Proxy"><span class="pre">Proxy</span></a></span></span><a class="headerlink" href="#nnsight.tracing.Graph.Graph.add" title="Permalink to this definition">#</a></dt>
 <dd><p>Adds a node to the graph and returns it’s proxy.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -534,12 +587,12 @@ forward method.</p>
 
 <span class="target" id="module-nnsight.tracing.Node"></span><dl class="py class">
 <dt class="sig sig-object py" id="nnsight.tracing.Node.Node">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.tracing.Node.</span></span><span class="sig-name descname"><span class="pre">Node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nnsight.tracing.Node.Node" title="Permalink to this definition">#</a></dt>
-<dd><p>_summary_</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.tracing.Node.</span></span><span class="sig-name descname"><span class="pre">Node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nnsight.tracing.Node.Node" title="Permalink to this definition">#</a></dt>
+<dd><p>A Node represents some action that should be carried out during execution of a Graph.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nnsight.tracing.Node.Node.name">
 <span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#nnsight.tracing.Node.Node.name" title="Permalink to this definition">#</a></dt>
-<dd><p>_description_</p>
+<dd><p>Unique name of node.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
@@ -550,7 +603,7 @@ forward method.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nnsight.tracing.Node.Node.graph">
 <span class="sig-name descname"><span class="pre">graph</span></span><a class="headerlink" href="#nnsight.tracing.Node.Node.graph" title="Permalink to this definition">#</a></dt>
-<dd><p>_description_</p>
+<dd><p>Reference to parent Graph object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph">Graph</a></p>
@@ -561,7 +614,7 @@ forward method.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nnsight.tracing.Node.Node.proxy_value">
 <span class="sig-name descname"><span class="pre">proxy_value</span></span><a class="headerlink" href="#nnsight.tracing.Node.Node.proxy_value" title="Permalink to this definition">#</a></dt>
-<dd><p>_description_</p>
+<dd><p>Meta version of value. Used when graph has validate = True.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Any</p>
@@ -572,7 +625,7 @@ forward method.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nnsight.tracing.Node.Node.target">
 <span class="sig-name descname"><span class="pre">target</span></span><a class="headerlink" href="#nnsight.tracing.Node.Node.target" title="Permalink to this definition">#</a></dt>
-<dd><p>_description_</p>
+<dd><p>Function to execute or reserved string name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Union[Callable, str]</p>
@@ -583,7 +636,7 @@ forward method.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nnsight.tracing.Node.Node.args">
 <span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#nnsight.tracing.Node.Node.args" title="Permalink to this definition">#</a></dt>
-<dd><p>_description_. Defaults to None.</p>
+<dd><p>Positional arguments. Defaults to None.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>List[Any], optional</p>
@@ -594,7 +647,7 @@ forward method.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nnsight.tracing.Node.Node.kwargs">
 <span class="sig-name descname"><span class="pre">kwargs</span></span><a class="headerlink" href="#nnsight.tracing.Node.Node.kwargs" title="Permalink to this definition">#</a></dt>
-<dd><p>_description_. Defaults to None.</p>
+<dd><p>Keyword arguments. Defaults to None.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Dict[str, Any], optional</p>
@@ -605,7 +658,7 @@ forward method.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nnsight.tracing.Node.Node.meta">
 <span class="sig-name descname"><span class="pre">meta</span></span><a class="headerlink" href="#nnsight.tracing.Node.Node.meta" title="Permalink to this definition">#</a></dt>
-<dd><p>_description_. Defaults to None.</p>
+<dd><p>Meta information (used when tracing whole modules). Defaults to None.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Dict[str, Any], optional</p>
@@ -616,7 +669,7 @@ forward method.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nnsight.tracing.Node.Node.listeners">
 <span class="sig-name descname"><span class="pre">listeners</span></span><a class="headerlink" href="#nnsight.tracing.Node.Node.listeners" title="Permalink to this definition">#</a></dt>
-<dd><p>desc</p>
+<dd><p>Nodes that depend on this node.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>List[<a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node">Node</a>]</p>
@@ -627,7 +680,7 @@ forward method.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nnsight.tracing.Node.Node.dependencies">
 <span class="sig-name descname"><span class="pre">dependencies</span></span><a class="headerlink" href="#nnsight.tracing.Node.Node.dependencies" title="Permalink to this definition">#</a></dt>
-<dd><p>desc</p>
+<dd><p>Nodes that this node depends on.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>List[<a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node">Node</a>]</p>
@@ -638,7 +691,7 @@ forward method.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nnsight.tracing.Node.Node.value">
 <span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#nnsight.tracing.Node.Node.value" title="Permalink to this definition">#</a></dt>
-<dd><p>desc</p>
+<dd><p>Actual value to be populated during execution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Any</p>
@@ -683,20 +736,6 @@ forward method.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="nnsight.tracing.Node.Node.update">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value2</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#nnsight.tracing.Node.Node.update" title="Permalink to this definition">#</a></dt>
-<dd><p>Updates Tensor values with other Tensor values.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>value1</strong> (<em>_type_</em>) – _description_</p></li>
-<li><p><strong>value2</strong> (<em>_type_</em>) – _description_</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
 </dd></dl>
 
 <span class="target" id="module-nnsight.tracing.Proxy"></span><dl class="py class">
@@ -712,6 +751,20 @@ When an operation is traced, arguments are converted into their ‘meta’ tenso
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node">Node</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.Proxy.Proxy.proxy_update">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">proxy_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#nnsight.tracing.Proxy.Proxy.proxy_update" title="Permalink to this definition">#</a></dt>
+<dd><p>Updates Tensor values with other Tensor values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value1</strong> (<em>Any</em>) – _description_</p></li>
+<li><p><strong>value2</strong> (<em>Any</em>) – _description_</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -744,11 +797,10 @@ Otherwise just run the function.</p>
               
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="../intervention/"
@@ -768,10 +820,7 @@ Otherwise just run the function.</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -787,6 +836,7 @@ Otherwise just run the function.</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Graph.Graph"><code class="docutils literal notranslate"><span class="pre">Graph</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Graph.Graph.validate"><code class="docutils literal notranslate"><span class="pre">Graph.validate</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Graph.Graph.proxy_class"><code class="docutils literal notranslate"><span class="pre">Graph.proxy_class</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Graph.Graph.nodes"><code class="docutils literal notranslate"><span class="pre">Graph.nodes</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Graph.Graph.name_idx"><code class="docutils literal notranslate"><span class="pre">Graph.name_idx</span></code></a></li>
@@ -817,11 +867,11 @@ Otherwise just run the function.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Node.Node.destroy"><code class="docutils literal notranslate"><span class="pre">Node.destroy()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Node.Node.execute"><code class="docutils literal notranslate"><span class="pre">Node.execute()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Node.Node.proxy_device"><code class="docutils literal notranslate"><span class="pre">Node.proxy_device</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Node.Node.update"><code class="docutils literal notranslate"><span class="pre">Node.update()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Proxy.Proxy"><code class="docutils literal notranslate"><span class="pre">Proxy</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Proxy.Proxy.node"><code class="docutils literal notranslate"><span class="pre">Proxy.node</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Proxy.Proxy.proxy_update"><code class="docutils literal notranslate"><span class="pre">Proxy.proxy_update()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Proxy.proxy_wrapper"><code class="docutils literal notranslate"><span class="pre">proxy_wrapper()</span></code></a></li>
@@ -849,8 +899,8 @@ Otherwise just run the function.</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -868,7 +918,7 @@ Otherwise just run the function.</p>
       
         <div class="footer-item">
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2.
     <br/>
   </p>
 </div>
@@ -876,10 +926,11 @@ Otherwise just run the function.</p>
     </div>
   
   
+  
     <div class="footer-items__end">
       
         <div class="footer-item"><p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.3.
 </p></div>
       
     </div>

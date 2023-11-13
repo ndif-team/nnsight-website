@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 
 
@@ -7,9 +6,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>nnsight.module &#8212; nnsight 0.1 documentation</title>
+    <title>nnsight.module &#8212; nnsight 0.0.6 documentation</title>
   
   
   
@@ -19,35 +18,35 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=331c24ed" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/design-tabs.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=5a9e2183"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'documentation/module';</script>
+    <link rel="icon" href="../../_static/icon.ico"/>
     <link rel="index" title="Index" href="../../genindex/" />
     <link rel="search" title="Search" href="../../search/" />
     <link rel="next" title="nnsight.contexts" href="../contexts/" />
@@ -62,6 +61,15 @@
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -86,8 +94,8 @@
          class="form-control"
          name="q"
          id="search-input"
-         placeholder="Your text here..."
-         aria-label="Your text here..."
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
          autocomplete="off"
          autocorrect="off"
          autocapitalize="off"
@@ -102,12 +110,14 @@
     <span class="fa-solid fa-bars"></span>
   </label>
   
-  <div class="navbar-header-items__start">
+  
+  <div class=" navbar-header-items__start">
     
       <div class="navbar-item">
   
 
 <a class="navbar-brand logo" href="../../">
+  
   
   
   
@@ -119,8 +129,7 @@
     
   </div>
   
-  
-  <div class="col-lg-9 navbar-header-items">
+  <div class=" navbar-header-items">
     
     <div class="me-auto navbar-header-items__center">
       
@@ -163,15 +172,33 @@
       
         <div class="navbar-item navbar-persistent--container">
           
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
         </div>
       
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/JadenFiotto-Kaufman/nnsight" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
       
     </div>
     
@@ -179,18 +206,20 @@ document.write(`
   
   
     <div class="navbar-persistent--mobile">
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
-`);
-</script>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
     </div>
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
       <span class="fa-solid fa-outdent"></span>
     </label>
   
@@ -246,6 +275,26 @@ document.write(`
     
     
     
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/JadenFiotto-Kaufman/nnsight" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
@@ -289,8 +338,8 @@ document.write(`
 
 
 
-<nav aria-label="Breadcrumbs">
-  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
     
     <li class="breadcrumb-item breadcrumb-home">
       <a href="../../" class="nav-link" aria-label="Home">
@@ -317,35 +366,34 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="module-nnsight.Module">
-<span id="nnsight-module"></span><h1>nnsight.module<a class="headerlink" href="#module-nnsight.Module" title="Permalink to this heading">#</a></h1>
-<p>The Module object acts as the entrypoint into the interwoven intervention graph for manipulating the inputs and outputs of Modules as a model is running.
-Specifically, the <cite>.output</cite> and <cite>.input</cite> attributes are the root nodes of the intervention graph, and all operation performed on these Proxy objects are the downstream nodes that populate the graph.
-Requires a <code class="docutils literal notranslate"><span class="pre">Tracer</span></code> object to add the correct proxies to the intervention graph.</p>
+  <section id="module-nnsight.module">
+<span id="nnsight-module"></span><h1>nnsight.module<a class="headerlink" href="#module-nnsight.module" title="Permalink to this heading">#</a></h1>
+<p>The Module object acts as the entrypoint into the interwoven intervention graph. Through it, one can manipulate the inputs and outputs of Modules as a model is running. Specifically, the <code class="docutils literal notranslate"><span class="pre">.output</span></code> and <code class="docutils literal notranslate"><span class="pre">.input</span></code> attributes are the root nodes of the intervention graph, and all operations performed on these Proxy objects are the downstream nodes that populate the graph. Requires a <code class="docutils literal notranslate"><span class="pre">Tracer</span></code> object to add the correct proxies to the intervention graph.</p>
 <p class="rubric">Examples</p>
-<p>Below example shows accessing the input and output of a gpt2 module, saving them during execution, and printing the resulting values after execution:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">()</span> <span class="k">as</span> <span class="n">generator</span><span class="p">:</span>
-<span class="gp">&gt;&gt;&gt; </span>   <span class="k">with</span> <span class="n">generator</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
-<span class="gp">&gt;&gt;&gt; </span>       <span class="n">hidden_states</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span>       <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">hidden_states</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">logits</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<p>The example below accesses the inputs and outputs of a gpt2 module, saves them during execution, and prints the resulting values:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">()</span> <span class="k">as</span> <span class="n">generator</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">generator</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
+        <span class="n">hidden_states</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">hidden_states</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">logits</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Below example shows accessing the output of a gpt2 module and setting the values to zero:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">()</span> <span class="k">as</span> <span class="n">generator</span><span class="p">:</span>
-<span class="gp">&gt;&gt;&gt; </span>   <span class="k">with</span> <span class="n">generator</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
-<span class="gp">&gt;&gt;&gt; </span>       <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<p>This example shows how to set the output of a gpt2 module to zero:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">()</span> <span class="k">as</span> <span class="n">generator</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">generator</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 </pre></div>
 </div>
 <dl class="py class">
-<dt class="sig sig-object py" id="nnsight.Module.Module">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.Module.</span></span><span class="sig-name descname"><span class="pre">Module</span></span><a class="headerlink" href="#nnsight.Module.Module" title="Permalink to this definition">#</a></dt>
-<dd><p>Class meant to wrap existing torch modules within a model’s module tree in order to add nnsight functionality.
+<dt class="sig sig-object py" id="nnsight.module.Module">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.module.</span></span><span class="sig-name descname"><span class="pre">Module</span></span><a class="headerlink" href="#nnsight.module.Module" title="Permalink to this definition">#</a></dt>
+<dd><p>Class that wraps existing torch modules within a model’s module tree in order to add nnsight functionality.
 Proxies of it’s output and input are accessed by <cite>.output</cite> and <cite>.input</cite> respectively.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.Module.Module.module_path">
-<span class="sig-name descname"><span class="pre">module_path</span></span><a class="headerlink" href="#nnsight.Module.Module.module_path" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="nnsight.module.Module.module_path">
+<span class="sig-name descname"><span class="pre">module_path</span></span><a class="headerlink" href="#nnsight.module.Module.module_path" title="Permalink to this definition">#</a></dt>
 <dd><p>String representing the attribute path of this module relative the the root model. Separated by ‘.’ e.x (‘transformer.h.0.mlp’). Set by AbstractModel on initialization of meta model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -355,8 +403,8 @@ Proxies of it’s output and input are accessed by <cite>.output</cite> and <cit
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.Module.Module.output">
-<span class="sig-name descname"><span class="pre">output</span></span><a class="headerlink" href="#nnsight.Module.Module.output" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="nnsight.module.Module.output">
+<span class="sig-name descname"><span class="pre">output</span></span><a class="headerlink" href="#nnsight.module.Module.output" title="Permalink to this definition">#</a></dt>
 <dd><p>Proxy object representing the output of this module. Reset on pass through.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -366,8 +414,8 @@ Proxies of it’s output and input are accessed by <cite>.output</cite> and <cit
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.Module.Module.output_shape">
-<span class="sig-name descname"><span class="pre">output_shape</span></span><a class="headerlink" href="#nnsight.Module.Module.output_shape" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="nnsight.module.Module.output_shape">
+<span class="sig-name descname"><span class="pre">output_shape</span></span><a class="headerlink" href="#nnsight.module.Module.output_shape" title="Permalink to this definition">#</a></dt>
 <dd><p>Shape of the tensor outputs to this module. Populated by most recent pass through. Can also be a nested list of torch.Size.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -377,8 +425,8 @@ Proxies of it’s output and input are accessed by <cite>.output</cite> and <cit
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.Module.Module.output_type">
-<span class="sig-name descname"><span class="pre">output_type</span></span><a class="headerlink" href="#nnsight.Module.Module.output_type" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="nnsight.module.Module.output_type">
+<span class="sig-name descname"><span class="pre">output_type</span></span><a class="headerlink" href="#nnsight.module.Module.output_type" title="Permalink to this definition">#</a></dt>
 <dd><p>Dtype of the tensor outputs to this module. Populated by most recent pass through. Can also be a nested list of torch.dtype.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -399,8 +447,8 @@ Proxies of it’s output and input are accessed by <cite>.output</cite> and <cit
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.Module.Module.input_shape">
-<span class="sig-name descname"><span class="pre">input_shape</span></span><a class="headerlink" href="#nnsight.Module.Module.input_shape" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="nnsight.module.Module.input_shape">
+<span class="sig-name descname"><span class="pre">input_shape</span></span><a class="headerlink" href="#nnsight.module.Module.input_shape" title="Permalink to this definition">#</a></dt>
 <dd><p>Shape of the tensor inputs to this module. Populated by most recent pass through. Can also be a nested list of torch.Size.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -410,8 +458,8 @@ Proxies of it’s output and input are accessed by <cite>.output</cite> and <cit
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.Module.Module.input_type">
-<span class="sig-name descname"><span class="pre">input_type</span></span><a class="headerlink" href="#nnsight.Module.Module.input_type" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="nnsight.module.Module.input_type">
+<span class="sig-name descname"><span class="pre">input_type</span></span><a class="headerlink" href="#nnsight.module.Module.input_type" title="Permalink to this definition">#</a></dt>
 <dd><p>Dtype of the tensor inputs to this module. Populated by most recent pass through. Can also be a nested list of torch.dtype.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -421,8 +469,8 @@ Proxies of it’s output and input are accessed by <cite>.output</cite> and <cit
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.Module.Module.tracer">
-<span class="sig-name descname"><span class="pre">tracer</span></span><a class="headerlink" href="#nnsight.Module.Module.tracer" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="nnsight.module.Module.tracer">
+<span class="sig-name descname"><span class="pre">tracer</span></span><a class="headerlink" href="#nnsight.module.Module.tracer" title="Permalink to this definition">#</a></dt>
 <dd><p>Object which adds this module’s output and input proxies to an intervention graph. Must be set on Module objects manually.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -432,8 +480,8 @@ Proxies of it’s output and input are accessed by <cite>.output</cite> and <cit
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="nnsight.Module.Module.input">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">input</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></em><a class="headerlink" href="#nnsight.Module.Module.input" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="nnsight.module.Module.input">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">input</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></em><a class="headerlink" href="#nnsight.module.Module.input" title="Permalink to this definition">#</a></dt>
 <dd><p>Calling denotes the user wishes to get the input of this module and therefore we create a Proxy of that request.
 Only generates a proxy the first time it is references otherwise return the already set one.</p>
 <dl class="field-list simple">
@@ -462,8 +510,8 @@ Only generates a proxy the first time it is references otherwise return the alre
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="nnsight.Module.Module.wrap">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">wrap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Module</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nnsight.Module.Module" title="nnsight.Module.Module"><span class="pre">Module</span></a></span></span><a class="headerlink" href="#nnsight.Module.Module.wrap" title="Permalink to this definition">#</a></dt>
+<dt class="sig sig-object py" id="nnsight.module.Module.wrap">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">wrap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Module</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nnsight.module.Module" title="nnsight.module.Module"><span class="pre">Module</span></a></span></span><a class="headerlink" href="#nnsight.module.Module.wrap" title="Permalink to this definition">#</a></dt>
 <dd><p>Wraps the torch Module with our Module class. Adds a forward hook to the module to populate output and input data. Does not wrap torch.nn.ModuleList.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -473,7 +521,7 @@ Only generates a proxy the first time it is references otherwise return the alre
 <dd class="field-even"><p>The wrapped Module.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#nnsight.Module.Module" title="nnsight.Module.Module">Module</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="#nnsight.module.Module" title="nnsight.module.Module">Module</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -487,11 +535,10 @@ Only generates a proxy the first time it is references otherwise return the alre
               
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="../models/"
@@ -511,10 +558,7 @@ Only generates a proxy the first time it is references otherwise return the alre
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -529,18 +573,18 @@ Only generates a proxy the first time it is references otherwise return the alre
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.Module.Module"><code class="docutils literal notranslate"><span class="pre">Module</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.Module.Module.module_path"><code class="docutils literal notranslate"><span class="pre">Module.module_path</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.Module.Module.output"><code class="docutils literal notranslate"><span class="pre">Module.output</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.Module.Module.output_shape"><code class="docutils literal notranslate"><span class="pre">Module.output_shape</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.Module.Module.output_type"><code class="docutils literal notranslate"><span class="pre">Module.output_type</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.module.Module"><code class="docutils literal notranslate"><span class="pre">Module</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.module.Module.module_path"><code class="docutils literal notranslate"><span class="pre">Module.module_path</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.module.Module.output"><code class="docutils literal notranslate"><span class="pre">Module.output</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.module.Module.output_shape"><code class="docutils literal notranslate"><span class="pre">Module.output_shape</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.module.Module.output_type"><code class="docutils literal notranslate"><span class="pre">Module.output_type</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id0"><code class="docutils literal notranslate"><span class="pre">Module.output</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.Module.Module.input_shape"><code class="docutils literal notranslate"><span class="pre">Module.input_shape</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.Module.Module.input_type"><code class="docutils literal notranslate"><span class="pre">Module.input_type</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.Module.Module.tracer"><code class="docutils literal notranslate"><span class="pre">Module.tracer</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.Module.Module.input"><code class="docutils literal notranslate"><span class="pre">Module.input</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.module.Module.input_shape"><code class="docutils literal notranslate"><span class="pre">Module.input_shape</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.module.Module.input_type"><code class="docutils literal notranslate"><span class="pre">Module.input_type</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.module.Module.tracer"><code class="docutils literal notranslate"><span class="pre">Module.tracer</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.module.Module.input"><code class="docutils literal notranslate"><span class="pre">Module.input</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><code class="docutils literal notranslate"><span class="pre">Module.output</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.Module.Module.wrap"><code class="docutils literal notranslate"><span class="pre">Module.wrap()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.module.Module.wrap"><code class="docutils literal notranslate"><span class="pre">Module.wrap()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -567,8 +611,8 @@ Only generates a proxy the first time it is references otherwise return the alre
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -586,7 +630,7 @@ Only generates a proxy the first time it is references otherwise return the alre
       
         <div class="footer-item">
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2.
     <br/>
   </p>
 </div>
@@ -594,10 +638,11 @@ Only generates a proxy the first time it is references otherwise return the alre
     </div>
   
   
+  
     <div class="footer-items__end">
       
         <div class="footer-item"><p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.3.
 </p></div>
       
     </div>
