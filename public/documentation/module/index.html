@@ -18,12 +18,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -31,16 +31,16 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=5925099e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=d69e8fe3" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
-  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
-    <script src="../../_static/documentation_options.js?v=51633b78"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=48581d99"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=36754332"></script>
@@ -423,7 +423,7 @@
                 <article class="bd-article" role="main">
                   
   <section id="module-nnsight.module">
-<span id="nnsight-module"></span><h1>nnsight.module<a class="headerlink" href="#module-nnsight.module" title="Link to this heading">#</a></h1>
+<span id="nnsight-module"></span><h1>nnsight.module<a class="headerlink" href="#module-nnsight.module" title="Permalink to this heading">#</a></h1>
 <p>The Module object acts as the entrypoint into the interwoven intervention graph. Through it, one can manipulate the inputs and outputs of Modules as a model is running. Specifically, the <code class="docutils literal notranslate"><span class="pre">.output</span></code> and <code class="docutils literal notranslate"><span class="pre">.input</span></code> attributes are the root nodes of the intervention graph, and all operations performed on these Proxy objects are the downstream nodes that populate the graph. Requires a <code class="docutils literal notranslate"><span class="pre">Tracer</span></code> object to add the correct proxies to the intervention graph.</p>
 <p class="rubric">Examples</p>
 <p>The example below accesses the inputs and outputs of a gpt2 module, saves them during execution, and prints the resulting values:</p>
@@ -444,12 +444,12 @@
 </div>
 <dl class="py class">
 <dt class="sig sig-object py" id="nnsight.module.Module">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.module.</span></span><span class="sig-name descname"><span class="pre">Module</span></span><a class="headerlink" href="#nnsight.module.Module" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.module.</span></span><span class="sig-name descname"><span class="pre">Module</span></span><a class="headerlink" href="#nnsight.module.Module" title="Permalink to this definition">#</a></dt>
 <dd><p>Class that wraps existing torch modules within a model’s module tree in order to add nnsight functionality.
 Proxies of it’s output and input are accessed by <cite>.output</cite> and <cite>.input</cite> respectively.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nnsight.module.Module.module_path">
-<span class="sig-name descname"><span class="pre">module_path</span></span><a class="headerlink" href="#nnsight.module.Module.module_path" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">module_path</span></span><a class="headerlink" href="#nnsight.module.Module.module_path" title="Permalink to this definition">#</a></dt>
 <dd><p>String representing the attribute path of this module relative the the root model. Separated by ‘.’ e.x (‘transformer.h.0.mlp’). Set by AbstractModel on initialization of meta model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -460,7 +460,7 @@ Proxies of it’s output and input are accessed by <cite>.output</cite> and <cit
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nnsight.module.Module.output">
-<span class="sig-name descname"><span class="pre">output</span></span><a class="headerlink" href="#nnsight.module.Module.output" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">output</span></span><a class="headerlink" href="#nnsight.module.Module.output" title="Permalink to this definition">#</a></dt>
 <dd><p>Proxy object representing the output of this module. Reset on pass through.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -471,7 +471,7 @@ Proxies of it’s output and input are accessed by <cite>.output</cite> and <cit
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nnsight.module.Module.output_shape">
-<span class="sig-name descname"><span class="pre">output_shape</span></span><a class="headerlink" href="#nnsight.module.Module.output_shape" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">output_shape</span></span><a class="headerlink" href="#nnsight.module.Module.output_shape" title="Permalink to this definition">#</a></dt>
 <dd><p>Shape of the tensor outputs to this module. Populated by most recent pass through. Can also be a nested list of torch.Size.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -482,7 +482,7 @@ Proxies of it’s output and input are accessed by <cite>.output</cite> and <cit
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nnsight.module.Module.output_type">
-<span class="sig-name descname"><span class="pre">output_type</span></span><a class="headerlink" href="#nnsight.module.Module.output_type" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">output_type</span></span><a class="headerlink" href="#nnsight.module.Module.output_type" title="Permalink to this definition">#</a></dt>
 <dd><p>Dtype of the tensor outputs to this module. Populated by most recent pass through. Can also be a nested list of torch.dtype.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -493,7 +493,7 @@ Proxies of it’s output and input are accessed by <cite>.output</cite> and <cit
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="id0">
-<span class="sig-name descname"><span class="pre">output</span></span><a class="headerlink" href="#id0" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">output</span></span><a class="headerlink" href="#id0" title="Permalink to this definition">#</a></dt>
 <dd><p>Proxy object representing the output of this module. Reset on pass through.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -504,7 +504,7 @@ Proxies of it’s output and input are accessed by <cite>.output</cite> and <cit
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nnsight.module.Module.input_shape">
-<span class="sig-name descname"><span class="pre">input_shape</span></span><a class="headerlink" href="#nnsight.module.Module.input_shape" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">input_shape</span></span><a class="headerlink" href="#nnsight.module.Module.input_shape" title="Permalink to this definition">#</a></dt>
 <dd><p>Shape of the tensor inputs to this module. Populated by most recent pass through. Can also be a nested list of torch.Size.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -515,7 +515,7 @@ Proxies of it’s output and input are accessed by <cite>.output</cite> and <cit
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nnsight.module.Module.input_type">
-<span class="sig-name descname"><span class="pre">input_type</span></span><a class="headerlink" href="#nnsight.module.Module.input_type" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">input_type</span></span><a class="headerlink" href="#nnsight.module.Module.input_type" title="Permalink to this definition">#</a></dt>
 <dd><p>Dtype of the tensor inputs to this module. Populated by most recent pass through. Can also be a nested list of torch.dtype.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -526,7 +526,7 @@ Proxies of it’s output and input are accessed by <cite>.output</cite> and <cit
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nnsight.module.Module.tracer">
-<span class="sig-name descname"><span class="pre">tracer</span></span><a class="headerlink" href="#nnsight.module.Module.tracer" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">tracer</span></span><a class="headerlink" href="#nnsight.module.Module.tracer" title="Permalink to this definition">#</a></dt>
 <dd><p>Object which adds this module’s output and input proxies to an intervention graph. Must be set on Module objects manually.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -537,7 +537,7 @@ Proxies of it’s output and input are accessed by <cite>.output</cite> and <cit
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nnsight.module.Module.backward_input">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">backward_input</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></em><a class="headerlink" href="#nnsight.module.Module.backward_input" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">backward_input</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></em><a class="headerlink" href="#nnsight.module.Module.backward_input" title="Permalink to this definition">#</a></dt>
 <dd><p>Calling denotes the user wishes to get the backward_input of this module and therefore we create a Proxy of that request.
 Only generates a proxy the first time it is references otherwise return the already set one.</p>
 <dl class="field-list simple">
@@ -552,7 +552,7 @@ Only generates a proxy the first time it is references otherwise return the alre
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nnsight.module.Module.backward_output">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">backward_output</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></em><a class="headerlink" href="#nnsight.module.Module.backward_output" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">backward_output</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></em><a class="headerlink" href="#nnsight.module.Module.backward_output" title="Permalink to this definition">#</a></dt>
 <dd><p>Calling denotes the user wishes to get the backward_output of this module and therefore we create a Proxy of that request.
 Only generates a proxy the first time it is references otherwise return the already set one.</p>
 <dl class="field-list simple">
@@ -567,7 +567,7 @@ Only generates a proxy the first time it is references otherwise return the alre
 
 <dl class="py property">
 <dt class="sig sig-object py" id="nnsight.module.Module.input">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">input</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></em><a class="headerlink" href="#nnsight.module.Module.input" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">input</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></em><a class="headerlink" href="#nnsight.module.Module.input" title="Permalink to this definition">#</a></dt>
 <dd><p>Calling denotes the user wishes to get the input of this module and therefore we create a Proxy of that request.
 Only generates a proxy the first time it is references otherwise return the already set one.</p>
 <dl class="field-list simple">
@@ -582,7 +582,7 @@ Only generates a proxy the first time it is references otherwise return the alre
 
 <dl class="py property">
 <dt class="sig sig-object py" id="id1">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">output</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></em><a class="headerlink" href="#id1" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">output</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></em><a class="headerlink" href="#id1" title="Permalink to this definition">#</a></dt>
 <dd><p>Calling denotes the user wishes to get the output of this module and therefore we create a Proxy of that request.
 Only generates a proxy the first time it is references otherwise return the already set one.</p>
 <dl class="field-list simple">
@@ -597,7 +597,7 @@ Only generates a proxy the first time it is references otherwise return the alre
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nnsight.module.Module.wrap">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">wrap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Module</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nnsight.module.Module" title="nnsight.module.Module"><span class="pre">Module</span></a></span></span><a class="headerlink" href="#nnsight.module.Module.wrap" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">wrap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Module</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nnsight.module.Module" title="nnsight.module.Module"><span class="pre">Module</span></a></span></span><a class="headerlink" href="#nnsight.module.Module.wrap" title="Permalink to this definition">#</a></dt>
 <dd><p>Wraps the torch Module with our Module class. Adds a forward hook to the module to populate output and input data. Does not wrap torch.nn.ModuleList.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -699,8 +699,8 @@ Only generates a proxy the first time it is references otherwise return the alre
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -718,7 +718,7 @@ Only generates a proxy the first time it is references otherwise return the alre
       
         <div class="footer-item">
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2.
     <br/>
   </p>
 </div>
@@ -730,7 +730,7 @@ Only generates a proxy the first time it is references otherwise return the alre
     <div class="footer-items__end">
       
         <div class="footer-item"><p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.2.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.3.
 </p></div>
       
     </div>
