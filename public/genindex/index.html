@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index &#8212; nnsight 0.0.6 documentation</title>
+    <title>Index &#8212; nnsight 0.0.7 documentation</title>
   
   
   
@@ -17,12 +17,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -30,16 +30,16 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=331c24ed" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=5925099e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=5a9e2183"></script>
+    <script src="../_static/documentation_options.js?v=51633b78"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/design-tabs.js?v=36754332"></script>
@@ -197,6 +197,34 @@
         </li>
 </ul></div>
       
+        <div class="navbar-item"><style>
+    #ndif_status {
+        height: 18px;
+        width: 18px;
+        background-color: red;
+        border-radius: 50%;
+        display: inline-block;
+        margin-left: 10px;
+    }
+</style>
+
+<div>NDIF Status: </div><span id="ndif_status"></span>
+
+<script>
+    console.log()
+    fetch("https://ndif.baulab.us/ping")
+        .then((response) => {
+            if (response.status == 200) {
+                document.getElementById("ndif_status").style.backgroundColor = "green"
+            }
+            else {
+                document.getElementById("ndif_status").style.backgroundColor = "red"
+            }
+        })
+        .catch((response) => document.getElementById("ndif_status").style.backgroundColor = "red")
+
+</script></div>
+      
     </div>
     
   </div>
@@ -285,6 +313,34 @@
             <span class="sr-only">GitHub</span></a>
         </li>
 </ul></div>
+        
+          <div class="navbar-item"><style>
+    #ndif_status {
+        height: 18px;
+        width: 18px;
+        background-color: red;
+        border-radius: 50%;
+        display: inline-block;
+        margin-left: 10px;
+    }
+</style>
+
+<div>NDIF Status: </div><span id="ndif_status"></span>
+
+<script>
+    console.log()
+    fetch("https://ndif.baulab.us/ping")
+        .then((response) => {
+            if (response.status == 200) {
+                document.getElementById("ndif_status").style.backgroundColor = "green"
+            }
+            else {
+                document.getElementById("ndif_status").style.backgroundColor = "red"
+            }
+        })
+        .catch((response) => document.getElementById("ndif_status").style.backgroundColor = "red")
+
+</script></div>
         
       </div>
     
@@ -383,10 +439,14 @@
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="../documentation/contexts/#nnsight.contexts.Tracer.Tracer.batch_size">batch_size (nnsight.contexts.Tracer.Tracer attribute)</a>
+      <li><a href="../documentation/module/#nnsight.module.Module.backward_input">backward_input (nnsight.module.Module property)</a>
+</li>
+      <li><a href="../documentation/module/#nnsight.module.Module.backward_output">backward_output (nnsight.module.Module property)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="../documentation/contexts/#nnsight.contexts.Tracer.Tracer.batch_size">batch_size (nnsight.contexts.Tracer.Tracer attribute)</a>
+</li>
       <li><a href="../documentation/contexts/#nnsight.contexts.Tracer.Tracer.batched_input">batched_input (nnsight.contexts.Tracer.Tracer attribute)</a>
 </li>
       <li><a href="../documentation/contexts/#nnsight.contexts.Runner.Runner.blocking">blocking (nnsight.contexts.Runner.Runner attribute)</a>
@@ -398,11 +458,15 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="../documentation/tracing/#nnsight.tracing.Graph.Graph.compile">compile() (nnsight.tracing.Graph.Graph method)</a>
+
+      <ul>
+        <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node.compile">(nnsight.tracing.Node.Node method)</a>
 </li>
-      <li><a href="../documentation/models/#nnsight.models.LanguageModel.LanguageModel.config">config (nnsight.models.LanguageModel.LanguageModel attribute)</a>
-</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="../documentation/models/#nnsight.models.LanguageModel.LanguageModel.config">config (nnsight.models.LanguageModel.LanguageModel attribute)</a>
+</li>
       <li><a href="../documentation/util/#nnsight.util.cross_entropy_loss">cross_entropy_loss() (in module nnsight.util)</a>
 </li>
       <li><a href="../documentation/models/#nnsight.models.AbstractModel.AbstractModel.custom_model">custom_model (nnsight.models.AbstractModel.AbstractModel attribute)</a>
@@ -413,16 +477,14 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="../documentation/patching/#nnsight.patching.DEFAULT_PATCHER">DEFAULT_PATCHER (in module nnsight.patching)</a>
-</li>
       <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node.dependencies">dependencies (nnsight.tracing.Node.Node attribute)</a>
 </li>
       <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node.destroy">destroy() (nnsight.tracing.Node.Node method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="../documentation/models/#nnsight.models.DiffuserModel.Diffuser">Diffuser (class in nnsight.models.DiffuserModel)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="../documentation/models/#nnsight.models.DiffuserModel.DiffuserModel">DiffuserModel (class in nnsight.models.DiffuserModel)</a>
 </li>
       <li><a href="../documentation/models/#nnsight.models.AbstractModel.AbstractModel.dispatch">dispatch (nnsight.models.AbstractModel.AbstractModel attribute)</a>
@@ -445,14 +507,16 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="../documentation/util/#nnsight.util.fetch_attr">fetch_attr() (in module nnsight.util)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="../documentation/models/#nnsight.models.AbstractModel.AbstractModel.forward">forward() (nnsight.models.AbstractModel.AbstractModel method)</a>
 
       <ul>
         <li><a href="../documentation/util/#nnsight.util.WrapperModule.forward">(nnsight.util.WrapperModule method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node.fulfilled">fulfilled() (nnsight.tracing.Node.Node method)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -507,15 +571,17 @@
       </ul></li>
       <li><a href="../documentation/intervention/#nnsight.intervention.HookModel.input_hook">input_hook (nnsight.intervention.HookModel attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="../documentation/module/#nnsight.module.Module.input_shape">input_shape (nnsight.module.Module attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="../documentation/module/#nnsight.module.Module.input_type">input_type (nnsight.module.Module attribute)</a>
 </li>
       <li><a href="../documentation/intervention/#nnsight.intervention.intervene">intervene() (in module nnsight.intervention)</a>
 </li>
       <li><a href="../documentation/intervention/#nnsight.intervention.InterventionProxy">InterventionProxy (class in nnsight.intervention)</a>
+</li>
+      <li><a href="../documentation/models/#nnsight.models.AbstractModel.AbstractModel.invoke">invoke() (nnsight.models.AbstractModel.AbstractModel method)</a>
 </li>
       <li><a href="../documentation/contexts/#nnsight.contexts.Invoker.Invoker">Invoker (class in nnsight.contexts.Invoker)</a>
 </li>
@@ -784,6 +850,8 @@
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="../documentation/patching/#nnsight.patching.Patch.parent">parent (nnsight.patching.Patch attribute)</a>
+</li>
       <li><a href="../documentation/patching/#nnsight.patching.Patch">Patch (class in nnsight.patching)</a>
 </li>
       <li><a href="../documentation/patching/#nnsight.patching.Patch.patch">patch() (nnsight.patching.Patch method)</a>
@@ -792,10 +860,14 @@
 </li>
       <li><a href="../documentation/patching/#nnsight.patching.Patcher.patches">patches (nnsight.patching.Patcher attribute)</a>
 </li>
-      <li><a href="../documentation/tracing/#nnsight.tracing.Proxy.Proxy">Proxy (class in nnsight.tracing.Proxy)</a>
+      <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node.prepare_inputs">prepare_inputs() (nnsight.tracing.Node.Node method)</a>
+</li>
+      <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node.prepare_proxy_values">prepare_proxy_values() (nnsight.tracing.Node.Node static method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="../documentation/tracing/#nnsight.tracing.Proxy.Proxy">Proxy (class in nnsight.tracing.Proxy)</a>
+</li>
       <li><a href="../documentation/tracing/#nnsight.tracing.Graph.Graph.proxy">proxy() (nnsight.tracing.Graph.Graph method)</a>
 </li>
       <li><a href="../documentation/tracing/#nnsight.tracing.Graph.Graph.proxy_class">proxy_class (nnsight.tracing.Graph.Graph attribute)</a>
@@ -814,14 +886,18 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node.redundant">redundant() (nnsight.tracing.Node.Node method)</a>
+</li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.Runner.Runner.remote">remote (nnsight.contexts.Runner.Runner attribute)</a>
+</li>
       <li><a href="../documentation/patching/#nnsight.patching.Patch.replacement">replacement (nnsight.patching.Patch attribute)</a>
 </li>
       <li><a href="../documentation/models/#nnsight.models.AbstractModel.AbstractModel.repoid_path_clsname">repoid_path_clsname (nnsight.models.AbstractModel.AbstractModel attribute)</a>
 </li>
-      <li><a href="../documentation/patching/#nnsight.patching.Patch.restore">restore() (nnsight.patching.Patch method)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="../documentation/patching/#nnsight.patching.Patch.restore">restore() (nnsight.patching.Patch method)</a>
+</li>
       <li><a href="../documentation/tracing/#nnsight.tracing.Graph.Graph.rtn">rtn() (nnsight.tracing.Graph.Graph static method)</a>
 </li>
       <li><a href="../documentation/contexts/#nnsight.contexts.Runner.Runner.run_local">run_local() (nnsight.contexts.Runner.Runner method)</a>
@@ -842,7 +918,7 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="../documentation/contexts/#nnsight.contexts.Invoker.Invoker.scan">scan (nnsight.contexts.Invoker.Invoker attribute)</a>
 </li>
-      <li><a href="../documentation/contexts/#nnsight.contexts.Runner.Runner.server">server (nnsight.contexts.Runner.Runner attribute)</a>
+      <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node.set_value">set_value() (nnsight.tracing.Node.Node method)</a>
 </li>
       <li><a href="../documentation/intervention/#nnsight.intervention.InterventionProxy.shape">shape (nnsight.intervention.InterventionProxy property)</a>
 </li>
@@ -942,8 +1018,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -961,7 +1037,7 @@
       
         <div class="footer-item">
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     <br/>
   </p>
 </div>
@@ -973,7 +1049,7 @@
     <div class="footer-items__end">
       
         <div class="footer-item"><p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.3.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.2.
 </p></div>
       
     </div>
