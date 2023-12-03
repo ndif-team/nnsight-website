@@ -428,8 +428,8 @@ How can you study the internals of a deep network that is too large for you to r
 that are hard to run. Ordinary commercial inference service APIs let you interact with huge
 models, but they do not let you see model internals.</p>
 <p class="sd-card-text">The nnsight library is different: it gives you full access to all the neural network internals.
-When used together with a remote service like the National Deep Inference Facility (NDIF),
-it lets you run expriments on huge open models easily, with full transparent access.
+When used together with a remote service like the <a class="reference external" href="https://ndif.us/">National Deep Inference Facility</a> (NDIF),
+it lets you run experiments on huge open models easily, with full transparent access.
 The nnsight library is also terrific for studying smaller local models.</p>
 </div>
 </div>
@@ -443,7 +443,7 @@ The nnsight library is also terrific for studying smaller local models.</p>
 <section id="how-you-use-nnsight">
 <h2>How you use nnsight<a class="headerlink" href="#how-you-use-nnsight" title="Link to this heading">#</a></h2>
 <p>Nnsight is built on pytorch.</p>
-<p>Running inference on a huge remote model with nnsight is very similar to running a neural network locally on your own workstataion.  In fact, with nnsight, the same code for running experiments locally on small models can also be used on large models, just by changing a few arguments.</p>
+<p>Running inference on a huge remote model with nnsight is very similar to running a neural network locally on your own workstation.  In fact, with nnsight, the same code for running experiments locally on small models can also be used on large models, just by changing a few arguments.</p>
 <p>The difference between nnsight and normal inference is that when you use nnsight, you do not treat the model as an opaque black box.
 Instead, you set up a python <code class="docutils literal notranslate"><span class="pre">with</span></code> context that enables you to get direct access to model internals while the neural network runs.
 Here is how it looks:</p>
