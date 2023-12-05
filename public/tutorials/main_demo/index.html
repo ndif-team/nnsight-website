@@ -18,12 +18,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -35,13 +35,13 @@
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=5e86ed10" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=48581d99"></script>
+    <script src="../../_static/documentation_options.js?v=51633b78"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=36754332"></script>
@@ -451,7 +451,7 @@
                 <article class="bd-article" role="main">
                   
   <section id="Main-Demo">
-<h1>Main Demo<a class="headerlink" href="#Main-Demo" title="Permalink to this heading">#</a></h1>
+<h1>Main Demo<a class="headerlink" href="#Main-Demo" title="Link to this heading">#</a></h1>
 <p>To get started, import LanguageModel from nnsight.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -472,7 +472,7 @@
 </div>
 </section>
 <section id="Loading-and-Running-Models">
-<h1>Loading and Running Models<a class="headerlink" href="#Loading-and-Running-Models" title="Permalink to this heading">#</a></h1>
+<h1>Loading and Running Models<a class="headerlink" href="#Loading-and-Running-Models" title="Link to this heading">#</a></h1>
 <p>Pretrained models can be loaded from HuggingFace by their repo id. Here we’ll work with EleutherAI’s 1B parameter Pythia model, loaded onto a GPU.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
@@ -583,7 +583,7 @@ torch.Size([1, 13, 50304])
 </div>
 </section>
 <section id="Example:-Logit-Lens">
-<h1>Example: Logit Lens<a class="headerlink" href="#Example:-Logit-Lens" title="Permalink to this heading">#</a></h1>
+<h1>Example: Logit Lens<a class="headerlink" href="#Example:-Logit-Lens" title="Link to this heading">#</a></h1>
 <p>As an example, let’s track the probability with which the model outputs “Mary” as we move through layers. One technique for this is the <a class="reference external" href="https://www.alignmentforum.org/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens">logit lens</a>: we’ll treat the language model’s decoder applied to the intermediate activations as giving a crude approximation to this probability.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
@@ -679,7 +679,7 @@ if (outputEl) {{
 <p>This suggests that Pythia-1B begins to realize that the correct completion is “Mary” in layer 11, and that it becomes more confident in this answer in the final few layers.</p>
 </section>
 <section id="Intervening-during-a-forward-pass">
-<h1>Intervening during a forward pass<a class="headerlink" href="#Intervening-during-a-forward-pass" title="Permalink to this heading">#</a></h1>
+<h1>Intervening during a forward pass<a class="headerlink" href="#Intervening-during-a-forward-pass" title="Link to this heading">#</a></h1>
 <p>Consider the prompt “The city of Paris is in the country of”. Pythia-1B’s best guess for the completion is “France”:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
@@ -910,8 +910,8 @@ if (outputEl) {{
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -929,7 +929,7 @@ if (outputEl) {{
       
         <div class="footer-item">
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     <br/>
   </p>
 </div>
@@ -941,7 +941,7 @@ if (outputEl) {{
     <div class="footer-items__end">
       
         <div class="footer-item"><p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.3.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.2.
 </p></div>
       
     </div>
