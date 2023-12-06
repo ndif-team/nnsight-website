@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Token Based Indexing &#8212; nnsight 0.0.7 documentation</title>
+    <title>Applying Operations &#8212; nnsight</title>
   
   
   
@@ -31,15 +31,15 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=5e86ed10" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=59d16363" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
   <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
 
-    <script src="../../../_static/documentation_options.js?v=51633b78"></script>
+    <script src="../../../_static/documentation_options.js?v=187304be"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -48,13 +48,13 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/notebooks/token_indexing';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/features/operations';</script>
     <link rel="icon" href="../../../_static/icon.ico"/>
     <link rel="author" title="About these documents" href="../../../about/" />
     <link rel="index" title="Index" href="../../../genindex/" />
     <link rel="search" title="Search" href="../../../search/" />
-    <link rel="next" title="About nnsight" href="../../../about/" />
-    <link rel="prev" title="Multiple Token Generation" href="../multiple_token/" />
+    <link rel="next" title="Applying Modules" href="../modules/" />
+    <link rel="prev" title="Setting Values" href="../setting/" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -161,7 +161,14 @@
                 
 
                     <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="../../">
+                      <a class="nav-link nav-internal" href="../../../features/">
+                        Features
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../tutorials/">
                         Tutorials
                       </a>
                     </li>
@@ -270,10 +277,6 @@
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
-      <span class="fa-solid fa-outdent"></span>
-    </label>
-  
 </div>
 
     </nav>
@@ -314,7 +317,14 @@
                 
 
                     <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="../../">
+                      <a class="nav-link nav-internal" href="../../../features/">
+                        Features
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../tutorials/">
                         Tutorials
                       </a>
                     </li>
@@ -400,17 +410,15 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/">Walkthrough</a></li>
-
-
-
-
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../features/">Features</a><input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../cross_prompt/">Cross-Prompt Intervention</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../multiple_token/">Multiple Token Generation</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Token Based Indexing</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting/">Getting Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../setting/">Setting Values</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Applying Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/">Applying Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cross_prompt/">Cross-Prompt Intervention</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../multiple_token/">Multiple Token Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gradients/">Working With Gradients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../remote_execution/">Remote Execution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../token_indexing/">Token Based Indexing</a></li>
 </ul>
 </div>
 </nav></div>
@@ -449,12 +457,9 @@
       </a>
     </li>
     
-    <li class="breadcrumb-item"><a href="../../" class="nav-link">Tutorials</a></li>
+    <li class="breadcrumb-item"><a href="../../../features/" class="nav-link">Features</a></li>
     
-    
-    <li class="breadcrumb-item"><a href="../../features/" class="nav-link">Features</a></li>
-    
-    <li class="breadcrumb-item active" aria-current="page">Token Based Indexing</li>
+    <li class="breadcrumb-item active" aria-current="page">Applying Operations</li>
   </ul>
 </nav>
 </div>
@@ -471,17 +476,29 @@
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="Token-Based-Indexing">
-<h1>Token Based Indexing<a class="headerlink" href="#Token-Based-Indexing" title="Link to this heading">#</a></h1>
-<p>When indexing hidden states for specific tokens, use <code class="docutils literal notranslate"><span class="pre">.token[&lt;idx&gt;]</span></code> or <code class="docutils literal notranslate"><span class="pre">.t[&lt;idx&gt;]</span></code>.</p>
-<p>As a preliminary example, lets just get a hidden state from the model using <code class="docutils literal notranslate"><span class="pre">.t[&lt;idx&gt;]</span></code>.</p>
+  <section id="Applying-Operations">
+<h1>Applying Operations<a class="headerlink" href="#Applying-Operations" title="Link to this heading">#</a></h1>
+<p>Most basic operations and torch operations work on proxies and are added to the computation graph.</p>
+<p>In this example we get the sum of the hidden states and add them to the hidden_states themselves (for whatever reason). By saving the various steps, we can see how the values change.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nnsight</span> <span class="kn">import</span> <span class="n">LanguageModel</span>
+<span class="kn">import</span> <span class="nn">torch</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s1">&#39;gpt2&#39;</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">generator</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">generator</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
+
+        <span class="n">hidden_states_pre</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+        <span class="n">hs_sum</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">hidden_states_pre</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+        <span class="n">hs_edited</span> <span class="o">=</span> <span class="n">hidden_states_pre</span> <span class="o">+</span> <span class="n">hs_sum</span>
+
+        <span class="n">hs_edited</span> <span class="o">=</span> <span class="n">hs_edited</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -489,91 +506,36 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">forward</span><span class="p">()</span> <span class="k">as</span> <span class="n">runner</span><span class="p">:</span>
-    <span class="k">with</span> <span class="n">runner</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
-
-        <span class="n">hidden_states</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-
-<span class="n">output</span> <span class="o">=</span> <span class="n">runner</span><span class="o">.</span><span class="n">output</span>
-<span class="n">hidden_states</span> <span class="o">=</span> <span class="n">hidden_states</span><span class="o">.</span><span class="n">value</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">hidden_states_pre</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hs_sum</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hs_edited</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area stderr docutils container">
+<div class="output_area docutils container">
 <div class="highlight"><pre>
-You&#39;re using a GPT2TokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+tensor([[[ 0.0505, -0.1728, -0.1690,  ..., -1.0096,  0.1280, -1.0687],
+         [ 8.7494,  2.9057,  5.3024,  ..., -8.0418,  1.2964, -2.8677],
+         [ 0.2960,  4.6686, -3.6642,  ...,  0.2391, -2.6064,  3.2263],
+         ...,
+         [ 2.1537,  6.8917,  3.8651,  ...,  0.0588, -1.9866,  5.9188],
+         [-0.4460,  7.4285, -9.3065,  ...,  2.0528, -2.7947,  0.5556],
+         [ 6.6286,  1.7258,  4.7969,  ...,  7.6714,  3.0683,  2.0481]]],
+       device=&#39;cuda:0&#39;)
+tensor(501.2947, device=&#39;cuda:0&#39;)
+tensor([[[501.3452, 501.1219, 501.1257,  ..., 500.2851, 501.4227, 500.2260],
+         [510.0441, 504.2004, 506.5971,  ..., 493.2528, 502.5910, 498.4269],
+         [501.5907, 505.9633, 497.6305,  ..., 501.5338, 498.6883, 504.5210],
+         ...,
+         [503.4483, 508.1864, 505.1598,  ..., 501.3535, 499.3081, 507.2135],
+         [500.8487, 508.7232, 491.9882,  ..., 503.3475, 498.5000, 501.8503],
+         [507.9232, 503.0205, 506.0916,  ..., 508.9661, 504.3629, 503.3428]]],
+       device=&#39;cuda:0&#39;)
 </pre></div></div>
 </div>
-<p>Lets see why token based indexing is necessary.</p>
-<p>In this example, we call invokes on two inputs of different tokenized length. We <strong>incorrectly</strong> index into the hidden states using normal python indexing.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="nb">print</span>
-
-<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">forward</span><span class="p">()</span> <span class="k">as</span> <span class="n">runner</span><span class="p">:</span>
-    <span class="k">with</span> <span class="n">runner</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;The&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
-        <span class="n">incorrect_a</span> <span class="o">=</span>  <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">input</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-
-    <span class="k">with</span> <span class="n">runner</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
-        <span class="n">incorrect_b</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">input</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shorter input: </span><span class="si">{</span><span class="n">incorrect_a</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Longer input: </span><span class="si">{</span><span class="n">incorrect_b</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area rendered_html docutils container">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">Shorter input: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">tensor</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50256</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">device</span>=<span style="color: #008000; text-decoration-color: #008000">'cuda:0'</span><span style="font-weight: bold">)</span>
-</pre></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area rendered_html docutils container">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">Longer input: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">tensor</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">464</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">device</span>=<span style="color: #008000; text-decoration-color: #008000">'cuda:0'</span><span style="font-weight: bold">)</span>
-</pre></div>
-</div>
-<p>Notice how we indexed into the first token for both strings but recieved a different result from each invoke. <strong>This is because if there are multiple invocations, padding is performed on the left side so these helper functions index from the back.</strong></p>
-<p>Let’s correctly index into the hidden states using token based indexing.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">forward</span><span class="p">()</span> <span class="k">as</span> <span class="n">runner</span><span class="p">:</span>
-    <span class="k">with</span> <span class="n">runner</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;The&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
-        <span class="n">correct_a</span> <span class="o">=</span>  <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">input</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-
-    <span class="k">with</span> <span class="n">runner</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
-        <span class="n">correct_b</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">input</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shorter input: </span><span class="si">{</span><span class="n">correct_a</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Longer input: </span><span class="si">{</span><span class="n">correct_b</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area rendered_html docutils container">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">Shorter input: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">tensor</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">464</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">device</span>=<span style="color: #008000; text-decoration-color: #008000">'cuda:0'</span><span style="font-weight: bold">)</span>
-</pre></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area rendered_html docutils container">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">Longer input: <span style="color: #800080; text-decoration-color: #800080; font-weight: bold">tensor</span><span style="font-weight: bold">([</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">464</span><span style="font-weight: bold">]</span>, <span style="color: #808000; text-decoration-color: #808000">device</span>=<span style="color: #008000; text-decoration-color: #008000">'cuda:0'</span><span style="font-weight: bold">)</span>
-</pre></div>
-</div>
-<p>Now we have the correct tokens!</p>
 </section>
 
 
@@ -587,20 +549,20 @@ You&#39;re using a GPT2TokenizerFast tokenizer. Please note that with a fast tok
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../multiple_token/"
+       href="../setting/"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Multiple Token Generation</p>
+        <p class="prev-next-title">Setting Values</p>
       </div>
     </a>
     <a class="right-next"
-       href="../../../about/"
+       href="../modules/"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">About nnsight</p>
+        <p class="prev-next-title">Applying Modules</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -610,18 +572,6 @@ You&#39;re using a GPT2TokenizerFast tokenizer. Please note that with a fast tok
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="tocsection sourcelink">
-    <a href="../../../_sources/tutorials/notebooks/token_indexing.ipynb.txt">
-      <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-  </div>
-</div>
-
-</div></div>
               
             
           </div>

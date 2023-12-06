@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>About nnsight &#8212; nnsight 0.0.7 documentation</title>
+    <title>About nnsight &#8212; nnsight</title>
   
   
   
@@ -31,14 +31,14 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=5e86ed10" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=59d16363" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
   <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
 
-    <script src="../_static/documentation_options.js?v=51633b78"></script>
+    <script src="../_static/documentation_options.js?v=187304be"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -50,7 +50,7 @@
     <link rel="author" title="About these documents" href="#" />
     <link rel="index" title="Index" href="../genindex/" />
     <link rel="search" title="Search" href="../search/" />
-    <link rel="prev" title="Token Based Indexing" href="../tutorials/notebooks/token_indexing/" />
+    <link rel="prev" title="Dictionary Learning" href="../notebooks/tutorials/dictionary_learning/" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -152,6 +152,13 @@
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../documentation/">
                         Documentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../features/">
+                        Features
                       </a>
                     </li>
                 
@@ -305,6 +312,13 @@
                     <li class="nav-item">
                       <a class="nav-link nav-internal" href="../documentation/">
                         Documentation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../features/">
+                        Features
                       </a>
                     </li>
                 
@@ -500,7 +514,7 @@ Here is how it looks:</p>
 <p>Basic access to model internals can give you a lot of insight about what is going on inside a large model as it runs.  For example, you can use the <a class="reference external" href="https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens">logit lens</a> to read internal hidden states as text.  And use can use <a class="reference external" href="https://rome.baulab.info/">causal tracing</a> or <a class="reference external" href="https://arxiv.org/abs/2304.05969">path patching</a> or <a class="reference external" href="https://arxiv.org/abs/2310.10348">other circuit discovery methods</a> to locate the layers and components within the network that play a decisive role in making a decision.</p>
 <p>And with nnsight, you can use thes methods on large models like Llama-2-70b.</p>
 <p>The nnsight library also provies full access to gradients and optimizations methods, out of order module applications, cross prompt interventions and many more features.</p>
-<p>See the <a class="reference internal" href="../start/"><span class="doc">Getting Started</span></a> and <a class="reference internal" href="../tutorials/features/"><span class="doc">Features</span></a> pages for more information on nnsight functionality.</p>
+<p>See the <a class="reference internal" href="../start/"><span class="doc">Getting Started</span></a> and <a class="reference internal" href="../features/"><span class="doc">Features</span></a> pages for more information on nnsight functionality.</p>
 <p>The project is currently in Alpha pre-release and is looking for early users/and contributors!</p>
 <p>If you are interested in contributing or being an early user, join the <a class="reference external" href="https://discord.gg/ZRPgsf6P">NDIF Discord</a> for updates, feature requests, bug reports and opportunities to help with the effort.</p>
 </section>
@@ -517,12 +531,12 @@ Here is how it looks:</p>
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../tutorials/notebooks/token_indexing/"
+       href="../notebooks/tutorials/dictionary_learning/"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Token Based Indexing</p>
+        <p class="prev-next-title">Dictionary Learning</p>
       </div>
     </a>
 </div>
@@ -545,14 +559,6 @@ Here is how it looks:</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-happens-behind-the-scenes">What happens behind the scenes?</a></li>
 </ul>
   </nav></div>
-
-  <div class="sidebar-secondary-item">
-  <div class="tocsection sourcelink">
-    <a href="../_sources/about.rst.txt">
-      <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-  </div>
-</div>
 
 </div></div>
               

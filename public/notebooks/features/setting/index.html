@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Multiple Token Generation &#8212; nnsight 0.0.7 documentation</title>
+    <title>Setting Values &#8212; nnsight</title>
   
   
   
@@ -31,15 +31,15 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=5e86ed10" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=59d16363" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
   <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
 
-    <script src="../../../_static/documentation_options.js?v=51633b78"></script>
+    <script src="../../../_static/documentation_options.js?v=187304be"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -48,13 +48,13 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/notebooks/multiple_token';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/features/setting';</script>
     <link rel="icon" href="../../../_static/icon.ico"/>
     <link rel="author" title="About these documents" href="../../../about/" />
     <link rel="index" title="Index" href="../../../genindex/" />
     <link rel="search" title="Search" href="../../../search/" />
-    <link rel="next" title="Token Based Indexing" href="../token_indexing/" />
-    <link rel="prev" title="Cross-Prompt Intervention" href="../cross_prompt/" />
+    <link rel="next" title="Applying Operations" href="../operations/" />
+    <link rel="prev" title="Getting Values" href="../getting/" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -161,7 +161,14 @@
                 
 
                     <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="../../">
+                      <a class="nav-link nav-internal" href="../../../features/">
+                        Features
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../tutorials/">
                         Tutorials
                       </a>
                     </li>
@@ -270,10 +277,6 @@
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
-      <span class="fa-solid fa-outdent"></span>
-    </label>
-  
 </div>
 
     </nav>
@@ -314,7 +317,14 @@
                 
 
                     <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="../../">
+                      <a class="nav-link nav-internal" href="../../../features/">
+                        Features
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../tutorials/">
                         Tutorials
                       </a>
                     </li>
@@ -400,17 +410,15 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../walkthrough/">Walkthrough</a></li>
-
-
-
-
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../../features/">Features</a><input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../cross_prompt/">Cross-Prompt Intervention</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Multiple Token Generation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../token_indexing/">Token Based Indexing</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting/">Getting Values</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Setting Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operations/">Applying Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/">Applying Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cross_prompt/">Cross-Prompt Intervention</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../multiple_token/">Multiple Token Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gradients/">Working With Gradients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../remote_execution/">Remote Execution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../token_indexing/">Token Based Indexing</a></li>
 </ul>
 </div>
 </nav></div>
@@ -449,12 +457,9 @@
       </a>
     </li>
     
-    <li class="breadcrumb-item"><a href="../../" class="nav-link">Tutorials</a></li>
+    <li class="breadcrumb-item"><a href="../../../features/" class="nav-link">Features</a></li>
     
-    
-    <li class="breadcrumb-item"><a href="../../features/" class="nav-link">Features</a></li>
-    
-    <li class="breadcrumb-item active" aria-current="page">Multiple...</li>
+    <li class="breadcrumb-item active" aria-current="page">Setting Values</li>
   </ul>
 </nav>
 </div>
@@ -471,61 +476,39 @@
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="Multiple-Token-Generation">
-<h1>Multiple Token Generation<a class="headerlink" href="#Multiple-Token-Generation" title="Link to this heading">#</a></h1>
-<p>When generating more than one token, use <code class="docutils literal notranslate"><span class="pre">invoker.next()</span></code> to denote following interventions should be applied to the subsequent generations.</p>
-<p>Here we generate three tokens and save the hidden states of the last layer for each one:</p>
+  <section id="Setting-Values">
+<h1>Setting Values<a class="headerlink" href="#Setting-Values" title="Link to this heading">#</a></h1>
+<p>We often not only want to see whats happening during computation, but intervene and edit the flow of information.</p>
+<p>In this example, we create a tensor of noise to add to the hidden states. We then add it, use the assigment <code class="docutils literal notranslate"><span class="pre">=</span></code> operator to update the tensors of <code class="docutils literal notranslate"><span class="pre">.output[0]</span></code> with these new noised values.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nnsight</span> <span class="kn">import</span> <span class="n">LanguageModel</span>
+<span class="kn">import</span> <span class="nn">torch</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s1">&#39;gpt2&#39;</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="n">generator</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">generator</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
+
+        <span class="n">hidden_states_pre</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+        <span class="n">noise</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.001</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span><span class="o">*</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">hidden_states_pre</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+        <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">hidden_states_pre</span> <span class="o">+</span> <span class="n">noise</span>
+
+        <span class="n">hidden_states_post</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<p>We can see the change in the results:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> <span class="k">as</span> <span class="n">generator</span><span class="p">:</span>
-    <span class="k">with</span> <span class="n">generator</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
-
-        <span class="n">hidden_states1</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-
-        <span class="n">invoker</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
-
-        <span class="n">hidden_states2</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-
-        <span class="n">invoker</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
-
-        <span class="n">hidden_states3</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-
-
-<span class="n">output</span> <span class="o">=</span> <span class="n">generator</span><span class="o">.</span><span class="n">output</span>
-<span class="n">hidden_states1</span> <span class="o">=</span> <span class="n">hidden_states1</span><span class="o">.</span><span class="n">value</span>
-<span class="n">hidden_states2</span> <span class="o">=</span> <span class="n">hidden_states2</span><span class="o">.</span><span class="n">value</span>
-<span class="n">hidden_states3</span> <span class="o">=</span> <span class="n">hidden_states3</span><span class="o">.</span><span class="n">value</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-You&#39;re using a GPT2TokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
-</pre></div></div>
-</div>
-<p>Note how calling save <em>before</em> <code class="docutils literal notranslate"><span class="pre">invoker.next()</span></code> returns the hidden state across the initial prompt while calling save <em>after</em> returns the hidden state of each subsequent generated token.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">hidden_states1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">hidden_states2</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">hidden_states3</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">hidden_states_pre</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hidden_states_post</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -534,9 +517,32 @@ You&#39;re using a GPT2TokenizerFast tokenizer. Please note that with a fast tok
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-torch.Size([1, 10, 768])
-torch.Size([1, 1, 768])
-torch.Size([1, 1, 768])
+tensor([[[ 8.0197e-03, -1.1157e-01, -1.3560e-01,  ..., -9.5050e-01,
+           1.1737e-01, -1.0768e+00],
+         [ 8.7405e+00,  2.8481e+00,  5.2863e+00,  ..., -8.0872e+00,
+           1.2464e+00, -2.8597e+00],
+         [ 3.0816e-01,  4.6882e+00, -3.6241e+00,  ...,  2.5548e-01,
+          -2.5845e+00,  3.2085e+00],
+         ...,
+         [ 2.1914e+00,  6.8865e+00,  3.8589e+00,  ...,  7.3585e-02,
+          -1.9566e+00,  5.9064e+00],
+         [-4.0466e-01,  7.4140e+00, -9.3035e+00,  ...,  2.0717e+00,
+          -2.7665e+00,  5.0897e-01],
+         [ 6.5553e+00,  1.7157e+00,  4.7861e+00,  ...,  7.6273e+00,
+           3.0340e+00,  2.0660e+00]]], device=&#39;cuda:0&#39;)
+tensor([[[ 8.0197e-03, -1.1157e-01, -1.3560e-01,  ..., -9.5050e-01,
+           1.1737e-01, -1.0768e+00],
+         [ 8.7405e+00,  2.8481e+00,  5.2863e+00,  ..., -8.0872e+00,
+           1.2464e+00, -2.8597e+00],
+         [ 3.0816e-01,  4.6882e+00, -3.6241e+00,  ...,  2.5548e-01,
+          -2.5845e+00,  3.2085e+00],
+         ...,
+         [ 2.1914e+00,  6.8865e+00,  3.8589e+00,  ...,  7.3585e-02,
+          -1.9566e+00,  5.9064e+00],
+         [-4.0466e-01,  7.4140e+00, -9.3035e+00,  ...,  2.0717e+00,
+          -2.7665e+00,  5.0897e-01],
+         [ 6.5553e+00,  1.7157e+00,  4.7861e+00,  ...,  7.6273e+00,
+           3.0340e+00,  2.0660e+00]]], device=&#39;cuda:0&#39;)
 </pre></div></div>
 </div>
 </section>
@@ -552,20 +558,20 @@ torch.Size([1, 1, 768])
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../cross_prompt/"
+       href="../getting/"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Cross-Prompt Intervention</p>
+        <p class="prev-next-title">Getting Values</p>
       </div>
     </a>
     <a class="right-next"
-       href="../token_indexing/"
+       href="../operations/"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Token Based Indexing</p>
+        <p class="prev-next-title">Applying Operations</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -575,18 +581,6 @@ torch.Size([1, 1, 768])
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="tocsection sourcelink">
-    <a href="../../../_sources/tutorials/notebooks/multiple_token.ipynb.txt">
-      <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-  </div>
-</div>
-
-</div></div>
               
             
           </div>

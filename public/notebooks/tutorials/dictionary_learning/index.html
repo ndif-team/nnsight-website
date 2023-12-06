@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Features &#8212; nnsight 0.0.7 documentation</title>
+    <title>Dictionary Learning &#8212; nnsight</title>
   
   
   
@@ -18,40 +18,42 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=5e86ed10" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=59d16363" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
-  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
 
-    <script src="../../_static/documentation_options.js?v=51633b78"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../../_static/copybutton.js?v=f281be69"></script>
-    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/documentation_options.js?v=187304be"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/features';</script>
-    <link rel="icon" href="../../_static/icon.ico"/>
-    <link rel="author" title="About these documents" href="../../about/" />
-    <link rel="index" title="Index" href="../../genindex/" />
-    <link rel="search" title="Search" href="../../search/" />
-    <link rel="next" title="Cross-Prompt Intervention" href="../notebooks/cross_prompt/" />
-    <link rel="prev" title="Walkthrough" href="../walkthrough/" />
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/tutorials/dictionary_learning';</script>
+    <link rel="icon" href="../../../_static/icon.ico"/>
+    <link rel="author" title="About these documents" href="../../../about/" />
+    <link rel="index" title="Index" href="../../../genindex/" />
+    <link rel="search" title="Search" href="../../../search/" />
+    <link rel="next" title="About nnsight" href="../../../about/" />
+    <link rel="prev" title="Function Vectors" href="../function_vectors/" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -88,7 +90,7 @@
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
-      action="../../search/"
+      action="../../../search/"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -117,7 +119,7 @@
       <div class="navbar-item">
   
 
-<a class="navbar-brand logo" href="../../">
+<a class="navbar-brand logo" href="../../../">
   
   
   
@@ -144,28 +146,35 @@
   <ul class="bd-navbar-elements navbar-nav">
     
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../start/">
+                      <a class="nav-link nav-internal" href="../../../start/">
                         Getting Started
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../documentation/">
+                      <a class="nav-link nav-internal" href="../../../documentation/">
                         Documentation
                       </a>
                     </li>
                 
 
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../features/">
+                        Features
+                      </a>
+                    </li>
+                
+
                     <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="../">
+                      <a class="nav-link nav-internal" href="../../../tutorials/">
                         Tutorials
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../about/">
+                      <a class="nav-link nav-internal" href="../../../about/">
                         About
                       </a>
                     </li>
@@ -267,10 +276,6 @@
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
-      <span class="fa-solid fa-outdent"></span>
-    </label>
-  
 </div>
 
     </nav>
@@ -297,28 +302,35 @@
   <ul class="bd-navbar-elements navbar-nav">
     
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../start/">
+                      <a class="nav-link nav-internal" href="../../../start/">
                         Getting Started
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../documentation/">
+                      <a class="nav-link nav-internal" href="../../../documentation/">
                         Documentation
                       </a>
                     </li>
                 
 
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../features/">
+                        Features
+                      </a>
+                    </li>
+                
+
                     <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="../">
+                      <a class="nav-link nav-internal" href="../../../tutorials/">
                         Tutorials
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../about/">
+                      <a class="nav-link nav-internal" href="../../../about/">
                         About
                       </a>
                     </li>
@@ -397,17 +409,12 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../walkthrough/">Walkthrough</a></li>
-
-
-
-
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Features</a><input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../notebooks/cross_prompt/">Cross-Prompt Intervention</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../notebooks/multiple_token/">Multiple Token Generation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../notebooks/token_indexing/">Token Based Indexing</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../ioi_patching/">Activation Patching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../attribution_patching/">Attribution Patching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logit_lens/">Logit Lens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../future_lens/">Future Lens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../function_vectors/">Function Vectors</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Dictionary Learning</a></li>
 </ul>
 </div>
 </nav></div>
@@ -441,14 +448,14 @@
   <ul class="bd-breadcrumbs">
     
     <li class="breadcrumb-item breadcrumb-home">
-      <a href="../../" class="nav-link" aria-label="Home">
+      <a href="../../../" class="nav-link" aria-label="Home">
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
     
-    <li class="breadcrumb-item"><a href="../" class="nav-link">Tutorials</a></li>
+    <li class="breadcrumb-item"><a href="../../../tutorials/" class="nav-link">Tutorials</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">Features</li>
+    <li class="breadcrumb-item active" aria-current="page">Dictionary Learning</li>
   </ul>
 </nav>
 </div>
@@ -465,15 +472,9 @@
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="features">
-<h1>Features<a class="headerlink" href="#features" title="Link to this heading">#</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../notebooks/cross_prompt/">Cross-Prompt Intervention</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../notebooks/multiple_token/">Multiple Token Generation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../notebooks/token_indexing/">Token Based Indexing</a></li>
-</ul>
-</div>
+  <section id="Dictionary-Learning">
+<h1>Dictionary Learning<a class="headerlink" href="#Dictionary-Learning" title="Link to this heading">#</a></h1>
+<p>Coming Soon!</p>
 </section>
 
 
@@ -487,20 +488,20 @@
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../walkthrough/"
+       href="../function_vectors/"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Walkthrough</p>
+        <p class="prev-next-title">Function Vectors</p>
       </div>
     </a>
     <a class="right-next"
-       href="../notebooks/cross_prompt/"
+       href="../../../about/"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Cross-Prompt Intervention</p>
+        <p class="prev-next-title">About nnsight</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -510,18 +511,6 @@
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="tocsection sourcelink">
-    <a href="../../_sources/tutorials/features.rst.txt">
-      <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-  </div>
-</div>
-
-</div></div>
               
             
           </div>
@@ -534,8 +523,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">

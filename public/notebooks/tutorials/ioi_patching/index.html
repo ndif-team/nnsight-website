@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Walkthrough &#8212; nnsight 0.0.7 documentation</title>
+    <title>Activation Patching &#8212; nnsight</title>
   
   
   
@@ -18,43 +18,43 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=5e86ed10" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=59d16363" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
-  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="../../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
 
-    <script src="../../_static/documentation_options.js?v=51633b78"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../../_static/copybutton.js?v=f281be69"></script>
-    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/documentation_options.js?v=187304be"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/walkthrough';</script>
-    <link rel="icon" href="../../_static/icon.ico"/>
-    <link rel="author" title="About these documents" href="../../about/" />
-    <link rel="index" title="Index" href="../../genindex/" />
-    <link rel="search" title="Search" href="../../search/" />
-    <link rel="next" title="Features" href="../features/" />
-    <link rel="prev" title="Tutorials" href="../" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/tutorials/ioi_patching';</script>
+    <link rel="icon" href="../../../_static/icon.ico"/>
+    <link rel="author" title="About these documents" href="../../../about/" />
+    <link rel="index" title="Index" href="../../../genindex/" />
+    <link rel="search" title="Search" href="../../../search/" />
+    <link rel="next" title="Attribution Patching" href="../attribution_patching/" />
+    <link rel="prev" title="Tutorials" href="../../../tutorials/" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -91,7 +91,7 @@
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
-      action="../../search/"
+      action="../../../search/"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -120,7 +120,7 @@
       <div class="navbar-item">
   
 
-<a class="navbar-brand logo" href="../../">
+<a class="navbar-brand logo" href="../../../">
   
   
   
@@ -147,28 +147,35 @@
   <ul class="bd-navbar-elements navbar-nav">
     
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../start/">
+                      <a class="nav-link nav-internal" href="../../../start/">
                         Getting Started
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../documentation/">
+                      <a class="nav-link nav-internal" href="../../../documentation/">
                         Documentation
                       </a>
                     </li>
                 
 
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../features/">
+                        Features
+                      </a>
+                    </li>
+                
+
                     <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="../">
+                      <a class="nav-link nav-internal" href="../../../tutorials/">
                         Tutorials
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../about/">
+                      <a class="nav-link nav-internal" href="../../../about/">
                         About
                       </a>
                     </li>
@@ -270,10 +277,6 @@
   
 
   
-    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
-      <span class="fa-solid fa-outdent"></span>
-    </label>
-  
 </div>
 
     </nav>
@@ -300,28 +303,35 @@
   <ul class="bd-navbar-elements navbar-nav">
     
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../start/">
+                      <a class="nav-link nav-internal" href="../../../start/">
                         Getting Started
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../documentation/">
+                      <a class="nav-link nav-internal" href="../../../documentation/">
                         Documentation
                       </a>
                     </li>
                 
 
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../../features/">
+                        Features
+                      </a>
+                    </li>
+                
+
                     <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="../">
+                      <a class="nav-link nav-internal" href="../../../tutorials/">
                         Tutorials
                       </a>
                     </li>
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="../../about/">
+                      <a class="nav-link nav-internal" href="../../../about/">
                         About
                       </a>
                     </li>
@@ -400,17 +410,12 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Walkthrough</a></li>
-
-
-
-
-<li class="toctree-l1 has-children"><a class="reference internal" href="../features/">Features</a><input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../notebooks/cross_prompt/">Cross-Prompt Intervention</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../notebooks/multiple_token/">Multiple Token Generation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../notebooks/token_indexing/">Token Based Indexing</a></li>
-</ul>
-</li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Activation Patching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../attribution_patching/">Attribution Patching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logit_lens/">Logit Lens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../future_lens/">Future Lens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../function_vectors/">Function Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dictionary_learning/">Dictionary Learning</a></li>
 </ul>
 </div>
 </nav></div>
@@ -444,14 +449,14 @@
   <ul class="bd-breadcrumbs">
     
     <li class="breadcrumb-item breadcrumb-home">
-      <a href="../../" class="nav-link" aria-label="Home">
+      <a href="../../../" class="nav-link" aria-label="Home">
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
     
-    <li class="breadcrumb-item"><a href="../" class="nav-link">Tutorials</a></li>
+    <li class="breadcrumb-item"><a href="../../../tutorials/" class="nav-link">Tutorials</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">Walkthrough</li>
+    <li class="breadcrumb-item active" aria-current="page">Activation Patching</li>
   </ul>
 </nav>
 </div>
@@ -468,41 +473,52 @@
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="Walkthrough">
-<h1>Walkthrough<a class="headerlink" href="#Walkthrough" title="Link to this heading">#</a></h1>
-<p>To get started, import LanguageModel from nnsight.</p>
+  <section id="Activation-Patching">
+<h1>Activation Patching<a class="headerlink" href="#Activation-Patching" title="Link to this heading">#</a></h1>
+<p>Here we use <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> for the <a class="reference external" href="https://openreview.net/forum?id=NpsVSN6o4ul">Indirect Object Identification</a> task.</p>
+<p>First lets do our imports</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nnsight</span> <span class="kn">import</span> <span class="n">LanguageModel</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+<span class="kn">from</span> <span class="nn">nnsight</span> <span class="kn">import</span> <span class="n">LanguageModel</span><span class="p">,</span> <span class="n">util</span>
+<span class="kn">from</span> <span class="nn">nnsight.tracing.Proxy</span> <span class="kn">import</span> <span class="n">Proxy</span>
 </pre></div>
 </div>
 </div>
-</section>
-<section id="Loading-and-Running-Models">
-<h1>Loading and Running Models<a class="headerlink" href="#Loading-and-Running-Models" title="Link to this heading">#</a></h1>
-<p>Pretrained models can be loaded from HuggingFace by their repo id. Here we’ll work with EleutherAI’s 1B parameter Pythia model, loaded onto a GPU.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s1">&#39;EleutherAI/pythia-1B&#39;</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="s1">&#39;cuda:0&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load gpt2</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s2">&quot;gpt2&quot;</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;cuda:0&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<p>The above command downloads the model’s configuration, but does not yet download and load model weights. The model will be loaded onto your machine the first time it is used. ***</p>
-<details><p>On model initialization</p>
-<p>Kwargs like <code class="docutils literal notranslate"><span class="pre">device_map</span></code> are passed downstream to the underlying huggingface model initialization. In the case of LanguageModels, passed to <a class="reference external" href="https://huggingface.co/docs/transformers/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained">AutoModelForCausalLM.from_pretrained</a>.</p>
-<p>Use <code class="docutils literal notranslate"><span class="pre">dispatch=True</span></code> to load the model onto the specified device locally on initialization, not on first use.</p>
-<p><code class="docutils literal notranslate"><span class="pre">LanguageModel</span></code> is one wrapper for <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> functionality. Another one <code class="docutils literal notranslate"><span class="pre">DiffusionModel</span></code> for text-to-image disffusion models. We encourage you to create you own by inheriting from <code class="docutils literal notranslate"><span class="pre">AbstractModel</span></code></p>
-</details><hr class="docutils" />
-<p>Even though the model is not loaded, we can still inspect the model’s structure!</p>
+<p>We define our clean prompt and corrupted prompt</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clean_prompt</span> <span class="o">=</span> <span class="s2">&quot;After John and Mary went to the store, Mary gave a bottle of milk to&quot;</span>
+<span class="n">corrupted_prompt</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">&quot;After John and Mary went to the store, John gave a bottle of milk to&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>We use the tokenizer on the two words of interest, “John” and “Mary” to find the token that represents them. That way we can grab the prediction for these two tokens and compare. Make sure to add a space before the word as the combined space + word token is what were looking for as our prompts don’t end with a space.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">correct_index</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="p">(</span><span class="s2">&quot; John&quot;</span><span class="p">)[</span><span class="s2">&quot;input_ids&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">incorrect_index</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="p">(</span><span class="s2">&quot; Mary&quot;</span><span class="p">)[</span><span class="s2">&quot;input_ids&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39; John&#39;: </span><span class="si">{</span><span class="n">correct_index</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39; Mary&#39;: </span><span class="si">{</span><span class="n">incorrect_index</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -511,139 +527,117 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-GPTNeoXForCausalLM(
-  (gpt_neox): GPTNeoXModel(
-    (embed_in): Embedding(50304, 2048)
-    (emb_dropout): Dropout(p=0.0, inplace=False)
-    (layers): ModuleList(
-      (0-15): 16 x GPTNeoXLayer(
-        (input_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
-        (post_attention_layernorm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
-        (post_attention_dropout): Dropout(p=0.0, inplace=False)
-        (post_mlp_dropout): Dropout(p=0.0, inplace=False)
-        (attention): GPTNeoXAttention(
-          (rotary_emb): GPTNeoXRotaryEmbedding()
-          (query_key_value): Linear(in_features=2048, out_features=6144, bias=True)
-          (dense): Linear(in_features=2048, out_features=2048, bias=True)
-          (attention_dropout): Dropout(p=0.0, inplace=False)
-        )
-        (mlp): GPTNeoXMLP(
-          (dense_h_to_4h): Linear(in_features=2048, out_features=8192, bias=True)
-          (dense_4h_to_h): Linear(in_features=8192, out_features=2048, bias=True)
-          (act): GELUActivation()
-        )
-      )
-    )
-    (final_layer_norm): LayerNorm((2048,), eps=1e-05, elementwise_affine=True)
-  )
-  (embed_out): Linear(in_features=2048, out_features=50304, bias=False)
-)
+&#39; John&#39;: 1757
+&#39; Mary&#39;: 5335
 </pre></div></div>
 </div>
-<p>Let’s run an input through our model and extract the residual stream activation in the final layer.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<p>Now we do the actual patching intervention!</p>
+<p>Thanks to nnsight, the whole experiment can happen in one forward pass by breaking up inputs into multiple invocation calls and batching them.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;John and Mary went to the store. John handed the milk to&quot;</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enter nnsight tracing context</span>
+<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">forward</span><span class="p">()</span> <span class="k">as</span> <span class="n">runner</span><span class="p">:</span>
 
-<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
-    <span class="n">last_hidden_state</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">gpt_neox</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="c1"># Clean run</span>
+    <span class="k">with</span> <span class="n">runner</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">clean_prompt</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
+        <span class="n">clean_tokens</span> <span class="o">=</span> <span class="n">invoker</span><span class="o">.</span><span class="n">input</span><span class="p">[</span><span class="s2">&quot;input_ids&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 
-<span class="c1"># since this is the first time the model is invoked, it will be downloaded</span>
-<span class="c1"># now if the weights aren&#39;t already on your machine</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">last_hidden_state</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="c1"># Get hidden states of all layers in the network.</span>
+        <span class="c1"># We index the output at 0 because it&#39;s a tuple where the first index is the hidden state.</span>
+        <span class="c1"># No need to call .save() as we don&#39;t need the values after the run, just within the experiment run.</span>
+        <span class="n">clean_hs</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="n">layer_idx</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">layer_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">))</span>
+        <span class="p">]</span>
+
+        <span class="c1"># Get logits from the lm_head.</span>
+        <span class="n">clean_logits</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span>
+
+        <span class="c1"># Calculate the difference between the correct answer and incorrect answer for the clean run and save it.</span>
+        <span class="n">clean_logit_diff</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">clean_logits</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">correct_index</span><span class="p">]</span> <span class="o">-</span> <span class="n">clean_logits</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">incorrect_index</span><span class="p">]</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+    <span class="c1"># Corrupted run</span>
+    <span class="k">with</span> <span class="n">runner</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">corrupted_prompt</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
+        <span class="n">corrupted_logits</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span>
+
+        <span class="c1"># Calculate the difference between the correct answer and incorrect answer for the corrupted run and save it.</span>
+        <span class="n">corrupted_logit_diff</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">corrupted_logits</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">correct_index</span><span class="p">]</span>
+            <span class="o">-</span> <span class="n">corrupted_logits</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">incorrect_index</span><span class="p">]</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+    <span class="n">ioi_patching_results</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Iterate through all the layers</span>
+    <span class="k">for</span> <span class="n">layer_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">)):</span>
+        <span class="n">_ioi_patching_results</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Iterate through all tokens</span>
+        <span class="k">for</span> <span class="n">token_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">clean_tokens</span><span class="p">)):</span>
+
+            <span class="c1"># Patching corrupted run at given layer and token</span>
+            <span class="k">with</span> <span class="n">runner</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">corrupted_prompt</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
+
+                <span class="c1"># Apply the patch from the clean hidden states to the corrupted hidden states.</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="n">layer_idx</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">t</span><span class="p">[</span><span class="n">token_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">clean_hs</span><span class="p">[</span>
+                    <span class="n">layer_idx</span>
+                <span class="p">]</span><span class="o">.</span><span class="n">t</span><span class="p">[</span><span class="n">token_idx</span><span class="p">]</span>
+
+                <span class="n">patched_logits</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span>
+
+                <span class="n">patched_logit_diff</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="n">patched_logits</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">correct_index</span><span class="p">]</span>
+                    <span class="o">-</span> <span class="n">patched_logits</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">incorrect_index</span><span class="p">]</span>
+                <span class="p">)</span>
+
+                <span class="c1"># Calculate the improvement in the correct token after patching.</span>
+                <span class="n">patched_result</span> <span class="o">=</span> <span class="p">(</span><span class="n">patched_logit_diff</span> <span class="o">-</span> <span class="n">corrupted_logit_diff</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span>
+                    <span class="n">clean_logit_diff</span> <span class="o">-</span> <span class="n">corrupted_logit_diff</span>
+                <span class="p">)</span>
+
+                <span class="n">_ioi_patching_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">patched_result</span><span class="o">.</span><span class="n">save</span><span class="p">())</span>
+
+        <span class="n">ioi_patching_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_ioi_patching_results</span><span class="p">)</span>
+<br/><br/></pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Clean logit difference: </span><span class="si">{</span><span class="n">clean_logit_diff</span><span class="o">.</span><span class="n">value</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Corrupted logit difference: </span><span class="si">{</span><span class="n">corrupted_logit_diff</span><span class="o">.</span><span class="n">value</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">ioi_patching_results</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">ioi_patching_results</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="n">Proxy</span><span class="p">)</span>
+
+<span class="n">clean_tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">token</span><span class="p">)</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">clean_tokens</span><span class="p">]</span>
+<span class="n">token_labels</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">index</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">token</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">clean_tokens</span><span class="p">)]</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span>
+    <span class="n">ioi_patching_results</span><span class="p">,</span>
+    <span class="n">color_continuous_midpoint</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">color_continuous_scale</span><span class="o">=</span><span class="s2">&quot;RdBu&quot;</span><span class="p">,</span>
+    <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="s2">&quot;Position&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="s2">&quot;Layer&quot;</span><span class="p">},</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">token_labels</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Normalized Logit Difference After Patching Residual Stream on the IOI Task&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-You&#39;re using a GPTNeoXTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-torch.Size([1, 13, 2048])
+Clean logit difference: 4.124
+Corrupted logit difference: -2.272
 </pre></div></div>
-</div>
-<p>Let’s break this down:</p>
-<p><code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">model.invoke(prompt)</span></code> creates an invoker context. This tells nnsight that we would like to run the model with input <code class="docutils literal notranslate"><span class="pre">prompt</span></code> but with some specified modifications to the forward or backward pass. In this case, the only modification is saving an activation. The runner context does not actually execute the forward pass until after the context exits.</p>
-<p>[<em>Details specific to the Pythia model</em>] <code class="docutils literal notranslate"><span class="pre">model.gpt_neox.layers</span></code> is the list of layers (see the module tree above). “<code class="docutils literal notranslate"><span class="pre">-1</span></code>” means the final layer. The layer output is a tuple of (hidden state, cached activations); we only want the hidden state, so we use <code class="docutils literal notranslate"><span class="pre">output[0]</span></code>. Using <code class="docutils literal notranslate"><span class="pre">save()</span></code> tells nnsight to save this data.</p>
-<hr class="docutils" />
-<details><p>On runner contexts</p>
-<p>Using <code class="docutils literal notranslate"><span class="pre">.invoke(...)</span></code> on a model is just the simplest way to create a runner context. You can also use <code class="docutils literal notranslate"><span class="pre">.forward(...)</span></code> and <code class="docutils literal notranslate"><span class="pre">.generate(...)</span></code>.</p>
-<p>The invoke context and forward contexts are the same other than the fact that you need to use an inner context to input prompts. THis is because you may need a separate set of kwargs for the model’s forward method and the prompt pre-processing. This is combined in <code class="docutils literal notranslate"><span class="pre">.invoke(...)</span></code> by putting forward specific kwargs in a <code class="docutils literal notranslate"><span class="pre">fwd_args={...}</span></code> keyword.</p>
-<p><code class="docutils literal notranslate"><span class="pre">.generate(...)</span></code> is the same as <code class="docutils literal notranslate"><span class="pre">.forward(...)</span></code> other than it uses the model’s <code class="docutils literal notranslate"><span class="pre">.generate</span></code> method instead of <code class="docutils literal notranslate"><span class="pre">.forward</span></code>. In the case of <code class="docutils literal notranslate"><span class="pre">LanguageModel</span></code>s, it calls <a class="reference external" href="https://huggingface.co/docs/transformers/main_classes/text_generation#transformers.GenerationMixin.generate">AutoModelForCausalLM.generate(…)</a></p>
-</details><hr class="docutils" />
-<p><code class="docutils literal notranslate"><span class="pre">last_hidden_state</span></code> is a <em>proxy</em>. Inside the invoker context, it does not yet store any values. After the context exits and the model runs, the desired value is stored at <code class="docutils literal notranslate"><span class="pre">last_hidden_state.value</span></code>.</p>
-<p>The model output of the forward pass is also stored at <code class="docutils literal notranslate"><span class="pre">invoker.output.logits</span></code>:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">logits</span> <span class="o">=</span> <span class="n">invoker</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">logits</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">logits</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-torch.Size([1, 13, 50304])
-</pre></div></div>
-</div>
-</section>
-<section id="Example:-Logit-Lens">
-<h1>Example: Logit Lens<a class="headerlink" href="#Example:-Logit-Lens" title="Link to this heading">#</a></h1>
-<p>As an example, let’s track the probability with which the model outputs “Mary” as we move through layers. One technique for this is the <a class="reference external" href="https://www.alignmentforum.org/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens">logit lens</a>: we’ll treat the language model’s decoder applied to the intermediate activations as giving a crude approximation to this probability.</p>
-<hr class="docutils" />
-<details><p>On module applications</p>
-<p>In the following example, we want to apply a module out of order from the normal model’s computation graph. You can use nnsight to easily do this by just calling the module on a proxy object like <code class="docutils literal notranslate"><span class="pre">model.&lt;module&gt;(&lt;proxy&gt;)</span></code></p>
-<p>These calls will not trigger forward hooks like those added by calling <code class="docutils literal notranslate"><span class="pre">.output</span></code> and <code class="docutils literal notranslate"><span class="pre">.input</span></code>. This is because the call the module’s <code class="docutils literal notranslate"><span class="pre">.forward(...)</span></code> method not it’s <code class="docutils literal notranslate"><span class="pre">__call__(...)</span></code> method.</p>
-</details><hr class="docutils" />
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">decoder</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-  <span class="c1"># decoder consists of final layer norm + unembedding</span>
-  <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">embed_out</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">gpt_neox</span><span class="o">.</span><span class="n">final_layer_norm</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-
-<span class="n">all_probs</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
-  <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">gpt_neox</span><span class="o">.</span><span class="n">layers</span><span class="p">:</span>
-    <span class="n">logits</span> <span class="o">=</span> <span class="n">decoder</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># apply decoder to hidden state</span>
-    <span class="n">logits</span> <span class="o">=</span> <span class="n">logits</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span> <span class="c1"># only over the final token</span>
-    <span class="n">probs</span> <span class="o">=</span> <span class="n">logits</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span> <span class="c1"># apply softmax to get probabilities and save</span>
-    <span class="n">all_probs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">probs</span><span class="p">)</span>
-    <span class="c1"># all_probs[i].value now stores the probability distribution over tokens after layer i</span>
-</pre></div>
-</div>
-</div>
-<p>We can see how the probability of outputting “Mary” evolves over time:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
-
-<span class="n">mary_token</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="p">(</span><span class="s2">&quot; Mary&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">input_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># token id for Mary</span>
-
-<span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span>
-    <span class="p">[</span><span class="n">layer_probs</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="n">mary_token</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="k">for</span> <span class="n">layer_probs</span> <span class="ow">in</span> <span class="n">all_probs</span><span class="p">],</span>
-    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Probability of Mary after each layer, according to logit lens&quot;</span><span class="p">,</span>
-    <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span><span class="s2">&quot;Layer&quot;</span><span class="p">,</span> <span class="s2">&quot;index&quot;</span><span class="p">:</span><span class="s2">&quot;Probability&quot;</span><span class="p">}</span>
-<span class="p">)</span>
-</pre></div>
-</div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
@@ -674,9 +668,9 @@ torch.Size([1, 13, 50304])
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area rendered_html docutils container">
-<div>                            <div id="12e7a54b-920c-47f9-ac69-ebbf9a819dd2" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("12e7a54b-920c-47f9-ac69-ebbf9a819dd2")) {                    Plotly.newPlot(                        "12e7a54b-920c-47f9-ac69-ebbf9a819dd2",                        [{"hovertemplate":"variable=0\u003cbr\u003eProbability=%{x}\u003cbr\u003eLayer=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"0","line":{"color":"#636efa","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"0","orientation":"v","showlegend":true,"x":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],"xaxis":"x","y":[1.6325733668054454e-05,5.580654033110477e-06,3.423861926421523e-06,2.036722662523971e-06,2.5014473976625595e-06,2.4999023935379228e-06,8.57628219819162e-06,1.760988925525453e-05,7.855778676457703e-06,5.1982166041852906e-05,0.0011284550419077277,0.19210900366306305,0.20111459493637085,0.023693731054663658,0.09532281756401062,0.5439837574958801],"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"Probability"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"Layer"}},"legend":{"title":{"text":"variable"},"tracegroupgap":0},"title":{"text":"Probability of Mary after each layer, according to logit lens"}},                        {"responsive": true}                    ).then(function(){
+<div>                            <div id="115aa9fb-6ac0-4c57-b7b4-1a817659e4fc" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("115aa9fb-6ac0-4c57-b7b4-1a817659e4fc")) {                    Plotly.newPlot(                        "115aa9fb-6ac0-4c57-b7b4-1a817659e4fc",                        [{"coloraxis":"coloraxis","name":"0","x":["After_0"," John_1"," and_2"," Mary_3"," went_4"," to_5"," the_6"," store_7",",_8"," Mary_9"," gave_10"," a_11"," bottle_12"," of_13"," milk_14"," to_15"],"z":[[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.9974663853645325,0.0017677855212241411,-0.0001741543092066422,0.0008993996307253838,2.5049592295545153e-05,-0.001084289513528347,-0.00046520671457983553],[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.9971312284469604,0.002613507444038987,-0.00048429210437461734,0.0006274326588027179,-6.202756048878655e-05,-0.0004341929452493787,-0.0009208707488141954],[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.9950962662696838,0.004567375872284174,-0.00023618186241947114,0.0005892618210054934,6.679891521343961e-05,-0.0003196805191691965,-0.002197207184508443],[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.986871600151062,0.020105279982089996,0.0006429395289160311,0.001124845934100449,0.0001574545749463141,0.0006286255083978176,-0.0019121188670396805],[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.9520813226699829,0.0781189426779747,0.0025824937038123608,0.0021339866798371077,0.0004628210444934666,0.00032325900974683464,-0.0014457192737609148],[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.9528268575668335,0.07888712733983994,0.0019836891442537308,0.00023260335728991777,0.0002147107879864052,0.0002481102419551462,-0.004972940310835838],[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.9087956547737122,0.10826075822114944,0.003999584820121527,-0.00037455104757100344,0.0002182893076678738,0.0005677907611243427,0.009814668446779251],[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.6858399510383606,0.03584238886833191,0.0005224629421718419,-0.0008111296338029206,5.4870535677764565e-05,0.0013109286082908511,0.41536399722099304],[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.10978282243013382,0.02468339167535305,0.00030298077035695314,-0.0003590441483538598,0.00028508823015727103,0.0014039699453860521,0.8544582724571228],[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.019867904484272003,0.015403113327920437,-0.0001813113340176642,-9.06556670088321e-05,2.6242429157719016e-05,0.0006572536076419055,0.907933235168457],[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.019981224089860916,0.006296990439295769,0.00021113228285685182,-0.0007359808660112321,-4.413499482325278e-05,0.0005701764603145421,0.9069026112556458],[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0]],"type":"heatmap","xaxis":"x","yaxis":"y","hovertemplate":"Position: %{x}\u003cbr\u003eLayer: %{y}\u003cbr\u003ecolor: %{z}\u003cextra\u003e\u003c\u002fextra\u003e"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"scaleanchor":"y","constrain":"domain","title":{"text":"Position"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"autorange":"reversed","constrain":"domain","title":{"text":"Layer"}},"coloraxis":{"colorscale":[[0.0,"rgb(103,0,31)"],[0.1,"rgb(178,24,43)"],[0.2,"rgb(214,96,77)"],[0.3,"rgb(244,165,130)"],[0.4,"rgb(253,219,199)"],[0.5,"rgb(247,247,247)"],[0.6,"rgb(209,229,240)"],[0.7,"rgb(146,197,222)"],[0.8,"rgb(67,147,195)"],[0.9,"rgb(33,102,172)"],[1.0,"rgb(5,48,97)"]],"cmid":0.0},"title":{"text":"Normalized Logit Difference After Patching Residual Stream on the IOI Task"}},                        {"responsive": true}                    ).then(function(){
 
-var gd = document.getElementById('12e7a54b-920c-47f9-ac69-ebbf9a819dd2');
+var gd = document.getElementById('115aa9fb-6ac0-4c57-b7b4-1a817659e4fc');
 var x = new MutationObserver(function (mutations, observer) {{
         var display = window.getComputedStyle(gd).display;
         if (!display || display === 'none') {{
@@ -700,170 +694,6 @@ if (outputEl) {{
 
                         })                };                });            </script>        </div></div>
 </div>
-<p>This suggests that Pythia-1B begins to realize that the correct completion is “Mary” in layer 11, and that it becomes more confident in this answer in the final few layers.</p>
-</section>
-<section id="Intervening-during-a-forward-pass">
-<h1>Intervening during a forward pass<a class="headerlink" href="#Intervening-during-a-forward-pass" title="Link to this heading">#</a></h1>
-<p>Consider the prompt “The city of Paris is in the country of”. Pythia-1B’s best guess for the completion is “France”:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;The city of Paris is in the country of&quot;</span>
-
-<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
-    <span class="k">pass</span> <span class="c1"># no changes to make in the forward pass</span>
-<span class="n">logits</span> <span class="o">=</span> <span class="n">invoker</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">logits</span>
-<span class="n">logits</span> <span class="o">=</span> <span class="n">logits</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span> <span class="c1"># only over the final token</span>
-<span class="n">probs</span> <span class="o">=</span> <span class="n">logits</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-
-
-<span class="k">for</span> <span class="n">tok</span><span class="p">,</span> <span class="n">prob</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">probs</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">indices</span><span class="p">,</span> <span class="n">probs</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;p(</span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">tok</span><span class="p">)</span><span class="si">}</span><span class="s2">) = </span><span class="si">{</span><span class="n">prob</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-p( France) = 0.425
-p( the) = 0.096
-p( Paris) = 0.022
-p( Belgium) = 0.008
-p( origin) = 0.008
-p( Prov) = 0.007
-p( Luxem) = 0.007
-p( Saint) = 0.007
-p(
-) = 0.007
-p( La) = 0.007
-</pre></div></div>
-</div>
-<p>Let’s see which model components are important for correctly outputing “France” in this example. One way to to this is to “corrupt” the model’s representation of “Paris” token to confuse the model, then restore certain internal activations to their values from a “clean” run. If restoring an activation to the clean value causes the model to again output “France”, it suggests that this activation was storing important information.</p>
-<p>To corrupt the representation of “Paris,” we’ll zero out the token’s embedding:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">subject_idx</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1"># Paris is the fourth token</span>
-<span class="n">answer_token</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="p">(</span><span class="s2">&quot; France&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">input_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># token id for France</span>
-
-<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">gpt_neox</span><span class="o">.</span><span class="n">embed_in</span><span class="o">.</span><span class="n">output</span><span class="p">[:,</span> <span class="n">subject_idx</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="mf">0.</span> <span class="c1"># zero out Paris embedding</span>
-
-<span class="n">probs</span> <span class="o">=</span> <span class="n">invoker</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">logits</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;p( France) = </span><span class="si">{</span><span class="n">probs</span><span class="p">[</span><span class="n">answer_token</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># model no longer outputs France</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-p( France) = 0.0022770469076931477
-</pre></div></div>
-</div>
-<p>Now let’s store the activations from a “clean” run:</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">all_hidden_states</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">gpt_neox</span><span class="o">.</span><span class="n">layers</span><span class="p">:</span>
-        <span class="n">all_hidden_states</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-            <span class="n">layer</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span> <span class="c1"># save layer output</span>
-        <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<p>Now we one-at-time restore the hidden state in each layer over each token position and record the probability of the output “France”:</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_layers</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">gpt_neox</span><span class="o">.</span><span class="n">layers</span><span class="p">)</span>
-<span class="n">n_tokens</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">prompt</span><span class="p">))</span>
-
-<span class="n">intervened_probs</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_tokens</span><span class="p">)]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_layers</span><span class="p">)</span> <span class="p">]</span>
-
-<span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_layers</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_tokens</span><span class="p">):</span>
-
-        <span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
-            <span class="c1"># zero out embedding of Paris ...</span>
-            <span class="n">model</span><span class="o">.</span><span class="n">gpt_neox</span><span class="o">.</span><span class="n">embed_in</span><span class="o">.</span><span class="n">output</span><span class="p">[:,</span><span class="n">subject_idx</span><span class="p">,:]</span> <span class="o">=</span> <span class="mf">0.</span>
-            <span class="c1"># ... but restore the hidden state at the given layer+token</span>
-            <span class="n">model</span><span class="o">.</span><span class="n">gpt_neox</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="n">layer</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span><span class="n">token</span><span class="p">,:]</span> <span class="o">=</span> \
-                <span class="n">all_hidden_states</span><span class="p">[</span><span class="n">layer</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">token</span><span class="p">,:]</span>
-
-        <span class="n">probs</span> <span class="o">=</span> <span class="n">invoker</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">logits</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">intervened_probs</span><span class="p">[</span><span class="n">layer</span><span class="p">][</span><span class="n">token</span><span class="p">]</span> <span class="o">=</span> <span class="n">probs</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">answer_token</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># visualize the results</span>
-<span class="n">token_ids</span> <span class="o">=</span> <span class="n">invoker</span><span class="o">.</span><span class="n">input</span><span class="p">[</span><span class="s1">&#39;input_ids&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
-<span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">token_id</span><span class="p">)</span> <span class="k">for</span> <span class="n">token_id</span> <span class="ow">in</span> <span class="n">token_ids</span><span class="p">]</span>
-
-<span class="n">token_labels</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">tok</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">tok</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tokens</span><span class="p">)]</span>
-
-<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span>
-    <span class="n">intervened_probs</span><span class="p">,</span>
-    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;p(France) after restoring clean state&quot;</span><span class="p">,</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">token_labels</span><span class="p">,</span>
-    <span class="n">labels</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;Token&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Layer&quot;</span><span class="p">),</span>
-    <span class="n">color_continuous_midpoint</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
-    <span class="n">color_continuous_scale</span><span class="o">=</span><span class="s2">&quot;RdBu&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area rendered_html docutils container">
-<div>                            <div id="ace77eb1-7984-4aa2-9803-3d200fb72300" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("ace77eb1-7984-4aa2-9803-3d200fb72300")) {                    Plotly.newPlot(                        "ace77eb1-7984-4aa2-9803-3d200fb72300",                        [{"coloraxis":"coloraxis","name":"0","x":["The_0"," city_1"," of_2"," Paris_3"," is_4"," in_5"," the_6"," country_7"," of_8"],"z":[[0.0022770469076931477,0.0022770469076931477,0.0022770469076931477,0.39894619584083557,0.0022462899796664715,0.0022448147647082806,0.0022467165254056454,0.0025413234252482653,0.0021403017453849316],[0.0022770469076931477,0.0022770469076931477,0.0022770469076931477,0.3677979111671448,0.0022451120894402266,0.002206056844443083,0.002252262784168124,0.0025939522311091423,0.002200657268986106],[0.0022770469076931477,0.0022770469076931477,0.0022770469076931477,0.4181903302669525,0.0022790615912526846,0.002228093333542347,0.002305194502696395,0.002617145422846079,0.0022951781284064054],[0.0022770469076931477,0.0022770469076931477,0.0022770469076931477,0.44295698404312134,0.0022476771846413612,0.002496918197721243,0.0022982421796768904,0.002836934756487608,0.0020339919719845057],[0.0022770469076931477,0.0022770469076931477,0.0022770469076931477,0.4268586039543152,0.002301829867064953,0.0024327090941369534,0.0022942381910979748,0.00303195184096694,0.0021273749880492687],[0.0022770469076931477,0.0022770469076931477,0.0022770469076931477,0.44398897886276245,0.0022742729634046555,0.0022952791769057512,0.002258778316900134,0.0031250440515577793,0.0023644056636840105],[0.0022770469076931477,0.0022770469076931477,0.0022770469076931477,0.37726882100105286,0.0023306834045797586,0.002224378287792206,0.0022313406225293875,0.0031729447655379772,0.002787125762552023],[0.0022770469076931477,0.0022770469076931477,0.0022770469076931477,0.35488879680633545,0.0024524538312107325,0.0021526969503611326,0.002217306289821863,0.003241528058424592,0.0034272128250449896],[0.0022770469076931477,0.0022770469076931477,0.0022770469076931477,0.25742313265800476,0.0026664561592042446,0.002194558270275593,0.002222716808319092,0.002760949544608593,0.0038836903404444456],[0.0022770469076931477,0.0022770469076931477,0.0022770469076931477,0.14024348556995392,0.002819404937326908,0.0024317579809576273,0.0022689008619636297,0.002823621267452836,0.006560646928846836],[0.0022770469076931477,0.0022770469076931477,0.0022770469076931477,0.12133001536130905,0.002781173912808299,0.002412177622318268,0.0023036140482872725,0.0024917249102145433,0.00788055919110775],[0.0022770469076931477,0.0022770469076931477,0.0022770469076931477,0.04272028058767319,0.002508951351046562,0.0032223437447100878,0.0032095592468976974,0.0025682831183075905,0.3255462944507599],[0.0022770469076931477,0.0022770469076931477,0.0022770469076931477,0.008239572867751122,0.0026028186548501253,0.003141306573525071,0.0030427759047597647,0.00258222920820117,0.27222979068756104],[0.0022770469076931477,0.0022770469076931477,0.0022770469076931477,0.003589092753827572,0.0025577733758836985,0.002914272714406252,0.002974280621856451,0.0025091625284403563,0.26768890023231506],[0.0022770469076931477,0.0022770469076931477,0.0022770469076931477,0.0025820431765168905,0.0023243497125804424,0.002358027035370469,0.0023949823807924986,0.002476300112903118,0.35089826583862305],[0.0022770469076931477,0.0022770469076931477,0.0022770469076931477,0.0022770469076931477,0.0022770469076931477,0.0022770469076931477,0.0022770469076931477,0.0022770469076931477,0.42489707469940186]],"type":"heatmap","xaxis":"x","yaxis":"y","hovertemplate":"Token: %{x}\u003cbr\u003eLayer: %{y}\u003cbr\u003ecolor: %{z}\u003cextra\u003e\u003c\u002fextra\u003e"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"scaleanchor":"y","constrain":"domain","title":{"text":"Token"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"autorange":"reversed","constrain":"domain","title":{"text":"Layer"}},"coloraxis":{"colorscale":[[0.0,"rgb(103,0,31)"],[0.1,"rgb(178,24,43)"],[0.2,"rgb(214,96,77)"],[0.3,"rgb(244,165,130)"],[0.4,"rgb(253,219,199)"],[0.5,"rgb(247,247,247)"],[0.6,"rgb(209,229,240)"],[0.7,"rgb(146,197,222)"],[0.8,"rgb(67,147,195)"],[0.9,"rgb(33,102,172)"],[1.0,"rgb(5,48,97)"]],"cmid":0.0},"title":{"text":"p(France) after restoring clean state"}},                        {"responsive": true}                    ).then(function(){
-
-var gd = document.getElementById('ace77eb1-7984-4aa2-9803-3d200fb72300');
-var x = new MutationObserver(function (mutations, observer) {{
-        var display = window.getComputedStyle(gd).display;
-        if (!display || display === 'none') {{
-            console.log([gd, 'removed!']);
-            Plotly.purge(gd);
-            observer.disconnect();
-        }}
-}});
-
-// Listen for the removal of the full notebook cells
-var notebookContainer = gd.closest('#notebook-container');
-if (notebookContainer) {{
-    x.observe(notebookContainer, {childList: true});
-}}
-
-// Listen for the clearing of the current output cell
-var outputEl = gd.closest('.output');
-if (outputEl) {{
-    x.observe(outputEl, {childList: true});
-}}
-
-                        })                };                });            </script>        </div></div>
-</div>
-<p>These results suggest that the (causally relevant) information about the location of Paris is computed above the “Paris” token by layer 10, before being moved to the “of” token by the later layers. For more on this, see <a class="reference external" href="https://arxiv.org/abs/2202.05262">Meng et al. (2022)</a>.</p>
-</section>
-<section id="Next-steps">
-<h1>Next steps<a class="headerlink" href="#Next-steps" title="Link to this heading">#</a></h1>
-<p>Check out the <a class="reference external" href="/tutorials/features/">Features</a> and <a class="reference external" href="/documentation/">Documentation</a> pages and the <a class="reference external" href="https://github.com/JadenFiotto-Kaufman/nnsight/blob/main/README.md">README</a> for more guides.</p>
 </section>
 
 
@@ -877,7 +707,7 @@ if (outputEl) {{
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../"
+       href="../../../tutorials/"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
@@ -886,11 +716,11 @@ if (outputEl) {{
       </div>
     </a>
     <a class="right-next"
-       href="../features/"
+       href="../attribution_patching/"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Features</p>
+        <p class="prev-next-title">Attribution Patching</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -900,33 +730,6 @@ if (outputEl) {{
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Walkthrough</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#Loading-and-Running-Models">Loading and Running Models</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#Example:-Logit-Lens">Example: Logit Lens</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#Intervening-during-a-forward-pass">Intervening during a forward pass</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#Next-steps">Next steps</a></li>
-</ul>
-
-  </nav></div>
-
-  <div class="sidebar-secondary-item">
-  <div class="tocsection sourcelink">
-    <a href="../../_sources/tutorials/walkthrough.ipynb.txt">
-      <i class="fa-solid fa-file-lines"></i> Show Source
-    </a>
-  </div>
-</div>
-
-</div></div>
               
             
           </div>
@@ -939,8 +742,8 @@ if (outputEl) {{
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
