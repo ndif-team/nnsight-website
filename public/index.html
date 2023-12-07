@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=59d16363" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=b030f2fb" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
@@ -233,30 +233,30 @@
 </ul></div>
       
         <div class="navbar-item"><style>
-    #ndif_status {
+    .ndif_status {
         height: 18px;
         width: 18px;
         background-color: red;
         border-radius: 50%;
         display: inline-block;
-        margin-left: 10px;
+        margin-left: 5px;
+        vertical-align: middle;
     }
 </style>
 
-<div>NDIF Status: </div><span id="ndif_status"></span>
+<span><span>NDIF Status: </span><span class="ndif_status"></span></span>
 
 <script>
-    console.log()
     fetch("https://ndif.baulab.us/ping")
         .then((response) => {
             if (response.status == 200) {
-                document.getElementById("ndif_status").style.backgroundColor = "green"
+                Array.from(document.getElementsByClassName("ndif_status")).forEach((elm) => elm.style.backgroundColor = "green");
             }
             else {
-                document.getElementById("ndif_status").style.backgroundColor = "red"
+                Array.from(document.getElementsByClassName("ndif_status")).forEach((elm) => elm.style.backgroundColor = "red");
             }
         })
-        .catch((response) => document.getElementById("ndif_status").style.backgroundColor = "red")
+        .catch((response) => Array.from(document.getElementsByClassName("ndif_status")).forEach((elm) => elm.style.backgroundColor = "red"))
 
 </script></div>
       
@@ -376,30 +376,30 @@
 </ul></div>
         
           <div class="navbar-item"><style>
-    #ndif_status {
+    .ndif_status {
         height: 18px;
         width: 18px;
         background-color: red;
         border-radius: 50%;
         display: inline-block;
-        margin-left: 10px;
+        margin-left: 5px;
+        vertical-align: middle;
     }
 </style>
 
-<div>NDIF Status: </div><span id="ndif_status"></span>
+<span><span>NDIF Status: </span><span class="ndif_status"></span></span>
 
 <script>
-    console.log()
     fetch("https://ndif.baulab.us/ping")
         .then((response) => {
             if (response.status == 200) {
-                document.getElementById("ndif_status").style.backgroundColor = "green"
+                Array.from(document.getElementsByClassName("ndif_status")).forEach((elm) => elm.style.backgroundColor = "green");
             }
             else {
-                document.getElementById("ndif_status").style.backgroundColor = "red"
+                Array.from(document.getElementsByClassName("ndif_status")).forEach((elm) => elm.style.backgroundColor = "red");
             }
         })
-        .catch((response) => document.getElementById("ndif_status").style.backgroundColor = "red")
+        .catch((response) => Array.from(document.getElementsByClassName("ndif_status")).forEach((elm) => elm.style.backgroundColor = "red"))
 
 </script></div>
         
