@@ -18,12 +18,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -34,13 +34,13 @@
     <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=b030f2fb" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
 
-    <script src="../_static/documentation_options.js?v=187304be"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=df4b10f6"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/design-tabs.js?v=36754332"></script>
@@ -50,7 +50,7 @@
     <link rel="author" title="About these documents" href="#" />
     <link rel="index" title="Index" href="../genindex/" />
     <link rel="search" title="Search" href="../search/" />
-    <link rel="prev" title="Dictionary Learning" href="../notebooks/tutorials/dictionary_learning/" />
+    <link rel="prev" title="Dictionary Learning" href="../notebooks/tutorials/sae/" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -461,9 +461,9 @@
                 <article class="bd-article" role="main">
                   
   <section id="about-nnsight">
-<h1>About nnsight<a class="headerlink" href="#about-nnsight" title="Link to this heading">#</a></h1>
+<h1>About nnsight<a class="headerlink" href="#about-nnsight" title="Permalink to this heading">#</a></h1>
 <section id="an-api-for-transparent-science-on-black-box-ai">
-<h2>An API for transparent science on black-box AI<a class="headerlink" href="#an-api-for-transparent-science-on-black-box-ai" title="Link to this heading">#</a></h2>
+<h2>An API for transparent science on black-box AI<a class="headerlink" href="#an-api-for-transparent-science-on-black-box-ai" title="Permalink to this heading">#</a></h2>
 <div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
 <div class="sd-card-body docutils">
 <div class="sd-card-title sd-font-weight-bold docutils">
@@ -480,12 +480,12 @@ The nnsight library is also terrific for studying smaller local models.</p>
 <figure class="align-default" id="id1">
 <img alt="../_images/remote_execution.png" src="../_images/remote_execution.png" />
 <figcaption>
-<p><span class="caption-text">An overview of the nnsight/NDIF pipeline. Researchers write simple Python code to run along with the neural network locally or remotely. Unlike commercial inference, the experiment code can read or write any of the internal states of the neural networks being studied.  This code creates a computation graph that can be sent to the remote service and interleaved with the execution of the neural network.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+<p><span class="caption-text">An overview of the nnsight/NDIF pipeline. Researchers write simple Python code to run along with the neural network locally or remotely. Unlike commercial inference, the experiment code can read or write any of the internal states of the neural networks being studied.  This code creates a computation graph that can be sent to the remote service and interleaved with the execution of the neural network.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
 <section id="how-you-use-nnsight">
-<h2>How you use nnsight<a class="headerlink" href="#how-you-use-nnsight" title="Link to this heading">#</a></h2>
+<h2>How you use nnsight<a class="headerlink" href="#how-you-use-nnsight" title="Permalink to this heading">#</a></h2>
 <p>Nnsight is built on pytorch.</p>
 <p>Running inference on a huge remote model with nnsight is very similar to running a neural network locally on your own workstation.  In fact, with nnsight, the same code for running experiments locally on small models can also be used on large models, just by changing a few arguments.</p>
 <p>The difference between nnsight and normal inference is that when you use nnsight, you do not treat the model as an opaque black box.
@@ -508,13 +508,13 @@ Here is how it looks:</p>
 <p>When you run this <code class="docutils literal notranslate"><span class="pre">with</span></code>-block code on lines 5 and 6 on your local workstation, it actually creates a computation graph storing all the calculations you want to do.  When the outermost <code class="docutils literal notranslate"><span class="pre">with</span></code> block is completed, all the defined caculations are sent to the remote server and executed there.  Then when it’s all done, the results can be accessed on your local workstation as shown on line 7 and 8.</p>
 </section>
 <section id="what-happens-behind-the-scenes">
-<h2>What happens behind the scenes?<a class="headerlink" href="#what-happens-behind-the-scenes" title="Link to this heading">#</a></h2>
+<h2>What happens behind the scenes?<a class="headerlink" href="#what-happens-behind-the-scenes" title="Permalink to this heading">#</a></h2>
 <p>When using nnsight, it is helpful to understand that the operations are not executed immediately but instead adds to an intervention graph that is executed alongside the model’s computation graph upon exit of the with block.</p>
 <p>An example of one such intervention graph can be seen below:</p>
 <figure class="align-default" id="id2">
 <img alt="../_images/intrgraph.png" src="../_images/intrgraph.png" />
 <figcaption>
-<p><span class="caption-text">An example of an intervention graph. Operations in research code create nodes in the graph which depend on module inputs and outputs as well as other nodes. Then, this intervention graph is interleaved with the normal computation graph of the chosen model, and requested inputs and outputs are injected into the intervention graph for execution.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+<p><span class="caption-text">An example of an intervention graph. Operations in research code create nodes in the graph which depend on module inputs and outputs as well as other nodes. Then, this intervention graph is interleaved with the normal computation graph of the chosen model, and requested inputs and outputs are injected into the intervention graph for execution.</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Basic access to model internals can give you a lot of insight about what is going on inside a large model as it runs.  For example, you can use the <a class="reference external" href="https://www.lesswrong.com/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens">logit lens</a> to read internal hidden states as text.  And use can use <a class="reference external" href="https://rome.baulab.info/">causal tracing</a> or <a class="reference external" href="https://arxiv.org/abs/2304.05969">path patching</a> or <a class="reference external" href="https://arxiv.org/abs/2310.10348">other circuit discovery methods</a> to locate the layers and components within the network that play a decisive role in making a decision.</p>
@@ -537,7 +537,7 @@ Here is how it looks:</p>
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../notebooks/tutorials/dictionary_learning/"
+       href="../notebooks/tutorials/sae/"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
@@ -579,8 +579,8 @@ Here is how it looks:</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -598,7 +598,7 @@ Here is how it looks:</p>
       
         <div class="footer-item">
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2.
     <br/>
   </p>
 </div>
@@ -610,7 +610,7 @@ Here is how it looks:</p>
     <div class="footer-items__end">
       
         <div class="footer-item"><p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.2.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.3.
 </p></div>
       
     </div>
