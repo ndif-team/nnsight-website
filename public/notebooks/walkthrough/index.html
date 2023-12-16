@@ -18,12 +18,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=365ca57ee442770a23c6" rel="stylesheet" />
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -35,13 +35,13 @@
     <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=b030f2fb" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6" />
-  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=365ca57ee442770a23c6"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=df4b10f6"></script>
+    <script src="../../_static/documentation_options.js?v=187304be"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=36754332"></script>
@@ -229,7 +229,7 @@
           
           
           
-          <a href="https://discord.gg/P6mQrKbz" title="Discord" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i></span>
+          <a href="https://discord.gg/6uFJmCSwW7" title="Discord" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i></span>
             <span class="sr-only">Discord</span></a>
         </li>
 </ul></div>
@@ -376,7 +376,7 @@
           
           
           
-          <a href="https://discord.gg/P6mQrKbz" title="Discord" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i></span>
+          <a href="https://discord.gg/6uFJmCSwW7" title="Discord" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i></span>
             <span class="sr-only">Discord</span></a>
         </li>
 </ul></div>
@@ -463,7 +463,7 @@
                 <article class="bd-article" role="main">
                   
   <section id="Walkthrough">
-<h1>Walkthrough<a class="headerlink" href="#Walkthrough" title="Permalink to this heading">#</a></h1>
+<h1>Walkthrough<a class="headerlink" href="#Walkthrough" title="Link to this heading">#</a></h1>
 <p>To get started, import LanguageModel from nnsight.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -475,7 +475,7 @@
 </div>
 </section>
 <section id="Loading-and-Running-Models">
-<h1>Loading and Running Models<a class="headerlink" href="#Loading-and-Running-Models" title="Permalink to this heading">#</a></h1>
+<h1>Loading and Running Models<a class="headerlink" href="#Loading-and-Running-Models" title="Link to this heading">#</a></h1>
 <p>Pretrained models can be loaded from HuggingFace by their repo id. Here we’ll work with EleutherAI’s 1B parameter Pythia model, loaded onto a GPU.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
@@ -486,8 +486,8 @@
 </div>
 </div>
 <p>The above command downloads the model’s configuration, but does not yet download and load model weights. The model will be loaded onto your machine the first time it is used. ***</p>
-<details><summary><p>On model initialization</p>
-</summary><p>Kwargs like <code class="docutils literal notranslate"><span class="pre">device_map</span></code> are passed downstream to the underlying huggingface model initialization. In the case of LanguageModels, passed to <a class="reference external" href="https://huggingface.co/docs/transformers/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained">AutoModelForCausalLM.from_pretrained</a>.</p>
+<details><p>On model initialization</p>
+<p>Kwargs like <code class="docutils literal notranslate"><span class="pre">device_map</span></code> are passed downstream to the underlying huggingface model initialization. In the case of LanguageModels, passed to <a class="reference external" href="https://huggingface.co/docs/transformers/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained">AutoModelForCausalLM.from_pretrained</a>.</p>
 <p>Use <code class="docutils literal notranslate"><span class="pre">dispatch=True</span></code> to load the model onto the specified device locally on initialization, not on first use.</p>
 <p><code class="docutils literal notranslate"><span class="pre">LanguageModel</span></code> is one wrapper for <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> functionality. Another one <code class="docutils literal notranslate"><span class="pre">DiffusionModel</span></code> for text-to-image disffusion models. We encourage you to create you own by inheriting from <code class="docutils literal notranslate"><span class="pre">AbstractModel</span></code></p>
 </details><hr class="docutils" />
@@ -570,8 +570,8 @@ torch.Size([1, 13, 2048])
 <p><code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">model.invoke(prompt)</span></code> creates an invoker context. This tells nnsight that we would like to run the model with input <code class="docutils literal notranslate"><span class="pre">prompt</span></code> but with some specified modifications to the forward or backward pass. In this case, the only modification is saving an activation. The runner context does not actually execute the forward pass until after the context exits.</p>
 <p>[<em>Details specific to the Pythia model</em>] <code class="docutils literal notranslate"><span class="pre">model.gpt_neox.layers</span></code> is the list of layers (see the module tree above). “<code class="docutils literal notranslate"><span class="pre">-1</span></code>” means the final layer. The layer output is a tuple of (hidden state, cached activations); we only want the hidden state, so we use <code class="docutils literal notranslate"><span class="pre">output[0]</span></code>. Using <code class="docutils literal notranslate"><span class="pre">save()</span></code> tells nnsight to save this data.</p>
 <hr class="docutils" />
-<details><summary><p>On runner contexts</p>
-</summary><p>Using <code class="docutils literal notranslate"><span class="pre">.invoke(...)</span></code> on a model is just the simplest way to create a runner context. You can also use <code class="docutils literal notranslate"><span class="pre">.forward(...)</span></code> and <code class="docutils literal notranslate"><span class="pre">.generate(...)</span></code>.</p>
+<details><p>On runner contexts</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">.invoke(...)</span></code> on a model is just the simplest way to create a runner context. You can also use <code class="docutils literal notranslate"><span class="pre">.forward(...)</span></code> and <code class="docutils literal notranslate"><span class="pre">.generate(...)</span></code>.</p>
 <p>The invoke context and forward contexts are the same other than the fact that you need to use an inner context to input prompts. THis is because you may need a separate set of kwargs for the model’s forward method and the prompt pre-processing. This is combined in <code class="docutils literal notranslate"><span class="pre">.invoke(...)</span></code> by putting forward specific kwargs in a <code class="docutils literal notranslate"><span class="pre">fwd_args={...}</span></code> keyword.</p>
 <p><code class="docutils literal notranslate"><span class="pre">.generate(...)</span></code> is the same as <code class="docutils literal notranslate"><span class="pre">.forward(...)</span></code> other than it uses the model’s <code class="docutils literal notranslate"><span class="pre">.generate</span></code> method instead of <code class="docutils literal notranslate"><span class="pre">.forward</span></code>. In the case of <code class="docutils literal notranslate"><span class="pre">LanguageModel</span></code>s, it calls <a class="reference external" href="https://huggingface.co/docs/transformers/main_classes/text_generation#transformers.GenerationMixin.generate">AutoModelForCausalLM.generate(…)</a></p>
 </details><hr class="docutils" />
@@ -596,11 +596,11 @@ torch.Size([1, 13, 50304])
 </div>
 </section>
 <section id="Example:-Logit-Lens">
-<h1>Example: Logit Lens<a class="headerlink" href="#Example:-Logit-Lens" title="Permalink to this heading">#</a></h1>
+<h1>Example: Logit Lens<a class="headerlink" href="#Example:-Logit-Lens" title="Link to this heading">#</a></h1>
 <p>As an example, let’s track the probability with which the model outputs “Mary” as we move through layers. One technique for this is the <a class="reference external" href="https://www.alignmentforum.org/posts/AcKRB8wDpdaN6v6ru/interpreting-gpt-the-logit-lens">logit lens</a>: we’ll treat the language model’s decoder applied to the intermediate activations as giving a crude approximation to this probability.</p>
 <hr class="docutils" />
-<details><summary><p>On module applications</p>
-</summary><p>In the following example, we want to apply a module out of order from the normal model’s computation graph. You can use nnsight to easily do this by just calling the module on a proxy object like <code class="docutils literal notranslate"><span class="pre">model.&lt;module&gt;(&lt;proxy&gt;)</span></code></p>
+<details><p>On module applications</p>
+<p>In the following example, we want to apply a module out of order from the normal model’s computation graph. You can use nnsight to easily do this by just calling the module on a proxy object like <code class="docutils literal notranslate"><span class="pre">model.&lt;module&gt;(&lt;proxy&gt;)</span></code></p>
 <p>These calls will not trigger forward hooks like those added by calling <code class="docutils literal notranslate"><span class="pre">.output</span></code> and <code class="docutils literal notranslate"><span class="pre">.input</span></code>. This is because the call the module’s <code class="docutils literal notranslate"><span class="pre">.forward(...)</span></code> method not it’s <code class="docutils literal notranslate"><span class="pre">__call__(...)</span></code> method.</p>
 </details><hr class="docutils" />
 <div class="nbinput nblast docutils container">
@@ -697,7 +697,7 @@ if (outputEl) {{
 <p>This suggests that Pythia-1B begins to realize that the correct completion is “Mary” in layer 11, and that it becomes more confident in this answer in the final few layers.</p>
 </section>
 <section id="Intervening-during-a-forward-pass">
-<h1>Intervening during a forward pass<a class="headerlink" href="#Intervening-during-a-forward-pass" title="Permalink to this heading">#</a></h1>
+<h1>Intervening during a forward pass<a class="headerlink" href="#Intervening-during-a-forward-pass" title="Link to this heading">#</a></h1>
 <p>Consider the prompt “The city of Paris is in the country of”. Pythia-1B’s best guess for the completion is “France”:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
@@ -856,7 +856,7 @@ if (outputEl) {{
 <p>These results suggest that the (causally relevant) information about the location of Paris is computed above the “Paris” token by layer 10, before being moved to the “of” token by the later layers. For more on this, see <a class="reference external" href="https://arxiv.org/abs/2202.05262">Meng et al. (2022)</a>.</p>
 </section>
 <section id="Next-steps">
-<h1>Next steps<a class="headerlink" href="#Next-steps" title="Permalink to this heading">#</a></h1>
+<h1>Next steps<a class="headerlink" href="#Next-steps" title="Link to this heading">#</a></h1>
 <p>Check out the <a class="reference external" href="/tutorials/features/">Features</a> and <a class="reference external" href="/documentation/">Documentation</a> pages and the <a class="reference external" href="https://github.com/JadenFiotto-Kaufman/nnsight/blob/main/README.md">README</a> for more guides.</p>
 </section>
 
@@ -907,8 +907,8 @@ if (outputEl) {{
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=365ca57ee442770a23c6"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=365ca57ee442770a23c6"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -926,7 +926,7 @@ if (outputEl) {{
       
         <div class="footer-item">
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     <br/>
   </p>
 </div>
@@ -938,7 +938,7 @@ if (outputEl) {{
     <div class="footer-items__end">
       
         <div class="footer-item"><p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.3.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.2.
 </p></div>
       
     </div>
