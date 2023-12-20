@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=b030f2fb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=969913ad" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
@@ -248,7 +248,7 @@
 <span><span>NDIF Status: </span><span class="ndif_status"></span></span>
 
 <script>
-    fetch("https://ndif.baulab.us/ping")
+    fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
                 Array.from(document.getElementsByClassName("ndif_status")).forEach((elm) => elm.style.backgroundColor = "green");
@@ -395,7 +395,7 @@
 <span><span>NDIF Status: </span><span class="ndif_status"></span></span>
 
 <script>
-    fetch("https://ndif.baulab.us/ping")
+    fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
                 Array.from(document.getElementsByClassName("ndif_status")).forEach((elm) => elm.style.backgroundColor = "green");
@@ -486,7 +486,7 @@
 <p>The patching module handles patching of classes and functions in modules.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="nnsight.patching.Patch">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.patching.</span></span><span class="sig-name descname"><span class="pre">Patch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replacement</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nnsight.patching.Patch" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.patching.</span></span><span class="sig-name descname"><span class="pre">Patch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replacement</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nnsight.patching.Patch" title="Link to this definition">#</a></dt>
 <dd><p>Class representing a replacement of an attribute on a module.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nnsight.patching.Patch.obj">
@@ -525,28 +525,12 @@
 <dt class="sig sig-object py" id="nnsight.patching.Patch.patch">
 <span class="sig-name descname"><span class="pre">patch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#nnsight.patching.Patch.patch" title="Link to this definition">#</a></dt>
 <dd><p>Carries out the replacement of an object in a module/class.</p>
-<p>Imports the objects module with:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="vm">__module__</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>And replaces it with:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">setattr</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">replacement</span><span class="p">)</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nnsight.patching.Patch.restore">
 <span class="sig-name descname"><span class="pre">restore</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#nnsight.patching.Patch.restore" title="Link to this definition">#</a></dt>
 <dd><p>Carries out the restoration of the original object on the objects module/class.</p>
-<p>Imports the objects module with:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="vm">__module__</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>And replaces it with:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">setattr</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="p">)</span>
-</pre></div>
-</div>
 </dd></dl>
 
 </dd></dl>

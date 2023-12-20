@@ -31,7 +31,8 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=b030f2fb" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=969913ad" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
@@ -250,7 +251,7 @@
 <span><span>NDIF Status: </span><span class="ndif_status"></span></span>
 
 <script>
-    fetch("https://ndif.baulab.us/ping")
+    fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
                 Array.from(document.getElementsByClassName("ndif_status")).forEach((elm) => elm.style.backgroundColor = "green");
@@ -393,7 +394,7 @@
 <span><span>NDIF Status: </span><span class="ndif_status"></span></span>
 
 <script>
-    fetch("https://ndif.baulab.us/ping")
+    fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
                 Array.from(document.getElementsByClassName("ndif_status")).forEach((elm) => elm.style.backgroundColor = "green");
@@ -483,7 +484,143 @@
                   
   <section id="Working-With-Gradients">
 <h1>Working With Gradients<a class="headerlink" href="#Working-With-Gradients" title="Link to this heading">#</a></h1>
-<p>Coming Soon!</p>
+<p>There are a couple of ways we can interact with the gradients during and after a backward pass.</p>
+<p>In the following example, we save the hidden states of the last layer and do a backward pass on the sum of the logits.</p>
+<p>Note two things:</p>
+<ol class="arabic simple">
+<li><p>We use <code class="docutils literal notranslate"><span class="pre">inference=False</span></code> in the <code class="docutils literal notranslate"><span class="pre">.forward</span></code> call to turn off inference mode. This allows gradients to be calculated.</p></li>
+<li><p>We can all <code class="docutils literal notranslate"><span class="pre">.backward()</span></code> on a value within the tracing context just like you normally would.</p></li>
+</ol>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nnsight</span> <span class="kn">import</span> <span class="n">LanguageModel</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s1">&#39;gpt2&#39;</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">inference</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="k">as</span> <span class="n">runner</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">runner</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
+
+        <span class="n">hidden_states</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+        <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span>
+
+        <span class="n">logits</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">hidden_states</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+You&#39;re using a GPT2TokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+tensor([[[ 0.5216, -1.1755, -0.4617,  ..., -1.1919,  0.0204, -2.0075],
+         [ 0.9841,  2.2175,  3.5851,  ...,  0.5212, -2.2286,  5.7334]]],
+       device=&#39;cuda:0&#39;, grad_fn=&lt;SliceBackward0&gt;)
+</pre></div></div>
+</div>
+<p>If we wanted to see the gradients for the hidden_states, we can call <code class="docutils literal notranslate"><span class="pre">.retain_grad()</span></code> on it and access the <code class="docutils literal notranslate"><span class="pre">.grad</span></code> attribute after execution.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nnsight</span> <span class="kn">import</span> <span class="n">LanguageModel</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s1">&#39;gpt2&#39;</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">inference</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="k">as</span> <span class="n">runner</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">runner</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
+
+        <span class="n">hidden_states</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="n">hidden_states</span><span class="o">.</span><span class="n">retain_grad</span><span class="p">()</span>
+
+        <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span>
+
+        <span class="n">logits</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">hidden_states</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hidden_states</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+You&#39;re using a GPT2TokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+tensor([[[ 0.5216, -1.1755, -0.4617,  ..., -1.1919,  0.0204, -2.0075],
+         [ 0.9841,  2.2175,  3.5851,  ...,  0.5212, -2.2286,  5.7334]]],
+       device=&#39;cuda:0&#39;, grad_fn=&lt;AsStridedBackward0&gt;)
+tensor([[[  28.7976, -282.5977,  868.7343,  ...,  120.1742,   52.2264,
+           168.6447],
+         [  79.4183, -253.6227, 1322.1290,  ...,  208.3981,  -19.5544,
+           509.9856]]], device=&#39;cuda:0&#39;)
+</pre></div></div>
+</div>
+<p>Torch also provides hooks into the backward process via the inputs and outputs. NNsight uses these in a similar way as <code class="docutils literal notranslate"><span class="pre">.input</span></code> and <code class="docutils literal notranslate"><span class="pre">.output</span></code> by also providing <code class="docutils literal notranslate"><span class="pre">.backward_input</span></code> and <code class="docutils literal notranslate"><span class="pre">.backward_output</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nnsight</span> <span class="kn">import</span> <span class="n">LanguageModel</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s1">&#39;gpt2&#39;</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">inference</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="k">as</span> <span class="n">runner</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">runner</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
+
+        <span class="n">hidden_states</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="n">hidden_states_grad</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">backward_output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span>
+
+        <span class="n">logits</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">hidden_states</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hidden_states_grad</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+You&#39;re using a GPT2TokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+tensor([[[ 0.5216, -1.1755, -0.4617,  ..., -1.1919,  0.0204, -2.0075],
+         [ 0.9841,  2.2175,  3.5851,  ...,  0.5212, -2.2286,  5.7334]]],
+       device=&#39;cuda:0&#39;, grad_fn=&lt;SliceBackward0&gt;)
+tensor([[[  28.7976, -282.5977,  868.7343,  ...,  120.1742,   52.2264,
+           168.6447],
+         [  79.4183, -253.6227, 1322.1290,  ...,  208.3981,  -19.5544,
+           509.9856]]], device=&#39;cuda:0&#39;)
+</pre></div></div>
+</div>
 </section>
 
 

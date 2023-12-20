@@ -30,7 +30,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=b030f2fb" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=969913ad" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
@@ -245,7 +245,7 @@
 <span><span>NDIF Status: </span><span class="ndif_status"></span></span>
 
 <script>
-    fetch("https://ndif.baulab.us/ping")
+    fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
                 Array.from(document.getElementsByClassName("ndif_status")).forEach((elm) => elm.style.backgroundColor = "green");
@@ -388,7 +388,7 @@
 <span><span>NDIF Status: </span><span class="ndif_status"></span></span>
 
 <script>
-    fetch("https://ndif.baulab.us/ping")
+    fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
                 Array.from(document.getElementsByClassName("ndif_status")).forEach((elm) => elm.style.backgroundColor = "green");
@@ -627,15 +627,17 @@
       <li><a href="../documentation/contexts/#nnsight.contexts.Invoker.Invoker.input">input (nnsight.contexts.Invoker.Invoker attribute)</a>
 
       <ul>
-        <li><a href="../documentation/module/#nnsight.module.Module.input">(nnsight.module.Module property)</a>
+        <li><a href="../documentation/module/#nnsight.module.Module.input">(nnsight.module.Module attribute)</a>
+</li>
+        <li><a href="../documentation/module/#id0">(nnsight.module.Module property)</a>
 </li>
       </ul></li>
       <li><a href="../documentation/intervention/#nnsight.intervention.HookModel.input_hook">input_hook (nnsight.intervention.HookModel attribute)</a>
 </li>
-      <li><a href="../documentation/module/#nnsight.module.Module.input_shape">input_shape (nnsight.module.Module attribute)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="../documentation/module/#nnsight.module.Module.input_shape">input_shape (nnsight.module.Module attribute)</a>
+</li>
       <li><a href="../documentation/module/#nnsight.module.Module.input_type">input_type (nnsight.module.Module attribute)</a>
 </li>
       <li><a href="../documentation/intervention/#nnsight.intervention.intervene">intervene() (in module nnsight.intervention)</a>
@@ -892,7 +894,7 @@
       <li><a href="../documentation/contexts/#nnsight.contexts.Tracer.Tracer.output">output (nnsight.contexts.Tracer.Tracer attribute)</a>
 
       <ul>
-        <li><a href="../documentation/module/#id0">(nnsight.module.Module attribute)</a>, <a href="../documentation/module/#nnsight.module.Module.output">[1]</a>
+        <li><a href="../documentation/module/#nnsight.module.Module.output">(nnsight.module.Module attribute)</a>
 </li>
         <li><a href="../documentation/module/#id1">(nnsight.module.Module property)</a>
 </li>
