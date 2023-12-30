@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
     <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=969913ad" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=3c48eae3" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
@@ -129,11 +129,9 @@
     
     
     
-    <img src="../../../_static/nnsight_logo.svg" class="logo__image only-light" alt=""/>
-    <script>document.write(`<img src="../../../_static/nnsight_logo.svg" class="logo__image only-dark" alt=""/>`);</script>
+    <img src="../../../_static/nnsight_logo.svg" class="logo__image only-light" alt="nnsight - Home"/>
+    <script>document.write(`<img src="../../../_static/nnsight_logo.svg" class="logo__image only-dark" alt="nnsight - Home"/>`);</script>
   
-  
-    <p class="title logo__title">nnsight</p>
   
 </a></div>
     
@@ -234,34 +232,54 @@
           <a href="https://discord.gg/6uFJmCSwW7" title="Discord" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i></span>
             <span class="sr-only">Discord</span></a>
         </li>
+        <li class="nav-item">
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://discord.gg/6uFJmCSwW7" title="Status" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Status</span></a>
+        </li>
 </ul></div>
       
-        <div class="navbar-item"><style>
-    .ndif_status {
-        height: 18px;
-        width: 18px;
-        background-color: red;
-        border-radius: 50%;
-        display: inline-block;
-        margin-left: 5px;
-        vertical-align: middle;
-    }
-</style>
-
-<span><span>NDIF Status: </span><span class="ndif_status"></span></span>
-
-<script>
+        <div class="navbar-item"><script>
+    let statusIcon = document.querySelector('.ndif .fa-circle-check');
     fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
-                Array.from(document.getElementsByClassName("ndif_status")).forEach((elm) => elm.style.backgroundColor = "green");
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#23C552', 'important');
+                    });
+                });
             }
             else {
-                Array.from(document.getElementsByClassName("ndif_status")).forEach((elm) => elm.style.backgroundColor = "red");
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#F84F31', 'important');
+                    });
+                });
+                if (statusIcon) {
+                    statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark'); 
+                }
             }
         })
-        .catch((response) => Array.from(document.getElementsByClassName("ndif_status")).forEach((elm) => elm.style.backgroundColor = "red"))
-
+        .catch((response) => {
+            Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                    spanElement.style.setProperty('color', '#F84F31', 'important');
+                });
+            });
+            if (statusIcon) {
+                statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark');
+            }
+        })
 </script></div>
       
     </div>
@@ -377,34 +395,54 @@
           <a href="https://discord.gg/6uFJmCSwW7" title="Discord" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i></span>
             <span class="sr-only">Discord</span></a>
         </li>
+        <li class="nav-item">
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://discord.gg/6uFJmCSwW7" title="Status" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Status</span></a>
+        </li>
 </ul></div>
         
-          <div class="navbar-item"><style>
-    .ndif_status {
-        height: 18px;
-        width: 18px;
-        background-color: red;
-        border-radius: 50%;
-        display: inline-block;
-        margin-left: 5px;
-        vertical-align: middle;
-    }
-</style>
-
-<span><span>NDIF Status: </span><span class="ndif_status"></span></span>
-
-<script>
+          <div class="navbar-item"><script>
+    let statusIcon = document.querySelector('.ndif .fa-circle-check');
     fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
-                Array.from(document.getElementsByClassName("ndif_status")).forEach((elm) => elm.style.backgroundColor = "green");
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#23C552', 'important');
+                    });
+                });
             }
             else {
-                Array.from(document.getElementsByClassName("ndif_status")).forEach((elm) => elm.style.backgroundColor = "red");
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#F84F31', 'important');
+                    });
+                });
+                if (statusIcon) {
+                    statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark'); 
+                }
             }
         })
-        .catch((response) => Array.from(document.getElementsByClassName("ndif_status")).forEach((elm) => elm.style.backgroundColor = "red"))
-
+        .catch((response) => {
+            Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                    spanElement.style.setProperty('color', '#F84F31', 'important');
+                });
+            });
+            if (statusIcon) {
+                statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark');
+            }
+        })
 </script></div>
         
       </div>
@@ -421,9 +459,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../logit_lens/">Logit Lens</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../future_lens/">Future Lens</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../function_vectors/">Function Vectors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dictionary_learning/">Dictionary Learning</a></li>
-</ul>
-<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../sae/">Dictionary Learning</a></li>
 </ul>
 </div>
