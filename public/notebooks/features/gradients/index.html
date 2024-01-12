@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="auto">
 
   <head>
     <meta charset="utf-8" />
@@ -13,7 +13,7 @@
   
   
   <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
@@ -60,7 +60,7 @@
   </head>
   
   
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="light">
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
 
   
   
@@ -127,6 +127,8 @@
   
   
     
+    
+      
     
     
     <img src="../../../_static/nnsight_logo.svg" class="logo__image only-light" alt="nnsight - Home"/>
@@ -249,7 +251,7 @@
 </ul></div>
       
         <div class="navbar-item"><script>
-    let statusIcon = document.querySelector('.ndif .fa-circle-check');
+    var statusIcon = document.querySelector('.ndif .fa-circle-check');
     fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
@@ -412,7 +414,7 @@
 </ul></div>
         
           <div class="navbar-item"><script>
-    let statusIcon = document.querySelector('.ndif .fa-circle-check');
+    var statusIcon = document.querySelector('.ndif .fa-circle-check');
     fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
@@ -614,27 +616,47 @@ tensor([[[  28.7976, -282.5977,  868.7343,  ...,  120.1742,   52.2264,
            509.9856]]], device=&#39;cuda:0&#39;)
 </pre></div></div>
 </div>
-<p>Torch also provides hooks into the backward process via the inputs and outputs. NNsight uses these in a similar way as <code class="docutils literal notranslate"><span class="pre">.input</span></code> and <code class="docutils literal notranslate"><span class="pre">.output</span></code> by also providing <code class="docutils literal notranslate"><span class="pre">.backward_input</span></code> and <code class="docutils literal notranslate"><span class="pre">.backward_output</span></code>.</p>
+<p>Even better, <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> also provides proxy access into the backward process via the <code class="docutils literal notranslate"><span class="pre">.grad</span></code> attribute on proxies. This works just like <code class="docutils literal notranslate"><span class="pre">.input</span></code> and <code class="docutils literal notranslate"><span class="pre">.output</span></code> where operations , including getting and setting, are traced and performed on the model at runtime. (assuming it’s a proxy of a Tensor as this calls .register_hook(…) on it!)</p>
+<p>The following examples demonstrate ablating (setting to zero) the gradients for a hidden state in gpt2. The first example is an in-place operation and the second swaps the gradient out for a new tensor of zeroes.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nnsight</span> <span class="kn">import</span> <span class="n">LanguageModel</span>
+<span class="kn">import</span> <span class="nn">torch</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s1">&#39;gpt2&#39;</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span><span class="p">)</span>
 
 <span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">inference</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="k">as</span> <span class="n">runner</span><span class="p">:</span>
-    <span class="k">with</span> <span class="n">runner</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
-
+    <span class="k">with</span> <span class="n">runner</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
         <span class="n">hidden_states</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-        <span class="n">hidden_states_grad</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">backward_output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+        <span class="n">hidden_states_grad_before</span> <span class="o">=</span> <span class="n">hidden_states</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="n">hidden_states</span><span class="o">.</span><span class="n">grad</span><span class="p">[:]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">hidden_states_grad_after</span> <span class="o">=</span> <span class="n">hidden_states</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
         <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span>
 
         <span class="n">logits</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">hidden_states</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">hidden_states_grad</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-</pre></div>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Before&quot;</span><span class="p">,</span> <span class="n">hidden_states_grad_before</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;After&quot;</span><span class="p">,</span> <span class="n">hidden_states_grad_after</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">inference</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="k">as</span> <span class="n">runner</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">runner</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
+        <span class="n">hidden_states</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+        <span class="n">hidden_states_grad_before</span> <span class="o">=</span> <span class="n">hidden_states</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="n">hidden_states</span><span class="o">.</span><span class="n">grad</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">hidden_states</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">hidden_states_grad_after</span> <span class="o">=</span> <span class="n">hidden_states</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+        <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span>
+
+        <span class="n">logits</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Before&quot;</span><span class="p">,</span> <span class="n">hidden_states_grad_before</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;After&quot;</span><span class="p">,</span> <span class="n">hidden_states_grad_after</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<br/></pre></div>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -642,6 +664,8 @@ tensor([[[  28.7976, -282.5977,  868.7343,  ...,  120.1742,   52.2264,
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
+/disk/u/jfiottok/miniconda3/envs/ndif2/lib/python3.10/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
 You&#39;re using a GPT2TokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
 </pre></div></div>
 </div>
@@ -650,13 +674,18 @@ You&#39;re using a GPT2TokenizerFast tokenizer. Please note that with a fast tok
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-tensor([[[ 0.5216, -1.1755, -0.4617,  ..., -1.1919,  0.0204, -2.0075],
-         [ 0.9841,  2.2175,  3.5851,  ...,  0.5212, -2.2286,  5.7334]]],
-       device=&#39;cuda:0&#39;, grad_fn=&lt;SliceBackward0&gt;)
-tensor([[[  28.7976, -282.5977,  868.7343,  ...,  120.1742,   52.2264,
-           168.6447],
-         [  79.4183, -253.6227, 1322.1290,  ...,  208.3981,  -19.5544,
-           509.9856]]], device=&#39;cuda:0&#39;)
+Before tensor([[[  28.7976, -282.5981,  868.7355,  ...,  120.1743,   52.2264,
+           168.6449],
+         [  79.4181, -253.6227, 1322.1299,  ...,  208.3983,  -19.5544,
+           509.9858]]], device=&#39;cuda:0&#39;)
+After tensor([[[0., 0., 0.,  ..., 0., 0., 0.],
+         [0., 0., 0.,  ..., 0., 0., 0.]]], device=&#39;cuda:0&#39;)
+Before tensor([[[  28.7976, -282.5981,  868.7355,  ...,  120.1743,   52.2264,
+           168.6449],
+         [  79.4181, -253.6227, 1322.1299,  ...,  208.3983,  -19.5544,
+           509.9858]]], device=&#39;cuda:0&#39;)
+After tensor([[[0., 0., 0.,  ..., 0., 0., 0.],
+         [0., 0., 0.,  ..., 0., 0., 0.]]], device=&#39;cuda:0&#39;)
 </pre></div></div>
 </div>
 </section>

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="auto">
 
   <head>
     <meta charset="utf-8" />
@@ -12,7 +12,7 @@
   
   
   <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
@@ -54,7 +54,7 @@
   </head>
   
   
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="light">
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
 
   
   
@@ -121,6 +121,8 @@
   
   
     
+    
+      
     
     
     <img src="../_static/nnsight_logo.svg" class="logo__image only-light" alt="nnsight - Home"/>
@@ -243,7 +245,7 @@
 </ul></div>
       
         <div class="navbar-item"><script>
-    let statusIcon = document.querySelector('.ndif .fa-circle-check');
+    var statusIcon = document.querySelector('.ndif .fa-circle-check');
     fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
@@ -406,7 +408,7 @@
 </ul></div>
         
           <div class="navbar-item"><script>
-    let statusIcon = document.querySelector('.ndif .fa-circle-check');
+    var statusIcon = document.querySelector('.ndif .fa-circle-check');
     fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
@@ -504,30 +506,26 @@
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="../documentation/models/#nnsight.models.AbstractModel.AbstractModel">AbstractModel (class in nnsight.models.AbstractModel)</a>
-</li>
       <li><a href="../documentation/patching/#nnsight.patching.Patcher.add">add() (nnsight.patching.Patcher method)</a>
 
       <ul>
         <li><a href="../documentation/tracing/#nnsight.tracing.Graph.Graph.add">(nnsight.tracing.Graph.Graph method)</a>
 </li>
       </ul></li>
-      <li><a href="../documentation/models/#nnsight.models.AbstractModel.AbstractModel.alter">alter (nnsight.models.AbstractModel.AbstractModel attribute)</a>
-</li>
       <li><a href="../documentation/util/#nnsight.util.apply">apply() (in module nnsight.util)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="../documentation/contexts/#nnsight.contexts.Invoker.Invoker.args">args (nnsight.contexts.Invoker.Invoker attribute)</a>
 
       <ul>
         <li><a href="../documentation/contexts/#nnsight.contexts.Tracer.Tracer.args">(nnsight.contexts.Tracer.Tracer attribute)</a>
 </li>
-        <li><a href="../documentation/models/#nnsight.models.AbstractModel.AbstractModel.args">(nnsight.models.AbstractModel.AbstractModel attribute)</a>
+        <li><a href="../documentation/models/#nnsight.models.NNsightModel.NNsightModel.args">(nnsight.models.NNsightModel.NNsightModel attribute)</a>
 </li>
         <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node.args">(nnsight.tracing.Node.Node attribute)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="../documentation/tracing/#nnsight.tracing.Graph.Graph.argument_node_names">argument_node_names (nnsight.tracing.Graph.Graph attribute)</a>
 </li>
       <li><a href="../documentation/models/#nnsight.models.LanguageModel.LanguageModel.automodel">automodel (nnsight.models.LanguageModel.LanguageModel attribute)</a>
@@ -538,14 +536,10 @@
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="../documentation/module/#nnsight.module.Module.backward_input">backward_input (nnsight.module.Module property)</a>
-</li>
-      <li><a href="../documentation/module/#nnsight.module.Module.backward_output">backward_output (nnsight.module.Module property)</a>
+      <li><a href="../documentation/contexts/#nnsight.contexts.Tracer.Tracer.batch_size">batch_size (nnsight.contexts.Tracer.Tracer attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="../documentation/contexts/#nnsight.contexts.Tracer.Tracer.batch_size">batch_size (nnsight.contexts.Tracer.Tracer attribute)</a>
-</li>
       <li><a href="../documentation/contexts/#nnsight.contexts.Tracer.Tracer.batch_start">batch_start (nnsight.contexts.Tracer.Tracer attribute)</a>
 </li>
       <li><a href="../documentation/contexts/#nnsight.contexts.Runner.Runner.blocking">blocking (nnsight.contexts.Runner.Runner attribute)</a>
@@ -568,7 +562,7 @@
 </li>
       <li><a href="../documentation/util/#nnsight.util.cross_entropy_loss">cross_entropy_loss() (in module nnsight.util)</a>
 </li>
-      <li><a href="../documentation/models/#nnsight.models.AbstractModel.AbstractModel.custom_model">custom_model (nnsight.models.AbstractModel.AbstractModel attribute)</a>
+      <li><a href="../documentation/models/#nnsight.models.NNsightModel.NNsightModel.custom_model">custom_model (nnsight.models.NNsightModel.NNsightModel attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -586,9 +580,11 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="../documentation/models/#nnsight.models.DiffuserModel.DiffuserModel">DiffuserModel (class in nnsight.models.DiffuserModel)</a>
 </li>
-      <li><a href="../documentation/models/#nnsight.models.AbstractModel.AbstractModel.dispatch">dispatch (nnsight.models.AbstractModel.AbstractModel attribute)</a>
+      <li><a href="../documentation/models/#nnsight.models.NNsightModel.NNsightModel.dispatch">dispatch (nnsight.models.NNsightModel.NNsightModel attribute)</a>
 </li>
-      <li><a href="../documentation/models/#nnsight.models.AbstractModel.AbstractModel.dispatched">dispatched (nnsight.models.AbstractModel.AbstractModel attribute)</a>
+      <li><a href="../documentation/models/#nnsight.models.NNsightModel.NNsightModel.dispatched">dispatched (nnsight.models.NNsightModel.NNsightModel attribute)</a>
+</li>
+      <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node.done">done() (nnsight.tracing.Node.Node method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -606,7 +602,7 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="../documentation/util/#nnsight.util.fetch_attr">fetch_attr() (in module nnsight.util)</a>
 </li>
-      <li><a href="../documentation/models/#nnsight.models.AbstractModel.AbstractModel.forward">forward() (nnsight.models.AbstractModel.AbstractModel method)</a>
+      <li><a href="../documentation/models/#nnsight.models.NNsightModel.NNsightModel.forward">forward() (nnsight.models.NNsightModel.NNsightModel method)</a>
 
       <ul>
         <li><a href="../documentation/util/#nnsight.util.WrapperModule.forward">(nnsight.util.WrapperModule method)</a>
@@ -622,7 +618,7 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="../documentation/models/#nnsight.models.AbstractModel.AbstractModel.generate">generate() (nnsight.models.AbstractModel.AbstractModel method)</a>
+      <li><a href="../documentation/models/#nnsight.models.NNsightModel.NNsightModel.generate">generate() (nnsight.models.NNsightModel.NNsightModel method)</a>
 </li>
       <li><a href="../documentation/contexts/#nnsight.contexts.Runner.Runner.generation">generation (nnsight.contexts.Runner.Runner attribute)</a>
 </li>
@@ -634,6 +630,8 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="../documentation/intervention/#nnsight.intervention.InterventionProxy.grad">grad (nnsight.intervention.InterventionProxy property)</a>
+</li>
       <li><a href="../documentation/tracing/#nnsight.tracing.Graph.Graph">Graph (class in nnsight.tracing.Graph)</a>
 </li>
       <li><a href="../documentation/contexts/#nnsight.contexts.Tracer.Tracer.graph">graph (nnsight.contexts.Tracer.Tracer attribute)</a>
@@ -682,7 +680,7 @@
 </li>
       <li><a href="../documentation/intervention/#nnsight.intervention.InterventionProxy">InterventionProxy (class in nnsight.intervention)</a>
 </li>
-      <li><a href="../documentation/models/#nnsight.models.AbstractModel.AbstractModel.invoke">invoke() (nnsight.models.AbstractModel.AbstractModel method)</a>
+      <li><a href="../documentation/models/#nnsight.models.NNsightModel.NNsightModel.invoke">invoke() (nnsight.models.NNsightModel.NNsightModel method)</a>
 </li>
       <li><a href="../documentation/contexts/#nnsight.contexts.Invoker.Invoker">Invoker (class in nnsight.contexts.Invoker)</a>
 </li>
@@ -697,7 +695,7 @@
       <ul>
         <li><a href="../documentation/contexts/#nnsight.contexts.Tracer.Tracer.kwargs">(nnsight.contexts.Tracer.Tracer attribute)</a>
 </li>
-        <li><a href="../documentation/models/#nnsight.models.AbstractModel.AbstractModel.kwargs">(nnsight.models.AbstractModel.AbstractModel attribute)</a>
+        <li><a href="../documentation/models/#nnsight.models.NNsightModel.NNsightModel.kwargs">(nnsight.models.NNsightModel.NNsightModel attribute)</a>
 </li>
         <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node.kwargs">(nnsight.tracing.Node.Node attribute)</a>
 </li>
@@ -714,10 +712,10 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="../documentation/models/#nnsight.models.AbstractModel.AbstractModel.local_model">local_model (nnsight.models.AbstractModel.AbstractModel attribute)</a>
+      <li><a href="../documentation/models/#nnsight.models.LanguageModel.LanguageModel.local_model">local_model (nnsight.models.LanguageModel.LanguageModel attribute)</a>
 
       <ul>
-        <li><a href="../documentation/models/#nnsight.models.LanguageModel.LanguageModel.local_model">(nnsight.models.LanguageModel.LanguageModel attribute)</a>
+        <li><a href="../documentation/models/#nnsight.models.NNsightModel.NNsightModel.local_model">(nnsight.models.NNsightModel.NNsightModel attribute)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -728,10 +726,10 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node.meta">meta (nnsight.tracing.Node.Node attribute)</a>
 </li>
-      <li><a href="../documentation/models/#nnsight.models.AbstractModel.AbstractModel.meta_model">meta_model (nnsight.models.AbstractModel.AbstractModel attribute)</a>
+      <li><a href="../documentation/models/#nnsight.models.LanguageModel.LanguageModel.meta_model">meta_model (nnsight.models.LanguageModel.LanguageModel attribute)</a>
 
       <ul>
-        <li><a href="../documentation/models/#nnsight.models.LanguageModel.LanguageModel.meta_model">(nnsight.models.LanguageModel.LanguageModel attribute)</a>
+        <li><a href="../documentation/models/#nnsight.models.NNsightModel.NNsightModel.meta_model">(nnsight.models.NNsightModel.NNsightModel attribute)</a>
 </li>
       </ul></li>
       <li><a href="../documentation/contexts/#nnsight.contexts.Tracer.Tracer.model">model (nnsight.contexts.Tracer.Tracer attribute)</a>
@@ -756,11 +754,11 @@
 </li>
         <li><a href="../documentation/models/#module-nnsight.models">nnsight.models</a>
 </li>
-        <li><a href="../documentation/models/#module-nnsight.models.AbstractModel">nnsight.models.AbstractModel</a>
-</li>
         <li><a href="../documentation/models/#module-nnsight.models.DiffuserModel">nnsight.models.DiffuserModel</a>
 </li>
         <li><a href="../documentation/models/#module-nnsight.models.LanguageModel">nnsight.models.LanguageModel</a>
+</li>
+        <li><a href="../documentation/models/#module-nnsight.models.NNsightModel">nnsight.models.NNsightModel</a>
 </li>
         <li><a href="../documentation/module/#module-nnsight.module">nnsight.module</a>
 </li>
@@ -787,7 +785,7 @@
 </li>
       <li><a href="../documentation/intervention/#nnsight.intervention.HookModel.modules">modules (nnsight.intervention.HookModel attribute)</a>
 </li>
-      <li><a href="../documentation/models/#nnsight.models.AbstractModel.AbstractModel.modulize">modulize() (nnsight.models.AbstractModel.AbstractModel method)</a>
+      <li><a href="../documentation/models/#nnsight.models.NNsightModel.NNsightModel.modulize">modulize() (nnsight.models.NNsightModel.NNsightModel method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -844,26 +842,26 @@
 </li>
       </ul></li>
       <li>
-    nnsight.models.AbstractModel
-
-      <ul>
-        <li><a href="../documentation/models/#module-nnsight.models.AbstractModel">module</a>
-</li>
-      </ul></li>
-      <li>
     nnsight.models.DiffuserModel
 
       <ul>
         <li><a href="../documentation/models/#module-nnsight.models.DiffuserModel">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     nnsight.models.LanguageModel
 
       <ul>
         <li><a href="../documentation/models/#module-nnsight.models.LanguageModel">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    nnsight.models.NNsightModel
+
+      <ul>
+        <li><a href="../documentation/models/#module-nnsight.models.NNsightModel">module</a>
 </li>
       </ul></li>
       <li>
@@ -915,6 +913,8 @@
         <li><a href="../documentation/util/#module-nnsight.util">module</a>
 </li>
       </ul></li>
+      <li><a href="../documentation/models/#nnsight.models.NNsightModel.NNsightModel">NNsightModel (class in nnsight.models.NNsightModel)</a>
+</li>
       <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node">Node (class in nnsight.tracing.Node)</a>
 </li>
       <li><a href="../documentation/tracing/#nnsight.tracing.Proxy.Proxy.node">node (nnsight.tracing.Proxy.Proxy attribute)</a>
@@ -993,7 +993,7 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="../documentation/models/#nnsight.models.AbstractModel.AbstractModel.repoid_path_clsname">repoid_path_clsname (nnsight.models.AbstractModel.AbstractModel attribute)</a>
+      <li><a href="../documentation/models/#nnsight.models.NNsightModel.NNsightModel.repoid_path_clsname">repoid_path_clsname (nnsight.models.NNsightModel.NNsightModel attribute)</a>
 </li>
       <li><a href="../documentation/patching/#nnsight.patching.Patch.restore">restore() (nnsight.patching.Patch method)</a>
 </li>

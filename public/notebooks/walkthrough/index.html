@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="auto">
 
   <head>
     <meta charset="utf-8" />
@@ -13,7 +13,7 @@
   
   
   <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
@@ -58,7 +58,7 @@
   </head>
   
   
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="light">
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
 
   
   
@@ -125,6 +125,8 @@
   
   
     
+    
+      
     
     
     <img src="../../_static/nnsight_logo.svg" class="logo__image only-light" alt="nnsight - Home"/>
@@ -247,7 +249,7 @@
 </ul></div>
       
         <div class="navbar-item"><script>
-    let statusIcon = document.querySelector('.ndif .fa-circle-check');
+    var statusIcon = document.querySelector('.ndif .fa-circle-check');
     fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
@@ -414,7 +416,7 @@
 </ul></div>
         
           <div class="navbar-item"><script>
-    let statusIcon = document.querySelector('.ndif .fa-circle-check');
+    var statusIcon = document.querySelector('.ndif .fa-circle-check');
     fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
@@ -527,7 +529,7 @@
 <details><p>On model initialization</p>
 <p>Kwargs like <code class="docutils literal notranslate"><span class="pre">device_map</span></code> are passed downstream to the underlying huggingface model initialization. In the case of LanguageModels, passed to <a class="reference external" href="https://huggingface.co/docs/transformers/model_doc/auto#transformers.AutoModelForCausalLM.from_pretrained">AutoModelForCausalLM.from_pretrained</a>.</p>
 <p>Use <code class="docutils literal notranslate"><span class="pre">dispatch=True</span></code> to load the model onto the specified device locally on initialization, not on first use.</p>
-<p><code class="docutils literal notranslate"><span class="pre">LanguageModel</span></code> is one wrapper for <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> functionality. Another one <code class="docutils literal notranslate"><span class="pre">DiffusionModel</span></code> for text-to-image disffusion models. We encourage you to create your own by inheriting from <code class="docutils literal notranslate"><span class="pre">AbstractModel</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">LanguageModel</span></code> is one wrapper for <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> functionality. Another one <code class="docutils literal notranslate"><span class="pre">DiffusionModel</span></code> for text-to-image disffusion models. We encourage you to create your own by inheriting from <code class="docutils literal notranslate"><span class="pre">NNsightModel</span></code></p>
 </details><hr class="docutils" />
 <p>Even though the model is not loaded, we can still inspect the model’s structure!</p>
 <div class="nbinput docutils container">

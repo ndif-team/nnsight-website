@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="auto">
 
   <head>
     <meta charset="utf-8" />
@@ -13,7 +13,7 @@
   
   
   <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
@@ -57,7 +57,7 @@
   </head>
   
   
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="light">
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
 
   
   
@@ -124,6 +124,8 @@
   
   
     
+    
+      
     
     
     <img src="../../_static/nnsight_logo.svg" class="logo__image only-light" alt="nnsight - Home"/>
@@ -246,7 +248,7 @@
 </ul></div>
       
         <div class="navbar-item"><script>
-    let statusIcon = document.querySelector('.ndif .fa-circle-check');
+    var statusIcon = document.querySelector('.ndif .fa-circle-check');
     fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
@@ -413,7 +415,7 @@
 </ul></div>
         
           <div class="navbar-item"><script>
-    let statusIcon = document.querySelector('.ndif .fa-circle-check');
+    var statusIcon = document.querySelector('.ndif .fa-circle-check');
     fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
@@ -547,7 +549,7 @@ Proxies of it’s output and input are accessed by <cite>.output</cite> and <cit
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nnsight.module.Module.module_path">
 <span class="sig-name descname"><span class="pre">module_path</span></span><a class="headerlink" href="#nnsight.module.Module.module_path" title="Link to this definition">#</a></dt>
-<dd><p>String representing the attribute path of this module relative the the root model. Separated by ‘.’ e.x (‘transformer.h.0.mlp’). Set by AbstractModel on initialization of meta model.</p>
+<dd><p>String representing the attribute path of this module relative the the root model. Separated by ‘.’ e.x (‘transformer.h.0.mlp’). Set by NNsightModel on initialization of meta model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
@@ -628,36 +630,6 @@ Proxies of it’s output and input are accessed by <cite>.output</cite> and <cit
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>nnsight.context.Tracer.Tracer</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="nnsight.module.Module.backward_input">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">backward_input</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></em><a class="headerlink" href="#nnsight.module.Module.backward_input" title="Link to this definition">#</a></dt>
-<dd><p>Calling denotes the user wishes to get the backward_input of this module and therefore we create a Proxy of that request.
-Only generates a proxy the first time it is references otherwise return the already set one.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>backward_input proxy.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="../tracing/#nnsight.tracing.Proxy.Proxy" title="nnsight.tracing.Proxy.Proxy">Proxy</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="nnsight.module.Module.backward_output">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">backward_output</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></em><a class="headerlink" href="#nnsight.module.Module.backward_output" title="Link to this definition">#</a></dt>
-<dd><p>Calling denotes the user wishes to get the backward_output of this module and therefore we create a Proxy of that request.
-Only generates a proxy the first time it is references otherwise return the already set one.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>backward_output proxy.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="../tracing/#nnsight.tracing.Proxy.Proxy" title="nnsight.tracing.Proxy.Proxy">Proxy</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -765,8 +737,6 @@ Only generates a proxy the first time it is references otherwise return the alre
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.module.Module.input_shape"><code class="docutils literal notranslate"><span class="pre">Module.input_shape</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.module.Module.input_type"><code class="docutils literal notranslate"><span class="pre">Module.input_type</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.module.Module.tracer"><code class="docutils literal notranslate"><span class="pre">Module.tracer</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.module.Module.backward_input"><code class="docutils literal notranslate"><span class="pre">Module.backward_input</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.module.Module.backward_output"><code class="docutils literal notranslate"><span class="pre">Module.backward_output</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id0"><code class="docutils literal notranslate"><span class="pre">Module.input</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><code class="docutils literal notranslate"><span class="pre">Module.output</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.module.Module.wrap"><code class="docutils literal notranslate"><span class="pre">Module.wrap()</span></code></a></li>

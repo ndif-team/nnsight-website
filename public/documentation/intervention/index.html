@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="auto">
 
   <head>
     <meta charset="utf-8" />
@@ -13,7 +13,7 @@
   
   
   <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
@@ -57,7 +57,7 @@
   </head>
   
   
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="light">
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
 
   
   
@@ -124,6 +124,8 @@
   
   
     
+    
+      
     
     
     <img src="../../_static/nnsight_logo.svg" class="logo__image only-light" alt="nnsight - Home"/>
@@ -246,7 +248,7 @@
 </ul></div>
       
         <div class="navbar-item"><script>
-    let statusIcon = document.querySelector('.ndif .fa-circle-check');
+    var statusIcon = document.querySelector('.ndif .fa-circle-check');
     fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
@@ -413,7 +415,7 @@
 </ul></div>
         
           <div class="navbar-item"><script>
-    let statusIcon = document.querySelector('.ndif .fa-circle-check');
+    var statusIcon = document.querySelector('.ndif .fa-circle-check');
     fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
@@ -616,6 +618,21 @@ Had you not called .save(), calling .value would have been None.</p>
 This should be used when using multiple invokes as the batching and padding of multiple inputs could mean the indices for tokens shifts around and this take care of that.</p>
 <p>Calling <code class="docutils literal notranslate"><span class="pre">.shape</span></code> on an InterventionProxy returns the shape or collection of shapes for the tensors traced through this module.</p>
 <p>Calling <code class="docutils literal notranslate"><span class="pre">.value</span></code> on an InterventionProxy returns the actual populated values, updated during actual execution of the model.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="nnsight.intervention.InterventionProxy.grad">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">grad</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></em><a class="headerlink" href="#nnsight.intervention.InterventionProxy.grad" title="Link to this definition">#</a></dt>
+<dd><p>Calling denotes the user wishes to get the grad of proxy tensor and therefore we create a Proxy of that request.
+Only generates a proxy the first time it is references otherwise return the already set one.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Grad proxy.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../tracing/#nnsight.tracing.Proxy.Proxy" title="nnsight.tracing.Proxy.Proxy">Proxy</a></p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="nnsight.intervention.InterventionProxy.save">
 <span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="headerlink" href="#nnsight.intervention.InterventionProxy.save" title="Link to this definition">#</a></dt>
@@ -790,6 +807,7 @@ to the output from downstream intervention nodes in the graph.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.InterventionProxy"><code class="docutils literal notranslate"><span class="pre">InterventionProxy</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.InterventionProxy.grad"><code class="docutils literal notranslate"><span class="pre">InterventionProxy.grad</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.InterventionProxy.save"><code class="docutils literal notranslate"><span class="pre">InterventionProxy.save()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.InterventionProxy.shape"><code class="docutils literal notranslate"><span class="pre">InterventionProxy.shape</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.InterventionProxy.t"><code class="docutils literal notranslate"><span class="pre">InterventionProxy.t</span></code></a></li>

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="auto">
 
   <head>
     <meta charset="utf-8" />
@@ -13,7 +13,7 @@
   
   
   <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
@@ -57,7 +57,7 @@
   </head>
   
   
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="light">
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
 
   
   
@@ -124,6 +124,8 @@
   
   
     
+    
+      
     
     
     <img src="../../_static/nnsight_logo.svg" class="logo__image only-light" alt="nnsight - Home"/>
@@ -246,7 +248,7 @@
 </ul></div>
       
         <div class="navbar-item"><script>
-    let statusIcon = document.querySelector('.ndif .fa-circle-check');
+    var statusIcon = document.querySelector('.ndif .fa-circle-check');
     fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
@@ -413,7 +415,7 @@
 </ul></div>
         
           <div class="navbar-item"><script>
-    let statusIcon = document.querySelector('.ndif .fa-circle-check');
+    var statusIcon = document.querySelector('.ndif .fa-circle-check');
     fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
@@ -523,7 +525,7 @@
 <span id="nnsight-contexts"></span><h1>nnsight.contexts<a class="headerlink" href="#module-nnsight.contexts" title="Link to this heading">#</a></h1>
 <p>The contexts module contains logic for managing the tracing and running of models with <a class="reference internal" href="../tracing/#module-nnsight.tracing" title="nnsight.tracing"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nnsight.tracing</span></code></a> and <a class="reference internal" href="../module/#module-nnsight.module" title="nnsight.module"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nnsight.module</span></code></a></p>
 <p>The primary two classes involved here are <a class="reference internal" href="#nnsight.contexts.Tracer.Tracer" title="nnsight.contexts.Tracer.Tracer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tracer</span></code></a> and <a class="reference internal" href="#nnsight.contexts.Invoker.Invoker" title="nnsight.contexts.Invoker.Invoker"><code class="xref py py-class docutils literal notranslate"><span class="pre">Invoker</span></code></a>.</p>
-<p>The <a class="reference internal" href="#nnsight.contexts.Tracer.Tracer" title="nnsight.contexts.Tracer.Tracer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tracer</span></code></a> class creates a <a class="reference internal" href="../tracing/#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><code class="xref py py-class docutils literal notranslate"><span class="pre">Graph</span></code></a> around the meta_model of an <a class="reference internal" href="../models/#nnsight.models.AbstractModel.AbstractModel" title="nnsight.models.AbstractModel.AbstractModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractModel</span></code></a>. The graph tracks and manages the operations performed on the inputs and outputs of said model.
+<p>The <a class="reference internal" href="#nnsight.contexts.Tracer.Tracer" title="nnsight.contexts.Tracer.Tracer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tracer</span></code></a> class creates a <a class="reference internal" href="../tracing/#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><code class="xref py py-class docutils literal notranslate"><span class="pre">Graph</span></code></a> around the meta_model of an <a class="reference internal" href="../models/#nnsight.models.NNsightModel.NNsightModel" title="nnsight.models.NNsightModel.NNsightModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">NNsightModel</span></code></a>. The graph tracks and manages the operations performed on the inputs and outputs of said model.
 Modules in the meta_model expose their <code class="docutils literal notranslate"><span class="pre">.output</span></code> and <code class="docutils literal notranslate"><span class="pre">.input</span></code> attributes which when accessed, add to the computation graph of the tracer.
 To do this, they need to know about the current Tracer object, so each Module’s <code class="docutils literal notranslate"><span class="pre">.tracer</span></code> object is set to be the current Tracer.</p>
 <p>The Tracer object also keeps track of the batch_size of the most recent input, the generation index for multi iteration generations, and all of the inputs made during its context in the <code class="docutils literal notranslate"><span class="pre">.batched_input</span></code> attribute. Inputs added to this attribute should be in a format where each index is a batch index and allows the model to batch all of the inputs together.</p>
@@ -537,7 +539,7 @@ Each Runner context uses invoker contexts within to add new inputs to the eventu
 The Runner object also has logic to perform the execution of the traced computation graph on NDIF remote servers (assuming they are running!).</p>
 <dl class="py class" id="module-nnsight.contexts.Runner">
 <dt class="sig sig-object py" id="nnsight.contexts.Runner.Runner">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.contexts.Runner.</span></span><span class="sig-name descname"><span class="pre">Runner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remote</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nnsight.contexts.Runner.Runner" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.contexts.Runner.</span></span><span class="sig-name descname"><span class="pre">Runner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remote</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remote_include_output</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nnsight.contexts.Runner.Runner" title="Link to this definition">#</a></dt>
 <dd><p>The Runner object manages the intervention tracing for a given model’s _generation method or _run_local method.</p>
 <p class="rubric">Examples</p>
 <p>Below example shows accessing the input and output of a gpt2 module, saving them during execution, and printing the resulting values after execution:</p>
@@ -599,15 +601,15 @@ The Runner object also has logic to perform the execution of the traced computat
 
 <dl class="py class" id="module-nnsight.contexts.Tracer">
 <dt class="sig sig-object py" id="nnsight.contexts.Tracer.Tracer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.contexts.Tracer.</span></span><span class="sig-name descname"><span class="pre">Tracer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../models/#nnsight.models.AbstractModel.AbstractModel" title="nnsight.models.AbstractModel.AbstractModel"><span class="pre">AbstractModel</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer" title="Link to this definition">#</a></dt>
-<dd><p>The Tracer class creates a <a class="reference internal" href="../tracing/#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><code class="xref py py-class docutils literal notranslate"><span class="pre">nnsight.tracing.Graph.Graph</span></code></a> around the meta_model of a <a class="reference internal" href="../models/#nnsight.models.AbstractModel.AbstractModel" title="nnsight.models.AbstractModel.AbstractModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">nnsight.models.AbstractModel.AbstractModel</span></code></a> which tracks and manages the operations performed on the inputs and outputs of said model.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.contexts.Tracer.</span></span><span class="sig-name descname"><span class="pre">Tracer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../models/#nnsight.models.NNsightModel.NNsightModel" title="nnsight.models.NNsightModel.NNsightModel"><span class="pre">NNsightModel</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer" title="Link to this definition">#</a></dt>
+<dd><p>The Tracer class creates a <a class="reference internal" href="../tracing/#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><code class="xref py py-class docutils literal notranslate"><span class="pre">nnsight.tracing.Graph.Graph</span></code></a> around the meta_model of a <a class="reference internal" href="../models/#nnsight.models.NNsightModel.NNsightModel" title="nnsight.models.NNsightModel.NNsightModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">nnsight.models.NNsightModel.NNsightModel</span></code></a> which tracks and manages the operations performed on the inputs and outputs of said model.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nnsight.contexts.Tracer.Tracer.model">
 <span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer.model" title="Link to this definition">#</a></dt>
 <dd><p>nnsight Model object that ths context manager traces and executes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="../models/#nnsight.models.AbstractModel.AbstractModel" title="nnsight.models.AbstractModel.AbstractModel">nnsight.models.AbstractModel.AbstractModel</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="../models/#nnsight.models.NNsightModel.NNsightModel" title="nnsight.models.NNsightModel.NNsightModel">nnsight.models.NNsightModel.NNsightModel</a></p>
 </dd>
 </dl>
 </dd></dl>
