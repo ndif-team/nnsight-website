@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=8b91f211" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=0b34be48" />
     <link rel="stylesheet" type="text/css" href="../../../_static/css/tutorials.css?v=cc3de1f3" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -254,19 +254,19 @@
     fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
-                Array.from(document.getElementsByClassName("ndif-status-button")).forEach((ndifElement) => {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
                         spanElement.style.setProperty('color', '#23C552', 'important');
                     });
                 });
             }
             else {
-                Array.from(document.getElementsByClassName("ndif-status-button")).forEach((ndifElement) => {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
                         spanElement.style.setProperty('color', '#F84F31', 'important');
                     });
                 });
-                var statusIcon = document.querySelector('.ndif-status-button .fa-circle-check');
+                var statusIcon = document.querySelector('.ndif .fa-circle-check');
                 if (statusIcon) {
                     // not here
                     statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark'); 
@@ -274,12 +274,12 @@
             }
         })
         .catch((response) => {
-            Array.from(document.getElementsByClassName("ndif-status-button")).forEach((ndifElement) => {
+            Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
                 Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
                     spanElement.style.setProperty('color', '#F84F31', 'important');
                 });
             });
-            var statusIcon = document.querySelector('.ndif-status-button .fa-circle-check');
+            var statusIcon = document.querySelector('.ndif .fa-circle-check');
             if (statusIcon) {
                 statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark');
             }
@@ -424,19 +424,19 @@
     fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
-                Array.from(document.getElementsByClassName("ndif-status-button")).forEach((ndifElement) => {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
                         spanElement.style.setProperty('color', '#23C552', 'important');
                     });
                 });
             }
             else {
-                Array.from(document.getElementsByClassName("ndif-status-button")).forEach((ndifElement) => {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
                         spanElement.style.setProperty('color', '#F84F31', 'important');
                     });
                 });
-                var statusIcon = document.querySelector('.ndif-status-button .fa-circle-check');
+                var statusIcon = document.querySelector('.ndif .fa-circle-check');
                 if (statusIcon) {
                     // not here
                     statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark'); 
@@ -444,12 +444,12 @@
             }
         })
         .catch((response) => {
-            Array.from(document.getElementsByClassName("ndif-status-button")).forEach((ndifElement) => {
+            Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
                 Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
                     spanElement.style.setProperty('color', '#F84F31', 'important');
                 });
             });
-            var statusIcon = document.querySelector('.ndif-status-button .fa-circle-check');
+            var statusIcon = document.querySelector('.ndif .fa-circle-check');
             if (statusIcon) {
                 statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark');
             }
