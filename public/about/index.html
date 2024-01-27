@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>About nnsight &#8212; nnsight</title>
+    <title>About NNsight &#8212; nnsight</title>
   
   
   
@@ -31,7 +31,8 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=3c48eae3" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=8b91f211" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tutorials.css?v=cc3de1f3" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
@@ -250,19 +251,19 @@
     fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
-                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(document.getElementsByClassName("ndif-status-button")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
                         spanElement.style.setProperty('color', '#23C552', 'important');
                     });
                 });
             }
             else {
-                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(document.getElementsByClassName("ndif-status-button")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
                         spanElement.style.setProperty('color', '#F84F31', 'important');
                     });
                 });
-                var statusIcon = document.querySelector('.ndif .fa-circle-check');
+                var statusIcon = document.querySelector('.ndif-status-button .fa-circle-check');
                 if (statusIcon) {
                     // not here
                     statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark'); 
@@ -270,12 +271,12 @@
             }
         })
         .catch((response) => {
-            Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+            Array.from(document.getElementsByClassName("ndif-status-button")).forEach((ndifElement) => {
                 Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
                     spanElement.style.setProperty('color', '#F84F31', 'important');
                 });
             });
-            var statusIcon = document.querySelector('.ndif .fa-circle-check');
+            var statusIcon = document.querySelector('.ndif-status-button .fa-circle-check');
             if (statusIcon) {
                 statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark');
             }
@@ -422,19 +423,19 @@
     fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
-                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(document.getElementsByClassName("ndif-status-button")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
                         spanElement.style.setProperty('color', '#23C552', 'important');
                     });
                 });
             }
             else {
-                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(document.getElementsByClassName("ndif-status-button")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
                         spanElement.style.setProperty('color', '#F84F31', 'important');
                     });
                 });
-                var statusIcon = document.querySelector('.ndif .fa-circle-check');
+                var statusIcon = document.querySelector('.ndif-status-button .fa-circle-check');
                 if (statusIcon) {
                     // not here
                     statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark'); 
@@ -442,12 +443,12 @@
             }
         })
         .catch((response) => {
-            Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+            Array.from(document.getElementsByClassName("ndif-status-button")).forEach((ndifElement) => {
                 Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
                     spanElement.style.setProperty('color', '#F84F31', 'important');
                 });
             });
-            var statusIcon = document.querySelector('.ndif .fa-circle-check');
+            var statusIcon = document.querySelector('.ndif-status-button .fa-circle-check');
             if (statusIcon) {
                 statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark');
             }
@@ -490,7 +491,7 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">About nnsight</li>
+    <li class="breadcrumb-item active" aria-current="page">About NNsight</li>
   </ul>
 </nav>
 </div>
@@ -508,9 +509,9 @@
                 <article class="bd-article">
                   
   <section id="about-nnsight">
-<h1>About nnsight<a class="headerlink" href="#about-nnsight" title="Link to this heading">#</a></h1>
+<h1>About NNsight<a class="headerlink" href="#about-nnsight" title="Link to this heading">#</a></h1>
 <section id="an-api-for-transparent-science-on-black-box-ai">
-<h2>An API for transparent science on black-box AI<a class="headerlink" href="#an-api-for-transparent-science-on-black-box-ai" title="Link to this heading">#</a></h2>
+<h2>An API for transparent science on black-box AI.<a class="headerlink" href="#an-api-for-transparent-science-on-black-box-ai" title="Link to this heading">#</a></h2>
 <div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm docutils">
 <div class="sd-card-body docutils">
 <div class="sd-card-title sd-font-weight-bold docutils">
@@ -531,8 +532,8 @@ The nnsight library is also terrific for studying smaller local models.</p>
 </figcaption>
 </figure>
 </section>
-<section id="how-you-use-nnsight">
-<h2>How you use nnsight<a class="headerlink" href="#how-you-use-nnsight" title="Link to this heading">#</a></h2>
+<section id="how-do-i-use-nnsight">
+<h2>How do I use NNsight?<a class="headerlink" href="#how-do-i-use-nnsight" title="Link to this heading">#</a></h2>
 <p>Nnsight is built on pytorch.</p>
 <p>Running inference on a huge remote model with nnsight is very similar to running a neural network locally on your own workstation.  In fact, with nnsight, the same code for running experiments locally on small models can also be used on large models, just by changing a few arguments.</p>
 <p>The difference between nnsight and normal inference is that when you use nnsight, you do not treat the model as an opaque black box.
@@ -580,21 +581,6 @@ Here is how it looks:</p>
               
               
               
-                <footer class="prev-next-footer">
-                  
-<div class="prev-next-area">
-    <a class="left-prev"
-       href="../notebooks/tutorials/sae/"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Dictionary Learning</p>
-      </div>
-    </a>
-</div>
-                </footer>
-              
             </div>
             
             
@@ -610,8 +596,8 @@ Here is how it looks:</p>
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-api-for-transparent-science-on-black-box-ai">An API for transparent science on black-box AI</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-you-use-nnsight">How you use nnsight</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-api-for-transparent-science-on-black-box-ai">An API for transparent science on black-box AI.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-i-use-nnsight">How do I use NNsight?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-happens-behind-the-scenes">What happens behind the scenes?</a></li>
 </ul>
   </nav></div>

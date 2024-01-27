@@ -31,7 +31,8 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=3c48eae3" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=8b91f211" />
+    <link rel="stylesheet" type="text/css" href="_static/css/tutorials.css?v=cc3de1f3" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
@@ -250,19 +251,19 @@
     fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
-                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(document.getElementsByClassName("ndif-status-button")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
                         spanElement.style.setProperty('color', '#23C552', 'important');
                     });
                 });
             }
             else {
-                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(document.getElementsByClassName("ndif-status-button")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
                         spanElement.style.setProperty('color', '#F84F31', 'important');
                     });
                 });
-                var statusIcon = document.querySelector('.ndif .fa-circle-check');
+                var statusIcon = document.querySelector('.ndif-status-button .fa-circle-check');
                 if (statusIcon) {
                     // not here
                     statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark'); 
@@ -270,12 +271,12 @@
             }
         })
         .catch((response) => {
-            Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+            Array.from(document.getElementsByClassName("ndif-status-button")).forEach((ndifElement) => {
                 Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
                     spanElement.style.setProperty('color', '#F84F31', 'important');
                 });
             });
-            var statusIcon = document.querySelector('.ndif .fa-circle-check');
+            var statusIcon = document.querySelector('.ndif-status-button .fa-circle-check');
             if (statusIcon) {
                 statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark');
             }
@@ -418,19 +419,19 @@
     fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
-                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(document.getElementsByClassName("ndif-status-button")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
                         spanElement.style.setProperty('color', '#23C552', 'important');
                     });
                 });
             }
             else {
-                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(document.getElementsByClassName("ndif-status-button")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
                         spanElement.style.setProperty('color', '#F84F31', 'important');
                     });
                 });
-                var statusIcon = document.querySelector('.ndif .fa-circle-check');
+                var statusIcon = document.querySelector('.ndif-status-button .fa-circle-check');
                 if (statusIcon) {
                     // not here
                     statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark'); 
@@ -438,12 +439,12 @@
             }
         })
         .catch((response) => {
-            Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+            Array.from(document.getElementsByClassName("ndif-status-button")).forEach((ndifElement) => {
                 Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
                     spanElement.style.setProperty('color', '#F84F31', 'important');
                 });
             });
-            var statusIcon = document.querySelector('.ndif .fa-circle-check');
+            var statusIcon = document.querySelector('.ndif-status-button .fa-circle-check');
             if (statusIcon) {
                 statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark');
             }
@@ -493,56 +494,13 @@
 <p>NNsight</p>
 </div>
 <div class="sd-fs-4 sd-font-weight-bold sd-my-0 sub-bot image-container docutils">
-<p>interpretable neural networks</p>
+<p>Interpretable Neural Networks</p>
 </div>
 <p><strong>NNsight</strong> (/ɛn.saɪt/) is a package for interpreting and manipulating the internals of large models</p>
 <div class="button-group docutils">
 <p><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-primary sd-shadow-sm reference internal" href="start/"><span class="doc">    Get Started</span></a></p>
 <p><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-outline-primary reference internal" href="tutorials/"><span class="doc">    Tutorials</span></a></p>
 <p><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-outline-primary reference internal" href="documentation/"><span class="doc">    Docs</span></a></p>
-</div>
-</div>
-</div>
-</div>
-<div class="sd-fs-1 sd-font-weight-bold sd-text-center sd-text-primary sd-mb-5 docutils">
-<p>Key Features</p>
-</div>
-<div class="sd-container-fluid sd-sphinx-override sd-mb-4 features docutils">
-<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
-<div class="sd-col sd-d-flex-column docutils">
-<div class="features-container docutils">
-<a class="reference internal image-reference" href="_images/one.png"><img alt="_images/one.png" src="_images/one.png" style="width: 250px;" /></a>
-<div class="docutils">
-<p><strong>Integration</strong></p>
-<p>Pass in a ID from any HuggingFace Transformer repo and access its weights with nnsight.</p>
-</div>
-</div>
-</div>
-<div class="sd-col sd-d-flex-column docutils">
-<div class="features-container docutils">
-<a class="reference internal image-reference" href="_images/two.png"><img alt="_images/two.png" src="_images/two.png" style="width: 250px;" /></a>
-<div class="docutils">
-<p><strong>Interpretability</strong></p>
-<p>Access the internal gradients and activations at any point or module in a model.</p>
-</div>
-</div>
-</div>
-<div class="sd-col sd-d-flex-column docutils">
-<div class="features-container docutils">
-<a class="reference internal image-reference" href="_images/two.png"><img alt="_images/two.png" src="_images/two.png" style="width: 250px;" /></a>
-<div class="docutils">
-<p><strong>Intuitive</strong></p>
-<p>Set up a context block and manipulate model internals with only a couple lines of code.</p>
-</div>
-</div>
-</div>
-<div class="sd-col sd-d-flex-column docutils">
-<div class="features-container docutils">
-<a class="reference internal image-reference" href="_images/one.png"><img alt="_images/one.png" src="_images/one.png" style="width: 250px;" /></a>
-<div class="docutils">
-<p><strong>Interoperable</strong></p>
-<p>Enable grad and train interventions like LORA or probes on any point in a model.</p>
-</div>
 </div>
 </div>
 </div>
@@ -555,21 +513,6 @@
               
               
               
-              
-                <footer class="prev-next-footer">
-                  
-<div class="prev-next-area">
-    <a class="right-next"
-       href="start/"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Getting Started</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
-</div>
-                </footer>
               
             </div>
             

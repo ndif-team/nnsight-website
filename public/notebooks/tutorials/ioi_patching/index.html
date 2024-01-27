@@ -31,8 +31,9 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css?v=2aa19091" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=3c48eae3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=8b91f211" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tutorials.css?v=cc3de1f3" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
@@ -54,7 +55,7 @@
     <link rel="index" title="Index" href="../../../genindex/" />
     <link rel="search" title="Search" href="../../../search/" />
     <link rel="next" title="Attribution Patching" href="../attribution_patching/" />
-    <link rel="prev" title="Tutorials" href="../../../tutorials/" />
+    <link rel="prev" title="Walkthrough" href="../walkthrough/" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -254,19 +255,19 @@
     fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
-                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(document.getElementsByClassName("ndif-status-button")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
                         spanElement.style.setProperty('color', '#23C552', 'important');
                     });
                 });
             }
             else {
-                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(document.getElementsByClassName("ndif-status-button")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
                         spanElement.style.setProperty('color', '#F84F31', 'important');
                     });
                 });
-                var statusIcon = document.querySelector('.ndif .fa-circle-check');
+                var statusIcon = document.querySelector('.ndif-status-button .fa-circle-check');
                 if (statusIcon) {
                     // not here
                     statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark'); 
@@ -274,12 +275,12 @@
             }
         })
         .catch((response) => {
-            Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+            Array.from(document.getElementsByClassName("ndif-status-button")).forEach((ndifElement) => {
                 Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
                     spanElement.style.setProperty('color', '#F84F31', 'important');
                 });
             });
-            var statusIcon = document.querySelector('.ndif .fa-circle-check');
+            var statusIcon = document.querySelector('.ndif-status-button .fa-circle-check');
             if (statusIcon) {
                 statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark');
             }
@@ -321,9 +322,7 @@
       
       
       
-        
-      
-      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -426,19 +425,19 @@
     fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
-                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(document.getElementsByClassName("ndif-status-button")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
                         spanElement.style.setProperty('color', '#23C552', 'important');
                     });
                 });
             }
             else {
-                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(document.getElementsByClassName("ndif-status-button")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
                         spanElement.style.setProperty('color', '#F84F31', 'important');
                     });
                 });
-                var statusIcon = document.querySelector('.ndif .fa-circle-check');
+                var statusIcon = document.querySelector('.ndif-status-button .fa-circle-check');
                 if (statusIcon) {
                     // not here
                     statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark'); 
@@ -446,12 +445,12 @@
             }
         })
         .catch((response) => {
-            Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+            Array.from(document.getElementsByClassName("ndif-status-button")).forEach((ndifElement) => {
                 Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
                     spanElement.style.setProperty('color', '#F84F31', 'important');
                 });
             });
-            var statusIcon = document.querySelector('.ndif .fa-circle-check');
+            var statusIcon = document.querySelector('.ndif-status-button .fa-circle-check');
             if (statusIcon) {
                 statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark');
             }
@@ -461,6 +460,28 @@
       </div>
     
   </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../walkthrough/">Walkthrough</a></li>
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Activation Patching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../attribution_patching/">Attribution Patching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logit_lens/">Logit Lens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../future_lens/">Future Lens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../function_vectors/">Function Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sae/">Dictionary Learning</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
@@ -743,30 +764,6 @@ if (outputEl) {{
               
               
               
-              
-                <footer class="prev-next-footer">
-                  
-<div class="prev-next-area">
-    <a class="left-prev"
-       href="../../../tutorials/"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Tutorials</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="../attribution_patching/"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Attribution Patching</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
-</div>
-                </footer>
               
             </div>
             

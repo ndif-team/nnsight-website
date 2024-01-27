@@ -1,3 +1,7 @@
+.hidden-toc {
+    display: none;
+}
+
 .button-group {
     display: flex;
     flex-direction: row;
@@ -9,14 +13,14 @@
 }
 
 .hero {
-    height: 90vh;
+    height: 85vh;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
     align-content: stretch;
-    padding-bottom: 20vh;
+    padding-bottom: 17vh;
 
     overflow: hidden;
 }
@@ -28,7 +32,7 @@ html[data-theme="light"] {
 
 }
 
-.ndif {
+.ndif-status-button {
     color: "green";
 }
 
@@ -36,13 +40,6 @@ html[data-theme="light"] {
     width: fit-content !important;
     padding-right: 40px !important
 }
-
-
-.features {
-    height: 60vh;
-    overflow: hidden;
-}
-
 
 .image-container {
     margin-top: 50px;
@@ -72,11 +69,6 @@ img {
     line-height: normal !important;
 }
 
-.features-container {
-    display: flex;
-    gap: 20px;
-}
-
 @media only screen and (max-width: 768px) {
 
     /* Adjust this value based on your breakpoint for mobile */
@@ -88,17 +80,8 @@ img {
         /* Adjust this as needed */
     }
 
-    .features-container {
-        margin-bottom: 20px;
-        /* Increase bottom margin */
-    }
-
     .hero {
         margin-bottom: 30px;
         /* Adjust the bottom margin of the main container */
-    }
-
-    .features {
-        height: 110vh;
     }
 }

@@ -31,8 +31,9 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css?v=2aa19091" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=3c48eae3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=8b91f211" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tutorials.css?v=cc3de1f3" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
@@ -254,19 +255,19 @@
     fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
-                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(document.getElementsByClassName("ndif-status-button")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
                         spanElement.style.setProperty('color', '#23C552', 'important');
                     });
                 });
             }
             else {
-                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(document.getElementsByClassName("ndif-status-button")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
                         spanElement.style.setProperty('color', '#F84F31', 'important');
                     });
                 });
-                var statusIcon = document.querySelector('.ndif .fa-circle-check');
+                var statusIcon = document.querySelector('.ndif-status-button .fa-circle-check');
                 if (statusIcon) {
                     // not here
                     statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark'); 
@@ -274,12 +275,12 @@
             }
         })
         .catch((response) => {
-            Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+            Array.from(document.getElementsByClassName("ndif-status-button")).forEach((ndifElement) => {
                 Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
                     spanElement.style.setProperty('color', '#F84F31', 'important');
                 });
             });
-            var statusIcon = document.querySelector('.ndif .fa-circle-check');
+            var statusIcon = document.querySelector('.ndif-status-button .fa-circle-check');
             if (statusIcon) {
                 statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark');
             }
@@ -424,19 +425,19 @@
     fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
-                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(document.getElementsByClassName("ndif-status-button")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
                         spanElement.style.setProperty('color', '#23C552', 'important');
                     });
                 });
             }
             else {
-                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(document.getElementsByClassName("ndif-status-button")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
                         spanElement.style.setProperty('color', '#F84F31', 'important');
                     });
                 });
-                var statusIcon = document.querySelector('.ndif .fa-circle-check');
+                var statusIcon = document.querySelector('.ndif-status-button .fa-circle-check');
                 if (statusIcon) {
                     // not here
                     statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark'); 
@@ -444,12 +445,12 @@
             }
         })
         .catch((response) => {
-            Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+            Array.from(document.getElementsByClassName("ndif-status-button")).forEach((ndifElement) => {
                 Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
                     spanElement.style.setProperty('color', '#F84F31', 'important');
                 });
             });
-            var statusIcon = document.querySelector('.ndif .fa-circle-check');
+            var statusIcon = document.querySelector('.ndif-status-button .fa-circle-check');
             if (statusIcon) {
                 statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark');
             }
@@ -608,30 +609,6 @@ torch.Size([1, 1, 768])
               
               
               
-              
-                <footer class="prev-next-footer">
-                  
-<div class="prev-next-area">
-    <a class="left-prev"
-       href="../cross_prompt/"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Cross-Prompt Intervention</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="../gradients/"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Working With Gradients</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
-</div>
-                </footer>
               
             </div>
             
