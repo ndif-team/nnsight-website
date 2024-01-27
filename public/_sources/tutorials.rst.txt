@@ -68,10 +68,10 @@ Tutorials
    :class-body: page-info 
    :shadow: none 
 
-   **Scroll and click for more information**
-   :raw-html:`<br />` Use the sidebar to navigate to the tutorials
+   **Click for more information**
+   :raw-html:`<br />` & scroll for more
 
-.. grid:: 4
+.. grid:: 2 2 3 4
    :class-container: tutorial-card-section
 
    .. grid-item::
@@ -81,7 +81,7 @@ Tutorials
          :class-card: sd-text-black sd-border-0 tutorials-cards
          :class-body: sd-font-weight-bold
 
-         Walkthrough
+         `Walkthrough <notebooks/tutorials/walkthrough.ipynb>`_
    
    .. grid-item::
 
@@ -90,7 +90,7 @@ Tutorials
          :class-card: sd-text-black sd-border-0 tutorials-cards
          :class-body: sd-font-weight-bold
          
-         Activation Patching
+         `Activation Patching <notebooks/tutorials/ioi_patching.ipynb>`_
 
    .. grid-item::
 
@@ -99,7 +99,7 @@ Tutorials
          :class-card: sd-text-black sd-border-0 tutorials-cards
          :class-body: sd-font-weight-bold
 
-         Attribution Patching
+         `Attribution Patching <notebooks/tutorials/attribution_patching.ipynb>`_
    
    .. grid-item::
 
@@ -108,7 +108,7 @@ Tutorials
          :class-card: sd-text-black sd-border-0 tutorials-cards
          :class-body: sd-font-weight-bold
 
-         Logit Lens
+         `Logit Lens <notebooks/tutorials/logit_lens.ipynb>`_
 
    .. grid-item::
 
@@ -117,7 +117,7 @@ Tutorials
          :class-card: sd-text-black sd-border-0 tutorials-cards
          :class-body: sd-font-weight-bold
 
-         Future Lens
+         `Future Lens <notebooks/tutorials/future_lens.ipynb>`_
 
    .. grid-item::
 
@@ -126,7 +126,7 @@ Tutorials
          :class-card: sd-text-black sd-border-0 tutorials-cards
          :class-body: sd-font-weight-bold
 
-         Function Vectors
+         `Function Vectors <notebooks/tutorials/function_vectors.ipynb>`_
 
    .. grid-item::
 
@@ -135,7 +135,7 @@ Tutorials
          :class-card: sd-text-black sd-border-0 tutorials-cards
          :class-body: sd-font-weight-bold
 
-         Dictionary Learning
+         `Dictionary Learning <notebooks/tutorials/sae.ipynb>`_
 
 
 .. div:: hidden-toc
