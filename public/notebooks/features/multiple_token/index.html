@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../../../" data-theme="auto">
+<html lang="en" data-content_root="../../../" data-theme="dark">
 
   <head>
     <meta charset="utf-8" />
@@ -13,7 +13,7 @@
   
   
   <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
@@ -28,12 +28,13 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=22d27927" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css?v=2aa19091" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=0b34be48" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/css/tutorials.css?v=cc3de1f3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=0108c9b3" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/front.css?v=03c1ab20" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/hljs.css?v=ba6ffc5f" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
@@ -50,6 +51,8 @@
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/features/multiple_token';</script>
+    <script src="../../../_static/js/custom.js?v=edefeff0"></script>
+    <script src="../../../_static/js/code.js?v=11d068d3"></script>
     <link rel="icon" href="../../../_static/icon.ico"/>
     <link rel="author" title="About these documents" href="../../../about/" />
     <link rel="index" title="Index" href="../../../genindex/" />
@@ -61,7 +64,7 @@
   </head>
   
   
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
 
   
   
@@ -132,11 +135,9 @@
   
     
     
-      
     
-    
-    <img src="../../../_static/nnsight_logo.svg" class="logo__image only-light" alt="nnsight - Home"/>
-    <script>document.write(`<img src="../../../_static/nnsight_logo.svg" class="logo__image only-dark" alt="nnsight - Home"/>`);</script>
+    <img src="../../../_static/nnsight_logo.svg" class="logo__image only-dark" alt="nnsight - Home"/>
+    <script>document.write(`<img src="../../../_static/nnsight_logo.svg" class="logo__image only-light" alt="nnsight - Home"/>`);</script>
   
   
 </a></div>
@@ -257,14 +258,14 @@
             if (response.status == 200) {
                 Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
-                        spanElement.style.setProperty('color', '#23C552', 'important');
+                        spanElement.style.setProperty('color', '#66800b', 'important');
                     });
                 });
             }
             else {
                 Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
-                        spanElement.style.setProperty('color', '#F84F31', 'important');
+                        spanElement.style.setProperty('color', '#af3029', 'important');
                     });
                 });
                 var statusIcon = document.querySelector('.ndif .fa-circle-check');
@@ -277,7 +278,7 @@
         .catch((response) => {
             Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
                 Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
-                    spanElement.style.setProperty('color', '#F84F31', 'important');
+                    spanElement.style.setProperty('color', '#af3029', 'important');
                 });
             });
             var statusIcon = document.querySelector('.ndif .fa-circle-check');
@@ -427,14 +428,14 @@
             if (response.status == 200) {
                 Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
-                        spanElement.style.setProperty('color', '#23C552', 'important');
+                        spanElement.style.setProperty('color', '#66800b', 'important');
                     });
                 });
             }
             else {
                 Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
-                        spanElement.style.setProperty('color', '#F84F31', 'important');
+                        spanElement.style.setProperty('color', '#af3029', 'important');
                     });
                 });
                 var statusIcon = document.querySelector('.ndif .fa-circle-check');
@@ -447,7 +448,7 @@
         .catch((response) => {
             Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
                 Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
-                    spanElement.style.setProperty('color', '#F84F31', 'important');
+                    spanElement.style.setProperty('color', '#af3029', 'important');
                 });
             });
             var statusIcon = document.querySelector('.ndif .fa-circle-check');
@@ -535,7 +536,7 @@
                   
   <section id="Multiple-Token-Generation">
 <h1>Multiple Token Generation<a class="headerlink" href="#Multiple-Token-Generation" title="Link to this heading">#</a></h1>
-<p>When generating more than one token, use <code class="docutils literal notranslate"><span class="pre">invoker.next()</span></code> to denote following interventions should be applied to the subsequent generations.</p>
+<p>When generating more than one token, use <code class="docutils literal notranslate"><span class="pre">&lt;module&gt;.next()</span></code> to denote following interventions should be applied to the subsequent generations for that module.</p>
 <p>Here we generate three tokens and save the hidden states of the last layer for each one:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -543,51 +544,52 @@
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nnsight</span> <span class="kn">import</span> <span class="n">LanguageModel</span>
 
-<span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s1">&#39;gpt2&#39;</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s1">&#39;openai-community/gpt2&#39;</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> <span class="k">as</span> <span class="n">generator</span><span class="p">:</span>
-    <span class="k">with</span> <span class="n">generator</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
 
-        <span class="n">hidden_states1</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="n">hidden_states1</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
-        <span class="n">invoker</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+    <span class="n">hidden_states2</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">next</span><span class="p">()</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
-        <span class="n">hidden_states2</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="n">hidden_states3</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">next</span><span class="p">()</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
-        <span class="n">invoker</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
-
-        <span class="n">hidden_states3</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-
-
-<span class="n">output</span> <span class="o">=</span> <span class="n">generator</span><span class="o">.</span><span class="n">output</span>
-<span class="n">hidden_states1</span> <span class="o">=</span> <span class="n">hidden_states1</span><span class="o">.</span><span class="n">value</span>
-<span class="n">hidden_states2</span> <span class="o">=</span> <span class="n">hidden_states2</span><span class="o">.</span><span class="n">value</span>
-<span class="n">hidden_states3</span> <span class="o">=</span> <span class="n">hidden_states3</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generator</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side=&#39;left&#39;` when initializing the tokenizer.
+</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-You&#39;re using a GPT2TokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
 </pre></div></div>
 </div>
-<p>Note how calling save <em>before</em> <code class="docutils literal notranslate"><span class="pre">invoker.next()</span></code> returns the hidden state across the initial prompt while calling save <em>after</em> returns the hidden state of each subsequent generated token.</p>
+<p>Note how calling save <em>before</em> <code class="docutils literal notranslate"><span class="pre">tracer.next()</span></code> returns the hidden state across the initial prompt while calling save <em>after</em> returns the hidden state of each subsequent generated token.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">hidden_states1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">hidden_states2</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">hidden_states3</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -599,6 +601,8 @@ You&#39;re using a GPT2TokenizerFast tokenizer. Please note that with a fast tok
 torch.Size([1, 10, 768])
 torch.Size([1, 1, 768])
 torch.Size([1, 1, 768])
+tensor([[ 464,  412,  733,  417, 8765,  318,  287,  262, 1748,  286, 6342,   11,
+          290]], device=&#39;cuda:0&#39;)
 </pre></div></div>
 </div>
 </section>

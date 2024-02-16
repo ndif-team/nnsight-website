@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="./" data-theme="auto">
+<html lang="en" data-content_root="./" data-theme="dark">
 
   <head>
     <meta charset="utf-8" />
@@ -13,7 +13,7 @@
   
   
   <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
@@ -28,11 +28,12 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=22d27927" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=0b34be48" />
-    <link rel="stylesheet" type="text/css" href="_static/css/tutorials.css?v=cc3de1f3" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=0108c9b3" />
+    <link rel="stylesheet" type="text/css" href="_static/css/front.css?v=03c1ab20" />
+    <link rel="stylesheet" type="text/css" href="_static/css/hljs.css?v=ba6ffc5f" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
@@ -47,6 +48,8 @@
     <script src="_static/design-tabs.js?v=36754332"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
+    <script src="_static/js/custom.js?v=edefeff0"></script>
+    <script src="_static/js/code.js?v=11d068d3"></script>
     <link rel="icon" href="_static/icon.ico"/>
     <link rel="author" title="About these documents" href="about/" />
     <link rel="index" title="Index" href="genindex/" />
@@ -57,7 +60,7 @@
   </head>
   
   
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
 
   
   
@@ -128,11 +131,9 @@
   
     
     
-      
     
-    
-    <img src="_static/nnsight_logo.svg" class="logo__image only-light" alt="nnsight - Home"/>
-    <script>document.write(`<img src="_static/nnsight_logo.svg" class="logo__image only-dark" alt="nnsight - Home"/>`);</script>
+    <img src="_static/nnsight_logo.svg" class="logo__image only-dark" alt="nnsight - Home"/>
+    <script>document.write(`<img src="_static/nnsight_logo.svg" class="logo__image only-light" alt="nnsight - Home"/>`);</script>
   
   
 </a></div>
@@ -253,14 +254,14 @@
             if (response.status == 200) {
                 Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
-                        spanElement.style.setProperty('color', '#23C552', 'important');
+                        spanElement.style.setProperty('color', '#66800b', 'important');
                     });
                 });
             }
             else {
                 Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
-                        spanElement.style.setProperty('color', '#F84F31', 'important');
+                        spanElement.style.setProperty('color', '#af3029', 'important');
                     });
                 });
                 var statusIcon = document.querySelector('.ndif .fa-circle-check');
@@ -273,7 +274,7 @@
         .catch((response) => {
             Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
                 Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
-                    spanElement.style.setProperty('color', '#F84F31', 'important');
+                    spanElement.style.setProperty('color', '#af3029', 'important');
                 });
             });
             var statusIcon = document.querySelector('.ndif .fa-circle-check');
@@ -421,14 +422,14 @@
             if (response.status == 200) {
                 Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
-                        spanElement.style.setProperty('color', '#23C552', 'important');
+                        spanElement.style.setProperty('color', '#66800b', 'important');
                     });
                 });
             }
             else {
                 Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
-                        spanElement.style.setProperty('color', '#F84F31', 'important');
+                        spanElement.style.setProperty('color', '#af3029', 'important');
                     });
                 });
                 var statusIcon = document.querySelector('.ndif .fa-circle-check');
@@ -441,7 +442,7 @@
         .catch((response) => {
             Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
                 Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
-                    spanElement.style.setProperty('color', '#F84F31', 'important');
+                    spanElement.style.setProperty('color', '#af3029', 'important');
                 });
             });
             var statusIcon = document.querySelector('.ndif .fa-circle-check');
@@ -482,30 +483,117 @@
 <h1 class="sd-d-none">nnsight<a class="headerlink" href="#nnsight" title="Link to this heading">#</a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<div class="sd-container-fluid sd-sphinx-override sd-mb-4 hero docutils">
-<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-2 sd-row-cols-lg-2 sd-flex-row-reverse docutils">
-<div class="sd-col sd-d-flex-column docutils">
-<div class="docutils">
-<a class="reference internal image-reference" href="_images/nnsight_logo.svg"><img alt="_images/nnsight_logo.svg" height="276" src="_images/nnsight_logo.svg" width="400" /></a>
-</div>
-</div>
-<div class="sd-col sd-d-flex-column docutils">
-<div class="sd-fs-1 sd-font-weight-bold title-bot sd-text-primary image-container docutils">
-<p>NNsight</p>
-</div>
-<div class="sd-fs-4 sd-font-weight-bold sd-my-0 sub-bot image-container docutils">
-<p>Interpretable Neural Networks</p>
-</div>
-<p><strong>NNsight</strong> (/ɛn.saɪt/) is a package for interpreting and manipulating the internals of large models</p>
-<div class="button-group docutils">
-<p><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-primary sd-shadow-sm reference internal" href="start/"><span class="doc">    Get Started</span></a></p>
-<p><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-outline-primary reference internal" href="tutorials/"><span class="doc">    Tutorials</span></a></p>
-<p><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-outline-primary reference internal" href="documentation/"><span class="doc">    Docs</span></a></p>
-</div>
-</div>
-</div>
-</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+<!-- and it's easy to individually load additional languages -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+
+<script>hljs.highlightAll();</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('img.transparent').forEach(el => {
+      el.style.background = 'transparent';
+    });
+  });
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<script src="dist/clipboard.min.js"></script>
+
+<script>
+  new ClipboardJS('.btn');
+</script>
+
+<script>
+    // Select the element with the class 'some-class'
+  var element = document.querySelector('.bd-container');
+
+  var newElement = document.createElement('div');
+  newElement.id = 'canvas';
+
+  newElement.style.position = 'fixed';
+  newElement.style.zIndex = '-1';
+  newElement.style.height = '100vh';
+  newElement.style.width = '100vw';
+  newElement.style.top = '0';
+
+  element.appendChild(newElement);
+
+</script><section class="d-flex align-items-center" style="height: 85vh;">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-md-6">
+                <h1 class="display-5 fw-bold lh-1 mb-3 text">Interpretable Neural Networks</h1>
+                <p class="lead text" id="myElement">NNsight (/ɛn.saɪt/) is a package for interpreting and manipulating the internals of models.</p>
+                <div class="d-grid gap-2 d-md-flex">
+                    <a href="start" role="button" class="btn btn-primary primary btn-md px-4">Start</a>
+                    <a href="documentation" role="button" class="btn btn-outline-secondary secondary btn-md px-4">Docs</a>
+                    <a href="features" role="button" class="btn btn-outline-secondary btn-md secondary px-4">Tutorials</a>
+                    <a href="about" role="button" class="btn btn-outline-secondary btn-md secondary px-4">About</a>
+                </div>
+            </div>
+            <div class="col-md-6 mt-2 d-none d-md-block">
+                <img src="_static/images/nnsight_logo.svg" class="img-fluid transparent" alt="Bootstrap Themes" loading="lazy">
+            </div>
+        </div>
+    </div>
 </section>
+
+<section class="d-flex align-items-center middle-stuff mid-section">
+  <div class="px-4 text-center">
+    <div class="col-lg-10 mx-auto">
+      <p class="lead mb-4">Direct access to model internals, from one to one hundred billion parameters. Intervene on activations or gradients in transformers, train optimizations methods, perform out of order module applications, cross prompt interventions, and so much more.</p>
+    </div>
+  </div>
+</section>
+
+<section class="d-flex align-items-center" style="height: 60vh;">
+    <div class="container">
+        <div class="row align-items-end pb-3 border-bottom mb-5">
+            <div class="col">
+                <h2 class="mb-0">Features</h2>
+            </div>
+            <div class="col text-end">
+                <a href="features" style="text-decoration:none">See More →</a>
+            </div>
+        </div>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="list-group rounded-3 tab-background p-3" id="list-tab" role="tablist">
+                    <a class="list-group-item list-group-item-action rounded-3 py-3 active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab">
+                        Wrap any PyTorch model
+                        <span class="d-block d-none d-md-block small opacity-50">NNsight class object</span>
+                    </a>
+                    <a class="list-group-item list-group-item-action rounded-3 py-3" id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab">
+                        Access any hidden state
+                        <span class="d-block d-none d-md-block small opacity-50">Expose Module inputs and outputs </span>
+                    </a>
+                    <a class="list-group-item list-group-item-action rounded-3 py-3" id="list-messages-list" data-bs-toggle="list" href="#list-messages" role="tab">
+                        Develop complex interventions
+                        <span class="d-block d-none d-md-block small opacity-50">Edit module outputs and measure effect</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="tab-content static-on-small" id="nav-tabContent">
+                    <div class="tab-pane fill-height fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+                        <pre class="code-surface fill-height"><code class="language-python fill-height simple"></code></pre>
+                    </div>
+                    <div class="tab-pane fill-height fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+                        <pre class="code-surface fill-height"><code class="language-python fill-height trace"></code></pre>
+                    </div>
+                    <div class="tab-pane fill-height fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
+                        <pre class="code-surface fill-height"><code class="language-python fill-height multi"></code></pre>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section style="height: 20vh;"/></section>
 
 
                 </article>

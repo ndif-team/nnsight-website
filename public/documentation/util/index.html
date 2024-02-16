@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../../" data-theme="auto">
+<html lang="en" data-content_root="../../" data-theme="dark">
 
   <head>
     <meta charset="utf-8" />
@@ -13,7 +13,7 @@
   
   
   <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
@@ -28,11 +28,12 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=22d27927" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=0b34be48" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/tutorials.css?v=cc3de1f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=0108c9b3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/front.css?v=03c1ab20" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/hljs.css?v=ba6ffc5f" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
@@ -47,6 +48,8 @@
     <script src="../../_static/design-tabs.js?v=36754332"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'documentation/util';</script>
+    <script src="../../_static/js/custom.js?v=edefeff0"></script>
+    <script src="../../_static/js/code.js?v=11d068d3"></script>
     <link rel="icon" href="../../_static/icon.ico"/>
     <link rel="author" title="About these documents" href="../../about/" />
     <link rel="index" title="Index" href="../../genindex/" />
@@ -58,7 +61,7 @@
   </head>
   
   
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
 
   
   
@@ -129,11 +132,9 @@
   
     
     
-      
     
-    
-    <img src="../../_static/nnsight_logo.svg" class="logo__image only-light" alt="nnsight - Home"/>
-    <script>document.write(`<img src="../../_static/nnsight_logo.svg" class="logo__image only-dark" alt="nnsight - Home"/>`);</script>
+    <img src="../../_static/nnsight_logo.svg" class="logo__image only-dark" alt="nnsight - Home"/>
+    <script>document.write(`<img src="../../_static/nnsight_logo.svg" class="logo__image only-light" alt="nnsight - Home"/>`);</script>
   
   
 </a></div>
@@ -254,14 +255,14 @@
             if (response.status == 200) {
                 Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
-                        spanElement.style.setProperty('color', '#23C552', 'important');
+                        spanElement.style.setProperty('color', '#66800b', 'important');
                     });
                 });
             }
             else {
                 Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
-                        spanElement.style.setProperty('color', '#F84F31', 'important');
+                        spanElement.style.setProperty('color', '#af3029', 'important');
                     });
                 });
                 var statusIcon = document.querySelector('.ndif .fa-circle-check');
@@ -274,7 +275,7 @@
         .catch((response) => {
             Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
                 Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
-                    spanElement.style.setProperty('color', '#F84F31', 'important');
+                    spanElement.style.setProperty('color', '#af3029', 'important');
                 });
             });
             var statusIcon = document.querySelector('.ndif .fa-circle-check');
@@ -424,14 +425,14 @@
             if (response.status == 200) {
                 Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
-                        spanElement.style.setProperty('color', '#23C552', 'important');
+                        spanElement.style.setProperty('color', '#66800b', 'important');
                     });
                 });
             }
             else {
                 Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
-                        spanElement.style.setProperty('color', '#F84F31', 'important');
+                        spanElement.style.setProperty('color', '#af3029', 'important');
                     });
                 });
                 var statusIcon = document.querySelector('.ndif .fa-circle-check');
@@ -444,7 +445,7 @@
         .catch((response) => {
             Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
                 Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
-                    spanElement.style.setProperty('color', '#F84F31', 'important');
+                    spanElement.style.setProperty('color', '#af3029', 'important');
                 });
             });
             var statusIcon = document.querySelector('.ndif .fa-circle-check');
@@ -465,7 +466,7 @@
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../models/">nnsight.models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../module/">nnsight.module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../envoy/">nnsight.envoy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contexts/">nnsight.contexts</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">nnsight.util</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intervention/">nnsight.intervention</a></li>
@@ -574,29 +575,6 @@ registered hooks while the latter silently ignores them.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="nnsight.util.cross_entropy_loss">
-<span class="sig-prename descclassname"><span class="pre">nnsight.util.</span></span><span class="sig-name descname"><span class="pre">cross_entropy_loss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shift</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">avg_batch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">avg_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#nnsight.util.cross_entropy_loss" title="Link to this definition">#</a></dt>
-<dd><p>Helper function for cross entropy loss.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>logits</strong> (<em>torch.Tensor</em>) – Logits tensor of shape (batch size, n tokens, n features) or (n tokens, n features).</p></li>
-<li><p><strong>target_ids</strong> (<em>torch.Tensor</em>) – Target ids tensor of shape (batch size, n tokens) or (n tokens).</p></li>
-<li><p><strong>shift</strong> (<em>bool</em><em>, </em><em>optional</em>) – If to ignore the last token of logits and first token of target ids. Defaults to False.</p></li>
-<li><p><strong>avg_batch</strong> (<em>bool</em><em>, </em><em>optional</em>) – If to average the loss across batch. Defaults to True.</p></li>
-<li><p><strong>avg_token</strong> (<em>bool</em><em>, </em><em>optional</em>) – If to average the loss across tokens. Defaults to True.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Loss.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>torch.Tensor</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="nnsight.util.fetch_attr">
 <span class="sig-prename descclassname"><span class="pre">nnsight.util.</span></span><span class="sig-name descname"><span class="pre">fetch_attr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#nnsight.util.fetch_attr" title="Link to this definition">#</a></dt>
 <dd><p>Retrieves an attribute from an object hierarchy given an attribute path. Levels are separated by ‘.’ e.x (transformer.h.1)</p>
@@ -614,12 +592,6 @@ registered hooks while the latter silently ignores them.</p>
 <dd class="field-odd"><p>Any</p>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="nnsight.util.timed">
-<span class="sig-prename descclassname"><span class="pre">nnsight.util.</span></span><span class="sig-name descname"><span class="pre">timed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lggr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nnsight.util.timed" title="Link to this definition">#</a></dt>
-<dd><p>This decorator prints the execution time for the decorated function.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -672,9 +644,7 @@ Updates the __class__ attribute of the object and calls the wrapper type’s __i
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.util.apply"><code class="docutils literal notranslate"><span class="pre">apply()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.util.cross_entropy_loss"><code class="docutils literal notranslate"><span class="pre">cross_entropy_loss()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.util.fetch_attr"><code class="docutils literal notranslate"><span class="pre">fetch_attr()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.util.timed"><code class="docutils literal notranslate"><span class="pre">timed()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.util.wrap"><code class="docutils literal notranslate"><span class="pre">wrap()</span></code></a></li>
 </ul>
   </nav></div>

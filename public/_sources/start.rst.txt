@@ -8,17 +8,17 @@ Getting Started
 Installation
 ------------
 
-To get started with nnsight, install it with ``pip``. 
+To get started with NNsight, install it with ``pip``. 
 
 .. code-block:: console
 
-   pip install nnsight
+   pip install nnsight==0.2.2.dev0
 
 
 First Steps
 -----------
 
-.. grid:: 2
+.. grid:: 2 2 3 3
    :gutter: 2
 
    .. grid-item-card:: Walkthrough

@@ -2,18 +2,18 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../../" data-theme="auto">
+<html lang="en" data-content_root="../../" data-theme="dark">
 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>nnsight.module &#8212; nnsight</title>
+    <title>nnsight.envoy &#8212; nnsight</title>
   
   
   
   <script data-cfasync="false">
-    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
@@ -28,11 +28,12 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=22d27927" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=0b34be48" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/tutorials.css?v=cc3de1f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=0108c9b3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/front.css?v=03c1ab20" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/hljs.css?v=ba6ffc5f" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
@@ -46,7 +47,9 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=36754332"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'documentation/module';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'documentation/envoy';</script>
+    <script src="../../_static/js/custom.js?v=edefeff0"></script>
+    <script src="../../_static/js/code.js?v=11d068d3"></script>
     <link rel="icon" href="../../_static/icon.ico"/>
     <link rel="author" title="About these documents" href="../../about/" />
     <link rel="index" title="Index" href="../../genindex/" />
@@ -58,7 +61,7 @@
   </head>
   
   
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
 
   
   
@@ -129,11 +132,9 @@
   
     
     
-      
     
-    
-    <img src="../../_static/nnsight_logo.svg" class="logo__image only-light" alt="nnsight - Home"/>
-    <script>document.write(`<img src="../../_static/nnsight_logo.svg" class="logo__image only-dark" alt="nnsight - Home"/>`);</script>
+    <img src="../../_static/nnsight_logo.svg" class="logo__image only-dark" alt="nnsight - Home"/>
+    <script>document.write(`<img src="../../_static/nnsight_logo.svg" class="logo__image only-light" alt="nnsight - Home"/>`);</script>
   
   
 </a></div>
@@ -254,14 +255,14 @@
             if (response.status == 200) {
                 Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
-                        spanElement.style.setProperty('color', '#23C552', 'important');
+                        spanElement.style.setProperty('color', '#66800b', 'important');
                     });
                 });
             }
             else {
                 Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
-                        spanElement.style.setProperty('color', '#F84F31', 'important');
+                        spanElement.style.setProperty('color', '#af3029', 'important');
                     });
                 });
                 var statusIcon = document.querySelector('.ndif .fa-circle-check');
@@ -274,7 +275,7 @@
         .catch((response) => {
             Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
                 Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
-                    spanElement.style.setProperty('color', '#F84F31', 'important');
+                    spanElement.style.setProperty('color', '#af3029', 'important');
                 });
             });
             var statusIcon = document.querySelector('.ndif .fa-circle-check');
@@ -424,14 +425,14 @@
             if (response.status == 200) {
                 Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
-                        spanElement.style.setProperty('color', '#23C552', 'important');
+                        spanElement.style.setProperty('color', '#66800b', 'important');
                     });
                 });
             }
             else {
                 Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
                     Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
-                        spanElement.style.setProperty('color', '#F84F31', 'important');
+                        spanElement.style.setProperty('color', '#af3029', 'important');
                     });
                 });
                 var statusIcon = document.querySelector('.ndif .fa-circle-check');
@@ -444,7 +445,7 @@
         .catch((response) => {
             Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
                 Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
-                    spanElement.style.setProperty('color', '#F84F31', 'important');
+                    spanElement.style.setProperty('color', '#af3029', 'important');
                 });
             });
             var statusIcon = document.querySelector('.ndif .fa-circle-check');
@@ -465,7 +466,7 @@
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../models/">nnsight.models</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">nnsight.module</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">nnsight.envoy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contexts/">nnsight.contexts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../util/">nnsight.util</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intervention/">nnsight.intervention</a></li>
@@ -511,7 +512,7 @@
     
     <li class="breadcrumb-item"><a href="../" class="nav-link">Documentation</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">nnsight.module</li>
+    <li class="breadcrumb-item active" aria-current="page">nnsight.envoy</li>
   </ul>
 </nav>
 </div>
@@ -528,35 +529,17 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="module-nnsight.module">
-<span id="nnsight-module"></span><h1>nnsight.module<a class="headerlink" href="#module-nnsight.module" title="Link to this heading">#</a></h1>
-<p>The Module object acts as the entrypoint into the interwoven intervention graph. Through it, one can manipulate the inputs and outputs of Modules as a model is running. Specifically, the <code class="docutils literal notranslate"><span class="pre">.output</span></code> and <code class="docutils literal notranslate"><span class="pre">.input</span></code> attributes are the root nodes of the intervention graph, and all operations performed on these Proxy objects are the downstream nodes that populate the graph. Requires a <code class="docutils literal notranslate"><span class="pre">Tracer</span></code> object to add the correct proxies to the intervention graph.</p>
-<p class="rubric">Examples</p>
-<p>The example below accesses the inputs and outputs of a gpt2 module, saves them during execution, and prints the resulting values:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">()</span> <span class="k">as</span> <span class="n">generator</span><span class="p">:</span>
-    <span class="k">with</span> <span class="n">generator</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
-        <span class="n">hidden_states</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-        <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">hidden_states</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">logits</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>This example shows how to set the output of a gpt2 module to zero:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">()</span> <span class="k">as</span> <span class="n">generator</span><span class="p">:</span>
-    <span class="k">with</span> <span class="n">generator</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
-        <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-</pre></div>
-</div>
+  <section id="module-nnsight.envoy">
+<span id="nnsight-envoy"></span><h1>nnsight.envoy<a class="headerlink" href="#module-nnsight.envoy" title="Link to this heading">#</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="nnsight.module.Module">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.module.</span></span><span class="sig-name descname"><span class="pre">Module</span></span><a class="headerlink" href="#nnsight.module.Module" title="Link to this definition">#</a></dt>
-<dd><p>Class that wraps existing torch modules within a model’s module tree in order to add nnsight functionality.
-Proxies of it’s output and input are accessed by <cite>.output</cite> and <cite>.input</cite> respectively.</p>
+<dt class="sig sig-object py" id="nnsight.envoy.Envoy">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.envoy.</span></span><span class="sig-name descname"><span class="pre">Envoy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nnsight.envoy.Envoy" title="Link to this definition">#</a></dt>
+<dd><p>Envoy object act as proxies for torch modules within a model’s module tree in order to add nnsight functionality.
+Proxies of the underlying module’s output and input are accessed by <cite>.output</cite> and <cite>.input</cite> respectively.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.module.Module.module_path">
-<span class="sig-name descname"><span class="pre">module_path</span></span><a class="headerlink" href="#nnsight.module.Module.module_path" title="Link to this definition">#</a></dt>
-<dd><p>String representing the attribute path of this module relative the the root model. Separated by ‘.’ e.x (‘transformer.h.0.mlp’). Set by NNsightModel on initialization of meta model.</p>
+<dt class="sig sig-object py" id="nnsight.envoy.Envoy._module_path">
+<span class="sig-name descname"><span class="pre">_module_path</span></span><a class="headerlink" href="#nnsight.envoy.Envoy._module_path" title="Link to this definition">#</a></dt>
+<dd><p>String representing the attribute path of this Envoy’s module relative the the root model. Separated by ‘.’ e.x (‘transformer.h.0.mlp’). Set by NNsight on initialization of meta model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
@@ -565,9 +548,31 @@ Proxies of it’s output and input are accessed by <cite>.output</cite> and <cit
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.module.Module.output">
-<span class="sig-name descname"><span class="pre">output</span></span><a class="headerlink" href="#nnsight.module.Module.output" title="Link to this definition">#</a></dt>
-<dd><p>Proxy object representing the output of this module. Reset on pass through.</p>
+<dt class="sig sig-object py" id="nnsight.envoy.Envoy._fake_outputs">
+<span class="sig-name descname"><span class="pre">_fake_outputs</span></span><a class="headerlink" href="#nnsight.envoy.Envoy._fake_outputs" title="Link to this definition">#</a></dt>
+<dd><p>List of ‘meta’ tensors built from the outputs most recent _scan. Is list as there can be multiple shapes for a module called more than once.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[torch.Tensor]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.envoy.Envoy._fake_inputs">
+<span class="sig-name descname"><span class="pre">_fake_inputs</span></span><a class="headerlink" href="#nnsight.envoy.Envoy._fake_inputs" title="Link to this definition">#</a></dt>
+<dd><p>List of ‘meta’ tensors built from the inputs most recent _scan. Is list as there can be multiple shapes for a module called more than once.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[torch.Tensor]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.envoy.Envoy.output">
+<span class="sig-name descname"><span class="pre">output</span></span><a class="headerlink" href="#nnsight.envoy.Envoy.output" title="Link to this definition">#</a></dt>
+<dd><p>Proxy object representing the output of this Envoy’s module. Reset on forward pass.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy">nnsight.intervention.InterventionProxy</a></p>
@@ -576,31 +581,9 @@ Proxies of it’s output and input are accessed by <cite>.output</cite> and <cit
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.module.Module.output_shape">
-<span class="sig-name descname"><span class="pre">output_shape</span></span><a class="headerlink" href="#nnsight.module.Module.output_shape" title="Link to this definition">#</a></dt>
-<dd><p>Shape of the tensor outputs to this module. Populated by most recent pass through. Can also be a nested list of torch.Size.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>torch.Size</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.module.Module.output_type">
-<span class="sig-name descname"><span class="pre">output_type</span></span><a class="headerlink" href="#nnsight.module.Module.output_type" title="Link to this definition">#</a></dt>
-<dd><p>Dtype of the tensor outputs to this module. Populated by most recent pass through. Can also be a nested list of torch.dtype.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>torch.dtype</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.module.Module.input">
-<span class="sig-name descname"><span class="pre">input</span></span><a class="headerlink" href="#nnsight.module.Module.input" title="Link to this definition">#</a></dt>
-<dd><p>Proxy object representing the input of this module. Reset on pass through.</p>
+<dt class="sig sig-object py" id="nnsight.envoy.Envoy.input">
+<span class="sig-name descname"><span class="pre">input</span></span><a class="headerlink" href="#nnsight.envoy.Envoy.input" title="Link to this definition">#</a></dt>
+<dd><p>Proxy object representing the input of this Envoy’s module. Reset on forward pass.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy">nnsight.intervention.InterventionProxy</a></p>
@@ -609,31 +592,20 @@ Proxies of it’s output and input are accessed by <cite>.output</cite> and <cit
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.module.Module.input_shape">
-<span class="sig-name descname"><span class="pre">input_shape</span></span><a class="headerlink" href="#nnsight.module.Module.input_shape" title="Link to this definition">#</a></dt>
-<dd><p>Shape of the tensor inputs to this module. Populated by most recent pass through. Can also be a nested list of torch.Size.</p>
+<dt class="sig sig-object py" id="nnsight.envoy.Envoy._call_iter">
+<span class="sig-name descname"><span class="pre">_call_iter</span></span><a class="headerlink" href="#nnsight.envoy.Envoy._call_iter" title="Link to this definition">#</a></dt>
+<dd><p>Integer representing the current iteration of this Envoy’s module’s inputs/outputs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>torch.Size</p>
+<dd class="field-odd"><p>int</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.module.Module.input_type">
-<span class="sig-name descname"><span class="pre">input_type</span></span><a class="headerlink" href="#nnsight.module.Module.input_type" title="Link to this definition">#</a></dt>
-<dd><p>Dtype of the tensor inputs to this module. Populated by most recent pass through. Can also be a nested list of torch.dtype.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>torch.dtype</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.module.Module.tracer">
-<span class="sig-name descname"><span class="pre">tracer</span></span><a class="headerlink" href="#nnsight.module.Module.tracer" title="Link to this definition">#</a></dt>
-<dd><p>Object which adds this module’s output and input proxies to an intervention graph. Must be set on Module objects manually.</p>
+<dt class="sig sig-object py" id="nnsight.envoy.Envoy._tracer">
+<span class="sig-name descname"><span class="pre">_tracer</span></span><a class="headerlink" href="#nnsight.envoy.Envoy._tracer" title="Link to this definition">#</a></dt>
+<dd><p>Object which adds this Envoy’s module’s output and input proxies to an intervention graph. Must be set on Envoys objects manually by the Tracer.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>nnsight.context.Tracer.Tracer</p>
@@ -644,14 +616,14 @@ Proxies of it’s output and input are accessed by <cite>.output</cite> and <cit
 <dl class="py property">
 <dt class="sig sig-object py" id="id0">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">input</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></em><a class="headerlink" href="#id0" title="Link to this definition">#</a></dt>
-<dd><p>Calling denotes the user wishes to get the input of this module and therefore we create a Proxy of that request.
+<dd><p>Calling denotes the user wishes to get the input of the underlying module and therefore we create a Proxy of that request.
 Only generates a proxy the first time it is references otherwise return the already set one.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Input proxy.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="../tracing/#nnsight.tracing.Proxy.Proxy" title="nnsight.tracing.Proxy.Proxy">Proxy</a></p>
+<dd class="field-even"><p><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy">InterventionProxy</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -659,31 +631,14 @@ Only generates a proxy the first time it is references otherwise return the alre
 <dl class="py property">
 <dt class="sig sig-object py" id="id1">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">output</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></em><a class="headerlink" href="#id1" title="Link to this definition">#</a></dt>
-<dd><p>Calling denotes the user wishes to get the output of this module and therefore we create a Proxy of that request.
+<dd><p>Calling denotes the user wishes to get the output of the underlying module and therefore we create a Proxy of that request.
 Only generates a proxy the first time it is references otherwise return the already set one.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Output proxy.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="../tracing/#nnsight.tracing.Proxy.Proxy" title="nnsight.tracing.Proxy.Proxy">Proxy</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="nnsight.module.Module.wrap">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">wrap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Module</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nnsight.module.Module" title="nnsight.module.Module"><span class="pre">Module</span></a></span></span><a class="headerlink" href="#nnsight.module.Module.wrap" title="Link to this definition">#</a></dt>
-<dd><p>Wraps the torch Module with our Module class. Adds a forward hook to the module to populate output and input data. Does not wrap torch.nn.ModuleList.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>module</strong> (<em>torch.nn.Module</em>) – The torch Module to wrap.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The wrapped Module.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#nnsight.module.Module" title="nnsight.module.Module">Module</a></p>
+<dd class="field-even"><p><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy">InterventionProxy</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -714,18 +669,16 @@ Only generates a proxy the first time it is references otherwise return the alre
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.module.Module"><code class="docutils literal notranslate"><span class="pre">Module</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.module.Module.module_path"><code class="docutils literal notranslate"><span class="pre">Module.module_path</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.module.Module.output"><code class="docutils literal notranslate"><span class="pre">Module.output</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.module.Module.output_shape"><code class="docutils literal notranslate"><span class="pre">Module.output_shape</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.module.Module.output_type"><code class="docutils literal notranslate"><span class="pre">Module.output_type</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.module.Module.input"><code class="docutils literal notranslate"><span class="pre">Module.input</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.module.Module.input_shape"><code class="docutils literal notranslate"><span class="pre">Module.input_shape</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.module.Module.input_type"><code class="docutils literal notranslate"><span class="pre">Module.input_type</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.module.Module.tracer"><code class="docutils literal notranslate"><span class="pre">Module.tracer</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id0"><code class="docutils literal notranslate"><span class="pre">Module.input</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><code class="docutils literal notranslate"><span class="pre">Module.output</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.module.Module.wrap"><code class="docutils literal notranslate"><span class="pre">Module.wrap()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.envoy.Envoy"><code class="docutils literal notranslate"><span class="pre">Envoy</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.envoy.Envoy._module_path"><code class="docutils literal notranslate"><span class="pre">Envoy._module_path</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.envoy.Envoy._fake_outputs"><code class="docutils literal notranslate"><span class="pre">Envoy._fake_outputs</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.envoy.Envoy._fake_inputs"><code class="docutils literal notranslate"><span class="pre">Envoy._fake_inputs</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.envoy.Envoy.output"><code class="docutils literal notranslate"><span class="pre">Envoy.output</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.envoy.Envoy.input"><code class="docutils literal notranslate"><span class="pre">Envoy.input</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.envoy.Envoy._call_iter"><code class="docutils literal notranslate"><span class="pre">Envoy._call_iter</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.envoy.Envoy._tracer"><code class="docutils literal notranslate"><span class="pre">Envoy._tracer</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id0"><code class="docutils literal notranslate"><span class="pre">Envoy.input</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><code class="docutils literal notranslate"><span class="pre">Envoy.output</span></code></a></li>
 </ul>
 </li>
 </ul>
