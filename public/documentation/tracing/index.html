@@ -28,9 +28,12 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=22d27927" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=0108c9b3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/front.css?v=03c1ab20" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/hljs.css?v=ba6ffc5f" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
@@ -45,20 +48,16 @@
     <script src="../../_static/design-tabs.js?v=36754332"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'documentation/tracing';</script>
-    <script src="../../_static/js/custom.js?v=e4e20b07"></script>
-    <script src="../../_static/js/code.js?v=34343d0c"></script>
+    <script src="../../_static/js/custom.js?v=edefeff0"></script>
+    <script src="../../_static/js/code.js?v=11d068d3"></script>
     <link rel="icon" href="../../_static/icon.ico"/>
     <link rel="author" title="About these documents" href="../../about/" />
     <link rel="index" title="Index" href="../../genindex/" />
     <link rel="search" title="Search" href="../../search/" />
     <link rel="next" title="nnsight.patching" href="../patching/" />
     <link rel="prev" title="nnsight.intervention" href="../intervention/" />
-
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../../_static/css/custom.css?v=1708300156" rel="stylesheet" type="text/css" />
-<link href="../../_static/css/front.css?v=1708300156" rel="stylesheet" type="text/css" />
-
   </head>
   
   
@@ -207,18 +206,6 @@
         </div>
       
       
-        <div class="navbar-item">
-
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
-  </button>
-`);
-</script></div>
-      
         <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
     aria-label="Icon Links">
         <li class="nav-item">
@@ -256,12 +243,13 @@ document.write(`
           
           
           
-          <a href="/status" title="Status: Unknown" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i></span>
-            <span class="sr-only">Status: Unknown</span></a>
+          <a href="/status" title="Status" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Status</span></a>
         </li>
 </ul></div>
       
         <div class="navbar-item"><script>
+    
     fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
@@ -388,18 +376,6 @@ document.write(`
     
       <div class="sidebar-header-items__end">
         
-          <div class="navbar-item">
-
-<script>
-document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
-  </button>
-`);
-</script></div>
-        
           <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
     aria-label="Icon Links">
         <li class="nav-item">
@@ -437,12 +413,13 @@ document.write(`
           
           
           
-          <a href="/status" title="Status: Unknown" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i></span>
-            <span class="sr-only">Status: Unknown</span></a>
+          <a href="/status" title="Status" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Status</span></a>
         </li>
 </ul></div>
         
           <div class="navbar-item"><script>
+    
     fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
@@ -820,13 +797,16 @@ Used so names are unique.</p>
 </dl>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.tracing.Node.Node._proxy_device">
-<span class="sig-name descname"><span class="pre">_proxy_device</span></span><a class="headerlink" href="#nnsight.tracing.Node.Node._proxy_device" title="Link to this definition">#</a></dt>
-<dd><p>desc</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.Node.Node.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nnsight.tracing.Proxy.Proxy" title="nnsight.tracing.Proxy.Proxy"><span class="pre">Proxy</span></a></span></span><a class="headerlink" href="#nnsight.tracing.Node.Node.add" title="Link to this definition">#</a></dt>
+<dd><p>We use Node.add vs Graph.add in case the weakref to Graph is gone.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>torch.device</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Proxy</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#nnsight.tracing.Proxy.Proxy" title="nnsight.tracing.Proxy.Proxy">Proxy</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -872,6 +852,20 @@ Prepares args and kwargs and passed them to target.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>If fulfilled.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.Node.Node.is_graph_dereferenced">
+<span class="sig-name descname"><span class="pre">is_graph_dereferenced</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#nnsight.tracing.Node.Node.is_graph_dereferenced" title="Link to this definition">#</a></dt>
+<dd><p>Checks to see if the weakref to the Graph is deleted. If it is, we’re no longer tracing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Is Graph dereferenced.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>bool</p>
@@ -1040,12 +1034,13 @@ Otherwise just run the function.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Node.Node.listeners"><code class="docutils literal notranslate"><span class="pre">Node.listeners</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Node.Node.dependencies"><code class="docutils literal notranslate"><span class="pre">Node.dependencies</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Node.Node.value"><code class="docutils literal notranslate"><span class="pre">Node.value</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Node.Node._proxy_device"><code class="docutils literal notranslate"><span class="pre">Node._proxy_device</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Node.Node.add"><code class="docutils literal notranslate"><span class="pre">Node.add()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Node.Node.compile"><code class="docutils literal notranslate"><span class="pre">Node.compile()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Node.Node.destroy"><code class="docutils literal notranslate"><span class="pre">Node.destroy()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Node.Node.done"><code class="docutils literal notranslate"><span class="pre">Node.done()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Node.Node.execute"><code class="docutils literal notranslate"><span class="pre">Node.execute()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Node.Node.fulfilled"><code class="docutils literal notranslate"><span class="pre">Node.fulfilled()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Node.Node.is_graph_dereferenced"><code class="docutils literal notranslate"><span class="pre">Node.is_graph_dereferenced()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Node.Node.prepare_inputs"><code class="docutils literal notranslate"><span class="pre">Node.prepare_inputs()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Node.Node.prepare_proxy_values"><code class="docutils literal notranslate"><span class="pre">Node.prepare_proxy_values()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Node.Node.redundant"><code class="docutils literal notranslate"><span class="pre">Node.redundant()</span></code></a></li>
@@ -1086,9 +1081,17 @@ Otherwise just run the function.</p>
 
   <p class="copyright">
     
-      © Copyright 2024 NDIF.
+      © Copyright 2023, NDIF.
       <br/>
     
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
   </p>
 </div>
       

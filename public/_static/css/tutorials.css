@@ -1,0 +1,16 @@
+.tutorials-cards {
+    font-size: .9rem;
+}
+
+.tutorial-card-section {
+    overflow: scroll;
+    height: 50vh;
+}
+
+.tutorial-card-section::-webkit-scrollbar {
+    display: none;
+}
+
+.page-info {
+    z-index: 100;
+}
