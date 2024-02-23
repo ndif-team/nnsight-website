@@ -28,12 +28,9 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=22d27927" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=0108c9b3" />
-    <link rel="stylesheet" type="text/css" href="_static/css/front.css?v=03c1ab20" />
-    <link rel="stylesheet" type="text/css" href="_static/css/hljs.css?v=ba6ffc5f" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
@@ -48,15 +45,19 @@
     <script src="_static/design-tabs.js?v=36754332"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
-    <script src="_static/js/custom.js?v=edefeff0"></script>
-    <script src="_static/js/code.js?v=11d068d3"></script>
+    <script src="_static/js/custom.js?v=e4e20b07"></script>
+    <script src="_static/js/code.js?v=34343d0c"></script>
     <link rel="icon" href="_static/icon.ico"/>
     <link rel="author" title="About these documents" href="about/" />
     <link rel="index" title="Index" href="genindex/" />
     <link rel="search" title="Search" href="search/" />
     <link rel="next" title="Getting Started" href="start/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+<link href="_static/css/custom.css?v=1708718615" rel="stylesheet" type="text/css" />
+<link href="_static/css/front.css?v=1708718615" rel="stylesheet" type="text/css" />
+
   </head>
   
   
@@ -205,6 +206,18 @@
         </div>
       
       
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
         <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
     aria-label="Icon Links">
         <li class="nav-item">
@@ -242,13 +255,12 @@
           
           
           
-          <a href="/status" title="Status" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i></span>
-            <span class="sr-only">Status</span></a>
+          <a href="/status" title="Status: Unknown" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Status: Unknown</span></a>
         </li>
 </ul></div>
       
         <div class="navbar-item"><script>
-    
     fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
@@ -373,6 +385,18 @@
     
       <div class="sidebar-header-items__end">
         
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
           <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
     aria-label="Icon Links">
         <li class="nav-item">
@@ -410,13 +434,12 @@
           
           
           
-          <a href="/status" title="Status" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i></span>
-            <span class="sr-only">Status</span></a>
+          <a href="/status" title="Status: Unknown" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Status: Unknown</span></a>
         </li>
 </ul></div>
         
           <div class="navbar-item"><script>
-    
     fetch("https://ndif.dev/ping")
         .then((response) => {
             if (response.status == 200) {
@@ -497,30 +520,26 @@
       el.style.background = 'transparent';
     });
   });
-</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</script><script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    var observer = new MutationObserver(function(mutations) {
+        updateCSSLink();
+    });
+    observer.observe(document.documentElement, {attributes: true, attributeFilter: ['data-theme']});
 
-<script src="dist/clipboard.min.js"></script>
+    function updateCSSLink() {
+        const dark = document.documentElement.dataset.theme == 'dark';
+        var link = document.querySelector('link[rel="stylesheet"][href*="hljs"]');
+        if(link) {
+            link.href = dark ? '../_static/css/hljs-dark.css?v=0.2' : '../_static/css/hljs-light.css?v=0.2';
+        }
+    }
 
-<script>
-  new ClipboardJS('.btn');
+    // Initial check in case the theme is already set before the observer is added
+    updateCSSLink();
+});
 </script>
-
-<script>
-    // Select the element with the class 'some-class'
-  var element = document.querySelector('.bd-container');
-
-  var newElement = document.createElement('div');
-  newElement.id = 'canvas';
-
-  newElement.style.position = 'fixed';
-  newElement.style.zIndex = '-1';
-  newElement.style.height = '100vh';
-  newElement.style.width = '100vw';
-  newElement.style.top = '0';
-
-  element.appendChild(newElement);
-
-</script><section class="d-flex align-items-center" style="height: 85vh;">
+<link rel="stylesheet" href="../_static/css/hljs-dark.css?v=0.2"><section class="d-flex align-items-center" style="height: 85vh;">
     <div class="container">
         <div class="row g-5">
             <div class="col-md-6">
@@ -540,7 +559,7 @@
     </div>
 </section>
 
-<section class="d-flex align-items-center middle-stuff mid-section">
+<section class="d-flex align-items-center mid-section d-none d-md-block">
   <div class="px-4 text-center">
     <div class="col-lg-10 mx-auto">
       <p class="lead mb-4">Direct access to model internals, from one to one hundred billion parameters. Intervene on activations or gradients in transformers, train optimizations methods, perform out of order module applications, cross prompt interventions, and so much more.</p>
@@ -548,7 +567,7 @@
   </div>
 </section>
 
-<section class="d-flex align-items-center" style="height: 60vh;">
+<section class="d-flex align-items-center d-none d-md-block" style="height: 60vh;">
     <div class="container">
         <div class="row align-items-end pb-3 border-bottom mb-5">
             <div class="col">
@@ -593,7 +612,26 @@
     </div>
 </section>
 
-<section style="height: 20vh;"/></section>
+<section class="d-none d-md-block"  style="height: 20vh;"/><script>
+
+    var element = document.querySelector('.bd-container');
+
+    if (element) {
+    // If .bd-container exists, proceed to create the new element
+    var newElement = document.createElement('div');
+    newElement.id = 'canvas';
+
+    newElement.style.position = 'fixed';
+    newElement.style.zIndex = '-1';
+    newElement.style.height = '100vh';
+    newElement.style.width = '100vw';
+    newElement.style.top = '0';
+
+    element.appendChild(newElement);
+    } else {
+        console.log(".bd-container element does not exist.");
+    }
+</script></section>
 
 
                 </article>
@@ -629,17 +667,9 @@
 
   <p class="copyright">
     
-      © Copyright 2023, NDIF.
+      © Copyright 2024 NDIF.
       <br/>
     
-  </p>
-</div>
-      
-        <div class="footer-item">
-
-  <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
-    <br/>
   </p>
 </div>
       
