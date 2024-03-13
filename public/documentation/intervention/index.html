@@ -56,8 +56,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../../_static/css/custom.css?v=1708718615" rel="stylesheet" type="text/css" />
-<link href="../../_static/css/front.css?v=1708718615" rel="stylesheet" type="text/css" />
+<link href="../../_static/css/custom.css?v=1710349096" rel="stylesheet" type="text/css" />
+<link href="../../_static/css/front.css?v=1710349096" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -560,7 +560,7 @@ document.write(`
 <p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">HookModel</span></code> provides a context manager for adding input and output hooks to modules and removing them upon context exit.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="nnsight.intervention.HookHandler">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.intervention.</span></span><span class="sig-name descname"><span class="pre">HookHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module_keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_hook</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_hook</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nnsight.intervention.HookHandler" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.intervention.</span></span><span class="sig-name descname"><span class="pre">HookHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module_keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_hook</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_hook</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/#HookHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.HookHandler" title="Link to this definition">#</a></dt>
 <dd><p>Context manager that applies input and/or output hooks to modules in a model.</p>
 <p>Registers provided hooks on __enter__ and removes them on __exit__.</p>
 <dl class="py attribute">
@@ -624,7 +624,7 @@ Should have signature of [outputs(Any), module_path(str)] -&gt; outputs(Any)</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="nnsight.intervention.InterventionProxy">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.intervention.</span></span><span class="sig-name descname"><span class="pre">InterventionProxy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../tracing/#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nnsight.intervention.InterventionProxy" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.intervention.</span></span><span class="sig-name descname"><span class="pre">InterventionProxy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../tracing/#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/#InterventionProxy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.InterventionProxy" title="Link to this definition">#</a></dt>
 <dd><p>Sub-class for Proxy that adds additional user functionality to proxies.</p>
 <p class="rubric">Examples</p>
 <p>Saving a proxy so it is not deleted at the completion of it’s listeners is enabled with <code class="docutils literal notranslate"><span class="pre">.save()</span></code>:</p>
@@ -646,10 +646,24 @@ Had you not called .save(), calling .value would have been None.</p>
 <dd><p>Property to retrieve the device of the traced proxy value or real value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Proxy value shape or collection of shapes.</p>
+<dd class="field-odd"><p>Proxy value device or collection of devices.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>Union[torch.Size,Collection[torch.device]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nnsight.intervention.InterventionProxy.dtype">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dtype</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Collection</span><span class="p"><span class="pre">[</span></span><span class="pre">device</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#nnsight.intervention.InterventionProxy.dtype" title="Link to this definition">#</a></dt>
+<dd><p>Property to retrieve the dtype of the traced proxy value or real value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Proxy value dtype or collection of dtypes.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Union[torch.Size,Collection[torch.dtype]]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -671,7 +685,7 @@ Only generates a proxy the first time it is references otherwise return the alre
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nnsight.intervention.InterventionProxy.save">
-<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="headerlink" href="#nnsight.intervention.InterventionProxy.save" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/intervention/#InterventionProxy.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.InterventionProxy.save" title="Link to this definition">#</a></dt>
 <dd><p>Method when called, indicates to the intervention graph to not delete the tensor values of the result.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -701,7 +715,7 @@ Only generates a proxy the first time it is references otherwise return the alre
 
 <dl class="py function">
 <dt class="sig sig-object py" id="nnsight.intervention.intervene">
-<span class="sig-prename descclassname"><span class="pre">nnsight.intervention.</span></span><span class="sig-name descname"><span class="pre">intervene</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">activations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intervention_handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">InterventionHandler</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nnsight.intervention.intervene" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">nnsight.intervention.</span></span><span class="sig-name descname"><span class="pre">intervene</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">activations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intervention_handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">InterventionHandler</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/#intervene"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.intervene" title="Link to this definition">#</a></dt>
 <dd><p>Entry to intervention graph. This should be hooked to all modules involved in the intervention graph.</p>
 <p>Forms the current module_path key in the form of &lt;module path&gt;.&lt;output/input&gt;
 Checks the graphs argument_node_names attribute for this key.
@@ -766,6 +780,7 @@ to the output from downstream intervention nodes in the graph.</p>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.InterventionProxy"><code class="docutils literal notranslate"><span class="pre">InterventionProxy</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.InterventionProxy.device"><code class="docutils literal notranslate"><span class="pre">InterventionProxy.device</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.InterventionProxy.dtype"><code class="docutils literal notranslate"><span class="pre">InterventionProxy.dtype</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.InterventionProxy.grad"><code class="docutils literal notranslate"><span class="pre">InterventionProxy.grad</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.InterventionProxy.save"><code class="docutils literal notranslate"><span class="pre">InterventionProxy.save()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.InterventionProxy.shape"><code class="docutils literal notranslate"><span class="pre">InterventionProxy.shape</span></code></a></li>

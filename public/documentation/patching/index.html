@@ -56,8 +56,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../../_static/css/custom.css?v=1708718615" rel="stylesheet" type="text/css" />
-<link href="../../_static/css/front.css?v=1708718615" rel="stylesheet" type="text/css" />
+<link href="../../_static/css/custom.css?v=1710349096" rel="stylesheet" type="text/css" />
+<link href="../../_static/css/front.css?v=1710349096" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -557,7 +557,7 @@ document.write(`
 <p>The patching module handles patching of classes and functions in modules.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="nnsight.patching.Patch">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.patching.</span></span><span class="sig-name descname"><span class="pre">Patch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replacement</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nnsight.patching.Patch" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.patching.</span></span><span class="sig-name descname"><span class="pre">Patch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replacement</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/patching/#Patch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.patching.Patch" title="Link to this definition">#</a></dt>
 <dd><p>Class representing a replacement of an attribute on a module.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nnsight.patching.Patch.obj">
@@ -594,13 +594,13 @@ document.write(`
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nnsight.patching.Patch.patch">
-<span class="sig-name descname"><span class="pre">patch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#nnsight.patching.Patch.patch" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">patch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/patching/#Patch.patch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.patching.Patch.patch" title="Link to this definition">#</a></dt>
 <dd><p>Carries out the replacement of an object in a module/class.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nnsight.patching.Patch.restore">
-<span class="sig-name descname"><span class="pre">restore</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#nnsight.patching.Patch.restore" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">restore</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/patching/#Patch.restore"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.patching.Patch.restore" title="Link to this definition">#</a></dt>
 <dd><p>Carries out the restoration of the original object on the objects module/class.</p>
 </dd></dl>
 
@@ -608,7 +608,7 @@ document.write(`
 
 <dl class="py class">
 <dt class="sig sig-object py" id="nnsight.patching.Patcher">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.patching.</span></span><span class="sig-name descname"><span class="pre">Patcher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patches</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nnsight.patching.Patch" title="nnsight.patching.Patch"><span class="pre">Patch</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nnsight.patching.Patcher" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.patching.</span></span><span class="sig-name descname"><span class="pre">Patcher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patches</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nnsight.patching.Patch" title="nnsight.patching.Patch"><span class="pre">Patch</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/patching/#Patcher"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.patching.Patcher" title="Link to this definition">#</a></dt>
 <dd><p>Context manager that patches from a list of Patches on __enter__ and restores the patch on __exit__.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nnsight.patching.Patcher.patches">
@@ -622,7 +622,7 @@ document.write(`
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nnsight.patching.Patcher.add">
-<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.patching.Patch" title="nnsight.patching.Patch"><span class="pre">Patch</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#nnsight.patching.Patcher.add" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.patching.Patch" title="nnsight.patching.Patch"><span class="pre">Patch</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/patching/#Patcher.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.patching.Patcher.add" title="Link to this definition">#</a></dt>
 <dd><p>Adds a Patch to the patches. Also calls <cite>.patch()</cite> on the Patch.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
