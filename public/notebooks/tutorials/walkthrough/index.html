@@ -54,13 +54,13 @@
     <link rel="author" title="About these documents" href="../../../about/" />
     <link rel="index" title="Index" href="../../../genindex/" />
     <link rel="search" title="Search" href="../../../search/" />
-    <link rel="next" title="Activation Patching" href="../ioi_patching/" />
-    <link rel="prev" title="Tutorials" href="../../../tutorials/" />
+    <link rel="next" title="About NNsight" href="../../../about/" />
+    <link rel="prev" title="Dictionary Learning" href="../sae/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../../../_static/css/custom.css?v=1710349096" rel="stylesheet" type="text/css" />
-<link href="../../../_static/css/front.css?v=1710349096" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/custom.css?v=1712845071" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/front.css?v=1712845071" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -245,7 +245,7 @@ document.write(`
           
           
           
-          <a href="https://discord.gg/6uFJmCSwW7" title="Discord" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i></span>
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i></span>
             <span class="sr-only">Discord</span></a>
         </li>
         <li class="nav-item">
@@ -426,7 +426,7 @@ document.write(`
           
           
           
-          <a href="https://discord.gg/6uFJmCSwW7" title="Discord" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i></span>
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i></span>
             <span class="sr-only">Discord</span></a>
         </li>
         <li class="nav-item">
@@ -491,17 +491,23 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../attribution_patching/">Attribution Patching</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../function_vectors/">Function Vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../future_lens/">Future Lens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ioi_patching/">Activation Patching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logit_lens/">Logit Lens 🔎</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../sae/">Dictionary Learning</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Walkthrough</a></li>
 
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="../ioi_patching/">Activation Patching</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../attribution_patching/">Attribution Patching</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../logit_lens/">Logit Lens</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../future_lens/">Future Lens</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../function_vectors/">Function Vectors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sae/">Dictionary Learning</a></li>
 </ul>
 </div>
 </nav></div>
@@ -596,16 +602,20 @@ document.write(`
 <span class="n">hidden_dims</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">output_size</span> <span class="o">=</span> <span class="mi">2</span>
 
-<span class="n">net</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">OrderedDict</span><span class="p">([</span>
-    <span class="p">(</span><span class="s1">&#39;layer1&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_dims</span><span class="p">)),</span>
-    <span class="p">(</span><span class="s1">&#39;layer2&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_dims</span><span class="p">,</span> <span class="n">output_size</span><span class="p">)),</span>
-<span class="p">]))</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">net</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+    <span class="n">OrderedDict</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">(</span><span class="s2">&quot;layer1&quot;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_dims</span><span class="p">)),</span>
+            <span class="p">(</span><span class="s2">&quot;layer2&quot;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_dims</span><span class="p">,</span> <span class="n">output_size</span><span class="p">)),</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+<span class="p">)</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="nb">input</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">input_size</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
-<p>The core object of the nnsight package is <code class="docutils literal notranslate"><span class="pre">NNsight</span></code>. This wraps around a given pytorch model to enable the capabilites nnsight provides.</p>
+<p>The core object of the nnsight package is <code class="docutils literal notranslate"><span class="pre">NNsight</span></code>. This wraps around a given pytorch model to enable the capabilities nnsight provides.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -651,11 +661,11 @@ Sequential(
 </pre></div>
 </div>
 <div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
-  <span class="k">pass</span>
+    <span class="k">pass</span>
 </pre></div>
 </div>
 </div>
-<p>But where’s the output? To get that, we’ll have to learn how to request it from within the tracing conext.</p>
+<p>But where’s the output? To get that, we’ll have to learn how to request it from within the tracing context.</p>
 </section>
 <section id="Getting">
 <h2>Getting<a class="headerlink" href="#Getting" title="Link to this heading">#</a></h2>
@@ -664,7 +674,7 @@ Sequential(
 <span class="n">model</span><span class="o">.</span><span class="n">output</span>
 </pre></div>
 </div>
-<p>The names are self explainatory. They correspond to the inputs and outputs of their respective modules during a forward pass of the model. We can use these attributes inside the <code class="docutils literal notranslate"><span class="pre">with</span></code> block.</p>
+<p>The names are self explanatory. They correspond to the inputs and outputs of their respective modules during a forward pass of the model. We can use these attributes inside the <code class="docutils literal notranslate"><span class="pre">with</span></code> block.</p>
 <p>However, it is important to understand that the model is not executed until the end of the tracing context. How can we access inputs and outputs before the model is run? The trick is deferred execution.</p>
 <p><code class="docutils literal notranslate"><span class="pre">.input</span></code> and <code class="docutils literal notranslate"><span class="pre">.output</span></code> are Proxies for the eventual inputs and outputs of a module. In other words, when you access <code class="docutils literal notranslate"><span class="pre">model.output</span></code> what you are communicating to <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> is, “When you compute the output of <code class="docutils literal notranslate"><span class="pre">model</span></code>, please grab it for me and put the value into its corresponding Proxy object’s <code class="docutils literal notranslate"><span class="pre">.value</span></code> attribute.” Let’s try it:</p>
 <div class="nbinput docutils container">
@@ -673,7 +683,7 @@ Sequential(
 </div>
 <div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
 
-  <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">output</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">output</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 </pre></div>
@@ -710,7 +720,7 @@ Sequential(
 </div>
 <div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
 
-  <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 </pre></div>
@@ -759,7 +769,7 @@ Sequential(
 </div>
 <div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
 
-  <span class="n">l1_output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="n">l1_output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">l1_output</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 </pre></div>
@@ -781,7 +791,7 @@ tensor([[ 0.0458,  0.5267,  0.7119,  0.4046,  0.2460,  0.7998,  0.4485, -0.2506,
 </div>
 <div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
 
-  <span class="n">l2_input</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer2</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="n">l2_input</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer2</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">l2_input</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 </pre></div>
@@ -815,11 +825,11 @@ tensor([[ 0.0458,  0.5267,  0.7119,  0.4046,  0.2460,  0.7998,  0.4485, -0.2506,
 </div>
 <div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
 
-  <span class="c1"># Note we don&#39;t need to call .save() on the output,</span>
-  <span class="c1"># as we&#39;re only using its value within the tracing context.</span>
-  <span class="n">l1_output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span>
+    <span class="c1"># Note we don&#39;t need to call .save() on the output,</span>
+    <span class="c1"># as we&#39;re only using its value within the tracing context.</span>
+    <span class="n">l1_output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span>
 
-  <span class="n">l1_amax</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">l1_output</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="n">l1_amax</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">l1_output</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">l1_amax</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
@@ -841,7 +851,7 @@ tensor(5)
 </div>
 <div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
 
-  <span class="n">value</span> <span class="o">=</span> <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">layer2</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">+</span> <span class="n">model</span><span class="o">.</span><span class="n">layer2</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 </pre></div>
@@ -855,7 +865,7 @@ tensor(5)
 tensor(2.3416)
 </pre></div></div>
 </div>
-<p>By default, torch functiona, methods and all operators work with <code class="docutils literal notranslate"><span class="pre">nnsight</span></code>. We also enable the use of the <code class="docutils literal notranslate"><span class="pre">einops</span></code> library.</p>
+<p>By default, torch functions, methods and all operators work with <code class="docutils literal notranslate"><span class="pre">nnsight</span></code>. We also enable the use of the <code class="docutils literal notranslate"><span class="pre">einops</span></code> library.</p>
 <p>So to recap, the above code block is saying to <code class="docutils literal notranslate"><span class="pre">nnsight</span></code>, “Run the model with the given <code class="docutils literal notranslate"><span class="pre">input</span></code>. When the output of layer1 is computed, take its sum. Then do the same for layer2. Now that both of those are computed, add them and make sure not to delete this value as I wish to use it outside of the tracing context.”</p>
 <p>Getting and analyzing the activations from various points in a model can be really insightful, and a number of ML techniques do exactly that. However, often times we not only want to view the computation of a model, but influence it as well.</p>
 </section>
@@ -868,15 +878,15 @@ tensor(2.3416)
 </div>
 <div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
 
-  <span class="c1"># Save the output before the edit to compare.</span>
-  <span class="c1"># Notice we apply .clone() before saving as the setting operation is in-place.</span>
-  <span class="n">l1_output_before</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="c1"># Save the output before the edit to compare.</span>
+    <span class="c1"># Notice we apply .clone() before saving as the setting operation is in-place.</span>
+    <span class="n">l1_output_before</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
-  <span class="c1"># Access the 0th index of the hidden state dimension and set it to 0.</span>
-  <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># Access the 0th index of the hidden state dimension and set it to 0.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
-  <span class="c1"># Save the output after to see our edit.</span>
-  <span class="n">l1_output_after</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="c1"># Save the output after to see our edit.</span>
+    <span class="n">l1_output_after</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Before:&quot;</span><span class="p">,</span> <span class="n">l1_output_before</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;After:&quot;</span><span class="p">,</span> <span class="n">l1_output_after</span><span class="p">)</span>
@@ -901,15 +911,15 @@ After: tensor([[ 0.0000,  0.5267,  0.7119,  0.4046,  0.2460,  0.7998,  0.4485, -
 </div>
 <div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
 
-  <span class="c1"># Save the output before the edit to compare.</span>
-  <span class="c1"># Notice we apply .clone() before saving as the setting operation is in-place.</span>
-  <span class="n">l1_output_before</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="c1"># Save the output before the edit to compare.</span>
+    <span class="c1"># Notice we apply .clone() before saving as the setting operation is in-place.</span>
+    <span class="n">l1_output_before</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
-  <span class="c1"># Access the last index of the hidden state dimension and set it to 0.</span>
-  <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="p">[:,</span> <span class="n">hidden_dims</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># Access the last index of the hidden state dimension and set it to 0.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="p">[:,</span> <span class="n">hidden_dims</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
-  <span class="c1"># Save the output after to see our edit.</span>
-  <span class="n">l1_output_after</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="c1"># Save the output after to see our edit.</span>
+    <span class="n">l1_output_after</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Before:&quot;</span><span class="p">,</span> <span class="n">l1_output_before</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;After:&quot;</span><span class="p">,</span> <span class="n">l1_output_after</span><span class="p">)</span>
@@ -976,17 +986,17 @@ section) like <code class="docutils literal notranslate"><span class="pre">Trace
 </div>
 <div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
 
-  <span class="c1"># Save the output before the edit to compare.</span>
-  <span class="c1"># Notice we apply .clone() before saving as the setting operation is in-place.</span>
-  <span class="n">l1_output_before</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="c1"># Save the output before the edit to compare.</span>
+    <span class="c1"># Notice we apply .clone() before saving as the setting operation is in-place.</span>
+    <span class="n">l1_output_before</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
-  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;layer1 output shape: </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;layer1 output shape: </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-  <span class="c1"># Access the last index of the hidden state dimension and set it to 0.</span>
-  <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="p">[:,</span> <span class="n">hidden_dims</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># Access the last index of the hidden state dimension and set it to 0.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="p">[:,</span> <span class="n">hidden_dims</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
-  <span class="c1"># Save the output after to see our edit.</span>
-  <span class="n">l1_output_after</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="c1"># Save the output after to see our edit.</span>
+    <span class="n">l1_output_after</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Before:&quot;</span><span class="p">,</span> <span class="n">l1_output_before</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;After:&quot;</span><span class="p">,</span> <span class="n">l1_output_after</span><span class="p">)</span>
@@ -1012,18 +1022,18 @@ After: tensor([[ 0.0458,  0.5267,  0.7119,  0.4046,  0.2460,  0.7998,  0.4485, -
 </div>
 <div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
 
-  <span class="c1"># Save the output before the edit to compare.</span>
-  <span class="c1"># Notice we apply .clone() before saving as the setting operation is in-place.</span>
-  <span class="n">l1_output_before</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="c1"># Save the output before the edit to compare.</span>
+    <span class="c1"># Notice we apply .clone() before saving as the setting operation is in-place.</span>
+    <span class="n">l1_output_before</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
-  <span class="c1"># Create random noise with variance of .001</span>
-  <span class="n">noise</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.001</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span><span class="o">*</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">l1_output_before</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="c1"># Create random noise with variance of .001</span>
+    <span class="n">noise</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.001</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">l1_output_before</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
-  <span class="c1"># Add to original value and replace.</span>
-  <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="n">l1_output_before</span> <span class="o">+</span> <span class="n">noise</span>
+    <span class="c1"># Add to original value and replace.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="n">l1_output_before</span> <span class="o">+</span> <span class="n">noise</span>
 
-  <span class="c1"># Save the output after to see our edit.</span>
-  <span class="n">l1_output_after</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="c1"># Save the output after to see our edit.</span>
+    <span class="n">l1_output_after</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Before:&quot;</span><span class="p">,</span> <span class="n">l1_output_before</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;After:&quot;</span><span class="p">,</span> <span class="n">l1_output_after</span><span class="p">)</span>
@@ -1051,22 +1061,22 @@ After: tensor([[ 0.0581,  0.5168,  0.6561,  0.4083,  0.2617,  0.7800,  0.4080, -
 </div>
 <div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
 
-  <span class="c1"># We need to explicitly have the tensor require grad</span>
-  <span class="c1"># as the model we defined earlier turned off requiring grad.</span>
-  <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="c1"># We need to explicitly have the tensor require grad</span>
+    <span class="c1"># as the model we defined earlier turned off requiring grad.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="kc">True</span>
 
-  <span class="c1"># We call .grad on a tensor Proxy to communicate we want to store its gradient.</span>
-  <span class="c1"># We need to call .save() of course as .grad is its own Proxy.</span>
-  <span class="n">layer1_output_grad</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-  <span class="n">layer2_output_grad</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer2</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="c1"># We call .grad on a tensor Proxy to communicate we want to store its gradient.</span>
+    <span class="c1"># We need to call .save() of course as .grad is its own Proxy.</span>
+    <span class="n">layer1_output_grad</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="n">layer2_output_grad</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer2</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
-  <span class="c1"># Need a loss to propagate through the later modules in order to have a grad.</span>
-  <span class="n">loss</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-  <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+    <span class="c1"># Need a loss to propagate through the later modules in order to have a grad.</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Layer 1 output gradient:&quot;</span><span class="p">,</span> <span class="n">layer1_output_grad</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Layer 2 output gradient:&quot;</span><span class="p">,</span> <span class="n">layer2_output_grad</span><span class="p">)</span>
-<br/></pre></div>
+</pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1086,19 +1096,19 @@ Layer 2 output gradient: tensor([[1., 1.]])
 </div>
 <div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
 
-  <span class="c1"># We need to explicitly have the tensor require grad</span>
-  <span class="c1"># as the model we defined earlier turned off requiring grad.</span>
-  <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="c1"># We need to explicitly have the tensor require grad</span>
+    <span class="c1"># as the model we defined earlier turned off requiring grad.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">=</span> <span class="kc">True</span>
 
-  <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">grad</span><span class="p">[:]</span> <span class="o">=</span> <span class="mi">0</span>
-  <span class="n">model</span><span class="o">.</span><span class="n">layer2</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">grad</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer2</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span> <span class="o">*</span> <span class="mi">2</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">grad</span><span class="p">[:]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">layer2</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">grad</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer2</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span> <span class="o">*</span> <span class="mi">2</span>
 
-  <span class="n">layer1_output_grad</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-  <span class="n">layer2_output_grad</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer2</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="n">layer1_output_grad</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="n">layer2_output_grad</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer2</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
-  <span class="c1"># Need a loss to propagate through the later modules in order to have a grad.</span>
-  <span class="n">loss</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-  <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+    <span class="c1"># Need a loss to propagate through the later modules in order to have a grad.</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Layer 1 output gradient:&quot;</span><span class="p">,</span> <span class="n">layer1_output_grad</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Layer 2 output gradient:&quot;</span><span class="p">,</span> <span class="n">layer2_output_grad</span><span class="p">)</span>
@@ -1130,7 +1140,7 @@ Layer 2 output gradient: tensor([[2., 2.]])
 </div>
 <div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nnsight</span> <span class="kn">import</span> <span class="n">LanguageModel</span>
 
-<span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s1">&#39;openai-community/gpt2&#39;</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s2">&quot;openai-community/gpt2&quot;</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 </pre></div>
@@ -1221,20 +1231,20 @@ GPT2LMHeadModel(
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">):</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;The Eiffel Tower is in the city of&quot;</span><span class="p">):</span>
 
-  <span class="c1"># Access the last layer using h[-1] as it&#39;s a ModuleList</span>
-  <span class="c1"># Access the first index of .output as that&#39;s where the hidden states are.</span>
-  <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">mlp</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][:]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># Access the last layer using h[-1] as it&#39;s a ModuleList</span>
+    <span class="c1"># Access the first index of .output as that&#39;s where the hidden states are.</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">mlp</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][:]</span> <span class="o">=</span> <span class="mi">0</span>
 
-  <span class="c1"># Logits come out of model.lm_head and we apply argmax to get the predicted token ids.</span>
-  <span class="n">token_ids</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="c1"># Logits come out of model.lm_head and we apply argmax to get the predicted token ids.</span>
+    <span class="n">token_ids</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Token IDs:&quot;</span><span class="p">,</span> <span class="n">token_ids</span><span class="p">)</span>
 
 <span class="c1"># Apply the tokenizer to decode the ids into words after the tracing context.</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prediction:&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">token_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
-<br/></pre></div>
+</pre></div>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -1256,7 +1266,9 @@ Prediction:  London
 </div>
 <p>You just ran a little intervention on a much more complex model with a lot more parameters! An important piece of information we’re missing though is what the prediction would look like without our ablation.</p>
 <p>Of course we could just run two tracing contexts and compare the outputs. This, however, would require two forward passes through the model. <code class="docutils literal notranslate"><span class="pre">NNsight</span></code> can do better than that.</p>
-<p>## Batching</p>
+</section>
+<section id="Batching">
+<h2>Batching<a class="headerlink" href="#Batching" title="Link to this heading">#</a></h2>
 <p>It’s time to bring back the <code class="docutils literal notranslate"><span class="pre">Tracer</span></code> object we dropped before. See, when you call <code class="docutils literal notranslate"><span class="pre">.trace(...)</span></code> with some input, it’s actually creating two different contexts behind the scenes. The second one is the invoker context. Being within this context just means that <code class="docutils literal notranslate"><span class="pre">.input</span></code> and <code class="docutils literal notranslate"><span class="pre">.output</span></code> should refer only to the input you’ve given invoke. Calling <code class="docutils literal notranslate"><span class="pre">.trace(...)</span></code> with some input just means there’s only one input and therefore only one invoker context.</p>
 <p>We can call <code class="docutils literal notranslate"><span class="pre">.trace()</span></code> without input and call <code class="docutils literal notranslate"><span class="pre">Tracer.invoke(...)</span></code> to manually create the invoker context with our input. Now every subsequent time we call <code class="docutils literal notranslate"><span class="pre">.invoke(...)</span></code>, new interventions will only refer to the input in that particular invoke. When exiting the tracing context, the inputs from all of the invokers will be batched together, and they will be executed in one forward pass! So let’s do the ablation experiment, and compute a ‘control’ output to compare to:</p>
 <details><summary><p>On the invoker context</p>
@@ -1271,18 +1283,18 @@ Prediction:  London
 </div>
 <div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">()</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
 
-  <span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;The Eiffel Tower is in the city of&quot;</span><span class="p">):</span>
 
-    <span class="c1"># Ablate the last MLP for only this batch.</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">mlp</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][:]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="c1"># Ablate the last MLP for only this batch.</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">mlp</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][:]</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="c1"># Get the output for only the intervened on batch.</span>
-    <span class="n">token_ids_intervention</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="c1"># Get the output for only the intervened on batch.</span>
+        <span class="n">token_ids_intervention</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
-  <span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;The Eiffel Tower is in the city of&quot;</span><span class="p">):</span>
 
-    <span class="c1"># Get the output for only the original batch.</span>
-    <span class="n">token_ids_original</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="c1"># Get the output for only the original batch.</span>
+        <span class="n">token_ids_original</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Original token IDs:&quot;</span><span class="p">,</span> <span class="n">token_ids_original</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Intervention token IDs:&quot;</span><span class="p">,</span> <span class="n">token_ids_intervention</span><span class="p">)</span>
@@ -1311,19 +1323,19 @@ Intervention prediction:  London
 </div>
 <div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">()</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
 
-  <span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;The Eiffel Tower is in the city of&quot;</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;The Eiffel Tower is in the city of&quot;</span><span class="p">):</span>
 
-    <span class="n">embeddings</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">wte</span><span class="o">.</span><span class="n">output</span>
+        <span class="n">embeddings</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">wte</span><span class="o">.</span><span class="n">output</span>
 
-  <span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;_ _ _ _ _ _ _ _ _ _&quot;</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;_ _ _ _ _ _ _ _ _ _&quot;</span><span class="p">):</span>
 
-    <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">wte</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="n">embeddings</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">wte</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="n">embeddings</span>
 
-    <span class="n">token_ids_intervention</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="n">token_ids_intervention</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
-  <span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;_ _ _ _ _ _ _ _ _ _&quot;</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;_ _ _ _ _ _ _ _ _ _&quot;</span><span class="p">):</span>
 
-    <span class="n">token_ids_original</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="n">token_ids_original</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Original prediction:&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">token_ids_original</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Intervention prediction:&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">token_ids_intervention</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
@@ -1351,13 +1363,13 @@ Intervention prediction:  Paris
 </div>
 <div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="s2">&quot;The Eiffel Tower is in the city of&quot;</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
 
-  <span class="n">token_ids_1</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="n">token_ids_1</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
-  <span class="n">token_ids_2</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">next</span><span class="p">()</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="n">token_ids_2</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">next</span><span class="p">()</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
-  <span class="n">token_ids_3</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">next</span><span class="p">()</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="n">token_ids_3</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">next</span><span class="p">()</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
-  <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generator</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generator</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prediction 1: &quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">token_ids_1</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prediction 2: &quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">token_ids_2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
@@ -1401,7 +1413,7 @@ All prediction:  [&#39;The Eiffel Tower is in the city of Paris, and&#39;]
 <p>To see which models are currently being hosted, check out the following status page: <a class="reference external" href="https://nnsight.net/status/">https://nnsight.net/status/</a></p>
 <section id="Remote-execution">
 <h2>Remote execution<a class="headerlink" href="#Remote-execution" title="Link to this heading">#</a></h2>
-<p>In its current state, <code class="docutils literal notranslate"><span class="pre">NDIF</span></code> requires you to recieve an API key. Therefore, to run the rest of this colab, you would need one of your own. To get one, simply join the <a class="reference external" href="https://discord.gg/6uFJmCSwW7">NDIF discord</a> and introduce yourself on the <code class="docutils literal notranslate"><span class="pre">#introductions</span></code> channel. Then DM either &#64;JadenFK or &#64;caden and we’ll create one for you.</p>
+<p>In its current state, <code class="docutils literal notranslate"><span class="pre">NDIF</span></code> requires you to receive an API key. Therefore, to run the rest of this colab, you would need one of your own. To get one, simply join the <a class="reference external" href="https://discord.gg/6uFJmCSwW7">NDIF discord</a> and introduce yourself on the <code class="docutils literal notranslate"><span class="pre">#introductions</span></code> channel. Then DM either &#64;JadenFK or &#64;caden and we’ll create one for you.</p>
 <p>Once you have one, to register your api key with <code class="docutils literal notranslate"><span class="pre">nnsight</span></code>, do the following:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -1440,7 +1452,7 @@ All prediction:  [&#39;The Eiffel Tower is in the city of Paris, and&#39;]
 <span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s2">&quot;meta-llama/Llama-2-70b-hf&quot;</span><span class="p">)</span>
 
 <span class="c1"># All we need to specify using NDIF vs executing locally is remote=True.</span>
-<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">runner</span><span class="p">:</span>
+<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;The Eiffel Tower is in the city of&quot;</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">runner</span><span class="p">:</span>
 
     <span class="n">hidden_states</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
@@ -1448,7 +1460,7 @@ All prediction:  [&#39;The Eiffel Tower is in the city of Paris, and&#39;]
 
 <span class="nb">print</span><span class="p">(</span><span class="n">hidden_states</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">[</span><span class="s1">&#39;logits&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">[</span><span class="s2">&quot;logits&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1499,6 +1511,7 @@ All prediction:  [&#39;The Eiffel Tower is in the city of Paris, and&#39;]
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#2-Bigger">2 Bigger</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#LanguageModel">LanguageModel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Batching">Batching</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#.next()">.next()</a></li>
 </ul>
 </li>

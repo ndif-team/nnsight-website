@@ -53,8 +53,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../../../../_static/css/custom.css?v=1710349096" rel="stylesheet" type="text/css" />
-<link href="../../../../_static/css/front.css?v=1710349096" rel="stylesheet" type="text/css" />
+<link href="../../../../_static/css/custom.css?v=1712845071" rel="stylesheet" type="text/css" />
+<link href="../../../../_static/css/front.css?v=1712845071" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -239,7 +239,7 @@ document.write(`
           
           
           
-          <a href="https://discord.gg/6uFJmCSwW7" title="Discord" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i></span>
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i></span>
             <span class="sr-only">Discord</span></a>
         </li>
         <li class="nav-item">
@@ -422,7 +422,7 @@ document.write(`
           
           
           
-          <a href="https://discord.gg/6uFJmCSwW7" title="Discord" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i></span>
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i></span>
             <span class="sr-only">Discord</span></a>
         </li>
         <li class="nav-item">
@@ -555,7 +555,7 @@ document.write(`
 
 <span class="sd">    Attributes:</span>
 <span class="sd">        tracer (nnsight.contexts.Tracer.Tracer): Tracer object to enter input and manage context.</span>
-<span class="sd">        inputs (Tuple[Any]): Initially entered inputs, then post-processed inputs from model&#39;s ._prepare_inputs(...) method.</span>
+<span class="sd">        inputs (tuple[Any]): Initially entered inputs, then post-processed inputs from model&#39;s ._prepare_inputs(...) method.</span>
 <span class="sd">        scan (bool): If to execute the model using `FakeTensor` in order to update the potential sizes/dtypes of all modules&#39; Envoys&#39; inputs/outputs as well as validate things work correctly.</span>
 <span class="sd">            Scanning is not free computation wise so you may want to turn this to false when running in a loop.</span>
 <span class="sd">            When making interventions, you made get shape errors if scan is false as it validates operations based on shapes so</span>
@@ -566,7 +566,7 @@ document.write(`
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">tracer</span><span class="p">:</span> <span class="s2">&quot;Tracer&quot;</span><span class="p">,</span>
-        <span class="o">*</span><span class="n">inputs</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
+        <span class="o">*</span><span class="n">inputs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
         <span class="n">scan</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -590,9 +590,7 @@ document.write(`
 
         <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">_invoker</span> <span class="o">=</span> <span class="bp">self</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="p">,</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">_prepare_inputs</span><span class="p">(</span>
-            <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span>
-        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="p">,</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">_prepare_inputs</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scan</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">_envoy</span><span class="o">.</span><span class="n">_clear</span><span class="p">()</span>

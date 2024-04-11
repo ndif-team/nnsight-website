@@ -53,8 +53,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../../../_static/css/custom.css?v=1710349096" rel="stylesheet" type="text/css" />
-<link href="../../../_static/css/front.css?v=1710349096" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/custom.css?v=1712845071" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/front.css?v=1712845071" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -239,7 +239,7 @@ document.write(`
           
           
           
-          <a href="https://discord.gg/6uFJmCSwW7" title="Discord" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i></span>
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i></span>
             <span class="sr-only">Discord</span></a>
         </li>
         <li class="nav-item">
@@ -422,7 +422,7 @@ document.write(`
           
           
           
-          <a href="https://discord.gg/6uFJmCSwW7" title="Discord" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i></span>
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i></span>
             <span class="sr-only">Discord</span></a>
         </li>
         <li class="nav-item">
@@ -536,6 +536,7 @@ document.write(`
   <h1>Source code for nnsight.envoy</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
+<span class="kn">import</span> <span class="nn">inspect</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
 
@@ -584,29 +585,42 @@ document.write(`
             <span class="bp">self</span><span class="o">.</span><span class="n">_hook</span><span class="p">,</span> <span class="n">with_kwargs</span><span class="o">=</span><span class="kc">True</span>
         <span class="p">)</span>
 
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">module</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_module</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">module</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_module</span><span class="o">.</span><span class="n">named_children</span><span class="p">():</span>
 
-                <span class="n">envoy</span> <span class="o">=</span> <span class="n">Envoy</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">module_path</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_module_path</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_add_envoy</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
-                <span class="bp">self</span><span class="o">.</span><span class="n">_sub_envoys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">envoy</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Updates the ._model attribute using a new model of the same architecture.</span>
+<span class="sd">        Used when loading the real weights (dispatching) and need to replace the underlying modules.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_module</span> <span class="o">=</span> <span class="n">module</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hook_handle</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hook_handle</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_module</span><span class="o">.</span><span class="n">register_forward_hook</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_hook</span><span class="p">,</span> <span class="n">with_kwargs</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">module</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_module</span><span class="o">.</span><span class="n">children</span><span class="p">()):</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_sub_envoys</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">_update</span><span class="p">(</span><span class="n">module</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_add_envoy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+
+        <span class="n">envoy</span> <span class="o">=</span> <span class="n">Envoy</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">module_path</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_module_path</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sub_envoys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">envoy</span><span class="p">)</span>
+
+        <span class="c1"># If the module already has a sub-module named &#39;input&#39; or &#39;output&#39;,</span>
+        <span class="c1"># mount the proxy access to &#39;nns_input&#39; or &#39;nns_output instead.</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">Envoy</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_handle_overloaded_mount</span><span class="p">(</span><span class="n">envoy</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">module</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_module</span><span class="o">.</span><span class="n">named_children</span><span class="p">():</span>
 
-                <span class="n">envoy</span> <span class="o">=</span> <span class="n">Envoy</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">module_path</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_module_path</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-                <span class="bp">self</span><span class="o">.</span><span class="n">_sub_envoys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">envoy</span><span class="p">)</span>
-
-                <span class="c1"># If the module already has a sub-module named &#39;input&#39; or &#39;output&#39;,</span>
-                <span class="c1"># mount the proxy access to &#39;nns_input&#39; or &#39;nns_output instead.</span>
-                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">Envoy</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_handle_overloaded_mount</span><span class="p">(</span><span class="n">envoy</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-
-                <span class="k">else</span><span class="p">:</span>
-
-                    <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">envoy</span><span class="p">)</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">envoy</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_handle_overloaded_mount</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">envoy</span><span class="p">:</span> <span class="n">Envoy</span><span class="p">,</span> <span class="n">mount_point</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 
@@ -773,12 +787,15 @@ document.write(`
         <span class="n">child_lines</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">attribute_name</span><span class="p">,</span> <span class="n">attribute</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
 
+            <span class="k">if</span> <span class="n">attribute_name</span> <span class="o">==</span> <span class="s2">&quot;_tracer&quot;</span><span class="p">:</span>
+                <span class="k">continue</span>
+
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attribute</span><span class="p">,</span> <span class="n">Envoy</span><span class="p">):</span>
 
                 <span class="n">mod_str</span> <span class="o">=</span> <span class="nb">repr</span><span class="p">(</span><span class="n">attribute</span><span class="p">)</span>
                 <span class="n">mod_str</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">modules</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">_addindent</span><span class="p">(</span><span class="n">mod_str</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
                 <span class="n">child_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;(&quot;</span> <span class="o">+</span> <span class="n">attribute_name</span> <span class="o">+</span> <span class="s2">&quot;): &quot;</span> <span class="o">+</span> <span class="n">mod_str</span><span class="p">)</span>
-                
+
         <span class="n">lines</span> <span class="o">=</span> <span class="n">extra_lines</span> <span class="o">+</span> <span class="n">child_lines</span>
 
         <span class="n">main_str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_module</span><span class="o">.</span><span class="n">_get_name</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;(&quot;</span>
@@ -844,7 +861,15 @@ document.write(`
 
         <span class="n">module_proxy</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tracer</span><span class="o">.</span><span class="n">_graph</span><span class="o">.</span><span class="n">module_proxy</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_module_path</span><span class="p">)</span>
 
-        <span class="n">torch</span><span class="o">.</span><span class="n">set_default_device</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_module</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+
+            <span class="n">device</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_module</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span><span class="o">.</span><span class="n">device</span>
+
+        <span class="k">except</span><span class="p">:</span>
+
+            <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+
+        <span class="n">torch</span><span class="o">.</span><span class="n">set_default_device</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
 
         <span class="n">proxy</span> <span class="o">=</span> <span class="n">module_proxy</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -874,7 +899,7 @@ document.write(`
                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_output</span>
 
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fake_outputs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">fake_output</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="n">fake_output</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">_empty</span>
             <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_iter</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fake_outputs</span><span class="p">):</span>
                 <span class="c1"># TODO warning?</span>
                 <span class="n">fake_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fake_outputs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -927,7 +952,7 @@ document.write(`
                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input</span>
 
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fake_inputs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">fake_input</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="n">fake_input</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">_empty</span>
             <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_iter</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fake_inputs</span><span class="p">):</span>
                 <span class="c1"># TODO warning?</span>
                 <span class="n">fake_input</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fake_inputs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>

@@ -56,8 +56,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../../_static/css/custom.css?v=1710349096" rel="stylesheet" type="text/css" />
-<link href="../../_static/css/front.css?v=1710349096" rel="stylesheet" type="text/css" />
+<link href="../../_static/css/custom.css?v=1712845071" rel="stylesheet" type="text/css" />
+<link href="../../_static/css/front.css?v=1712845071" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -242,7 +242,7 @@ document.write(`
           
           
           
-          <a href="https://discord.gg/6uFJmCSwW7" title="Discord" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i></span>
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i></span>
             <span class="sr-only">Discord</span></a>
         </li>
         <li class="nav-item">
@@ -423,7 +423,7 @@ document.write(`
           
           
           
-          <a href="https://discord.gg/6uFJmCSwW7" title="Discord" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i></span>
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i></span>
             <span class="sr-only">Discord</span></a>
         </li>
         <li class="nav-item">
@@ -598,8 +598,8 @@ On exiting the Tracer context, the Tracer object should use the information and 
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.contexts.Tracer.</span></span><span class="sig-name descname"><span class="pre">Tracer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../models/#nnsight.models.NNsightModel.NNsight" title="nnsight.models.NNsightModel.NNsight"><span class="pre">NNsight</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/contexts/Tracer/#Tracer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer" title="Link to this definition">#</a></dt>
 <dd><p>The Tracer class creates a <a class="reference internal" href="../tracing/#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><code class="xref py py-class docutils literal notranslate"><span class="pre">nnsight.tracing.Graph.Graph</span></code></a> around the ._model of a <a class="reference internal" href="../models/#nnsight.models.NNsightModel.NNsight" title="nnsight.models.NNsightModel.NNsight"><code class="xref py py-class docutils literal notranslate"><span class="pre">nnsight.models.NNsightModel.NNsight</span></code></a> which tracks and manages the operations performed on the inputs and outputs of said model.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.contexts.Tracer.Tracer.model">
-<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer.model" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="nnsight.contexts.Tracer.Tracer._model">
+<span class="sig-name descname"><span class="pre">_model</span></span><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer._model" title="Link to this definition">#</a></dt>
 <dd><p>nnsight Model object that ths context manager traces and executes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -609,8 +609,8 @@ On exiting the Tracer context, the Tracer object should use the information and 
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.contexts.Tracer.Tracer.graph">
-<span class="sig-name descname"><span class="pre">graph</span></span><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer.graph" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="nnsight.contexts.Tracer.Tracer._graph">
+<span class="sig-name descname"><span class="pre">_graph</span></span><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer._graph" title="Link to this definition">#</a></dt>
 <dd><p>Graph which traces operations performed on the input and output of modules’ Envoys are added and later executed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -620,8 +620,8 @@ On exiting the Tracer context, the Tracer object should use the information and 
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.contexts.Tracer.Tracer.args">
-<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer.args" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="nnsight.contexts.Tracer.Tracer._args">
+<span class="sig-name descname"><span class="pre">_args</span></span><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer._args" title="Link to this definition">#</a></dt>
 <dd><p>Positional arguments to be passed to function that executes the model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -631,8 +631,8 @@ On exiting the Tracer context, the Tracer object should use the information and 
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.contexts.Tracer.Tracer.kwargs">
-<span class="sig-name descname"><span class="pre">kwargs</span></span><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer.kwargs" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="nnsight.contexts.Tracer.Tracer._kwargs">
+<span class="sig-name descname"><span class="pre">_kwargs</span></span><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer._kwargs" title="Link to this definition">#</a></dt>
 <dd><p>Keyword arguments to be passed to function that executes the model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -642,8 +642,8 @@ On exiting the Tracer context, the Tracer object should use the information and 
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.contexts.Tracer.Tracer.batch_size">
-<span class="sig-name descname"><span class="pre">batch_size</span></span><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer.batch_size" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="nnsight.contexts.Tracer.Tracer._batch_size">
+<span class="sig-name descname"><span class="pre">_batch_size</span></span><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer._batch_size" title="Link to this definition">#</a></dt>
 <dd><p>Batch size of the most recent input. Used by Envoy to create input/output proxies.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -653,8 +653,8 @@ On exiting the Tracer context, the Tracer object should use the information and 
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.contexts.Tracer.Tracer.batch_start">
-<span class="sig-name descname"><span class="pre">batch_start</span></span><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer.batch_start" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="nnsight.contexts.Tracer.Tracer._batch_start">
+<span class="sig-name descname"><span class="pre">_batch_start</span></span><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer._batch_start" title="Link to this definition">#</a></dt>
 <dd><p>Batch start of the most recent input. Used by Envoy to create input/output proxies.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -664,18 +664,37 @@ On exiting the Tracer context, the Tracer object should use the information and 
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">batched_input</span> <span class="pre">Any</span></span></dt>
+<dt class="sig sig-object py" id="nnsight.contexts.Tracer.Tracer._batched_input">
+<span class="sig-name descname"><span class="pre">_batched_input</span></span><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer._batched_input" title="Link to this definition">#</a></dt>
 <dd><p>Batched version of all inputs involved in this Tracer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.contexts.Tracer.Tracer._invoker">
+<span class="sig-name descname"><span class="pre">_invoker</span></span><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer._invoker" title="Link to this definition">#</a></dt>
+<dd><p>Currently open Invoker.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#nnsight.contexts.Invoker.Invoker" title="nnsight.contexts.Invoker.Invoker">Invoker</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nnsight.contexts.Tracer.Tracer.apply">
-<span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/Tracer/#Tracer.apply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer.apply" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/Tracer/#Tracer.apply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer.apply" title="Link to this definition">#</a></dt>
 <dd><p>Helper method to directly add a function to the intervention graph.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>target</strong> (<em>Callable</em>) – Function to apply</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target</strong> (<em>Callable</em>) – Function to apply</p></li>
+<li><p><strong>validate</strong> (<em>bool</em>) – If to try and run this operation in FakeMode to test it out and scan it.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Proxy of applying that function.</p>
@@ -688,7 +707,7 @@ On exiting the Tracer context, the Tracer object should use the information and 
 
 <dl class="py method">
 <dt class="sig sig-object py" id="nnsight.contexts.Tracer.Tracer.invoke">
-<span class="sig-name descname"><span class="pre">invoke</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nnsight.contexts.Invoker.Invoker" title="nnsight.contexts.Invoker.Invoker"><span class="pre">Invoker</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/Tracer/#Tracer.invoke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer.invoke" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">invoke</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nnsight.contexts.Invoker.Invoker" title="nnsight.contexts.Invoker.Invoker"><span class="pre">Invoker</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/Tracer/#Tracer.invoke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer.invoke" title="Link to this definition">#</a></dt>
 <dd><p>Create an Invoker context dor a given input.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
@@ -718,7 +737,7 @@ On exiting the Tracer context, the Tracer object should use the information and 
 
 <dl class="py class" id="module-nnsight.contexts.Invoker">
 <dt class="sig sig-object py" id="nnsight.contexts.Invoker.Invoker">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.contexts.Invoker.</span></span><span class="sig-name descname"><span class="pre">Invoker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tracer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.contexts.Tracer.Tracer" title="nnsight.contexts.Tracer.Tracer"><span class="pre">Tracer</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scan</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/contexts/Invoker/#Invoker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.Invoker.Invoker" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.contexts.Invoker.</span></span><span class="sig-name descname"><span class="pre">Invoker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tracer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.contexts.Tracer.Tracer" title="nnsight.contexts.Tracer.Tracer"><span class="pre">Tracer</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scan</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/contexts/Invoker/#Invoker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.Invoker.Invoker" title="Link to this definition">#</a></dt>
 <dd><p>An Invoker is meant to work in tandem with a <a class="reference internal" href="#nnsight.contexts.Tracer.Tracer" title="nnsight.contexts.Tracer.Tracer"><code class="xref py py-class docutils literal notranslate"><span class="pre">nnsight.contexts.Tracer.Tracer</span></code></a> to enter input and manage intervention tracing.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nnsight.contexts.Invoker.Invoker.tracer">
@@ -737,7 +756,7 @@ On exiting the Tracer context, the Tracer object should use the information and 
 <dd><p>Initially entered inputs, then post-processed inputs from model’s ._prepare_inputs(…) method.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Tuple[Any]</p>
+<dd class="field-odd"><p>tuple[Any]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -799,12 +818,14 @@ for looped calls where shapes are consistent, you may want to have scan=True for
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Tracer.Tracer"><code class="docutils literal notranslate"><span class="pre">Tracer</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Tracer.Tracer.model"><code class="docutils literal notranslate"><span class="pre">Tracer.model</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Tracer.Tracer.graph"><code class="docutils literal notranslate"><span class="pre">Tracer.graph</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Tracer.Tracer.args"><code class="docutils literal notranslate"><span class="pre">Tracer.args</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Tracer.Tracer.kwargs"><code class="docutils literal notranslate"><span class="pre">Tracer.kwargs</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Tracer.Tracer.batch_size"><code class="docutils literal notranslate"><span class="pre">Tracer.batch_size</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Tracer.Tracer.batch_start"><code class="docutils literal notranslate"><span class="pre">Tracer.batch_start</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Tracer.Tracer._model"><code class="docutils literal notranslate"><span class="pre">Tracer._model</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Tracer.Tracer._graph"><code class="docutils literal notranslate"><span class="pre">Tracer._graph</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Tracer.Tracer._args"><code class="docutils literal notranslate"><span class="pre">Tracer._args</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Tracer.Tracer._kwargs"><code class="docutils literal notranslate"><span class="pre">Tracer._kwargs</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Tracer.Tracer._batch_size"><code class="docutils literal notranslate"><span class="pre">Tracer._batch_size</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Tracer.Tracer._batch_start"><code class="docutils literal notranslate"><span class="pre">Tracer._batch_start</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Tracer.Tracer._batched_input"><code class="docutils literal notranslate"><span class="pre">Tracer._batched_input</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Tracer.Tracer._invoker"><code class="docutils literal notranslate"><span class="pre">Tracer._invoker</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Tracer.Tracer.apply"><code class="docutils literal notranslate"><span class="pre">Tracer.apply()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Tracer.Tracer.invoke"><code class="docutils literal notranslate"><span class="pre">Tracer.invoke()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Tracer.Tracer.next"><code class="docutils literal notranslate"><span class="pre">Tracer.next()</span></code></a></li>

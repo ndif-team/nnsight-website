@@ -53,8 +53,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../../../../_static/css/custom.css?v=1710349096" rel="stylesheet" type="text/css" />
-<link href="../../../../_static/css/front.css?v=1710349096" rel="stylesheet" type="text/css" />
+<link href="../../../../_static/css/custom.css?v=1712845071" rel="stylesheet" type="text/css" />
+<link href="../../../../_static/css/front.css?v=1712845071" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -239,7 +239,7 @@ document.write(`
           
           
           
-          <a href="https://discord.gg/6uFJmCSwW7" title="Discord" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i></span>
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i></span>
             <span class="sr-only">Discord</span></a>
         </li>
         <li class="nav-item">
@@ -422,7 +422,7 @@ document.write(`
           
           
           
-          <a href="https://discord.gg/6uFJmCSwW7" title="Discord" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i></span>
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i></span>
             <span class="sr-only">Discord</span></a>
         </li>
         <li class="nav-item">
@@ -542,12 +542,17 @@ document.write(`
 <span class="kn">import</span> <span class="nn">accelerate</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoConfig</span><span class="p">,</span> <span class="n">AutoModel</span>
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Self</span>
 
 <span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">util</span>
 <span class="kn">from</span> <span class="nn">..contexts.Runner</span> <span class="kn">import</span> <span class="n">Runner</span>
 <span class="kn">from</span> <span class="nn">..envoy</span> <span class="kn">import</span> <span class="n">Envoy</span>
-<span class="kn">from</span> <span class="nn">..intervention</span> <span class="kn">import</span> <span class="p">(</span><span class="n">HookHandler</span><span class="p">,</span> <span class="n">InterventionHandler</span><span class="p">,</span>
-                            <span class="n">InterventionProxy</span><span class="p">,</span> <span class="n">intervene</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">..intervention</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">HookHandler</span><span class="p">,</span>
+    <span class="n">InterventionHandler</span><span class="p">,</span>
+    <span class="n">InterventionProxy</span><span class="p">,</span>
+    <span class="n">intervene</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="kn">from</span> <span class="nn">..logger</span> <span class="kn">import</span> <span class="n">logger</span>
 <span class="kn">from</span> <span class="nn">..tracing.Graph</span> <span class="kn">import</span> <span class="n">Graph</span>
 
@@ -607,13 +612,12 @@ document.write(`
             <span class="c1"># Also do .to(&#39;meta&#39;) because why not.</span>
             <span class="k">with</span> <span class="n">accelerate</span><span class="o">.</span><span class="n">init_empty_weights</span><span class="p">(</span><span class="n">include_buffers</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_key</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;meta&quot;</span><span class="p">)</span>
+                
+        <span class="bp">self</span><span class="o">.</span><span class="n">_envoy</span> <span class="o">=</span> <span class="n">Envoy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">dispatch</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dispatched</span><span class="p">:</span>
             <span class="c1"># Dispatch ._model on initialization vs lazy dispatching.</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">dispatch_model</span><span class="p">()</span>
-
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_envoy</span> <span class="o">=</span> <span class="n">Envoy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dispatch_model</span><span class="p">()</span>            
 
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initialized `</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_key</span><span class="si">}</span><span class="s2">`&quot;</span><span class="p">)</span>
 
@@ -621,7 +625,7 @@ document.write(`
 <a class="viewcode-back" href="../../../../documentation/models/#nnsight.models.NNsightModel.NNsight.trace">[docs]</a>
     <span class="k">def</span> <span class="nf">trace</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="o">*</span><span class="n">inputs</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
+        <span class="o">*</span><span class="n">inputs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
         <span class="n">trace</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">invoker_args</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">scan</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
@@ -633,7 +637,7 @@ document.write(`
 <span class="sd">        This can be as simple as accessing and saving activations for inspection, or as complicated as transforming the activations and gradients in a forward pass over multiple inputs.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            inputs (Tuple[Any])</span>
+<span class="sd">            inputs (tuple[Any])</span>
 <span class="sd">            trace (bool, optional): If to open a tracing context. Otherwise immediately run the model and return the raw output. Defaults to True.</span>
 <span class="sd">            invoker_args (Dict[str, Any], optional): Keyword arguments to pass to Invoker initialization, and then downstream to the model&#39;s .prepare_inputs(...) method. Used when giving input directly to `.trace(...)`. Defaults to None.</span>
 <span class="sd">            kwargs (Dict[str, Any]): Keyword arguments passed to Runner/Tracer initialization, and then downstream to the model&#39;s ._execute(...) method.</span>
@@ -808,19 +812,31 @@ document.write(`
 <div class="viewcode-block" id="NNsight.dispatch_model">
 <a class="viewcode-back" href="../../../../documentation/models/#nnsight.models.NNsightModel.NNsight.dispatch_model">[docs]</a>
     <span class="k">def</span> <span class="nf">dispatch_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Dispatch ._model to have real parameters  using .load(...).&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Dispatch ._model to have real parameters  using ._load(...).&quot;&quot;&quot;</span>
 
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dispatching `</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_key</span><span class="si">}</span><span class="s2">`...&quot;</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_model_key</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_args</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_kwargs</span>
-        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_key</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_args</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_kwargs</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_envoy</span> <span class="o">=</span> <span class="n">Envoy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_envoy</span><span class="o">.</span><span class="n">_update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_dispatched</span> <span class="o">=</span> <span class="kc">True</span>
 
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dispatched `</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_key</span><span class="si">}</span><span class="s2">`&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NNsight.to">
+<a class="viewcode-back" href="../../../../documentation/models/#nnsight.models.NNsightModel.NNsight.to">[docs]</a>
+    <span class="k">def</span> <span class="nf">to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Override torch.nn.Module.to so this returns the NNSight model, not the underlying module when doing: model = model.to(...)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Envoy: Envoy.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
 
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -829,7 +845,7 @@ document.write(`
 <span class="sd">        Returns:</span>
 <span class="sd">            str: Representation.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_envoy</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Envoy</span><span class="p">,</span> <span class="n">InterventionProxy</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Wrapper of ._envoy&#39;s attributes to access module&#39;s inputs and outputs.</span>
@@ -861,43 +877,41 @@ document.write(`
 
         <span class="k">return</span> <span class="n">accelerate</span><span class="o">.</span><span class="n">load_checkpoint_and_dispatch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="p">,</span> <span class="n">repo_id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">prepared_inputs</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">_execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">prepared_inputs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Virtual method to run the underlying ._model with some inputs.</span>
 
 <span class="sd">        Default implementation util.applies moving all tensors to the device of the first parameter in ._model and passes the values into the model.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            prepared_inputs (Tuple[Any]): Prepared inputs.</span>
+<span class="sd">            prepared_inputs (tuple[Any]): Prepared inputs.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">device</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span><span class="o">.</span><span class="n">device</span>
 
-        <span class="n">prepared_inputs</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
-            <span class="n">prepared_inputs</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span>
-        <span class="p">)</span>
+        <span class="n">prepared_inputs</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">prepared_inputs</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="p">(</span>
             <span class="o">*</span><span class="n">prepared_inputs</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_prepare_inputs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">inputs</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="nb">int</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">_prepare_inputs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">inputs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="nb">int</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Virtual method to prepare inputs before batching and execution and return batch size of prepared_inputs.</span>
 
 <span class="sd">        Default implementation just returns inputs and length of first input.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            inputs (Tuple[Any]): Inputs to prepare for batching and execution.</span>
+<span class="sd">            inputs (tuple[Any]): Inputs to prepare for batching and execution.</span>
 <span class="sd">            int: Batch size of prepared_inputs.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Tuple[Tuple[Any], int]: Prepared inputs, batch size of inputs.</span>
+<span class="sd">            Tuple[tuple[Any], int]: Prepared inputs, batch size of inputs.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">inputs</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
     <span class="k">def</span> <span class="nf">_batch_inputs</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">batched_inputs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
-        <span class="o">*</span><span class="n">prepared_inputs</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
+        <span class="o">*</span><span class="n">prepared_inputs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Virtual method to batch together results from _prepare_inputs.</span>
 
@@ -905,7 +919,7 @@ document.write(`
 
 <span class="sd">        Args:</span>
 <span class="sd">            batched_inputs (Any): Current state of batched_inputs. Initially None.</span>
-<span class="sd">            prepared_inputs (Tuple[Any]): Most recent result from _prepare_inputs.</span>
+<span class="sd">            prepared_inputs (tuple[Any]): Most recent result from _prepare_inputs.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Any: Batched inputs.</span>
