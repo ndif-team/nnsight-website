@@ -44,6 +44,7 @@
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=36754332"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'documentation/models';</script>
     <script src="../../_static/js/custom.js?v=e4e20b07"></script>
     <script src="../../_static/js/code.js?v=34343d0c"></script>
@@ -56,8 +57,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../../_static/css/custom.css?v=1712845071" rel="stylesheet" type="text/css" />
-<link href="../../_static/css/front.css?v=1712845071" rel="stylesheet" type="text/css" />
+<link href="../../_static/css/custom.css?v=1713466844" rel="stylesheet" type="text/css" />
+<link href="../../_static/css/front.css?v=1713466844" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -230,7 +231,7 @@ document.write(`
           
           
           
-          <a href="https://github.com/JadenFiotto-Kaufman/nnsight" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i></span>
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i></span>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -411,7 +412,7 @@ document.write(`
           
           
           
-          <a href="https://github.com/JadenFiotto-Kaufman/nnsight" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i></span>
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i></span>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -953,6 +954,68 @@ Makes positive indices negative as tokens are padded on the left.</p>
 </dl>
 </dd></dl>
 
+<dl class="py class" id="module-nnsight.models.UnifiedTransformer">
+<dt class="sig sig-object py" id="nnsight.models.UnifiedTransformer.UnifiedTransformer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.models.UnifiedTransformer.</span></span><span class="sig-name descname"><span class="pre">UnifiedTransformer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processing</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/models/UnifiedTransformer/#UnifiedTransformer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.models.UnifiedTransformer.UnifiedTransformer" title="Link to this definition">#</a></dt>
+<dd><p>UnifiedTransformer is an nnsight wrapper around TransformerLens’s HookedTransformer.</p>
+<dl class="simple">
+<dt>Inputs can be in the form of:</dt><dd><p>Prompt: (str)
+Prompts: (List[str])
+Batched prompts: (List[List[str]])
+Tokenized prompt: (Union[List[int], torch.Tensor])
+Tokenized prompts: (Union[List[List[int]], torch.Tensor])
+Direct input: (Dict[str,Any])</p>
+</dd>
+</dl>
+<p>TransformerLens processing arguments can be passed as kwargs to the constructor.
+Pass <cite>processing=False</cite> to call <cite>from_pretrained_no_processing</cite> instead of <cite>from_pretrained</cite>.</p>
+<p>Calls to generate pass arguments downstream to <code class="xref py py-func docutils literal notranslate"><span class="pre">GenerationMixin.generate()</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.models.UnifiedTransformer.UnifiedTransformer.config">
+<span class="sig-name descname"><span class="pre">config</span></span><a class="headerlink" href="#nnsight.models.UnifiedTransformer.UnifiedTransformer.config" title="Link to this definition">#</a></dt>
+<dd><p>HookedTransformer config file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>HookedTransformerConfig</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.models.UnifiedTransformer.UnifiedTransformer.tokenizer">
+<span class="sig-name descname"><span class="pre">tokenizer</span></span><a class="headerlink" href="#nnsight.models.UnifiedTransformer.UnifiedTransformer.tokenizer" title="Link to this definition">#</a></dt>
+<dd><p>Tokenizer for LMs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>PreTrainedTokenizer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.models.UnifiedTransformer.UnifiedTransformer.meta_model">
+<span class="sig-name descname"><span class="pre">meta_model</span></span><a class="headerlink" href="#nnsight.models.UnifiedTransformer.UnifiedTransformer.meta_model" title="Link to this definition">#</a></dt>
+<dd><p>Meta version of underlying auto model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>HookedTransformer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.models.UnifiedTransformer.UnifiedTransformer.local_model">
+<span class="sig-name descname"><span class="pre">local_model</span></span><a class="headerlink" href="#nnsight.models.UnifiedTransformer.UnifiedTransformer.local_model" title="Link to this definition">#</a></dt>
+<dd><p>Local version of underlying HookedTransformer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>HookedTransformer</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -1005,6 +1068,13 @@ Makes positive indices negative as tokens are padded on the left.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.LanguageModel.TokenIndexer"><code class="docutils literal notranslate"><span class="pre">TokenIndexer</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.UnifiedTransformer.UnifiedTransformer"><code class="docutils literal notranslate"><span class="pre">UnifiedTransformer</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.UnifiedTransformer.UnifiedTransformer.config"><code class="docutils literal notranslate"><span class="pre">UnifiedTransformer.config</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.UnifiedTransformer.UnifiedTransformer.tokenizer"><code class="docutils literal notranslate"><span class="pre">UnifiedTransformer.tokenizer</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.UnifiedTransformer.UnifiedTransformer.meta_model"><code class="docutils literal notranslate"><span class="pre">UnifiedTransformer.meta_model</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.UnifiedTransformer.UnifiedTransformer.local_model"><code class="docutils literal notranslate"><span class="pre">UnifiedTransformer.local_model</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

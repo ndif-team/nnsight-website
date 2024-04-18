@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>nnsight.contexts.Tracer &#8212; nnsight</title>
+    <title>nnsight.models.UnifiedTransformer &#8212; nnsight</title>
   
   
   
@@ -44,7 +44,7 @@
     <script src="../../../../_static/design-tabs.js?v=36754332"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/nnsight/contexts/Tracer';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/nnsight/models/UnifiedTransformer';</script>
     <script src="../../../../_static/js/custom.js?v=e4e20b07"></script>
     <script src="../../../../_static/js/code.js?v=34343d0c"></script>
     <link rel="icon" href="../../../../_static/icon.ico"/>
@@ -517,7 +517,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="../../../" class="nav-link">Module code</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">nnsight.cont...</li>
+    <li class="breadcrumb-item active" aria-current="page">nnsight.mode...</li>
   </ul>
 </nav>
 </div>
@@ -534,139 +534,134 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <h1>Source code for nnsight.contexts.Tracer</h1><div class="highlight"><pre>
+  <h1>Source code for nnsight.models.UnifiedTransformer</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">import</span> <span class="nn">inspect</span>
-<span class="kn">import</span> <span class="nn">weakref</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
 
-<span class="kn">from</span> <span class="nn">..intervention</span> <span class="kn">import</span> <span class="n">InterventionProxy</span>
-<span class="kn">from</span> <span class="nn">..tracing.Graph</span> <span class="kn">import</span> <span class="n">Graph</span>
-<span class="kn">from</span> <span class="nn">.Invoker</span> <span class="kn">import</span> <span class="n">Invoker</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">transformer_lens</span> <span class="kn">import</span> <span class="n">HookedTransformer</span><span class="p">,</span> <span class="n">HookedTransformerConfig</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">BatchEncoding</span>
 
-<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">..models.NNsightModel</span> <span class="kn">import</span> <span class="n">NNsight</span>
+<span class="kn">from</span> <span class="nn">.LanguageModel</span> <span class="kn">import</span> <span class="n">LanguageModel</span>
 
 
-<div class="viewcode-block" id="Tracer">
-<a class="viewcode-back" href="../../../../documentation/contexts/#nnsight.contexts.Tracer.Tracer">[docs]</a>
-<span class="k">class</span> <span class="nc">Tracer</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Tracer class creates a :class:`nnsight.tracing.Graph.Graph` around the ._model of a :class:`nnsight.models.NNsightModel.NNsight` which tracks and manages the operations performed on the inputs and outputs of said model.</span>
+<div class="viewcode-block" id="UnifiedTransformer">
+<a class="viewcode-back" href="../../../../documentation/models/#nnsight.models.UnifiedTransformer.UnifiedTransformer">[docs]</a>
+<span class="k">class</span> <span class="nc">UnifiedTransformer</span><span class="p">(</span><span class="n">LanguageModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;UnifiedTransformer is an nnsight wrapper around TransformerLens&#39;s HookedTransformer.</span>
+
+<span class="sd">    Inputs can be in the form of:</span>
+<span class="sd">        Prompt: (str)</span>
+<span class="sd">        Prompts: (List[str])</span>
+<span class="sd">        Batched prompts: (List[List[str]])</span>
+<span class="sd">        Tokenized prompt: (Union[List[int], torch.Tensor])</span>
+<span class="sd">        Tokenized prompts: (Union[List[List[int]], torch.Tensor])</span>
+<span class="sd">        Direct input: (Dict[str,Any])</span>
+
+<span class="sd">    TransformerLens processing arguments can be passed as kwargs to the constructor.</span>
+<span class="sd">    Pass `processing=False` to call `from_pretrained_no_processing` instead of `from_pretrained`.</span>
+
+<span class="sd">    Calls to generate pass arguments downstream to :func:`GenerationMixin.generate`</span>
 
 <span class="sd">    Attributes:</span>
-<span class="sd">        _model (nnsight.models.NNsightModel.NNsight): nnsight Model object that ths context manager traces and executes.</span>
-<span class="sd">        _graph (nnsight.tracing.Graph.Graph): Graph which traces operations performed on the input and output of modules&#39; Envoys are added and later executed.</span>
-<span class="sd">        _args (List[Any]): Positional arguments to be passed to function that executes the model.</span>
-<span class="sd">        _kwargs (Dict[str,Any]): Keyword arguments to be passed to function that executes the model.</span>
-<span class="sd">        _batch_size (int): Batch size of the most recent input. Used by Envoy to create input/output proxies.</span>
-<span class="sd">        _batch_start (int): Batch start of the most recent input. Used by Envoy to create input/output proxies.</span>
-<span class="sd">        _batched_input (Any): Batched version of all inputs involved in this Tracer.</span>
-<span class="sd">        _invoker (Invoker): Currently open Invoker.</span>
+<span class="sd">        config (HookedTransformerConfig): HookedTransformer config file.</span>
+<span class="sd">        tokenizer (PreTrainedTokenizer): Tokenizer for LMs.</span>
+<span class="sd">        meta_model (HookedTransformer): Meta version of underlying auto model.</span>
+<span class="sd">        local_model (HookedTransformer): Local version of underlying HookedTransformer.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">model</span><span class="p">:</span> <span class="s2">&quot;NNsight&quot;</span><span class="p">,</span>
-        <span class="n">validate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">device</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">processing</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">processing</span><span class="p">:</span>
+            <span class="n">hooked_model</span> <span class="o">=</span> <span class="n">HookedTransformer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">hooked_model</span> <span class="o">=</span> <span class="n">HookedTransformer</span><span class="o">.</span><span class="n">from_pretrained_no_processing</span><span class="p">(</span>
+                <span class="n">model</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+            <span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">hooked_model</span><span class="o">.</span><span class="n">tokenizer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="p">:</span> <span class="n">HookedTransformer</span> <span class="o">=</span> <span class="kc">None</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_kwargs</span> <span class="o">=</span> <span class="n">kwargs</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">hooked_model</span><span class="p">,</span> <span class="n">tokenizer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_graph</span><span class="p">:</span> <span class="n">Graph</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">_envoy</span><span class="p">,</span> <span class="n">proxy_class</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">proxy_class</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="n">validate</span>
-        <span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_prepare_inputs</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">inputs</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span>
+            <span class="nb">str</span><span class="p">,</span>
+            <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+            <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span>
+            <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+            <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+            <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+            <span class="n">BatchEncoding</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">BatchEncoding</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_invoker</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Invoker</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">new_inputs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_batch_start</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">tokenized_inputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tokenize</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;input&quot;</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_batched_input</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">new_inputs</span><span class="p">[</span><span class="s2">&quot;input&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tokenized_inputs</span><span class="p">[</span><span class="s2">&quot;input_ids&quot;</span><span class="p">]</span>
 
-        <span class="c1"># Module Envoys need to know about the current Tracer to create the correct proxies.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">_envoy</span><span class="o">.</span><span class="n">_set_tracer</span><span class="p">(</span><span class="n">weakref</span><span class="o">.</span><span class="n">proxy</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+            <span class="k">if</span> <span class="s2">&quot;attention_mask&quot;</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">ai</span><span class="p">,</span> <span class="n">attn_mask</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;attention_mask&quot;</span><span class="p">]):</span>
+                    <span class="n">tokenized_inputs</span><span class="p">[</span><span class="s2">&quot;attention_mask&quot;</span><span class="p">][</span>
+                        <span class="n">ai</span><span class="p">,</span> <span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">attn_mask</span><span class="p">)</span> <span class="p">:</span>
+                    <span class="p">]</span> <span class="o">=</span> <span class="n">attn_mask</span>
 
-    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Wrapper of .model._envoy&#39;s attributes to access module Envoy inputs and outputs.</span>
+                <span class="n">new_inputs</span><span class="p">[</span><span class="s2">&quot;attention_mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tokenized_inputs</span><span class="p">[</span><span class="s2">&quot;attention_mask&quot;</span><span class="p">]</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            Any: Attribute.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">_envoy</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">BatchEncoding</span><span class="p">(</span><span class="n">new_inputs</span><span class="p">),),</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_inputs</span><span class="p">[</span><span class="s2">&quot;input&quot;</span><span class="p">])</span>
 
-    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tracer</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">self</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tokenize</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_val</span><span class="p">,</span> <span class="n">exc_tb</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">exc_val</span><span class="p">,</span> <span class="ne">BaseException</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="n">exc_val</span>
+        <span class="k">if</span> <span class="s2">&quot;input_ids&quot;</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">:</span>
+            <span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;input&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;input_ids&quot;</span><span class="p">)</span>
 
-        <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">interleave</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">_execute</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_graph</span><span class="p">,</span>
-            <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_batched_input</span><span class="p">,</span>
-            <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_kwargs</span><span class="p">,</span>
-        <span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">inputs</span><span class="p">,),</span> <span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;input&quot;</span><span class="p">])</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_graph</span><span class="o">.</span><span class="n">tracing</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_graph</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">def</span> <span class="nf">_batch_inputs</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">batched_inputs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span>
+        <span class="n">prepared_inputs</span><span class="p">:</span> <span class="n">BatchEncoding</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">batched_inputs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">batched_inputs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="p">[]}</span>
 
-<div class="viewcode-block" id="Tracer.invoke">
-<a class="viewcode-back" href="../../../../documentation/contexts/#nnsight.contexts.Tracer.Tracer.invoke">[docs]</a>
-    <span class="k">def</span> <span class="nf">invoke</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">inputs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Invoker</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create an Invoker context dor a given input.</span>
+            <span class="k">if</span> <span class="s2">&quot;attention_mask&quot;</span> <span class="ow">in</span> <span class="n">prepared_inputs</span><span class="p">:</span>
+                <span class="n">batched_inputs</span><span class="p">[</span><span class="s2">&quot;attention_mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">batched_inputs</span> <span class="o">=</span> <span class="n">batched_inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-<span class="sd">        Raises:</span>
-<span class="sd">            Exception: If an Invoker context is already open</span>
+        <span class="n">batched_inputs</span><span class="p">[</span><span class="s2">&quot;input&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">prepared_inputs</span><span class="p">[</span><span class="s2">&quot;input&quot;</span><span class="p">])</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            Invoker: Invoker.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="s2">&quot;attention_mask&quot;</span> <span class="ow">in</span> <span class="n">prepared_inputs</span><span class="p">:</span>
+            <span class="n">batched_inputs</span><span class="p">[</span><span class="s2">&quot;attention_mask&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">prepared_inputs</span><span class="p">[</span><span class="s2">&quot;attention_mask&quot;</span><span class="p">])</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_invoker</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">batched_inputs</span><span class="p">,)</span>
 
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Can&#39;t create an invoker context with one already open!&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_execute_forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prepared_inputs</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 
-        <span class="k">return</span> <span class="n">Invoker</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">inputs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="c1"># HookedTransformer uses attention_mask in forward but not in generate.</span>
+        <span class="k">if</span> <span class="s2">&quot;attention_mask&quot;</span> <span class="ow">in</span> <span class="n">prepared_inputs</span><span class="p">:</span>
+            <span class="n">prepared_inputs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;attention_mask&quot;</span><span class="p">)</span>
 
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_execute_forward</span><span class="p">(</span><span class="n">prepared_inputs</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Tracer.next">
-<a class="viewcode-back" href="../../../../documentation/contexts/#nnsight.contexts.Tracer.Tracer.next">[docs]</a>
-    <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">increment</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Increments call_iter of all module Envoys. Useful when doing iterative/generative runs.</span>
+    <span class="k">def</span> <span class="nf">_execute_generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prepared_inputs</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            increment (int): How many call_iter to increment at once. Defaults to 1.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># HookedTransformer uses attention_mask in forward but not in generate.</span>
+        <span class="k">if</span> <span class="s2">&quot;attention_mask&quot;</span> <span class="ow">in</span> <span class="n">prepared_inputs</span><span class="p">:</span>
+            <span class="n">prepared_inputs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;attention_mask&quot;</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">_envoy</span><span class="o">.</span><span class="n">next</span><span class="p">(</span><span class="n">increment</span><span class="o">=</span><span class="n">increment</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="Tracer.apply">
-<a class="viewcode-back" href="../../../../documentation/contexts/#nnsight.contexts.Tracer.Tracer.apply">[docs]</a>
-    <span class="k">def</span> <span class="nf">apply</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">validate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InterventionProxy</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Helper method to directly add a function to the intervention graph.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            target (Callable): Function to apply</span>
-<span class="sd">            validate (bool): If to try and run this operation in FakeMode to test it out and scan it.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            InterventionProxy: Proxy of applying that function.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_graph</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
-            <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span>
-            <span class="n">value</span><span class="o">=</span><span class="n">inspect</span><span class="o">.</span><span class="n">_empty</span> <span class="k">if</span> <span class="n">validate</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span>
-            <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span><span class="p">,</span>
-        <span class="p">)</span></div>
-</div>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_execute_generate</span><span class="p">(</span><span class="n">prepared_inputs</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 </pre></div>
 
