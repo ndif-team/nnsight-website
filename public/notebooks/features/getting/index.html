@@ -30,7 +30,7 @@
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css?v=2aa19091" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -48,19 +48,19 @@
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/features/getting';</script>
-    <script src="../../../_static/js/custom.js?v=e4e20b07"></script>
+    <script src="../../../_static/js/custom.js?v=1e4be224"></script>
     <script src="../../../_static/js/code.js?v=34343d0c"></script>
     <link rel="icon" href="../../../_static/icon.ico"/>
     <link rel="author" title="About these documents" href="../../../about/" />
     <link rel="index" title="Index" href="../../../genindex/" />
     <link rel="search" title="Search" href="../../../search/" />
-    <link rel="next" title="Working With Gradients" href="../gradients/" />
-    <link rel="prev" title="Cross-Prompt Intervention" href="../cross_prompt/" />
+    <link rel="next" title="Gradients" href="../gradients/" />
+    <link rel="prev" title="Early Stopping" href="../early_stopping/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../../../_static/css/custom.css?v=1721420672" rel="stylesheet" type="text/css" />
-<link href="../../../_static/css/front.css?v=1721420672" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/custom.css?v=1725032410" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/home.css?v=1725032410" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -233,7 +233,7 @@ document.write(`
           
           
           
-          <a href="https://github.com/JadenFiotto-Kaufman/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -245,7 +245,7 @@ document.write(`
           
           
           
-          <a href="https://discord.gg/6uFJmCSwW7" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
             <span class="sr-only">Discord</span></a>
         </li>
         <li class="nav-item">
@@ -412,7 +412,7 @@ document.write(`
           
           
           
-          <a href="https://github.com/JadenFiotto-Kaufman/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -424,7 +424,7 @@ document.write(`
           
           
           
-          <a href="https://discord.gg/6uFJmCSwW7" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
             <span class="sr-only">Discord</span></a>
         </li>
         <li class="nav-item">
@@ -489,15 +489,23 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../conditionals/">Conditional Interventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cross_prompt/">Cross-Prompt Intervention</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../custom_functions/">Custom Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../early_stopping/">Early Stopping</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Getting Values</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gradients/">Working With Gradients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/">Applying Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gradients/">Gradients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iterator/">Iterative Interventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lora_training/">LoRA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model_editing/">Model Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/">Modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../multiple_token/">Multiple Token Generation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../operations/">Applying Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operations/">Operations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../remote_execution/">Remote Execution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan_validate/">Scan and Validate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sessions/">Sessions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../setting/">Setting Values</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../token_indexing/">Token Based Indexing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../token_indexing/">Multi-Token Indexing</a></li>
 </ul>
 </div>
 </nav></div>

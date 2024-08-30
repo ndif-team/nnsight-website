@@ -29,7 +29,7 @@
 
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -44,7 +44,7 @@
     <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/nnsight/contexts/Invoker';</script>
-    <script src="../../../../_static/js/custom.js?v=e4e20b07"></script>
+    <script src="../../../../_static/js/custom.js?v=1e4be224"></script>
     <script src="../../../../_static/js/code.js?v=34343d0c"></script>
     <link rel="icon" href="../../../../_static/icon.ico"/>
     <link rel="author" title="About these documents" href="../../../../about/" />
@@ -53,8 +53,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../../../../_static/css/custom.css?v=1721420672" rel="stylesheet" type="text/css" />
-<link href="../../../../_static/css/front.css?v=1721420672" rel="stylesheet" type="text/css" />
+<link href="../../../../_static/css/custom.css?v=1725032410" rel="stylesheet" type="text/css" />
+<link href="../../../../_static/css/home.css?v=1725032410" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -227,7 +227,7 @@ document.write(`
           
           
           
-          <a href="https://github.com/JadenFiotto-Kaufman/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -239,7 +239,7 @@ document.write(`
           
           
           
-          <a href="https://discord.gg/6uFJmCSwW7" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
             <span class="sr-only">Discord</span></a>
         </li>
         <li class="nav-item">
@@ -408,7 +408,7 @@ document.write(`
           
           
           
-          <a href="https://github.com/JadenFiotto-Kaufman/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -420,7 +420,7 @@ document.write(`
           
           
           
-          <a href="https://discord.gg/6uFJmCSwW7" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
             <span class="sr-only">Discord</span></a>
         </li>
         <li class="nav-item">
@@ -514,6 +514,9 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="../../../" class="nav-link">Module code</a></li>
     
+    
+    <li class="breadcrumb-item"><a href="../" class="nav-link">nnsight.contexts</a></li>
+    
     <li class="breadcrumb-item active" aria-current="page">nnsight.cont...</li>
   </ul>
 </nav>
@@ -538,8 +541,16 @@ document.write(`
 <span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">AbstractContextManager</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
 
+<span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">torch._subclasses.fake_tensor</span> <span class="kn">import</span> <span class="n">FakeCopyMode</span><span class="p">,</span> <span class="n">FakeTensorMode</span>
 <span class="kn">from</span> <span class="nn">torch.fx.experimental.symbolic_shapes</span> <span class="kn">import</span> <span class="n">ShapeEnv</span>
+
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">util</span>
+<span class="kn">from</span> <span class="nn">..patching</span> <span class="kn">import</span> <span class="n">Patch</span><span class="p">,</span> <span class="n">Patcher</span>
+<span class="kn">from</span> <span class="nn">..tracing.Node</span> <span class="kn">import</span> <span class="n">Node</span>
+<span class="kn">from</span> <span class="nn">..tracing.Proxy</span> <span class="kn">import</span> <span class="n">Proxy</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">check_for_dependencies</span>
+<span class="kn">from</span> <span class="nn">.GraphBasedContext</span> <span class="kn">import</span> <span class="n">GlobalTracingContext</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
 
@@ -559,13 +570,14 @@ document.write(`
 <span class="sd">            When making interventions, you made get shape errors if scan is false as it validates operations based on shapes so</span>
 <span class="sd">            for looped calls where shapes are consistent, you may want to have scan=True for the first loop. Defaults to True.</span>
 <span class="sd">        kwargs (Dict[str,Any]): Keyword arguments passed to the model&#39;s _prepare_inputs method.</span>
+<span class="sd">        scanning (bool): If currently scanning.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">tracer</span><span class="p">:</span> <span class="s2">&quot;Tracer&quot;</span><span class="p">,</span>
         <span class="o">*</span><span class="n">inputs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-        <span class="n">scan</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">scan</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 
@@ -573,8 +585,10 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span> <span class="o">=</span> <span class="n">inputs</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scan</span> <span class="o">=</span> <span class="n">scan</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs</span>
-        
+
         <span class="bp">self</span><span class="o">.</span><span class="n">scanning</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">invoker</span> <span class="o">=</span> <span class="bp">self</span>
 
     <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Invoker</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Enters a new invocation context with a given input.</span>
@@ -588,45 +602,75 @@ document.write(`
 <span class="sd">            Invoker: Invoker.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">_invoker</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="n">has_proxies_in_inputs</span> <span class="o">=</span> <span class="kc">False</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="p">,</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">_prepare_inputs</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="c1"># If were accumulating, we might have Proxies in the input.</span>
+        <span class="c1"># Therefore we first: Check to see if there are any Proxies.</span>
+        <span class="c1"># If there are, preserve the raw inputs with Proxies converted to a Locked Bridge protocol.</span>
+        <span class="c1"># Set self.inputs to be the proxy_value so we can prepare_inputs, get the batch size, and scan.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_session</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scan</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">_envoy</span><span class="o">.</span><span class="n">_clear</span><span class="p">()</span>
-            
-            <span class="bp">self</span><span class="o">.</span><span class="n">scanning</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="p">,</span> <span class="n">has_proxies_in_inputs</span> <span class="o">=</span> <span class="n">check_for_dependencies</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span>
+            <span class="p">)</span>
 
-            <span class="k">with</span> <span class="n">FakeTensorMode</span><span class="p">(</span>
-                <span class="n">allow_non_fake_inputs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                <span class="n">shape_env</span><span class="o">=</span><span class="n">ShapeEnv</span><span class="p">(</span><span class="n">assume_static_by_default</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
-            <span class="p">)</span> <span class="k">as</span> <span class="n">fake_mode</span><span class="p">:</span>
-                <span class="k">with</span> <span class="n">FakeCopyMode</span><span class="p">(</span><span class="n">fake_mode</span><span class="p">):</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">_execute</span><span class="p">(</span>
-                        <span class="o">*</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="p">),</span>
-                        <span class="o">**</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">_kwargs</span><span class="p">),</span>
+        <span class="k">with</span> <span class="n">GlobalTracingContext</span><span class="o">.</span><span class="n">exit_global_tracing_context</span><span class="p">():</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">has_proxies_in_inputs</span><span class="p">:</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="p">,</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_prepare_inputs</span><span class="p">(</span>
+                    <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span>
+                <span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scan</span><span class="p">:</span>
+
+                <span class="n">inputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span>
+
+                <span class="k">if</span> <span class="n">has_proxies_in_inputs</span><span class="p">:</span>
+
+                    <span class="n">inputs</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">proxy_value</span><span class="p">,</span> <span class="n">Node</span><span class="p">)</span>
+
+                    <span class="n">inputs</span><span class="p">,</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_prepare_inputs</span><span class="p">(</span>
+                        <span class="o">*</span><span class="n">inputs</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span>
                     <span class="p">)</span>
-                    
-            <span class="bp">self</span><span class="o">.</span><span class="n">scanning</span> <span class="o">=</span> <span class="kc">False</span>
-            
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">_envoy</span><span class="o">.</span><span class="n">_reset</span><span class="p">()</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">_batch_start</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">_batch_size</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">_batch_size</span> <span class="o">=</span> <span class="n">batch_size</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_envoy</span><span class="o">.</span><span class="n">_clear</span><span class="p">()</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">_batched_input</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">_batch_inputs</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">_batched_input</span><span class="p">,</span>
-            <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="p">,</span>
-        <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">scanning</span> <span class="o">=</span> <span class="kc">True</span>
+
+                <span class="k">with</span> <span class="n">Patcher</span><span class="p">()</span> <span class="k">as</span> <span class="n">patcher</span><span class="p">:</span>
+
+                    <span class="c1"># Some logic (like gpt-j rotary embeddings) gets &quot;poisoned&quot; by FakeTensors.</span>
+                    <span class="c1"># This does not happen when `torch._jit_internal.is_scripting() returns True.`</span>
+                    <span class="n">patcher</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+                        <span class="n">Patch</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">_jit_internal</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;is_scripting&quot;</span><span class="p">)</span>
+                    <span class="p">)</span>
+
+                    <span class="k">with</span> <span class="n">FakeTensorMode</span><span class="p">(</span>
+                        <span class="n">allow_non_fake_inputs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="n">shape_env</span><span class="o">=</span><span class="n">ShapeEnv</span><span class="p">(</span><span class="n">assume_static_by_default</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+                    <span class="p">)</span> <span class="k">as</span> <span class="n">fake_mode</span><span class="p">:</span>
+                        <span class="k">with</span> <span class="n">FakeCopyMode</span><span class="p">(</span><span class="n">fake_mode</span><span class="p">):</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_execute</span><span class="p">(</span>
+                                <span class="o">*</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">inputs</span><span class="p">),</span>
+                                <span class="o">**</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">_kwargs</span><span class="p">),</span>
+                            <span class="p">)</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">scanning</span> <span class="o">=</span> <span class="kc">False</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_envoy</span><span class="o">.</span><span class="n">_reset</span><span class="p">()</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">_invoker_inputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">self</span>
 
     <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_val</span><span class="p">,</span> <span class="n">exc_tb</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">exc_val</span><span class="p">,</span> <span class="ne">BaseException</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="n">exc_val</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">_invoker</span> <span class="o">=</span> <span class="kc">None</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">invoker</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">exc_val</span><span class="p">,</span> <span class="ne">BaseException</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">exc_val</span></div>
 
 </pre></div>
 

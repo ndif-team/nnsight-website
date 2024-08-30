@@ -30,7 +30,8 @@
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css?v=2aa19091" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -47,19 +48,19 @@
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/features/remote_execution';</script>
-    <script src="../../../_static/js/custom.js?v=e4e20b07"></script>
+    <script src="../../../_static/js/custom.js?v=1e4be224"></script>
     <script src="../../../_static/js/code.js?v=34343d0c"></script>
     <link rel="icon" href="../../../_static/icon.ico"/>
     <link rel="author" title="About these documents" href="../../../about/" />
     <link rel="index" title="Index" href="../../../genindex/" />
     <link rel="search" title="Search" href="../../../search/" />
-    <link rel="next" title="Setting Values" href="../setting/" />
-    <link rel="prev" title="Applying Operations" href="../operations/" />
+    <link rel="next" title="Scan and Validate" href="../scan_validate/" />
+    <link rel="prev" title="Operations" href="../operations/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../../../_static/css/custom.css?v=1721420672" rel="stylesheet" type="text/css" />
-<link href="../../../_static/css/front.css?v=1721420672" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/custom.css?v=1725032410" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/home.css?v=1725032410" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -232,7 +233,7 @@ document.write(`
           
           
           
-          <a href="https://github.com/JadenFiotto-Kaufman/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -244,7 +245,7 @@ document.write(`
           
           
           
-          <a href="https://discord.gg/6uFJmCSwW7" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
             <span class="sr-only">Discord</span></a>
         </li>
         <li class="nav-item">
@@ -411,7 +412,7 @@ document.write(`
           
           
           
-          <a href="https://github.com/JadenFiotto-Kaufman/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -423,7 +424,7 @@ document.write(`
           
           
           
-          <a href="https://discord.gg/6uFJmCSwW7" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
             <span class="sr-only">Discord</span></a>
         </li>
         <li class="nav-item">
@@ -488,15 +489,23 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../conditionals/">Conditional Interventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cross_prompt/">Cross-Prompt Intervention</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../custom_functions/">Custom Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../early_stopping/">Early Stopping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../getting/">Getting Values</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gradients/">Working With Gradients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/">Applying Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gradients/">Gradients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iterator/">Iterative Interventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lora_training/">LoRA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model_editing/">Model Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/">Modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../multiple_token/">Multiple Token Generation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../operations/">Applying Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operations/">Operations</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Remote Execution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan_validate/">Scan and Validate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sessions/">Sessions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../setting/">Setting Values</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../token_indexing/">Token Based Indexing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../token_indexing/">Multi-Token Indexing</a></li>
 </ul>
 </div>
 </nav></div>
@@ -556,7 +565,98 @@ document.write(`
                   
   <section id="Remote-Execution">
 <h1>Remote Execution<a class="headerlink" href="#Remote-Execution" title="Link to this heading">#</a></h1>
-<p>Coming Soon!</p>
+<p>In its current state, <code class="docutils literal notranslate"><span class="pre">NDIF</span></code> requires you to receive an API key. To get one, simply go to <a class="reference external" href="https://login.ndif.us">https://login.ndif.us</a> and sign up.</p>
+<p>With a valid API key, you then can configure <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> by doing the following:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nnsight</span> <span class="kn">import</span> <span class="n">CONFIG</span>
+
+<span class="n">CONFIG</span><span class="o">.</span><span class="n">set_default_api_key</span><span class="p">(</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<p>This only needs to be run once as it will save this api key as the default in a config file along with the <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> installation.</p>
+<p>Let’s demonstrate using <code class="docutils literal notranslate"><span class="pre">nnsight</span></code>’s tracing context with one of the larger open source language models, <code class="docutils literal notranslate"><span class="pre">Llama-3.1-70b</span></code>!</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># llama3.1 70b is a gated model and you need access via your huggingface token</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HF_TOKEN&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;YOUR_HUGGING_FACE_TOKEN&quot;</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># We&#39;ll never actually load the parameters so no need to specify a device_map.</span>
+<span class="n">llama</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s2">&quot;meta-llama/Meta-Llama-3.1-70B&quot;</span><span class="p">)</span>
+
+<span class="c1"># All we need to specify using NDIF vs executing locally is remote=True.</span>
+<span class="k">with</span> <span class="n">llama</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;The Eiffel Tower is in the city of&quot;</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">runner</span><span class="p">:</span>
+
+    <span class="n">hidden_states</span> <span class="o">=</span> <span class="n">llama</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+    <span class="n">output</span> <span class="o">=</span> <span class="n">llama</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">hidden_states</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">[</span><span class="s2">&quot;logits&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2024-08-30 07:11:21,150 MainProcess nnsight_remote INFO     36ff46f0-d81a-4586-b7e7-eaf6f97d6c0b - RECEIVED: Your job has been received and is waiting approval.
+2024-08-30 07:11:21,184 MainProcess nnsight_remote INFO     36ff46f0-d81a-4586-b7e7-eaf6f97d6c0b - APPROVED: Your job was approved and is waiting to be run.
+2024-08-30 07:11:21,206 MainProcess nnsight_remote INFO     36ff46f0-d81a-4586-b7e7-eaf6f97d6c0b - RUNNING: Your job has started running.
+2024-08-30 07:11:21,398 MainProcess nnsight_remote INFO     36ff46f0-d81a-4586-b7e7-eaf6f97d6c0b - COMPLETED: Your job has been completed.
+Downloading result:   0%|          | 0.00/9.48M [00:00&lt;?, ?B/s]huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+        - Avoid using `tokenizers` before the fork if possible
+        - Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+Downloading result: 100%|██████████| 9.48M/9.48M [00:02&lt;00:00, 3.21MB/s]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(tensor([[[ 5.4688, -4.9062,  2.2344,  ..., -3.6875,  0.9609,  1.2578],
+         [ 1.5469, -0.6172, -1.4531,  ..., -1.1562, -0.1406, -2.1250],
+         [ 1.7812, -1.8906, -1.1875,  ...,  0.1680,  0.9609,  0.5625],
+         ...,
+         [ 0.9453, -0.3711,  1.3516,  ...,  1.3828, -0.7969, -1.9297],
+         [-0.8906,  0.3672,  0.2617,  ...,  2.4688, -0.4414, -0.6758],
+         [-1.6094,  1.0938,  1.7031,  ...,  1.8672, -1.1328, -0.5000]]],
+       dtype=torch.bfloat16), DynamicCache())
+tensor([[[ 6.3750,  8.6250, 13.0000,  ..., -4.1562, -4.1562, -4.1562],
+         [-2.8594, -2.2344, -3.0938,  ..., -8.6250, -8.6250, -8.6250],
+         [ 8.9375,  3.5938,  4.5000,  ..., -3.9375, -3.9375, -3.9375],
+         ...,
+         [ 3.5781,  3.4531,  0.0796,  ..., -6.5625, -6.5625, -6.5625],
+         [10.8750,  6.4062,  4.9375,  ..., -4.0000, -4.0000, -3.9844],
+         [ 7.2500,  6.1562,  3.5156,  ..., -4.7188, -4.7188, -4.7188]]])
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+<p>It really is as simple as <code class="docutils literal notranslate"><span class="pre">remote=True</span></code>. All of the techniques available in NNsight locally work just the same when running remotely.</p>
 </section>
 
 

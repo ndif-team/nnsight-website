@@ -30,7 +30,7 @@
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -47,7 +47,7 @@
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
-    <script src="_static/js/custom.js?v=e4e20b07"></script>
+    <script src="_static/js/custom.js?v=1e4be224"></script>
     <script src="_static/js/code.js?v=34343d0c"></script>
     <link rel="icon" href="_static/icon.ico"/>
     <link rel="author" title="About these documents" href="about/" />
@@ -57,8 +57,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="_static/css/custom.css?v=1721420672" rel="stylesheet" type="text/css" />
-<link href="_static/css/front.css?v=1721420672" rel="stylesheet" type="text/css" />
+<link href="_static/css/custom.css?v=1725032410" rel="stylesheet" type="text/css" />
+<link href="_static/css/home.css?v=1725032410" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -231,7 +231,7 @@ document.write(`
           
           
           
-          <a href="https://github.com/JadenFiotto-Kaufman/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -243,7 +243,7 @@ document.write(`
           
           
           
-          <a href="https://discord.gg/6uFJmCSwW7" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
             <span class="sr-only">Discord</span></a>
         </li>
         <li class="nav-item">
@@ -412,7 +412,7 @@ document.write(`
           
           
           
-          <a href="https://github.com/JadenFiotto-Kaufman/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -424,7 +424,7 @@ document.write(`
           
           
           
-          <a href="https://discord.gg/6uFJmCSwW7" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
             <span class="sr-only">Discord</span></a>
         </li>
         <li class="nav-item">
@@ -510,123 +510,164 @@ document.write(`
 <h1 class="sd-d-none">nnsight<a class="headerlink" href="#nnsight" title="Link to this heading">#</a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<!-- Styles which override PyData site-wide themeing for the front page. -->
+<style>
+    .bd-main .bd-content .bd-article-container {
+        max-width: 100%;  /* default is 60em */
+    }
 
-<!-- and it's easy to individually load additional languages -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    .bd-article-container {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        padding-bottom: 0px !important;
+    }
 
-<script>hljs.highlightAll();</script>
+    .bd-page-width {
+        max-width: 100%;  /* default is 88rem */
+    }
+
+    .bd-header__inner {
+        max-width: 88rem !important;
+    }
+
+    .bd-footer__inner {
+        max-width: 88rem !important;
+    }
+
+    .bd-footer {
+        background: var(--pst-color-background) !important;
+    }
+</style>
+
+<div class="fixed-background"></div>
+
+<section class="hero col-lg-6 col-8 container">
+    <div class="row h-100 align-items-center">
+        <div class="col-md-6">
+            <h1 class="display-5 fw-bold lh-1 mb-3">Interpretable Neural Networks</h1>
+            <p class="lead">NNsight (/ɛn.saɪt/) is a package for interpreting and manipulating the internals of models.</p>
+            <div class="d-grid gap-2 d-md-flex">
+                <a href="start" role="button" class="btn btn-primary primary btn-md px-4">Start</a>
+                <a href="documentation" role="button" class="btn btn-outline-secondary secondary btn-md px-4">Docs</a>
+                <a href="features" role="button" class="btn btn-outline-secondary btn-md secondary px-4">Tutorials</a>
+                <a href="about" role="button" class="btn btn-outline-secondary btn-md secondary px-4">About</a>
+            </div>
+        </div>
+        <div class="col-md-6 d-none d-md-block text-center">
+            <img src="_static/images/nnsight_logo.svg" class="img-fluid transparent hero-image" alt="NNsight Logo" loading="lazy">
+        </div>
+    </div>
+</section>
+
+<div class="surface pb-5">
+<section class="col-lg-6 col-8 container pb-5">
+
+
+        <div class="row g-5 align-items-center" style="height: 45vh">
+
+            <div class="col-md-5">
+                <div style="width: 100%; margin: auto;">
+                    <h3 class="fw-bold lh-1 mb-3 mt-0">Wrap Any PyTorch Model</h3>
+                    <p class="lead" id="myElement">The NNsight class object wraps a given PyTorch model, enabling tracing capabilities.</p>
+                    <a href="start">Get Started →</a>
+                </div>
+            </div>
+
+            <div class="col-md-7 d-none d-md-block">
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nnsight</span> <span class="kn">import</span> <span class="n">NNsight</span><span class="p">,</span> <span class="n">LanguageModel</span>
+
+<span class="n">net</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">OrderedDict</span><span class="p">([</span>
+    <span class="p">(</span><span class="s1">&#39;layer1&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_dims</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">&#39;layer2&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_dims</span><span class="p">,</span> <span class="n">output_size</span><span class="p">)),</span>
+<span class="p">]))</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">NNsight</span><span class="p">(</span><span class="n">net</span><span class="p">)</span>
+
+<span class="c1"># or</span>
+
+<span class="n">transformer</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s1">&#39;openai-community/gpt2&#39;</span><span class="p">)</span>
+</pre></div>
+            </div>
+
+        </div>
+        <div class="row g-5 align-items-center" style="height: 35vh">
+
+            <div class="col-md-5">
+                <div style="width: 100%; margin: auto;">
+                <h3 class="fw-bold lh-1 mb-3 mt-0">Access Hidden States</h3>
+                <p class="lead" id="myElement">Easily expose Module inputs and outputs.</p>
+                <a href="notebooks/tutorials/walkthrough">Walkthrough →</a>
+            </div>
+            </div>
+
+            <div class="col-md-7 d-none d-md-block">
+
+<div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">&#39;Who invented neural networks?&#39;</span><span class="p">):</span>
+
+    <span class="n">hidden_state_output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="n">hidden_state_input</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer2</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+    <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">hidden_state_output</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hidden_state_input</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</pre></div>
+
+            </div>
+        </div>
+        <div class="row g-5 align-items-center" style="height: 45vh">
+            <div class="col-md-5">
+                <div style="width: 100%; margin:auto;">
+                    <h3 class="fw-bold lh-1 mb-3 mt-0">Develop Complex Interventions</h3>
+                    <p class="lead" id="myElement">Edit Module outputs and measure effects.</p>
+                    <a href="tutorials">Tutorials →</a>
+                </div>
+            </div>
+            <!-- CODE BLOCK NUMBER THREE -->
+            <div class="col-md-7 d-none d-md-block">
+<div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">()</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
+
+    <span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">):</span>
+
+        <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">mlp</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][:]</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">intervention</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+    <span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">):</span>
+
+        <span class="n">original</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</pre></div>
+            </div>
+            <!-- END OF CODE BLOCK NUMBER THREE -->
+        </div>
+</section>
+</div>
+
 
 <script>
-  document.addEventListener('DOMContentLoaded', (event) => {
-    document.querySelectorAll('img.transparent').forEach(el => {
-      el.style.background = 'transparent';
-    });
-  });
-</script><script type="text/javascript">
-document.addEventListener('DOMContentLoaded', function() {
-    var observer = new MutationObserver(function(mutations) {
-        updateCSSLink();
-    });
-    observer.observe(document.documentElement, {attributes: true, attributeFilter: ['data-theme']});
 
-    function updateCSSLink() {
-        const dark = document.documentElement.dataset.theme == 'dark';
-        var link = document.querySelector('link[rel="stylesheet"][href*="hljs"]');
-        if(link) {
-            link.href = dark ? '../_static/css/hljs-dark.css?v=0.2' : '../_static/css/hljs-light.css?v=0.2';
-        }
-    }
+    // Fix navbar to top of page
+    var navbar = document.querySelector('.navbar');
 
-    // Initial check in case the theme is already set before the observer is added
-    updateCSSLink();
-});
-</script>
-<link rel="stylesheet" href="../_static/css/hljs-dark.css?v=0.2"><section class="d-flex align-items-center" style="height: 85vh;">
-    <div class="container">
-        <div class="row g-5">
-            <div class="col-md-6">
-                <h1 class="display-5 fw-bold lh-1 mb-3 text">Interpretable Neural Networks</h1>
-                <p class="lead text" id="myElement">NNsight (/ɛn.saɪt/) is a package for interpreting and manipulating the internals of models.</p>
-                <div class="d-grid gap-2 d-md-flex">
-                    <a href="start" role="button" class="btn btn-primary primary btn-md px-4">Start</a>
-                    <a href="documentation" role="button" class="btn btn-outline-secondary secondary btn-md px-4">Docs</a>
-                    <a href="features" role="button" class="btn btn-outline-secondary btn-md secondary px-4">Tutorials</a>
-                    <a href="about" role="button" class="btn btn-outline-secondary btn-md secondary px-4">About</a>
-                </div>
-            </div>
-            <div class="col-md-6 mt-2 d-none d-md-block">
-                <img src="_static/images/nnsight_logo.svg" class="img-fluid transparent" alt="Bootstrap Themes" loading="lazy">
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="d-flex align-items-center d-none d-md-block" style="height: 60vh;">
-    <div class="container">
-        <div class="row align-items-end pb-3 border-bottom mb-5">
-            <div class="col">
-                <h2 class="mb-0">Features</h2>
-            </div>
-            <div class="col text-end">
-                <a href="features" style="text-decoration:none">See More →</a>
-            </div>
-        </div>
-        <div class="row g-3">
-            <div class="col-md-4">
-                <div class="list-group rounded-3 tab-background p-3" id="list-tab" role="tablist">
-                    <a class="list-group-item list-group-item-action rounded-3 py-3 active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab">
-                        Wrap any PyTorch model
-                        <span class="d-block d-none d-md-block small opacity-50">NNsight class object</span>
-                    </a>
-                    <a class="list-group-item list-group-item-action rounded-3 py-3" id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab">
-                        Access any hidden state
-                        <span class="d-block d-none d-md-block small opacity-50">Expose Module inputs and outputs </span>
-                    </a>
-                    <a class="list-group-item list-group-item-action rounded-3 py-3" id="list-messages-list" data-bs-toggle="list" href="#list-messages" role="tab">
-                        Develop complex interventions
-                        <span class="d-block d-none d-md-block small opacity-50">Edit module outputs and measure effect</span>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="tab-content static-on-small" id="nav-tabContent">
-                    <div class="tab-pane fill-height fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
-                        <pre class="code-surface fill-height"><code class="language-python fill-height simple"></code></pre>
-                    </div>
-                    <div class="tab-pane fill-height fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
-                        <pre class="code-surface fill-height"><code class="language-python fill-height trace"></code></pre>
-                    </div>
-                    <div class="tab-pane fill-height fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
-                        <pre class="code-surface fill-height"><code class="language-python fill-height multi"></code></pre>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<section class="d-none d-md-block"  style="height: 20vh;"/><script>
-
-    var element = document.querySelector('.bd-container');
-
-    if (element) {
-    // If .bd-container exists, proceed to create the new element
-    var newElement = document.createElement('div');
-    newElement.id = 'canvas';
-
-    newElement.style.position = 'fixed';
-    newElement.style.zIndex = '-1';
-    newElement.style.height = '100vh';
-    newElement.style.width = '100vw';
-    newElement.style.top = '0';
-
-    element.appendChild(newElement);
+    if (navbar) {
+        navbar.style.position = 'fixed';
     } else {
-        console.log(".bd-container element does not exist.");
+        console.log(".navbar element does not exist.");
     }
+
+    // Remove article padding so content background is flush with sides
+    var article = document.querySelector('.bd-article');
+
+    if (article) {
+        article.style.paddingTop = '0';
+        article.style.paddingLeft = '0';
+    } else {
+        console.log(".article element does not exist.");
+    }
+
 </script></section>
 
 

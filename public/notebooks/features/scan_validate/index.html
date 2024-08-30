@@ -1,0 +1,1035 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Scan and Validate &#8212; nnsight</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../_static/documentation_options.js?v=187304be"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/features/scan_validate';</script>
+    <script src="../../../_static/js/custom.js?v=1e4be224"></script>
+    <script src="../../../_static/js/code.js?v=34343d0c"></script>
+    <link rel="icon" href="../../../_static/icon.ico"/>
+    <link rel="author" title="About these documents" href="../../../about/" />
+    <link rel="index" title="Index" href="../../../genindex/" />
+    <link rel="search" title="Search" href="../../../search/" />
+    <link rel="next" title="Sessions" href="../sessions/" />
+    <link rel="prev" title="Remote Execution" href="../remote_execution/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+<link href="../../../_static/css/custom.css?v=1725032410" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/home.css?v=1725032410" rel="stylesheet" type="text/css" />
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search/"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../_static/nnsight_logo.svg" class="logo__image only-dark" alt="nnsight - Home"/>
+    <script>document.write(`<img src="../../../_static/nnsight_logo.svg" class="logo__image only-light" alt="nnsight - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../start/">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../documentation/">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../features/">
+    Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../about/">
+    About
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discord</span></a>
+        </li>
+        <li class="nav-item">
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/status" title="Status: Unknown" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Status: Unknown</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item"><script>
+    fetch("https://ndif.dev/ping")
+        .then((response) => {
+            if (response.status == 200) {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#66800b', 'important');
+                    });
+                });
+            }
+            else {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#af3029', 'important');
+                    });
+                });
+                var statusIcon = document.querySelector('.ndif .fa-circle-check');
+                if (statusIcon) {
+                    // not here
+                    statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark'); 
+                }
+            }
+        })
+        .catch((response) => {
+            Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                    spanElement.style.setProperty('color', '#af3029', 'important');
+                });
+            });
+            var statusIcon = document.querySelector('.ndif .fa-circle-check');
+            if (statusIcon) {
+                statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark');
+            }
+        })
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../start/">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../documentation/">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../features/">
+    Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../about/">
+    About
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discord</span></a>
+        </li>
+        <li class="nav-item">
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/status" title="Status: Unknown" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Status: Unknown</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item"><script>
+    fetch("https://ndif.dev/ping")
+        .then((response) => {
+            if (response.status == 200) {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#66800b', 'important');
+                    });
+                });
+            }
+            else {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#af3029', 'important');
+                    });
+                });
+                var statusIcon = document.querySelector('.ndif .fa-circle-check');
+                if (statusIcon) {
+                    // not here
+                    statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark'); 
+                }
+            }
+        })
+        .catch((response) => {
+            Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                    spanElement.style.setProperty('color', '#af3029', 'important');
+                });
+            });
+            var statusIcon = document.querySelector('.ndif .fa-circle-check');
+            if (statusIcon) {
+                statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark');
+            }
+        })
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../conditionals/">Conditional Interventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cross_prompt/">Cross-Prompt Intervention</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../custom_functions/">Custom Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../early_stopping/">Early Stopping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting/">Getting Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gradients/">Gradients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iterator/">Iterative Interventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lora_training/">LoRA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model_editing/">Model Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../multiple_token/">Multiple Token Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operations/">Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../remote_execution/">Remote Execution</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Scan and Validate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sessions/">Sessions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../setting/">Setting Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../token_indexing/">Multi-Token Indexing</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../features/" class="nav-link">Features</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Scan and Validate</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="Scan-and-Validate">
+<h1>Scan and Validate<a class="headerlink" href="#Scan-and-Validate" title="Link to this heading">#</a></h1>
+<p>Have you encountered a situation where you are changing the tensor values in the intervention code and getting an error message that is not very helpful?</p>
+<p>This is where “Scanning” and “Validating” can help. As the name suggests, these features help you scan the shapes of the tensors throughout the model and validate that the current tensor shapes are compatible with the model.</p>
+<p>We can enable these helpful tools by setting the <code class="docutils literal notranslate"><span class="pre">scan=True</span></code> and <code class="docutils literal notranslate"><span class="pre">validate=True</span></code> flags in the <code class="docutils literal notranslate"><span class="pre">trace</span></code> method.</p>
+<p>Here is an example that demonstrates how <strong>Scan</strong> and <strong>Validate</strong> can help us debug the model:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nnsight</span> <span class="kn">import</span> <span class="n">LanguageModel</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s1">&#39;openai-community/gpt2&#39;</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+
+<span class="nb">input</span> <span class="o">=</span> <span class="s2">&quot;The Eiffel Tower is in the city of&quot;</span>
+<span class="n">number_of_tokens</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span>
+
+<span class="c1"># turn on scan and validate</span>
+<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">scan</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+    <span class="n">original_output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+    <span class="c1"># we want to modify the hidden states for the last token</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span> <span class="n">number_of_tokens</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">modified_output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Original Output: &quot;</span><span class="p">,</span> <span class="n">original_output</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Modified Output: &quot;</span><span class="p">,</span> <span class="n">modified_output</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/opt/homebrew/anaconda3/envs/nnsight_local/lib/python3.12/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+/opt/homebrew/anaconda3/envs/nnsight_local/lib/python3.12/site-packages/transformers/tokenization_utils_base.py:1601: FutureWarning: `clean_up_tokenization_spaces` was not set. It will be set to `True` by default. This behavior will be deprecated in transformers v4.45, and will be then set to `False` by default. For more details check this issue: https://github.com/huggingface/transformers/issues/31884
+  warnings.warn(
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">IndexError</span>                                Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[1], line 9</span>
+<span class="ansi-green-intense-fg ansi-bold">      6</span> number_of_tokens <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">len</span>(model<span style="color: rgb(98,98,98)">.</span>tokenizer<span style="color: rgb(98,98,98)">.</span>encode(<span style="color: rgb(0,135,0)">input</span>))
+<span class="ansi-green-intense-fg ansi-bold">      8</span> <span style="color: rgb(95,135,135)"># turn on scan and validate</span>
+<span class="ansi-green-fg">----&gt; 9</span> <span class="ansi-yellow-bg ansi-bold" style="color: rgb(0,135,0)">with</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">model</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">trace</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">input</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">scan</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg ansi-bold" style="color: rgb(0,135,0)">True</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">validate</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg ansi-bold" style="color: rgb(0,135,0)">True</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     11</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">original_output</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">model</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">transformer</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">h</span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">11</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">output</span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">0</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">clone</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">save</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     13</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg" style="color: rgb(95,135,135)"># we want to modify the hidden states for the last token</span>
+
+File <span class="ansi-green-fg">~/Projects/NDIF/nnsight/src/nnsight/contexts/Tracer.py:103</span>, in <span class="ansi-cyan-fg">Tracer.__exit__</span><span class="ansi-blue-fg">(self, exc_type, exc_val, exc_tb)</span>
+<span class="ansi-green-intense-fg ansi-bold">     98</span>     <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>invoker<span style="color: rgb(98,98,98)">.</span><span style="color: rgb(0,0,255)">__exit__</span>(<span class="ansi-bold" style="color: rgb(0,135,0)">None</span>, <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>, <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>)
+<span class="ansi-green-intense-fg ansi-bold">    100</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>model<span style="color: rgb(98,98,98)">.</span>_envoy<span style="color: rgb(98,98,98)">.</span>_reset()
+<span class="ansi-green-fg">--&gt; 103</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">super</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg" style="color: rgb(0,0,255)">__exit__</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">exc_type</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">exc_val</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">exc_tb</span><span class="ansi-yellow-bg">)</span>
+
+File <span class="ansi-green-fg">~/Projects/NDIF/nnsight/src/nnsight/contexts/GraphBasedContext.py:216</span>, in <span class="ansi-cyan-fg">GraphBasedContext.__exit__</span><span class="ansi-blue-fg">(self, exc_type, exc_val, exc_tb)</span>
+<span class="ansi-green-intense-fg ansi-bold">    214</span>     <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>graph<span style="color: rgb(98,98,98)">.</span>alive <span style="color: rgb(98,98,98)">=</span> <span class="ansi-bold" style="color: rgb(0,135,0)">False</span>
+<span class="ansi-green-intense-fg ansi-bold">    215</span>     <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>graph <span style="color: rgb(98,98,98)">=</span> <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>
+<span class="ansi-green-fg">--&gt; 216</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> exc_val
+<span class="ansi-green-intense-fg ansi-bold">    218</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>backend(<span style="color: rgb(0,135,0)">self</span>)
+
+Cell <span class="ansi-green-fg">In[1], line 14</span>
+<span class="ansi-green-intense-fg ansi-bold">     11</span>     original_output <span style="color: rgb(98,98,98)">=</span> model<span style="color: rgb(98,98,98)">.</span>transformer<span style="color: rgb(98,98,98)">.</span>h[<span style="color: rgb(98,98,98)">11</span>]<span style="color: rgb(98,98,98)">.</span>output[<span style="color: rgb(98,98,98)">0</span>]<span style="color: rgb(98,98,98)">.</span>clone()<span style="color: rgb(98,98,98)">.</span>save()
+<span class="ansi-green-intense-fg ansi-bold">     13</span>     <span style="color: rgb(95,135,135)"># we want to modify the hidden states for the last token</span>
+<span class="ansi-green-fg">---&gt; 14</span>     <span class="ansi-yellow-bg">model</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">transformer</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">h</span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">11</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">output</span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">0</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-bg">:</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">number_of_tokens</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">:</span><span class="ansi-yellow-bg">]</span> <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(98,98,98)">0</span>
+<span class="ansi-green-intense-fg ansi-bold">     16</span>     modified_output <span style="color: rgb(98,98,98)">=</span> model<span style="color: rgb(98,98,98)">.</span>transformer<span style="color: rgb(98,98,98)">.</span>h[<span style="color: rgb(98,98,98)">11</span>]<span style="color: rgb(98,98,98)">.</span>output[<span style="color: rgb(98,98,98)">0</span>]<span style="color: rgb(98,98,98)">.</span>save()
+<span class="ansi-green-intense-fg ansi-bold">     18</span> <span style="color: rgb(0,135,0)">print</span>(<span style="color: rgb(175,0,0)">&#34;</span><span class="ansi-bold" style="color: rgb(175,95,0)">\n</span><span style="color: rgb(175,0,0)">Original Output: </span><span style="color: rgb(175,0,0)">&#34;</span>, original_output[<span style="color: rgb(98,98,98)">0</span>][<span style="color: rgb(98,98,98)">-</span><span style="color: rgb(98,98,98)">1</span>])
+
+File <span class="ansi-green-fg">~/Projects/NDIF/nnsight/src/nnsight/tracing/Proxy.py:89</span>, in <span class="ansi-cyan-fg">Proxy.__setitem__</span><span class="ansi-blue-fg">(self, key, value)</span>
+<span class="ansi-green-intense-fg ansi-bold">     88</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> <span style="color: rgb(0,0,255)">__setitem__</span>(<span style="color: rgb(0,135,0)">self</span>, key: Union[Proxy, Any], value: Union[Self, Any]) <span style="color: rgb(98,98,98)">-</span><span style="color: rgb(98,98,98)">&gt;</span> <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>:
+<span class="ansi-green-fg">---&gt; 89</span>     <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">node</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">create</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-intense-fg ansi-bold">     90</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">target</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg">operator</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">setitem</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">     91</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">node</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">key</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">value</span><span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">     92</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">)</span>
+
+File <span class="ansi-green-fg">~/Projects/NDIF/nnsight/src/nnsight/tracing/Node.py:270</span>, in <span class="ansi-cyan-fg">Node.create</span><span class="ansi-blue-fg">(self, target, proxy_value, args, kwargs, name)</span>
+<span class="ansi-green-intense-fg ansi-bold">    267</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> value
+<span class="ansi-green-intense-fg ansi-bold">    269</span> <span style="color: rgb(95,135,135)"># Otherwise just create the Node on the Graph like normal.</span>
+<span class="ansi-green-fg">--&gt; 270</span> <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">graph</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">create</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-intense-fg ansi-bold">    271</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">target</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg">target</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">    272</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">name</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg">name</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">    273</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">proxy_value</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg">proxy_value</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">    274</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">    275</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">    276</span> <span class="ansi-yellow-bg">)</span>
+
+File <span class="ansi-green-fg">~/Projects/NDIF/nnsight/src/nnsight/tracing/Graph.py:113</span>, in <span class="ansi-cyan-fg">Graph.create</span><span class="ansi-blue-fg">(self, *args, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">    106</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> <span style="color: rgb(0,0,255)">create</span>(<span style="color: rgb(0,135,0)">self</span>, <span style="color: rgb(98,98,98)">*</span>args, <span style="color: rgb(98,98,98)">*</span><span style="color: rgb(98,98,98)">*</span>kwargs) <span style="color: rgb(98,98,98)">-</span><span style="color: rgb(98,98,98)">&gt;</span> Proxy:
+<span class="ansi-green-intense-fg ansi-bold">    107</span> <span style="color: rgb(188,188,188)">    </span><span style="color: rgb(175,0,0)">&#34;&#34;&#34;Creates a Node directly on this `Graph` and returns its `Proxy`.</span>
+<span class="ansi-green-intense-fg ansi-bold">    108</span>
+<span class="ansi-green-intense-fg ansi-bold">    109</span> <span style="color: rgb(175,0,0)">    Returns:</span>
+<span class="ansi-green-intense-fg ansi-bold">    110</span> <span style="color: rgb(175,0,0)">        Proxy: `Proxy` for newly created `Node`.</span>
+<span class="ansi-green-intense-fg ansi-bold">    111</span> <span style="color: rgb(175,0,0)">    &#34;&#34;&#34;</span>
+<span class="ansi-green-fg">--&gt; 113</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>proxy_class(<span class="ansi-yellow-bg">Node</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">graph</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">*</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">*</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span>)
+
+File <span class="ansi-green-fg">~/Projects/NDIF/nnsight/src/nnsight/tracing/Node.py:96</span>, in <span class="ansi-cyan-fg">Node.__init__</span><span class="ansi-blue-fg">(self, target, graph, proxy_value, args, kwargs, name)</span>
+<span class="ansi-green-intense-fg ansi-bold">     93</span> <span style="color: rgb(95,135,135)"># If theres an alive Graph, add it.</span>
+<span class="ansi-green-intense-fg ansi-bold">     94</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>attached():
+<span class="ansi-green-fg">---&gt; 96</span>     <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">graph</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">add</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">)</span>
+
+File <span class="ansi-green-fg">~/Projects/NDIF/nnsight/src/nnsight/tracing/Graph.py:131</span>, in <span class="ansi-cyan-fg">Graph.add</span><span class="ansi-blue-fg">(self, node)</span>
+<span class="ansi-green-intense-fg ansi-bold">    128</span> <span style="color: rgb(95,135,135)"># If we&#39;re validating and the user did not provide a proxy_value, execute the given target with meta proxy values to compute new proxy_value.</span>
+<span class="ansi-green-intense-fg ansi-bold">    129</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>validate <span class="ansi-bold" style="color: rgb(175,0,255)">and</span> node<span style="color: rgb(98,98,98)">.</span>proxy_value <span class="ansi-bold" style="color: rgb(175,0,255)">is</span> inspect<span style="color: rgb(98,98,98)">.</span>_empty:
+<span class="ansi-green-fg">--&gt; 131</span>     node<span style="color: rgb(98,98,98)">.</span>proxy_value <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">validate</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">node</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">target</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">*</span><span class="ansi-yellow-bg">node</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">*</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">*</span><span class="ansi-yellow-bg">node</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    133</span> <span style="color: rgb(95,135,135)"># Get name of target.</span>
+<span class="ansi-green-intense-fg ansi-bold">    134</span> name <span style="color: rgb(98,98,98)">=</span> (
+<span class="ansi-green-intense-fg ansi-bold">    135</span>     node<span style="color: rgb(98,98,98)">.</span>target
+<span class="ansi-green-intense-fg ansi-bold">    136</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span style="color: rgb(0,135,0)">isinstance</span>(node<span style="color: rgb(98,98,98)">.</span>target, <span style="color: rgb(0,135,0)">str</span>)
+<span class="ansi-green-intense-fg ansi-bold">    137</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">else</span> node<span style="color: rgb(98,98,98)">.</span>target<span style="color: rgb(98,98,98)">.</span><span style="color: rgb(0,0,135)">__name__</span>
+<span class="ansi-green-intense-fg ansi-bold">    138</span> )
+
+File <span class="ansi-green-fg">~/Projects/NDIF/nnsight/src/nnsight/tracing/util.py:20</span>, in <span class="ansi-cyan-fg">validate</span><span class="ansi-blue-fg">(target, *args, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">     14</span> <span class="ansi-bold" style="color: rgb(0,135,0)">with</span> FakeTensorMode(
+<span class="ansi-green-intense-fg ansi-bold">     15</span>     allow_non_fake_inputs<span style="color: rgb(98,98,98)">=</span><span class="ansi-bold" style="color: rgb(0,135,0)">True</span>,
+<span class="ansi-green-intense-fg ansi-bold">     16</span>     shape_env<span style="color: rgb(98,98,98)">=</span>ShapeEnv(assume_static_by_default<span style="color: rgb(98,98,98)">=</span><span class="ansi-bold" style="color: rgb(0,135,0)">True</span>),
+<span class="ansi-green-intense-fg ansi-bold">     17</span> ) <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> fake_mode:
+<span class="ansi-green-intense-fg ansi-bold">     18</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">with</span> FakeCopyMode(fake_mode):
+<span class="ansi-green-fg">---&gt; 20</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg ansi-bold" style="color: rgb(0,135,0)">with</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">GlobalTracingContext</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">exit_global_tracing_context</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     22</span> <span class="ansi-yellow-bg">            </span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">Node</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">prepare_inputs</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">proxy</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg ansi-bold" style="color: rgb(0,135,0)">True</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     24</span> <span class="ansi-yellow-bg">            </span><span class="ansi-yellow-bg ansi-bold" style="color: rgb(0,135,0)">return</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">target</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-intense-fg ansi-bold">     25</span> <span class="ansi-yellow-bg">                </span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">     26</span> <span class="ansi-yellow-bg">                </span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">*</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">*</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">     27</span> <span class="ansi-yellow-bg">            </span><span class="ansi-yellow-bg">)</span>
+
+File <span class="ansi-green-fg">~/Projects/NDIF/nnsight/src/nnsight/contexts/GraphBasedContext.py:330</span>, in <span class="ansi-cyan-fg">GlobalTracingContext.GlobalTracingExit.__exit__</span><span class="ansi-blue-fg">(self, exc_type, exc_val, traceback)</span>
+<span class="ansi-green-intense-fg ansi-bold">    326</span> GlobalTracingContext<span style="color: rgb(98,98,98)">.</span>PATCHER<span style="color: rgb(98,98,98)">.</span><span style="color: rgb(0,0,255)">__enter__</span>()
+<span class="ansi-green-intense-fg ansi-bold">    328</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span style="color: rgb(0,135,0)">isinstance</span>(exc_val, <span class="ansi-bold" style="color: rgb(215,95,95)">BaseException</span>):
+<span class="ansi-green-fg">--&gt; 330</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> exc_val
+
+File <span class="ansi-green-fg">~/Projects/NDIF/nnsight/src/nnsight/tracing/util.py:24</span>, in <span class="ansi-cyan-fg">validate</span><span class="ansi-blue-fg">(target, *args, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">     20</span> <span class="ansi-bold" style="color: rgb(0,135,0)">with</span> GlobalTracingContext<span style="color: rgb(98,98,98)">.</span>exit_global_tracing_context():
+<span class="ansi-green-intense-fg ansi-bold">     22</span>     args, kwargs <span style="color: rgb(98,98,98)">=</span> Node<span style="color: rgb(98,98,98)">.</span>prepare_inputs((args, kwargs), proxy<span style="color: rgb(98,98,98)">=</span><span class="ansi-bold" style="color: rgb(0,135,0)">True</span>)
+<span class="ansi-green-fg">---&gt; 24</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">target</span><span class="ansi-yellow-bg">(</span>
+<span class="ansi-green-intense-fg ansi-bold">     25</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">     26</span> <span class="ansi-yellow-bg">        </span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">*</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">*</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">     27</span> <span class="ansi-yellow-bg">    </span><span class="ansi-yellow-bg">)</span>
+
+File <span class="ansi-green-fg">~/Projects/NDIF/nnsight/src/nnsight/contexts/GraphBasedContext.py:312</span>, in <span class="ansi-cyan-fg">GlobalTracingContext.GlobalTracingTorchHandler.__torch_function__</span><span class="ansi-blue-fg">(self, func, types, args, kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">    305</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">_VariableFunctionsClass</span><span style="color: rgb(175,0,0)">&#34;</span> <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> func<span style="color: rgb(98,98,98)">.</span><span style="color: rgb(0,0,135)">__qualname__</span>:
+<span class="ansi-green-intense-fg ansi-bold">    306</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> GlobalTracingContext<span style="color: rgb(98,98,98)">.</span>GLOBAL_TRACING_CONTEXT<span style="color: rgb(98,98,98)">.</span>apply(
+<span class="ansi-green-intense-fg ansi-bold">    307</span>         func,
+<span class="ansi-green-intense-fg ansi-bold">    308</span>         <span style="color: rgb(98,98,98)">*</span>args,
+<span class="ansi-green-intense-fg ansi-bold">    309</span>         <span style="color: rgb(98,98,98)">*</span><span style="color: rgb(98,98,98)">*</span>kwargs
+<span class="ansi-green-intense-fg ansi-bold">    310</span>     )
+<span class="ansi-green-fg">--&gt; 312</span> <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">func</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">*</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">*</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-red-fg">IndexError</span>: index 10 is out of bounds for dimension 1 with size 10
+</pre></div></div>
+</div>
+<p>Ah of course, we needed to index at <code class="docutils literal notranslate"><span class="pre">number_of_tokens</span> <span class="pre">-</span> <span class="pre">1</span></code> not <code class="docutils literal notranslate"><span class="pre">number_of_tokens</span></code>.</p>
+<p>How was <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> able to catch this error?</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">scan</span></code> and <code class="docutils literal notranslate"><span class="pre">validate</span></code> are enabled, our input is run though the model, but under its own “fake” context. This means the input makes its way through all of the model operations, allowing <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> to record the shapes and data types of module inputs and outputs! The operations are never executed using tensors with real values so it doesn’t incur any memory costs. Then, when creating proxy requests like the setting one above, <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> also attempts to execute the request on the “fake”
+values we recorded.</p>
+<p>“Scanning” is what we call running “fake” inputs throught the model to collect information like shapes and types. “Validating” is what we call trying to execute the intervention proxies with “fake” inputs to see if they work. “Validating” is dependent on “Scanning” to work correctly, so we need to run the scan of the model at least once to debug with validate.</p>
+<details><summary><p>A word of caution</p>
+</summary><hr class="docutils" />
+<p>Some pytorch operations and related libraries don’t work well with fake tensors</p>
+<p>If you are doing anything in a loop where efficiency is important, you should keep scanning and validating off. It’s best to use them only when debugging or when you are unsure if your intervention will work.</p>
+<hr class="docutils" />
+</details><p>Let’s try again with the correct indexing, and view the shape of the output before leaving the tracing context:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">scan</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+    <span class="n">original_output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+    <span class="c1"># we want to modify the hidden states for the last token</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span> <span class="n">number_of_tokens</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">modified_output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Original Output: &quot;</span><span class="p">,</span> <span class="n">original_output</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Modified Output: &quot;</span><span class="p">,</span> <span class="n">modified_output</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+You&#39;re using a GPT2TokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+Original Output:  tensor([ 6.6286e+00,  1.7258e+00,  4.7969e+00, -3.8255e+00,  1.0698e+00,
+        -1.4242e+00,  9.2749e+00,  6.0404e+00, -3.2988e+00, -2.7030e+00,
+        -3.9210e-01, -5.5507e-01,  6.4831e+00,  1.4496e+00, -4.2496e-01,
+        -9.4764e+00, -8.5587e-01,  4.8417e+00,  1.7383e+00, -1.9535e+01,
+        -2.1625e+00, -5.4659e+00,  7.9305e-02, -1.2014e+00,  7.6166e-01,
+         1.3293e+00, -8.1797e-01, -6.6870e+00,  2.9511e+00, -3.3648e+00,
+        -3.5362e+00, -3.2539e+00,  3.4988e+00,  2.2232e+00,  3.4482e+00,
+        -4.8883e+00,  6.5206e+01,  8.3218e-01, -3.5060e-01, -1.2041e+00,
+        -1.8520e+00,  2.3440e+00,  3.0114e+00,  6.7492e+00,  4.4499e+00,
+         6.5314e+00, -3.0311e+00,  4.3609e+00,  6.4801e-01,  1.6725e+00,
+         3.0538e+00,  2.5054e+00, -1.9737e+00, -1.5169e+00, -3.9845e+00,
+         3.4548e+00, -1.7004e+00, -2.8162e+00, -2.5651e-01, -1.8362e+00,
+        -7.5023e+00,  1.9528e+00,  6.4438e-01,  8.7818e-01, -1.0992e+02,
+         8.8575e+00,  2.1478e-01, -6.6564e+00, -3.2905e-01, -2.3264e-01,
+        -4.9211e+00, -6.6120e-02, -3.6601e+00, -1.5331e+00, -1.2056e+00,
+         5.6827e+00,  6.7709e+00, -5.1225e-01, -3.9829e+00,  2.9273e+00,
+        -5.6971e+00,  1.6272e+00,  3.2709e+00, -2.0965e+00, -1.4081e+00,
+        -2.4534e+00, -4.4642e+00, -1.0931e+02, -3.8111e+00,  2.1471e-01,
+        -6.9692e-01, -1.1457e+00, -1.1235e+01,  5.2517e+00, -4.2227e+00,
+        -3.2003e+00, -7.1090e+00,  1.8102e+00, -2.4567e+00,  7.7879e-01,
+        -6.2834e+00,  3.7080e+00, -1.6301e+00,  6.9053e-01, -2.9357e-02,
+        -5.7841e-01, -2.0679e+00, -2.0271e+00, -2.0579e+00, -5.7195e+00,
+         5.1443e-01,  1.7420e+00,  1.3746e+00,  3.5129e+00,  8.9945e-01,
+        -4.1595e-01, -1.5102e+00, -1.2280e+00,  3.4264e+00, -7.5586e+00,
+         2.8480e+00,  6.8030e+00, -1.3625e+00,  1.1234e+01, -1.5630e+00,
+         2.7383e+00,  3.4384e+00,  1.0834e+01,  5.3671e-01,  8.9106e-01,
+        -6.9593e+00,  1.0443e+00, -3.2028e-01,  1.1285e+01,  3.6665e+00,
+         3.1522e+00,  2.0780e+00, -1.5473e+00, -2.9861e+01, -3.5902e+00,
+        -4.2159e+00,  7.0041e-03,  8.4291e+00, -3.5786e+00,  3.3004e+00,
+         1.3246e+00,  2.4886e+00, -3.1515e+00,  2.5345e+00, -3.1293e+00,
+         5.2794e+00, -6.1508e+00,  9.1936e+00, -1.7968e+00, -3.2526e+00,
+        -1.0222e+00,  7.4691e+00, -3.1648e+00, -1.6389e+00, -9.7188e-01,
+        -2.1339e+00, -5.8595e+00, -4.7614e+00, -4.3966e+00, -1.0889e+00,
+        -1.5380e+00,  7.0410e+00, -1.5772e+01, -2.4345e-01,  3.2805e+00,
+         5.1078e+00, -4.2193e+00, -2.4413e+00, -1.2237e-01, -9.5395e+00,
+        -3.3000e+00,  4.7484e+00,  2.1002e+00,  2.5656e+00, -4.1450e+00,
+         1.1324e+01, -9.2751e-01, -8.7061e-03, -1.3499e+00, -1.0883e+00,
+         1.2036e+00,  6.4077e-01, -2.0958e+00, -9.4460e-01, -4.6134e+00,
+        -4.8703e+00,  3.2674e+00, -3.2317e+00,  5.0362e+00, -3.1834e+00,
+        -1.3516e+01,  7.0807e+00,  2.0336e+00,  2.0479e+00, -1.9521e+00,
+        -8.9104e+00,  3.0803e+00, -3.2048e+00, -9.7705e-01,  3.8135e+00,
+         2.4048e-01,  1.3258e+00, -7.1608e-01,  1.2787e+00, -9.8557e-02,
+         5.1077e+00, -4.0518e+00, -2.6806e-03, -7.2934e-01, -5.4432e+00,
+         3.5619e+00,  6.1031e+00, -7.2877e-01, -4.0819e+00,  2.9329e+00,
+         3.8585e+00, -2.9784e+00,  1.1124e+00, -8.2287e+00,  2.7348e+00,
+         6.0236e-01, -2.4054e+00, -3.5393e+00, -1.5170e+00, -7.5092e-01,
+        -4.3856e+00,  5.0673e+00,  1.6784e+01,  3.3701e+00, -6.4999e+00,
+         7.3039e+00,  7.5358e+00, -1.9126e+00,  2.1336e+00, -3.2421e+00,
+        -4.4454e+00,  2.0309e+00,  1.3034e+00, -5.0879e+00,  4.4193e+00,
+         1.1515e+01,  7.5885e-01,  4.5374e+00, -1.0041e+01,  2.4802e+00,
+        -1.9640e+00,  8.6382e+00, -2.9521e-01, -2.5199e+00, -3.1697e+00,
+        -4.1011e+00,  2.9947e+00,  2.5317e-01,  3.3526e+00, -8.4459e-01,
+        -1.6096e+00,  4.6977e+00, -2.5488e+00, -3.9472e+00, -2.5825e+00,
+         1.1431e+00, -9.7997e+01, -6.4164e+00, -1.7173e+00,  4.5707e+00,
+         2.2898e+00, -4.0544e+00,  8.1279e+00,  4.0761e+00,  3.0572e+00,
+         1.4155e+00,  3.1557e+00,  2.0821e+00,  1.4200e+00,  2.1833e-01,
+         4.3272e+00, -3.4302e+00, -1.4085e+00,  2.8076e-01, -8.1994e-01,
+        -6.6751e+00,  2.7346e+00,  8.0669e+00, -8.9313e-01,  5.0663e-01,
+         2.6838e+00, -1.5756e+00,  1.8478e+00,  1.4335e+00, -3.1085e+00,
+        -3.5366e+00, -2.3190e+00, -2.4223e+00,  4.6886e-01,  2.7125e+00,
+        -4.6715e-01,  1.9403e+00,  1.6051e+00,  4.9405e+00,  5.9342e+00,
+         6.0049e+00,  1.0645e+00,  3.4900e+00,  4.0834e+00,  7.7649e-01,
+         2.0025e+00,  2.8585e+00,  4.6692e-01, -4.4438e-01, -5.1792e+01,
+        -3.7743e+00,  1.0210e+00, -4.8536e-01, -3.3734e+00,  1.2150e+00,
+         2.1420e+00,  6.3237e-01, -2.1060e-01, -1.8375e-01, -5.4864e-01,
+         6.0235e+00,  8.7014e+00, -7.0699e+00,  3.2431e+00,  1.7484e+00,
+        -7.2326e+00,  3.2734e+00,  3.1882e+00,  6.0536e+00,  9.2431e-01,
+        -5.6773e+00, -4.9881e+00,  1.4860e+00, -3.0162e+00, -3.5636e+00,
+        -8.4085e-01, -1.0074e+00, -1.6067e+01, -1.3144e+01,  1.1818e-01,
+         6.4546e+00, -1.0912e+00,  1.1206e+01, -1.3724e+00,  2.7155e+00,
+        -7.4178e+00, -1.2956e+00, -1.6902e+00,  9.5223e+00,  2.4952e+00,
+        -3.7531e+00,  5.1116e+00,  3.8512e+00,  3.7123e+00,  7.6355e-01,
+        -3.8020e+00,  1.8983e+00,  4.3574e+01, -7.3467e+00, -2.8905e+00,
+        -4.3620e+00,  3.8599e+00,  1.2110e+00,  2.5844e+00, -4.4734e+00,
+        -2.9198e+00,  2.9884e+00, -1.7416e+00, -1.6009e+02, -1.6512e+01,
+        -9.0772e-02,  6.8859e+00, -3.4945e+00,  6.9834e+00,  6.2670e+00,
+         5.6965e-01,  3.0969e-02,  2.9006e+00,  8.9760e-01, -2.3006e+00,
+         8.3767e-01, -2.9463e+00, -4.3662e+00, -2.5842e+00,  9.1415e+00,
+        -5.5953e+00, -4.7413e+00, -3.7179e+00,  2.1987e+01,  1.8265e+00,
+        -8.9532e-01,  4.1599e+00, -3.9978e+00, -3.8641e+00, -2.0673e+00,
+         3.0306e+00, -2.1554e+00, -2.0086e+00,  4.8663e+00,  2.8928e-01,
+        -4.1998e+00,  8.5062e+00,  4.2103e+00,  1.7206e+01, -3.5376e+00,
+         2.5671e-01,  2.2228e-01,  6.6561e+00, -4.8118e+00, -3.6561e+00,
+        -6.8825e-01, -4.4886e+00, -9.2805e+00, -3.8699e-01, -1.3017e+00,
+         2.3756e+00,  4.2634e+00, -3.6821e+00, -6.7862e-01, -3.6553e+00,
+        -3.7938e+00, -3.6224e+00,  1.7574e+00,  3.0822e+00, -3.9101e-01,
+         7.3470e+01, -5.4396e-01,  9.8533e-01, -3.3989e+00, -1.3025e+00,
+        -2.0689e+00,  2.5526e+00, -2.0326e+00,  3.0746e+00, -2.0950e+00,
+         4.1649e+00,  6.4935e-01, -7.1394e+00, -1.0906e+00, -7.1690e+00,
+         3.2226e+00, -1.2760e+00,  1.4431e+02,  6.0973e+00, -1.3528e+00,
+        -4.9426e+00, -8.5969e-01, -8.5405e+00,  5.7662e+00, -2.4922e+00,
+        -7.4357e+00, -7.8989e+00,  4.2059e+00, -3.9071e+00, -2.3410e+00,
+        -1.0605e+00, -1.5846e+00, -6.7736e+00,  5.0953e-01,  1.5078e+01,
+        -3.7121e-02,  3.4718e+00, -2.8174e+00, -3.7044e+00,  1.0058e+01,
+        -2.1485e+00,  3.8376e+00, -8.5943e-01,  1.8444e+00,  3.8978e+00,
+         3.0776e+00, -1.0642e+00,  4.3514e+00,  2.2874e+00,  5.2097e+00,
+        -9.6646e+01,  1.6328e+02, -1.2562e-01,  1.4275e+00,  1.6121e+00,
+        -8.4209e+00,  1.1070e+00, -4.9542e+00,  1.7836e+00, -1.0035e+01,
+        -2.0094e+00,  2.7393e+00,  5.4366e-01, -7.8556e-01, -3.2903e-01,
+         5.5690e+00,  1.6298e+02,  1.2884e+00,  6.0525e+00,  2.3517e+00,
+        -5.1991e+00, -8.9318e+00,  3.2929e+00, -1.2494e+01,  4.4547e+00,
+        -4.6449e-01,  1.0015e+00,  3.5933e-01,  2.1539e+00,  8.7483e-01,
+        -1.9571e+00,  4.6167e+00, -4.1041e+00,  4.1621e+00, -3.2981e+00,
+         5.2509e-02,  6.9099e+00,  1.9714e-01,  8.3853e+00,  1.2267e+00,
+        -3.2992e+00,  4.8448e+00,  2.9776e+00, -2.0985e-01,  1.9363e+00,
+        -3.0710e+00, -4.9856e+00,  9.9332e-01,  1.8208e+00,  6.0879e+00,
+         3.6373e+00, -2.4278e-01,  2.3095e+00, -1.1847e+00,  5.4024e+00,
+         4.2026e+00,  2.0059e-01, -6.7174e+00, -6.0502e+00, -7.2487e+00,
+         4.4279e+00, -2.2406e+00,  5.9508e+00,  6.9945e+00,  1.2061e+00,
+        -3.2929e+00, -1.5007e+00,  2.5605e+00, -1.6327e+00,  6.6576e+00,
+         4.1315e+00, -2.5557e+00,  2.7006e+00,  6.6053e+00, -1.9167e+00,
+        -1.5669e+00, -2.4749e+00,  4.2183e-01,  2.4309e+00,  1.5208e-01,
+        -9.1254e+00, -3.7077e+00,  4.5885e+00, -1.9774e+00,  1.3449e+01,
+         3.4506e+00, -7.2922e+00, -5.2381e-01,  1.1032e+00,  2.7615e+00,
+        -6.3168e+00, -3.8688e-02,  6.5302e+00, -3.0305e-01,  1.4317e+00,
+        -3.4285e+00, -4.6842e+00, -3.0345e+00,  5.0907e+00, -2.3043e+00,
+         4.8652e+00, -3.4368e+00, -8.0064e+00, -6.0210e+00,  5.9621e+00,
+         1.6881e+00, -1.6544e+00, -6.9820e+00,  7.2363e-01, -7.4828e+00,
+        -1.5182e+00, -1.0165e+00, -4.8026e+00, -2.3627e+00,  2.1291e+00,
+        -6.0510e+00, -4.2262e+00, -2.6994e+00,  2.1767e-01, -3.2933e+00,
+         6.8151e+00, -2.8563e+00, -1.1988e+00,  1.6882e+00,  1.8934e+00,
+         9.4241e+00,  9.5913e-01,  2.1459e+00,  1.3060e+01, -4.9042e+00,
+        -5.1736e+00,  8.4661e+00,  7.1147e-01, -1.0368e+01,  3.1779e+00,
+         1.8113e+00,  7.0269e+00,  2.9996e+00, -2.8506e+00, -7.3495e-01,
+        -8.3824e+00, -2.6062e+00,  5.2471e+00,  6.6041e+00, -8.8814e-01,
+         1.3164e-01,  7.5559e-01,  6.3661e+00,  6.7891e-01, -1.6838e+00,
+         3.9709e-02,  4.6224e-01, -5.2465e+00,  5.9410e+00, -4.3000e+00,
+        -4.3974e+00, -6.8152e+00, -4.7801e+00, -4.4493e+00, -4.0901e-01,
+         1.5374e+01,  2.9918e+00,  1.8610e+00, -3.2574e+00, -3.8129e+00,
+        -5.0761e+00,  9.2315e+00, -1.0814e+00,  2.8385e-01, -3.2490e+00,
+         3.4800e+00, -5.8052e+00,  1.3061e+00, -2.8434e+00,  6.5931e-02,
+         3.2917e-02, -1.9720e+00, -3.3967e+00, -7.4260e+00,  6.1623e+00,
+        -4.1470e+00, -4.2324e+00,  9.5378e-01, -1.0738e+00, -1.3570e-01,
+        -2.2882e+00,  4.0768e+00,  2.7377e-01, -1.5838e+00,  1.1146e+01,
+         6.9866e+00,  1.3019e+01, -1.8275e+00, -6.4068e+00,  1.7844e+00,
+        -8.6919e-01, -2.9575e+00,  4.8200e-01, -6.8251e+00, -2.5988e+00,
+        -8.7482e+00,  8.0484e-01,  2.6259e+00, -4.5771e+00, -5.8153e-01,
+         4.7844e+00, -3.3178e+00,  9.6060e+00,  4.9834e+00,  5.5188e-01,
+        -3.0826e-01, -2.0525e+00, -4.3834e+00,  5.7229e+00,  3.6664e+00,
+         4.6413e-02,  1.0723e+00, -5.3191e+00,  1.4131e+00, -9.6075e-01,
+        -3.2504e+00, -2.3741e+00,  2.7716e+00, -1.4227e+00, -9.3925e-01,
+        -7.5700e+00, -3.7153e+00,  1.3690e+00,  1.1079e+01, -8.3346e+00,
+        -4.9114e+00, -2.0677e+00, -1.0595e+00, -1.8981e+00,  6.1321e+00,
+         1.9002e+00, -1.9221e-02, -1.1126e+00, -1.0669e+01, -3.0803e+00,
+        -3.5232e+00,  1.5203e+00, -4.8918e+00,  2.8023e+00,  7.7897e+00,
+         3.6398e+00, -6.3831e-01, -5.3203e+00,  1.7896e+00, -4.1591e+00,
+        -4.2745e-01,  3.0674e+00,  4.1897e+00, -2.5548e+00,  3.0816e-01,
+        -3.4219e-02, -3.2085e+00,  3.0132e+00, -5.1880e+00,  8.2857e-01,
+        -9.3511e-01, -2.3891e-01,  3.3661e+00,  2.3398e+00, -7.5823e+00,
+        -1.1914e+01,  5.7218e+00, -2.5562e+00, -2.9274e+00,  3.1782e+00,
+        -1.9518e+00,  4.3836e+00,  3.5140e+00, -2.8808e+00, -3.9965e+00,
+         1.6073e+00, -5.4745e+00, -1.4041e+00, -2.8542e+00, -2.0609e+00,
+         8.0068e-02, -2.6370e+00, -4.4448e+00, -6.0635e+00, -4.2056e+00,
+         7.6714e+00,  3.0683e+00,  2.0481e+00], device=&#39;mps:0&#39;,
+       grad_fn=&lt;SelectBackward0&gt;)
+Modified Output:  tensor([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+        0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+       device=&#39;mps:0&#39;, grad_fn=&lt;SelectBackward0&gt;)
+</pre></div></div>
+</div>
+<p>We can also just replace proxy inputs and outputs with tensors of the same shape and type. Let’s use the shape information we have at our disposal to add noise to the output, and replace it with this new noised tensor:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+
+    <span class="n">dim</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">dim</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+768
+</pre></div></div>
+</div>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024 NDIF.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

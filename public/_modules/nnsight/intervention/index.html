@@ -29,7 +29,7 @@
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -44,7 +44,7 @@
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/nnsight/intervention';</script>
-    <script src="../../../_static/js/custom.js?v=e4e20b07"></script>
+    <script src="../../../_static/js/custom.js?v=1e4be224"></script>
     <script src="../../../_static/js/code.js?v=34343d0c"></script>
     <link rel="icon" href="../../../_static/icon.ico"/>
     <link rel="author" title="About these documents" href="../../../about/" />
@@ -53,8 +53,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../../../_static/css/custom.css?v=1721420672" rel="stylesheet" type="text/css" />
-<link href="../../../_static/css/front.css?v=1721420672" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/custom.css?v=1725032410" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/home.css?v=1725032410" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -227,7 +227,7 @@ document.write(`
           
           
           
-          <a href="https://github.com/JadenFiotto-Kaufman/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -239,7 +239,7 @@ document.write(`
           
           
           
-          <a href="https://discord.gg/6uFJmCSwW7" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
             <span class="sr-only">Discord</span></a>
         </li>
         <li class="nav-item">
@@ -408,7 +408,7 @@ document.write(`
           
           
           
-          <a href="https://github.com/JadenFiotto-Kaufman/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -420,7 +420,7 @@ document.write(`
           
           
           
-          <a href="https://discord.gg/6uFJmCSwW7" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
             <span class="sr-only">Discord</span></a>
         </li>
         <li class="nav-item">
@@ -536,7 +536,7 @@ document.write(`
 
 <span class="sd">The :class:`InterventionProxy &lt;nnsight.intervention.InterventionProxy&gt;` class extends the functionality of a base nnsight.tracing.Proxy.Proxy object and makes it easier for users to interact with.</span>
 
-<span class="sd">:func:`intervene() &lt;nnsight.intervention.intervene&gt;` is the entry hook into the models computation graph in order to interleave an intervention graph.</span>
+<span class="sd">:func:`intervene() &lt;nnsight.intervention.InterventionProtocol.intervene&gt;` is the entry hook into the models computation graph in order to interleave an intervention graph.</span>
 
 <span class="sd">The :class:`HookModel &lt;nnsight.intervention.HookModel&gt;` provides a context manager for adding input and output hooks to modules and removing them upon context exit.</span>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -545,15 +545,20 @@ document.write(`
 
 <span class="kn">import</span> <span class="nn">inspect</span>
 <span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">AbstractContextManager</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Collection</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Collection</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">torch.utils.hooks</span> <span class="kn">import</span> <span class="n">RemovableHandle</span>
 <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Self</span>
 
+<span class="kn">from</span> <span class="nn">.contexts.Conditional</span> <span class="kn">import</span> <span class="n">Conditional</span>
+
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">util</span>
+<span class="kn">from</span> <span class="nn">.tracing</span> <span class="kn">import</span> <span class="n">protocols</span>
 <span class="kn">from</span> <span class="nn">.tracing.Graph</span> <span class="kn">import</span> <span class="n">Graph</span>
 <span class="kn">from</span> <span class="nn">.tracing.Node</span> <span class="kn">import</span> <span class="n">Node</span>
+<span class="kn">from</span> <span class="nn">.tracing.protocols</span> <span class="kn">import</span> <span class="n">Protocol</span>
 <span class="kn">from</span> <span class="nn">.tracing.Proxy</span> <span class="kn">import</span> <span class="n">Proxy</span>
 
 
@@ -568,20 +573,12 @@ document.write(`
 
 <span class="sd">        .. code-block:: python</span>
 
-<span class="sd">            with runner.invoke(&#39;The Eiffel Tower is in the city of&#39;) as invoker:</span>
+<span class="sd">            with model.trace(&#39;The Eiffel Tower is in the city of&#39;):</span>
 <span class="sd">                hidden_states = model.lm_head.input.save()</span>
 <span class="sd">                logits = model.lm_head.output.save()</span>
 
-<span class="sd">            print(hidden_states.value)</span>
-<span class="sd">            print(logits.value)</span>
-
-<span class="sd">        This works and would output the inputs and outputs to the model.lm_head module.</span>
-<span class="sd">        Had you not called .save(), calling .value would have been None.</span>
-
-<span class="sd">        Calling ``.shape`` on an InterventionProxy returns the shape or collection of shapes for the tensors traced through this module.</span>
-
-<span class="sd">        Calling ``.value`` on an InterventionProxy returns the actual populated values, updated during actual execution of the model.</span>
-
+<span class="sd">            print(hidden_states)</span>
+<span class="sd">            print(logits)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -597,19 +594,50 @@ document.write(`
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Method when called, indicates to the intervention graph to not delete the tensor values of the result.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            InterventionProxy: Save proxy.</span>
+<span class="sd">            InterventionProxy: Proxy.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="c1"># Add a &#39;null&#39; node with the save proxy as an argument to ensure the values are never deleted.</span>
-        <span class="c1"># This is because &#39;null&#39; nodes never actually get set and therefore there will always be a</span>
+        <span class="c1"># Add a &#39;lock&#39; node with the save proxy as an argument to ensure the values are never deleted.</span>
+        <span class="c1"># This is because &#39;lock&#39; nodes never actually get set and therefore there will always be a</span>
         <span class="c1"># dependency for the save proxy.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
-            <span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">target</span><span class="o">=</span><span class="s2">&quot;null&quot;</span><span class="p">,</span>
-            <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="p">],</span>
-        <span class="p">)</span>
+
+        <span class="n">protocols</span><span class="o">.</span><span class="n">LockProtocol</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="InterventionProxy.stop">
+<a class="viewcode-back" href="../../../documentation/intervention/#nnsight.intervention.InterventionProxy.stop">[docs]</a>
+    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InterventionProxy</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Method when called, indicates to the intervention graph to stop the execution of the model after this Proxy/Node is completed..</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            InterventionProxy: Proxy.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">protocols</span><span class="o">.</span><span class="n">EarlyStopProtocol</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="InterventionProxy.update">
+<a class="viewcode-back" href="../../../documentation/intervention/#nnsight.intervention.InterventionProxy.update">[docs]</a>
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Node</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">InterventionProxy</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Updates the value of the Proxy via the creation of the UpdateProtocol node.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            - value (Union[Node, Any]): New proxy value.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            InterventionProxy: Proxy.</span>
+
+<span class="sd">        .. codeb-block:: python</span>
+<span class="sd">            with model.trace(input) as tracer:</span>
+<span class="sd">                num = tracer.apply(int, 0)</span>
+<span class="sd">                num.update(5)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">protocols</span><span class="o">.</span><span class="n">UpdateProtocol</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
 
     <span class="nd">@property</span>
@@ -623,43 +651,33 @@ document.write(`
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_grad</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
 
-            <span class="c1"># We track how many times backward is called via an attribute on the Graph</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="s2">&quot;n_backward_calls&quot;</span><span class="p">):</span>
-
-                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="s2">&quot;n_backward_calls&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-
-            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s2">&quot;_grad&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
-                <span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">proxy_value</span><span class="p">,</span>
-                <span class="n">target</span><span class="o">=</span><span class="s2">&quot;grad&quot;</span><span class="p">,</span>
-                <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">n_backward_calls</span><span class="p">],</span>
-            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s2">&quot;_grad&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">protocols</span><span class="o">.</span><span class="n">GradProtocol</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_grad</span>
 
     <span class="nd">@grad</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">grad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">InterventionProxy</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Calling denotes the user wishes to set the grad of this proxy tensor and therefore we create a Proxy of that request.</span>
+<span class="sd">        Calling denotes the user wishes to set the grad of this proxy tensor and therefore we create a Proxy of that request via a SwapProtocol.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            value (Union[InterventionProxy, Any]): Value to set output to.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="s2">&quot;swap&quot;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">node</span><span class="p">,</span> <span class="n">value</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">protocols</span><span class="o">.</span><span class="n">SwapProtocol</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">node</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s2">&quot;_grad&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
 
-        <span class="c1"># We don&#39;t want to call backward on fake tensors</span>
+        <span class="c1"># We don&#39;t want to call backward on fake tensors.</span>
+        <span class="c1"># We also want to track the number of times .backward() has been called so .grad on a Proxy refers to the right backward pass.</span>
         <span class="k">if</span> <span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">target</span> <span class="ow">is</span> <span class="n">util</span><span class="o">.</span><span class="n">fetch_attr</span>
             <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nb">str</span><span class="p">)</span>
             <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;backward&quot;</span>
         <span class="p">):</span>
-            <span class="c1"># We track how many times backward is called via an attribute on the Graph</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="s2">&quot;n_backward_calls&quot;</span><span class="p">):</span>
 
-                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="s2">&quot;n_backward_calls&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-
-            <span class="c1"># Clear all .grad proxies</span>
+            <span class="c1"># Clear all .grad proxies so allow users to get the ,.grad of the next backward pass.</span>
             <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
 
                 <span class="k">try</span><span class="p">:</span>
@@ -671,10 +689,11 @@ document.write(`
                 <span class="k">except</span> <span class="ne">ReferenceError</span><span class="p">:</span>
                     <span class="k">pass</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">n_backward_calls</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="c1"># Use GradProtocol to increment the tracking of the number of times .backward() has been called.</span>
+            <span class="n">protocols</span><span class="o">.</span><span class="n">GradProtocol</span><span class="o">.</span><span class="n">increment</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">graph</span><span class="p">)</span>
 
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
-                <span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                <span class="n">proxy_value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                 <span class="n">target</span><span class="o">=</span><span class="n">Proxy</span><span class="o">.</span><span class="n">proxy_call</span><span class="p">,</span>
                 <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">args</span><span class="p">),</span>
                 <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span><span class="p">,</span>
@@ -686,8 +705,9 @@ document.write(`
         <span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">InterventionProxy</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Self</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 
+        <span class="c1"># We catch setting .grad as that is a special Protocol vs. setting attributes generally.</span>
         <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s2">&quot;grad&quot;</span><span class="p">:</span>
-            <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">fset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">fset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
@@ -698,15 +718,15 @@ document.write(`
 <span class="sd">        Returns:</span>
 <span class="sd">            Union[torch.Size,Collection[torch.Size]]: Proxy value shape or collection of shapes.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">is_tracing</span><span class="p">():</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">attached</span><span class="p">():</span>
 
             <span class="k">return</span> <span class="n">util</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span>
-        
+
         <span class="c1"># If we haven&#39;t scanned in a proxy_value, just return a proxy to get the attribute.</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">proxy_value</span> <span class="ow">is</span> <span class="n">inspect</span><span class="o">.</span><span class="n">_empty</span><span class="p">:</span>
-                        
-            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getattr__</span><span class="p">(</span><span class="s1">&#39;shape&#39;</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getattr__</span><span class="p">(</span><span class="s2">&quot;shape&quot;</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">util</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">proxy_value</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span>
 
@@ -718,14 +738,14 @@ document.write(`
 <span class="sd">            Union[torch.Size,Collection[torch.device]]: Proxy value device or collection of devices.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">is_tracing</span><span class="p">():</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">attached</span><span class="p">():</span>
 
             <span class="k">return</span> <span class="n">util</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span>
-        
+
         <span class="c1"># If we haven&#39;t scanned in a proxy_value, just return a proxy to get the attribute.</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">proxy_value</span> <span class="ow">is</span> <span class="n">inspect</span><span class="o">.</span><span class="n">_empty</span><span class="p">:</span>
-            
-            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getattr__</span><span class="p">(</span><span class="s1">&#39;device&#39;</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getattr__</span><span class="p">(</span><span class="s2">&quot;device&quot;</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">util</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">proxy_value</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span>
 
@@ -737,181 +757,299 @@ document.write(`
 <span class="sd">            Union[torch.Size,Collection[torch.dtype]]: Proxy value dtype or collection of dtypes.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">is_tracing</span><span class="p">():</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">attached</span><span class="p">():</span>
 
             <span class="k">return</span> <span class="n">util</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span>
-        
+
         <span class="c1"># If we haven&#39;t scanned in a proxy_value, just return a proxy to get the attribute.</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">proxy_value</span> <span class="ow">is</span> <span class="n">inspect</span><span class="o">.</span><span class="n">_empty</span><span class="p">:</span>
-            
-            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getattr__</span><span class="p">(</span><span class="s1">&#39;dtype&#39;</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getattr__</span><span class="p">(</span><span class="s2">&quot;dtype&quot;</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">util</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">proxy_value</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span></div>
 
 
 
-<span class="k">def</span> <span class="nf">concat</span><span class="p">(</span>
-    <span class="n">activations</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-    <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-    <span class="n">batch_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-    <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-    <span class="n">total_batch_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-<span class="p">):</span>
-    <span class="k">def</span> <span class="nf">_concat</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
-            <span class="n">orig_size</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-            <span class="n">new_size</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">value</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
-            <span class="k">if</span> <span class="n">new_size</span> <span class="o">==</span> <span class="n">orig_size</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">values</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-            <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
-            <span class="k">return</span> <span class="p">[</span>
-                <span class="n">_concat</span><span class="p">([</span><span class="n">value</span><span class="p">[</span><span class="n">value_idx</span><span class="p">]</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span><span class="p">])</span>
-                <span class="k">for</span> <span class="n">value_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-            <span class="p">]</span>
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">tuple</span><span class="p">):</span>
-            <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span>
-                <span class="p">[</span>
+<div class="viewcode-block" id="InterventionProtocol">
+<a class="viewcode-back" href="../../../documentation/intervention/#nnsight.intervention.InterventionProtocol">[docs]</a>
+<span class="k">class</span> <span class="nc">InterventionProtocol</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Primary Protocol that handles tracking and injecting inputs and outputs from a torch model into the overall intervention Graph.</span>
+<span class="sd">    Uses an attachment on the Graph to store the names of nodes that need to be injected with data from inputs or outputs of modules.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">attachment_name</span> <span class="o">=</span> <span class="s2">&quot;nnsight_module_nodes&quot;</span>
+    <span class="n">condition</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+
+<div class="viewcode-block" id="InterventionProtocol.add">
+<a class="viewcode-back" href="../../../documentation/intervention/#nnsight.intervention.InterventionProtocol.add">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">graph</span><span class="p">:</span> <span class="s2">&quot;Graph&quot;</span><span class="p">,</span>
+        <span class="n">proxy_value</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">kwargs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Proxy</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Adds an InterventionProtocol Node to a Graph.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            graph (Graph): Graph to add to.</span>
+<span class="sd">            module_path (str): Module path of data this Node depends on (ex. model.module1.module2.output)</span>
+<span class="sd">            proxy_value (Any): Proxy value.</span>
+<span class="sd">            args (List[Any], optional): Args. Defaults to None.</span>
+<span class="sd">            kwargs (Dict[str, Any], optional): Kwargs. Defaults to None.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Proxy: _description_</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Creates the InterventionProtocol Node.</span>
+        <span class="n">proxy</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">proxy_value</span><span class="o">=</span><span class="n">proxy_value</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="bp">cls</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span>
+        <span class="p">)</span>
+
+        <span class="bp">cls</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">proxy</span><span class="o">.</span><span class="n">node</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">proxy</span></div>
+
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">compile</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="n">graph</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">graph</span>
+
+        <span class="n">module_path</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">args</span>
+
+        <span class="c1"># Add attachment if it does not exist.</span>
+        <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">attachment_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">attachments</span><span class="p">:</span>
+
+            <span class="n">graph</span><span class="o">.</span><span class="n">attachments</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">attachment_name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+        <span class="c1"># More than one Node can depend on a given input or output, therefore we store a list of node names.</span>
+        <span class="n">arguments</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">attachments</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">attachment_name</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">module_path</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">arguments</span><span class="p">:</span>
+            <span class="n">arguments</span><span class="p">[</span><span class="n">module_path</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Append the newly created nodes name.</span>
+        <span class="n">arguments</span><span class="p">[</span><span class="n">module_path</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+<div class="viewcode-block" id="InterventionProtocol.get_interventions">
+<a class="viewcode-back" href="../../../documentation/intervention/#nnsight.intervention.InterventionProtocol.get_interventions">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_interventions</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">graph</span><span class="p">:</span> <span class="s2">&quot;Graph&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns mapping from module_paths to  InterventionNode names added to the given Graph.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            graph (Graph): Graph.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Dict: Interventions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">graph</span><span class="o">.</span><span class="n">attachments</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">attachment_name</span><span class="p">,</span> <span class="nb">dict</span><span class="p">())</span></div>
+
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">concat</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">activations</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="n">batch_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">total_batch_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">def</span> <span class="nf">_concat</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
+
+            <span class="n">data_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+            <span class="k">if</span> <span class="n">data_type</span> <span class="o">==</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+                <span class="n">orig_size</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">new_size</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">value</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+                <span class="k">if</span> <span class="n">new_size</span> <span class="o">==</span> <span class="n">orig_size</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">values</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+                <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="n">data_type</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span>
                     <span class="n">_concat</span><span class="p">([</span><span class="n">value</span><span class="p">[</span><span class="n">value_idx</span><span class="p">]</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span><span class="p">])</span>
                     <span class="k">for</span> <span class="n">value_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
                 <span class="p">]</span>
-            <span class="p">)</span>
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">dict</span><span class="p">):</span>
-            <span class="k">return</span> <span class="p">{</span>
-                <span class="n">key</span><span class="p">:</span> <span class="n">_concat</span><span class="p">([</span><span class="n">value</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span><span class="p">])</span>
-                <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-            <span class="p">}</span>
-        <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-    <span class="k">def</span> <span class="nf">narrow1</span><span class="p">(</span><span class="n">acts</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">total_batch_size</span> <span class="o">==</span> <span class="n">acts</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
-            <span class="k">return</span> <span class="n">acts</span><span class="o">.</span><span class="n">narrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">batch_start</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">acts</span>
-
-    <span class="n">pre</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">activations</span><span class="p">,</span> <span class="n">narrow1</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span>
-
-    <span class="n">post_batch_start</span> <span class="o">=</span> <span class="n">batch_start</span> <span class="o">+</span> <span class="n">batch_size</span>
-
-    <span class="k">def</span> <span class="nf">narrow2</span><span class="p">(</span><span class="n">acts</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">total_batch_size</span> <span class="o">==</span> <span class="n">acts</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
-            <span class="k">return</span> <span class="n">acts</span><span class="o">.</span><span class="n">narrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">post_batch_start</span><span class="p">,</span> <span class="n">acts</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">post_batch_start</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">acts</span>
-
-    <span class="n">post</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
-        <span class="n">activations</span><span class="p">,</span>
-        <span class="n">narrow2</span><span class="p">,</span>
-        <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
-    <span class="p">)</span>
-
-    <span class="n">orig_sizes</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">activations</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">_concat</span><span class="p">([</span><span class="n">pre</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">post</span><span class="p">,</span> <span class="n">orig_sizes</span><span class="p">])</span>
-
-
-<div class="viewcode-block" id="intervene">
-<a class="viewcode-back" href="../../../documentation/intervention/#nnsight.intervention.intervene">[docs]</a>
-<span class="k">def</span> <span class="nf">intervene</span><span class="p">(</span>
-    <span class="n">activations</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-    <span class="n">module_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-    <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-    <span class="n">intervention_handler</span><span class="p">:</span> <span class="n">InterventionHandler</span><span class="p">,</span>
-<span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Entry to intervention graph. This should be hooked to all modules involved in the intervention graph.</span>
-
-<span class="sd">    Forms the current module_path key in the form of &lt;module path&gt;.&lt;output/input&gt;</span>
-<span class="sd">    Checks the graphs argument_node_names attribute for this key.</span>
-<span class="sd">    If exists, value is a list of node names to iterate through.</span>
-<span class="sd">    Node args for argument type nodes should be ``[module_path, batch_size, batch_start, call_iter]``.</span>
-<span class="sd">    Checks and updates the counter for the given argument node. If counter is not ready yet continue.</span>
-<span class="sd">    Using batch_size and batch_start, apply torch.narrow to tensors in activations to select</span>
-<span class="sd">    only batch indexed tensors relevant to this intervention node. Sets the value of a node</span>
-<span class="sd">    using the indexed values. Using torch.narrow returns a view of the tensors as opposed to a copy allowing</span>
-<span class="sd">    subsequent downstream nodes to make edits to the values only in the relevant tensors, and have it update the original</span>
-<span class="sd">    tensors. This both prevents interventions from effecting bathes outside their preview and allows edits</span>
-<span class="sd">    to the output from downstream intervention nodes in the graph.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        activations (Any): Either the inputs or outputs of a torch module.</span>
-<span class="sd">        module_path (str): Module path of the current relevant module relative to the root model.</span>
-<span class="sd">        key (str): Key denoting either &quot;input&quot; or &quot;output&quot; of module.</span>
-<span class="sd">        intervention_handler (InterventionHandler): Handler object that stores the intervention graph and keeps track of module call count.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        Any: The activations, potentially modified by the intervention graph.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="c1"># Key to module activation argument nodes has format: &lt;module path&gt;.&lt;output/input&gt;</span>
-    <span class="n">module_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">module_path</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&quot;</span>
-
-    <span class="k">if</span> <span class="n">module_path</span> <span class="ow">in</span> <span class="n">intervention_handler</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">argument_node_names</span><span class="p">:</span>
-        <span class="n">argument_node_names</span> <span class="o">=</span> <span class="n">intervention_handler</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">argument_node_names</span><span class="p">[</span>
-            <span class="n">module_path</span>
-        <span class="p">]</span>
-
-        <span class="c1"># Multiple argument nodes can have same module_path if there are multiple invocations.</span>
-        <span class="k">for</span> <span class="n">argument_node_name</span> <span class="ow">in</span> <span class="n">argument_node_names</span><span class="p">:</span>
-
-            <span class="n">node</span> <span class="o">=</span> <span class="n">intervention_handler</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">argument_node_name</span><span class="p">]</span>
-
-            <span class="c1"># Args for argument nodes are (module_path, batch_size, batch_start, call_iter).</span>
-            <span class="n">_</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">batch_start</span><span class="p">,</span> <span class="n">call_iter</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">args</span>
-
-            <span class="c1"># Updates the count of argument node calls.</span>
-            <span class="c1"># If count matches call_iter, time to inject value into node.</span>
-            <span class="k">if</span> <span class="n">call_iter</span> <span class="o">!=</span> <span class="n">intervention_handler</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">argument_node_name</span><span class="p">):</span>
-
-                <span class="k">continue</span>
-
-            <span class="c1"># Narrow tensor values in activations only to relevant batch idxs.</span>
-            <span class="c1"># Only narrow if batch_size != total batch size ( no need to narrow when its the entire batch )</span>
-            <span class="c1"># and if the first dim == total_batch_size ( otherwise must not be a batched tensor ).</span>
-            <span class="c1"># Checks to see if anything was narrowed. If not, no need to concat later.</span>
-            <span class="n">narrowed</span> <span class="o">=</span> <span class="kc">False</span>
-
-            <span class="k">def</span> <span class="nf">narrow</span><span class="p">(</span><span class="n">acts</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
-
-                <span class="k">nonlocal</span> <span class="n">narrowed</span>
-
-                <span class="k">if</span> <span class="p">(</span>
-                    <span class="n">batch_size</span> <span class="o">!=</span> <span class="n">intervention_handler</span><span class="o">.</span><span class="n">total_batch_size</span>
-                    <span class="ow">and</span> <span class="n">intervention_handler</span><span class="o">.</span><span class="n">total_batch_size</span> <span class="o">==</span> <span class="n">acts</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-                <span class="p">):</span>
-                    <span class="n">narrowed</span> <span class="o">=</span> <span class="kc">True</span>
-                    <span class="k">return</span> <span class="n">acts</span><span class="o">.</span><span class="n">narrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">batch_start</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">)</span>
-
-                <span class="k">return</span> <span class="n">acts</span>
-
-            <span class="n">value</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
-                <span class="n">activations</span><span class="p">,</span>
-                <span class="n">narrow</span><span class="p">,</span>
-                <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
-            <span class="p">)</span>
-
-            <span class="c1"># Value injection.</span>
-            <span class="n">node</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-
-            <span class="c1"># Check if through the previous value injection, there was a &#39;swap&#39; intervention.</span>
-            <span class="c1"># This would mean we want to replace activations for this batch with some other ones.</span>
-            <span class="n">value</span> <span class="o">=</span> <span class="n">intervention_handler</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">get_swap</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-
-            <span class="c1"># If we narrowed any data, we need to concat it with data before and after it.</span>
-            <span class="k">if</span> <span class="n">narrowed</span><span class="p">:</span>
-
-                <span class="n">activations</span> <span class="o">=</span> <span class="n">concat</span><span class="p">(</span>
-                    <span class="n">activations</span><span class="p">,</span>
-                    <span class="n">value</span><span class="p">,</span>
-                    <span class="n">batch_start</span><span class="p">,</span>
-                    <span class="n">batch_size</span><span class="p">,</span>
-                    <span class="n">intervention_handler</span><span class="o">.</span><span class="n">total_batch_size</span><span class="p">,</span>
+            <span class="k">elif</span> <span class="n">data_type</span> <span class="o">==</span> <span class="nb">tuple</span><span class="p">:</span>
+                <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="n">_concat</span><span class="p">([</span><span class="n">value</span><span class="p">[</span><span class="n">value_idx</span><span class="p">]</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span><span class="p">])</span>
+                        <span class="k">for</span> <span class="n">value_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+                    <span class="p">]</span>
                 <span class="p">)</span>
-            <span class="c1"># Otherwise just return the whole value as the activations.</span>
-            <span class="k">else</span><span class="p">:</span>
+            <span class="k">elif</span> <span class="n">data_type</span> <span class="o">==</span> <span class="nb">dict</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">{</span>
+                    <span class="n">key</span><span class="p">:</span> <span class="n">_concat</span><span class="p">([</span><span class="n">value</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span><span class="p">])</span>
+                    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+                <span class="p">}</span>
+            <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-                <span class="n">activations</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">def</span> <span class="nf">narrow1</span><span class="p">(</span><span class="n">acts</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">total_batch_size</span> <span class="o">==</span> <span class="n">acts</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="n">acts</span><span class="o">.</span><span class="n">narrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">batch_start</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">activations</span></div>
+            <span class="k">return</span> <span class="n">acts</span>
+
+        <span class="n">pre</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">activations</span><span class="p">,</span> <span class="n">narrow1</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span>
+
+        <span class="n">post_batch_start</span> <span class="o">=</span> <span class="n">batch_start</span> <span class="o">+</span> <span class="n">batch_size</span>
+
+        <span class="k">def</span> <span class="nf">narrow2</span><span class="p">(</span><span class="n">acts</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">total_batch_size</span> <span class="o">==</span> <span class="n">acts</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="n">acts</span><span class="o">.</span><span class="n">narrow</span><span class="p">(</span>
+                    <span class="mi">0</span><span class="p">,</span> <span class="n">post_batch_start</span><span class="p">,</span> <span class="n">acts</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">post_batch_start</span>
+                <span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">acts</span>
+
+        <span class="n">post</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+            <span class="n">activations</span><span class="p">,</span>
+            <span class="n">narrow2</span><span class="p">,</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">orig_sizes</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">activations</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">_concat</span><span class="p">([</span><span class="n">pre</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">post</span><span class="p">,</span> <span class="n">orig_sizes</span><span class="p">])</span>
+
+<div class="viewcode-block" id="InterventionProtocol.intervene">
+<a class="viewcode-back" href="../../../documentation/intervention/#nnsight.intervention.InterventionProtocol.intervene">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">intervene</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">activations</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="n">module_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">intervention_handler</span><span class="p">:</span> <span class="n">InterventionHandler</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Entry to intervention graph. This should be hooked to all modules involved in the intervention graph.</span>
+
+<span class="sd">        Forms the current module_path key in the form of &lt;module path&gt;.&lt;output/input&gt;</span>
+<span class="sd">        Checks the graphs InterventionProtocol attachment attribute for this key.</span>
+<span class="sd">        If exists, value is a list of node names to iterate through.</span>
+<span class="sd">        Node args for intervention type nodes should be ``[module_path, batch_size, batch_start, call_iter]``.</span>
+<span class="sd">        Checks and updates the counter for the given intervention node. If counter is not ready yet continue.</span>
+<span class="sd">        Using batch_size and batch_start, apply torch.narrow to tensors in activations to select</span>
+<span class="sd">        only batch indexed tensors relevant to this intervention node. Sets the value of a node</span>
+<span class="sd">        using the indexed values. Using torch.narrow returns a view of the tensors as opposed to a copy allowing</span>
+<span class="sd">        subsequent downstream nodes to make edits to the values only in the relevant tensors, and have it update the original</span>
+<span class="sd">        tensors. This both prevents interventions from effecting bathes outside their preview and allows edits</span>
+<span class="sd">        to the output from downstream intervention nodes in the graph.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            activations (Any): Either the inputs or outputs of a torch module.</span>
+<span class="sd">            module_path (str): Module path of the current relevant module relative to the root model.</span>
+<span class="sd">            key (str): Key denoting either &quot;input&quot; or &quot;output&quot; of module.</span>
+<span class="sd">            intervention_handler (InterventionHandler): Handler object that stores the intervention graph and keeps track of module call count.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Any: The activations, potentially modified by the intervention graph.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Key to module activation intervention nodes has format: &lt;module path&gt;.&lt;output/input&gt;</span>
+        <span class="n">module_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">module_path</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="n">interventions</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">get_interventions</span><span class="p">(</span><span class="n">intervention_handler</span><span class="o">.</span><span class="n">graph</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">module_path</span> <span class="ow">in</span> <span class="n">interventions</span><span class="p">:</span>
+            <span class="n">intervention_node_names</span> <span class="o">=</span> <span class="n">interventions</span><span class="p">[</span><span class="n">module_path</span><span class="p">]</span>
+
+            <span class="c1"># Multiple intervention nodes can have same module_path if there are multiple invocations.</span>
+            <span class="k">for</span> <span class="n">intervention_node_name</span> <span class="ow">in</span> <span class="n">intervention_node_names</span><span class="p">:</span>
+
+                <span class="n">node</span> <span class="o">=</span> <span class="n">intervention_handler</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">intervention_node_name</span><span class="p">]</span>
+
+                <span class="c1"># Args for intervention nodes are (module_path, batch_group_idx, call_iter).</span>
+                <span class="n">_</span><span class="p">,</span> <span class="n">batch_group_idx</span><span class="p">,</span> <span class="n">call_iter</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">args</span>
+
+                <span class="n">batch_start</span><span class="p">,</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="n">intervention_handler</span><span class="o">.</span><span class="n">batch_groups</span><span class="p">[</span>
+                    <span class="n">batch_group_idx</span>
+                <span class="p">]</span>
+
+                <span class="c1"># Updates the count of intervention node calls.</span>
+                <span class="c1"># If count matches call_iter, time to inject value into node.</span>
+                <span class="k">if</span> <span class="n">call_iter</span> <span class="o">!=</span> <span class="n">intervention_handler</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">intervention_node_name</span><span class="p">):</span>
+
+                    <span class="k">continue</span>
+
+                <span class="n">value</span> <span class="o">=</span> <span class="n">activations</span>
+
+                <span class="n">narrowed</span> <span class="o">=</span> <span class="kc">False</span>
+
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">intervention_handler</span><span class="o">.</span><span class="n">batch_groups</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+
+                    <span class="k">def</span> <span class="nf">narrow</span><span class="p">(</span><span class="n">acts</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+
+                        <span class="k">if</span> <span class="n">acts</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">intervention_handler</span><span class="o">.</span><span class="n">batch_size</span><span class="p">:</span>
+
+                            <span class="k">nonlocal</span> <span class="n">narrowed</span>
+
+                            <span class="n">narrowed</span> <span class="o">=</span> <span class="kc">True</span>
+
+                            <span class="k">return</span> <span class="n">acts</span><span class="o">.</span><span class="n">narrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">batch_start</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">)</span>
+
+                        <span class="k">return</span> <span class="n">acts</span>
+
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+                        <span class="n">activations</span><span class="p">,</span>
+                        <span class="n">narrow</span><span class="p">,</span>
+                        <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+                    <span class="p">)</span>
+
+                <span class="c1"># Value injection.</span>
+                <span class="n">node</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+                <span class="c1"># Check if through the previous value injection, there was a &#39;swap&#39; intervention.</span>
+                <span class="c1"># This would mean we want to replace activations for this batch with some other ones.</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">protocols</span><span class="o">.</span><span class="n">SwapProtocol</span><span class="o">.</span><span class="n">get_swap</span><span class="p">(</span>
+                    <span class="n">intervention_handler</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="n">value</span>
+                <span class="p">)</span>
+
+                <span class="c1"># If we narrowed any data, we need to concat it with data before and after it.</span>
+                <span class="k">if</span> <span class="n">narrowed</span><span class="p">:</span>
+
+                    <span class="n">activations</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+                        <span class="n">activations</span><span class="p">,</span>
+                        <span class="n">value</span><span class="p">,</span>
+                        <span class="n">batch_start</span><span class="p">,</span>
+                        <span class="n">batch_size</span><span class="p">,</span>
+                        <span class="n">intervention_handler</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span>
+                    <span class="p">)</span>
+                <span class="c1"># Otherwise just return the whole value as the activations.</span>
+                <span class="k">else</span><span class="p">:</span>
+
+                    <span class="n">activations</span> <span class="o">=</span> <span class="n">value</span>
+
+        <span class="k">return</span> <span class="n">activations</span></div>
+
+
+<div class="viewcode-block" id="InterventionProtocol.style">
+<a class="viewcode-back" href="../../../documentation/intervention/#nnsight.intervention.InterventionProtocol.style">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">style</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Visualization style for this protocol node.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            - Dict: dictionary style.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;node&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;green4&quot;</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="s2">&quot;box&quot;</span><span class="p">},</span>  <span class="c1"># Node display</span>
+            <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+            <span class="s2">&quot;arg&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span>
+                <span class="k">lambda</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="s2">&quot;box&quot;</span><span class="p">}</span>
+            <span class="p">),</span>  <span class="c1"># Non-node argument display</span>
+            <span class="s2">&quot;arg_kname&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span>
+                <span class="k">lambda</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;key&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;batch_size&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;batch_start&quot;</span><span class="p">}</span>
+            <span class="p">),</span>  <span class="c1"># Argument label key word</span>
+            <span class="s2">&quot;edge&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="s2">&quot;solid&quot;</span><span class="p">),</span>
+        <span class="p">}</span>  <span class="c1"># Argument Edge display</span></div>
+</div>
 
 
 
@@ -973,7 +1111,9 @@ document.write(`
                     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_hook</span><span class="p">((</span><span class="nb">input</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">),</span> <span class="n">module_path</span><span class="p">)</span>
 
                 <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                    <span class="n">module</span><span class="o">.</span><span class="n">register_forward_pre_hook</span><span class="p">(</span><span class="n">input_hook</span><span class="p">,</span> <span class="n">with_kwargs</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                    <span class="n">module</span><span class="o">.</span><span class="n">register_forward_pre_hook</span><span class="p">(</span>
+                        <span class="n">input_hook</span><span class="p">,</span> <span class="n">with_kwargs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">prepend</span><span class="o">=</span><span class="kc">True</span>
+                    <span class="p">)</span>
                 <span class="p">)</span>
 
             <span class="k">elif</span> <span class="n">hook_type</span> <span class="o">==</span> <span class="s2">&quot;output&quot;</span><span class="p">:</span>
@@ -981,7 +1121,9 @@ document.write(`
                 <span class="k">def</span> <span class="nf">output_hook</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">module_path</span><span class="o">=</span><span class="n">module_path</span><span class="p">):</span>
                     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_hook</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">module_path</span><span class="p">)</span>
 
-                <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">module</span><span class="o">.</span><span class="n">register_forward_hook</span><span class="p">(</span><span class="n">output_hook</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="n">module</span><span class="o">.</span><span class="n">register_forward_hook</span><span class="p">(</span><span class="n">output_hook</span><span class="p">,</span> <span class="n">prepend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">self</span>
 
@@ -996,15 +1138,34 @@ document.write(`
 
 
 
+<div class="viewcode-block" id="InterventionHandler">
+<a class="viewcode-back" href="../../../documentation/intervention/#nnsight.intervention.InterventionHandler">[docs]</a>
 <span class="k">class</span> <span class="nc">InterventionHandler</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Object passed to InterventionProtocol.intervene to store information about the current interleaving execution run.</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">:</span> <span class="n">Graph</span><span class="p">,</span> <span class="n">total_batch_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="sd">    Like the Intervention Graph, the total batch size that is being executed, and a counter for how many times an Intervention node has been attempted to be executed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">:</span> <span class="n">Graph</span><span class="p">,</span> <span class="n">batch_groups</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span> <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">graph</span> <span class="o">=</span> <span class="n">graph</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">total_batch_size</span> <span class="o">=</span> <span class="n">total_batch_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch_groups</span> <span class="o">=</span> <span class="n">batch_groups</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">call_counter</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
-    <span class="k">def</span> <span class="nf">count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<div class="viewcode-block" id="InterventionHandler.count">
+<a class="viewcode-back" href="../../../documentation/intervention/#nnsight.intervention.InterventionHandler.count">[docs]</a>
+    <span class="k">def</span> <span class="nf">count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Increments the count of times a given Intervention Node has tried to be executed and returns the count.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name (str): Name of intervention node to return count for.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: Count.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_counter</span><span class="p">:</span>
 
@@ -1014,7 +1175,9 @@ document.write(`
 
             <span class="bp">self</span><span class="o">.</span><span class="n">call_counter</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_counter</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">call_counter</span><span class="p">[</span><span class="n">name</span><span class="p">]</span></div>
+</div>
+
 </pre></div>
 
                 </article>
