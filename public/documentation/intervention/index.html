@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../../" data-theme="dark">
+<html lang="en" data-theme="dark">
 
   <head>
     <meta charset="utf-8" />
@@ -14,50 +14,51 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=c5ced968eda925caa686" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=c5ced968eda925caa686" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=c5ced968eda925caa686"></script>
 
     <script src="../../_static/documentation_options.js?v=187304be"></script>
-    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
-    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'documentation/intervention';</script>
-    <script src="../../_static/js/custom.js?v=e4e20b07"></script>
+    <script src="../../_static/js/custom.js?v=1e4be224"></script>
     <script src="../../_static/js/code.js?v=34343d0c"></script>
     <link rel="icon" href="../../_static/icon.ico"/>
     <link rel="author" title="About these documents" href="../../about/" />
     <link rel="index" title="Index" href="../../genindex/" />
     <link rel="search" title="Search" href="../../search/" />
-    <link rel="next" title="nnsight.tracing" href="../tracing/" />
-    <link rel="prev" title="nnsight.util" href="../util/" />
+    <link rel="next" title="nnsight.schema" href="../schema/" />
+    <link rel="prev" title="nnsight.tracing" href="../tracing/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../../_static/css/custom.css?v=1721420672" rel="stylesheet" type="text/css" />
-<link href="../../_static/css/front.css?v=1721420672" rel="stylesheet" type="text/css" />
+<link href="../../_static/css/custom.css?v=1725036146" rel="stylesheet" type="text/css" />
+<link href="../../_static/css/home.css?v=1725036146" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -66,23 +67,28 @@
 
   
   
-  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
+
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -104,25 +110,17 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
-
-  <div class="pst-async-banner-revealer d-none">
-  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
-</div>
-
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
 <div class="bd-header__inner bd-page-width">
-  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
     <span class="fa-solid fa-bars"></span>
-  </button>
+  </label>
   
   
   <div class=" navbar-header-items__start">
     
       <div class="navbar-item">
-
-  
-    
   
 
 <a class="navbar-brand logo" href="../../">
@@ -146,44 +144,49 @@
     
     <div class="me-auto navbar-header-items__center">
       
-        <div class="navbar-item">
-<nav>
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
   <ul class="bd-navbar-elements navbar-nav">
     
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../start/">
-    Getting Started
-  </a>
-</li>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../start/">
+                        Getting Started
+                      </a>
+                    </li>
+                
 
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../">
+                        Documentation
+                      </a>
+                    </li>
+                
 
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="../">
-    Documentation
-  </a>
-</li>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../features/">
+                        Features
+                      </a>
+                    </li>
+                
 
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../tutorials/">
+                        Tutorials
+                      </a>
+                    </li>
+                
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../features/">
-    Features
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../tutorials/">
-    Tutorials
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../about/">
-    About
-  </a>
-</li>
-
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../about/">
+                        About
+                      </a>
+                    </li>
+                
   </ul>
 </nav></div>
       
@@ -194,10 +197,9 @@
       
         <div class="navbar-item navbar-persistent--container">
           
-
  <script>
  document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
     <span class="search-button__default-text">Search</span>
     <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -208,18 +210,17 @@
       
       
         <div class="navbar-item">
-
 <script>
 document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script></div>
       
-        <div class="navbar-item"><ul class="navbar-icon-links"
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
     aria-label="Icon Links">
         <li class="nav-item">
           
@@ -230,7 +231,7 @@ document.write(`
           
           
           
-          <a href="https://github.com/JadenFiotto-Kaufman/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i></span>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -242,7 +243,7 @@ document.write(`
           
           
           
-          <a href="https://discord.gg/6uFJmCSwW7" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i></span>
             <span class="sr-only">Discord</span></a>
         </li>
         <li class="nav-item">
@@ -256,7 +257,7 @@ document.write(`
           
           
           
-          <a href="/status" title="Status: Unknown" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i>
+          <a href="/status" title="Status: Unknown" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i></span>
             <span class="sr-only">Status: Unknown</span></a>
         </li>
 </ul></div>
@@ -303,10 +304,9 @@ document.write(`
   
   
     <div class="navbar-persistent--mobile">
-
  <script>
  document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass"></i>
     <span class="search-button__default-text">Search</span>
     <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
@@ -317,19 +317,16 @@ document.write(`
   
 
   
-    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
       <span class="fa-solid fa-outdent"></span>
-    </button>
+    </label>
   
 </div>
 
-    </header>
+    </nav>
   
-
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
-      
-      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -340,49 +337,51 @@ document.write(`
     
       <div class="sidebar-header-items__center">
         
-          
-          
-            <div class="navbar-item">
-<nav>
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
   <ul class="bd-navbar-elements navbar-nav">
     
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../start/">
-    Getting Started
-  </a>
-</li>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../start/">
+                        Getting Started
+                      </a>
+                    </li>
+                
 
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../">
+                        Documentation
+                      </a>
+                    </li>
+                
 
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="../">
-    Documentation
-  </a>
-</li>
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../features/">
+                        Features
+                      </a>
+                    </li>
+                
 
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../tutorials/">
+                        Tutorials
+                      </a>
+                    </li>
+                
 
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../features/">
-    Features
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../tutorials/">
-    Tutorials
-  </a>
-</li>
-
-
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../about/">
-    About
-  </a>
-</li>
-
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../about/">
+                        About
+                      </a>
+                    </li>
+                
   </ul>
 </nav></div>
-          
         
       </div>
     
@@ -391,18 +390,17 @@ document.write(`
       <div class="sidebar-header-items__end">
         
           <div class="navbar-item">
-
 <script>
 document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script></div>
         
-          <div class="navbar-item"><ul class="navbar-icon-links"
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
     aria-label="Icon Links">
         <li class="nav-item">
           
@@ -413,7 +411,7 @@ document.write(`
           
           
           
-          <a href="https://github.com/JadenFiotto-Kaufman/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i></span>
             <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
@@ -425,7 +423,7 @@ document.write(`
           
           
           
-          <a href="https://discord.gg/6uFJmCSwW7" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i></span>
             <span class="sr-only">Discord</span></a>
         </li>
         <li class="nav-item">
@@ -439,7 +437,7 @@ document.write(`
           
           
           
-          <a href="/status" title="Status: Unknown" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i>
+          <a href="/status" title="Status: Unknown" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i></span>
             <span class="sr-only">Status: Unknown</span></a>
         </li>
 </ul></div>
@@ -485,17 +483,17 @@ document.write(`
   </div>
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
-<nav class="bd-docs-nav bd-links"
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../models/">nnsight.models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../envoy/">nnsight.envoy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contexts/">nnsight.contexts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../util/">nnsight.util</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">nnsight.intervention</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tracing/">nnsight.tracing</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">nnsight.intervention</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../schema/">nnsight.schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util/">nnsight.util</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../patching/">nnsight.patching</a></li>
 </ul>
 </div>
@@ -511,13 +509,13 @@ document.write(`
 
       </div>
       
-      <main id="main-content" class="bd-main" role="main">
+      <main id="main-content" class="bd-main">
         
         
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article d-print-none">
+              <div class="bd-header-article">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -526,7 +524,7 @@ document.write(`
 
 
 
-<nav aria-label="Breadcrumb" class="d-print-none">
+<nav aria-label="Breadcrumb">
   <ul class="bd-breadcrumbs">
     
     <li class="breadcrumb-item breadcrumb-home">
@@ -552,13 +550,13 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article">
+                <article class="bd-article" role="main">
                   
   <section id="module-nnsight.intervention">
 <span id="nnsight-intervention"></span><h1>nnsight.intervention<a class="headerlink" href="#module-nnsight.intervention" title="Link to this heading">#</a></h1>
 <p>This module contains logic to interleave a computation graph (an intervention graph) with the computation graph of a model.</p>
 <p>The <a class="reference internal" href="#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><code class="xref py py-class docutils literal notranslate"><span class="pre">InterventionProxy</span></code></a> class extends the functionality of a base nnsight.tracing.Proxy.Proxy object and makes it easier for users to interact with.</p>
-<p><a class="reference internal" href="#nnsight.intervention.intervene" title="nnsight.intervention.intervene"><code class="xref py py-func docutils literal notranslate"><span class="pre">intervene()</span></code></a> is the entry hook into the models computation graph in order to interleave an intervention graph.</p>
+<p><a class="reference internal" href="#nnsight.intervention.InterventionProtocol.intervene" title="nnsight.intervention.InterventionProtocol.intervene"><code class="xref py py-func docutils literal notranslate"><span class="pre">intervene()</span></code></a> is the entry hook into the models computation graph in order to interleave an intervention graph.</p>
 <p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">HookModel</span></code> provides a context manager for adding input and output hooks to modules and removing them upon context exit.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="nnsight.intervention.HookHandler">
@@ -625,23 +623,140 @@ Should have signature of [outputs(Any), module_path(str)] -&gt; outputs(Any)</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="nnsight.intervention.InterventionHandler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.intervention.</span></span><span class="sig-name descname"><span class="pre">InterventionHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../tracing/#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_groups</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/#InterventionHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.InterventionHandler" title="Link to this definition">#</a></dt>
+<dd><p>Object passed to InterventionProtocol.intervene to store information about the current interleaving execution run.</p>
+<p>Like the Intervention Graph, the total batch size that is being executed, and a counter for how many times an Intervention node has been attempted to be executed.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.InterventionHandler.count">
+<span class="sig-name descname"><span class="pre">count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../_modules/nnsight/intervention/#InterventionHandler.count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.InterventionHandler.count" title="Link to this definition">#</a></dt>
+<dd><p>Increments the count of times a given Intervention Node has tried to be executed and returns the count.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – Name of intervention node to return count for.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Count.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nnsight.intervention.InterventionProtocol">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.intervention.</span></span><span class="sig-name descname"><span class="pre">InterventionProtocol</span></span><a class="reference internal" href="../../_modules/nnsight/intervention/#InterventionProtocol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.InterventionProtocol" title="Link to this definition">#</a></dt>
+<dd><p>Primary Protocol that handles tracking and injecting inputs and outputs from a torch model into the overall intervention Graph.
+Uses an attachment on the Graph to store the names of nodes that need to be injected with data from inputs or outputs of modules.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.InterventionProtocol.add">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../tracing/#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">proxy_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../tracing/#nnsight.tracing.Proxy.Proxy" title="nnsight.tracing.Proxy.Proxy"><span class="pre">Proxy</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/intervention/#InterventionProtocol.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.InterventionProtocol.add" title="Link to this definition">#</a></dt>
+<dd><p>Adds an InterventionProtocol Node to a Graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>graph</strong> (<a class="reference internal" href="../tracing/#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><em>Graph</em></a>) – Graph to add to.</p></li>
+<li><p><strong>module_path</strong> (<em>str</em>) – Module path of data this Node depends on (ex. model.module1.module2.output)</p></li>
+<li><p><strong>proxy_value</strong> (<em>Any</em>) – Proxy value.</p></li>
+<li><p><strong>args</strong> (<em>List</em><em>[</em><em>Any</em><em>]</em><em>, </em><em>optional</em>) – Args. Defaults to None.</p></li>
+<li><p><strong>kwargs</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>, </em><em>optional</em>) – Kwargs. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../tracing/#nnsight.tracing.Proxy.Proxy" title="nnsight.tracing.Proxy.Proxy">Proxy</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.InterventionProtocol.get_interventions">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_interventions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../tracing/#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="reference internal" href="../../_modules/nnsight/intervention/#InterventionProtocol.get_interventions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.InterventionProtocol.get_interventions" title="Link to this definition">#</a></dt>
+<dd><p>Returns mapping from module_paths to  InterventionNode names added to the given Graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>graph</strong> (<a class="reference internal" href="../tracing/#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><em>Graph</em></a>) – Graph.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Interventions.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.InterventionProtocol.intervene">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">intervene</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">activations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intervention_handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.intervention.InterventionHandler" title="nnsight.intervention.InterventionHandler"><span class="pre">InterventionHandler</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/#InterventionProtocol.intervene"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.InterventionProtocol.intervene" title="Link to this definition">#</a></dt>
+<dd><p>Entry to intervention graph. This should be hooked to all modules involved in the intervention graph.</p>
+<p>Forms the current module_path key in the form of &lt;module path&gt;.&lt;output/input&gt;
+Checks the graphs InterventionProtocol attachment attribute for this key.
+If exists, value is a list of node names to iterate through.
+Node args for intervention type nodes should be <code class="docutils literal notranslate"><span class="pre">[module_path,</span> <span class="pre">batch_size,</span> <span class="pre">batch_start,</span> <span class="pre">call_iter]</span></code>.
+Checks and updates the counter for the given intervention node. If counter is not ready yet continue.
+Using batch_size and batch_start, apply torch.narrow to tensors in activations to select
+only batch indexed tensors relevant to this intervention node. Sets the value of a node
+using the indexed values. Using torch.narrow returns a view of the tensors as opposed to a copy allowing
+subsequent downstream nodes to make edits to the values only in the relevant tensors, and have it update the original
+tensors. This both prevents interventions from effecting bathes outside their preview and allows edits
+to the output from downstream intervention nodes in the graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>activations</strong> (<em>Any</em>) – Either the inputs or outputs of a torch module.</p></li>
+<li><p><strong>module_path</strong> (<em>str</em>) – Module path of the current relevant module relative to the root model.</p></li>
+<li><p><strong>key</strong> (<em>str</em>) – Key denoting either “input” or “output” of module.</p></li>
+<li><p><strong>intervention_handler</strong> (<a class="reference internal" href="#nnsight.intervention.InterventionHandler" title="nnsight.intervention.InterventionHandler"><em>InterventionHandler</em></a>) – Handler object that stores the intervention graph and keeps track of module call count.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The activations, potentially modified by the intervention graph.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.InterventionProtocol.style">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">style</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nnsight/intervention/#InterventionProtocol.style"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.InterventionProtocol.style" title="Link to this definition">#</a></dt>
+<dd><p>Visualization style for this protocol node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dictionary style.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>Dict</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="nnsight.intervention.InterventionProxy">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.intervention.</span></span><span class="sig-name descname"><span class="pre">InterventionProxy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../tracing/#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/#InterventionProxy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.InterventionProxy" title="Link to this definition">#</a></dt>
 <dd><p>Sub-class for Proxy that adds additional user functionality to proxies.</p>
 <p class="rubric">Examples</p>
 <p>Saving a proxy so it is not deleted at the completion of it’s listeners is enabled with <code class="docutils literal notranslate"><span class="pre">.save()</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">runner</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">):</span>
     <span class="n">hidden_states</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
     <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">hidden_states</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">logits</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hidden_states</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">logits</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>This works and would output the inputs and outputs to the model.lm_head module.
-Had you not called .save(), calling .value would have been None.</p>
-<p>Calling <code class="docutils literal notranslate"><span class="pre">.shape</span></code> on an InterventionProxy returns the shape or collection of shapes for the tensors traced through this module.</p>
-<p>Calling <code class="docutils literal notranslate"><span class="pre">.value</span></code> on an InterventionProxy returns the actual populated values, updated during actual execution of the model.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="nnsight.intervention.InterventionProxy.device">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">device</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Collection</span><span class="p"><span class="pre">[</span></span><span class="pre">device</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#nnsight.intervention.InterventionProxy.device" title="Link to this definition">#</a></dt>
@@ -691,7 +806,7 @@ Only generates a proxy the first time it is references otherwise return the alre
 <dd><p>Method when called, indicates to the intervention graph to not delete the tensor values of the result.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Save proxy.</p>
+<dd class="field-odd"><p>Proxy.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy">InterventionProxy</a></p>
@@ -713,39 +828,37 @@ Only generates a proxy the first time it is references otherwise return the alre
 </dl>
 </dd></dl>
 
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="nnsight.intervention.intervene">
-<span class="sig-prename descclassname"><span class="pre">nnsight.intervention.</span></span><span class="sig-name descname"><span class="pre">intervene</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">activations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intervention_handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">InterventionHandler</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/#intervene"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.intervene" title="Link to this definition">#</a></dt>
-<dd><p>Entry to intervention graph. This should be hooked to all modules involved in the intervention graph.</p>
-<p>Forms the current module_path key in the form of &lt;module path&gt;.&lt;output/input&gt;
-Checks the graphs argument_node_names attribute for this key.
-If exists, value is a list of node names to iterate through.
-Node args for argument type nodes should be <code class="docutils literal notranslate"><span class="pre">[module_path,</span> <span class="pre">batch_size,</span> <span class="pre">batch_start,</span> <span class="pre">call_iter]</span></code>.
-Checks and updates the counter for the given argument node. If counter is not ready yet continue.
-Using batch_size and batch_start, apply torch.narrow to tensors in activations to select
-only batch indexed tensors relevant to this intervention node. Sets the value of a node
-using the indexed values. Using torch.narrow returns a view of the tensors as opposed to a copy allowing
-subsequent downstream nodes to make edits to the values only in the relevant tensors, and have it update the original
-tensors. This both prevents interventions from effecting bathes outside their preview and allows edits
-to the output from downstream intervention nodes in the graph.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.InterventionProxy.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/intervention/#InterventionProxy.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.InterventionProxy.stop" title="Link to this definition">#</a></dt>
+<dd><p>Method when called, indicates to the intervention graph to stop the execution of the model after this Proxy/Node is completed..</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>activations</strong> (<em>Any</em>) – Either the inputs or outputs of a torch module.</p></li>
-<li><p><strong>module_path</strong> (<em>str</em>) – Module path of the current relevant module relative to the root model.</p></li>
-<li><p><strong>key</strong> (<em>str</em>) – Key denoting either “input” or “output” of module.</p></li>
-<li><p><strong>intervention_handler</strong> (<em>InterventionHandler</em>) – Handler object that stores the intervention graph and keeps track of module call count.</p></li>
-</ul>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Proxy.</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The activations, potentially modified by the intervention graph.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Any</p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy">InterventionProxy</a></p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.InterventionProxy.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../tracing/#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/intervention/#InterventionProxy.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.InterventionProxy.update" title="Link to this definition">#</a></dt>
+<dd><p>Updates the value of the Proxy via the creation of the UpdateProtocol node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>-</em>) – New proxy value.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Proxy.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy">InterventionProxy</a></p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -763,14 +876,11 @@ to the output from downstream intervention nodes in the graph.</p>
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
-
   <div class="sidebar-secondary-item">
-<div
-    id="pst-page-navigation-heading-2"
-    class="page-toc tocsection onthispage">
+  <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> On this page
   </div>
-  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+  <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.HookHandler"><code class="docutils literal notranslate"><span class="pre">HookHandler</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.HookHandler.model"><code class="docutils literal notranslate"><span class="pre">HookHandler.model</span></code></a></li>
@@ -780,15 +890,27 @@ to the output from downstream intervention nodes in the graph.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.HookHandler.handles"><code class="docutils literal notranslate"><span class="pre">HookHandler.handles</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.InterventionHandler"><code class="docutils literal notranslate"><span class="pre">InterventionHandler</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.InterventionHandler.count"><code class="docutils literal notranslate"><span class="pre">InterventionHandler.count()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.InterventionProtocol"><code class="docutils literal notranslate"><span class="pre">InterventionProtocol</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.InterventionProtocol.add"><code class="docutils literal notranslate"><span class="pre">InterventionProtocol.add()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.InterventionProtocol.get_interventions"><code class="docutils literal notranslate"><span class="pre">InterventionProtocol.get_interventions()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.InterventionProtocol.intervene"><code class="docutils literal notranslate"><span class="pre">InterventionProtocol.intervene()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.InterventionProtocol.style"><code class="docutils literal notranslate"><span class="pre">InterventionProtocol.style()</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.InterventionProxy"><code class="docutils literal notranslate"><span class="pre">InterventionProxy</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.InterventionProxy.device"><code class="docutils literal notranslate"><span class="pre">InterventionProxy.device</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.InterventionProxy.dtype"><code class="docutils literal notranslate"><span class="pre">InterventionProxy.dtype</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.InterventionProxy.grad"><code class="docutils literal notranslate"><span class="pre">InterventionProxy.grad</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.InterventionProxy.save"><code class="docutils literal notranslate"><span class="pre">InterventionProxy.save()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.InterventionProxy.shape"><code class="docutils literal notranslate"><span class="pre">InterventionProxy.shape</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.InterventionProxy.stop"><code class="docutils literal notranslate"><span class="pre">InterventionProxy.stop()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.InterventionProxy.update"><code class="docutils literal notranslate"><span class="pre">InterventionProxy.update()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.intervene"><code class="docutils literal notranslate"><span class="pre">intervene()</span></code></a></li>
 </ul>
   </nav></div>
 
@@ -805,8 +927,8 @@ to the output from downstream intervention nodes in the graph.</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=c5ced968eda925caa686"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=c5ced968eda925caa686"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -814,7 +936,6 @@ to the output from downstream intervention nodes in the graph.</p>
     <div class="footer-items__start">
       
         <div class="footer-item">
-
   <p class="copyright">
     
       © Copyright 2024 NDIF.
@@ -829,9 +950,8 @@ to the output from downstream intervention nodes in the graph.</p>
   
     <div class="footer-items__end">
       
-        <div class="footer-item">
-<p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.2.
 </p></div>
       
     </div>
