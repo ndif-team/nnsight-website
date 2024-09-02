@@ -54,8 +54,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../../../../_static/css/custom.css?v=1725053243" rel="stylesheet" type="text/css" />
-<link href="../../../../_static/css/home.css?v=1725053243" rel="stylesheet" type="text/css" />
+<link href="../../../../_static/css/custom.css?v=1725250992" rel="stylesheet" type="text/css" />
+<link href="../../../../_static/css/home.css?v=1725250992" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -590,14 +590,13 @@ document.write(`
 <span class="sd">        Returns:</span>
 <span class="sd">            InterventionProxy: Proxy of applying that function.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        
-        
+
         <span class="n">proxy_value</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">_empty</span>
-                
+
         <span class="k">if</span> <span class="n">validate</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
-            
+
             <span class="n">proxy_value</span> <span class="o">=</span> <span class="kc">None</span>
-        
+
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
             <span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">,</span>
             <span class="n">proxy_value</span><span class="o">=</span><span class="n">proxy_value</span><span class="p">,</span>
@@ -756,7 +755,7 @@ document.write(`
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="GraphBasedContext.set">
 <a class="viewcode-back" href="../../../../documentation/contexts/#nnsight.contexts.GraphBasedContext.GraphBasedContext.set">[docs]</a>
     <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InterventionProxy</span><span class="p">:</span>
@@ -764,7 +763,7 @@ document.write(`
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">set</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-    
+
 <div class="viewcode-block" id="GraphBasedContext.dict">
 <a class="viewcode-back" href="../../../../documentation/contexts/#nnsight.contexts.GraphBasedContext.GraphBasedContext.dict">[docs]</a>
     <span class="k">def</span> <span class="nf">dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">InterventionProxy</span><span class="p">:</span>
@@ -834,15 +833,17 @@ document.write(`
 <span class="kn">from</span> <span class="nn">torch.utils</span> <span class="kn">import</span> <span class="n">data</span>
 
 
-<span class="k">def</span> <span class="nf">global_patch</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">global_patch</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">applied_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="n">applied_fn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="n">applied_fn</span> <span class="o">=</span> <span class="n">fn</span>
 
     <span class="nd">@wraps</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">inner</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 
         <span class="k">return</span> <span class="n">GlobalTracingContext</span><span class="o">.</span><span class="n">GLOBAL_TRACING_CONTEXT</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
-            <span class="n">fn</span><span class="p">,</span>
-            <span class="o">*</span><span class="n">args</span><span class="p">,</span>
-            <span class="o">**</span><span class="n">kwargs</span>
+            <span class="n">applied_fn</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
         <span class="p">)</span>
 
     <span class="k">return</span> <span class="n">inner</span>
@@ -861,8 +862,18 @@ document.write(`
     <span class="n">TORCH_HANDLER</span><span class="p">:</span> <span class="n">GlobalTracingContext</span><span class="o">.</span><span class="n">GlobalTracingTorchHandler</span>
     <span class="n">PATCHER</span><span class="p">:</span> <span class="n">Patcher</span> <span class="o">=</span> <span class="n">Patcher</span><span class="p">(</span>
         <span class="p">[</span>
-            <span class="n">Patch</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="p">,</span> <span class="n">global_patch</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">),</span> <span class="s2">&quot;Parameter&quot;</span><span class="p">),</span>
-            <span class="n">Patch</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">global_patch</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">),</span> <span class="s2">&quot;DataLoader&quot;</span><span class="p">),</span>   
+            <span class="n">Patch</span><span class="p">(</span>
+                <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">,</span>
+                <span class="n">global_patch</span><span class="p">(</span>
+                    <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="o">.</span><span class="fm">__init__</span><span class="p">,</span> <span class="n">applied_fn</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span>
+                <span class="p">),</span>
+                <span class="s2">&quot;__init__&quot;</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">Patch</span><span class="p">(</span>
+                <span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">,</span>
+                <span class="n">global_patch</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="o">.</span><span class="fm">__init__</span><span class="p">,</span> <span class="n">applied_fn</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">),</span>
+                <span class="s2">&quot;__init__&quot;</span><span class="p">,</span>
+            <span class="p">),</span>
             <span class="n">Patch</span><span class="p">(</span><span class="n">torch</span><span class="p">,</span> <span class="n">global_patch</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">),</span> <span class="s2">&quot;arange&quot;</span><span class="p">),</span>
             <span class="n">Patch</span><span class="p">(</span><span class="n">torch</span><span class="p">,</span> <span class="n">global_patch</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">empty</span><span class="p">),</span> <span class="s2">&quot;empty&quot;</span><span class="p">),</span>
             <span class="n">Patch</span><span class="p">(</span><span class="n">torch</span><span class="p">,</span> <span class="n">global_patch</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">eye</span><span class="p">),</span> <span class="s2">&quot;eye&quot;</span><span class="p">),</span>
@@ -877,7 +888,7 @@ document.write(`
             <span class="n">Patch</span><span class="p">(</span><span class="n">torch</span><span class="p">,</span> <span class="n">global_patch</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">),</span> <span class="s2">&quot;zeros&quot;</span><span class="p">),</span>
         <span class="p">]</span>
         <span class="o">+</span> <span class="p">[</span>
-            <span class="n">Patch</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="p">,</span> <span class="n">global_patch</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">key</span><span class="p">)</span>
+            <span class="n">Patch</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">global_patch</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="fm">__init__</span><span class="p">,</span> <span class="n">applied_fn</span><span class="o">=</span><span class="n">value</span><span class="p">),</span> <span class="s2">&quot;__init__&quot;</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">getmembers</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="p">,</span> <span class="n">isclass</span><span class="p">)</span>
             <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Optimizer</span><span class="p">)</span>
         <span class="p">]</span>
@@ -895,9 +906,7 @@ document.write(`
 
             <span class="k">if</span> <span class="s2">&quot;_VariableFunctionsClass&quot;</span> <span class="ow">in</span> <span class="n">func</span><span class="o">.</span><span class="vm">__qualname__</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">GlobalTracingContext</span><span class="o">.</span><span class="n">GLOBAL_TRACING_CONTEXT</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
-                    <span class="n">func</span><span class="p">,</span>
-                    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
-                    <span class="o">**</span><span class="n">kwargs</span>
+                    <span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
                 <span class="p">)</span>
 
             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
@@ -994,9 +1003,7 @@ document.write(`
 
         <span class="k">assert</span> <span class="n">GlobalTracingContext</span><span class="o">.</span><span class="n">GLOBAL_TRACING_CONTEXT</span><span class="o">.</span><span class="n">graph</span> <span class="ow">is</span> <span class="kc">None</span>
 
-        <span class="n">GlobalTracingContext</span><span class="o">.</span><span class="n">GLOBAL_TRACING_CONTEXT</span><span class="o">.</span><span class="n">graph</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">graph_based_context</span><span class="o">.</span><span class="n">graph</span>
-        <span class="p">)</span>
+        <span class="n">GlobalTracingContext</span><span class="o">.</span><span class="n">GLOBAL_TRACING_CONTEXT</span><span class="o">.</span><span class="n">graph</span> <span class="o">=</span> <span class="n">graph_based_context</span><span class="o">.</span><span class="n">graph</span>
 
         <span class="n">GlobalTracingContext</span><span class="o">.</span><span class="n">TORCH_HANDLER</span><span class="o">.</span><span class="fm">__enter__</span><span class="p">()</span>
         <span class="n">GlobalTracingContext</span><span class="o">.</span><span class="n">PATCHER</span><span class="o">.</span><span class="fm">__enter__</span><span class="p">()</span></div>
@@ -1048,9 +1055,7 @@ document.write(`
 
 
 <span class="n">GlobalTracingContext</span><span class="o">.</span><span class="n">GLOBAL_TRACING_CONTEXT</span> <span class="o">=</span> <span class="n">GlobalTracingContext</span><span class="p">()</span>
-<span class="n">GlobalTracingContext</span><span class="o">.</span><span class="n">TORCH_HANDLER</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="n">GlobalTracingContext</span><span class="o">.</span><span class="n">GlobalTracingTorchHandler</span><span class="p">()</span>
-<span class="p">)</span>
+<span class="n">GlobalTracingContext</span><span class="o">.</span><span class="n">TORCH_HANDLER</span> <span class="o">=</span> <span class="n">GlobalTracingContext</span><span class="o">.</span><span class="n">GlobalTracingTorchHandler</span><span class="p">()</span>
 </pre></div>
 
                 </article>
