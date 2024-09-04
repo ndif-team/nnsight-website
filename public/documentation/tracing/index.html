@@ -51,13 +51,13 @@
     <link rel="author" title="About these documents" href="../../about/" />
     <link rel="index" title="Index" href="../../genindex/" />
     <link rel="search" title="Search" href="../../search/" />
-    <link rel="next" title="nnsight.patching" href="../patching/" />
-    <link rel="prev" title="nnsight.intervention" href="../intervention/" />
+    <link rel="next" title="nnsight.intervention" href="../intervention/" />
+    <link rel="prev" title="nnsight.contexts" href="../contexts/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../../_static/css/custom.css?v=1725032410" rel="stylesheet" type="text/css" />
-<link href="../../_static/css/home.css?v=1725032410" rel="stylesheet" type="text/css" />
+<link href="../../_static/css/custom.css?v=1725479524" rel="stylesheet" type="text/css" />
+<link href="../../_static/css/home.css?v=1725479524" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -493,9 +493,10 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="../models/">nnsight.models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../envoy/">nnsight.envoy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contexts/">nnsight.contexts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../util/">nnsight.util</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../intervention/">nnsight.intervention</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">nnsight.tracing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intervention/">nnsight.intervention</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../schema/">nnsight.schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util/">nnsight.util</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../patching/">nnsight.patching</a></li>
 </ul>
 </div>
@@ -1078,6 +1079,854 @@ Otherwise just run the function.</p>
 </dl>
 </dd></dl>
 
+<dl class="py class" id="module-nnsight.tracing.protocols">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.ApplyModuleProtocol">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.tracing.protocols.</span></span><span class="sig-name descname"><span class="pre">ApplyModuleProtocol</span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#ApplyModuleProtocol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.ApplyModuleProtocol" title="Link to this definition">#</a></dt>
+<dd><p>Protocol that references some root model, and calls its .forward() method given some input.
+Using .forward() vs .__call__() means it wont trigger hooks.
+Uses an attachment to the Graph to store the model.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.ApplyModuleProtocol.add">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">module_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hook</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#ApplyModuleProtocol.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.ApplyModuleProtocol.add" title="Link to this definition">#</a></dt>
+<dd><p>Creates and adds an ApplyModuleProtocol to the Graph.
+Assumes the attachment has already been added via ApplyModuleProtocol.set_module().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>graph</strong> (<a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><em>Graph</em></a>) – Graph to add the Protocol to.</p></li>
+<li><p><strong>module_path</strong> (<em>str</em>) – Module path (model.module1.module2 etc), of module to apply from the root module.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>ApplyModule Proxy.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy">InterventionProxy</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.ApplyModuleProtocol.execute">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#ApplyModuleProtocol.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.ApplyModuleProtocol.execute" title="Link to this definition">#</a></dt>
+<dd><p>Executes the ApplyModuleProtocol on Node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>node</strong> (<a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><em>Node</em></a>) – ApplyModule Node.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.ApplyModuleProtocol.get_module">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Module</span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#ApplyModuleProtocol.get_module"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.ApplyModuleProtocol.get_module" title="Link to this definition">#</a></dt>
+<dd><p>Returns the nnsight root module from an attachment on a Graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>graph</strong> (<a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><em>Graph</em></a>) – Graph</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Root Module.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.nn.Module</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.ApplyModuleProtocol.set_module">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Module</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#ApplyModuleProtocol.set_module"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.ApplyModuleProtocol.set_module" title="Link to this definition">#</a></dt>
+<dd><p>Sets the nnsight root module as an attachment on a Graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>graph</strong> (<a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><em>Graph</em></a>) – Graph.</p></li>
+<li><p><strong>module</strong> (<em>torch.nn.Module</em>) – Root module.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.ApplyModuleProtocol.style">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">style</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#ApplyModuleProtocol.style"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.ApplyModuleProtocol.style" title="Link to this definition">#</a></dt>
+<dd><p>Visualization style for this protocol node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dictionary style.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>Dict</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.BridgeProtocol">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.tracing.protocols.</span></span><span class="sig-name descname"><span class="pre">BridgeProtocol</span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#BridgeProtocol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.BridgeProtocol" title="Link to this definition">#</a></dt>
+<dd><p>Protocol to connect two Graphs by grabbing a value from one and injecting it into another.
+Uses an attachment to store a Bridge object which references all relevant Graphs and their ordering.</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.BridgeProtocol.BridgeException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BridgeException</span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#BridgeProtocol.BridgeException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.BridgeProtocol.BridgeException" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.BridgeProtocol.add">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#BridgeProtocol.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.BridgeProtocol.add" title="Link to this definition">#</a></dt>
+<dd><p>Class method to be implemented in order to add a Node of this Protocol to a Graph.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.BridgeProtocol.execute">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#BridgeProtocol.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.BridgeProtocol.execute" title="Link to this definition">#</a></dt>
+<dd><p>Class method to be implemented which contains the actual execution logic of the Protocol. By default, does nothing</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>node</strong> (<a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><em>Node</em></a>) – Node to execute using this Protocols execution logic.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.BridgeProtocol.get_bridge">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_bridge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nnsight.tracing.Bridge.Bridge" title="nnsight.tracing.Bridge.Bridge"><span class="pre">Bridge</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#BridgeProtocol.get_bridge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.BridgeProtocol.get_bridge" title="Link to this definition">#</a></dt>
+<dd><p>Gets Bridge object from a Graph. Assumes Bridge has been set as an attachment on this Graph via BridgeProtocol.set_bridge().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>graph</strong> (<a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><em>Graph</em></a>) – Graph.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Bridge.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#nnsight.tracing.Bridge.Bridge" title="nnsight.tracing.Bridge.Bridge">Bridge</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.BridgeProtocol.has_bridge">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">has_bridge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#BridgeProtocol.has_bridge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.BridgeProtocol.has_bridge" title="Link to this definition">#</a></dt>
+<dd><p>Checks to see if a Bridge was added as an attachment on this Graph via BridgeProtocol.set_bridge().</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>graph</strong> (<a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><em>Graph</em></a>) – Graph</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>If Graph has Bridge attachment.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.BridgeProtocol.peek_graph">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">peek_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#BridgeProtocol.peek_graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.BridgeProtocol.peek_graph" title="Link to this definition">#</a></dt>
+<dd><p>Returns current Intervention Graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>graph</strong> (<em>-</em>) – Graph.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Graph.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph">Graph</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.BridgeProtocol.set_bridge">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_bridge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">bridge</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Bridge.Bridge" title="nnsight.tracing.Bridge.Bridge"><span class="pre">Bridge</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#BridgeProtocol.set_bridge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.BridgeProtocol.set_bridge" title="Link to this definition">#</a></dt>
+<dd><p>Sets Bridge object as an attachment on a Graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>graph</strong> (<a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><em>Graph</em></a>) – Graph.</p></li>
+<li><p><strong>bridge</strong> (<a class="reference internal" href="#nnsight.tracing.Bridge.Bridge" title="nnsight.tracing.Bridge.Bridge"><em>Bridge</em></a>) – Bridge.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.BridgeProtocol.style">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">style</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#BridgeProtocol.style"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.BridgeProtocol.style" title="Link to this definition">#</a></dt>
+<dd><p>Visualization style for this protocol node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dictionary style.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>Dict</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.ConditionalProtocol">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.tracing.protocols.</span></span><span class="sig-name descname"><span class="pre">ConditionalProtocol</span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#ConditionalProtocol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.ConditionalProtocol" title="Link to this definition">#</a></dt>
+<dd><p>Protocol operating as a conditional statement.
+Uses the ConditionalManager attachment to handle all visited Conditional contexts within a single Intervention Graph.
+Evaluates the condition value of the Conditional as a boolean.</p>
+<p class="rubric">Example</p>
+<dl class="simple">
+<dt>Setup:</dt><dd></dd>
+</dl>
+<p>Ex 1: The .save() on the model output will only be executed if the condition (x &gt; 0) is evaluated to True.</p>
+<p>Ex 2: The condition is a tensor boolean operation on the Envoy’s output InterventionProxy.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.ConditionalProtocol.add">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#ConditionalProtocol.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.ConditionalProtocol.add" title="Link to this definition">#</a></dt>
+<dd><p>Class method to be implemented in order to add a Node of this Protocol to a Graph.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.ConditionalProtocol.add_conditioned_node">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_conditioned_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#ConditionalProtocol.add_conditioned_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.ConditionalProtocol.add_conditioned_node" title="Link to this definition">#</a></dt>
+<dd><p>Adds a conditioned Node the ConditionalManager attached to its graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>node</strong> (<em>-</em>) – Conditioned Node.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.ConditionalProtocol.execute">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#ConditionalProtocol.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.ConditionalProtocol.execute" title="Link to this definition">#</a></dt>
+<dd><p>Evaluate the node condition to a boolean.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>node</strong> (<a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><em>Node</em></a>) – ConditionalProtocol node.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.ConditionalProtocol.get_conditional">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_conditional</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cond_node_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../contexts/#nnsight.contexts.Conditional.Conditional" title="nnsight.contexts.Conditional.Conditional"><span class="pre">Conditional</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#ConditionalProtocol.get_conditional"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.ConditionalProtocol.get_conditional" title="Link to this definition">#</a></dt>
+<dd><p>Gets the ConditionalProtocol node by its name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>graph</strong> (<a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><em>Graph</em></a>) – Intervention Graph.</p></li>
+<li><p><strong>cond_node_name</strong> (<em>str</em>) – ConditionalProtocol name.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>ConditionalProtocol Node.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node">Node</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.ConditionalProtocol.has_conditional">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">has_conditional</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#ConditionalProtocol.has_conditional"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.ConditionalProtocol.has_conditional" title="Link to this definition">#</a></dt>
+<dd><p>Checks if the Intervention Graph has a ConditionalManager attached to it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>graph</strong> (<a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><em>Graph</em></a>) – Intervention Graph.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>If graph has a ConditionalManager attachement.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.ConditionalProtocol.is_node_conditioned">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_node_conditioned</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#ConditionalProtocol.is_node_conditioned"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.ConditionalProtocol.is_node_conditioned" title="Link to this definition">#</a></dt>
+<dd><p>Checks if the Node is conditoned by the current Conditional context.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>node</strong> (<em>-</em>) – Conditioned Node.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether the Node is conditioned.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.ConditionalProtocol.peek_conditional">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">peek_conditional</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#ConditionalProtocol.peek_conditional"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.ConditionalProtocol.peek_conditional" title="Link to this definition">#</a></dt>
+<dd><p>Gets the ConditionalProtocol node of the current Conditional context.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>graph</strong> (<em>-</em>) – Graph.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>ConditionalProtocol of the current Conditional context.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node">Node</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.ConditionalProtocol.pop_conditional">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pop_conditional</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#ConditionalProtocol.pop_conditional"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.ConditionalProtocol.pop_conditional" title="Link to this definition">#</a></dt>
+<dd><p>Pops latest ConditionalProtocol from the ConditionalManager attached to the graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>graph</strong> (<a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><em>Graph</em></a>) – Intervention Graph.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.ConditionalProtocol.push_conditional">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">push_conditional</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#ConditionalProtocol.push_conditional"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.ConditionalProtocol.push_conditional" title="Link to this definition">#</a></dt>
+<dd><p>Attaches a Conditional context to its graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>node</strong> (<a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><em>Node</em></a>) – ConditionalProtocol of the current Conditional context.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.ConditionalProtocol.style">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">style</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#ConditionalProtocol.style"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.ConditionalProtocol.style" title="Link to this definition">#</a></dt>
+<dd><p>Visualization style for this protocol node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dictionary style.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>Dict</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.EarlyStopProtocol">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.tracing.protocols.</span></span><span class="sig-name descname"><span class="pre">EarlyStopProtocol</span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#EarlyStopProtocol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.EarlyStopProtocol" title="Link to this definition">#</a></dt>
+<dd><p>Protocol to stop the execution of a model early.</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.EarlyStopProtocol.EarlyStopException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">EarlyStopException</span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#EarlyStopProtocol.EarlyStopException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.EarlyStopProtocol.EarlyStopException" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.EarlyStopProtocol.add">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop_point_node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#EarlyStopProtocol.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.EarlyStopProtocol.add" title="Link to this definition">#</a></dt>
+<dd><p>Class method to be implemented in order to add a Node of this Protocol to a Graph.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.EarlyStopProtocol.execute">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#EarlyStopProtocol.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.EarlyStopProtocol.execute" title="Link to this definition">#</a></dt>
+<dd><p>Class method to be implemented which contains the actual execution logic of the Protocol. By default, does nothing</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>node</strong> (<a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><em>Node</em></a>) – Node to execute using this Protocols execution logic.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.EarlyStopProtocol.style">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">style</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#EarlyStopProtocol.style"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.EarlyStopProtocol.style" title="Link to this definition">#</a></dt>
+<dd><p>Visualization style for this protocol node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dictionary style.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>Dict</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.GradProtocol">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.tracing.protocols.</span></span><span class="sig-name descname"><span class="pre">GradProtocol</span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#GradProtocol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.GradProtocol" title="Link to this definition">#</a></dt>
+<dd><p>Protocol which adds a backwards hook via .register_hook() to a Tensor. The hook injects the gradients into the node’s value on hook execution.
+Nodes created via this protocol are relative to the next time .backward() was called during tracing allowing separate .grads to reference separate backwards passes:</p>
+<p>Uses an attachment to store number of times .backward() has been called during tracing so a given .grad hook is only value injected at the appropriate backwards pass.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.GradProtocol.add">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#GradProtocol.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.GradProtocol.add" title="Link to this definition">#</a></dt>
+<dd><p>Class method to be implemented in order to add a Node of this Protocol to a Graph.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.GradProtocol.execute">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#GradProtocol.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.GradProtocol.execute" title="Link to this definition">#</a></dt>
+<dd><p>Class method to be implemented which contains the actual execution logic of the Protocol. By default, does nothing</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>node</strong> (<a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><em>Node</em></a>) – Node to execute using this Protocols execution logic.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.GradProtocol.increment">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">increment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#GradProtocol.increment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.GradProtocol.increment" title="Link to this definition">#</a></dt>
+<dd><p>Increments the backward_idx attachment to track the number of times .backward() is called in tracing for this Graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>graph</strong> (<a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><em>Graph</em></a>) – Graph.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.GradProtocol.style">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">style</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#GradProtocol.style"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.GradProtocol.style" title="Link to this definition">#</a></dt>
+<dd><p>Visualization style for this protocol node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dictionary style.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>Dict</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.LocalBackendExecuteProtocol">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.tracing.protocols.</span></span><span class="sig-name descname"><span class="pre">LocalBackendExecuteProtocol</span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#LocalBackendExecuteProtocol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.LocalBackendExecuteProtocol" title="Link to this definition">#</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.LocalBackendExecuteProtocol.add">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">LocalMixin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#LocalBackendExecuteProtocol.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.LocalBackendExecuteProtocol.add" title="Link to this definition">#</a></dt>
+<dd><p>Class method to be implemented in order to add a Node of this Protocol to a Graph.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.LocalBackendExecuteProtocol.execute">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#LocalBackendExecuteProtocol.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.LocalBackendExecuteProtocol.execute" title="Link to this definition">#</a></dt>
+<dd><p>Class method to be implemented which contains the actual execution logic of the Protocol. By default, does nothing</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>node</strong> (<a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><em>Node</em></a>) – Node to execute using this Protocols execution logic.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.LocalBackendExecuteProtocol.style">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">style</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#LocalBackendExecuteProtocol.style"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.LocalBackendExecuteProtocol.style" title="Link to this definition">#</a></dt>
+<dd><p>Visualization style for this protocol node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dictionary style.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>Dict</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.LockProtocol">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.tracing.protocols.</span></span><span class="sig-name descname"><span class="pre">LockProtocol</span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#LockProtocol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.LockProtocol" title="Link to this definition">#</a></dt>
+<dd><p>Simple Protocol who’s .execute() method does nothing. This means not calling .set_value() on the Node, therefore  the Node won’t be destroyed.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.LockProtocol.add">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#LockProtocol.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.LockProtocol.add" title="Link to this definition">#</a></dt>
+<dd><p>Class method to be implemented in order to add a Node of this Protocol to a Graph.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.LockProtocol.style">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">style</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#LockProtocol.style"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.LockProtocol.style" title="Link to this definition">#</a></dt>
+<dd><p>Visualization style for this protocol node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dictionary style.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>Dict</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.Protocol">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.tracing.protocols.</span></span><span class="sig-name descname"><span class="pre">Protocol</span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#Protocol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.Protocol" title="Link to this definition">#</a></dt>
+<dd><p>A <cite>Protocol</cite> represents some complex action a user might want to create a <cite>Node</cite> and <cite>Proxy</cite> for as well as add to a <cite>Graph</cite>.
+Unlike normal <cite>Node</cite> target execution, these have access to the <cite>Node</cite> itself and therefore the <cite>Graph</cite>, enabling more powerful functionality than with just functions and methods.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.Protocol.add">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#Protocol.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.Protocol.add" title="Link to this definition">#</a></dt>
+<dd><p>Class method to be implemented in order to add a Node of this Protocol to a Graph.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.Protocol.execute">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#Protocol.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.Protocol.execute" title="Link to this definition">#</a></dt>
+<dd><p>Class method to be implemented which contains the actual execution logic of the Protocol. By default, does nothing</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>node</strong> (<a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><em>Node</em></a>) – Node to execute using this Protocols execution logic.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.Protocol.style">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">style</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#Protocol.style"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.Protocol.style" title="Link to this definition">#</a></dt>
+<dd><p>Visualization style for this protocol node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dictionary style.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>Dict</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.SwapProtocol">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.tracing.protocols.</span></span><span class="sig-name descname"><span class="pre">SwapProtocol</span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#SwapProtocol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.SwapProtocol" title="Link to this definition">#</a></dt>
+<dd><p>Protocol which adds an attachment to the Graph which can store some value. Used to replace (‘swap’) a value with another value.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.SwapProtocol.add">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#SwapProtocol.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.SwapProtocol.add" title="Link to this definition">#</a></dt>
+<dd><p>Class method to be implemented in order to add a Node of this Protocol to a Graph.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.SwapProtocol.execute">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#SwapProtocol.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.SwapProtocol.execute" title="Link to this definition">#</a></dt>
+<dd><p>Class method to be implemented which contains the actual execution logic of the Protocol. By default, does nothing</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>node</strong> (<a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><em>Node</em></a>) – Node to execute using this Protocols execution logic.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.SwapProtocol.get_swap">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_swap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#SwapProtocol.get_swap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.SwapProtocol.get_swap" title="Link to this definition">#</a></dt>
+<dd><p>Checks if a swap exists on a Graph. If so get and return it, otherwise return the given value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>graph</strong> (<a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><em>Graph</em></a>) – Graph</p></li>
+<li><p><strong>value</strong> (<em>Any</em>) – Default value.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Default value or swap value.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.SwapProtocol.style">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">style</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#SwapProtocol.style"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.SwapProtocol.style" title="Link to this definition">#</a></dt>
+<dd><p>Visualization style for this protocol node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dictionary style.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>Dict</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.UpdateProtocol">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.tracing.protocols.</span></span><span class="sig-name descname"><span class="pre">UpdateProtocol</span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#UpdateProtocol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.UpdateProtocol" title="Link to this definition">#</a></dt>
+<dd><p>Protocol to update the value of an InterventionProxy node.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.UpdateProtocol.add">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#UpdateProtocol.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.UpdateProtocol.add" title="Link to this definition">#</a></dt>
+<dd><p>Creates an UpdateProtocol node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><em>Node</em></a>) – Original node.</p></li>
+<li><p><strong>new_value</strong> (<em>Union</em><em>[</em><a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><em>Node</em></a><em>, </em><em>Any</em><em>]</em>) – The update value.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>proxy.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy">InterventionProxy</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.UpdateProtocol.execute">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#UpdateProtocol.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.UpdateProtocol.execute" title="Link to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Sets the value of the original node to the new value.</dt><dd><p>If the original is defined outside the context, it uses the bridge to get the node.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>node</strong> (<a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><em>Node</em></a>) – UpdateProtocol node.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.UpdateProtocol.style">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">style</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#UpdateProtocol.style"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.UpdateProtocol.style" title="Link to this definition">#</a></dt>
+<dd><p>Visualization style for this protocol node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dictionary style.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>Dict</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.ValueProtocol">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.tracing.protocols.</span></span><span class="sig-name descname"><span class="pre">ValueProtocol</span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#ValueProtocol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.ValueProtocol" title="Link to this definition">#</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.ValueProtocol.add">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#ValueProtocol.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.ValueProtocol.add" title="Link to this definition">#</a></dt>
+<dd><p>Class method to be implemented in order to add a Node of this Protocol to a Graph.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.ValueProtocol.execute">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#ValueProtocol.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.ValueProtocol.execute" title="Link to this definition">#</a></dt>
+<dd><p>Class method to be implemented which contains the actual execution logic of the Protocol. By default, does nothing</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>node</strong> (<a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><em>Node</em></a>) – Node to execute using this Protocols execution logic.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.protocols.ValueProtocol.style">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">style</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/protocols/#ValueProtocol.style"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.protocols.ValueProtocol.style" title="Link to this definition">#</a></dt>
+<dd><p>Visualization style for this protocol node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dictionary style.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>Dict</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-nnsight.tracing.Bridge">
+<dt class="sig sig-object py" id="nnsight.tracing.Bridge.Bridge">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.tracing.Bridge.</span></span><span class="sig-name descname"><span class="pre">Bridge</span></span><a class="reference internal" href="../../_modules/nnsight/tracing/Bridge/#Bridge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.Bridge.Bridge" title="Link to this definition">#</a></dt>
+<dd><p>A Bridge object collects and tracks multiple Graphs in order to facilitate interaction between them.
+The order in which Graphs added matters as Graphs can only get values from previous Graphs/</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.tracing.Bridge.Bridge.id_to_graph">
+<span class="sig-name descname"><span class="pre">id_to_graph</span></span><a class="headerlink" href="#nnsight.tracing.Bridge.Bridge.id_to_graph" title="Link to this definition">#</a></dt>
+<dd><p>Mapping of graph id to Graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[int, <a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph">Graph</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.tracing.Bridge.Bridge.graph_stack">
+<span class="sig-name descname"><span class="pre">graph_stack</span></span><a class="headerlink" href="#nnsight.tracing.Bridge.Bridge.graph_stack" title="Link to this definition">#</a></dt>
+<dd><p>Stack of visited Intervention Graphs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph">Graph</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.tracing.Bridge.Bridge.bridged_nodes">
+<span class="sig-name descname"><span class="pre">bridged_nodes</span></span><a class="headerlink" href="#nnsight.tracing.Bridge.Bridge.bridged_nodes" title="Link to this definition">#</a></dt>
+<dd><p>Mapping of bridged Nodes
+to the BridgeProtocol nodes representing them on different graphs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>defaultdict[<a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node">Node</a>, defaultdict[int, Optional[<a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy">InterventionProxy</a>]]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.tracing.Bridge.Bridge.locks">
+<span class="sig-name descname"><span class="pre">locks</span></span><a class="headerlink" href="#nnsight.tracing.Bridge.Bridge.locks" title="Link to this definition">#</a></dt>
+<dd><p>Count of how many entities are depending on ties between graphs not to be released.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.Bridge.Bridge.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/Bridge/#Bridge.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.Bridge.Bridge.add" title="Link to this definition">#</a></dt>
+<dd><p>Adds Graph to Bridge.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>graph</strong> (<a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><em>Graph</em></a>) – Graph to add.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.Bridge.Bridge.add_bridge_proxy">
+<span class="sig-name descname"><span class="pre">add_bridge_proxy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">bridge_proxy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/Bridge/#Bridge.add_bridge_proxy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.Bridge.Bridge.add_bridge_proxy" title="Link to this definition">#</a></dt>
+<dd><p>Adds a BridgeProtocol Proxy to the bridged nodes attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<em>-</em>) – Bridged Node.</p></li>
+<li><p><strong>bridge_proxy</strong> (<em>-</em>) – BridgeProtocol node proxy corresponding to the bridged node.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.Bridge.Bridge.get_bridge_proxy">
+<span class="sig-name descname"><span class="pre">get_bridge_proxy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/Bridge/#Bridge.get_bridge_proxy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.Bridge.Bridge.get_bridge_proxy" title="Link to this definition">#</a></dt>
+<dd><p>Check if the argument Node is bridged within the specified graph and returns its corresponding BridgeProtocol node proxy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<em>-</em>) – Node.</p></li>
+<li><p><strong>graph_id</strong> (<em>-</em>) – Graph id.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>BridgeProtocol node proxy if it exists.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[<a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy">InterventionProxy</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.Bridge.Bridge.get_graph">
+<span class="sig-name descname"><span class="pre">get_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/Bridge/#Bridge.get_graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.Bridge.Bridge.get_graph" title="Link to this definition">#</a></dt>
+<dd><p>Returns graph from Bridge given the Graph’s id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<em>int</em>) – Id of Graph to get.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Graph.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph">Graph</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.Bridge.Bridge.peek_graph">
+<span class="sig-name descname"><span class="pre">peek_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/Bridge/#Bridge.peek_graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.Bridge.Bridge.peek_graph" title="Link to this definition">#</a></dt>
+<dd><p>Gets the current hierarchical Graph in the Bridge.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Graph of current context.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph">Graph</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.tracing.Bridge.Bridge.pop_graph">
+<span class="sig-name descname"><span class="pre">pop_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/tracing/Bridge/#Bridge.pop_graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.tracing.Bridge.Bridge.pop_graph" title="Link to this definition">#</a></dt>
+<dd><p>Pops the last Graph in the graph stack.</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -1152,6 +2001,101 @@ Otherwise just run the function.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Proxy.proxy_wrapper"><code class="docutils literal notranslate"><span class="pre">proxy_wrapper()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.ApplyModuleProtocol"><code class="docutils literal notranslate"><span class="pre">ApplyModuleProtocol</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.ApplyModuleProtocol.add"><code class="docutils literal notranslate"><span class="pre">ApplyModuleProtocol.add()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.ApplyModuleProtocol.execute"><code class="docutils literal notranslate"><span class="pre">ApplyModuleProtocol.execute()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.ApplyModuleProtocol.get_module"><code class="docutils literal notranslate"><span class="pre">ApplyModuleProtocol.get_module()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.ApplyModuleProtocol.set_module"><code class="docutils literal notranslate"><span class="pre">ApplyModuleProtocol.set_module()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.ApplyModuleProtocol.style"><code class="docutils literal notranslate"><span class="pre">ApplyModuleProtocol.style()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.BridgeProtocol"><code class="docutils literal notranslate"><span class="pre">BridgeProtocol</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.BridgeProtocol.BridgeException"><code class="docutils literal notranslate"><span class="pre">BridgeProtocol.BridgeException</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.BridgeProtocol.add"><code class="docutils literal notranslate"><span class="pre">BridgeProtocol.add()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.BridgeProtocol.execute"><code class="docutils literal notranslate"><span class="pre">BridgeProtocol.execute()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.BridgeProtocol.get_bridge"><code class="docutils literal notranslate"><span class="pre">BridgeProtocol.get_bridge()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.BridgeProtocol.has_bridge"><code class="docutils literal notranslate"><span class="pre">BridgeProtocol.has_bridge()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.BridgeProtocol.peek_graph"><code class="docutils literal notranslate"><span class="pre">BridgeProtocol.peek_graph()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.BridgeProtocol.set_bridge"><code class="docutils literal notranslate"><span class="pre">BridgeProtocol.set_bridge()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.BridgeProtocol.style"><code class="docutils literal notranslate"><span class="pre">BridgeProtocol.style()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.ConditionalProtocol"><code class="docutils literal notranslate"><span class="pre">ConditionalProtocol</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.ConditionalProtocol.add"><code class="docutils literal notranslate"><span class="pre">ConditionalProtocol.add()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.ConditionalProtocol.add_conditioned_node"><code class="docutils literal notranslate"><span class="pre">ConditionalProtocol.add_conditioned_node()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.ConditionalProtocol.execute"><code class="docutils literal notranslate"><span class="pre">ConditionalProtocol.execute()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.ConditionalProtocol.get_conditional"><code class="docutils literal notranslate"><span class="pre">ConditionalProtocol.get_conditional()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.ConditionalProtocol.has_conditional"><code class="docutils literal notranslate"><span class="pre">ConditionalProtocol.has_conditional()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.ConditionalProtocol.is_node_conditioned"><code class="docutils literal notranslate"><span class="pre">ConditionalProtocol.is_node_conditioned()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.ConditionalProtocol.peek_conditional"><code class="docutils literal notranslate"><span class="pre">ConditionalProtocol.peek_conditional()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.ConditionalProtocol.pop_conditional"><code class="docutils literal notranslate"><span class="pre">ConditionalProtocol.pop_conditional()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.ConditionalProtocol.push_conditional"><code class="docutils literal notranslate"><span class="pre">ConditionalProtocol.push_conditional()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.ConditionalProtocol.style"><code class="docutils literal notranslate"><span class="pre">ConditionalProtocol.style()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.EarlyStopProtocol"><code class="docutils literal notranslate"><span class="pre">EarlyStopProtocol</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.EarlyStopProtocol.EarlyStopException"><code class="docutils literal notranslate"><span class="pre">EarlyStopProtocol.EarlyStopException</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.EarlyStopProtocol.add"><code class="docutils literal notranslate"><span class="pre">EarlyStopProtocol.add()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.EarlyStopProtocol.execute"><code class="docutils literal notranslate"><span class="pre">EarlyStopProtocol.execute()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.EarlyStopProtocol.style"><code class="docutils literal notranslate"><span class="pre">EarlyStopProtocol.style()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.GradProtocol"><code class="docutils literal notranslate"><span class="pre">GradProtocol</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.GradProtocol.add"><code class="docutils literal notranslate"><span class="pre">GradProtocol.add()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.GradProtocol.execute"><code class="docutils literal notranslate"><span class="pre">GradProtocol.execute()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.GradProtocol.increment"><code class="docutils literal notranslate"><span class="pre">GradProtocol.increment()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.GradProtocol.style"><code class="docutils literal notranslate"><span class="pre">GradProtocol.style()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.LocalBackendExecuteProtocol"><code class="docutils literal notranslate"><span class="pre">LocalBackendExecuteProtocol</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.LocalBackendExecuteProtocol.add"><code class="docutils literal notranslate"><span class="pre">LocalBackendExecuteProtocol.add()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.LocalBackendExecuteProtocol.execute"><code class="docutils literal notranslate"><span class="pre">LocalBackendExecuteProtocol.execute()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.LocalBackendExecuteProtocol.style"><code class="docutils literal notranslate"><span class="pre">LocalBackendExecuteProtocol.style()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.LockProtocol"><code class="docutils literal notranslate"><span class="pre">LockProtocol</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.LockProtocol.add"><code class="docutils literal notranslate"><span class="pre">LockProtocol.add()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.LockProtocol.style"><code class="docutils literal notranslate"><span class="pre">LockProtocol.style()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.Protocol"><code class="docutils literal notranslate"><span class="pre">Protocol</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.Protocol.add"><code class="docutils literal notranslate"><span class="pre">Protocol.add()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.Protocol.execute"><code class="docutils literal notranslate"><span class="pre">Protocol.execute()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.Protocol.style"><code class="docutils literal notranslate"><span class="pre">Protocol.style()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.SwapProtocol"><code class="docutils literal notranslate"><span class="pre">SwapProtocol</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.SwapProtocol.add"><code class="docutils literal notranslate"><span class="pre">SwapProtocol.add()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.SwapProtocol.execute"><code class="docutils literal notranslate"><span class="pre">SwapProtocol.execute()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.SwapProtocol.get_swap"><code class="docutils literal notranslate"><span class="pre">SwapProtocol.get_swap()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.SwapProtocol.style"><code class="docutils literal notranslate"><span class="pre">SwapProtocol.style()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.UpdateProtocol"><code class="docutils literal notranslate"><span class="pre">UpdateProtocol</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.UpdateProtocol.add"><code class="docutils literal notranslate"><span class="pre">UpdateProtocol.add()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.UpdateProtocol.execute"><code class="docutils literal notranslate"><span class="pre">UpdateProtocol.execute()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.UpdateProtocol.style"><code class="docutils literal notranslate"><span class="pre">UpdateProtocol.style()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.ValueProtocol"><code class="docutils literal notranslate"><span class="pre">ValueProtocol</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.ValueProtocol.add"><code class="docutils literal notranslate"><span class="pre">ValueProtocol.add()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.ValueProtocol.execute"><code class="docutils literal notranslate"><span class="pre">ValueProtocol.execute()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.protocols.ValueProtocol.style"><code class="docutils literal notranslate"><span class="pre">ValueProtocol.style()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Bridge.Bridge"><code class="docutils literal notranslate"><span class="pre">Bridge</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Bridge.Bridge.id_to_graph"><code class="docutils literal notranslate"><span class="pre">Bridge.id_to_graph</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Bridge.Bridge.graph_stack"><code class="docutils literal notranslate"><span class="pre">Bridge.graph_stack</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Bridge.Bridge.bridged_nodes"><code class="docutils literal notranslate"><span class="pre">Bridge.bridged_nodes</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Bridge.Bridge.locks"><code class="docutils literal notranslate"><span class="pre">Bridge.locks</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Bridge.Bridge.add"><code class="docutils literal notranslate"><span class="pre">Bridge.add()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Bridge.Bridge.add_bridge_proxy"><code class="docutils literal notranslate"><span class="pre">Bridge.add_bridge_proxy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Bridge.Bridge.get_bridge_proxy"><code class="docutils literal notranslate"><span class="pre">Bridge.get_bridge_proxy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Bridge.Bridge.get_graph"><code class="docutils literal notranslate"><span class="pre">Bridge.get_graph()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Bridge.Bridge.peek_graph"><code class="docutils literal notranslate"><span class="pre">Bridge.peek_graph()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.tracing.Bridge.Bridge.pop_graph"><code class="docutils literal notranslate"><span class="pre">Bridge.pop_graph()</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

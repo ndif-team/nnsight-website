@@ -53,8 +53,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../../../../_static/css/custom.css?v=1725032410" rel="stylesheet" type="text/css" />
-<link href="../../../../_static/css/home.css?v=1725032410" rel="stylesheet" type="text/css" />
+<link href="../../../../_static/css/custom.css?v=1725479524" rel="stylesheet" type="text/css" />
+<link href="../../../../_static/css/home.css?v=1725479524" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -552,6 +552,8 @@ document.write(`
 <span class="kn">from</span> <span class="nn">transformers.models.llama.configuration_llama</span> <span class="kn">import</span> <span class="n">LlamaConfig</span>
 <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Self</span>
 
+<span class="kn">from</span> <span class="nn">nnsight.envoy</span> <span class="kn">import</span> <span class="n">Envoy</span>
+
 <span class="kn">from</span> <span class="nn">..intervention</span> <span class="kn">import</span> <span class="n">InterventionProxy</span>
 <span class="kn">from</span> <span class="nn">..util</span> <span class="kn">import</span> <span class="n">WrapperModule</span>
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">NNsight</span>
@@ -584,9 +586,7 @@ document.write(`
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">proxy</span><span class="p">[:,</span> <span class="n">key</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">LanguageModelProxy</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">LanguageModelProxy</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert_idx</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">proxy</span><span class="p">[:,</span> <span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div>
@@ -676,6 +676,9 @@ document.write(`
 
     <span class="n">proxy_class</span> <span class="o">=</span> <span class="n">LanguageModelProxy</span>
 
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span> <span class="o">|</span> <span class="n">Envoy</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">object</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">model_key</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">],</span>
@@ -713,16 +716,16 @@ document.write(`
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">tokenizer_kwargs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">tokenizer_kwargs</span> <span class="o">=</span> <span class="p">{}</span>
-            <span class="n">kwarg_pad</span> <span class="o">=</span> <span class="n">tokenizer_kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;padding_side&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">kwarg_pad</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">kwarg_pad</span> <span class="o">!=</span> <span class="s2">&quot;left&quot;</span><span class="p">:</span>
-                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-                    <span class="s2">&quot;NNsight LanguageModel requires padding_side=&#39;left&#39; for tokenizers, setting it to &#39;left&#39;&quot;</span>
-                <span class="p">)</span>
+
+            <span class="k">if</span> <span class="s2">&quot;padding_side&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">tokenizer_kwargs</span><span class="p">:</span>
+                <span class="n">tokenizer_kwargs</span><span class="p">[</span><span class="s2">&quot;padding_side&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;left&quot;</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
-                <span class="n">repo_id</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span> <span class="n">padding_side</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">tokenizer_kwargs</span>
+                <span class="n">repo_id</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span> <span class="o">**</span><span class="n">tokenizer_kwargs</span>
             <span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">pad_token</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">eos_token</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">pad_token</span><span class="p">,</span> <span class="s2">&quot;pad_token&quot;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">pad_token</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">eos_token</span>
 
             <span class="k">if</span> <span class="p">(</span>
                 <span class="n">patch_llama_scan</span>
@@ -780,9 +783,7 @@ document.write(`
             <span class="n">inputs</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;input_ids&quot;</span><span class="p">:</span> <span class="n">ids</span><span class="p">}</span> <span class="k">for</span> <span class="n">ids</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">]</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span><span class="p">(</span>
-            <span class="n">inputs</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
-        <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_prepare_inputs</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -813,9 +814,7 @@ document.write(`
                         <span class="n">ai</span><span class="p">,</span> <span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">attn_mask</span><span class="p">)</span> <span class="p">:</span>
                     <span class="p">]</span> <span class="o">=</span> <span class="n">attn_mask</span>
 
-                <span class="n">new_inputs</span><span class="p">[</span><span class="s2">&quot;attention_mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tokenized_inputs</span><span class="p">[</span>
-                    <span class="s2">&quot;attention_mask&quot;</span>
-                <span class="p">]</span>
+                <span class="n">new_inputs</span><span class="p">[</span><span class="s2">&quot;attention_mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tokenized_inputs</span><span class="p">[</span><span class="s2">&quot;attention_mask&quot;</span><span class="p">]</span>
 
             <span class="k">if</span> <span class="s2">&quot;labels&quot;</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">:</span>
                 <span class="n">labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tokenize</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="s2">&quot;labels&quot;</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -857,9 +856,7 @@ document.write(`
         <span class="k">if</span> <span class="s2">&quot;labels&quot;</span> <span class="ow">in</span> <span class="n">prepared_inputs</span><span class="p">:</span>
             <span class="n">batched_inputs</span><span class="p">[</span><span class="s2">&quot;labels&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">prepared_inputs</span><span class="p">[</span><span class="s2">&quot;labels&quot;</span><span class="p">])</span>
         <span class="k">if</span> <span class="s2">&quot;attention_mask&quot;</span> <span class="ow">in</span> <span class="n">prepared_inputs</span><span class="p">:</span>
-            <span class="n">batched_inputs</span><span class="p">[</span><span class="s2">&quot;attention_mask&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
-                <span class="n">prepared_inputs</span><span class="p">[</span><span class="s2">&quot;attention_mask&quot;</span><span class="p">]</span>
-            <span class="p">)</span>
+            <span class="n">batched_inputs</span><span class="p">[</span><span class="s2">&quot;attention_mask&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">prepared_inputs</span><span class="p">[</span><span class="s2">&quot;attention_mask&quot;</span><span class="p">])</span>
 
         <span class="k">return</span> <span class="p">(</span><span class="n">batched_inputs</span><span class="p">,)</span>
 
@@ -892,9 +889,7 @@ document.write(`
 
     <span class="k">def</span> <span class="nf">_remoteable_model_key</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span>
-            <span class="p">{</span>
-                <span class="s2">&quot;repo_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model_key</span>
-            <span class="p">}</span>  <span class="c1"># , &quot;torch_dtype&quot;: str(self._model.dtype)}</span>
+            <span class="p">{</span><span class="s2">&quot;repo_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model_key</span><span class="p">}</span>  <span class="c1"># , &quot;torch_dtype&quot;: str(self._model.dtype)}</span>
         <span class="p">)</span>
 
     <span class="nd">@classmethod</span>

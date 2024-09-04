@@ -53,8 +53,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../../../../_static/css/custom.css?v=1725032410" rel="stylesheet" type="text/css" />
-<link href="../../../../_static/css/home.css?v=1725032410" rel="stylesheet" type="text/css" />
+<link href="../../../../_static/css/custom.css?v=1725479524" rel="stylesheet" type="text/css" />
+<link href="../../../../_static/css/home.css?v=1725479524" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -551,7 +551,6 @@ document.write(`
 <span class="kn">from</span> <span class="nn">.Invoker</span> <span class="kn">import</span> <span class="n">Invoker</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">..intervention</span> <span class="kn">import</span> <span class="n">InterventionProxy</span>
     <span class="kn">from</span> <span class="nn">..models.mixins</span> <span class="kn">import</span> <span class="n">RemoteableMixin</span>
     <span class="kn">from</span> <span class="nn">..models.NNsightModel</span> <span class="kn">import</span> <span class="n">NNsight</span>
 
@@ -736,15 +735,18 @@ document.write(`
 <a class="viewcode-back" href="../../../../documentation/contexts/#nnsight.contexts.Tracer.Tracer.remote_backend_handle_result_value">[docs]</a>
     <span class="k">def</span> <span class="nf">remote_backend_handle_result_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 
+        <span class="c1"># TODO : graph mismatch handle. hash json ?</span>
         <span class="k">for</span> <span class="n">node_name</span><span class="p">,</span> <span class="n">node_value</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">node_name</span><span class="p">]</span><span class="o">.</span><span class="n">_value</span> <span class="o">=</span> <span class="n">node_value</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">node_name</span><span class="p">]</span><span class="o">.</span><span class="n">_value</span> <span class="o">=</span> <span class="n">node_value</span></div>
 
+
+    <span class="k">def</span> <span class="nf">remote_backend_cleanup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        
         <span class="n">graph</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span>
         <span class="n">graph</span><span class="o">.</span><span class="n">alive</span> <span class="o">=</span> <span class="kc">False</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ProxyType</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">graph</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">proxy</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span></div>
-
+            <span class="bp">self</span><span class="o">.</span><span class="n">graph</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">proxy</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&amp;lt;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> at </span><span class="si">{</span><span class="nb">hex</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span><span class="si">}</span><span class="s2">&amp;gt;&quot;</span></div>

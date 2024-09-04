@@ -1,0 +1,768 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nnsight.contexts.session.Session &#8212; nnsight</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../../../_static/documentation_options.js?v=187304be"></script>
+    <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/nnsight/contexts/session/Session';</script>
+    <script src="../../../../../_static/js/custom.js?v=1e4be224"></script>
+    <script src="../../../../../_static/js/code.js?v=34343d0c"></script>
+    <link rel="icon" href="../../../../../_static/icon.ico"/>
+    <link rel="author" title="About these documents" href="../../../../../about/" />
+    <link rel="index" title="Index" href="../../../../../genindex/" />
+    <link rel="search" title="Search" href="../../../../../search/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+<link href="../../../../../_static/css/custom.css?v=1725479524" rel="stylesheet" type="text/css" />
+<link href="../../../../../_static/css/home.css?v=1725479524" rel="stylesheet" type="text/css" />
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search/"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../../../_static/nnsight_logo.svg" class="logo__image only-dark" alt="nnsight - Home"/>
+    <script>document.write(`<img src="../../../../../_static/nnsight_logo.svg" class="logo__image only-light" alt="nnsight - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../start/">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../documentation/">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../features/">
+    Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../tutorials/">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../about/">
+    About
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discord</span></a>
+        </li>
+        <li class="nav-item">
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/status" title="Status: Unknown" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Status: Unknown</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item"><script>
+    fetch("https://ndif.dev/ping")
+        .then((response) => {
+            if (response.status == 200) {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#66800b', 'important');
+                    });
+                });
+            }
+            else {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#af3029', 'important');
+                    });
+                });
+                var statusIcon = document.querySelector('.ndif .fa-circle-check');
+                if (statusIcon) {
+                    // not here
+                    statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark'); 
+                }
+            }
+        })
+        .catch((response) => {
+            Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                    spanElement.style.setProperty('color', '#af3029', 'important');
+                });
+            });
+            var statusIcon = document.querySelector('.ndif .fa-circle-check');
+            if (statusIcon) {
+                statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark');
+            }
+        })
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../start/">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../documentation/">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../features/">
+    Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../tutorials/">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../about/">
+    About
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discord</span></a>
+        </li>
+        <li class="nav-item">
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/status" title="Status: Unknown" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Status: Unknown</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item"><script>
+    fetch("https://ndif.dev/ping")
+        .then((response) => {
+            if (response.status == 200) {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#66800b', 'important');
+                    });
+                });
+            }
+            else {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#af3029', 'important');
+                    });
+                });
+                var statusIcon = document.querySelector('.ndif .fa-circle-check');
+                if (statusIcon) {
+                    // not here
+                    statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark'); 
+                }
+            }
+        })
+        .catch((response) => {
+            Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                    spanElement.style.setProperty('color', '#af3029', 'important');
+                });
+            });
+            var statusIcon = document.querySelector('.ndif .fa-circle-check');
+            if (statusIcon) {
+                statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark');
+            }
+        })
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../../" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../../" class="nav-link">Module code</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../../" class="nav-link">nnsight.contexts</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">nnsight.cont...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for nnsight.contexts.session.Session</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span> <span class="nn">weakref</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterable</span>
+
+<span class="kn">from</span> <span class="nn">...tracing.Bridge</span> <span class="kn">import</span> <span class="n">Bridge</span>
+<span class="kn">from</span> <span class="nn">...tracing.Graph</span> <span class="kn">import</span> <span class="n">Graph</span>
+<span class="kn">from</span> <span class="nn">...tracing.protocols</span> <span class="kn">import</span> <span class="n">EarlyStopProtocol</span>
+<span class="kn">from</span> <span class="nn">..backends</span> <span class="kn">import</span> <span class="n">Backend</span><span class="p">,</span> <span class="n">BridgeBackend</span><span class="p">,</span> <span class="n">RemoteMixin</span>
+<span class="kn">from</span> <span class="nn">..GraphBasedContext</span> <span class="kn">import</span> <span class="n">GraphBasedContext</span>
+<span class="kn">from</span> <span class="nn">.Iterator</span> <span class="kn">import</span> <span class="n">Iterator</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">...models.mixins</span> <span class="kn">import</span> <span class="n">RemoteableMixin</span>
+    <span class="kn">from</span> <span class="nn">...models.NNsightModel</span> <span class="kn">import</span> <span class="n">NNsight</span>
+
+
+<div class="viewcode-block" id="Session">
+<a class="viewcode-back" href="../../../../../documentation/contexts/#nnsight.contexts.session.Session.Session">[docs]</a>
+<span class="k">class</span> <span class="nc">Session</span><span class="p">(</span><span class="n">GraphBasedContext</span><span class="p">,</span> <span class="n">RemoteMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A Session is a root Collection that handles adding new Graphs and new Collections while in the session.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        bridge (Bridge): Bridge object which stores all Graphs added during the session and handles interaction between them</span>
+<span class="sd">        graph (Graph): Root Graph where operations and values meant for access by all subsequent Graphs should be stored and referenced.</span>
+<span class="sd">        model (NNsight): NNsight model.</span>
+<span class="sd">        backend (Backend): Backend for this context object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">backend</span><span class="p">:</span> <span class="n">Backend</span><span class="p">,</span>
+        <span class="n">model</span><span class="p">:</span> <span class="s2">&quot;NNsight&quot;</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="n">bridge</span><span class="p">:</span> <span class="n">Bridge</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">bridge</span> <span class="o">=</span> <span class="n">Bridge</span><span class="p">()</span> <span class="k">if</span> <span class="n">bridge</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">bridge</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+
+        <span class="n">GraphBasedContext</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">backend</span><span class="p">,</span>
+            <span class="n">bridge</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bridge</span><span class="p">,</span>
+            <span class="n">proxy_class</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">proxy_class</span><span class="p">,</span>
+            <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_val</span><span class="p">,</span> <span class="n">exc_tb</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">_session</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__exit__</span><span class="p">(</span><span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_val</span><span class="p">,</span> <span class="n">exc_tb</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Session.iter">
+<a class="viewcode-back" href="../../../../../documentation/contexts/#nnsight.contexts.session.Session.Session.iter">[docs]</a>
+    <span class="k">def</span> <span class="nf">iter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iterable</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates an Iterator context to iteratively execute an intervention graph, with an update item at each iteration.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            - iterable (Iterable): Data to iterate over.</span>
+<span class="sd">            - return_context (bool): If True, returns the Iterator context. Default: False.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Iterator: Iterator context.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            Setup:</span>
+<span class="sd">                .. code-block:: python</span>
+<span class="sd">                    import torch</span>
+<span class="sd">                    from collections import OrderedDict</span>
+<span class="sd">                    input_size = 5</span>
+<span class="sd">                    hidden_dims = 10</span>
+<span class="sd">                    output_size = 2</span>
+<span class="sd">                    model = nn.Sequential(OrderedDict([</span>
+<span class="sd">                        (&#39;layer1&#39;, torch.nn.Linear(input_size, hidden_dims)),</span>
+<span class="sd">                        (&#39;layer2&#39;, torch.nn.Linear(hidden_dims, output_size)),</span>
+<span class="sd">                    ]))</span>
+<span class="sd">                    input = torch.rand((1, input_size))</span>
+
+<span class="sd">            Ex:</span>
+<span class="sd">                .. code-block:: python</span>
+<span class="sd">                    with model.session() as session:</span>
+<span class="sd">                        l  = session.apply(list).save()</span>
+<span class="sd">                        with session.iter([0, 1, 2]) as item:</span>
+<span class="sd">                            l.append(item)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">bridge</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">proxy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bridge</span><span class="p">)</span>
+
+        <span class="n">backend</span> <span class="o">=</span> <span class="n">BridgeBackend</span><span class="p">(</span><span class="n">bridge</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">Iterator</span><span class="p">(</span>
+            <span class="n">iterable</span><span class="p">,</span>
+            <span class="n">backend</span><span class="p">,</span>
+            <span class="n">bridge</span><span class="o">=</span><span class="n">bridge</span><span class="p">,</span>
+            <span class="n">proxy_class</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">proxy_class</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+    <span class="c1">### BACKENDS ########</span>
+
+<div class="viewcode-block" id="Session.local_backend_execute">
+<a class="viewcode-back" href="../../../../../documentation/contexts/#nnsight.contexts.session.Session.Session.local_backend_execute">[docs]</a>
+    <span class="k">def</span> <span class="nf">local_backend_execute</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Graph</span><span class="p">]:</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">local_backend_execute</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">EarlyStopProtocol</span><span class="o">.</span><span class="n">EarlyStopException</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="n">local_result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bridge</span><span class="o">.</span><span class="n">id_to_graph</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">bridge</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">proxy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bridge</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">local_result</span></div>
+
+
+<div class="viewcode-block" id="Session.remote_backend_get_model_key">
+<a class="viewcode-back" href="../../../../../documentation/contexts/#nnsight.contexts.session.Session.Session.remote_backend_get_model_key">[docs]</a>
+    <span class="k">def</span> <span class="nf">remote_backend_get_model_key</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">:</span> <span class="s2">&quot;RemoteableMixin&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">to_model_key</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Session.remote_backend_postprocess_result">
+<a class="viewcode-back" href="../../../../../documentation/contexts/#nnsight.contexts.session.Session.Session.remote_backend_postprocess_result">[docs]</a>
+    <span class="k">def</span> <span class="nf">remote_backend_postprocess_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">local_result</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Graph</span><span class="p">]):</span>
+
+        <span class="kn">from</span> <span class="nn">...schema.Response</span> <span class="kn">import</span> <span class="n">ResultModel</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="nb">id</span><span class="p">:</span> <span class="n">ResultModel</span><span class="o">.</span><span class="n">from_graph</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+            <span class="k">for</span> <span class="nb">id</span><span class="p">,</span> <span class="n">graph</span> <span class="ow">in</span> <span class="n">local_result</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="Session.remote_backend_handle_result_value">
+<a class="viewcode-back" href="../../../../../documentation/contexts/#nnsight.contexts.session.Session.Session.remote_backend_handle_result_value">[docs]</a>
+    <span class="k">def</span> <span class="nf">remote_backend_handle_result_value</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
+    <span class="p">):</span>
+
+        <span class="k">for</span> <span class="n">graph_id</span><span class="p">,</span> <span class="n">saves</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+
+            <span class="n">graph</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bridge</span><span class="o">.</span><span class="n">id_to_graph</span><span class="p">[</span><span class="n">graph_id</span><span class="p">]</span>
+
+            <span class="k">for</span> <span class="n">node_name</span><span class="p">,</span> <span class="n">node_value</span> <span class="ow">in</span> <span class="n">saves</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">node_name</span><span class="p">]</span><span class="o">.</span><span class="n">_value</span> <span class="o">=</span> <span class="n">node_value</span>
+
+            <span class="n">graph</span><span class="o">.</span><span class="n">alive</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+
+    <span class="k">def</span> <span class="nf">remote_backend_cleanup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">bridge</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">proxy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bridge</span><span class="p">)</span>
+
+        <span class="n">graph</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">graph</span>
+        <span class="n">graph</span><span class="o">.</span><span class="n">alive</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ProxyType</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">graph</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">proxy</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&amp;lt;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> at </span><span class="si">{</span><span class="nb">hex</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span><span class="si">}</span><span class="s2">&amp;gt;&quot;</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024 NDIF.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

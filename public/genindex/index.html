@@ -53,8 +53,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../_static/css/custom.css?v=1725032410" rel="stylesheet" type="text/css" />
-<link href="../_static/css/home.css?v=1725032410" rel="stylesheet" type="text/css" />
+<link href="../_static/css/custom.css?v=1725479524" rel="stylesheet" type="text/css" />
+<link href="../_static/css/home.css?v=1725479524" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -508,6 +508,7 @@ document.write(`
 <div class="genindex-jumpbox">
  <a href="#_"><strong>_</strong></a>
  | <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
  | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
@@ -540,6 +541,14 @@ document.write(`
       </ul></li>
       <li><a href="../documentation/envoy/#nnsight.envoy.Envoy._call_iter">_call_iter (nnsight.envoy.Envoy attribute)</a>
 </li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.Conditional.Conditional._condition">_condition (nnsight.contexts.Conditional.Conditional attribute)</a>
+</li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.Conditional.ConditionalManager._conditional_dict">_conditional_dict (nnsight.contexts.Conditional.ConditionalManager attribute)</a>
+</li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.Conditional.ConditionalManager._conditional_stack">_conditional_stack (nnsight.contexts.Conditional.ConditionalManager attribute)</a>
+</li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.Conditional.ConditionalManager._conditioned_nodes_dict">_conditioned_nodes_dict (nnsight.contexts.Conditional.ConditionalManager attribute)</a>
+</li>
       <li><a href="../documentation/models/#nnsight.models.NNsightModel.NNsight._custom_model">_custom_model (nnsight.models.NNsightModel.NNsight attribute)</a>
 </li>
       <li><a href="../documentation/models/#nnsight.models.NNsightModel.NNsight._dispatched">_dispatched (nnsight.models.NNsightModel.NNsight attribute)</a>
@@ -548,12 +557,16 @@ document.write(`
 </li>
       <li><a href="../documentation/envoy/#nnsight.envoy.Envoy._fake_inputs">_fake_inputs (nnsight.envoy.Envoy attribute)</a>
 </li>
-      <li><a href="../documentation/envoy/#nnsight.envoy.Envoy._fake_outputs">_fake_outputs (nnsight.envoy.Envoy attribute)</a>
-</li>
-      <li><a href="../documentation/contexts/#nnsight.contexts.Tracer.Tracer._graph">_graph (nnsight.contexts.Tracer.Tracer attribute)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="../documentation/envoy/#nnsight.envoy.Envoy._fake_outputs">_fake_outputs (nnsight.envoy.Envoy attribute)</a>
+</li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.Conditional.Conditional._graph">_graph (nnsight.contexts.Conditional.Conditional attribute)</a>
+
+      <ul>
+        <li><a href="../documentation/contexts/#nnsight.contexts.Tracer.Tracer._graph">(nnsight.contexts.Tracer.Tracer attribute)</a>
+</li>
+      </ul></li>
       <li><a href="../documentation/contexts/#nnsight.contexts.Tracer.Tracer._invoker">_invoker (nnsight.contexts.Tracer.Tracer attribute)</a>
 </li>
       <li><a href="../documentation/contexts/#nnsight.contexts.Tracer.Tracer._invoker_inputs">_invoker_inputs (nnsight.contexts.Tracer.Tracer attribute)</a>
@@ -572,8 +585,6 @@ document.write(`
       </ul></li>
       <li><a href="../documentation/models/#nnsight.models.NNsightModel.NNsight._model_key">_model_key (nnsight.models.NNsightModel.NNsight attribute)</a>
 </li>
-      <li><a href="../documentation/envoy/#nnsight.envoy.Envoy._module_path">_module_path (nnsight.envoy.Envoy attribute)</a>
-</li>
       <li><a href="../documentation/models/#nnsight.models.NNsightModel.NNsight._session">_session (nnsight.models.NNsightModel.NNsight attribute)</a>
 </li>
       <li><a href="../documentation/envoy/#nnsight.envoy.Envoy._tracer">_tracer (nnsight.envoy.Envoy attribute)</a>
@@ -589,15 +600,57 @@ document.write(`
       <ul>
         <li><a href="../documentation/patching/#nnsight.patching.Patcher.add">(nnsight.patching.Patcher method)</a>
 </li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.Bridge.Bridge.add">(nnsight.tracing.Bridge.Bridge method)</a>
+</li>
         <li><a href="../documentation/tracing/#nnsight.tracing.Graph.Graph.add">(nnsight.tracing.Graph.Graph method)</a>
+</li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.ApplyModuleProtocol.add">(nnsight.tracing.protocols.ApplyModuleProtocol class method)</a>
+</li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.BridgeProtocol.add">(nnsight.tracing.protocols.BridgeProtocol class method)</a>
+</li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.ConditionalProtocol.add">(nnsight.tracing.protocols.ConditionalProtocol class method)</a>
+</li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.EarlyStopProtocol.add">(nnsight.tracing.protocols.EarlyStopProtocol class method)</a>
+</li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.GradProtocol.add">(nnsight.tracing.protocols.GradProtocol class method)</a>
+</li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.LocalBackendExecuteProtocol.add">(nnsight.tracing.protocols.LocalBackendExecuteProtocol class method)</a>
+</li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.LockProtocol.add">(nnsight.tracing.protocols.LockProtocol class method)</a>
+</li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.Protocol.add">(nnsight.tracing.protocols.Protocol class method)</a>
+</li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.SwapProtocol.add">(nnsight.tracing.protocols.SwapProtocol class method)</a>
+</li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.UpdateProtocol.add">(nnsight.tracing.protocols.UpdateProtocol class method)</a>
+</li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.ValueProtocol.add">(nnsight.tracing.protocols.ValueProtocol class method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="../documentation/tracing/#nnsight.tracing.Bridge.Bridge.add_bridge_proxy">add_bridge_proxy() (nnsight.tracing.Bridge.Bridge method)</a>
+</li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.Conditional.ConditionalManager.add_conditioned_node">add_conditioned_node() (nnsight.contexts.Conditional.ConditionalManager method)</a>
+
+      <ul>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.ConditionalProtocol.add_conditioned_node">(nnsight.tracing.protocols.ConditionalProtocol class method)</a>
 </li>
       </ul></li>
       <li><a href="../documentation/tracing/#nnsight.tracing.Graph.Graph.alive">alive (nnsight.tracing.Graph.Graph attribute)</a>
 </li>
-      <li><a href="../documentation/util/#nnsight.util.apply">apply() (in module nnsight.util)</a>
+      <li><a href="../documentation/schema/#nnsight.schema.Config.ApiConfigModel">ApiConfigModel (class in nnsight.schema.Config)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="../documentation/schema/#nnsight.schema.Config.AppConfigModel">AppConfigModel (class in nnsight.schema.Config)</a>
+</li>
+      <li><a href="../documentation/util/#nnsight.util.apply">apply() (in module nnsight.util)</a>
+
+      <ul>
+        <li><a href="../documentation/contexts/#nnsight.contexts.GraphBasedContext.GraphBasedContext.apply">(nnsight.contexts.GraphBasedContext.GraphBasedContext method)</a>
+</li>
+      </ul></li>
+      <li><a href="../documentation/tracing/#nnsight.tracing.protocols.ApplyModuleProtocol">ApplyModuleProtocol (class in nnsight.tracing.protocols)</a>
+</li>
       <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node.arg_dependencies">arg_dependencies (nnsight.tracing.Node.Node attribute)</a>
 </li>
       <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node.args">args (nnsight.tracing.Node.Node attribute)</a>
@@ -611,6 +664,36 @@ document.write(`
   </ul></td>
 </tr></table>
 
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="../documentation/contexts/#nnsight.contexts.session.Session.Session.backend">backend (nnsight.contexts.session.Session.Session attribute)</a>
+</li>
+      <li><a href="../documentation/schema/#nnsight.schema.format.types.BaseNNsightModel">BaseNNsightModel (class in nnsight.schema.format.types)</a>
+</li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.GraphBasedContext.GraphBasedContext.bool">bool() (nnsight.contexts.GraphBasedContext.GraphBasedContext method)</a>
+</li>
+      <li><a href="../documentation/tracing/#nnsight.tracing.Bridge.Bridge">Bridge (class in nnsight.tracing.Bridge)</a>
+</li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.session.Session.Session.bridge">bridge (nnsight.contexts.session.Session.Session attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="../documentation/contexts/#nnsight.contexts.GraphBasedContext.GraphBasedContext.bridge_backend_handle">bridge_backend_handle() (nnsight.contexts.GraphBasedContext.GraphBasedContext method)</a>
+</li>
+      <li><a href="../documentation/tracing/#nnsight.tracing.Bridge.Bridge.bridged_nodes">bridged_nodes (nnsight.tracing.Bridge.Bridge attribute)</a>
+</li>
+      <li><a href="../documentation/tracing/#nnsight.tracing.protocols.BridgeProtocol">BridgeProtocol (class in nnsight.tracing.protocols)</a>
+</li>
+      <li><a href="../documentation/tracing/#nnsight.tracing.protocols.BridgeProtocol.BridgeException">BridgeProtocol.BridgeException</a>
+</li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.GraphBasedContext.GraphBasedContext.bytearray">bytearray() (nnsight.contexts.GraphBasedContext.GraphBasedContext method)</a>
+</li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.GraphBasedContext.GraphBasedContext.bytes">bytes() (nnsight.contexts.GraphBasedContext.GraphBasedContext method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -620,11 +703,23 @@ document.write(`
 </li>
       <li><a href="../documentation/models/#nnsight.models.NNsightModel.NNsight.clear_edits">clear_edits() (nnsight.models.NNsightModel.NNsight method)</a>
 </li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.GraphBasedContext.GraphBasedContext.complex">complex() (nnsight.contexts.GraphBasedContext.GraphBasedContext method)</a>
+</li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.GraphBasedContext.GraphBasedContext.cond">cond() (nnsight.contexts.GraphBasedContext.GraphBasedContext method)</a>
+</li>
       <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node.cond_dependency">cond_dependency (nnsight.tracing.Node.Node attribute)</a>
+</li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.Conditional.Conditional">Conditional (class in nnsight.contexts.Conditional)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="../documentation/contexts/#nnsight.contexts.Conditional.ConditionalManager">ConditionalManager (class in nnsight.contexts.Conditional)</a>
+</li>
+      <li><a href="../documentation/tracing/#nnsight.tracing.protocols.ConditionalProtocol">ConditionalProtocol (class in nnsight.tracing.protocols)</a>
+</li>
       <li><a href="../documentation/models/#nnsight.models.LanguageModel.LanguageModel.config">config (nnsight.models.LanguageModel.LanguageModel attribute)</a>
+</li>
+      <li><a href="../documentation/schema/#nnsight.schema.Config.ConfigModel">ConfigModel (class in nnsight.schema.Config)</a>
 </li>
       <li><a href="../documentation/tracing/#nnsight.tracing.Graph.Graph.copy">copy() (nnsight.tracing.Graph.Graph method)</a>
 </li>
@@ -642,12 +737,18 @@ document.write(`
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="../documentation/contexts/#nnsight.contexts.GraphBasedContext.GlobalTracingContext.deregister">deregister() (nnsight.contexts.GraphBasedContext.GlobalTracingContext static method)</a>
+</li>
       <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node.destroy">destroy() (nnsight.tracing.Node.Node method)</a>
 </li>
       <li><a href="../documentation/intervention/#nnsight.intervention.InterventionProxy.device">device (nnsight.intervention.InterventionProxy property)</a>
 </li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.GraphBasedContext.GraphBasedContext.dict">dict() (nnsight.contexts.GraphBasedContext.GraphBasedContext method)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="../documentation/schema/#nnsight.schema.format.types.DictModel">DictModel (class in nnsight.schema.format.types)</a>
+</li>
       <li><a href="../documentation/models/#nnsight.models.NNsightModel.NNsight.dispatch_model">dispatch_model() (nnsight.models.NNsightModel.NNsight method)</a>
 </li>
       <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node.done">done() (nnsight.tracing.Node.Node method)</a>
@@ -660,21 +761,49 @@ document.write(`
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="../documentation/tracing/#nnsight.tracing.protocols.EarlyStopProtocol">EarlyStopProtocol (class in nnsight.tracing.protocols)</a>
+</li>
+      <li><a href="../documentation/tracing/#nnsight.tracing.protocols.EarlyStopProtocol.EarlyStopException">EarlyStopProtocol.EarlyStopException</a>
+</li>
       <li><a href="../documentation/models/#nnsight.models.NNsightModel.NNsight.edit">edit() (nnsight.models.NNsightModel.NNsight method)</a>
 </li>
       <li><a href="../documentation/contexts/#nnsight.contexts.Tracer.Tracer.edit_backend_execute">edit_backend_execute() (nnsight.contexts.Tracer.Tracer method)</a>
 </li>
+      <li><a href="../documentation/schema/#nnsight.schema.format.types.EllipsisModel">EllipsisModel (class in nnsight.schema.format.types)</a>
+</li>
       <li><a href="../documentation/envoy/#nnsight.envoy.Envoy">Envoy (class in nnsight.envoy)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="../documentation/tracing/#nnsight.tracing.Graph.Graph.execute">execute() (nnsight.tracing.Graph.Graph method)</a>
 
       <ul>
         <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node.execute">(nnsight.tracing.Node.Node method)</a>
 </li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.ApplyModuleProtocol.execute">(nnsight.tracing.protocols.ApplyModuleProtocol class method)</a>
+</li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.BridgeProtocol.execute">(nnsight.tracing.protocols.BridgeProtocol class method)</a>
+</li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.ConditionalProtocol.execute">(nnsight.tracing.protocols.ConditionalProtocol class method)</a>
+</li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.EarlyStopProtocol.execute">(nnsight.tracing.protocols.EarlyStopProtocol class method)</a>
+</li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.GradProtocol.execute">(nnsight.tracing.protocols.GradProtocol class method)</a>
+</li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.LocalBackendExecuteProtocol.execute">(nnsight.tracing.protocols.LocalBackendExecuteProtocol class method)</a>
+</li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.Protocol.execute">(nnsight.tracing.protocols.Protocol class method)</a>
+</li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.SwapProtocol.execute">(nnsight.tracing.protocols.SwapProtocol class method)</a>
+</li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.UpdateProtocol.execute">(nnsight.tracing.protocols.UpdateProtocol class method)</a>
+</li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.ValueProtocol.execute">(nnsight.tracing.protocols.ValueProtocol class method)</a>
+</li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node.executed">executed() (nnsight.tracing.Node.Node method)</a>
+</li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.GraphBasedContext.GraphBasedContext.exit">exit() (nnsight.contexts.GraphBasedContext.GraphBasedContext method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -684,11 +813,17 @@ document.write(`
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="../documentation/util/#nnsight.util.fetch_attr">fetch_attr() (in module nnsight.util)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="../documentation/contexts/#nnsight.contexts.GraphBasedContext.GraphBasedContext.float">float() (nnsight.contexts.GraphBasedContext.GraphBasedContext method)</a>
+</li>
       <li><a href="../documentation/util/#nnsight.util.WrapperModule.forward">forward() (nnsight.util.WrapperModule method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node.fulfilled">fulfilled() (nnsight.tracing.Node.Node method)</a>
+</li>
+      <li><a href="../documentation/schema/#nnsight.schema.format.types.FunctionModel">FunctionModel (class in nnsight.schema.format.types)</a>
+</li>
+      <li><a href="../documentation/schema/#nnsight.schema.format.types.FunctionWhitelistError">FunctionWhitelistError</a>
 </li>
   </ul></td>
 </tr></table>
@@ -696,15 +831,47 @@ document.write(`
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="../documentation/contexts/#nnsight.contexts.Conditional.ConditionalManager.get">get() (nnsight.contexts.Conditional.ConditionalManager method)</a>
+</li>
+      <li><a href="../documentation/tracing/#nnsight.tracing.protocols.BridgeProtocol.get_bridge">get_bridge() (nnsight.tracing.protocols.BridgeProtocol class method)</a>
+</li>
+      <li><a href="../documentation/tracing/#nnsight.tracing.Bridge.Bridge.get_bridge_proxy">get_bridge_proxy() (nnsight.tracing.Bridge.Bridge method)</a>
+</li>
+      <li><a href="../documentation/tracing/#nnsight.tracing.protocols.ConditionalProtocol.get_conditional">get_conditional() (nnsight.tracing.protocols.ConditionalProtocol class method)</a>
+</li>
+      <li><a href="../documentation/tracing/#nnsight.tracing.Bridge.Bridge.get_graph">get_graph() (nnsight.tracing.Bridge.Bridge method)</a>
+</li>
       <li><a href="../documentation/intervention/#nnsight.intervention.InterventionProtocol.get_interventions">get_interventions() (nnsight.intervention.InterventionProtocol class method)</a>
 </li>
-      <li><a href="../documentation/intervention/#nnsight.intervention.InterventionProxy.grad">grad (nnsight.intervention.InterventionProxy property)</a>
+      <li><a href="../documentation/tracing/#nnsight.tracing.protocols.ApplyModuleProtocol.get_module">get_module() (nnsight.tracing.protocols.ApplyModuleProtocol class method)</a>
+</li>
+      <li><a href="../documentation/tracing/#nnsight.tracing.protocols.SwapProtocol.get_swap">get_swap() (nnsight.tracing.protocols.SwapProtocol class method)</a>
+</li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.GraphBasedContext.GlobalTracingContext">GlobalTracingContext (class in nnsight.contexts.GraphBasedContext)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="../documentation/contexts/#nnsight.contexts.GraphBasedContext.GlobalTracingContext.GlobalTracingExit">GlobalTracingContext.GlobalTracingExit (class in nnsight.contexts.GraphBasedContext)</a>
+</li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.GraphBasedContext.GlobalTracingContext.GlobalTracingTorchHandler">GlobalTracingContext.GlobalTracingTorchHandler (class in nnsight.contexts.GraphBasedContext)</a>
+</li>
+      <li><a href="../documentation/intervention/#nnsight.intervention.InterventionProxy.grad">grad (nnsight.intervention.InterventionProxy property)</a>
+</li>
+      <li><a href="../documentation/tracing/#nnsight.tracing.protocols.GradProtocol">GradProtocol (class in nnsight.tracing.protocols)</a>
+</li>
       <li><a href="../documentation/tracing/#nnsight.tracing.Graph.Graph">Graph (class in nnsight.tracing.Graph)</a>
 </li>
-      <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node.graph">graph (nnsight.tracing.Node.Node attribute)</a>
+      <li><a href="../documentation/contexts/#nnsight.contexts.session.Session.Session.graph">graph (nnsight.contexts.session.Session.Session attribute)</a>
+
+      <ul>
+        <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node.graph">(nnsight.tracing.Node.Node attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="../documentation/tracing/#nnsight.tracing.Bridge.Bridge.graph_stack">graph_stack (nnsight.tracing.Bridge.Bridge attribute)</a>
+</li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.GraphBasedContext.GraphBasedContext">GraphBasedContext (class in nnsight.contexts.GraphBasedContext)</a>
+</li>
+      <li><a href="../documentation/schema/#nnsight.schema.format.types.GraphModel">GraphModel (class in nnsight.schema.format.types)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -714,8 +881,12 @@ document.write(`
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="../documentation/intervention/#nnsight.intervention.HookHandler.handles">handles (nnsight.intervention.HookHandler attribute)</a>
 </li>
+      <li><a href="../documentation/tracing/#nnsight.tracing.protocols.BridgeProtocol.has_bridge">has_bridge() (nnsight.tracing.protocols.BridgeProtocol class method)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="../documentation/tracing/#nnsight.tracing.protocols.ConditionalProtocol.has_conditional">has_conditional() (nnsight.tracing.protocols.ConditionalProtocol class method)</a>
+</li>
       <li><a href="../documentation/intervention/#nnsight.intervention.HookHandler">HookHandler (class in nnsight.intervention)</a>
 </li>
   </ul></td>
@@ -724,6 +895,10 @@ document.write(`
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="../documentation/tracing/#nnsight.tracing.Bridge.Bridge.id_to_graph">id_to_graph (nnsight.tracing.Bridge.Bridge attribute)</a>
+</li>
+      <li><a href="../documentation/tracing/#nnsight.tracing.protocols.GradProtocol.increment">increment() (nnsight.tracing.protocols.GradProtocol class method)</a>
+</li>
       <li><a href="../documentation/envoy/#nnsight.envoy.Envoy.input">input (nnsight.envoy.Envoy attribute)</a>
 
       <ul>
@@ -738,12 +913,14 @@ document.write(`
         <li><a href="../documentation/envoy/#nnsight.envoy.Envoy.inputs">(nnsight.envoy.Envoy property)</a>
 </li>
       </ul></li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.GraphBasedContext.GraphBasedContext.int">int() (nnsight.contexts.GraphBasedContext.GraphBasedContext method)</a>
+</li>
       <li><a href="../documentation/models/#nnsight.models.NNsightModel.NNsight.interleave">interleave() (nnsight.models.NNsightModel.NNsight method)</a>
+</li>
+      <li><a href="../documentation/intervention/#nnsight.intervention.InterventionProtocol.intervene">intervene() (nnsight.intervention.InterventionProtocol class method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="../documentation/intervention/#nnsight.intervention.InterventionProtocol.intervene">intervene() (nnsight.intervention.InterventionProtocol class method)</a>
-</li>
       <li><a href="../documentation/intervention/#nnsight.intervention.InterventionHandler">InterventionHandler (class in nnsight.intervention)</a>
 </li>
       <li><a href="../documentation/intervention/#nnsight.intervention.InterventionProtocol">InterventionProtocol (class in nnsight.intervention)</a>
@@ -753,6 +930,18 @@ document.write(`
       <li><a href="../documentation/contexts/#nnsight.contexts.Tracer.Tracer.invoke">invoke() (nnsight.contexts.Tracer.Tracer method)</a>
 </li>
       <li><a href="../documentation/contexts/#nnsight.contexts.Invoker.Invoker">Invoker (class in nnsight.contexts.Invoker)</a>
+</li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.Conditional.ConditionalManager.is_node_conditioned">is_node_conditioned() (nnsight.contexts.Conditional.ConditionalManager method)</a>
+
+      <ul>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.ConditionalProtocol.is_node_conditioned">(nnsight.tracing.protocols.ConditionalProtocol class method)</a>
+</li>
+      </ul></li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.session.Session.Session.iter">iter() (nnsight.contexts.session.Session.Session method)</a>
+</li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.session.Iterator.Iterator">Iterator (class in nnsight.contexts.session.Iterator)</a>
+</li>
+      <li><a href="../documentation/schema/#nnsight.schema.format.types.IteratorModel">IteratorModel (class in nnsight.schema.format.types)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -776,11 +965,27 @@ document.write(`
 </li>
       <li><a href="../documentation/models/#nnsight.models.LanguageModel.LanguageModelProxy">LanguageModelProxy (class in nnsight.models.LanguageModel)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="../documentation/contexts/#nnsight.contexts.GraphBasedContext.GraphBasedContext.list">list() (nnsight.contexts.GraphBasedContext.GraphBasedContext method)</a>
+</li>
       <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node.listeners">listeners (nnsight.tracing.Node.Node attribute)</a>
 </li>
-      <li><a href="../documentation/contexts/#nnsight.contexts.Tracer.Tracer.local_backend_execute">local_backend_execute() (nnsight.contexts.Tracer.Tracer method)</a>
+      <li><a href="../documentation/schema/#nnsight.schema.format.types.ListModel">ListModel (class in nnsight.schema.format.types)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="../documentation/contexts/#nnsight.contexts.session.Session.Session.local_backend_execute">local_backend_execute() (nnsight.contexts.session.Session.Session method)</a>
+
+      <ul>
+        <li><a href="../documentation/contexts/#nnsight.contexts.Tracer.Tracer.local_backend_execute">(nnsight.contexts.Tracer.Tracer method)</a>
+</li>
+      </ul></li>
+      <li><a href="../documentation/tracing/#nnsight.tracing.protocols.LocalBackendExecuteProtocol">LocalBackendExecuteProtocol (class in nnsight.tracing.protocols)</a>
+</li>
+      <li><a href="../documentation/tracing/#nnsight.tracing.protocols.LockProtocol">LockProtocol (class in nnsight.tracing.protocols)</a>
+</li>
+      <li><a href="../documentation/tracing/#nnsight.tracing.Bridge.Bridge.locks">locks (nnsight.tracing.Bridge.Bridge attribute)</a>
+</li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.GraphBasedContext.GraphBasedContext.log">log() (nnsight.contexts.GraphBasedContext.GraphBasedContext method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -790,19 +995,163 @@ document.write(`
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="../documentation/models/#nnsight.models.NNsightModel.MetaDispatcher">MetaDispatcher (class in nnsight.models.NNsightModel)</a>
 </li>
-      <li><a href="../documentation/intervention/#nnsight.intervention.HookHandler.model">model (nnsight.intervention.HookHandler attribute)</a>
+      <li><a href="../documentation/contexts/#nnsight.contexts.session.Session.Session.model">model (nnsight.contexts.session.Session.Session attribute)</a>
 
       <ul>
+        <li><a href="../documentation/intervention/#nnsight.intervention.HookHandler.model">(nnsight.intervention.HookHandler attribute)</a>
+</li>
         <li><a href="../documentation/models/#nnsight.models.LanguageModel.LanguageModel.model">(nnsight.models.LanguageModel.LanguageModel attribute)</a>
 </li>
       </ul></li>
+      <li><a href="../documentation/schema/#nnsight.schema.Config.ApiConfigModel.model_computed_fields">model_computed_fields (nnsight.schema.Config.ApiConfigModel attribute)</a>
+
+      <ul>
+        <li><a href="../documentation/schema/#nnsight.schema.Config.AppConfigModel.model_computed_fields">(nnsight.schema.Config.AppConfigModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.Config.ConfigModel.model_computed_fields">(nnsight.schema.Config.ConfigModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.BaseNNsightModel.model_computed_fields">(nnsight.schema.format.types.BaseNNsightModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.DictModel.model_computed_fields">(nnsight.schema.format.types.DictModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.EllipsisModel.model_computed_fields">(nnsight.schema.format.types.EllipsisModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.FunctionModel.model_computed_fields">(nnsight.schema.format.types.FunctionModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.GraphModel.model_computed_fields">(nnsight.schema.format.types.GraphModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.IteratorModel.model_computed_fields">(nnsight.schema.format.types.IteratorModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.ListModel.model_computed_fields">(nnsight.schema.format.types.ListModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.NodeModel.model_computed_fields">(nnsight.schema.format.types.NodeModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.NodeModel.Reference.model_computed_fields">(nnsight.schema.format.types.NodeModel.Reference attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.PrimitiveModel.model_computed_fields">(nnsight.schema.format.types.PrimitiveModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.SessionModel.model_computed_fields">(nnsight.schema.format.types.SessionModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.SliceModel.model_computed_fields">(nnsight.schema.format.types.SliceModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.TensorModel.model_computed_fields">(nnsight.schema.format.types.TensorModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.TracerModel.model_computed_fields">(nnsight.schema.format.types.TracerModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.TupleModel.model_computed_fields">(nnsight.schema.format.types.TupleModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.Request.RequestModel.model_computed_fields">(nnsight.schema.Request.RequestModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.Response.ResponseModel.model_computed_fields">(nnsight.schema.Response.ResponseModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.Response.ResultModel.model_computed_fields">(nnsight.schema.Response.ResultModel attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="../documentation/schema/#nnsight.schema.Config.ApiConfigModel.model_config">model_config (nnsight.schema.Config.ApiConfigModel attribute)</a>
+
+      <ul>
+        <li><a href="../documentation/schema/#nnsight.schema.Config.AppConfigModel.model_config">(nnsight.schema.Config.AppConfigModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.Config.ConfigModel.model_config">(nnsight.schema.Config.ConfigModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.BaseNNsightModel.model_config">(nnsight.schema.format.types.BaseNNsightModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.DictModel.model_config">(nnsight.schema.format.types.DictModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.EllipsisModel.model_config">(nnsight.schema.format.types.EllipsisModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.FunctionModel.model_config">(nnsight.schema.format.types.FunctionModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.GraphModel.model_config">(nnsight.schema.format.types.GraphModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.IteratorModel.model_config">(nnsight.schema.format.types.IteratorModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.ListModel.model_config">(nnsight.schema.format.types.ListModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.NodeModel.model_config">(nnsight.schema.format.types.NodeModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.NodeModel.Reference.model_config">(nnsight.schema.format.types.NodeModel.Reference attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.PrimitiveModel.model_config">(nnsight.schema.format.types.PrimitiveModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.SessionModel.model_config">(nnsight.schema.format.types.SessionModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.SliceModel.model_config">(nnsight.schema.format.types.SliceModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.TensorModel.model_config">(nnsight.schema.format.types.TensorModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.TracerModel.model_config">(nnsight.schema.format.types.TracerModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.TupleModel.model_config">(nnsight.schema.format.types.TupleModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.Request.RequestModel.model_config">(nnsight.schema.Request.RequestModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.Response.ResponseModel.model_config">(nnsight.schema.Response.ResponseModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.Response.ResultModel.model_config">(nnsight.schema.Response.ResultModel attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="../documentation/schema/#nnsight.schema.Config.ApiConfigModel.model_fields">model_fields (nnsight.schema.Config.ApiConfigModel attribute)</a>
+
+      <ul>
+        <li><a href="../documentation/schema/#nnsight.schema.Config.AppConfigModel.model_fields">(nnsight.schema.Config.AppConfigModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.Config.ConfigModel.model_fields">(nnsight.schema.Config.ConfigModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.BaseNNsightModel.model_fields">(nnsight.schema.format.types.BaseNNsightModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.DictModel.model_fields">(nnsight.schema.format.types.DictModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.EllipsisModel.model_fields">(nnsight.schema.format.types.EllipsisModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.FunctionModel.model_fields">(nnsight.schema.format.types.FunctionModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.GraphModel.model_fields">(nnsight.schema.format.types.GraphModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.IteratorModel.model_fields">(nnsight.schema.format.types.IteratorModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.ListModel.model_fields">(nnsight.schema.format.types.ListModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.NodeModel.model_fields">(nnsight.schema.format.types.NodeModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.NodeModel.Reference.model_fields">(nnsight.schema.format.types.NodeModel.Reference attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.PrimitiveModel.model_fields">(nnsight.schema.format.types.PrimitiveModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.SessionModel.model_fields">(nnsight.schema.format.types.SessionModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.SliceModel.model_fields">(nnsight.schema.format.types.SliceModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.TensorModel.model_fields">(nnsight.schema.format.types.TensorModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.TracerModel.model_fields">(nnsight.schema.format.types.TracerModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.format.types.TupleModel.model_fields">(nnsight.schema.format.types.TupleModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.Request.RequestModel.model_fields">(nnsight.schema.Request.RequestModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.Response.ResponseModel.model_fields">(nnsight.schema.Response.ResponseModel attribute)</a>
+</li>
+        <li><a href="../documentation/schema/#nnsight.schema.Response.ResultModel.model_fields">(nnsight.schema.Response.ResultModel attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     module
 
       <ul>
         <li><a href="../documentation/contexts/#module-nnsight.contexts">nnsight.contexts</a>
 </li>
+        <li><a href="../documentation/contexts/#module-nnsight.contexts.Conditional">nnsight.contexts.Conditional</a>
+</li>
+        <li><a href="../documentation/contexts/#module-nnsight.contexts.GraphBasedContext">nnsight.contexts.GraphBasedContext</a>
+</li>
         <li><a href="../documentation/contexts/#module-nnsight.contexts.Invoker">nnsight.contexts.Invoker</a>
+</li>
+        <li><a href="../documentation/contexts/#module-nnsight.contexts.session.Iterator">nnsight.contexts.session.Iterator</a>
+</li>
+        <li><a href="../documentation/contexts/#module-nnsight.contexts.session.Session">nnsight.contexts.session.Session</a>
 </li>
         <li><a href="../documentation/contexts/#module-nnsight.contexts.Tracer">nnsight.contexts.Tracer</a>
 </li>
@@ -818,19 +1167,33 @@ document.write(`
 </li>
         <li><a href="../documentation/patching/#module-nnsight.patching">nnsight.patching</a>
 </li>
+        <li><a href="../documentation/schema/#module-nnsight.schema">nnsight.schema</a>
+</li>
+        <li><a href="../documentation/schema/#module-nnsight.schema.Config">nnsight.schema.Config</a>
+</li>
+        <li><a href="../documentation/schema/#module-nnsight.schema.format.functions">nnsight.schema.format.functions</a>
+</li>
+        <li><a href="../documentation/schema/#module-nnsight.schema.format.types">nnsight.schema.format.types</a>
+</li>
+        <li><a href="../documentation/schema/#module-nnsight.schema.Request">nnsight.schema.Request</a>
+</li>
+        <li><a href="../documentation/schema/#module-nnsight.schema.Response">nnsight.schema.Response</a>
+</li>
         <li><a href="../documentation/tracing/#module-nnsight.tracing">nnsight.tracing</a>
+</li>
+        <li><a href="../documentation/tracing/#module-nnsight.tracing.Bridge">nnsight.tracing.Bridge</a>
 </li>
         <li><a href="../documentation/tracing/#module-nnsight.tracing.Graph">nnsight.tracing.Graph</a>
 </li>
         <li><a href="../documentation/tracing/#module-nnsight.tracing.Node">nnsight.tracing.Node</a>
+</li>
+        <li><a href="../documentation/tracing/#module-nnsight.tracing.protocols">nnsight.tracing.protocols</a>
 </li>
         <li><a href="../documentation/tracing/#module-nnsight.tracing.Proxy">nnsight.tracing.Proxy</a>
 </li>
         <li><a href="../documentation/util/#module-nnsight.util">nnsight.util</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="../documentation/intervention/#nnsight.intervention.HookHandler.modules">modules (nnsight.intervention.HookHandler attribute)</a>
 </li>
       <li><a href="../documentation/envoy/#nnsight.envoy.Envoy.modules">modules() (nnsight.envoy.Envoy method)</a>
@@ -859,10 +1222,38 @@ document.write(`
 </li>
       </ul></li>
       <li>
+    nnsight.contexts.Conditional
+
+      <ul>
+        <li><a href="../documentation/contexts/#module-nnsight.contexts.Conditional">module</a>
+</li>
+      </ul></li>
+      <li>
+    nnsight.contexts.GraphBasedContext
+
+      <ul>
+        <li><a href="../documentation/contexts/#module-nnsight.contexts.GraphBasedContext">module</a>
+</li>
+      </ul></li>
+      <li>
     nnsight.contexts.Invoker
 
       <ul>
         <li><a href="../documentation/contexts/#module-nnsight.contexts.Invoker">module</a>
+</li>
+      </ul></li>
+      <li>
+    nnsight.contexts.session.Iterator
+
+      <ul>
+        <li><a href="../documentation/contexts/#module-nnsight.contexts.session.Iterator">module</a>
+</li>
+      </ul></li>
+      <li>
+    nnsight.contexts.session.Session
+
+      <ul>
+        <li><a href="../documentation/contexts/#module-nnsight.contexts.session.Session">module</a>
 </li>
       </ul></li>
       <li>
@@ -900,8 +1291,6 @@ document.write(`
         <li><a href="../documentation/models/#module-nnsight.models.LanguageModel">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     nnsight.models.NNsightModel
 
@@ -916,11 +1305,62 @@ document.write(`
         <li><a href="../documentation/patching/#module-nnsight.patching">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    nnsight.schema
+
+      <ul>
+        <li><a href="../documentation/schema/#module-nnsight.schema">module</a>
+</li>
+      </ul></li>
+      <li>
+    nnsight.schema.Config
+
+      <ul>
+        <li><a href="../documentation/schema/#module-nnsight.schema.Config">module</a>
+</li>
+      </ul></li>
+      <li>
+    nnsight.schema.format.functions
+
+      <ul>
+        <li><a href="../documentation/schema/#module-nnsight.schema.format.functions">module</a>
+</li>
+      </ul></li>
+      <li>
+    nnsight.schema.format.types
+
+      <ul>
+        <li><a href="../documentation/schema/#module-nnsight.schema.format.types">module</a>
+</li>
+      </ul></li>
+      <li>
+    nnsight.schema.Request
+
+      <ul>
+        <li><a href="../documentation/schema/#module-nnsight.schema.Request">module</a>
+</li>
+      </ul></li>
+      <li>
+    nnsight.schema.Response
+
+      <ul>
+        <li><a href="../documentation/schema/#module-nnsight.schema.Response">module</a>
+</li>
+      </ul></li>
       <li>
     nnsight.tracing
 
       <ul>
         <li><a href="../documentation/tracing/#module-nnsight.tracing">module</a>
+</li>
+      </ul></li>
+      <li>
+    nnsight.tracing.Bridge
+
+      <ul>
+        <li><a href="../documentation/tracing/#module-nnsight.tracing.Bridge">module</a>
 </li>
       </ul></li>
       <li>
@@ -935,6 +1375,13 @@ document.write(`
 
       <ul>
         <li><a href="../documentation/tracing/#module-nnsight.tracing.Node">module</a>
+</li>
+      </ul></li>
+      <li>
+    nnsight.tracing.protocols
+
+      <ul>
+        <li><a href="../documentation/tracing/#module-nnsight.tracing.protocols">module</a>
 </li>
       </ul></li>
       <li>
@@ -954,6 +1401,10 @@ document.write(`
       <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node">Node (class in nnsight.tracing.Node)</a>
 </li>
       <li><a href="../documentation/tracing/#nnsight.tracing.Proxy.Proxy.node">node (nnsight.tracing.Proxy.Proxy attribute)</a>
+</li>
+      <li><a href="../documentation/schema/#nnsight.schema.format.types.NodeModel">NodeModel (class in nnsight.schema.format.types)</a>
+</li>
+      <li><a href="../documentation/schema/#nnsight.schema.format.types.NodeModel.Reference">NodeModel.Reference (class in nnsight.schema.format.types)</a>
 </li>
       <li><a href="../documentation/tracing/#nnsight.tracing.Graph.Graph.nodes">nodes (nnsight.tracing.Graph.Graph attribute)</a>
 </li>
@@ -991,11 +1442,33 @@ document.write(`
 </li>
       <li><a href="../documentation/patching/#nnsight.patching.Patcher.patches">patches (nnsight.patching.Patcher attribute)</a>
 </li>
-      <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node.prepare_inputs">prepare_inputs() (nnsight.tracing.Node.Node class method)</a>
+      <li><a href="../documentation/envoy/#nnsight.envoy.Envoy.path">path (nnsight.envoy.Envoy attribute)</a>
+</li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.Conditional.ConditionalManager.peek">peek() (nnsight.contexts.Conditional.ConditionalManager method)</a>
+</li>
+      <li><a href="../documentation/tracing/#nnsight.tracing.protocols.ConditionalProtocol.peek_conditional">peek_conditional() (nnsight.tracing.protocols.ConditionalProtocol class method)</a>
+</li>
+      <li><a href="../documentation/tracing/#nnsight.tracing.Bridge.Bridge.peek_graph">peek_graph() (nnsight.tracing.Bridge.Bridge method)</a>
+
+      <ul>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.BridgeProtocol.peek_graph">(nnsight.tracing.protocols.BridgeProtocol class method)</a>
+</li>
+      </ul></li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.Conditional.ConditionalManager.pop">pop() (nnsight.contexts.Conditional.ConditionalManager method)</a>
+</li>
+      <li><a href="../documentation/tracing/#nnsight.tracing.protocols.ConditionalProtocol.pop_conditional">pop_conditional() (nnsight.tracing.protocols.ConditionalProtocol class method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="../documentation/tracing/#nnsight.tracing.Bridge.Bridge.pop_graph">pop_graph() (nnsight.tracing.Bridge.Bridge method)</a>
+</li>
+      <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node.prepare_inputs">prepare_inputs() (nnsight.tracing.Node.Node class method)</a>
+</li>
       <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node.preprocess">preprocess() (nnsight.tracing.Node.Node method)</a>
+</li>
+      <li><a href="../documentation/schema/#nnsight.schema.format.types.PrimitiveModel">PrimitiveModel (class in nnsight.schema.format.types)</a>
+</li>
+      <li><a href="../documentation/tracing/#nnsight.tracing.protocols.Protocol">Protocol (class in nnsight.tracing.protocols)</a>
 </li>
       <li><a href="../documentation/tracing/#nnsight.tracing.Proxy.Proxy">Proxy (class in nnsight.tracing.Proxy)</a>
 </li>
@@ -1011,6 +1484,10 @@ document.write(`
 </li>
       <li><a href="../documentation/tracing/#nnsight.tracing.Proxy.proxy_wrapper">proxy_wrapper() (in module nnsight.tracing.Proxy)</a>
 </li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.Conditional.ConditionalManager.push">push() (nnsight.contexts.Conditional.ConditionalManager method)</a>
+</li>
+      <li><a href="../documentation/tracing/#nnsight.tracing.protocols.ConditionalProtocol.push_conditional">push_conditional() (nnsight.tracing.protocols.ConditionalProtocol class method)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -1019,15 +1496,31 @@ document.write(`
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node.redundant">redundant() (nnsight.tracing.Node.Node method)</a>
 </li>
-      <li><a href="../documentation/contexts/#nnsight.contexts.Tracer.Tracer.remote_backend_get_model_key">remote_backend_get_model_key() (nnsight.contexts.Tracer.Tracer method)</a>
+      <li><a href="../documentation/contexts/#nnsight.contexts.GraphBasedContext.GlobalTracingContext.register">register() (nnsight.contexts.GraphBasedContext.GlobalTracingContext static method)</a>
 </li>
-      <li><a href="../documentation/contexts/#nnsight.contexts.Tracer.Tracer.remote_backend_handle_result_value">remote_backend_handle_result_value() (nnsight.contexts.Tracer.Tracer method)</a>
+      <li><a href="../documentation/contexts/#nnsight.contexts.session.Session.Session.remote_backend_get_model_key">remote_backend_get_model_key() (nnsight.contexts.session.Session.Session method)</a>
+
+      <ul>
+        <li><a href="../documentation/contexts/#nnsight.contexts.Tracer.Tracer.remote_backend_get_model_key">(nnsight.contexts.Tracer.Tracer method)</a>
 </li>
-      <li><a href="../documentation/contexts/#nnsight.contexts.Tracer.Tracer.remote_backend_postprocess_result">remote_backend_postprocess_result() (nnsight.contexts.Tracer.Tracer method)</a>
+      </ul></li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.session.Session.Session.remote_backend_handle_result_value">remote_backend_handle_result_value() (nnsight.contexts.session.Session.Session method)</a>
+
+      <ul>
+        <li><a href="../documentation/contexts/#nnsight.contexts.Tracer.Tracer.remote_backend_handle_result_value">(nnsight.contexts.Tracer.Tracer method)</a>
 </li>
+      </ul></li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.session.Session.Session.remote_backend_postprocess_result">remote_backend_postprocess_result() (nnsight.contexts.session.Session.Session method)</a>
+
+      <ul>
+        <li><a href="../documentation/contexts/#nnsight.contexts.Tracer.Tracer.remote_backend_postprocess_result">(nnsight.contexts.Tracer.Tracer method)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="../documentation/patching/#nnsight.patching.Patch.replacement">replacement (nnsight.patching.Patch attribute)</a>
+</li>
+      <li><a href="../documentation/schema/#nnsight.schema.Request.RequestModel">RequestModel (class in nnsight.schema.Request)</a>
 </li>
       <li><a href="../documentation/tracing/#nnsight.tracing.Graph.Graph.reset">reset() (nnsight.tracing.Graph.Graph method)</a>
 
@@ -1037,7 +1530,13 @@ document.write(`
       </ul></li>
       <li><a href="../documentation/contexts/#nnsight.contexts.resolve_dependencies">resolve_dependencies() (in module nnsight.contexts)</a>
 </li>
+      <li><a href="../documentation/schema/#nnsight.schema.Response.ResponseModel">ResponseModel (class in nnsight.schema.Response)</a>
+</li>
+      <li><a href="../documentation/schema/#nnsight.schema.Response.ResponseModel.JobStatus">ResponseModel.JobStatus (class in nnsight.schema.Response)</a>
+</li>
       <li><a href="../documentation/patching/#nnsight.patching.Patch.restore">restore() (nnsight.patching.Patch method)</a>
+</li>
+      <li><a href="../documentation/schema/#nnsight.schema.Response.ResultModel">ResultModel (class in nnsight.schema.Response)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1055,17 +1554,57 @@ document.write(`
 </li>
       <li><a href="../documentation/tracing/#nnsight.tracing.Graph.Graph.sequential">sequential (nnsight.tracing.Graph.Graph attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="../documentation/contexts/#nnsight.contexts.session.Session.Session">Session (class in nnsight.contexts.session.Session)</a>
+</li>
       <li><a href="../documentation/models/#nnsight.models.NNsightModel.NNsight.session">session() (nnsight.models.NNsightModel.NNsight method)</a>
+</li>
+      <li><a href="../documentation/schema/#nnsight.schema.format.types.SessionModel">SessionModel (class in nnsight.schema.format.types)</a>
+</li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.GraphBasedContext.GraphBasedContext.set">set() (nnsight.contexts.GraphBasedContext.GraphBasedContext method)</a>
+</li>
+      <li><a href="../documentation/tracing/#nnsight.tracing.protocols.BridgeProtocol.set_bridge">set_bridge() (nnsight.tracing.protocols.BridgeProtocol class method)</a>
+</li>
+      <li><a href="../documentation/tracing/#nnsight.tracing.protocols.ApplyModuleProtocol.set_module">set_module() (nnsight.tracing.protocols.ApplyModuleProtocol class method)</a>
 </li>
       <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node.set_value">set_value() (nnsight.tracing.Node.Node method)</a>
 </li>
       <li><a href="../documentation/intervention/#nnsight.intervention.InterventionProxy.shape">shape (nnsight.intervention.InterventionProxy property)</a>
 </li>
+      <li><a href="../documentation/schema/#nnsight.schema.format.types.SliceModel">SliceModel (class in nnsight.schema.format.types)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="../documentation/intervention/#nnsight.intervention.InterventionProxy.stop">stop() (nnsight.intervention.InterventionProxy method)</a>
 </li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.GraphBasedContext.GraphBasedContext.str">str() (nnsight.contexts.GraphBasedContext.GraphBasedContext method)</a>
+</li>
       <li><a href="../documentation/intervention/#nnsight.intervention.InterventionProtocol.style">style() (nnsight.intervention.InterventionProtocol class method)</a>
+
+      <ul>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.ApplyModuleProtocol.style">(nnsight.tracing.protocols.ApplyModuleProtocol class method)</a>
+</li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.BridgeProtocol.style">(nnsight.tracing.protocols.BridgeProtocol class method)</a>
+</li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.ConditionalProtocol.style">(nnsight.tracing.protocols.ConditionalProtocol class method)</a>
+</li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.EarlyStopProtocol.style">(nnsight.tracing.protocols.EarlyStopProtocol class method)</a>
+</li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.GradProtocol.style">(nnsight.tracing.protocols.GradProtocol class method)</a>
+</li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.LocalBackendExecuteProtocol.style">(nnsight.tracing.protocols.LocalBackendExecuteProtocol class method)</a>
+</li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.LockProtocol.style">(nnsight.tracing.protocols.LockProtocol class method)</a>
+</li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.Protocol.style">(nnsight.tracing.protocols.Protocol class method)</a>
+</li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.SwapProtocol.style">(nnsight.tracing.protocols.SwapProtocol class method)</a>
+</li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.UpdateProtocol.style">(nnsight.tracing.protocols.UpdateProtocol class method)</a>
+</li>
+        <li><a href="../documentation/tracing/#nnsight.tracing.protocols.ValueProtocol.style">(nnsight.tracing.protocols.ValueProtocol class method)</a>
+</li>
+      </ul></li>
+      <li><a href="../documentation/tracing/#nnsight.tracing.protocols.SwapProtocol">SwapProtocol (class in nnsight.tracing.protocols)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1077,6 +1616,8 @@ document.write(`
 </li>
       <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node.target">target (nnsight.tracing.Node.Node attribute)</a>
 </li>
+      <li><a href="../documentation/schema/#nnsight.schema.format.types.TensorModel">TensorModel (class in nnsight.schema.format.types)</a>
+</li>
       <li><a href="../documentation/envoy/#nnsight.envoy.Envoy.to">to() (nnsight.envoy.Envoy method)</a>
 
       <ul>
@@ -1085,17 +1626,27 @@ document.write(`
       </ul></li>
       <li><a href="../documentation/models/#nnsight.models.LanguageModel.LanguageModelProxy.token">token (nnsight.models.LanguageModel.LanguageModelProxy property)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="../documentation/models/#nnsight.models.LanguageModel.TokenIndexer">TokenIndexer (class in nnsight.models.LanguageModel)</a>
 </li>
       <li><a href="../documentation/models/#nnsight.models.LanguageModel.LanguageModel.tokenizer">tokenizer (nnsight.models.LanguageModel.LanguageModel attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="../documentation/models/#nnsight.models.NNsightModel.NNsight.trace">trace() (nnsight.models.NNsightModel.NNsight method)</a>
 </li>
       <li><a href="../documentation/contexts/#nnsight.contexts.Tracer.Tracer">Tracer (class in nnsight.contexts.Tracer)</a>
 </li>
       <li><a href="../documentation/contexts/#nnsight.contexts.Invoker.Invoker.tracer">tracer (nnsight.contexts.Invoker.Invoker attribute)</a>
+</li>
+      <li><a href="../documentation/schema/#nnsight.schema.format.types.TracerModel">TracerModel (class in nnsight.schema.format.types)</a>
+</li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.GraphBasedContext.GlobalTracingContext.try_deregister">try_deregister() (nnsight.contexts.GraphBasedContext.GlobalTracingContext static method)</a>
+</li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.GraphBasedContext.GlobalTracingContext.try_register">try_register() (nnsight.contexts.GraphBasedContext.GlobalTracingContext static method)</a>
+</li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.GraphBasedContext.GraphBasedContext.tuple">tuple() (nnsight.contexts.GraphBasedContext.GraphBasedContext method)</a>
+</li>
+      <li><a href="../documentation/schema/#nnsight.schema.format.types.TupleModel">TupleModel (class in nnsight.schema.format.types)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1104,6 +1655,10 @@ document.write(`
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="../documentation/intervention/#nnsight.intervention.InterventionProxy.update">update() (nnsight.intervention.InterventionProxy method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="../documentation/tracing/#nnsight.tracing.protocols.UpdateProtocol">UpdateProtocol (class in nnsight.tracing.protocols)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -1123,8 +1678,14 @@ document.write(`
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="../documentation/tracing/#nnsight.tracing.Graph.Graph.vis">vis() (nnsight.tracing.Graph.Graph method)</a>
+      <li><a href="../documentation/tracing/#nnsight.tracing.protocols.ValueProtocol">ValueProtocol (class in nnsight.tracing.protocols)</a>
 </li>
+      <li><a href="../documentation/contexts/#nnsight.contexts.GraphBasedContext.GraphBasedContext.vis">vis() (nnsight.contexts.GraphBasedContext.GraphBasedContext method)</a>
+
+      <ul>
+        <li><a href="../documentation/tracing/#nnsight.tracing.Graph.Graph.vis">(nnsight.tracing.Graph.Graph method)</a>
+</li>
+      </ul></li>
       <li><a href="../documentation/tracing/#nnsight.tracing.Node.Node.visualize">visualize() (nnsight.tracing.Node.Node method)</a>
 </li>
   </ul></td>

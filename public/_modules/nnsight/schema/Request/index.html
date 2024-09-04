@@ -2,13 +2,12 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../../../" data-theme="dark">
+<html lang="en" data-content_root="../../../../" data-theme="dark">
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>Function Vectors &#8212; nnsight</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nnsight.schema.Request &#8212; nnsight</title>
   
   
   
@@ -18,48 +17,44 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../../_static/documentation_options.js?v=187304be"></script>
-    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../../../_static/copybutton.js?v=f281be69"></script>
-    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../../_static/documentation_options.js?v=187304be"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/tutorials/function_vectors';</script>
-    <script src="../../../_static/js/custom.js?v=1e4be224"></script>
-    <script src="../../../_static/js/code.js?v=34343d0c"></script>
-    <link rel="icon" href="../../../_static/icon.ico"/>
-    <link rel="author" title="About these documents" href="../../../about/" />
-    <link rel="index" title="Index" href="../../../genindex/" />
-    <link rel="search" title="Search" href="../../../search/" />
-    <link rel="next" title="Logit Lens" href="../logit_lens/" />
-    <link rel="prev" title="Dictionary Learning" href="../dictionary_learning/" />
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/nnsight/schema/Request';</script>
+    <script src="../../../../_static/js/custom.js?v=1e4be224"></script>
+    <script src="../../../../_static/js/code.js?v=34343d0c"></script>
+    <link rel="icon" href="../../../../_static/icon.ico"/>
+    <link rel="author" title="About these documents" href="../../../../about/" />
+    <link rel="index" title="Index" href="../../../../genindex/" />
+    <link rel="search" title="Search" href="../../../../search/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../../../_static/css/custom.css?v=1725028804" rel="stylesheet" type="text/css" />
-<link href="../../../_static/css/home.css?v=1725028804" rel="stylesheet" type="text/css" />
+<link href="../../../../_static/css/custom.css?v=1725479524" rel="stylesheet" type="text/css" />
+<link href="../../../../_static/css/home.css?v=1725479524" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -90,7 +85,7 @@
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
-      action="../../../search/"
+      action="../../../../search/"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -127,7 +122,7 @@
     
   
 
-<a class="navbar-brand logo" href="../../../">
+<a class="navbar-brand logo" href="../../../../">
   
   
   
@@ -136,8 +131,8 @@
     
     
     
-    <img src="../../../_static/nnsight_logo.svg" class="logo__image only-dark" alt="nnsight - Home"/>
-    <script>document.write(`<img src="../../../_static/nnsight_logo.svg" class="logo__image only-light" alt="nnsight - Home"/>`);</script>
+    <img src="../../../../_static/nnsight_logo.svg" class="logo__image only-dark" alt="nnsight - Home"/>
+    <script>document.write(`<img src="../../../../_static/nnsight_logo.svg" class="logo__image only-light" alt="nnsight - Home"/>`);</script>
   
   
 </a></div>
@@ -153,35 +148,35 @@
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../start/">
+  <a class="nav-link nav-internal" href="../../../../start/">
     Getting Started
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../documentation/">
+  <a class="nav-link nav-internal" href="../../../../documentation/">
     Documentation
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../features/">
+  <a class="nav-link nav-internal" href="../../../../features/">
     Features
   </a>
 </li>
 
 
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="../../../tutorials/">
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../tutorials/">
     Tutorials
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../about/">
+  <a class="nav-link nav-internal" href="../../../../about/">
     About
   </a>
 </li>
@@ -329,7 +324,9 @@ document.write(`
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
         
 
   
@@ -345,35 +342,35 @@ document.write(`
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../start/">
+  <a class="nav-link nav-internal" href="../../../../start/">
     Getting Started
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../documentation/">
+  <a class="nav-link nav-internal" href="../../../../documentation/">
     Documentation
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../features/">
+  <a class="nav-link nav-internal" href="../../../../features/">
     Features
   </a>
 </li>
 
 
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="../../../tutorials/">
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../tutorials/">
     Tutorials
   </a>
 </li>
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../about/">
+  <a class="nav-link nav-internal" href="../../../../about/">
     About
   </a>
 </li>
@@ -482,35 +479,6 @@ document.write(`
     
   </div>
   
-    <div class="sidebar-primary-items__start sidebar-primary__section">
-        <div class="sidebar-primary-item">
-<nav class="bd-docs-nav bd-links"
-     aria-label="Section Navigation">
-  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../1-walkthrough/">Walkthrough</a></li>
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="../activation_patching/">Activation Patching</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../attribution_patching/">Attribution Patching</a></li>
-
-<li class="toctree-l1"><a class="reference internal" href="../boundless_DAS/">Boundless DAS</a></li>
-
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="../dictionary_learning/">Dictionary Learning</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Function Vectors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../logit_lens/">Logit Lens</a></li>
-
-
-</ul>
-</div>
-</nav></div>
-    </div>
-  
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
@@ -539,14 +507,14 @@ document.write(`
   <ul class="bd-breadcrumbs">
     
     <li class="breadcrumb-item breadcrumb-home">
-      <a href="../../../" class="nav-link" aria-label="Home">
+      <a href="../../../../" class="nav-link" aria-label="Home">
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
     
-    <li class="breadcrumb-item"><a href="../../../tutorials/" class="nav-link">Tutorials</a></li>
+    <li class="breadcrumb-item"><a href="../../../" class="nav-link">Module code</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">Function Vectors</li>
+    <li class="breadcrumb-item active" aria-current="page">nnsight.sche...</li>
   </ul>
 </nav>
 </div>
@@ -563,11 +531,42 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="Function-Vectors">
-<h1>Function Vectors<a class="headerlink" href="#Function-Vectors" title="Link to this heading">#</a></h1>
-<p>Coming Soon!</p>
-</section>
+  <h1>Source code for nnsight.schema.Request</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">ConfigDict</span>
+
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">NNsight</span>
+<span class="kn">from</span> <span class="nn">.format.types</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">..contexts.backends.RemoteBackend</span> <span class="kn">import</span> <span class="n">RemoteMixin</span>
+
+
+<div class="viewcode-block" id="RequestModel">
+<a class="viewcode-back" href="../../../../documentation/schema/#nnsight.schema.Request.RequestModel">[docs]</a>
+<span class="k">class</span> <span class="nc">RequestModel</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    
+    <span class="n">model_config</span> <span class="o">=</span> <span class="n">ConfigDict</span><span class="p">(</span><span class="n">arbitrary_types_allowed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">protected_namespaces</span><span class="o">=</span><span class="p">())</span>
+
+    <span class="nb">object</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">SessionType</span><span class="p">,</span> <span class="n">TracerType</span><span class="p">,</span> <span class="n">SessionModel</span><span class="p">,</span> <span class="n">TracerModel</span><span class="p">]</span>
+    <span class="n">model_key</span><span class="p">:</span> <span class="nb">str</span>
+
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">received</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">session_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">NNsight</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;RemoteMixin&quot;</span><span class="p">:</span>
+        
+        <span class="n">handler</span> <span class="o">=</span> <span class="n">DeserializeHandler</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">object</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span></div>
+
+</pre></div>
 
                 </article>
               
@@ -590,8 +589,8 @@ document.write(`
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script src="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">

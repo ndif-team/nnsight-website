@@ -55,12 +55,12 @@
     <link rel="index" title="Index" href="../../../genindex/" />
     <link rel="search" title="Search" href="../../../search/" />
     <link rel="next" title="Attribution Patching" href="../attribution_patching/" />
-    <link rel="prev" title="Walkthrough" href="../1-walkthrough/" />
+    <link rel="prev" title="Tutorials" href="../../../tutorials/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../../../_static/css/custom.css?v=1725032410" rel="stylesheet" type="text/css" />
-<link href="../../../_static/css/home.css?v=1725032410" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/custom.css?v=1725479524" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/home.css?v=1725479524" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -489,11 +489,6 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../1-walkthrough/">Walkthrough</a></li>
-
-
-
-
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Activation Patching</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../attribution_patching/">Attribution Patching</a></li>
 
@@ -504,6 +499,11 @@ document.write(`
 
 <li class="toctree-l1"><a class="reference internal" href="../dict_learning/">Dictionary Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../logit_lens/">Logit Lens</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../walkthrough/">Walkthrough</a></li>
+
+
 
 
 </ul>
@@ -634,7 +634,7 @@ document.write(`
 
     <span class="c1"># Clean run</span>
     <span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">clean_prompt</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
-        <span class="n">clean_tokens</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">input</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;input_ids&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
+        <span class="n">clean_tokens</span> <span class="o">=</span> <span class="n">invoker</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;input_ids&#39;</span><span class="p">]</span>
 
         <span class="c1"># Get hidden states of all layers in the network.</span>
         <span class="c1"># We index the output at 0 because it&#39;s a tuple where the first index is the hidden state.</span>
@@ -675,9 +675,7 @@ document.write(`
             <span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">corrupted_prompt</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
 
                 <span class="c1"># Apply the patch from the clean hidden states to the corrupted hidden states.</span>
-                <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="n">layer_idx</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">t</span><span class="p">[</span><span class="n">token_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">clean_hs</span><span class="p">[</span>
-                    <span class="n">layer_idx</span>
-                <span class="p">]</span><span class="o">.</span><span class="n">t</span><span class="p">[</span><span class="n">token_idx</span><span class="p">]</span>
+                <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="n">layer_idx</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">layer_idx</span><span class="p">][:,</span> <span class="n">token_idx</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">clean_hs</span><span class="p">[</span><span class="n">layer_idx</span><span class="p">][:,</span> <span class="n">token_idx</span><span class="p">,</span> <span class="p">:]</span>
 
                 <span class="n">patched_logits</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span>
 

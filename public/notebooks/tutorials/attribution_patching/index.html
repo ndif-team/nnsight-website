@@ -59,8 +59,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../../../_static/css/custom.css?v=1725032410" rel="stylesheet" type="text/css" />
-<link href="../../../_static/css/home.css?v=1725032410" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/custom.css?v=1725479524" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/home.css?v=1725479524" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -493,11 +493,6 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../1-walkthrough/">Walkthrough</a></li>
-
-
-
-
 <li class="toctree-l1"><a class="reference internal" href="../activation_patching/">Activation Patching</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Attribution Patching</a></li>
 
@@ -508,6 +503,11 @@ document.write(`
 
 <li class="toctree-l1"><a class="reference internal" href="../dict_learning/">Dictionary Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../logit_lens/">Logit Lens</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../walkthrough/">Walkthrough</a></li>
+
+
 
 
 </ul>
@@ -642,8 +642,7 @@ can skip over section one which sets up the IOI scenario. For more detail on thi
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_logit_diff</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">answer_token_indices</span><span class="o">=</span><span class="n">answer_token_indices</span><span class="p">):</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">logits</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-        <span class="n">logits</span> <span class="o">=</span> <span class="n">logits</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+    <span class="n">logits</span> <span class="o">=</span> <span class="n">logits</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
     <span class="n">correct_logits</span> <span class="o">=</span> <span class="n">logits</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">answer_token_indices</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
     <span class="n">incorrect_logits</span> <span class="o">=</span> <span class="n">logits</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">answer_token_indices</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">correct_logits</span> <span class="o">-</span> <span class="n">incorrect_logits</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
@@ -724,13 +723,13 @@ Corrupted Baseline is 0: 0.0000
     <span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">clean_tokens</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker_clean</span><span class="p">:</span>
 
         <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">:</span>
-            <span class="n">attn_out</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">attn</span><span class="o">.</span><span class="n">c_proj</span><span class="o">.</span><span class="n">input</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">attn_out</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">attn</span><span class="o">.</span><span class="n">c_proj</span><span class="o">.</span><span class="n">input</span>
             <span class="n">clean_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">attn_out</span><span class="o">.</span><span class="n">save</span><span class="p">())</span>
 
     <span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">corrupted_tokens</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker_corrupted</span><span class="p">:</span>
 
         <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">:</span>
-            <span class="n">attn_out</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">attn</span><span class="o">.</span><span class="n">c_proj</span><span class="o">.</span><span class="n">input</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">attn_out</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">attn</span><span class="o">.</span><span class="n">c_proj</span><span class="o">.</span><span class="n">input</span>
             <span class="n">corrupted_out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">attn_out</span><span class="o">.</span><span class="n">save</span><span class="p">())</span>
             <span class="n">corrupted_grads</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">attn_out</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">save</span><span class="p">())</span>
 

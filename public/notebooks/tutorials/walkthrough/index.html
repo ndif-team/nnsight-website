@@ -55,12 +55,12 @@
     <link rel="index" title="Index" href="../../../genindex/" />
     <link rel="search" title="Search" href="../../../search/" />
     <link rel="next" title="About NNsight" href="../../../about/" />
-    <link rel="prev" title="Dictionary Learning" href="../sae/" />
+    <link rel="prev" title="Logit Lens" href="../logit_lens/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../../../_static/css/custom.css?v=1725027508" rel="stylesheet" type="text/css" />
-<link href="../../../_static/css/home.css?v=1725027508" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/custom.css?v=1725479524" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/home.css?v=1725479524" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -493,6 +493,7 @@ document.write(`
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../activation_patching/">Activation Patching</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../attribution_patching/">Attribution Patching</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="../boundless_DAS/">Boundless DAS</a></li>
@@ -500,12 +501,10 @@ document.write(`
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="../function_vectors/">Function Vectors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ioi_patching/">Activation Patching</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../logit_lens/">Logit Lens 🔎</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dict_learning/">Dictionary Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../logit_lens/">Logit Lens</a></li>
 
 
-<li class="toctree-l1"><a class="reference internal" href="../sae/">Dictionary Learning</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Walkthrough</a></li>
 
 
@@ -570,7 +569,7 @@ document.write(`
                   
   <section id="Walkthrough">
 <h1>Walkthrough<a class="headerlink" href="#Walkthrough" title="Link to this heading">#</a></h1>
-<p>An interactive version of this walkthrough can be found <a class="reference external" href="https://colab.research.google.com/github/JadenFiotto-Kaufman/nnsight/blob/docs_0.3/NNsight_v0_3.ipynb">here</a></p>
+<p>An interactive version of this walkthrough can be found <a class="reference external" href="https://colab.research.google.com/github/ndif-team/nnsight/blob/main/NNsight_Walkthrough.ipynb">here</a></p>
 <p>In this era of large-scale deep learning, the most interesting AI models are massive black boxes that are hard to run. Ordinary commercial inference service APIs let us interact with huge models, but they do not let us access model internals.</p>
 <p>The nnsight library is different: it provides full access to all the neural network internals. When used together with a remote service like the <a class="reference external" href="https://thevisible.net/docs/NDIF-proposal.pdf">National Deep Inference Fabric</a> (NDIF), it makes possible to run complex experiments on huge open models easily, with fully transparent access.</p>
 <p>Our team wants to enable entire labs and independent researchers alike, as we believe a large, passionate, and collaborative community will produce the next big insights on a profoundly important field.</p>

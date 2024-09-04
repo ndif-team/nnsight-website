@@ -51,13 +51,13 @@
     <link rel="author" title="About these documents" href="../../about/" />
     <link rel="index" title="Index" href="../../genindex/" />
     <link rel="search" title="Search" href="../../search/" />
-    <link rel="next" title="nnsight.util" href="../util/" />
+    <link rel="next" title="nnsight.tracing" href="../tracing/" />
     <link rel="prev" title="nnsight.envoy" href="../envoy/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../../_static/css/custom.css?v=1725032410" rel="stylesheet" type="text/css" />
-<link href="../../_static/css/home.css?v=1725032410" rel="stylesheet" type="text/css" />
+<link href="../../_static/css/custom.css?v=1725479524" rel="stylesheet" type="text/css" />
+<link href="../../_static/css/home.css?v=1725479524" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -493,9 +493,10 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="../models/">nnsight.models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../envoy/">nnsight.envoy</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">nnsight.contexts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../util/">nnsight.util</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../intervention/">nnsight.intervention</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tracing/">nnsight.tracing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intervention/">nnsight.intervention</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../schema/">nnsight.schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../util/">nnsight.util</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../patching/">nnsight.patching</a></li>
 </ul>
 </div>
@@ -607,7 +608,7 @@ Executes the Bridge Node.</p>
 
 <dl class="py class" id="module-nnsight.contexts.Tracer">
 <dt class="sig sig-object py" id="nnsight.contexts.Tracer.Tracer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.contexts.Tracer.</span></span><span class="sig-name descname"><span class="pre">Tracer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Backend</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../models/#nnsight.models.NNsightModel.NNsight" title="nnsight.models.NNsightModel.NNsight"><span class="pre">NNsight</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../tracing/#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bridge</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Bridge</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/contexts/Tracer/#Tracer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.contexts.Tracer.</span></span><span class="sig-name descname"><span class="pre">Tracer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Backend</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../models/#nnsight.models.NNsightModel.NNsight" title="nnsight.models.NNsightModel.NNsight"><span class="pre">NNsight</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../tracing/#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bridge</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../tracing/#nnsight.tracing.Bridge.Bridge" title="nnsight.tracing.Bridge.Bridge"><span class="pre">Bridge</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/contexts/Tracer/#Tracer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.Tracer.Tracer" title="Link to this definition">#</a></dt>
 <dd><p>The Tracer class creates a <a class="reference internal" href="../tracing/#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><code class="xref py py-class docutils literal notranslate"><span class="pre">nnsight.tracing.Graph.Graph</span></code></a> around the ._model of a <a class="reference internal" href="../models/#nnsight.models.NNsightModel.NNsight" title="nnsight.models.NNsightModel.NNsight"><code class="xref py py-class docutils literal notranslate"><span class="pre">nnsight.models.NNsightModel.NNsight</span></code></a> which tracks and manages the operations performed on the inputs and outputs of said model.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="nnsight.contexts.Tracer.Tracer._model">
@@ -840,6 +841,546 @@ for looped calls where shapes are consistent, you may want to have scan=True for
 
 </dd></dl>
 
+<dl class="py class" id="module-nnsight.contexts.GraphBasedContext">
+<dt class="sig sig-object py" id="nnsight.contexts.GraphBasedContext.GlobalTracingContext">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.contexts.GraphBasedContext.</span></span><span class="sig-name descname"><span class="pre">GlobalTracingContext</span></span><a class="reference internal" href="../../_modules/nnsight/contexts/GraphBasedContext/#GlobalTracingContext"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.GraphBasedContext.GlobalTracingContext" title="Link to this definition">#</a></dt>
+<dd><p>The Global Tracing Context handles adding tracing operations globally without reference to a given <cite>GraphBasedContext</cite>.
+There should only be one of these and that is <cite>GlobalTracingContext.GLOBAL_TRACING_CONTEXT</cite>.
+<cite>GlobalTracingContext.TORCH_HANDLER</cite> handles adding torch functions without reference to a given <cite>GraphBasedContext</cite>.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="nnsight.contexts.GraphBasedContext.GlobalTracingContext.GlobalTracingExit">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GlobalTracingExit</span></span><a class="reference internal" href="../../_modules/nnsight/contexts/GraphBasedContext/#GlobalTracingContext.GlobalTracingExit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.GraphBasedContext.GlobalTracingContext.GlobalTracingExit" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nnsight.contexts.GraphBasedContext.GlobalTracingContext.GlobalTracingTorchHandler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GlobalTracingTorchHandler</span></span><a class="reference internal" href="../../_modules/nnsight/contexts/GraphBasedContext/#GlobalTracingContext.GlobalTracingTorchHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.GraphBasedContext.GlobalTracingContext.GlobalTracingTorchHandler" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.GraphBasedContext.GlobalTracingContext.deregister">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">deregister</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/GraphBasedContext/#GlobalTracingContext.deregister"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.GraphBasedContext.GlobalTracingContext.deregister" title="Link to this definition">#</a></dt>
+<dd><p>Deregister <cite>GraphBasedContext</cite> globally.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>graph_based_context</strong> (<a class="reference internal" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext" title="nnsight.contexts.GraphBasedContext.GraphBasedContext"><em>GraphBasedContext</em></a>) – GraphBasedContext to deregister.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.GraphBasedContext.GlobalTracingContext.register">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph_based_context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext" title="nnsight.contexts.GraphBasedContext.GraphBasedContext"><span class="pre">GraphBasedContext</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/GraphBasedContext/#GlobalTracingContext.register"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.GraphBasedContext.GlobalTracingContext.register" title="Link to this definition">#</a></dt>
+<dd><p>Register <cite>GraphBasedContext</cite> globally.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>graph_based_context</strong> (<a class="reference internal" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext" title="nnsight.contexts.GraphBasedContext.GraphBasedContext"><em>GraphBasedContext</em></a>) – GraphBasedContext to register.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.GraphBasedContext.GlobalTracingContext.try_deregister">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">try_deregister</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph_based_context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext" title="nnsight.contexts.GraphBasedContext.GraphBasedContext"><span class="pre">GraphBasedContext</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/GraphBasedContext/#GlobalTracingContext.try_deregister"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.GraphBasedContext.GlobalTracingContext.try_deregister" title="Link to this definition">#</a></dt>
+<dd><p>Attempts to deregister a <cite>Graph</cite> globally.
+Will not if <cite>graph_based_context</cite> does not have the same <cite>Graph</cite> as the currently registered one.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>graph_based_context</strong> (<a class="reference internal" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext" title="nnsight.contexts.GraphBasedContext.GraphBasedContext"><em>GraphBasedContext</em></a>) – <cite>GraphBasedContext</cite> to deregister.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if deregistering ws successful, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.GraphBasedContext.GlobalTracingContext.try_register">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">try_register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph_based_context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext" title="nnsight.contexts.GraphBasedContext.GraphBasedContext"><span class="pre">GraphBasedContext</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/GraphBasedContext/#GlobalTracingContext.try_register"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.GraphBasedContext.GlobalTracingContext.try_register" title="Link to this definition">#</a></dt>
+<dd><p>Attempts to register a <cite>Graph</cite> globally.]
+Will not if one is already registered.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>graph_based_context</strong> (<a class="reference internal" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext" title="nnsight.contexts.GraphBasedContext.GraphBasedContext"><em>GraphBasedContext</em></a>) – <cite>GraphBasedContext</cite> to register.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if registering ws successful, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nnsight.contexts.GraphBasedContext.GraphBasedContext">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.contexts.GraphBasedContext.</span></span><span class="sig-name descname"><span class="pre">GraphBasedContext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Backend</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../tracing/#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bridge</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../tracing/#nnsight.tracing.Bridge.Bridge" title="nnsight.tracing.Bridge.Bridge"><span class="pre">Bridge</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/contexts/GraphBasedContext/#GraphBasedContext"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext" title="Link to this definition">#</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.GraphBasedContext.GraphBasedContext.apply">
+<span class="sig-name descname"><span class="pre">apply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/GraphBasedContext/#GraphBasedContext.apply"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.apply" title="Link to this definition">#</a></dt>
+<dd><p>Helper method to directly add a function to the intervention graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target</strong> (<em>Callable</em>) – Function to apply</p></li>
+<li><p><strong>validate</strong> (<em>bool</em>) – If to try and run this operation in FakeMode to test it out and scan it.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Proxy of applying that function.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy">InterventionProxy</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.GraphBasedContext.GraphBasedContext.bool">
+<span class="sig-name descname"><span class="pre">bool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/GraphBasedContext/#GraphBasedContext.bool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.bool" title="Link to this definition">#</a></dt>
+<dd><p>NNsight helper method to create a traceable bool.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.GraphBasedContext.GraphBasedContext.bridge_backend_handle">
+<span class="sig-name descname"><span class="pre">bridge_backend_handle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bridge</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../tracing/#nnsight.tracing.Bridge.Bridge" title="nnsight.tracing.Bridge.Bridge"><span class="pre">Bridge</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/GraphBasedContext/#GraphBasedContext.bridge_backend_handle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.bridge_backend_handle" title="Link to this definition">#</a></dt>
+<dd><p>Should add self to the current Bridge in some capacity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>bridge</strong> (<a class="reference internal" href="../tracing/#nnsight.tracing.Bridge.Bridge" title="nnsight.tracing.Bridge.Bridge"><em>Bridge</em></a>) – Current Bridge.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.GraphBasedContext.GraphBasedContext.bytearray">
+<span class="sig-name descname"><span class="pre">bytearray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/GraphBasedContext/#GraphBasedContext.bytearray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.bytearray" title="Link to this definition">#</a></dt>
+<dd><p>NNsight helper method to create a traceable bytearray.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.GraphBasedContext.GraphBasedContext.bytes">
+<span class="sig-name descname"><span class="pre">bytes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/GraphBasedContext/#GraphBasedContext.bytes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.bytes" title="Link to this definition">#</a></dt>
+<dd><p>NNsight helper method to create a traceable bytes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.GraphBasedContext.GraphBasedContext.complex">
+<span class="sig-name descname"><span class="pre">complex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/GraphBasedContext/#GraphBasedContext.complex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.complex" title="Link to this definition">#</a></dt>
+<dd><p>NNsight helper method to create a traceable complex number.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.GraphBasedContext.GraphBasedContext.cond">
+<span class="sig-name descname"><span class="pre">cond</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">condition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nnsight.contexts.Conditional.Conditional" title="nnsight.contexts.Conditional.Conditional"><span class="pre">Conditional</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/GraphBasedContext/#GraphBasedContext.cond"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.cond" title="Link to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Entrypoint to the Conditional context.</dt><dd><p>Takes in a condition argument which acts as the dependency of the Conditional node in the Intervention graph.
+The condition is evaluated as a boolean, and if True, executes all the interventions defined within the body
+of the conditional context.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>condition</strong> (<em>Union</em><em>[</em><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><em>InterventionProxy</em></a><em>, </em><em>Any</em><em>]</em>) – Dependency of the Conditional Node.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Conditional context object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#nnsight.contexts.Conditional.Conditional" title="nnsight.contexts.Conditional.Conditional">Conditional</a></p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<dl class="simple">
+<dt>Setup:</dt><dd></dd>
+</dl>
+<p>Ex 1: The .save() on the model output will only be executed if the condition passed to tracer.cond() is evaluated to True.</p>
+<p>Ex 2: The condition is on an InterventionProxy which creates in return an InterventionProxy</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.GraphBasedContext.GraphBasedContext.dict">
+<span class="sig-name descname"><span class="pre">dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/GraphBasedContext/#GraphBasedContext.dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.dict" title="Link to this definition">#</a></dt>
+<dd><p>NNsight helper method to create a traceable dictionary.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.GraphBasedContext.GraphBasedContext.exit">
+<span class="sig-name descname"><span class="pre">exit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/GraphBasedContext/#GraphBasedContext.exit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.exit" title="Link to this definition">#</a></dt>
+<dd><p>Exits the execution of a sequential intervention graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Proxy of the EarlyStopProtocol node.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy">InterventionProxy</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.GraphBasedContext.GraphBasedContext.float">
+<span class="sig-name descname"><span class="pre">float</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/GraphBasedContext/#GraphBasedContext.float"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.float" title="Link to this definition">#</a></dt>
+<dd><p>NNsight helper method to create a traceable float.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.GraphBasedContext.GraphBasedContext.int">
+<span class="sig-name descname"><span class="pre">int</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/GraphBasedContext/#GraphBasedContext.int"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.int" title="Link to this definition">#</a></dt>
+<dd><p>NNsight helper method to create a traceable int.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.GraphBasedContext.GraphBasedContext.list">
+<span class="sig-name descname"><span class="pre">list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/GraphBasedContext/#GraphBasedContext.list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.list" title="Link to this definition">#</a></dt>
+<dd><p>NNsight helper method to create a traceable list.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.GraphBasedContext.GraphBasedContext.log">
+<span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/GraphBasedContext/#GraphBasedContext.log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.log" title="Link to this definition">#</a></dt>
+<dd><p>Adds a node via .apply to print the value of a Node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>Any</em>) – Data to print.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.GraphBasedContext.GraphBasedContext.set">
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/GraphBasedContext/#GraphBasedContext.set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.set" title="Link to this definition">#</a></dt>
+<dd><p>NNsight helper method to create a traceable set.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.GraphBasedContext.GraphBasedContext.str">
+<span class="sig-name descname"><span class="pre">str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/GraphBasedContext/#GraphBasedContext.str"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.str" title="Link to this definition">#</a></dt>
+<dd><p>NNsight helper method to create a traceable string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.GraphBasedContext.GraphBasedContext.tuple">
+<span class="sig-name descname"><span class="pre">tuple</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/GraphBasedContext/#GraphBasedContext.tuple"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.tuple" title="Link to this definition">#</a></dt>
+<dd><p>NNsight helper method to create a traceable tuple.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.GraphBasedContext.GraphBasedContext.vis">
+<span class="sig-name descname"><span class="pre">vis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/GraphBasedContext/#GraphBasedContext.vis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.vis" title="Link to this definition">#</a></dt>
+<dd><p>Helper method to save a visualization of the current state of the intervention graph.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-nnsight.contexts.Conditional">
+<dt class="sig sig-object py" id="nnsight.contexts.Conditional.Conditional">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.contexts.Conditional.</span></span><span class="sig-name descname"><span class="pre">Conditional</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../tracing/#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'InterventionProxy'</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/contexts/Conditional/#Conditional"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.Conditional.Conditional" title="Link to this definition">#</a></dt>
+<dd><p>A context defined by a boolean condition, upon which the execution of all nodes defined from within is contingent.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.contexts.Conditional.Conditional._graph">
+<span class="sig-name descname"><span class="pre">_graph</span></span><a class="headerlink" href="#nnsight.contexts.Conditional.Conditional._graph" title="Link to this definition">#</a></dt>
+<dd><p>Conditional Context graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../tracing/#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph">Graph</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.contexts.Conditional.Conditional._condition">
+<span class="sig-name descname"><span class="pre">_condition</span></span><a class="headerlink" href="#nnsight.contexts.Conditional.Conditional._condition" title="Link to this definition">#</a></dt>
+<dd><p>Condition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Union[<a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy">InterventionProxy</a>, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nnsight.contexts.Conditional.ConditionalManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.contexts.Conditional.</span></span><span class="sig-name descname"><span class="pre">ConditionalManager</span></span><a class="reference internal" href="../../_modules/nnsight/contexts/Conditional/#ConditionalManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.Conditional.ConditionalManager" title="Link to this definition">#</a></dt>
+<dd><p>A Graph attachement that manages the Conditional contexts defined within an Intervention Graph.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.contexts.Conditional.ConditionalManager._conditional_dict">
+<span class="sig-name descname"><span class="pre">_conditional_dict</span></span><a class="headerlink" href="#nnsight.contexts.Conditional.ConditionalManager._conditional_dict" title="Link to this definition">#</a></dt>
+<dd><p>Mapping of ConditionalProtocol node name to Conditional context.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[str, <a class="reference internal" href="../tracing/#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node">Node</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.contexts.Conditional.ConditionalManager._conditioned_nodes_dict">
+<span class="sig-name descname"><span class="pre">_conditioned_nodes_dict</span></span><a class="headerlink" href="#nnsight.contexts.Conditional.ConditionalManager._conditioned_nodes_dict" title="Link to this definition">#</a></dt>
+<dd><p>Mapping of ConditionalProtocol node name to all the Nodes conditiones by it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[str, Set[<a class="reference internal" href="../tracing/#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node">Node</a>]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.contexts.Conditional.ConditionalManager._conditional_stack">
+<span class="sig-name descname"><span class="pre">_conditional_stack</span></span><a class="headerlink" href="#nnsight.contexts.Conditional.ConditionalManager._conditional_stack" title="Link to this definition">#</a></dt>
+<dd><p>Stack of visited Conditional contexts’ ConditonalProtocol nodes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.Conditional.ConditionalManager.add_conditioned_node">
+<span class="sig-name descname"><span class="pre">add_conditioned_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../tracing/#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/Conditional/#ConditionalManager.add_conditioned_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.Conditional.ConditionalManager.add_conditioned_node" title="Link to this definition">#</a></dt>
+<dd><p>Adding a Node to the set of conditioned nodes by the current Conditonal context.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>node</strong> (<em>-</em>) – A node conditioned by the latest Conditional context.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.Conditional.ConditionalManager.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nnsight.contexts.Conditional.Conditional" title="nnsight.contexts.Conditional.Conditional"><span class="pre">Conditional</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/Conditional/#ConditionalManager.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.Conditional.ConditionalManager.get" title="Link to this definition">#</a></dt>
+<dd><p>Returns a ConditionalProtocol node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – ConditionalProtocol node name.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>ConditionalProtocol node.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../tracing/#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node">Node</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.Conditional.ConditionalManager.is_node_conditioned">
+<span class="sig-name descname"><span class="pre">is_node_conditioned</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../tracing/#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/Conditional/#ConditionalManager.is_node_conditioned"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.Conditional.ConditionalManager.is_node_conditioned" title="Link to this definition">#</a></dt>
+<dd><p>Returns True if the Node argument is conditioned by the current Conditional context.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>node</strong> (<em>-</em>) – Node.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether the Node is conditioned.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.Conditional.ConditionalManager.peek">
+<span class="sig-name descname"><span class="pre">peek</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="s"><span class="pre">'Node'</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/Conditional/#ConditionalManager.peek"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.Conditional.ConditionalManager.peek" title="Link to this definition">#</a></dt>
+<dd><p>Gets the current Conditional context’s ConditionalProtocol node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Lastest ConditonalProtocol node if the ConditionalManager stack is non-empty.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Optional[<a class="reference internal" href="../tracing/#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node">Node</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.Conditional.ConditionalManager.pop">
+<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/Conditional/#ConditionalManager.pop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.Conditional.ConditionalManager.pop" title="Link to this definition">#</a></dt>
+<dd><p>Pops the ConditionalProtocol node of the current Conditional context from the ConditionalManager stack.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.Conditional.ConditionalManager.push">
+<span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conditional_node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../tracing/#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/Conditional/#ConditionalManager.push"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.Conditional.ConditionalManager.push" title="Link to this definition">#</a></dt>
+<dd><p>Adds the Conditional to the stack of Conditional contexts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>conditional_node</strong> (<a class="reference internal" href="../tracing/#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><em>Node</em></a>) – ConditionalProtocol node.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-nnsight.contexts.session.Session">
+<dt class="sig sig-object py" id="nnsight.contexts.session.Session.Session">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.contexts.session.Session.</span></span><span class="sig-name descname"><span class="pre">Session</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Backend</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../models/#nnsight.models.NNsightModel.NNsight" title="nnsight.models.NNsightModel.NNsight"><span class="pre">NNsight</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bridge</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../tracing/#nnsight.tracing.Bridge.Bridge" title="nnsight.tracing.Bridge.Bridge"><span class="pre">Bridge</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/contexts/session/Session/#Session"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.session.Session.Session" title="Link to this definition">#</a></dt>
+<dd><p>A Session is a root Collection that handles adding new Graphs and new Collections while in the session.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.contexts.session.Session.Session.bridge">
+<span class="sig-name descname"><span class="pre">bridge</span></span><a class="headerlink" href="#nnsight.contexts.session.Session.Session.bridge" title="Link to this definition">#</a></dt>
+<dd><p>Bridge object which stores all Graphs added during the session and handles interaction between them</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../tracing/#nnsight.tracing.Bridge.Bridge" title="nnsight.tracing.Bridge.Bridge">Bridge</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.contexts.session.Session.Session.graph">
+<span class="sig-name descname"><span class="pre">graph</span></span><a class="headerlink" href="#nnsight.contexts.session.Session.Session.graph" title="Link to this definition">#</a></dt>
+<dd><p>Root Graph where operations and values meant for access by all subsequent Graphs should be stored and referenced.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../tracing/#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph">Graph</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.contexts.session.Session.Session.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#nnsight.contexts.session.Session.Session.model" title="Link to this definition">#</a></dt>
+<dd><p>NNsight model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../models/#nnsight.models.NNsightModel.NNsight" title="nnsight.models.NNsightModel.NNsight">NNsight</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.contexts.session.Session.Session.backend">
+<span class="sig-name descname"><span class="pre">backend</span></span><a class="headerlink" href="#nnsight.contexts.session.Session.Session.backend" title="Link to this definition">#</a></dt>
+<dd><p>Backend for this context object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Backend</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.session.Session.Session.iter">
+<span class="sig-name descname"><span class="pre">iter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nnsight.contexts.session.Iterator.Iterator" title="nnsight.contexts.session.Iterator.Iterator"><span class="pre">Iterator</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/session/Session/#Session.iter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.session.Session.Session.iter" title="Link to this definition">#</a></dt>
+<dd><p>Creates an Iterator context to iteratively execute an intervention graph, with an update item at each iteration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>iterable</strong> (<em>-</em>) – Data to iterate over.</p></li>
+<li><p><strong>return_context</strong> (<em>-</em>) – If True, returns the Iterator context. Default: False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Iterator context.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#nnsight.contexts.session.Iterator.Iterator" title="nnsight.contexts.session.Iterator.Iterator">Iterator</a></p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<dl class="simple">
+<dt>Setup:</dt><dd></dd>
+<dt>Ex:</dt><dd></dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.session.Session.Session.local_backend_execute">
+<span class="sig-name descname"><span class="pre">local_backend_execute</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../tracing/#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/session/Session/#Session.local_backend_execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.session.Session.Session.local_backend_execute" title="Link to this definition">#</a></dt>
+<dd><p>Should execute this object locally and return a result that can be handled by RemoteMixin objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result containing data to return from a remote execution.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.session.Session.Session.remote_backend_get_model_key">
+<span class="sig-name descname"><span class="pre">remote_backend_get_model_key</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../_modules/nnsight/contexts/session/Session/#Session.remote_backend_get_model_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.session.Session.Session.remote_backend_get_model_key" title="Link to this definition">#</a></dt>
+<dd><p>Should return the model_key used to specify which model to run on the remote service.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Model key.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.session.Session.Session.remote_backend_handle_result_value">
+<span class="sig-name descname"><span class="pre">remote_backend_handle_result_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/contexts/session/Session/#Session.remote_backend_handle_result_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.session.Session.Session.remote_backend_handle_result_value" title="Link to this definition">#</a></dt>
+<dd><p>Should handle postprocessed result from remote_backend_postprocess_result on return from remote service.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>Any</em>) – Result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.contexts.session.Session.Session.remote_backend_postprocess_result">
+<span class="sig-name descname"><span class="pre">remote_backend_postprocess_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">local_result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../tracing/#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/contexts/session/Session/#Session.remote_backend_postprocess_result"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.session.Session.Session.remote_backend_postprocess_result" title="Link to this definition">#</a></dt>
+<dd><p>Should handle postprocessing the result from local_backend_execute.</p>
+<p>For example moving tensors to cpu/detaching/etc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>local_result</strong> (<em>Any</em>) – Local execution result.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Post processed local execution result.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-nnsight.contexts.session.Iterator">
+<dt class="sig sig-object py" id="nnsight.contexts.session.Iterator.Iterator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.contexts.session.Iterator.</span></span><span class="sig-name descname"><span class="pre">Iterator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/contexts/session/Iterator/#Iterator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.contexts.session.Iterator.Iterator" title="Link to this definition">#</a></dt>
+<dd><p>Intervention loop context for iterative execution of an intervention graph.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">-</span> <span class="pre">data</span></span></dt>
+<dd><p>Data to iterate over.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Iterable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">-</span> <span class="pre">return_context</span></span></dt>
+<dd><p>If True, returns the Iterator object upon entering the Iterator context.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -890,6 +1431,65 @@ for looped calls where shapes are consistent, you may want to have scan=True for
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Invoker.Invoker.scanning"><code class="docutils literal notranslate"><span class="pre">Invoker.scanning</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.GraphBasedContext.GlobalTracingContext"><code class="docutils literal notranslate"><span class="pre">GlobalTracingContext</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.GraphBasedContext.GlobalTracingContext.GlobalTracingExit"><code class="docutils literal notranslate"><span class="pre">GlobalTracingContext.GlobalTracingExit</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.GraphBasedContext.GlobalTracingContext.GlobalTracingTorchHandler"><code class="docutils literal notranslate"><span class="pre">GlobalTracingContext.GlobalTracingTorchHandler</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.GraphBasedContext.GlobalTracingContext.deregister"><code class="docutils literal notranslate"><span class="pre">GlobalTracingContext.deregister()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.GraphBasedContext.GlobalTracingContext.register"><code class="docutils literal notranslate"><span class="pre">GlobalTracingContext.register()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.GraphBasedContext.GlobalTracingContext.try_deregister"><code class="docutils literal notranslate"><span class="pre">GlobalTracingContext.try_deregister()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.GraphBasedContext.GlobalTracingContext.try_register"><code class="docutils literal notranslate"><span class="pre">GlobalTracingContext.try_register()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext"><code class="docutils literal notranslate"><span class="pre">GraphBasedContext</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.apply"><code class="docutils literal notranslate"><span class="pre">GraphBasedContext.apply()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.bool"><code class="docutils literal notranslate"><span class="pre">GraphBasedContext.bool()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.bridge_backend_handle"><code class="docutils literal notranslate"><span class="pre">GraphBasedContext.bridge_backend_handle()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.bytearray"><code class="docutils literal notranslate"><span class="pre">GraphBasedContext.bytearray()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.bytes"><code class="docutils literal notranslate"><span class="pre">GraphBasedContext.bytes()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.complex"><code class="docutils literal notranslate"><span class="pre">GraphBasedContext.complex()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.cond"><code class="docutils literal notranslate"><span class="pre">GraphBasedContext.cond()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.dict"><code class="docutils literal notranslate"><span class="pre">GraphBasedContext.dict()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.exit"><code class="docutils literal notranslate"><span class="pre">GraphBasedContext.exit()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.float"><code class="docutils literal notranslate"><span class="pre">GraphBasedContext.float()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.int"><code class="docutils literal notranslate"><span class="pre">GraphBasedContext.int()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.list"><code class="docutils literal notranslate"><span class="pre">GraphBasedContext.list()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.log"><code class="docutils literal notranslate"><span class="pre">GraphBasedContext.log()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.set"><code class="docutils literal notranslate"><span class="pre">GraphBasedContext.set()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.str"><code class="docutils literal notranslate"><span class="pre">GraphBasedContext.str()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.tuple"><code class="docutils literal notranslate"><span class="pre">GraphBasedContext.tuple()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.GraphBasedContext.GraphBasedContext.vis"><code class="docutils literal notranslate"><span class="pre">GraphBasedContext.vis()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Conditional.Conditional"><code class="docutils literal notranslate"><span class="pre">Conditional</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Conditional.Conditional._graph"><code class="docutils literal notranslate"><span class="pre">Conditional._graph</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Conditional.Conditional._condition"><code class="docutils literal notranslate"><span class="pre">Conditional._condition</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Conditional.ConditionalManager"><code class="docutils literal notranslate"><span class="pre">ConditionalManager</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Conditional.ConditionalManager._conditional_dict"><code class="docutils literal notranslate"><span class="pre">ConditionalManager._conditional_dict</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Conditional.ConditionalManager._conditioned_nodes_dict"><code class="docutils literal notranslate"><span class="pre">ConditionalManager._conditioned_nodes_dict</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Conditional.ConditionalManager._conditional_stack"><code class="docutils literal notranslate"><span class="pre">ConditionalManager._conditional_stack</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Conditional.ConditionalManager.add_conditioned_node"><code class="docutils literal notranslate"><span class="pre">ConditionalManager.add_conditioned_node()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Conditional.ConditionalManager.get"><code class="docutils literal notranslate"><span class="pre">ConditionalManager.get()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Conditional.ConditionalManager.is_node_conditioned"><code class="docutils literal notranslate"><span class="pre">ConditionalManager.is_node_conditioned()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Conditional.ConditionalManager.peek"><code class="docutils literal notranslate"><span class="pre">ConditionalManager.peek()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Conditional.ConditionalManager.pop"><code class="docutils literal notranslate"><span class="pre">ConditionalManager.pop()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.Conditional.ConditionalManager.push"><code class="docutils literal notranslate"><span class="pre">ConditionalManager.push()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.session.Session.Session"><code class="docutils literal notranslate"><span class="pre">Session</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.session.Session.Session.bridge"><code class="docutils literal notranslate"><span class="pre">Session.bridge</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.session.Session.Session.graph"><code class="docutils literal notranslate"><span class="pre">Session.graph</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.session.Session.Session.model"><code class="docutils literal notranslate"><span class="pre">Session.model</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.session.Session.Session.backend"><code class="docutils literal notranslate"><span class="pre">Session.backend</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.session.Session.Session.iter"><code class="docutils literal notranslate"><span class="pre">Session.iter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.session.Session.Session.local_backend_execute"><code class="docutils literal notranslate"><span class="pre">Session.local_backend_execute()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.session.Session.Session.remote_backend_get_model_key"><code class="docutils literal notranslate"><span class="pre">Session.remote_backend_get_model_key()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.session.Session.Session.remote_backend_handle_result_value"><code class="docutils literal notranslate"><span class="pre">Session.remote_backend_handle_result_value()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.session.Session.Session.remote_backend_postprocess_result"><code class="docutils literal notranslate"><span class="pre">Session.remote_backend_postprocess_result()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.contexts.session.Iterator.Iterator"><code class="docutils literal notranslate"><span class="pre">Iterator</span></code></a></li>
 </ul>
   </nav></div>
 

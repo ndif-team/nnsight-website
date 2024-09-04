@@ -53,8 +53,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../../../../_static/css/custom.css?v=1725032410" rel="stylesheet" type="text/css" />
-<link href="../../../../_static/css/home.css?v=1725032410" rel="stylesheet" type="text/css" />
+<link href="../../../../_static/css/custom.css?v=1725479524" rel="stylesheet" type="text/css" />
+<link href="../../../../_static/css/home.css?v=1725479524" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -610,6 +610,10 @@ document.write(`
 
     <span class="n">proxy_class</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">InterventionProxy</span><span class="p">]</span> <span class="o">=</span> <span class="n">InterventionProxy</span>
 
+    <span class="c1"># For type hinting Envoy</span>
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span> <span class="o">|</span> <span class="n">Envoy</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">model_key</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">],</span>
@@ -618,7 +622,6 @@ document.write(`
         <span class="n">meta_buffers</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_model_key</span> <span class="o">=</span> <span class="n">model_key</span>
 
@@ -665,6 +668,7 @@ document.write(`
         <span class="n">invoker_args</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">backend</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Backend</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">remote</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">blocking</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">scan</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Tracer</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
@@ -766,7 +770,7 @@ document.write(`
         <span class="c1"># If remote, use RemoteBackend with default url.</span>
         <span class="k">elif</span> <span class="n">remote</span><span class="p">:</span>
 
-            <span class="n">backend</span> <span class="o">=</span> <span class="n">RemoteBackend</span><span class="p">()</span>
+            <span class="n">backend</span> <span class="o">=</span> <span class="n">RemoteBackend</span><span class="p">(</span><span class="n">blocking</span><span class="o">=</span><span class="n">blocking</span><span class="p">)</span>
 
         <span class="c1"># By default, use LocalBackend.</span>
         <span class="k">elif</span> <span class="n">backend</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -776,7 +780,7 @@ document.write(`
         <span class="c1"># If backend is a string, assume RemoteBackend url.</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">backend</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
 
-            <span class="n">backend</span> <span class="o">=</span> <span class="n">RemoteBackend</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+            <span class="n">backend</span> <span class="o">=</span> <span class="n">RemoteBackend</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">blocking</span><span class="o">=</span><span class="n">blocking</span><span class="p">)</span>
 
         <span class="c1"># Create Tracer object.</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_graph</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -871,7 +875,7 @@ document.write(`
 <span class="sd">            from nnsight import LanguageModel</span>
 
 <span class="sd">            gpt2 = LanguageModel(&quot;openai-community/gpt2)</span>
-<span class="sd">            </span>
+
 <span class="sd">            class ComplexModule(torch.nn.Module):</span>
 <span class="sd">                def __init__(self):</span>
 <span class="sd">                    super().__init__()</span>
@@ -896,7 +900,7 @@ document.write(`
 <span class="sd">                one = l0.attachment.one.output.clone().save()</span>
 <span class="sd">                l0.attachment.output *= 0.0</span>
 <span class="sd">                edited_output = gpt2.output.logits.save()</span>
-<span class="sd">            </span>
+
 <span class="sd">            print(original_output)</span>
 <span class="sd">            print(edited_output)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -919,6 +923,7 @@ document.write(`
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">backend</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Backend</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">remote</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">blocking</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Session</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a session context using a Session.</span>
@@ -934,7 +939,7 @@ document.write(`
         <span class="c1"># If remote, use RemoteBackend with default url.</span>
         <span class="k">if</span> <span class="n">remote</span><span class="p">:</span>
 
-            <span class="n">backend</span> <span class="o">=</span> <span class="n">RemoteBackend</span><span class="p">()</span>
+            <span class="n">backend</span> <span class="o">=</span> <span class="n">RemoteBackend</span><span class="p">(</span><span class="n">blocking</span><span class="o">=</span><span class="n">blocking</span><span class="p">)</span>
 
         <span class="c1"># By default, use LocalBackend.</span>
         <span class="k">elif</span> <span class="n">backend</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -944,7 +949,7 @@ document.write(`
         <span class="c1"># If backend is a string, assume RemoteBackend url.</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">backend</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
 
-            <span class="n">backend</span> <span class="o">=</span> <span class="n">RemoteBackend</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+            <span class="n">backend</span> <span class="o">=</span> <span class="n">RemoteBackend</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span> <span class="n">blocking</span><span class="o">=</span><span class="n">blocking</span><span class="p">)</span>
 
         <span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">(</span><span class="n">backend</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -1008,9 +1013,7 @@ document.write(`
             <span class="n">intervention_graph</span><span class="p">,</span> <span class="n">batch_groups</span><span class="p">,</span> <span class="n">batch_size</span>
         <span class="p">)</span>
 
-        <span class="n">module_paths</span> <span class="o">=</span> <span class="n">InterventionProtocol</span><span class="o">.</span><span class="n">get_interventions</span><span class="p">(</span>
-            <span class="n">intervention_graph</span>
-        <span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="n">module_paths</span> <span class="o">=</span> <span class="n">InterventionProtocol</span><span class="o">.</span><span class="n">get_interventions</span><span class="p">(</span><span class="n">intervention_graph</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 
         <span class="k">with</span> <span class="n">HookHandler</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="p">,</span>
@@ -1064,7 +1067,7 @@ document.write(`
 
         <span class="k">return</span> <span class="bp">self</span></div>
 
-    
+
 <div class="viewcode-block" id="NNsight.clear_edits">
 <a class="viewcode-back" href="../../../../documentation/models/#nnsight.models.NNsightModel.NNsight.clear_edits">[docs]</a>
     <span class="k">def</span> <span class="nf">clear_edits</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -1083,15 +1086,13 @@ document.write(`
     <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Overload setattr to create and set an Envoy when trying to set a torch Module.&quot;&quot;&quot;</span>
 
-        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;_model&quot;</span><span class="p">,</span> <span class="s2">&quot;_model_key&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span>
-            <span class="n">value</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span>
-        <span class="p">):</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;_model&quot;</span><span class="p">,</span> <span class="s2">&quot;_model_key&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
 
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_envoy</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>
 
-            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="nb">object</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Envoy</span><span class="p">,</span> <span class="n">InterventionProxy</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Wrapper of ._envoy&#39;s attributes to access module&#39;s inputs and outputs.</span>
@@ -1121,9 +1122,7 @@ document.write(`
 
             <span class="k">return</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_config</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">accelerate</span><span class="o">.</span><span class="n">load_checkpoint_and_dispatch</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="p">,</span> <span class="n">repo_id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
-        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">accelerate</span><span class="o">.</span><span class="n">load_checkpoint_and_dispatch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="p">,</span> <span class="n">repo_id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">prepared_inputs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Virtual method to run the underlying ._model with some inputs.</span>
@@ -1195,10 +1194,10 @@ document.write(`
         <span class="k">return</span> <span class="n">batched_inputs</span>
 
     <span class="k">def</span> <span class="nf">_shallow_copy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Creates a new instance copy of the same class with the all the attributes of the original instance.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates a new instance copy of the same class with the all the attributes of the original instance.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Self: NNsightModel        </span>
+<span class="sd">            Self: NNsightModel</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">copy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
