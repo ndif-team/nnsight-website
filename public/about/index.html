@@ -6,7 +6,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>About NNsight &#8212; nnsight</title>
   
@@ -28,7 +28,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=362ab14a" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -44,6 +44,7 @@
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'about';</script>
     <script src="../_static/js/custom.js?v=1e4be224"></script>
     <script src="../_static/js/code.js?v=34343d0c"></script>
@@ -55,8 +56,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../_static/css/custom.css?v=1725487535" rel="stylesheet" type="text/css" />
-<link href="../_static/css/home.css?v=1725487535" rel="stylesheet" type="text/css" />
+<link href="../_static/css/custom.css?v=1732135464" rel="stylesheet" type="text/css" />
+<link href="../_static/css/home.css?v=1732135464" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -587,7 +588,7 @@ The nnsight library is also terrific for studying smaller local models.</p>
 Instead, you set up a python <code class="docutils literal notranslate"><span class="pre">with</span></code> context that enables you to get direct access to model internals while the neural network runs.
 Here is how it looks:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kn">from</span> <span class="nn">nnsight</span> <span class="kn">import</span> <span class="n">LanguageModel</span>
-<span class="linenos">2</span><span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s1">&#39;meta-llama/Llama-2-70b-hf&#39;</span><span class="p">)</span>
+<span class="linenos">2</span><span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s1">&#39;meta-llama/Meta-Llama-3.1-70B&#39;</span><span class="p">)</span>
 <span class="linenos">3</span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of &#39;</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="linenos">4</span>    <span class="n">hidden_state</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">input</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>  <span class="c1"># save one hidden state</span>
 <span class="linenos">5</span>    <span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span><span class="o">.</span><span class="n">mlp</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># change one MLP module output</span>
