@@ -6,7 +6,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Multiple Token Generation &#8212; nnsight</title>
   
@@ -16,36 +16,38 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
-  
-  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=362ab14a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css?v=2aa19091" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
     <script src="../../../_static/documentation_options.js?v=187304be"></script>
-    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/features/multiple_token';</script>
@@ -60,8 +62,9 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../../../_static/css/custom.css?v=1738361715" rel="stylesheet" type="text/css" />
-<link href="../../../_static/css/home.css?v=1738361715" rel="stylesheet" type="text/css" />
+  <meta name="docsearch:version" content="" />
+<link href="../../../_static/css/custom.css?v=1738883371" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/home.css?v=1738883371" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -78,19 +81,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../../search/"
       method="get">
@@ -98,7 +90,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -106,8 +97,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -139,7 +130,7 @@
     
     
     <img src="../../../_static/nnsight_logo.svg" class="logo__image only-dark" alt="nnsight - Home"/>
-    <script>document.write(`<img src="../../../_static/nnsight_logo.svg" class="logo__image only-light" alt="nnsight - Home"/>`);</script>
+    <img src="../../../_static/nnsight_logo.svg" class="logo__image only-light pst-js-only" alt="nnsight - Home"/>
   
   
 </a></div>
@@ -199,15 +190,11 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
@@ -249,15 +236,11 @@
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -308,18 +291,18 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
   
 </div>
 
@@ -331,7 +314,8 @@ document.write(`
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -428,15 +412,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -503,6 +483,7 @@ document.write(`
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Multiple Token Generation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../operations/">Operations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../remote_execution/">Remote Execution</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="../scan_validate/">Scan and Validate</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sessions/">Sessions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../setting/">Setting Values</a></li>
@@ -533,8 +514,6 @@ document.write(`
       
         <div class="header-article-item">
 
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -546,7 +525,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="../../../features/" class="nav-link">Features</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">Multiple...</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Multiple Token Generation</span></li>
   </ul>
 </nav>
 </div>
@@ -568,20 +547,63 @@ document.write(`
 <p>When generating more than one token, use <code class="docutils literal notranslate"><span class="pre">&lt;module&gt;.next()</span></code> to denote following interventions should be applied to the subsequent generations for that module.</p>
 <p>Here we generate three tokens and save the hidden states of the last layer for each one:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nnsight</span> <span class="kn">import</span> <span class="n">LanguageModel</span>
 
-<span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s1">&#39;openai-community/gpt2&#39;</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s1">&#39;openai-community/gpt2&#39;</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<section id=".generate()">
+<h2><code class="docutils literal notranslate"><span class="pre">.generate()</span></code><a class="headerlink" href="#.generate()" title="Link to this heading">#</a></h2>
+<p>NNsight’s <code class="docutils literal notranslate"><span class="pre">LanguageModel</span></code> class supports multiple token generation with <code class="docutils literal notranslate"><span class="pre">.generate()</span></code>. You can control the number of new tokens generated by setting <code class="docutils literal notranslate"><span class="pre">max_new_tokens</span> <span class="pre">=</span> <span class="pre">N</span></code> within your call to <code class="docutils literal notranslate"><span class="pre">.generate()</span></code>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prompt</span> <span class="o">=</span> <span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span>
+<span class="n">n_new_tokens</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="n">n_new_tokens</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generator</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="n">decoded_prompt</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="n">n_new_tokens</span><span class="p">]</span><span class="o">.</span><span class="n">cpu</span><span class="p">())</span>
+<span class="n">decoded_answer</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="n">n_new_tokens</span><span class="p">:]</span><span class="o">.</span><span class="n">cpu</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prompt: &quot;</span><span class="p">,</span> <span class="n">decoded_prompt</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Generated Answer: &quot;</span><span class="p">,</span> <span class="n">decoded_answer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Prompt:  The Eiffel Tower is in the city of
+Generated Answer:   Paris, and
+</pre></div></div>
+</div>
+</section>
+<section id=".next()">
+<h2><code class="docutils literal notranslate"><span class="pre">.next()</span></code><a class="headerlink" href="#.next()" title="Link to this heading">#</a></h2>
+<p>When generating more than one token, use <code class="docutils literal notranslate"><span class="pre">&lt;module&gt;.next()</span></code> to denote following interventions should be applied to the subsequent generations for that module.</p>
+<p>Here we generate three tokens and save the hidden states of the last layer for each one:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_new_tokens</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="n">n_new_tokens</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
 
     <span class="n">hidden_states1</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
@@ -598,20 +620,18 @@ document.write(`
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
-A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side=&#39;left&#39;` when initializing the tokenizer.
-Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
 </pre></div></div>
 </div>
-<p>Note how calling save <em>before</em> <code class="docutils literal notranslate"><span class="pre">tracer.next()</span></code> returns the hidden state across the initial prompt while calling save <em>after</em> returns the hidden state of each subsequent generated token.</p>
+<p>Note how calling save before <code class="docutils literal notranslate"><span class="pre">tracer.next()</span></code> returns the hidden state across the initial prompt while calling save after returns the hidden state of each subsequent generated token.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">hidden_states1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">hidden_states2</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">hidden_states3</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">hidden_states1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="c1"># hidden states across prompt &amp; first generated token</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hidden_states2</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="c1"># only hidden states across next token</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hidden_states3</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="c1"># only hidden states across next token</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="c1"># model output tokens, including prompt</span>
 </pre></div>
 </div>
 </div>
@@ -624,9 +644,138 @@ torch.Size([1, 10, 768])
 torch.Size([1, 1, 768])
 torch.Size([1, 1, 768])
 tensor([[ 464,  412,  733,  417, 8765,  318,  287,  262, 1748,  286, 6342,   11,
-          290]], device=&#39;cuda:0&#39;)
+          290]], device=&#39;mps:0&#39;)
 </pre></div></div>
 </div>
+<p>Great, we’ve now successfully stored hidden states across multiple different rounds of token generation! However, if you’re generating many tokens while applying interventions, using <code class="docutils literal notranslate"><span class="pre">.next()</span></code> requires you to set a loop within the tracing context, which can be clunky:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Old approach:</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span>
+<span class="n">layers</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span>
+<span class="n">n_new_tokens</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">hidden_states</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="n">n_new_tokens</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_new_tokens</span><span class="p">):</span>
+        <span class="c1"># Apply intervention - set first layer output to zero</span>
+        <span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][:]</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c1"># Append desired hidden state post-intervention</span>
+        <span class="n">hidden_states</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">())</span>
+
+        <span class="c1"># Move to next generated token</span>
+        <span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hidden state length: &quot;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">hidden_states</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Hidden state length:  50
+</pre></div></div>
+</div>
+</section>
+<section id=".all()-streamlines-interventions-on-many-generated-tokens">
+<h2><code class="docutils literal notranslate"><span class="pre">.all()</span></code> streamlines interventions on many generated tokens<a class="headerlink" href="#.all()-streamlines-interventions-on-many-generated-tokens" title="Link to this heading">#</a></h2>
+<p>With <code class="docutils literal notranslate"><span class="pre">nnsight</span> <span class="pre">0.4</span></code> you can use <code class="docutils literal notranslate"><span class="pre">.all()</span></code> to recursively apply interventions to a model. Calling <code class="docutils literal notranslate"><span class="pre">.all()</span></code> on a module within a model will recursively apply its <code class="docutils literal notranslate"><span class="pre">.input</span></code> and <code class="docutils literal notranslate"><span class="pre">.output</span></code> across all iterations. Previously, we’d need to loop across each new generated token, saving the intervention for every generated token and calling <code class="docutils literal notranslate"><span class="pre">.next()</span></code> to move forward, as demonstrated in the previous section.</p>
+<p>Let’s try using <code class="docutils literal notranslate"><span class="pre">.all()</span></code> to streamline the multiple token generation process. We simply call <code class="docutils literal notranslate"><span class="pre">.all()</span></code> on the module where we are applying the intervention (in this case GPT-2’s layers), apply our intervention, and append our hidden states (stored in an <code class="docutils literal notranslate"><span class="pre">nnsight.list()</span></code> object).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nnsight</span>
+<span class="c1"># using .all():</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span>
+<span class="n">layers</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span>
+<span class="n">n_new_tokens</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="n">n_new_tokens</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
+    <span class="n">hidden_states</span> <span class="o">=</span> <span class="n">nnsight</span><span class="o">.</span><span class="n">list</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">()</span> <span class="c1"># Initialize &amp; .save() nnsight list</span>
+
+    <span class="c1"># Call .all() to apply intervention to each new token</span>
+    <span class="n">layers</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+
+    <span class="c1"># Apply intervention - set first layer output to zero</span>
+    <span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][:]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Append desired hidden state post-intervention</span>
+    <span class="n">hidden_states</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">)</span> <span class="c1"># no need to call .save</span>
+    <span class="c1"># Don&#39;t need to loop or call .next()!</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hidden state length: &quot;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">hidden_states</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Hidden state length:  50
+</pre></div></div>
+</div>
+<p>Easy! Note that because <code class="docutils literal notranslate"><span class="pre">.all()</span></code> is recursive, it will only work to append outputs called on children of the module that <code class="docutils literal notranslate"><span class="pre">.all()</span></code> was called on. See example below for more information. TL;DR: apply <code class="docutils literal notranslate"><span class="pre">.all()</span></code> on the highest-level accessed module if interventions and outputs have different hierarchies within model structure.</p>
+<details><summary><p>Recursive properties of .all()</p>
+</summary><p><code class="docutils literal notranslate"><span class="pre">.all()</span></code> recursively acts on model components. In the below code example, only the first token generation is saved, because <code class="docutils literal notranslate"><span class="pre">.all()</span></code> applied to <code class="docutils literal notranslate"><span class="pre">layers</span></code>, while the saved variable <code class="docutils literal notranslate"><span class="pre">hidden_states</span></code> is produced from <code class="docutils literal notranslate"><span class="pre">model.lm_head</span></code>, which is not a child of <code class="docutils literal notranslate"><span class="pre">layers</span></code>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>prompt = &#39;The Eiffel Tower is in the city of&#39;
+layers = model.transformer.h
+n_new_tokens = 3
+with model.generate(prompt, max_new_tokens=n_new_tokens) as tracer:
+    hidden_states = nnsight.list().save() # Initialize &amp; .save() nnsight list
+
+    # Call .all() on layers
+    layers.all()
+
+    # Apply same intervention - set first layer output to zero
+    layers[0].output[0][:] = 0
+
+    # Append desired hidden state post-intervention
+    hidden_states.append(model.lm_head.output) # no need to call .save, it&#39;s already initialized
+
+print(&quot;Hidden state length: &quot;,len(hidden_states)) # length is 1, meaning it only saved the first token generation
+</pre></div>
+</div>
+<p>If you want to apply an intervention during multiple token generation while saving the state of a model component that isn’t a child of that module, you can instead apply <code class="docutils literal notranslate"><span class="pre">.all()</span></code> to the full model:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>prompt = &#39;The Eiffel Tower is in the city of&#39;
+layers = model.transformer.h
+n_new_tokens = 3
+with model.generate(prompt, max_new_tokens=n_new_tokens) as tracer:
+    hidden_states = nnsight.list().save() # Initialize &amp; .save() nnsight list
+
+    # Call .all() on model
+    model.all()
+
+    # Apply same intervention - set first layer output to zero
+    layers[0].output[0][:] = 0
+
+    # Append desired hidden state post-intervention
+    hidden_states.append(model.lm_head.output) # no need to call .save
+
+print(&quot;Hidden state length: &quot;,len(hidden_states)) # length is 3, as expected!
+</pre></div>
+</div>
+</details></section>
 </section>
 
 
@@ -640,6 +789,26 @@ tensor([[ 464,  412,  733,  417, 8765,  318,  287,  262, 1748,  286, 6342,   11,
             
             
               
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#.generate()"><code class="docutils literal notranslate"><span class="pre">.generate()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#.next()"><code class="docutils literal notranslate"><span class="pre">.next()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#.all()-streamlines-interventions-on-many-generated-tokens"><code class="docutils literal notranslate"><span class="pre">.all()</span></code> streamlines interventions on many generated tokens</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
             
           </div>
           <footer class="bd-footer-content">
@@ -651,8 +820,8 @@ tensor([[ 464,  412,  733,  417, 8765,  318,  287,  262, 1748,  286, 6342,   11,
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -677,7 +846,7 @@ tensor([[ 464,  412,  733,  417, 8765,  318,  287,  262, 1748,  286, 6342,   11,
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
 </p></div>
       
     </div>

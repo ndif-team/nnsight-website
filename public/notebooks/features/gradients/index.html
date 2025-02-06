@@ -6,7 +6,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Gradients &#8212; nnsight</title>
   
@@ -16,36 +16,38 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
-  
-  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=362ab14a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css?v=2aa19091" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
     <script src="../../../_static/documentation_options.js?v=187304be"></script>
-    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/features/gradients';</script>
@@ -60,8 +62,9 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../../../_static/css/custom.css?v=1738361715" rel="stylesheet" type="text/css" />
-<link href="../../../_static/css/home.css?v=1738361715" rel="stylesheet" type="text/css" />
+  <meta name="docsearch:version" content="" />
+<link href="../../../_static/css/custom.css?v=1738883371" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/home.css?v=1738883371" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -78,19 +81,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../../search/"
       method="get">
@@ -98,7 +90,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -106,8 +97,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -139,7 +130,7 @@
     
     
     <img src="../../../_static/nnsight_logo.svg" class="logo__image only-dark" alt="nnsight - Home"/>
-    <script>document.write(`<img src="../../../_static/nnsight_logo.svg" class="logo__image only-light" alt="nnsight - Home"/>`);</script>
+    <img src="../../../_static/nnsight_logo.svg" class="logo__image only-light pst-js-only" alt="nnsight - Home"/>
   
   
 </a></div>
@@ -199,15 +190,11 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
@@ -249,15 +236,11 @@
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -308,15 +291,11 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
@@ -331,7 +310,8 @@ document.write(`
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -428,15 +408,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -503,6 +479,7 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="../multiple_token/">Multiple Token Generation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../operations/">Operations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../remote_execution/">Remote Execution</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="../scan_validate/">Scan and Validate</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sessions/">Sessions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../setting/">Setting Values</a></li>
@@ -533,8 +510,6 @@ document.write(`
       
         <div class="header-article-item">
 
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -546,7 +521,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="../../../features/" class="nav-link">Features</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">Gradients</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Gradients</span></li>
   </ul>
 </nav>
 </div>
@@ -577,8 +552,9 @@ document.write(`
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nnsight</span> <span class="kn">import</span> <span class="n">LanguageModel</span>
+<span class="kn">import</span> <span class="nn">torch</span>
 
-<span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s2">&quot;openai-community/gpt2&quot;</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;cuda&quot;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s2">&quot;openai-community/gpt2&quot;</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -587,7 +563,7 @@ document.write(`
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-/share/u/caden/.conda/envs/interp/lib/python3.11/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+/opt/anaconda3/envs/nnsight/lib/python3.10/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
   from .autonotebook import tqdm as notebook_tqdm
 </pre></div></div>
 </div>
@@ -607,14 +583,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-You&#39;re using a GPT2TokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
@@ -622,7 +590,7 @@ You&#39;re using a GPT2TokenizerFast tokenizer. Please note that with a fast tok
 <div class="highlight"><pre>
 tensor([[[ 0.5216, -1.1755, -0.4617,  ..., -1.1919,  0.0204, -2.0075],
          [ 0.9841,  2.2175,  3.5851,  ...,  0.5212, -2.2286,  5.7334]]],
-       device=&#39;cuda:0&#39;, grad_fn=&lt;AddBackward0&gt;)
+       device=&#39;mps:0&#39;, grad_fn=&lt;AddBackward0&gt;)
 </pre></div></div>
 </div>
 <p>If we wanted to see the gradients for the hidden_states, we can call <code class="docutils literal notranslate"><span class="pre">.retain_grad()</span></code> on it and access the <code class="docutils literal notranslate"><span class="pre">.grad</span></code> attribute after execution.</p>
@@ -649,25 +617,20 @@ tensor([[[ 0.5216, -1.1755, -0.4617,  ..., -1.1919,  0.0204, -2.0075],
 <div class="highlight"><pre>
 tensor([[[ 0.5216, -1.1755, -0.4617,  ..., -1.1919,  0.0204, -2.0075],
          [ 0.9841,  2.2175,  3.5851,  ...,  0.5212, -2.2286,  5.7334]]],
-       device=&#39;cuda:0&#39;, grad_fn=&lt;AddBackward0&gt;)
-tensor([[[  28.7976, -282.5981,  868.7354,  ...,  120.1743,   52.2264,
-           168.6449],
-         [  79.4181, -253.6225, 1322.1293,  ...,  208.3980,  -19.5545,
-           509.9857]]], device=&#39;cuda:0&#39;)
+       device=&#39;mps:0&#39;, grad_fn=&lt;AddBackward0&gt;)
+tensor([[[  28.7976, -282.5975,  868.7336,  ...,  120.1741,   52.2263,
+           168.6446],
+         [  79.4183, -253.6228, 1322.1298,  ...,  208.3982,  -19.5544,
+           509.9858]]], device=&#39;mps:0&#39;)
 </pre></div></div>
 </div>
-<p>Even better, <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> also provides proxy access into the backward process via the <code class="docutils literal notranslate"><span class="pre">.grad</span></code> attribute on proxies. This works just like <code class="docutils literal notranslate"><span class="pre">.input</span></code> and <code class="docutils literal notranslate"><span class="pre">.output</span></code> where operations , including getting and setting, are traced and performed on the model at runtime. (assuming it’s a proxy of a Tensor as this calls .register_hook(…) on it!)</p>
-<p>The following examples demonstrate ablating (setting to zero) the gradients for a hidden state in gpt2. The first example is an in-place operation and the second swaps the gradient out for a new tensor of zeroes.</p>
+<p>Even better, <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> also provides proxy access into the backward process via the <code class="docutils literal notranslate"><span class="pre">.grad</span></code> attribute on proxies. This works just like <code class="docutils literal notranslate"><span class="pre">.input</span></code> and <code class="docutils literal notranslate"><span class="pre">.output</span></code> where operations , including getting and setting, are traced and performed on the model at runtime. (assuming it’s a proxy of a Tensor, as this calls <code class="docutils literal notranslate"><span class="pre">.register_hook(...)</span></code> on it!)</p>
+<p>The following examples demonstrate ablating (setting to zero) the gradients for a hidden state in GPT-2. The first example is an in-place operation and the second swaps the gradient out for a new tensor of zeroes.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nnsight</span> <span class="kn">import</span> <span class="n">LanguageModel</span>
-<span class="kn">import</span> <span class="nn">torch</span>
-
-<span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s1">&#39;gpt2&#39;</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span><span class="p">)</span>
-
-<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
     <span class="n">hidden_states</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
     <span class="n">hidden_states_grad_before</span> <span class="o">=</span> <span class="n">hidden_states</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
@@ -680,12 +643,31 @@ tensor([[[  28.7976, -282.5981,  868.7354,  ...,  120.1743,   52.2264,
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Before&quot;</span><span class="p">,</span> <span class="n">hidden_states_grad_before</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;After&quot;</span><span class="p">,</span> <span class="n">hidden_states_grad_after</span><span class="p">)</span>
-
-<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Before tensor([[[  28.7976, -282.5975,  868.7336,  ...,  120.1741,   52.2263,
+           168.6446],
+         [  79.4183, -253.6228, 1322.1298,  ...,  208.3982,  -19.5544,
+           509.9858]]], device=&#39;mps:0&#39;)
+After tensor([[[0., 0., 0.,  ..., 0., 0., 0.],
+         [0., 0., 0.,  ..., 0., 0., 0.]]], device=&#39;mps:0&#39;)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
     <span class="n">hidden_states</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
     <span class="n">hidden_states_grad_before</span> <span class="o">=</span> <span class="n">hidden_states</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-    <span class="n">hidden_states</span><span class="o">.</span><span class="n">grad</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">hidden_states</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">hidden_states</span><span class="o">.</span><span class="n">grad</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">hidden_states</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">hidden_states</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
     <span class="n">hidden_states_grad_after</span> <span class="o">=</span> <span class="n">hidden_states</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
     <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">logits</span>
@@ -694,34 +676,20 @@ tensor([[[  28.7976, -282.5981,  868.7354,  ...,  120.1743,   52.2264,
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Before&quot;</span><span class="p">,</span> <span class="n">hidden_states_grad_before</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;After&quot;</span><span class="p">,</span> <span class="n">hidden_states_grad_after</span><span class="p">)</span>
-<br/></pre></div>
+</pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-You&#39;re using a GPT2TokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
-</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Before tensor([[[  28.7976, -282.5981,  868.7354,  ...,  120.1743,   52.2264,
-           168.6449],
-         [  79.4181, -253.6225, 1322.1293,  ...,  208.3980,  -19.5545,
-           509.9857]]], device=&#39;cuda:0&#39;)
+Before tensor([[[  28.7976, -282.5975,  868.7336,  ...,  120.1741,   52.2263,
+           168.6446],
+         [  79.4183, -253.6228, 1322.1298,  ...,  208.3982,  -19.5544,
+           509.9858]]], device=&#39;mps:0&#39;)
 After tensor([[[0., 0., 0.,  ..., 0., 0., 0.],
-         [0., 0., 0.,  ..., 0., 0., 0.]]], device=&#39;cuda:0&#39;)
-Before tensor([[[  28.7976, -282.5981,  868.7354,  ...,  120.1743,   52.2264,
-           168.6449],
-         [  79.4181, -253.6225, 1322.1293,  ...,  208.3980,  -19.5545,
-           509.9857]]], device=&#39;cuda:0&#39;)
-After tensor([[[0., 0., 0.,  ..., 0., 0., 0.],
-         [0., 0., 0.,  ..., 0., 0., 0.]]], device=&#39;cuda:0&#39;)
+         [0., 0., 0.,  ..., 0., 0., 0.]]], device=&#39;mps:0&#39;)
 </pre></div></div>
 </div>
 </section>
@@ -748,8 +716,8 @@ After tensor([[[0., 0., 0.,  ..., 0., 0., 0.],
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -774,7 +742,7 @@ After tensor([[[0., 0., 0.,  ..., 0., 0., 0.],
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
 </p></div>
       
     </div>

@@ -6,7 +6,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>nnsight.models &#8212; nnsight</title>
   
@@ -16,35 +16,37 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
-  
-  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=362ab14a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
     <script src="../../_static/documentation_options.js?v=187304be"></script>
-    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'documentation/models';</script>
     <script src="../../_static/js/custom.js?v=1e4be224"></script>
     <script src="../../_static/js/code.js?v=34343d0c"></script>
@@ -57,8 +59,9 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../../_static/css/custom.css?v=1738361715" rel="stylesheet" type="text/css" />
-<link href="../../_static/css/home.css?v=1738361715" rel="stylesheet" type="text/css" />
+  <meta name="docsearch:version" content="" />
+<link href="../../_static/css/custom.css?v=1738883371" rel="stylesheet" type="text/css" />
+<link href="../../_static/css/home.css?v=1738883371" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -75,19 +78,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../search/"
       method="get">
@@ -95,7 +87,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -103,8 +94,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -136,7 +127,7 @@
     
     
     <img src="../../_static/nnsight_logo.svg" class="logo__image only-dark" alt="nnsight - Home"/>
-    <script>document.write(`<img src="../../_static/nnsight_logo.svg" class="logo__image only-light" alt="nnsight - Home"/>`);</script>
+    <img src="../../_static/nnsight_logo.svg" class="logo__image only-light pst-js-only" alt="nnsight - Home"/>
   
   
 </a></div>
@@ -196,15 +187,11 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
@@ -246,15 +233,11 @@
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -305,22 +288,14 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
-  
-    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
-      <span class="fa-solid fa-outdent"></span>
-    </button>
   
 </div>
 
@@ -332,7 +307,8 @@ document.write(`
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -429,15 +405,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -526,8 +498,6 @@ document.write(`
       
         <div class="header-article-item">
 
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -539,7 +509,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="../" class="nav-link">Documentation</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">nnsight.models</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">nnsight.models</span></li>
   </ul>
 </nav>
 </div>
@@ -556,537 +526,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="module-nnsight.models">
-<span id="nnsight-models"></span><h1>nnsight.models<a class="headerlink" href="#module-nnsight.models" title="Link to this heading">#</a></h1>
-<p>This module contains the main NNsight model classes which enable the tracing and interleaving functionality of nnsight.</p>
-<p>Models allow users to load and wrap torch modules. Here we load gpt2 from HuggingFace using its repo id:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nnsight</span> <span class="kn">import</span> <span class="n">LanguageModel</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s1">&#39;gpt2&#39;</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="s1">&#39;cuda:0&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>In this case, declaring a LanguageModel entails the underlying model is a <code class="docutils literal notranslate"><span class="pre">transformers.AutoModelForCausalLM</span></code>, and unused arguments by LanguageModel are passed downstream to AutoModelForCausalLM. <code class="docutils literal notranslate"><span class="pre">device_map='cuda:0'</span></code> leverages the accelerate package to use the first GPU when loading the local model.</p>
-<p>The wrapping of the underlying model encompasses both the display of its module structure when the model is printed and the ability to directly access the attributes of the underlying meta_model through the wrapped model itself.</p>
-<p>Printing out the wrapped module returns its structure:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>GPT2LMHeadModel(
-  (transformer): GPT2Model(
-    (wte): Embedding(50257, 768)
-    (wpe): Embedding(1024, 768)
-    (drop): Dropout(p=0.1, inplace=False)
-    (h): ModuleList(
-      (0-11): 12 x GPT2Block(
-        (ln_1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
-        (attn): GPT2AttentionAltered(
-          (c_attn): Conv1D()
-          (c_proj): Conv1D()
-          (attn_dropout): Dropout(p=0.1, inplace=False)
-          (resid_dropout): Dropout(p=0.1, inplace=False)
-          (query): WrapperModule()
-          (key): WrapperModule()
-          (value): WrapperModule()
-        )
-        (ln_2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
-        (mlp): GPT2MLP(
-          (c_fc): Conv1D()
-          (c_proj): Conv1D()
-          (act): NewGELUActivation()
-          (dropout): Dropout(p=0.1, inplace=False)
-        )
-      )
-    )
-    (ln_f): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
-  )
-  (lm_head): Linear(in_features=768, out_features=50257, bias=False)
-)
-</pre></div>
-</div>
-<p>The primary method of interacting and running the model is <code class="docutils literal notranslate"><span class="pre">.trace(...)</span></code>. This returns a context manager object which, when entered, track operations performed on the inputs and outputs of modules.</p>
-<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">trace</span></code> context is has the most explicit control of all levels of nnsight tracing and interleaving, creating a parent context where sub, input specific, contexts are spawned from.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;The Eiffel Tower is in the city of&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">runner</span><span class="p">:</span>
-    <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">logits</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>See <a class="reference internal" href="../contexts/#module-nnsight.contexts" title="nnsight.contexts"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nnsight.contexts</span></code></a> for more.</p>
-<dl class="py class" id="module-nnsight.models.NNsightModel">
-<dt class="sig sig-object py" id="nnsight.models.NNsightModel.MetaDispatcher">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.models.NNsightModel.</span></span><span class="sig-name descname"><span class="pre">MetaDispatcher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_dispatch_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/models/NNsightModel/#MetaDispatcher"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.models.NNsightModel.MetaDispatcher" title="Link to this definition">#</a></dt>
-<dd><p>This exists because <a href="#id1"><span class="problematic" id="id2">`</span></a>with torch.device(‘meta’) is evil.</p>
-<p>Ty Caden</p>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="nnsight.models.NNsightModel.NNsight">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.models.NNsightModel.</span></span><span class="sig-name descname"><span class="pre">NNsight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/models/NNsightModel/#NNsight"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.models.NNsightModel.NNsight" title="Link to this definition">#</a></dt>
-<dd><p>Main class to be implemented as a wrapper for PyTorch models wishing to gain this package’s functionality. Can be used “as is” for basic models.</p>
-<p>Class Attributes:</p>
-<blockquote>
-<div><p>proxy_class (Type[InterventionProxy]): InterventionProxy like type to use as a Proxy for this Model’s inputs and outputs. Can have Model specific functionality added to a new sub-class.</p>
-</div></blockquote>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.models.NNsightModel.NNsight._model_key">
-<span class="sig-name descname"><span class="pre">_model_key</span></span><a class="headerlink" href="#nnsight.models.NNsightModel.NNsight._model_key" title="Link to this definition">#</a></dt>
-<dd><p>String representing what kind of model this is. Usually hugging face repo id of model to load, path to checkpoint, or class name of custom model.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.models.NNsightModel.NNsight._args">
-<span class="sig-name descname"><span class="pre">_args</span></span><a class="headerlink" href="#nnsight.models.NNsightModel.NNsight._args" title="Link to this definition">#</a></dt>
-<dd><p>Positional arguments used to initialize model.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>List[Any]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.models.NNsightModel.NNsight._kwargs">
-<span class="sig-name descname"><span class="pre">_kwargs</span></span><a class="headerlink" href="#nnsight.models.NNsightModel.NNsight._kwargs" title="Link to this definition">#</a></dt>
-<dd><p>Keyword arguments used to initialize model.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Dict[str,Any]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.models.NNsightModel.NNsight._dispatched">
-<span class="sig-name descname"><span class="pre">_dispatched</span></span><a class="headerlink" href="#nnsight.models.NNsightModel.NNsight._dispatched" title="Link to this definition">#</a></dt>
-<dd><p>If the _model has been loaded yet with real parameters yet.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.models.NNsightModel.NNsight._custom_model">
-<span class="sig-name descname"><span class="pre">_custom_model</span></span><a class="headerlink" href="#nnsight.models.NNsightModel.NNsight._custom_model" title="Link to this definition">#</a></dt>
-<dd><p>If the value passed to repoid_path_model was a custom model.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.models.NNsightModel.NNsight._model">
-<span class="sig-name descname"><span class="pre">_model</span></span><a class="headerlink" href="#nnsight.models.NNsightModel.NNsight._model" title="Link to this definition">#</a></dt>
-<dd><p>Underlying torch module.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>torch.nn.Module</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.models.NNsightModel.NNsight._envoy">
-<span class="sig-name descname"><span class="pre">_envoy</span></span><a class="headerlink" href="#nnsight.models.NNsightModel.NNsight._envoy" title="Link to this definition">#</a></dt>
-<dd><p>Envoy for underlying model.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="../envoy/#nnsight.envoy.Envoy" title="nnsight.envoy.Envoy">Envoy</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.models.NNsightModel.NNsight._session">
-<span class="sig-name descname"><span class="pre">_session</span></span><a class="headerlink" href="#nnsight.models.NNsightModel.NNsight._session" title="Link to this definition">#</a></dt>
-<dd><p>Session object if in a Session.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="../contexts/#nnsight.contexts.session.Session.Session" title="nnsight.contexts.session.Session.Session">Session</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="nnsight.models.NNsightModel.NNsight.clear_edits">
-<span class="sig-name descname"><span class="pre">clear_edits</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/models/NNsightModel/#NNsight.clear_edits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.models.NNsightModel.NNsight.clear_edits" title="Link to this definition">#</a></dt>
-<dd><p>Resets the default graph of this model.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="nnsight.models.NNsightModel.NNsight.dispatch_model">
-<span class="sig-name descname"><span class="pre">dispatch_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/models/NNsightModel/#NNsight.dispatch_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.models.NNsightModel.NNsight.dispatch_model" title="Link to this definition">#</a></dt>
-<dd><p>Dispatch ._model to have real parameters  using ._load(…).</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="nnsight.models.NNsightModel.NNsight.edit">
-<span class="sig-name descname"><span class="pre">edit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inplace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../contexts/#nnsight.contexts.Tracer.Tracer" title="nnsight.contexts.Tracer.Tracer"><span class="pre">Tracer</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Any</span></span></span><a class="reference internal" href="../../_modules/nnsight/models/NNsightModel/#NNsight.edit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.models.NNsightModel.NNsight.edit" title="Link to this definition">#</a></dt>
-<dd><p>Create a trace context with an edit backend and apply a list of edits.</p>
-<p>The edit backend sets a default graph on an NNsight model copy which is
-run on future trace calls.</p>
-<p>This operation is not inplace!</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>inputs</strong> (<em>tuple</em><em>[</em><em>Any</em><em>]</em>)</p></li>
-<li><p><strong>inplace</strong> (<em>bool</em>) – If True, makes edits in-place.</p></li>
-<li><p><strong>return_context</strong> (<em>bool</em>) – If True, returns the editor Tracer context.</p></li>
-<li><p><strong>kwargs</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – Keyword arguments passed to Tracer initialization, and then downstream to the model’s ._execute(…) method.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Either the Tracer used for tracing, or the raw output if trace is False.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Union[<a class="reference internal" href="../contexts/#nnsight.contexts.Tracer.Tracer" title="nnsight.contexts.Tracer.Tracer">Tracer</a>, Any]</p>
-</dd>
-</dl>
-<p class="rubric">Example</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<p>from nnsight import LanguageModel</p>
-<p>gpt2 = LanguageModel(“openai-community/gpt2)</p>
-<dl class="simple">
-<dt>class ComplexModule(torch.nn.Module):</dt><dd><dl class="simple">
-<dt>def __init__(self):</dt><dd><p>super().__init__()
-self.one = WrapperModule()</p>
-</dd>
-<dt>def forward(self, x):</dt><dd><p>return self.one(x)</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p>l0 = gpt2.transformer.h[0]
-l0.attachment = ComplexModule()</p>
-<dl class="simple">
-<dt>with gpt2.edit(“test”) as gpt2_edited:</dt><dd><p>acts = l0.output[0]
-l0.output[0][:] = l0.attachment(acts, hook=True)</p>
-</dd>
-<dt>with gpt2.trace(MSG_prompt):</dt><dd><p>original = l0.output[0].clone().save()
-l0.output[0][:] <a href="#id3"><span class="problematic" id="id4">*</span></a>= 0.0
-original_output = gpt2.output.logits.save()</p>
-</dd>
-<dt>with gpt2_edited.trace(MSG_prompt):</dt><dd><p>one = l0.attachment.one.output.clone().save()
-l0.attachment.output <a href="#id5"><span class="problematic" id="id6">*</span></a>= 0.0
-edited_output = gpt2.output.logits.save()</p>
-</dd>
-</dl>
-<p>print(original_output)
-print(edited_output)</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="nnsight.models.NNsightModel.NNsight.interleave">
-<span class="sig-name descname"><span class="pre">interleave</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intervention_graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../tracing/#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><span class="pre">Graph</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/nnsight/models/NNsightModel/#NNsight.interleave"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.models.NNsightModel.NNsight.interleave" title="Link to this definition">#</a></dt>
-<dd><p>Runs some function with some inputs and some graph with the appropriate contexts for this model.</p>
-<p>Loads and dispatched ._model if not already done so.</p>
-<p>Re-compiles Graph with ._model to prepare for a new execution of graph.</p>
-<p>Runs ._prepare_inputs(…) one last time to get total_batch_size.</p>
-<p>Handles adding and removing hooks on modules via HookHandler and tracking number of times a module has been called via InterventionHandler.</p>
-<p>After execution, garbage collects and clears cuda memory.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>fn</strong> (<em>Callable</em>) – Function or method to run.</p></li>
-<li><p><strong>intervention_graph</strong> (<a class="reference internal" href="../tracing/#nnsight.tracing.Graph.Graph" title="nnsight.tracing.Graph.Graph"><em>Graph</em></a>) – Intervention graph to interleave with model’s computation graph.</p></li>
-<li><p><strong>inputs</strong> (<em>List</em><em>[</em><em>List</em><em>[</em><em>Any</em><em>]</em><em>]</em>) – List of multiple groups of inputs to give to function for each invoker.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.models.NNsightModel.NNsight.proxy_class">
-<span class="sig-name descname"><span class="pre">proxy_class</span></span><a class="headerlink" href="#nnsight.models.NNsightModel.NNsight.proxy_class" title="Link to this definition">#</a></dt>
-<dd><p>alias of <a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><code class="xref py py-class docutils literal notranslate"><span class="pre">InterventionProxy</span></code></a></p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="nnsight.models.NNsightModel.NNsight.scan">
-<span class="sig-name descname"><span class="pre">scan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">inputs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../contexts/#nnsight.contexts.Tracer.Tracer" title="nnsight.contexts.Tracer.Tracer"><span class="pre">Tracer</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/models/NNsightModel/#NNsight.scan"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.models.NNsightModel.NNsight.scan" title="Link to this definition">#</a></dt>
-<dd><p>Context just to populate fake tenor proxy values using scan and validate.
-Useful when looking for just the shapes of future tensors</p>
-<p class="rubric">Examples</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">):</span>
-
-    <span class="n">dim</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">dim</span><span class="p">)</span>
-</pre></div>
-</div>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Tracer context with Noop backend.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="../contexts/#nnsight.contexts.Tracer.Tracer" title="nnsight.contexts.Tracer.Tracer">Tracer</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="nnsight.models.NNsightModel.NNsight.session">
-<span class="sig-name descname"><span class="pre">session</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Backend</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remote</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../contexts/#nnsight.contexts.session.Session.Session" title="nnsight.contexts.session.Session.Session"><span class="pre">Session</span></a></span></span><a class="reference internal" href="../../_modules/nnsight/models/NNsightModel/#NNsight.session"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.models.NNsightModel.NNsight.session" title="Link to this definition">#</a></dt>
-<dd><p>Create a session context using a Session.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>backend</strong> (<em>Backend</em>) – Backend for this Session object.</p></li>
-<li><p><strong>remote</strong> (<em>bool</em>) – Use RemoteBackend with default url.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Session.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="../contexts/#nnsight.contexts.session.Session.Session" title="nnsight.contexts.session.Session.Session">Session</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="nnsight.models.NNsightModel.NNsight.to">
-<span class="sig-name descname"><span class="pre">to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Self</span></span></span><a class="reference internal" href="../../_modules/nnsight/models/NNsightModel/#NNsight.to"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.models.NNsightModel.NNsight.to" title="Link to this definition">#</a></dt>
-<dd><p>Override torch.nn.Module.to so this returns the NNSight model, not the underlying module when doing: model = model.to(…)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Envoy.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="../envoy/#nnsight.envoy.Envoy" title="nnsight.envoy.Envoy">Envoy</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="nnsight.models.NNsightModel.NNsight.trace">
-<span class="sig-name descname"><span class="pre">trace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invoker_args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Backend</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remote</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scan</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../contexts/#nnsight.contexts.Tracer.Tracer" title="nnsight.contexts.Tracer.Tracer"><span class="pre">Tracer</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Any</span></span></span><a class="reference internal" href="../../_modules/nnsight/models/NNsightModel/#NNsight.trace"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.models.NNsightModel.NNsight.trace" title="Link to this definition">#</a></dt>
-<dd><p>Entrypoint into the tracing and interleaving functionality nnsight provides.</p>
-<p>In short, allows access to the future inputs and outputs of modules in order to trace what operations you would like to perform on them.
-This can be as simple as accessing and saving activations for inspection, or as complicated as transforming the activations and gradients in a forward pass over multiple inputs.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>inputs</strong> (<em>tuple</em><em>[</em><em>Any</em><em>]</em>)</p></li>
-<li><p><strong>trace</strong> (<em>bool</em><em>, </em><em>optional</em>) – If to open a tracing context. Otherwise immediately run the model and return the raw output. Defaults to True.</p></li>
-<li><p><strong>invoker_args</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>, </em><em>optional</em>) – Keyword arguments to pass to Invoker initialization, and then downstream to the model’s .prepare_inputs(…) method. Used when giving input directly to <cite>.trace(…)</cite>. Defaults to None.</p></li>
-<li><p><strong>kwargs</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – Keyword arguments passed to Tracer initialization, and then downstream to the model’s ._execute(…) method.</p></li>
-<li><p><strong>backend</strong> (<em>Union</em><em>[</em><em>Backend</em><em>, </em><em>str</em><em>]</em>) – Backend for this Tracer object.</p></li>
-<li><p><strong>remote</strong> (<em>bool</em>) – Use RemoteBackend with default url.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – If trace is False and no inputs were provided (nothing to run with)</p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Either the Tracer used for tracing, or the raw output if trace is False.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>Union[<a class="reference internal" href="../contexts/#nnsight.contexts.Tracer.Tracer" title="nnsight.contexts.Tracer.Tracer">Tracer</a>, Any]</p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<p>There are a few ways you can use <code class="docutils literal notranslate"><span class="pre">.trace(...)</span></code> depending in your use case.</p>
-<p>Lets use this extremely basic model for our examples:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
-
-<span class="n">input_size</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">hidden_dims</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">output_size</span> <span class="o">=</span> <span class="mi">2</span>
-
-<span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">OrderedDict</span><span class="p">([</span>
-    <span class="p">(</span><span class="s1">&#39;layer1&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_dims</span><span class="p">)),</span>
-    <span class="p">(</span><span class="s1">&#39;sigma1&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">()),</span>
-    <span class="p">(</span><span class="s1">&#39;layer2&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_dims</span><span class="p">,</span> <span class="n">output_size</span><span class="p">)),</span>
-    <span class="p">(</span><span class="s1">&#39;sigma2&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">()),</span>
-<span class="p">]))</span>
-
-<span class="n">example_input</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">input_size</span><span class="p">))</span>
-</pre></div>
-</div>
-<p>The first example has us running the model with a single example input, and saving the input and output of ‘layer2’ as well as the final output using the tracing context.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nnsight</span> <span class="kn">import</span> <span class="n">NNsight</span>
-
-<span class="k">with</span> <span class="n">NNsight</span><span class="p">(</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">example_input</span><span class="p">)</span> <span class="k">as</span> <span class="n">model</span><span class="p">:</span>
-
-    <span class="n">l2_input</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer2</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-    <span class="n">l2_output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer2</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-
-    <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">l2_input</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">l2_output</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>The second example allows us to divide up multiple inputs into one batch, and scope an inner invoker context to each one.
-We indicate this simply by not passing and positional inputs into <cite>.trace(…)</cite>. The Tracer object then expects you to enter each input via <cite>Tracer.invoke(…)</cite></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">example_input2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">input_size</span><span class="p">))</span>
-
-<span class="k">with</span> <span class="n">NNsight</span><span class="p">(</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">trace</span><span class="p">()</span> <span class="k">as</span> <span class="n">model</span><span class="p">:</span>
-
-    <span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">example_input</span><span class="p">):</span>
-
-        <span class="n">output1</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-
-    <span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">example_input2</span><span class="p">):</span>
-
-        <span class="n">output2</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">output1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">output2</span><span class="p">)</span>
-</pre></div>
-</div>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class" id="module-nnsight.models.LanguageModel">
-<dt class="sig sig-object py" id="nnsight.models.LanguageModel.LanguageModel">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.models.LanguageModel.</span></span><span class="sig-name descname"><span class="pre">LanguageModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/models/LanguageModel/#LanguageModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.models.LanguageModel.LanguageModel" title="Link to this definition">#</a></dt>
-<dd><p>LanguageModels are NNsight wrappers around transformers language models.</p>
-<dl class="simple">
-<dt>Inputs can be in the form of:</dt><dd><p>Prompt: (str)
-Prompts: (List[str])
-Batched prompts: (List[List[str]])
-Tokenized prompt: (Union[List[int], torch.Tensor])
-Tokenized prompts: (Union[List[List[int]], torch.Tensor])
-Direct input: (Dict[str,Any])</p>
-</dd>
-</dl>
-<p>If using a custom model, you also need to provide the tokenizer like <code class="docutils literal notranslate"><span class="pre">LanguageModel(custom_model,</span> <span class="pre">tokenizer=tokenizer)</span></code></p>
-<p>Calls to generate pass arguments downstream to <code class="xref py py-func docutils literal notranslate"><span class="pre">GenerationMixin.generate()</span></code></p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.models.LanguageModel.LanguageModel.config">
-<span class="sig-name descname"><span class="pre">config</span></span><a class="headerlink" href="#nnsight.models.LanguageModel.LanguageModel.config" title="Link to this definition">#</a></dt>
-<dd><p>Huggingface config file loaded from repository or checkpoint.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>PretrainedConfig</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.models.LanguageModel.LanguageModel.tokenizer">
-<span class="sig-name descname"><span class="pre">tokenizer</span></span><a class="headerlink" href="#nnsight.models.LanguageModel.LanguageModel.tokenizer" title="Link to this definition">#</a></dt>
-<dd><p>Tokenizer for LMs.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>PreTrainedTokenizer</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.models.LanguageModel.LanguageModel.automodel">
-<span class="sig-name descname"><span class="pre">automodel</span></span><a class="headerlink" href="#nnsight.models.LanguageModel.LanguageModel.automodel" title="Link to this definition">#</a></dt>
-<dd><p>AutoModel type from transformer auto models.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Type</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.models.LanguageModel.LanguageModel.model">
-<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#nnsight.models.LanguageModel.LanguageModel.model" title="Link to this definition">#</a></dt>
-<dd><p>Meta version of underlying auto model.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>PreTrainedModel</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.models.LanguageModel.LanguageModel.proxy_class">
-<span class="sig-name descname"><span class="pre">proxy_class</span></span><a class="headerlink" href="#nnsight.models.LanguageModel.LanguageModel.proxy_class" title="Link to this definition">#</a></dt>
-<dd><p>alias of <a class="reference internal" href="#nnsight.models.LanguageModel.LanguageModelProxy" title="nnsight.models.LanguageModel.LanguageModelProxy"><code class="xref py py-class docutils literal notranslate"><span class="pre">LanguageModelProxy</span></code></a></p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="nnsight.models.LanguageModel.LanguageModelProxy">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.models.LanguageModel.</span></span><span class="sig-name descname"><span class="pre">LanguageModelProxy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../tracing/#nnsight.tracing.Node.Node" title="nnsight.tracing.Node.Node"><span class="pre">Node</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/models/LanguageModel/#LanguageModelProxy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.models.LanguageModel.LanguageModelProxy" title="Link to this definition">#</a></dt>
-<dd><p>Indexing by token of hidden states can easily done using <code class="docutils literal notranslate"><span class="pre">.token[&lt;idx&gt;]</span></code> or <code class="docutils literal notranslate"><span class="pre">.t[&lt;idx&gt;]</span></code></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">runner</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">invoker</span><span class="p">:</span>
-    <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">logits</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>This would save only the first token of the output for this module.
-This should be used when using multiple invokes as the batching and padding of multiple inputs could mean the indices for tokens shifts around and this take care of that.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>InterventionProxy</strong> (<em>_type_</em>) – _description_</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>_description_</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>_type_</p>
-</dd>
-</dl>
-<dl class="py property">
-<dt class="sig sig-object py" id="nnsight.models.LanguageModel.LanguageModelProxy.t">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">t</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nnsight.models.LanguageModel.TokenIndexer" title="nnsight.models.LanguageModel.TokenIndexer"><span class="pre">TokenIndexer</span></a></em><a class="headerlink" href="#nnsight.models.LanguageModel.LanguageModelProxy.t" title="Link to this definition">#</a></dt>
-<dd><p>Property as alias for InterventionProxy.token</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="nnsight.models.LanguageModel.LanguageModelProxy.token">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">token</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nnsight.models.LanguageModel.TokenIndexer" title="nnsight.models.LanguageModel.TokenIndexer"><span class="pre">TokenIndexer</span></a></em><a class="headerlink" href="#nnsight.models.LanguageModel.LanguageModelProxy.token" title="Link to this definition">#</a></dt>
-<dd><p>Property used to do token based indexing on a proxy.
-Directly indexes the second dimension of tensors.
-Makes positive indices negative as tokens are padded on the left.</p>
-<p class="rubric">Example</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">mlp</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">token</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>Is equivalent to:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">mlp</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">token</span><span class="p">[:,</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>For a proxy tensor with 3 tokens.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Object to do token based indexing.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="#nnsight.models.LanguageModel.TokenIndexer" title="nnsight.models.LanguageModel.TokenIndexer">TokenIndexer</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="nnsight.models.LanguageModel.TokenIndexer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.models.LanguageModel.</span></span><span class="sig-name descname"><span class="pre">TokenIndexer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proxy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><span class="pre">InterventionProxy</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/models/LanguageModel/#TokenIndexer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.models.LanguageModel.TokenIndexer" title="Link to this definition">#</a></dt>
-<dd><p>Helper class to directly access token indices of hidden states.
-Directly indexes the second dimension of tensors.
-Makes positive indices negative as tokens are padded on the left.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>proxy</strong> (<a class="reference internal" href="../intervention/#nnsight.intervention.InterventionProxy" title="nnsight.intervention.InterventionProxy"><em>InterventionProxy</em></a>) – Proxy to aid in token indexing.</p>
-</dd>
-</dl>
-</dd></dl>
-
+  <section id="nnsight-models">
+<h1>nnsight.models<a class="headerlink" href="#nnsight-models" title="Link to this heading">#</a></h1>
 </section>
 
 
@@ -1100,57 +541,6 @@ Makes positive indices negative as tokens are padded on the left.</p>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-<div
-    id="pst-page-navigation-heading-2"
-    class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.NNsightModel.MetaDispatcher"><code class="docutils literal notranslate"><span class="pre">MetaDispatcher</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.NNsightModel.NNsight"><code class="docutils literal notranslate"><span class="pre">NNsight</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.NNsightModel.NNsight._model_key"><code class="docutils literal notranslate"><span class="pre">NNsight._model_key</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.NNsightModel.NNsight._args"><code class="docutils literal notranslate"><span class="pre">NNsight._args</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.NNsightModel.NNsight._kwargs"><code class="docutils literal notranslate"><span class="pre">NNsight._kwargs</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.NNsightModel.NNsight._dispatched"><code class="docutils literal notranslate"><span class="pre">NNsight._dispatched</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.NNsightModel.NNsight._custom_model"><code class="docutils literal notranslate"><span class="pre">NNsight._custom_model</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.NNsightModel.NNsight._model"><code class="docutils literal notranslate"><span class="pre">NNsight._model</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.NNsightModel.NNsight._envoy"><code class="docutils literal notranslate"><span class="pre">NNsight._envoy</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.NNsightModel.NNsight._session"><code class="docutils literal notranslate"><span class="pre">NNsight._session</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.NNsightModel.NNsight.clear_edits"><code class="docutils literal notranslate"><span class="pre">NNsight.clear_edits()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.NNsightModel.NNsight.dispatch_model"><code class="docutils literal notranslate"><span class="pre">NNsight.dispatch_model()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.NNsightModel.NNsight.edit"><code class="docutils literal notranslate"><span class="pre">NNsight.edit()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.NNsightModel.NNsight.interleave"><code class="docutils literal notranslate"><span class="pre">NNsight.interleave()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.NNsightModel.NNsight.proxy_class"><code class="docutils literal notranslate"><span class="pre">NNsight.proxy_class</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.NNsightModel.NNsight.scan"><code class="docutils literal notranslate"><span class="pre">NNsight.scan()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.NNsightModel.NNsight.session"><code class="docutils literal notranslate"><span class="pre">NNsight.session()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.NNsightModel.NNsight.to"><code class="docutils literal notranslate"><span class="pre">NNsight.to()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.NNsightModel.NNsight.trace"><code class="docutils literal notranslate"><span class="pre">NNsight.trace()</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.LanguageModel.LanguageModel"><code class="docutils literal notranslate"><span class="pre">LanguageModel</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.LanguageModel.LanguageModel.config"><code class="docutils literal notranslate"><span class="pre">LanguageModel.config</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.LanguageModel.LanguageModel.tokenizer"><code class="docutils literal notranslate"><span class="pre">LanguageModel.tokenizer</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.LanguageModel.LanguageModel.automodel"><code class="docutils literal notranslate"><span class="pre">LanguageModel.automodel</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.LanguageModel.LanguageModel.model"><code class="docutils literal notranslate"><span class="pre">LanguageModel.model</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.LanguageModel.LanguageModel.proxy_class"><code class="docutils literal notranslate"><span class="pre">LanguageModel.proxy_class</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.LanguageModel.LanguageModelProxy"><code class="docutils literal notranslate"><span class="pre">LanguageModelProxy</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.LanguageModel.LanguageModelProxy.t"><code class="docutils literal notranslate"><span class="pre">LanguageModelProxy.t</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.LanguageModel.LanguageModelProxy.token"><code class="docutils literal notranslate"><span class="pre">LanguageModelProxy.token</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.models.LanguageModel.TokenIndexer"><code class="docutils literal notranslate"><span class="pre">TokenIndexer</span></code></a></li>
-</ul>
-  </nav></div>
-
-</div></div>
-              
             
           </div>
           <footer class="bd-footer-content">
@@ -1162,8 +552,8 @@ Makes positive indices negative as tokens are padded on the left.</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1188,7 +578,7 @@ Makes positive indices negative as tokens are padded on the left.</p>
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
 </p></div>
       
     </div>

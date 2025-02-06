@@ -6,7 +6,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Walkthrough &#8212; nnsight</title>
   
@@ -16,36 +16,38 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
-  
-  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=362ab14a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css?v=2aa19091" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
     <script src="../../../_static/documentation_options.js?v=187304be"></script>
-    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/tutorials/walkthrough';</script>
@@ -60,8 +62,9 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../../../_static/css/custom.css?v=1738361715" rel="stylesheet" type="text/css" />
-<link href="../../../_static/css/home.css?v=1738361715" rel="stylesheet" type="text/css" />
+  <meta name="docsearch:version" content="" />
+<link href="../../../_static/css/custom.css?v=1738883371" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/home.css?v=1738883371" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -78,19 +81,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../../search/"
       method="get">
@@ -98,7 +90,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -106,8 +97,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -139,7 +130,7 @@
     
     
     <img src="../../../_static/nnsight_logo.svg" class="logo__image only-dark" alt="nnsight - Home"/>
-    <script>document.write(`<img src="../../../_static/nnsight_logo.svg" class="logo__image only-light" alt="nnsight - Home"/>`);</script>
+    <img src="../../../_static/nnsight_logo.svg" class="logo__image only-light pst-js-only" alt="nnsight - Home"/>
   
   
 </a></div>
@@ -199,15 +190,11 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
@@ -249,15 +236,11 @@
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -308,15 +291,11 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
@@ -335,7 +314,8 @@ document.write(`
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -432,15 +412,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -505,6 +481,7 @@ document.write(`
 
 
 <li class="toctree-l1"><a class="reference internal" href="../attribution_patching/">Attribution Patching</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="../boundless_DAS/">Boundless DAS</a></li>
 
 
@@ -515,6 +492,10 @@ document.write(`
 
 <li class="toctree-l1"><a class="reference internal" href="../logit_lens/">Logit Lens</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Walkthrough</a></li>
+
+
+
+
 </ul>
 </div>
 </nav></div>
@@ -542,8 +523,6 @@ document.write(`
       
         <div class="header-article-item">
 
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -555,7 +534,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="../../../tutorials/" class="nav-link">Tutorials</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">Walkthrough</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Walkthrough</span></li>
   </ul>
 </nav>
 </div>
@@ -581,17 +560,18 @@ document.write(`
 <p>The <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> library is different: it provides full access to all the neural network internals. When used together with a remote service like the <a class="reference external" href="https://thevisible.net/docs/NDIF-proposal.pdf">National Deep Inference Fabric</a> (NDIF), it makes possible to run complex experiments on huge open models easily, with fully transparent access.</p>
 <p>Our team wants to enable entire labs and independent researchers alike, as we believe a large, passionate, and collaborative community will produce the next big insights on a profoundly important field.</p>
 </section>
+</section>
 <section id="1-First,-let's-start-small">
-<h2>1 First, let’s start small<a class="headerlink" href="#1-First,-let's-start-small" title="Link to this heading">#</a></h2>
+<h1>1 First, let’s start small<a class="headerlink" href="#1-First,-let's-start-small" title="Link to this heading">#</a></h1>
 <section id="Setup">
-<h3>Setup<a class="headerlink" href="#Setup" title="Link to this heading">#</a></h3>
+<h2>Setup<a class="headerlink" href="#Setup" title="Link to this heading">#</a></h2>
 <p>Install nnsight:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>pip install nnsight
 </pre></div>
 </div>
 </section>
 <section id="Tracing-Context">
-<h3>Tracing Context<a class="headerlink" href="#Tracing-Context" title="Link to this heading">#</a></h3>
+<h2>Tracing Context<a class="headerlink" href="#Tracing-Context" title="Link to this heading">#</a></h2>
 <p>To demonstrate the core functionality and syntax of nnsight, we’ll define and use a tiny two layer neural network.</p>
 <p>Our little model here is composed of two submodules – linear layers ‘layer1’ and ‘layer2’. We specify the sizes of each of these modules and create some complementary example input.</p>
 <div class="nbinput nblast docutils container">
@@ -683,7 +663,7 @@ Sequential(
 <p>But where’s the output? To get that, we’ll have to learn how to request it from within the tracing context.</p>
 </section>
 <section id="Getting">
-<h3>Getting<a class="headerlink" href="#Getting" title="Link to this heading">#</a></h3>
+<h2>Getting<a class="headerlink" href="#Getting" title="Link to this heading">#</a></h2>
 <p>Earlier, when we wrapped our little neural net with the <code class="docutils literal notranslate"><span class="pre">NNsight</span></code> class. This added a couple properties to each module in the model (including the root model itself). The two most important ones are <code class="docutils literal notranslate"><span class="pre">.input</span></code> and <code class="docutils literal notranslate"><span class="pre">.output</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">input</span>
 <span class="n">model</span><span class="o">.</span><span class="n">output</span>
@@ -873,7 +853,7 @@ Layer 1 - out:  tensor([[ 0.2732,  0.2355, -0.6433,  0.0475,  0.0904,  0.4407, -
 </div>
 </section>
 <section id="Functions,-Methods,-and-Operations">
-<h3>Functions, Methods, and Operations<a class="headerlink" href="#Functions,-Methods,-and-Operations" title="Link to this heading">#</a></h3>
+<h2>Functions, Methods, and Operations<a class="headerlink" href="#Functions,-Methods,-and-Operations" title="Link to this heading">#</a></h2>
 <p>Now that we can access activations, we also want to do some post-processing on it. Let’s find out which dimension of layer1’s output has the highest value.</p>
 <p>We could do this by calling <code class="docutils literal notranslate"><span class="pre">torch.argmax(...)</span></code> after the tracing context or we can just leverage the fact that <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> handles Pytorch functions and methods within the tracing context, by creating a Proxy request for it:</p>
 <div class="nbinput docutils container">
@@ -927,7 +907,7 @@ tensor(0.9377)
 <p>The code block above is saying to <code class="docutils literal notranslate"><span class="pre">nnsight</span></code>, “Run the model with the given <code class="docutils literal notranslate"><span class="pre">input</span></code>. When the output of <code class="docutils literal notranslate"><span class="pre">tiny_model.layer1</span></code> is computed, take its sum. Then do the same for <code class="docutils literal notranslate"><span class="pre">tiny_model.layer2</span></code>. Now that both of those are computed, add them and make sure not to delete this value as I wish to use it outside of the tracing context.”</p>
 </section>
 <section id="Custom-Functions">
-<h3>Custom Functions<a class="headerlink" href="#Custom-Functions" title="Link to this heading">#</a></h3>
+<h2>Custom Functions<a class="headerlink" href="#Custom-Functions" title="Link to this heading">#</a></h2>
 <p>Everything within the tracing context operates on the intervention graph. Therefore, for <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> to trace a function it must also be a part of the intervention graph.</p>
 <p>Out-of-the-box <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> supports PyTorch functions and methods, all operators, as well the <code class="docutils literal notranslate"><span class="pre">einops</span></code> library. We don’t need to do anything special to use them. But what do we do if we want to use custom functions? How do we add them to the intervention graph?</p>
 <p>Enter <code class="docutils literal notranslate"><span class="pre">nnsight.apply()</span></code>. It allows us to add new functions to the intervention graph. Let’s see how it works:</p>
@@ -968,7 +948,7 @@ tensor(1.5584) tensor(1.5584)
 <p>The applications of <code class="docutils literal notranslate"><span class="pre">nnsight.apply</span></code> are wide: it can be used to wrap any custom function or functions from libraries that <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> does not support out-of-the-box.</p>
 </section>
 <section id="Setting">
-<h3>Setting<a class="headerlink" href="#Setting" title="Link to this heading">#</a></h3>
+<h2>Setting<a class="headerlink" href="#Setting" title="Link to this heading">#</a></h2>
 <p>Getting and analyzing the activations from various points in a model can be really insightful, and a number of ML techniques do exactly that. However, often we not only want to view the computation of a model, but also to influence it.</p>
 <p>To demonstrate the effect of editing the flow of information through the model, let’s set the first dimension of the first layer’s output to 0. <code class="docutils literal notranslate"><span class="pre">NNsight</span></code> makes this really easy using the ‘=’ operator:</p>
 <div class="nbinput docutils container">
@@ -1263,7 +1243,7 @@ After: tensor([[ 0.2732,  0.2355, -0.6433,  0.0475,  0.0904,  0.4407, -0.3099,  
 </div>
 </section>
 <section id="Scan-and-Validate">
-<h3>Scan and Validate<a class="headerlink" href="#Scan-and-Validate" title="Link to this heading">#</a></h3>
+<h2>Scan and Validate<a class="headerlink" href="#Scan-and-Validate" title="Link to this heading">#</a></h2>
 <p>Error codes are helpful, but sometimes you may want to quickly troubleshoot your code without actually running it.</p>
 <p>Enter “Scanning” and “Validating”! We can enable this features by setting the <code class="docutils literal notranslate"><span class="pre">scan=True</span></code> and <code class="docutils literal notranslate"><span class="pre">validate=True</span></code> flag in the <code class="docutils literal notranslate"><span class="pre">trace</span></code> method.</p>
 <p>“Scanning” runs “fake” inputs throught the model to collect information like shapes and types (i.e., scanning will populate all called <code class="docutils literal notranslate"><span class="pre">.inputs</span></code> and <code class="docutils literal notranslate"><span class="pre">.outputs</span></code>).</p>
@@ -1419,7 +1399,7 @@ File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.10/site
 <p>We can also just replace proxy inputs and outputs with tensors of the same shape and type. Let’s use the shape information we have at our disposal to add noise to the output, and replace it with this new noised tensor:</p>
 </section>
 <section id="Gradients">
-<h3>Gradients<a class="headerlink" href="#Gradients" title="Link to this heading">#</a></h3>
+<h2>Gradients<a class="headerlink" href="#Gradients" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">NNsight</span></code> also lets us apply backpropagation and access gradients with respect to a loss. Like <code class="docutils literal notranslate"><span class="pre">.input</span></code> and <code class="docutils literal notranslate"><span class="pre">.output</span></code> on modules, <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> exposes <code class="docutils literal notranslate"><span class="pre">.grad</span></code> on Proxies themselves (assuming they are proxies of tensors):</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[80]:
@@ -1492,7 +1472,7 @@ Layer 2 output gradient: tensor([[2., 2.]])
 </div>
 </section>
 <section id="Early-Stopping">
-<h3>Early Stopping<a class="headerlink" href="#Early-Stopping" title="Link to this heading">#</a></h3>
+<h2>Early Stopping<a class="headerlink" href="#Early-Stopping" title="Link to this heading">#</a></h2>
 <p>If we are only interested in a model’s intermediate computations, we can halt a forward pass run at any module level, reducing runtime and conserving compute resources. One examples where this could be particularly useful would if we are working with SAEs - we can train an SAE on one layer and then stop the execution.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[82]:
@@ -1583,7 +1563,7 @@ File <span class="ansi-green-fg">~/Documents/Projects/nnsight/src/nnsight/tracin
 </div>
 </section>
 <section id="Conditional-Interventions">
-<h3>Conditional Interventions<a class="headerlink" href="#Conditional-Interventions" title="Link to this heading">#</a></h3>
+<h2>Conditional Interventions<a class="headerlink" href="#Conditional-Interventions" title="Link to this heading">#</a></h2>
 <p>Interventions can also be made conditional.</p>
 <p>Inside the tracing context we can specify a new - conditional - context. This context will only execute the interventions within it if the condition is met.</p>
 <div class="nbinput docutils container">
@@ -1691,7 +1671,7 @@ Random Integer  tensor([-3])  is Odd
 </div>
 </section>
 <section id="Iterative-Interventions">
-<h3>Iterative Interventions<a class="headerlink" href="#Iterative-Interventions" title="Link to this heading">#</a></h3>
+<h2>Iterative Interventions<a class="headerlink" href="#Iterative-Interventions" title="Link to this heading">#</a></h2>
 <p>With the iterator context, you can now run an intervention loop at scale. It iteratively executes and updates a single intervention graph. Use a <code class="docutils literal notranslate"><span class="pre">.session()</span></code> to define the Iterator context and pass in a sequence of items that you want to loop over at each iteration</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[87]:
@@ -1755,12 +1735,12 @@ List:  [0, 1, 2]
 </section>
 </section>
 <section id="2️-Bigger">
-<h2>2️ Bigger<a class="headerlink" href="#2️-Bigger" title="Link to this heading">#</a></h2>
+<h1>2️ Bigger<a class="headerlink" href="#2️-Bigger" title="Link to this heading">#</a></h1>
 <p>Now that we have the basics of <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> under our belt, we can scale our model up and combine the techniques we’ve learned into more interesting experiments.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">NNsight</span></code> class is very bare bones. It wraps a pre-defined model and does no pre-processing on the inputs we enter. It’s designed to be extended with more complex and powerful types of models, and we’re excited to see what can be done to leverage its features!</p>
 <p>However, if you’d like to load a Language Model from HuggingFace with its tokenizer, the<code class="docutils literal notranslate"><span class="pre">LanguageModel</span></code> subclass greatly simplifies this process.</p>
 <section id="LanguageModel">
-<h3>LanguageModel<a class="headerlink" href="#LanguageModel" title="Link to this heading">#</a></h3>
+<h2>LanguageModel<a class="headerlink" href="#LanguageModel" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">LanguageModel</span></code> is a subclass of <code class="docutils literal notranslate"><span class="pre">NNsight</span></code>. While we could define and create a model to pass in directly, <code class="docutils literal notranslate"><span class="pre">LanguageModel</span></code> includes special support for Huggingface language models, including automatically loading models from a Huggingface ID, and loading the model together with the appropriate tokenizer.</p>
 <p>Here is how we can use <code class="docutils literal notranslate"><span class="pre">LanguageModel</span></code> to load <code class="docutils literal notranslate"><span class="pre">GPT-2</span></code>:</p>
 <div class="nbinput docutils container">
@@ -1856,7 +1836,7 @@ Prediction:  London
 <p>We could just run two tracing contexts and compare the outputs. However, this would require two forward passes through the model. <code class="docutils literal notranslate"><span class="pre">NNsight</span></code> can do better than that with batching.</p>
 </section>
 <section id="Batching">
-<h3>Batching<a class="headerlink" href="#Batching" title="Link to this heading">#</a></h3>
+<h2>Batching<a class="headerlink" href="#Batching" title="Link to this heading">#</a></h2>
 <p>Batching is a way to process multiple inputs in one forward pass. To better understand how batching works, we’re going to bring back the <code class="docutils literal notranslate"><span class="pre">Tracer</span></code> object that we dropped before.</p>
 <p>When we call <code class="docutils literal notranslate"><span class="pre">.trace(...)</span></code>, it’s actually creating two different contexts behind the scenes. The first one is the tracing context that we’ve discussed previously, and the second one is the invoker context. The invoker context defines the values of the <code class="docutils literal notranslate"><span class="pre">.input</span></code> and <code class="docutils literal notranslate"><span class="pre">.output</span></code> Proxies.</p>
 <p>If we call <code class="docutils literal notranslate"><span class="pre">.trace(...)</span></code> with some input, the input is passed on to the invoker. As there is only one input, only one invoker context is created.</p>
@@ -1972,9 +1952,9 @@ Modified prediction:  Paris
 </div>
 </section>
 <section id="Multiple-Token-Generation">
-<h3>Multiple Token Generation<a class="headerlink" href="#Multiple-Token-Generation" title="Link to this heading">#</a></h3>
+<h2>Multiple Token Generation<a class="headerlink" href="#Multiple-Token-Generation" title="Link to this heading">#</a></h2>
 <section id=".next()">
-<h4>.next()<a class="headerlink" href="#.next()" title="Link to this heading">#</a></h4>
+<h3>.next()<a class="headerlink" href="#.next()" title="Link to this heading">#</a></h3>
 <p>Some HuggingFace models define methods to generate multiple outputs at a time. <code class="docutils literal notranslate"><span class="pre">LanguageModel</span></code> wraps that functionality to provide the same tracing features by using <code class="docutils literal notranslate"><span class="pre">.generate(...)</span></code> instead of <code class="docutils literal notranslate"><span class="pre">.trace(...)</span></code>. This calls the underlying model’s <code class="docutils literal notranslate"><span class="pre">.generate</span></code> method. It passes the output through a <code class="docutils literal notranslate"><span class="pre">.generator</span></code> module that we’ve added onto the model, allowing us to get the generate output at <code class="docutils literal notranslate"><span class="pre">.generator.output</span></code>.</p>
 <p>In a case like this, the underlying model is called more than once; the modules of said model produce more than one output. Which iteration should a given <code class="docutils literal notranslate"><span class="pre">module.output</span></code> refer to? That’s where <code class="docutils literal notranslate"><span class="pre">Module.next()</span></code> comes in!</p>
 <p>Each module has a call index associated with it and <code class="docutils literal notranslate"><span class="pre">.next()</span></code> simply increments that attribute. At the time of execution, data is injected into the intervention graph only at the iteration that matches the call index.</p>
@@ -2019,7 +1999,7 @@ tensor([[ 464,  412,  733,  417, 8765,  318,  287,  262, 1748,  286, 6342,   11,
 </div>
 </section>
 <section id="using-.all()">
-<h4>using .all()<a class="headerlink" href="#using-.all()" title="Link to this heading">#</a></h4>
+<h3>using .all()<a class="headerlink" href="#using-.all()" title="Link to this heading">#</a></h3>
 <p>With <code class="docutils literal notranslate"><span class="pre">nnsight</span> <span class="pre">0.4</span></code> you can now use <code class="docutils literal notranslate"><span class="pre">.all()</span></code> to recursively apply interventions to a model. Calling <code class="docutils literal notranslate"><span class="pre">.all()</span></code> on a module within a model will recursively apply its <code class="docutils literal notranslate"><span class="pre">.input</span></code> and <code class="docutils literal notranslate"><span class="pre">.output</span></code> across all iterations. Previously, we’d need to loop across each new generated token, saving the intervention for every generated token and calling <code class="docutils literal notranslate"><span class="pre">.next()</span></code> to move forward.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[94]:
@@ -2147,7 +2127,7 @@ print(&quot;Hidden state length: &quot;,len(hidden_states)) # length is 3, as ex
 </details></section>
 </section>
 <section id="Model-Editing">
-<h3>Model Editing<a class="headerlink" href="#Model-Editing" title="Link to this heading">#</a></h3>
+<h2>Model Editing<a class="headerlink" href="#Model-Editing" title="Link to this heading">#</a></h2>
 <p>NNsight’s model editing feature allows you to create persistently modified versions of a model with a use of <code class="docutils literal notranslate"><span class="pre">.edit()</span></code>. Unlike interventions in a tracing context, which are temporary, the <strong>Editor</strong> context enables you to make lasting changes to a model instance.</p>
 <p>This feature is useful for: * Creating modified model variants without altering the original * Applying changes that persist across multiple forward passes * Comparing interventions between original and edited models</p>
 <p>Let’s explore how to use the <strong>Editor</strong> context to make a simple persistent change to a model:</p>
@@ -2238,12 +2218,12 @@ Edits cleared:   Rome
 </section>
 </section>
 <section id="3-I-thought-you-said-huge-models?">
-<h2>3 I thought you said huge models?<a class="headerlink" href="#3-I-thought-you-said-huge-models?" title="Link to this heading">#</a></h2>
+<h1>3 I thought you said huge models?<a class="headerlink" href="#3-I-thought-you-said-huge-models?" title="Link to this heading">#</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">NNsight</span></code> is only one part of our project to democratize access to AI internals. The other half is the National Deep Inference Fabric, or <code class="docutils literal notranslate"><span class="pre">NDIF</span></code>. <code class="docutils literal notranslate"><span class="pre">NDIF</span></code> hosts large models for shared access using <code class="docutils literal notranslate"><span class="pre">NNsight</span></code>, so you don’t have to worry about any of the headaches of hosting large models yourself!</p>
 <p>The interaction between <code class="docutils literal notranslate"><span class="pre">NDIF</span></code> and <code class="docutils literal notranslate"><span class="pre">NNsight</span></code> is fairly straightforward. The <strong>intervention graph</strong> we create via the tracing context can be encoded into a custom json format and sent via an http request to the <code class="docutils literal notranslate"><span class="pre">NDIF</span></code> servers. <code class="docutils literal notranslate"><span class="pre">NDIF</span></code> then decodes the <strong>intervention graph</strong> and <strong>interleaves</strong> it alongside the specified model.</p>
 <p>To see which models are currently being hosted, check out the following status page: <a class="reference external" href="https://nnsight.net/status/">https://nnsight.net/status/</a></p>
 <section id="Remote-execution">
-<h3>Remote execution<a class="headerlink" href="#Remote-execution" title="Link to this heading">#</a></h3>
+<h2>Remote execution<a class="headerlink" href="#Remote-execution" title="Link to this heading">#</a></h2>
 <p>In its current state, <code class="docutils literal notranslate"><span class="pre">NDIF</span></code> requires you to receive an API key. Therefore, to run the rest of this walkthrough, you need one of your own. To get one, simply register at <a class="reference external" href="https://login.ndif.us">https://login.ndif.us</a>.</p>
 <p>With a valid API key, you then can configure <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> as follows:</p>
 <div class="nbinput nblast docutils container">
@@ -2340,7 +2320,7 @@ tensor([[[ 6.3438,  8.3750, 12.8125,  ..., -4.3750, -4.3750, -4.3750],
 <p>It really is as simple as <code class="docutils literal notranslate"><span class="pre">remote=True</span></code>. All of the techniques we went through in earlier sections work just the same when running locally or remotely.</p>
 </section>
 <section id="Sessions">
-<h3>Sessions<a class="headerlink" href="#Sessions" title="Link to this heading">#</a></h3>
+<h2>Sessions<a class="headerlink" href="#Sessions" title="Link to this heading">#</a></h2>
 <p>NDIF uses a queue to handle concurrent requests from multiple users. To optimize the execution of our experiments we can use the <code class="docutils literal notranslate"><span class="pre">session</span></code> context to efficiently package multiple interventions together as one single request to the server.</p>
 <p>This offers the following benefits: 1. All interventions within a session will be executed one after another without additional wait in the NDIF queue 2. All intermediate outputs for each intervention are stored on the server and can be accessed by other interventions in the same session without moving the data back and forth between NDIF and the local machine</p>
 <p>Let’s take a look:</p>
@@ -2423,7 +2403,7 @@ Downloading result: 100%|██████████| 928/928 [00:00&lt;00:00
 <p>In addition to the benefits mentioned above, the <code class="docutils literal notranslate"><span class="pre">session</span></code> context also enables interesting experiments not possible with other <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> tools — since every trace is run on its own model, it means that within one session we can run interventions between different models — for example, we could swap activations between base and instruct versions of the Llama model and compare their outputs. And <code class="docutils literal notranslate"><span class="pre">session</span></code> can also be used to run similar experiments entirely locally!</p>
 </section>
 <section id="Streaming">
-<h3>Streaming<a class="headerlink" href="#Streaming" title="Link to this heading">#</a></h3>
+<h2>Streaming<a class="headerlink" href="#Streaming" title="Link to this heading">#</a></h2>
 <p>Streaming enables users apply functions and datasets locally during remote model execution. This allows users to stream results for immediate consumption (i.e., seeing tokens as they are generated) or applying non-whitelisted functions such as model tokenizers, large local datasets, and more!</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">nnsight.local()</span></code> context sends values immediately to user’s local machine from server</p></li>
@@ -2433,7 +2413,7 @@ Downloading result: 100%|██████████| 928/928 [00:00&lt;00:00
 </ul>
 </section>
 <section id="nnsight.local()">
-<h3><code class="docutils literal notranslate"><span class="pre">nnsight.local()</span></code><a class="headerlink" href="#nnsight.local()" title="Link to this heading">#</a></h3>
+<h2><code class="docutils literal notranslate"><span class="pre">nnsight.local()</span></code><a class="headerlink" href="#nnsight.local()" title="Link to this heading">#</a></h2>
 <p>You may sometimes want to locally access and manipulate values during remote execution. Using <code class="docutils literal notranslate"><span class="pre">.local()</span></code> on a proxy, you can send remote content to your local machine and apply local functions. The intervention graph is then executed locally on downstream nodes (until you send execution back to the remote server by exiting the <code class="docutils literal notranslate"><span class="pre">.local()</span></code> context).</p>
 <p>There are a few use cases for streaming with <code class="docutils literal notranslate"><span class="pre">.local()</span></code>, including live chat generation and applying large datasets or non-whitelisted local functions to the intervention graph.</p>
 <p>Now let’s explore how streaming works. We’ll start by grabbing some hidden states of the model and printing their value using <code class="docutils literal notranslate"><span class="pre">tracer.log()</span></code>. Without calling <code class="docutils literal notranslate"><span class="pre">nnsight.local()</span></code>, these operations will all occur remotely.</p>
@@ -2542,7 +2522,7 @@ tensor([[[ 6.3438,  8.3750, 12.8125,  ..., -4.3750, -4.3750, -4.3750],
 </div>
 </section>
 <section id="&#64;nnsight.trace-function-decorator">
-<h3><code class="docutils literal notranslate"><span class="pre">&#64;nnsight.trace</span></code> function decorator<a class="headerlink" href="#@nnsight.trace-function-decorator" title="Link to this heading">#</a></h3>
+<h2><code class="docutils literal notranslate"><span class="pre">&#64;nnsight.trace</span></code> function decorator<a class="headerlink" href="#@nnsight.trace-function-decorator" title="Link to this heading">#</a></h2>
 <p>We can also use function decorators to create custom functions to be used during <code class="docutils literal notranslate"><span class="pre">.local</span></code> calls. This is a handy way to enable live streaming of a chat or to train probing classifiers on model hidden states.</p>
 <p>Let’s try out <code class="docutils literal notranslate"><span class="pre">&#64;nnsight.trace</span></code> and <code class="docutils literal notranslate"><span class="pre">nnsight.local()</span></code> to access a custom function during remote execution.</p>
 <div class="nbinput docutils container">
@@ -2720,7 +2700,7 @@ File <span class="ansi-green-fg">~/Documents/Projects/nnsight/src/nnsight/schema
 </div>
 </section>
 <section id="Example:-Live-streaming-remote-chat">
-<h3>Example: Live-streaming remote chat<a class="headerlink" href="#Example:-Live-streaming-remote-chat" title="Link to this heading">#</a></h3>
+<h2>Example: Live-streaming remote chat<a class="headerlink" href="#Example:-Live-streaming-remote-chat" title="Link to this heading">#</a></h2>
 <p>Now that we can access data within the tracing context on our local computer, we can apply non-whitelisted functions, such as the model’s tokenizer, within our tracing context.</p>
 <p>Let’s build a decoding function that will decode tokens into words and print the result.</p>
 <div class="nbinput nblast docutils container">
@@ -2837,7 +2817,7 @@ Downloading result: 100%|██████████| 258k/258k [00:00&lt;00:
 </div>
 </section>
 <section id="Looping-across-sessions">
-<h3>Looping across sessions<a class="headerlink" href="#Looping-across-sessions" title="Link to this heading">#</a></h3>
+<h2>Looping across sessions<a class="headerlink" href="#Looping-across-sessions" title="Link to this heading">#</a></h2>
 <p>We mention earlier that the <code class="docutils literal notranslate"><span class="pre">session</span></code> context enables multi-tracing execution. But how can we optimize a process that would require running an intervention graph in a loop? If we create a simple <code class="docutils literal notranslate"><span class="pre">for</span></code> loop with a <strong>Tracer context</strong> inside, this will result in creating a new intervention graph at each iteration, which is not scalable.</p>
 <p>We solve this problem the <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> way via the <strong>Iterator context</strong>: an intervention loop that iteratively executes and updates a single intervention graph.</p>
 <p>Use a <code class="docutils literal notranslate"><span class="pre">session</span></code> to define the <strong>Iterator context</strong> and pass in a sequence of items that you want to loop over at each iteration:</p>
@@ -2971,7 +2951,7 @@ Downloading result: 100%|██████████| 928/928 [00:00&lt;00:00
 <p>In the next section, we delve into a powerful use case of the <code class="docutils literal notranslate"><span class="pre">Iterator</span></code> context and see how it enables it!</p>
 </section>
 <section id="Training-a-LoRA">
-<h3>Training a LoRA<a class="headerlink" href="#Training-a-LoRA" title="Link to this heading">#</a></h3>
+<h2>Training a LoRA<a class="headerlink" href="#Training-a-LoRA" title="Link to this heading">#</a></h2>
 <p>Here is an example of a task that uses everything we have covered in the last section - remote execution, <strong>Session</strong> context and iterative interventions. Using session and iterator contexts, we’re going apply a very simple fine-tuning approach called low-rank adaptation (LoRA).</p>
 <p>Let’s try training a LoRA that, when applied, makes our model always predict “Paris” no matter what.</p>
 <div class="nbinput nblast docutils container">
@@ -3285,9 +3265,8 @@ Downloading result: 100%|██████████| 1.24k/1.24k [00:00&lt;0
 </section>
 </section>
 <section id="Next-Steps">
-<h2>Next Steps<a class="headerlink" href="#Next-Steps" title="Link to this heading">#</a></h2>
+<h1>Next Steps<a class="headerlink" href="#Next-Steps" title="Link to this heading">#</a></h1>
 <p>Check out <a class="reference external" href="https://nnsight.net/tutorials">nnsight.net/tutorials</a> for more walkthroughs implementating classic interpretability techniques using <code class="docutils literal notranslate"><span class="pre">nnsight</span></code>.</p>
-</section>
 <section id="Getting-Involved!">
 <h2>Getting Involved!<a class="headerlink" href="#Getting-Involved!" title="Link to this heading">#</a></h2>
 <p>Note that both <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> and <code class="docutils literal notranslate"><span class="pre">NDIF</span></code> are in active development, so changes may be made and errors may arise during use. If you’re interested in following updates to <code class="docutils literal notranslate"><span class="pre">nnsight</span></code>, contributing, giving feedback, or finding collaborators, please join the <a class="reference external" href="https://discord.gg/6uFJmCSwW7">NDIF discord</a>. We’d love to hear about your work using nnsight!</p>
@@ -3309,7 +3288,8 @@ Downloading result: 100%|██████████| 1.24k/1.24k [00:00&lt;0
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -3320,46 +3300,52 @@ Downloading result: 100%|██████████| 1.24k/1.24k [00:00&lt;0
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Walkthrough</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#The-API-for-a-transparent-science-on-black-box-AI">The API for a transparent science on black-box AI</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#1-First,-let's-start-small">1 First, let’s start small</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Setup">Setup</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Tracing-Context">Tracing Context</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Getting">Getting</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Functions,-Methods,-and-Operations">Functions, Methods, and Operations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Custom-Functions">Custom Functions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Setting">Setting</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Scan-and-Validate">Scan and Validate</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Gradients">Gradients</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Early-Stopping">Early Stopping</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Conditional-Interventions">Conditional Interventions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Iterative-Interventions">Iterative Interventions</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#2️-Bigger">2️ Bigger</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#LanguageModel">LanguageModel</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Batching">Batching</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Multiple-Token-Generation">Multiple Token Generation</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#.next()">.next()</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#using-.all()">using .all()</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#1-First,-let's-start-small">1 First, let’s start small</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Setup">Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Tracing-Context">Tracing Context</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Getting">Getting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Functions,-Methods,-and-Operations">Functions, Methods, and Operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Custom-Functions">Custom Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Setting">Setting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Scan-and-Validate">Scan and Validate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Gradients">Gradients</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Early-Stopping">Early Stopping</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Conditional-Interventions">Conditional Interventions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Iterative-Interventions">Iterative Interventions</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Model-Editing">Model Editing</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#2️-Bigger">2️ Bigger</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#LanguageModel">LanguageModel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Batching">Batching</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Multiple-Token-Generation">Multiple Token Generation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#.next()">.next()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-.all()">using .all()</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#3-I-thought-you-said-huge-models?">3 I thought you said huge models?</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Remote-execution">Remote execution</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Sessions">Sessions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Streaming">Streaming</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.local()"><code class="docutils literal notranslate"><span class="pre">nnsight.local()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#@nnsight.trace-function-decorator"><code class="docutils literal notranslate"><span class="pre">@nnsight.trace</span></code> function decorator</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Example:-Live-streaming-remote-chat">Example: Live-streaming remote chat</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Looping-across-sessions">Looping across sessions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Training-a-LoRA">Training a LoRA</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Model-Editing">Model Editing</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Next-Steps">Next Steps</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#3-I-thought-you-said-huge-models?">3 I thought you said huge models?</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Remote-execution">Remote execution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Sessions">Sessions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Streaming">Streaming</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.local()"><code class="docutils literal notranslate"><span class="pre">nnsight.local()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#@nnsight.trace-function-decorator"><code class="docutils literal notranslate"><span class="pre">@nnsight.trace</span></code> function decorator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Example:-Live-streaming-remote-chat">Example: Live-streaming remote chat</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Looping-across-sessions">Looping across sessions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Training-a-LoRA">Training a LoRA</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#Next-Steps">Next Steps</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Getting-Involved!">Getting Involved!</a></li>
 </ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
@@ -3375,8 +3361,8 @@ Downloading result: 100%|██████████| 1.24k/1.24k [00:00&lt;0
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -3401,7 +3387,7 @@ Downloading result: 100%|██████████| 1.24k/1.24k [00:00&lt;0
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
 </p></div>
       
     </div>
