@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>nnsight.models &#8212; nnsight</title>
+    <title>nnsight.modeling &#8212; nnsight</title>
   
   
   
@@ -60,8 +60,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
-<link href="../../_static/css/custom.css?v=1738883371" rel="stylesheet" type="text/css" />
-<link href="../../_static/css/home.css?v=1738883371" rel="stylesheet" type="text/css" />
+<link href="../../_static/css/custom.css?v=1738955864" rel="stylesheet" type="text/css" />
+<link href="../../_static/css/home.css?v=1738955864" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -297,6 +297,10 @@
   
 
   
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
 </div>
 
     </header>
@@ -463,7 +467,7 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">nnsight.models</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">nnsight.modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../envoy/">nnsight.envoy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contexts/">nnsight.contexts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tracing/">nnsight.tracing</a></li>
@@ -509,7 +513,7 @@
     
     <li class="breadcrumb-item"><a href="../" class="nav-link">Documentation</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">nnsight.models</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">nnsight.modeling</span></li>
   </ul>
 </nav>
 </div>
@@ -526,8 +530,171 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="nnsight-models">
-<h1>nnsight.models<a class="headerlink" href="#nnsight-models" title="Link to this heading">#</a></h1>
+  <section id="module-nnsight.modeling">
+<span id="nnsight-modeling"></span><h1>nnsight.modeling<a class="headerlink" href="#module-nnsight.modeling" title="Link to this heading">#</a></h1>
+<dl class="py class" id="module-nnsight.modeling.language">
+<dt class="sig sig-object py" id="nnsight.modeling.language.LanguageModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.modeling.language.</span></span><span class="sig-name descname"><span class="pre">LanguageModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config:</span> <span class="pre">~transformers.configuration_utils.PretrainedConfig</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokenizer:</span> <span class="pre">~transformers.tokenization_utils.PreTrainedTokenizer</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">automodel:</span> <span class="pre">~typing.Type[~transformers.models.auto.modeling_auto.AutoModel]</span> <span class="pre">=</span> <span class="pre">&lt;class</span> <span class="pre">'transformers.models.auto.modeling_auto.AutoModelForCausalLM'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/modeling/language/#LanguageModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.modeling.language.LanguageModel" title="Link to this definition">#</a></dt>
+<dd><p>LanguageModels are NNsight wrappers around transformers language models.</p>
+<dl class="simple">
+<dt>Inputs can be in the form of:</dt><dd><p>Prompt: (str)
+Prompts: (List[str])
+Batched prompts: (List[List[str]])
+Tokenized prompt: (Union[List[int], torch.Tensor])
+Tokenized prompts: (Union[List[List[int]], torch.Tensor])
+Direct input: (Dict[str,Any])</p>
+</dd>
+</dl>
+<p>If using a custom model, you also need to provide the tokenizer like <code class="docutils literal notranslate"><span class="pre">LanguageModel(custom_model,</span> <span class="pre">tokenizer=tokenizer)</span></code></p>
+<p>Calls to generate pass arguments downstream to <code class="xref py py-func docutils literal notranslate"><span class="pre">GenerationMixin.generate()</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.modeling.language.LanguageModel.config">
+<span class="sig-name descname"><span class="pre">config</span></span><a class="headerlink" href="#nnsight.modeling.language.LanguageModel.config" title="Link to this definition">#</a></dt>
+<dd><p>Huggingface config file loaded from repository or checkpoint.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>PretrainedConfig</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.modeling.language.LanguageModel.tokenizer">
+<span class="sig-name descname"><span class="pre">tokenizer</span></span><a class="headerlink" href="#nnsight.modeling.language.LanguageModel.tokenizer" title="Link to this definition">#</a></dt>
+<dd><p>Tokenizer for LMs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>PreTrainedTokenizer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.modeling.language.LanguageModel.automodel">
+<span class="sig-name descname"><span class="pre">automodel</span></span><a class="headerlink" href="#nnsight.modeling.language.LanguageModel.automodel" title="Link to this definition">#</a></dt>
+<dd><p>AutoModel type from transformer auto models.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Type</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nnsight.modeling.language.LanguageModel.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#nnsight.modeling.language.LanguageModel.model" title="Link to this definition">#</a></dt>
+<dd><p>Meta version of underlying auto model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>PreTrainedModel</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nnsight.modeling.language.LanguageModel.Generator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Generator</span></span><a class="reference internal" href="../../_modules/nnsight/modeling/language/#LanguageModel.Generator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.modeling.language.LanguageModel.Generator" title="Link to this definition">#</a></dt>
+<dd><dl class="py class">
+<dt class="sig sig-object py" id="nnsight.modeling.language.LanguageModel.Generator.Streamer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Streamer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/modeling/language/#LanguageModel.Generator.Streamer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.modeling.language.LanguageModel.Generator.Streamer" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-nnsight.modeling.diffusion">
+<dt class="sig sig-object py" id="nnsight.modeling.diffusion.Diffuser">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.modeling.diffusion.</span></span><span class="sig-name descname"><span class="pre">Diffuser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/modeling/diffusion/#Diffuser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.modeling.diffusion.Diffuser" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nnsight.modeling.diffusion.DiffusionModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.modeling.diffusion.</span></span><span class="sig-name descname"><span class="pre">DiffusionModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/modeling/diffusion/#DiffusionModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.modeling.diffusion.DiffusionModel" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class" id="module-nnsight.modeling.vllm.vllm">
+<dt class="sig sig-object py" id="nnsight.modeling.vllm.vllm.VLLM">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.modeling.vllm.vllm.</span></span><span class="sig-name descname"><span class="pre">VLLM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/modeling/vllm/vllm/#VLLM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.modeling.vllm.vllm.VLLM" title="Link to this definition">#</a></dt>
+<dd><p>NNsight wrapper to conduct interventions on a vLLM inference engine.
+.. attribute:: - vllm_entrypoint</p>
+<blockquote>
+<div><p>vLLM language model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>vllm.LLM</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">-</span> <span class="pre">tokenizer</span></span></dt>
+<dd><p>tokenizer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>vllm.transformers_utils.tokenizer.AnyTokenizer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">-</span> <span class="pre">logits</span></span></dt>
+<dd><p>logits.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>nnsight.WrapperModule</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">-</span> <span class="pre">samples</span></span></dt>
+<dd><p>sampled tokens.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>nnsight.WrapperModule</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.modeling.vllm.vllm.VLLM.interleave">
+<span class="sig-name descname"><span class="pre">interleave</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interleaver</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../intervention/#nnsight.intervention.interleaver.Interleaver" title="nnsight.intervention.interleaver.Interleaver"><span class="pre">Interleaver</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="reference internal" href="../../_modules/nnsight/modeling/vllm/vllm/#VLLM.interleave"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.modeling.vllm.vllm.VLLM.interleave" title="Link to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>if not self.dispatched:</dt><dd><p>self.dispatch()</p>
+</dd>
+</dl>
+<p>for param in params:</p>
+<blockquote>
+<div><p>param.intervention_graph = intervention_graph</p>
+</div></blockquote>
+<p>fn(prompts, params, <a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs)</p>
+<p>intervention_graph.alive = False</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-nnsight.modeling.vllm.sampling">
+<dt class="sig sig-object py" id="nnsight.modeling.vllm.sampling.NNsightSamplingMetadata">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.modeling.vllm.sampling.</span></span><span class="sig-name descname"><span class="pre">NNsightSamplingMetadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intervention_graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../intervention/#nnsight.intervention.graph.graph.InterventionGraph" title="nnsight.intervention.graph.graph.InterventionGraph"><span class="pre">InterventionGraph</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nns_batch_groups</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_groups</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/modeling/vllm/sampling/#NNsightSamplingMetadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.modeling.vllm.sampling.NNsightSamplingMetadata" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nnsight.modeling.vllm.sampling.NNsightSamplingParams">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.modeling.vllm.sampling.</span></span><span class="sig-name descname"><span class="pre">NNsightSamplingParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">best_of:</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_real_n:</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">presence_penalty:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency_penalty:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repetition_penalty:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_p:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_k:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_p:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed:</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">~typing.List[str]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop_token_ids:</span> <span class="pre">~typing.List[int]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bad_words:</span> <span class="pre">~typing.List[str]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_eos:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_tokens:</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">16</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_tokens:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logprobs:</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompt_logprobs:</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detokenize:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_special_tokens:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spaces_between_special_tokens:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logits_processors:</span> <span class="pre">~typing.Any</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_stop_str_in_output:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">truncate_prompt_tokens:</span> <span class="pre">~typing.Annotated[int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msgspec.Meta(ge=1)]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_kind:</span> <span class="pre">~vllm.sampling_params.RequestOutputKind</span> <span class="pre">=</span> <span class="pre">RequestOutputKind.CUMULATIVE</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_text_buffer_length:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_all_stop_token_ids:</span> <span class="pre">~typing.Set[int]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">guided_decoding:</span> <span class="pre">~vllm.sampling_params.GuidedDecodingParams</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logit_bias:</span> <span class="pre">~typing.Dict[int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allowed_token_ids:</span> <span class="pre">~typing.List[int]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intervention_graph:</span> <span class="pre">~nnsight.intervention.graph.graph.InterventionGraph</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nns_batch_groups:</span> <span class="pre">~typing.List[~typing.Tuple[int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int]]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invoker_group:</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_default_param:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/modeling/vllm/sampling/#NNsightSamplingParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.modeling.vllm.sampling.NNsightSamplingParams" title="Link to this definition">#</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="nnsight.modeling.vllm.sampling.NNsightSamplingParams.clone">
+<span class="sig-name descname"><span class="pre">clone</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">SamplingParams</span></span></span><a class="reference internal" href="../../_modules/nnsight/modeling/vllm/sampling/#NNsightSamplingParams.clone"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.modeling.vllm.sampling.NNsightSamplingParams.clone" title="Link to this definition">#</a></dt>
+<dd><p>Deep copy excluding LogitsProcessor objects.</p>
+<p>LogitsProcessor objects are excluded because they may contain an
+arbitrary, nontrivial amount of data.
+See <a class="github reference external" href="https://github.com/vllm-project/vllm/issues/3087">vllm-project/vllm#3087</a></p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -540,6 +707,45 @@
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.modeling.language.LanguageModel"><code class="docutils literal notranslate"><span class="pre">LanguageModel</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.modeling.language.LanguageModel.config"><code class="docutils literal notranslate"><span class="pre">LanguageModel.config</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.modeling.language.LanguageModel.tokenizer"><code class="docutils literal notranslate"><span class="pre">LanguageModel.tokenizer</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.modeling.language.LanguageModel.automodel"><code class="docutils literal notranslate"><span class="pre">LanguageModel.automodel</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.modeling.language.LanguageModel.model"><code class="docutils literal notranslate"><span class="pre">LanguageModel.model</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.modeling.language.LanguageModel.Generator"><code class="docutils literal notranslate"><span class="pre">LanguageModel.Generator</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.modeling.language.LanguageModel.Generator.Streamer"><code class="docutils literal notranslate"><span class="pre">LanguageModel.Generator.Streamer</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.modeling.diffusion.Diffuser"><code class="docutils literal notranslate"><span class="pre">Diffuser</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.modeling.diffusion.DiffusionModel"><code class="docutils literal notranslate"><span class="pre">DiffusionModel</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.modeling.vllm.vllm.VLLM"><code class="docutils literal notranslate"><span class="pre">VLLM</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.modeling.vllm.vllm.VLLM.interleave"><code class="docutils literal notranslate"><span class="pre">VLLM.interleave()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.modeling.vllm.sampling.NNsightSamplingMetadata"><code class="docutils literal notranslate"><span class="pre">NNsightSamplingMetadata</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.modeling.vllm.sampling.NNsightSamplingParams"><code class="docutils literal notranslate"><span class="pre">NNsightSamplingParams</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.modeling.vllm.sampling.NNsightSamplingParams.clone"><code class="docutils literal notranslate"><span class="pre">NNsightSamplingParams.clone()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

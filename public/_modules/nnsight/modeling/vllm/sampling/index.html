@@ -1,0 +1,747 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nnsight.modeling.vllm.sampling &#8212; nnsight</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../../../../_static/documentation_options.js?v=187304be"></script>
+    <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/nnsight/modeling/vllm/sampling';</script>
+    <script src="../../../../../_static/js/custom.js?v=1e4be224"></script>
+    <script src="../../../../../_static/js/code.js?v=34343d0c"></script>
+    <link rel="icon" href="../../../../../_static/icon.ico"/>
+    <link rel="author" title="About these documents" href="../../../../../about/" />
+    <link rel="index" title="Index" href="../../../../../genindex/" />
+    <link rel="search" title="Search" href="../../../../../search/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+<link href="../../../../../_static/css/custom.css?v=1738957167" rel="stylesheet" type="text/css" />
+<link href="../../../../../_static/css/home.css?v=1738957167" rel="stylesheet" type="text/css" />
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search/"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../../../_static/nnsight_logo.svg" class="logo__image only-dark" alt="nnsight - Home"/>
+    <img src="../../../../../_static/nnsight_logo.svg" class="logo__image only-light pst-js-only" alt="nnsight - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../start/">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../documentation/">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../features/">
+    Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../tutorials/">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../about/">
+    About
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><script>
+    fetch("https://ndif.dev/ping")
+        .then((response) => {
+            if (response.status == 200) {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#66800b', 'important');
+                    });
+                });
+            }
+            else {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#af3029', 'important');
+                    });
+                });
+                var statusIcon = document.querySelector('.ndif .fa-circle-check');
+                if (statusIcon) {
+                    // not here
+                    statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark'); 
+                }
+            }
+        })
+        .catch((response) => {
+            Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                    spanElement.style.setProperty('color', '#af3029', 'important');
+                });
+            });
+            var statusIcon = document.querySelector('.ndif .fa-circle-check');
+            if (statusIcon) {
+                statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark');
+            }
+        })
+</script></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/status" title="Status: Unknown" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Status: Unknown</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discord</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../start/">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../documentation/">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../features/">
+    Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../tutorials/">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../about/">
+    About
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><script>
+    fetch("https://ndif.dev/ping")
+        .then((response) => {
+            if (response.status == 200) {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#66800b', 'important');
+                    });
+                });
+            }
+            else {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#af3029', 'important');
+                    });
+                });
+                var statusIcon = document.querySelector('.ndif .fa-circle-check');
+                if (statusIcon) {
+                    // not here
+                    statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark'); 
+                }
+            }
+        })
+        .catch((response) => {
+            Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                    spanElement.style.setProperty('color', '#af3029', 'important');
+                });
+            });
+            var statusIcon = document.querySelector('.ndif .fa-circle-check');
+            if (statusIcon) {
+                statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark');
+            }
+        })
+</script></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/status" title="Status: Unknown" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Status: Unknown</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discord</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../../" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../../" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">nnsight.modeling.vllm.sampling</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for nnsight.modeling.vllm.sampling</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+
+<span class="kn">from</span> <span class="nn">nnsight.intervention.graph</span> <span class="kn">import</span> <span class="n">InterventionGraph</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="kn">from</span> <span class="nn">vllm.model_executor.sampling_metadata</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">SamplingMetadata</span><span class="p">,</span>
+    <span class="n">SamplingMetadataCache</span><span class="p">,</span>
+    <span class="n">_prepare_seq_groups</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">vllm.sampling_params</span> <span class="kn">import</span> <span class="n">SamplingParams</span>
+<span class="kn">from</span> <span class="nn">vllm.sequence</span> <span class="kn">import</span> <span class="n">SequenceGroupMetadata</span>
+<span class="kn">from</span> <span class="nn">vllm.utils</span> <span class="kn">import</span> <span class="n">async_tensor_h2d</span>
+
+
+<div class="viewcode-block" id="NNsightSamplingParams">
+<a class="viewcode-back" href="../../../../../documentation/modeling/#nnsight.modeling.vllm.sampling.NNsightSamplingParams">[docs]</a>
+<span class="k">class</span> <span class="nc">NNsightSamplingParams</span><span class="p">(</span><span class="n">SamplingParams</span><span class="p">):</span>
+
+    <span class="n">intervention_graph</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">InterventionGraph</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">nns_batch_groups</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">invoker_group</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">is_default_param</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+
+<div class="viewcode-block" id="NNsightSamplingParams.clone">
+<a class="viewcode-back" href="../../../../../documentation/modeling/#nnsight.modeling.vllm.sampling.NNsightSamplingParams.clone">[docs]</a>
+    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SamplingParams&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Deep copy excluding LogitsProcessor objects.</span>
+
+<span class="sd">        LogitsProcessor objects are excluded because they may contain an</span>
+<span class="sd">        arbitrary, nontrivial amount of data.</span>
+<span class="sd">        See https://github.com/vllm-project/vllm/issues/3087</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">memo</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">logits_processors</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">lp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">logits_processors</span><span class="p">:</span>
+                <span class="n">memo</span><span class="p">[</span><span class="nb">id</span><span class="p">(</span><span class="n">lp</span><span class="p">)]</span> <span class="o">=</span> <span class="n">lp</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">intervention_graph</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">memo</span><span class="p">[</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">intervention_graph</span><span class="p">)]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">intervention_graph</span>
+
+        <span class="k">return</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="o">=</span><span class="n">memo</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="NNsightSamplingMetadata">
+<a class="viewcode-back" href="../../../../../documentation/modeling/#nnsight.modeling.vllm.sampling.NNsightSamplingMetadata">[docs]</a>
+<span class="k">class</span> <span class="nc">NNsightSamplingMetadata</span><span class="p">(</span><span class="n">SamplingMetadata</span><span class="p">):</span>
+
+    <span class="n">intervention_graph</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">InterventionGraph</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">nns_batch_groups</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">batch_groups</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="n">intervention_graph</span><span class="p">:</span> <span class="n">InterventionGraph</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">nns_batch_groups</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">batch_groups</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">intervention_graph</span> <span class="o">=</span> <span class="n">intervention_graph</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nns_batch_groups</span> <span class="o">=</span> <span class="n">nns_batch_groups</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch_groups</span> <span class="o">=</span> <span class="n">batch_groups</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span>
+        <span class="n">seq_group_metadata_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">SequenceGroupMetadata</span><span class="p">],</span>
+        <span class="n">seq_lens</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+        <span class="n">query_lens</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+        <span class="n">device</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">pin_memory</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+        <span class="n">generators</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Generator</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">cache</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SamplingMetadataCache</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SamplingMetadata&quot;</span><span class="p">:</span>
+        <span class="p">(</span>
+            <span class="n">seq_groups</span><span class="p">,</span>
+            <span class="n">selected_token_indices</span><span class="p">,</span>
+            <span class="n">categorized_sample_indices</span><span class="p">,</span>
+            <span class="n">num_prompts</span><span class="p">,</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="n">_prepare_seq_groups</span><span class="p">(</span>
+            <span class="n">seq_group_metadata_list</span><span class="p">,</span> <span class="n">seq_lens</span><span class="p">,</span> <span class="n">query_lens</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">generators</span><span class="p">,</span> <span class="n">cache</span>
+        <span class="p">)</span>
+        <span class="n">selected_token_indices</span> <span class="o">=</span> <span class="n">async_tensor_h2d</span><span class="p">(</span>
+            <span class="n">selected_token_indices</span><span class="p">,</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">,</span>
+            <span class="n">target_device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span>
+            <span class="n">pin_memory</span><span class="o">=</span><span class="n">pin_memory</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">categorized_sample_indices</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">t</span><span class="p">:</span> <span class="n">async_tensor_h2d</span><span class="p">(</span>
+                <span class="n">seq_ids</span><span class="p">,</span>
+                <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">int</span><span class="p">,</span>
+                <span class="n">target_device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span>
+                <span class="n">pin_memory</span><span class="o">=</span><span class="n">pin_memory</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">seq_ids</span> <span class="ow">in</span> <span class="n">categorized_sample_indices</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">}</span>
+        
+        
+        <span class="c1">### NNSIGHT ###########################################</span>
+
+        <span class="n">intervention_graphs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">nns_batch_groups</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">batch_groups</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">batch_groups_offset</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">seq_group</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seq_group_metadata_list</span><span class="p">):</span>
+
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">seq_group</span><span class="o">.</span><span class="n">sampling_params</span><span class="p">,</span> <span class="n">NNsightSamplingParams</span><span class="p">):</span>
+
+                <span class="n">seq_group_intervention_graph</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="n">seq_group</span><span class="o">.</span><span class="n">sampling_params</span><span class="o">.</span><span class="n">intervention_graph</span>
+                <span class="p">)</span>
+
+                <span class="n">seq_group_nns_batch_groups</span> <span class="o">=</span> <span class="n">seq_group</span><span class="o">.</span><span class="n">sampling_params</span><span class="o">.</span><span class="n">nns_batch_groups</span>
+                
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">seq_group_intervention_graph</span><span class="p">,</span> <span class="n">InterventionGraph</span><span class="p">):</span>
+                    
+                    <span class="k">if</span> <span class="n">seq_group_intervention_graph</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">intervention_graphs</span><span class="p">:</span>
+                    
+                        <span class="n">intervention_graphs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq_group_intervention_graph</span><span class="p">)</span>
+
+                        <span class="n">nns_batch_groups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq_group_nns_batch_groups</span><span class="p">)</span>
+
+                        <span class="n">batch_groups_offset</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch_groups</span><span class="p">)</span>
+
+                    <span class="n">seq_group_batch_group</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="n">seq_group</span><span class="o">.</span><span class="n">sampling_params</span><span class="o">.</span><span class="n">invoker_group</span> <span class="o">+</span> <span class="n">batch_groups_offset</span>
+                    <span class="p">)</span>
+
+                    <span class="n">batch_size</span> <span class="o">=</span> <span class="n">query_lens</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+            
+                    <span class="k">if</span> <span class="n">seq_group_batch_group</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch_groups</span><span class="p">):</span>
+                        <span class="n">batch_start</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">batch_groups</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch_groups</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+                        <span class="n">batch_groups</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">batch_start</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">))</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">batch_start</span><span class="p">,</span> <span class="n">seq_group_batch_size</span> <span class="o">=</span> <span class="n">batch_groups</span><span class="p">[</span>
+                            <span class="n">seq_group_batch_group</span>
+                        <span class="p">]</span>
+                        <span class="n">batch_size</span> <span class="o">+=</span> <span class="n">seq_group_batch_size</span>
+
+                        <span class="n">batch_groups</span><span class="p">[</span><span class="n">seq_group_batch_group</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">batch_start</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">)</span>
+                    
+        <span class="n">n_graphs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">intervention_graphs</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">n_graphs</span><span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">intervention_graph</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">nns_batch_groups</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">elif</span> <span class="n">n_graphs</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">intervention_graph</span> <span class="o">=</span><span class="n">intervention_graphs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">nns_batch_groups</span> <span class="o">=</span> <span class="n">nns_batch_groups</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; else:</span>
+<span class="sd">            intervention_graph = MultiGraph(intervention_graphs.values())</span>
+<span class="sd">            </span>
+<span class="sd">            InterventionProtocol.shift(intervention_graph) &quot;&quot;&quot;</span>
+
+        <span class="c1">###########################################</span>
+
+        <span class="n">sampling_metadata</span> <span class="o">=</span> <span class="n">NNsightSamplingMetadata</span><span class="p">(</span>
+            <span class="n">seq_groups</span><span class="o">=</span><span class="n">seq_groups</span><span class="p">,</span>
+            <span class="n">selected_token_indices</span><span class="o">=</span><span class="n">selected_token_indices</span><span class="p">,</span>
+            <span class="n">categorized_sample_indices</span><span class="o">=</span><span class="n">categorized_sample_indices</span><span class="p">,</span>
+            <span class="n">num_prompts</span><span class="o">=</span><span class="n">num_prompts</span><span class="p">,</span>
+            <span class="n">intervention_graph</span><span class="o">=</span><span class="n">intervention_graph</span><span class="p">,</span>
+            <span class="n">nns_batch_groups</span> <span class="o">=</span> <span class="n">nns_batch_groups</span><span class="p">,</span>
+            <span class="n">batch_groups</span><span class="o">=</span><span class="n">batch_groups</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">sampling_metadata</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024 NDIF.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
