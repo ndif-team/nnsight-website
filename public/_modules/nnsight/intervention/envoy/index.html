@@ -57,8 +57,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
-<link href="../../../../_static/css/custom.css?v=1738957167" rel="stylesheet" type="text/css" />
-<link href="../../../../_static/css/home.css?v=1738957167" rel="stylesheet" type="text/css" />
+<link href="../../../../_static/css/custom.css?v=1742434133" rel="stylesheet" type="text/css" />
+<link href="../../../../_static/css/home.css?v=1742434133" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -521,7 +521,7 @@
 
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">protocols</span>
 <span class="kn">from</span> <span class="nn">.backends</span> <span class="kn">import</span> <span class="n">EditingBackend</span>
-<span class="kn">from</span> <span class="nn">.contexts</span> <span class="kn">import</span> <span class="n">InterventionTracer</span>
+<span class="kn">from</span> <span class="nn">.contexts</span> <span class="kn">import</span> <span class="n">InterleavingTracer</span>
 <span class="kn">from</span> <span class="nn">.graph</span> <span class="kn">import</span> <span class="n">InterventionNodeType</span><span class="p">,</span> <span class="n">InterventionProxyType</span>
 
 
@@ -547,13 +547,19 @@
 <span class="sd">        _tracer (nnsight.context.Tracer.Tracer): Object which adds this Envoy&#39;s module&#39;s output and input proxies to an intervention graph. Must be set on Envoys objects manually by the Tracer.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">module_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">alias_path</span><span class="p">:</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">rename</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">module</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span>
+        <span class="n">module_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">alias_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">rename</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">alias_path</span> <span class="ow">or</span> <span class="n">module_path</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_path</span> <span class="o">=</span> <span class="n">module_path</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_module</span> <span class="o">=</span> <span class="n">module</span>
-        
+
         <span class="bp">self</span><span class="o">.</span><span class="n">_rename</span> <span class="o">=</span> <span class="n">rename</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_iteration_stack</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -564,7 +570,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_output_stack</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="n">InterventionProxyType</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_input_stack</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="n">InterventionProxyType</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_tracer</span><span class="p">:</span> <span class="n">InterventionTracer</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tracer</span><span class="p">:</span> <span class="n">InterleavingTracer</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_children</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Envoy</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -574,7 +580,7 @@
         <span class="p">)</span>
 
         <span class="c1"># Recurse into PyTorch module tree.</span>
-        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">module</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_module</span><span class="o">.</span><span class="n">named_children</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">module</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_module</span><span class="o">.</span><span class="n">named_children</span><span class="p">()):</span>
 
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">module</span><span class="p">)</span>
 
@@ -596,7 +602,7 @@
             <span class="n">hook</span> <span class="o">=</span> <span class="kc">True</span>
 
         <span class="k">return</span> <span class="n">protocols</span><span class="o">.</span><span class="n">ApplyModuleProtocol</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_tracer</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">hook</span><span class="o">=</span><span class="n">hook</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tracer</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_path</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">hook</span><span class="o">=</span><span class="n">hook</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
         <span class="p">)</span>
 
     <span class="nd">@property</span>
@@ -636,7 +642,7 @@
                     <span class="n">module_path</span><span class="p">,</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_tracer</span><span class="o">.</span><span class="n">_invoker_group</span><span class="p">,</span>
                     <span class="n">iteration</span><span class="p">,</span>
-                    <span class="n">fake_value</span><span class="o">=</span><span class="n">fake_output</span><span class="p">,</span>  
+                    <span class="n">fake_value</span><span class="o">=</span><span class="n">fake_output</span><span class="p">,</span>
                 <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_output_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
@@ -694,7 +700,7 @@
                     <span class="n">module_path</span><span class="p">,</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_tracer</span><span class="o">.</span><span class="n">_invoker_group</span><span class="p">,</span>
                     <span class="n">iteration</span><span class="p">,</span>
-                    <span class="n">fake_value</span><span class="o">=</span><span class="n">fake_input</span><span class="p">,</span>  
+                    <span class="n">fake_value</span><span class="o">=</span><span class="n">fake_input</span><span class="p">,</span>
                 <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_input_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
@@ -863,26 +869,22 @@
 <span class="sd">            module (torch.nn.Module): Module to create Envoy for.</span>
 <span class="sd">            name (str): name of envoy/attribute.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-                
+
         <span class="n">alias_path</span> <span class="o">=</span> <span class="kc">None</span>
         
-        <span class="n">module_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">module_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_path</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
         
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rename</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rename</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rename</span><span class="p">:</span>
             
-            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rename</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                
-                <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
-                                    
-                    <span class="n">name</span> <span class="o">=</span> <span class="n">value</span>
-                    
-                    <span class="n">alias_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
-                    
-                    <span class="k">break</span>
-
+            <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rename</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+                  
+            <span class="n">alias_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
+            
         <span class="n">envoy</span> <span class="o">=</span> <span class="n">Envoy</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">module_path</span><span class="o">=</span><span class="n">module_path</span><span class="p">,</span> <span class="n">alias_path</span><span class="o">=</span><span class="n">alias_path</span><span class="p">,</span> <span class="n">rename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_rename</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">envoy</span><span class="p">)</span>
+
+        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_module</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">module</span><span class="p">)</span>
 
         <span class="c1"># If the module already has a sub-module named &#39;input&#39; or &#39;output&#39;,</span>
         <span class="c1"># mount the proxy access to &#39;nns_input&#39; or &#39;nns_output instead.</span>
@@ -932,7 +934,7 @@
         <span class="c1"># Update the class on the instance</span>
         <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">=</span> <span class="n">new_cls</span>
 
-    <span class="k">def</span> <span class="nf">_set_tracer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tracer</span><span class="p">:</span> <span class="n">InterventionTracer</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_set_tracer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tracer</span><span class="p">:</span> <span class="n">InterleavingTracer</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set tracer object on Envoy.</span>
 
 <span class="sd">        Args:</span>
@@ -979,7 +981,7 @@
     <span class="k">def</span> <span class="nf">_set_iteration</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">iteration</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">propagate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    
+
         <span class="k">if</span> <span class="n">iteration</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_iteration_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">iteration</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_output_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
@@ -1136,7 +1138,9 @@
 
         <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_children</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Envoy</span><span class="p">[</span><span class="n">InterventionProxyType</span><span class="p">,</span> <span class="n">InterventionNodeType</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Envoy</span><span class="p">[</span><span class="n">InterventionProxyType</span><span class="p">,</span> <span class="n">InterventionNodeType</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Wrapper method for underlying ModuleList getitem.</span>
 
 <span class="sd">        Args:</span>
@@ -1157,24 +1161,36 @@
 
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_module</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Envoy</span><span class="p">[</span><span class="n">InterventionProxyType</span><span class="p">,</span> <span class="n">InterventionNodeType</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span>
+        <span class="n">Envoy</span><span class="p">[</span><span class="n">InterventionProxyType</span><span class="p">,</span> <span class="n">InterventionNodeType</span><span class="p">],</span> <span class="n">InterventionProxyType</span><span class="p">,</span> <span class="n">Any</span>
+    <span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Wrapper method for underlying module&#39;s attributes.</span>
+<span class="sd">        If the attribute is a tensor (e.g. weights or bias) and accessed during tracing, then an InterventionProxy is created.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            key (str): Key.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Any: Attribute.</span>
+<span class="sd">            Union[InterventionProxyType, Any]: Attribute.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_module</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+        <span class="n">attr</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_module</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tracing</span><span class="p">()</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+            <span class="n">attr_proxy</span> <span class="o">=</span> <span class="n">protocols</span><span class="o">.</span><span class="n">ParameterProtocol</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_tracer</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_path</span><span class="p">,</span> <span class="n">key</span>
+            <span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">attr_proxy</span>
+
+        <span class="k">return</span> <span class="n">attr</span>
 
     <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Overload setattr to create and set an Envoy when trying to set a torch Module.&quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">key</span> <span class="o">!=</span> <span class="s2">&quot;_module&quot;</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-
-            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_module</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">_add_envoy</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
 

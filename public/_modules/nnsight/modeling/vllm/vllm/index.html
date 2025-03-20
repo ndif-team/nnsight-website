@@ -57,8 +57,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
-<link href="../../../../../_static/css/custom.css?v=1738957167" rel="stylesheet" type="text/css" />
-<link href="../../../../../_static/css/home.css?v=1738957167" rel="stylesheet" type="text/css" />
+<link href="../../../../../_static/css/custom.css?v=1742434133" rel="stylesheet" type="text/css" />
+<link href="../../../../../_static/css/home.css?v=1742434133" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -699,11 +699,11 @@
 
     <span class="k">def</span> <span class="nf">_batch</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">batched_inputs</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">batched_inputs</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="kc">None</span><span class="p">],</span>
         <span class="n">prompts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
         <span class="n">params</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">NNsightSamplingParams</span><span class="p">],</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]:</span>
 
         <span class="k">if</span> <span class="n">batched_inputs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">batched_inputs</span> <span class="o">=</span> <span class="p">([],</span> <span class="p">[]),</span> <span class="p">{</span><span class="s2">&quot;invoker_group&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>

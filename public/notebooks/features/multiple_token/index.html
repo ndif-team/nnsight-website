@@ -63,8 +63,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
-<link href="../../../_static/css/custom.css?v=1738957167" rel="stylesheet" type="text/css" />
-<link href="../../../_static/css/home.css?v=1738957167" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/custom.css?v=1742434133" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/home.css?v=1742434133" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -487,6 +487,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../scan_validate/">Scan and Validate</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sessions/">Sessions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../setting/">Setting Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../streaming/">Streaming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../vllm_support/">vLLM Support</a></li>
 </ul>
 </div>
@@ -707,14 +708,14 @@ Hidden state length:  50
     <span class="n">hidden_states</span> <span class="o">=</span> <span class="n">nnsight</span><span class="o">.</span><span class="n">list</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">()</span> <span class="c1"># Initialize &amp; .save() nnsight list</span>
 
     <span class="c1"># Call .all() to apply intervention to each new token</span>
-    <span class="n">layers</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">layers</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
 
-    <span class="c1"># Apply intervention - set first layer output to zero</span>
-    <span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][:]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="c1"># Apply intervention - set first layer output to zero</span>
+        <span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][:]</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="c1"># Append desired hidden state post-intervention</span>
-    <span class="n">hidden_states</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">)</span> <span class="c1"># no need to call .save</span>
-    <span class="c1"># Don&#39;t need to loop or call .next()!</span>
+        <span class="c1"># Append desired hidden state post-intervention</span>
+        <span class="n">hidden_states</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">)</span> <span class="c1"># no need to call .save</span>
+        <span class="c1"># Don&#39;t need to loop or call .next()!</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hidden state length: &quot;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">hidden_states</span><span class="p">))</span>
 </pre></div>
@@ -746,13 +747,13 @@ with model.generate(prompt, max_new_tokens=n_new_tokens) as tracer:
     hidden_states = nnsight.list().save() # Initialize &amp; .save() nnsight list
 
     # Call .all() on layers
-    layers.all()
+    with layers.all():
 
-    # Apply same intervention - set first layer output to zero
-    layers[0].output[0][:] = 0
+        # Apply same intervention - set first layer output to zero
+        layers[0].output[0][:] = 0
 
-    # Append desired hidden state post-intervention
-    hidden_states.append(model.lm_head.output) # no need to call .save, it&#39;s already initialized
+        # Append desired hidden state post-intervention
+        hidden_states.append(model.lm_head.output) # no need to call .save, it&#39;s already initialized
 
 print(&quot;Hidden state length: &quot;,len(hidden_states)) # length is 1, meaning it only saved the first token generation
 </pre></div>
@@ -765,13 +766,13 @@ with model.generate(prompt, max_new_tokens=n_new_tokens) as tracer:
     hidden_states = nnsight.list().save() # Initialize &amp; .save() nnsight list
 
     # Call .all() on model
-    model.all()
+    with model.all():
 
-    # Apply same intervention - set first layer output to zero
-    layers[0].output[0][:] = 0
+        # Apply same intervention - set first layer output to zero
+        layers[0].output[0][:] = 0
 
-    # Append desired hidden state post-intervention
-    hidden_states.append(model.lm_head.output) # no need to call .save
+        # Append desired hidden state post-intervention
+        hidden_states.append(model.lm_head.output) # no need to call .save
 
 print(&quot;Hidden state length: &quot;,len(hidden_states)) # length is 3, as expected!
 </pre></div>

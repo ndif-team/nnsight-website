@@ -60,8 +60,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
-<link href="../_static/css/custom.css?v=1738957167" rel="stylesheet" type="text/css" />
-<link href="../_static/css/home.css?v=1738957167" rel="stylesheet" type="text/css" />
+<link href="../_static/css/custom.css?v=1742434133" rel="stylesheet" type="text/css" />
+<link href="../_static/css/home.css?v=1742434133" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -528,8 +528,31 @@
 </div>
 <p>Please give the project a <a class="extlink-ndif reference external" href="https://star on Github.com/ndif-team/nnsight">star on Github</a> to support the project. NNsight is open-source and you can read and clone the full source at <a class="github reference external" href="https://github.com/ndif-team/nnsight">ndif-team/nnsight</a>.</p>
 </section>
-<section id="first-steps">
-<h2>First Steps<a class="headerlink" href="#first-steps" title="Link to this heading">#</a></h2>
+<section id="remote-model-access">
+<h2>Remote Model Access<a class="headerlink" href="#remote-model-access" title="Link to this heading">#</a></h2>
+<p>To remotely access LLMs through NDIF, you must sign up for an NDIF API key.</p>
+<p><a class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary reference external" href="https://login.ndif.us/"><span>NDIF API Key Registration</span></a></p>
+<p>NDIF hosts multiple LLMs, including various sizes of the Llama 3.1 models and DeepSeek-R1 models.
+All of our models are open for public use, but you need to apply for access to the Llama-3.1-405B models.
+You can view the full list of hosted models at <a class="reference external" href="https://nnsight.net/status/">https://nnsight.net/status/</a>.</p>
+<p>If you have a clear research need for Llama-3.1-405B and would like more details about applying for access,
+please refer to our  <a class="reference external" href="https://ndif.us/405b.html">405B pilot program application</a>.</p>
+</section>
+<section id="access-llm-internals">
+<h2>Access LLM Internals<a class="headerlink" href="#access-llm-internals" title="Link to this heading">#</a></h2>
+<p>Now that you have your NDIF API key, you can start exploring LLM internals with NDIF and NNsight.
+We’ve put together a Colab notebook to help you get started.</p>
+<p><a class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary reference external" href="https://colab.research.google.com/github/ndif-team/ndif-website/blob/onboarding-fixes/public/notebooks/NDIFGetStarted.ipynb"><span>Open Colab</span></a></p>
+<p>This notebook will walk you through the following steps:</p>
+<ol class="arabic simple">
+<li><p>Installing NNsight</p></li>
+<li><p>Setting up your NDIF API key</p></li>
+<li><p>Loading a LLM in NNsight</p></li>
+<li><p>Accessing and altering LLM internals remotely</p></li>
+</ol>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
 <div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
 <div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-2 sd-g-xs-2 sd-g-sm-2 sd-g-md-2 sd-g-lg-2 docutils">
 <div class="sd-col sd-d-flex-row docutils">
@@ -597,7 +620,9 @@ Tutorials</div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-steps">First Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remote-model-access">Remote Model Access</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#access-llm-internals">Access LLM Internals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
 </ul>
   </nav></div>
 

@@ -57,8 +57,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
-<link href="../../../../_static/css/custom.css?v=1738957167" rel="stylesheet" type="text/css" />
-<link href="../../../../_static/css/home.css?v=1738957167" rel="stylesheet" type="text/css" />
+<link href="../../../../_static/css/custom.css?v=1742434133" rel="stylesheet" type="text/css" />
+<link href="../../../../_static/css/home.css?v=1742434133" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -858,6 +858,8 @@
             <span class="n">fn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_execute</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="n">fn</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span>
+
+        <span class="n">interleaver</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
 
         <span class="k">with</span> <span class="n">interleaver</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>

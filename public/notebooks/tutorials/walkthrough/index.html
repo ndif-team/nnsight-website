@@ -58,13 +58,13 @@
     <link rel="index" title="Index" href="../../../genindex/" />
     <link rel="search" title="Search" href="../../../search/" />
     <link rel="next" title="About NNsight" href="../../../about/" />
-    <link rel="prev" title="Logit Lens" href="../logit_lens/" />
+    <link rel="prev" title="Access LLMs with NDIF and NNsight" href="../start_remote_access/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
-<link href="../../../_static/css/custom.css?v=1738957167" rel="stylesheet" type="text/css" />
-<link href="../../../_static/css/home.css?v=1738957167" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/custom.css?v=1742434133" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/home.css?v=1742434133" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -491,6 +491,13 @@
 
 
 <li class="toctree-l1"><a class="reference internal" href="../logit_lens/">Logit Lens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../start_remote_access/">Access LLMs with NDIF and NNsight</a></li>
+
+
+
+
+
+
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Walkthrough</a></li>
 
 
@@ -551,21 +558,21 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></p>
-<section id="Walkthrough">
+  <section id="Walkthrough">
 <h1>Walkthrough<a class="headerlink" href="#Walkthrough" title="Link to this heading">#</a></h1>
 <section id="The-API-for-a-transparent-science-on-black-box-AI">
 <h2>The API for a transparent science on black-box AI<a class="headerlink" href="#The-API-for-a-transparent-science-on-black-box-AI" title="Link to this heading">#</a></h2>
 <p>In this era of large-scale deep learning, the most interesting AI models are massive black boxes that are hard to run. Ordinary commercial inference service APIs let us interact with huge models, but they do not let us access model internals.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> library is different: it provides full access to all the neural network internals. When used together with a remote service like the <a class="reference external" href="https://thevisible.net/docs/NDIF-proposal.pdf">National Deep Inference Fabric</a> (NDIF), it makes possible to run complex experiments on huge open models easily, with fully transparent access.</p>
-<p>Our team wants to enable entire labs and independent researchers alike, as we believe a large, passionate, and collaborative community will produce the next big insights on a profoundly important field.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> library is different: it provides full access to all neural network internals. When using <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> together with a remote service like the <a class="reference external" href="https://www.ndif.us">National Deep Inference Fabric</a> (NDIF), it is possible to run complex experiments on huge open models easily with fully transparent access.</p>
+<p>Through NDIF and NNsight, our team wants to enable entire labs and independent researchers alike, as we believe a large, passionate, and collaborative community will produce the next big insights on this profoundly important field.</p>
 </section>
 </section>
 <section id="1-First,-let's-start-small">
 <h1>1 First, let’s start small<a class="headerlink" href="#1-First,-let's-start-small" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://colab.research.google.com/github/ndif-team/nnsight/blob/new-new-tutorials/docs/source/notebooks/tutorials/walkthrough.ipynb">Run an interactive version of this walkthrough in Google Colab</a></p>
 <section id="Setup">
 <h2>Setup<a class="headerlink" href="#Setup" title="Link to this heading">#</a></h2>
-<p>Install nnsight:</p>
+<p>Install NNsight:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>pip install nnsight
 </pre></div>
 </div>
@@ -573,7 +580,7 @@
 <section id="Tracing-Context">
 <h2>Tracing Context<a class="headerlink" href="#Tracing-Context" title="Link to this heading">#</a></h2>
 <p>To demonstrate the core functionality and syntax of nnsight, we’ll define and use a tiny two layer neural network.</p>
-<p>Our little model here is composed of two submodules – linear layers ‘layer1’ and ‘layer2’. We specify the sizes of each of these modules and create some complementary example input.</p>
+<p>Our little model here is composed of two submodules – linear layers <code class="docutils literal notranslate"><span class="pre">layer1</span></code> and <code class="docutils literal notranslate"><span class="pre">layer2</span></code>. We specify the sizes of each of these modules and create some complementary example input.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -596,7 +603,7 @@
 </pre></div>
 </div>
 </div>
-<p>The core object of the nnsight package is <code class="docutils literal notranslate"><span class="pre">NNsight</span></code>. This wraps around a given PyTorch model to enable investigation of its internal parameters.</p>
+<p>The core object of the NNsight package is <code class="docutils literal notranslate"><span class="pre">NNsight</span></code>. This wraps around a given PyTorch model to enable investigation of its internal parameters.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
@@ -664,7 +671,7 @@ Sequential(
 </section>
 <section id="Getting">
 <h2>Getting<a class="headerlink" href="#Getting" title="Link to this heading">#</a></h2>
-<p>Earlier, when we wrapped our little neural net with the <code class="docutils literal notranslate"><span class="pre">NNsight</span></code> class. This added a couple properties to each module in the model (including the root model itself). The two most important ones are <code class="docutils literal notranslate"><span class="pre">.input</span></code> and <code class="docutils literal notranslate"><span class="pre">.output</span></code>.</p>
+<p>Earlier, we wrapped our little neural net with the <code class="docutils literal notranslate"><span class="pre">NNsight</span></code> class. This added a couple properties to each module in the model (including the root model itself). The two most important ones are <code class="docutils literal notranslate"><span class="pre">.input</span></code> and <code class="docutils literal notranslate"><span class="pre">.output</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">input</span>
 <span class="n">model</span><span class="o">.</span><span class="n">output</span>
 </pre></div>
@@ -753,7 +760,7 @@ tensor([[-0.1301, -0.4906]])
 <p>Each time we access a module’s input or output, we create an <em>intervention</em> in the neural network’s forward pass. Collectively these requests form the <em>intervention graph</em>. We call the process of executing it alongside the model’s normal computation graph, <em>interleaving</em>.</p>
 <details><summary><p>On Model output</p>
 </summary><hr class="docutils" />
-<p>If we don’t need to access anything other than the final model output, we can call the tracing context with <code class="docutils literal notranslate"><span class="pre">trace=False</span></code> and not use it as a context. This could be especially useful for easy remote inference.</p>
+<p>If we don’t need to access anything other than the model’s final output (i.e., the model’s predicted next token), we can call the tracing context with <code class="docutils literal notranslate"><span class="pre">trace=False</span></code> and not use it as a context. This could be useful for simple inference using NNsight.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="o">&lt;</span><span class="n">inputs</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">trace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -778,7 +785,7 @@ Sequential(
 )
 </pre></div></div>
 </div>
-<p>Let’s access the output of the first layer (which we’ve named ‘layer1’):</p>
+<p>Let’s access the output of the first layer (which we’ve named <code class="docutils literal notranslate"><span class="pre">layer1</span></code>):</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
 </pre></div>
@@ -800,7 +807,8 @@ tensor([[ 0.2732,  0.2355, -0.6433,  0.0475,  0.0904,  0.4407, -0.3099,  1.4903,
          -0.0748,  0.0088]])
 </pre></div></div>
 </div>
-<p>Let’s do the same for the input of layer2. While we’re at it, let’s also drop the <code class="docutils literal notranslate"><span class="pre">as</span> <span class="pre">tracer</span></code>, as we won’t be needing the tracer object itself for a few sections:</p>
+<p>Let’s do the same for the input of <code class="docutils literal notranslate"><span class="pre">layer2</span></code>.</p>
+<p>Because we aren’t accessing the <code class="docutils literal notranslate"><span class="pre">tracer</span></code> object within these tracing contexts, we can also drop <code class="docutils literal notranslate"><span class="pre">as</span> <span class="pre">tracer</span></code>.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
 </pre></div>
@@ -824,15 +832,16 @@ tensor([[ 0.2732,  0.2355, -0.6433,  0.0475,  0.0904,  0.4407, -0.3099,  1.4903,
 </div>
 <details><summary><p>On module inputs</p>
 </summary><hr class="docutils" />
-<p>Notice how the value for <code class="docutils literal notranslate"><span class="pre">l2_input</span></code>, is just a single tensor. By default, the <code class="docutils literal notranslate"><span class="pre">.input</span></code> attribute of a module will return the <strong>first</strong> tensor input to the module.</p>
-<p>We can also access the full input to a module by using the <code class="docutils literal notranslate"><span class="pre">.inputs</span></code> attribute which will return the values in the form of:</p>
+<p>Notice how the value for <code class="docutils literal notranslate"><span class="pre">l2_input</span></code> is just a single tensor. By default, the <code class="docutils literal notranslate"><span class="pre">.input</span></code> attribute of a module will return the <strong>first</strong> tensor input to the module.</p>
+<p>We can also access the full input to a module by using the <code class="docutils literal notranslate"><span class="pre">.inputs</span></code> attribute, which will return the values in the form of:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>tuple(tuple(args), dictionary(kwargs))
 </pre></div>
 </div>
 <p>Where the first index of the tuple is itself a tuple of all positional arguments, and the second index is a dictionary of the keyword arguments.</p>
 <hr class="docutils" />
 </details><p>Until now we were saving the output of the model and its submodules within the <code class="docutils literal notranslate"><span class="pre">Trace</span></code> context to then print it after exiting the context. We will continuing doing this in the rest of the tutorial since it’s a good practice to save the computation results for later analysis.</p>
-<p>However, we can also log the outputs of the model and its submodules within the <code class="docutils literal notranslate"><span class="pre">Trace</span></code> context. This is useful for debugging and understanding the model’s behavior while saving memory. Let’s see how to do this:</p>
+<p>However, we can also log the outputs of the model and its submodules within the <code class="docutils literal notranslate"><span class="pre">Trace</span></code> context. This is useful for debugging and understanding the model’s behavior while saving memory.</p>
+<p>Let’s see how to do this:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[71]:
 </pre></div>
@@ -1396,7 +1405,6 @@ File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.10/site
 10
 </pre></div></div>
 </div>
-<p>We can also just replace proxy inputs and outputs with tensors of the same shape and type. Let’s use the shape information we have at our disposal to add noise to the output, and replace it with this new noised tensor:</p>
 </section>
 <section id="Gradients">
 <h2>Gradients<a class="headerlink" href="#Gradients" title="Link to this heading">#</a></h2>
@@ -1792,12 +1800,12 @@ GPT2LMHeadModel(
 )
 </pre></div></div>
 </div>
+<p>When we initialize <code class="docutils literal notranslate"><span class="pre">LanguageModel</span></code>, we aren’t yet loading the parameters of the model into memory. We are actually loading a ‘meta’ version of the model which doesn’t take up any memory, but still allows us to view and trace actions on it. After exiting the first tracing context, the model is then fully loaded into memory. To load into memory on initialization, you can pass <code class="docutils literal notranslate"><span class="pre">dispatch=True</span></code> into <code class="docutils literal notranslate"><span class="pre">LanguageModel</span></code> like
+<code class="docutils literal notranslate"><span class="pre">LanguageModel('openai-community/gpt2',</span> <span class="pre">device_map=&quot;auto&quot;,</span> <span class="pre">dispatch=True)</span></code>.</p>
 <details><summary><p>On Model Initialization</p>
 </summary><hr class="docutils" />
 <p>A few important things to note:</p>
 <p>Keyword arguments passed to the initialization of <code class="docutils literal notranslate"><span class="pre">LanguageModel</span></code> is forwarded to HuggingFace specific loading logic. In this case, <code class="docutils literal notranslate"><span class="pre">device_map</span></code> specifies which devices to use and its value <code class="docutils literal notranslate"><span class="pre">auto</span></code> indicates to evenly distribute it to all available GPUs (and CPU if no GPUs available). Other arguments can be found here: <a class="reference external" href="https://huggingface.co/docs/transformers/model_doc/auto#transformers.AutoModelForCausalLM">https://huggingface.co/docs/transformers/model_doc/auto#transformers.AutoModelForCausalLM</a></p>
-<p>When we initialize <code class="docutils literal notranslate"><span class="pre">LanguageModel</span></code>, we aren’t yet loading the parameters of the model into memory. We are actually loading a ‘meta’ version of the model which doesn’t take up any memory, but still allows us to view and trace actions on it. After exiting the first tracing context, the model is then fully loaded into memory. To load into memory on initialization, you can pass <code class="docutils literal notranslate"><span class="pre">dispatch=True</span></code> into <code class="docutils literal notranslate"><span class="pre">LanguageModel</span></code> like
-<code class="docutils literal notranslate"><span class="pre">LanguageModel('openai-community/gpt2',</span> <span class="pre">device_map=&quot;auto&quot;,</span> <span class="pre">dispatch=True)</span></code>.</p>
 <hr class="docutils" />
 </details><p>Let’s now apply some of the features that we used on the small model to <code class="docutils literal notranslate"><span class="pre">GPT-2</span></code>. Unlike <code class="docutils literal notranslate"><span class="pre">NNsight</span></code>, <code class="docutils literal notranslate"><span class="pre">LanguageModel</span></code> does define logic to pre-process inputs upon entering the tracing context. This makes interacting with the model simpler (i.e., you can send prompts to the model without having to directly access the tokenizer).</p>
 <p>In the following example, we ablate the value coming from the last layer’s MLP module and decode the logits to see what token the model predicts without influence from that particular module:</p>
@@ -1950,6 +1958,7 @@ modified prediction shape torch.Size([])
 Modified prediction:  Paris
 </pre></div></div>
 </div>
+<p>For larger batch sizes, you can also iteratate across multiple invoke contexts.</p>
 </section>
 <section id="Multiple-Token-Generation">
 <h2>Multiple Token Generation<a class="headerlink" href="#Multiple-Token-Generation" title="Link to this heading">#</a></h2>
@@ -2055,14 +2064,14 @@ Hidden state length:  3
     <span class="n">hidden_states</span> <span class="o">=</span> <span class="n">nnsight</span><span class="o">.</span><span class="n">list</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">()</span> <span class="c1"># Initialize &amp; .save() nnsight list</span>
 
     <span class="c1"># Call .all() to apply intervention to each new token</span>
-    <span class="n">layers</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">layers</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
 
-    <span class="c1"># Apply intervention - set first layer output to zero</span>
-    <span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][:]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="c1"># Apply intervention - set first layer output to zero</span>
+        <span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][:]</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="c1"># Append desired hidden state post-intervention</span>
-    <span class="n">hidden_states</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">)</span> <span class="c1"># no need to call .save</span>
-    <span class="c1"># Don&#39;t need to loop or call .next()!</span>
+        <span class="c1"># Append desired hidden state post-intervention</span>
+        <span class="n">hidden_states</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">)</span> <span class="c1"># no need to call .save</span>
+        <span class="c1"># Don&#39;t need to loop or call .next()!</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hidden state length: &quot;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">hidden_states</span><span class="p">))</span>
 </pre></div>
