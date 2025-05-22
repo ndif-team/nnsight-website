@@ -15,32 +15,29 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=8f2a1f02" />
+  
+  <link href="../../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=362ab14a" />
     <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../../../../../_static/documentation_options.js?v=187304be"></script>
-    <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
@@ -56,9 +53,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
-<link href="../../../../../_static/css/custom.css?v=1742915909" rel="stylesheet" type="text/css" />
-<link href="../../../../../_static/css/home.css?v=1742915909" rel="stylesheet" type="text/css" />
+<link href="../../../../../_static/css/custom.css?v=1747933230" rel="stylesheet" type="text/css" />
+<link href="../../../../../_static/css/home.css?v=1747933230" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -75,8 +71,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../../../../../search/"
       method="get">
@@ -84,6 +91,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -91,8 +99,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -124,7 +132,7 @@
     
     
     <img src="../../../../../_static/nnsight_logo.svg" class="logo__image only-dark" alt="nnsight - Home"/>
-    <img src="../../../../../_static/nnsight_logo.svg" class="logo__image only-light pst-js-only" alt="nnsight - Home"/>
+    <script>document.write(`<img src="../../../../../_static/nnsight_logo.svg" class="logo__image only-light" alt="nnsight - Home"/>`);</script>
   
   
 </a></div>
@@ -184,11 +192,15 @@
         <div class="navbar-item navbar-persistent--container">
           
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
         </div>
       
       
@@ -230,11 +242,15 @@
       
         <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -273,6 +289,18 @@
           
           
           
+          <a href="https://discuss.ndif.us/" title="Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discourse fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Forum</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
           <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
             <span class="sr-only">Discord</span></a>
         </li>
@@ -285,11 +313,15 @@
   
     <div class="navbar-persistent--mobile">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
     </div>
   
 
@@ -306,8 +338,7 @@
       
         
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
         
 
   
@@ -404,11 +435,15 @@
         
           <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -447,6 +482,18 @@
           
           
           
+          <a href="https://discuss.ndif.us/" title="Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discourse fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Forum</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
           <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
             <span class="sr-only">Discord</span></a>
         </li>
@@ -458,14 +505,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -483,6 +525,8 @@
       
         <div class="header-article-item">
 
+
+
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -494,7 +538,7 @@
     
     <li class="breadcrumb-item"><a href="../../../../" class="nav-link">Module code</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">nnsight.schema.format.types</span></li>
+    <li class="breadcrumb-item active" aria-current="page">nnsight.sche...</li>
   </ul>
 </nav>
 </div>
@@ -512,16 +556,16 @@
                 <article class="bd-article">
                   
   <h1>Source code for nnsight.schema.format.types</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">weakref</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">types</span><span class="w"> </span><span class="kn">import</span> <span class="n">BuiltinFunctionType</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">types</span><span class="w"> </span><span class="kn">import</span> <span class="n">FunctionType</span> <span class="k">as</span> <span class="n">FuncType</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">types</span><span class="w"> </span><span class="kn">import</span> <span class="n">MethodDescriptorType</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">import</span> <span class="nn">weakref</span>
+<span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">BuiltinFunctionType</span>
+<span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">FunctionType</span> <span class="k">as</span> <span class="n">FuncType</span>
+<span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">MethodDescriptorType</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">BaseModel</span><span class="p">,</span>
     <span class="n">ConfigDict</span><span class="p">,</span>
     <span class="n">Field</span><span class="p">,</span>
@@ -531,23 +575,23 @@
     <span class="n">field_validator</span><span class="p">,</span>
     <span class="n">model_serializer</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic.functional_validators</span><span class="w"> </span><span class="kn">import</span> <span class="n">AfterValidator</span><span class="p">,</span> <span class="n">BeforeValidator</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing_extensions</span><span class="w"> </span><span class="kn">import</span> <span class="n">Annotated</span><span class="p">,</span> <span class="n">Self</span>
+<span class="kn">from</span> <span class="nn">pydantic.functional_validators</span> <span class="kn">import</span> <span class="n">AfterValidator</span><span class="p">,</span> <span class="n">BeforeValidator</span>
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Annotated</span><span class="p">,</span> <span class="n">Self</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">...intervention.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">InterventionGraph</span><span class="p">,</span> <span class="n">InterventionNode</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">...tracing.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">Graph</span><span class="p">,</span> <span class="n">Node</span><span class="p">,</span> <span class="n">SubGraph</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">FUNCTIONS_WHITELIST</span><span class="p">,</span> <span class="n">get_function_name</span>
+<span class="kn">from</span> <span class="nn">...intervention.graph</span> <span class="kn">import</span> <span class="n">InterventionGraph</span><span class="p">,</span> <span class="n">InterventionNode</span>
+<span class="kn">from</span> <span class="nn">...tracing.graph</span> <span class="kn">import</span> <span class="n">Graph</span><span class="p">,</span> <span class="n">Node</span><span class="p">,</span> <span class="n">SubGraph</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">FUNCTIONS_WHITELIST</span><span class="p">,</span> <span class="n">get_function_name</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">...</span><span class="w"> </span><span class="kn">import</span> <span class="n">NNsight</span>
+    <span class="kn">from</span> <span class="nn">...</span> <span class="kn">import</span> <span class="n">NNsight</span>
 
 <span class="n">FUNCTION</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">BuiltinFunctionType</span><span class="p">,</span> <span class="n">FuncType</span><span class="p">,</span> <span class="n">MethodDescriptorType</span><span class="p">,</span> <span class="nb">type</span><span class="p">]</span>
 <span class="n">PRIMITIVE</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
 
 
-<span class="k">class</span><span class="w"> </span><span class="nc">DeserializeHandler</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">DeserializeHandler</span><span class="p">:</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">memo</span><span class="p">,</span>
         <span class="n">model</span><span class="p">:</span> <span class="s2">&quot;NNsight&quot;</span>
@@ -564,21 +608,21 @@
 
 <div class="viewcode-block" id="BaseNNsightModel">
 <a class="viewcode-back" href="../../../../../documentation/schema/#nnsight.schema.format.types.BaseNNsightModel">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">BaseNNsightModel</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">BaseNNsightModel</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
     <span class="n">model_config</span> <span class="o">=</span> <span class="n">ConfigDict</span><span class="p">(</span><span class="n">arbitrary_types_allowed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
     <span class="n">type_name</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;TYPE_NAME&quot;</span><span class="p">]</span>
 
     <span class="nd">@classmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">to_model</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">to_model</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">DeserializeHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">DeserializeHandler</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">try_deserialize</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">BaseNNsightModel</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">handler</span><span class="p">:</span> <span class="n">DeserializeHandler</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">try_deserialize</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">BaseNNsightModel</span> <span class="o">|</span> <span class="n">Any</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">DeserializeHandler</span><span class="p">):</span>
 
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">BaseNNsightModel</span><span class="p">):</span>
 
@@ -587,9 +631,9 @@
     <span class="k">return</span> <span class="n">value</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">memoized</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">memoized</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">inner</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">inner</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
 
         <span class="n">model</span> <span class="o">=</span> <span class="n">fn</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 
@@ -605,7 +649,7 @@
 <span class="c1">### Custom Pydantic types for all supported base types</span>
 <div class="viewcode-block" id="NodeModel">
 <a class="viewcode-back" href="../../../../../documentation/schema/#nnsight.schema.format.types.NodeModel">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">NodeModel</span><span class="p">(</span><span class="n">BaseNNsightModel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">NodeModel</span><span class="p">(</span><span class="n">BaseNNsightModel</span><span class="p">):</span>
 
     <span class="n">type_name</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;NODE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;NODE&quot;</span>
 
@@ -615,12 +659,12 @@
 
     <span class="nd">@staticmethod</span>
     <span class="nd">@memoized</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">to_model</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">to_model</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
 
         <span class="k">return</span> <span class="n">NodeModel</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">value</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">value</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">value</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="nd">@model_serializer</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;wrap&quot;</span><span class="p">)</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">serialize_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">serialize_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">):</span>
 
         <span class="n">dump</span> <span class="o">=</span> <span class="n">handler</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
@@ -634,7 +678,7 @@
 
         <span class="k">return</span> <span class="n">dump</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">DeserializeHandler</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">DeserializeHandler</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
 
         <span class="k">return</span> <span class="n">handler</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">handler</span><span class="p">),</span>
@@ -648,7 +692,7 @@
 
 <div class="viewcode-block" id="TensorModel">
 <a class="viewcode-back" href="../../../../../documentation/schema/#nnsight.schema.format.types.TensorModel">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">TensorModel</span><span class="p">(</span><span class="n">BaseNNsightModel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">TensorModel</span><span class="p">(</span><span class="n">BaseNNsightModel</span><span class="p">):</span>
 
     <span class="n">type_name</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;TENSOR&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;TENSOR&quot;</span>
 
@@ -657,11 +701,11 @@
 
     <span class="nd">@staticmethod</span>
     <span class="nd">@memoized</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">to_model</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">to_model</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
 
         <span class="k">return</span> <span class="n">TensorModel</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="n">value</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">DeserializeHandler</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">DeserializeHandler</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
         <span class="n">dtype</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">torch</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span></div>
 
@@ -669,7 +713,7 @@
 
 <div class="viewcode-block" id="SliceModel">
 <a class="viewcode-back" href="../../../../../documentation/schema/#nnsight.schema.format.types.SliceModel">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">SliceModel</span><span class="p">(</span><span class="n">BaseNNsightModel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">SliceModel</span><span class="p">(</span><span class="n">BaseNNsightModel</span><span class="p">):</span>
 
     <span class="n">type_name</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;SLICE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;SLICE&quot;</span>
 
@@ -679,11 +723,11 @@
 
     <span class="nd">@staticmethod</span>
     <span class="nd">@memoized</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">to_model</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">slice</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">to_model</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">slice</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
 
         <span class="k">return</span> <span class="n">SliceModel</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">value</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">value</span><span class="o">.</span><span class="n">stop</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">value</span><span class="o">.</span><span class="n">step</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">DeserializeHandler</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">slice</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">DeserializeHandler</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">slice</span><span class="p">:</span>
 
         <span class="k">return</span> <span class="nb">slice</span><span class="p">(</span>
             <span class="n">try_deserialize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">handler</span><span class="p">),</span>
@@ -695,11 +739,11 @@
 
 <div class="viewcode-block" id="EllipsisModel">
 <a class="viewcode-back" href="../../../../../documentation/schema/#nnsight.schema.format.types.EllipsisModel">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">EllipsisModel</span><span class="p">(</span><span class="n">BaseNNsightModel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">EllipsisModel</span><span class="p">(</span><span class="n">BaseNNsightModel</span><span class="p">):</span>
 
     <span class="n">type_name</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;ELLIPSIS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;ELLIPSIS&quot;</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">deserialize</span><span class="p">(</span>
+    <span class="k">def</span> <span class="nf">deserialize</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">DeserializeHandler</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">type</span><span class="p">(</span>
         <span class="o">...</span>
@@ -710,54 +754,54 @@
 
 <div class="viewcode-block" id="ListModel">
 <a class="viewcode-back" href="../../../../../documentation/schema/#nnsight.schema.format.types.ListModel">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">ListModel</span><span class="p">(</span><span class="n">BaseNNsightModel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">ListModel</span><span class="p">(</span><span class="n">BaseNNsightModel</span><span class="p">):</span>
 
     <span class="n">type_name</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;LIST&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;LIST&quot;</span>
 
     <span class="n">values</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ValueTypes</span><span class="p">]</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">to_model</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">List</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">to_model</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">List</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
 
         <span class="k">return</span> <span class="n">ListModel</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="n">value</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">DeserializeHandler</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">DeserializeHandler</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">try_deserialize</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">handler</span><span class="p">)</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">]</span></div>
 
 
 
 <div class="viewcode-block" id="TupleModel">
 <a class="viewcode-back" href="../../../../../documentation/schema/#nnsight.schema.format.types.TupleModel">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">TupleModel</span><span class="p">(</span><span class="n">BaseNNsightModel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">TupleModel</span><span class="p">(</span><span class="n">BaseNNsightModel</span><span class="p">):</span>
 
     <span class="n">type_name</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;TUPLE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;TUPLE&quot;</span>
 
     <span class="n">values</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ValueTypes</span><span class="p">]</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">to_model</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">to_model</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
 
         <span class="k">return</span> <span class="n">TupleModel</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="n">value</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">DeserializeHandler</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">DeserializeHandler</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">try_deserialize</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">handler</span><span class="p">)</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">])</span></div>
 
 
 
 <div class="viewcode-block" id="DictModel">
 <a class="viewcode-back" href="../../../../../documentation/schema/#nnsight.schema.format.types.DictModel">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">DictModel</span><span class="p">(</span><span class="n">BaseNNsightModel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">DictModel</span><span class="p">(</span><span class="n">BaseNNsightModel</span><span class="p">):</span>
 
     <span class="n">type_name</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;DICT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;DICT&quot;</span>
 
     <span class="n">values</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">to_model</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">to_model</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
 
         <span class="k">return</span> <span class="n">DictModel</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="n">value</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">DeserializeHandler</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">DeserializeHandler</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">{</span>
             <span class="n">key</span><span class="p">:</span> <span class="n">try_deserialize</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">handler</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
         <span class="p">}</span></div>
@@ -766,21 +810,21 @@
 
 <div class="viewcode-block" id="FunctionWhitelistError">
 <a class="viewcode-back" href="../../../../../documentation/schema/#nnsight.schema.format.types.FunctionWhitelistError">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">FunctionWhitelistError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">FunctionWhitelistError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
     <span class="k">pass</span></div>
 
 
 
 <div class="viewcode-block" id="FunctionModel">
 <a class="viewcode-back" href="../../../../../documentation/schema/#nnsight.schema.format.types.FunctionModel">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">FunctionModel</span><span class="p">(</span><span class="n">BaseNNsightModel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">FunctionModel</span><span class="p">(</span><span class="n">BaseNNsightModel</span><span class="p">):</span>
 
     <span class="n">type_name</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;FUNCTION&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;FUNCTION&quot;</span>
 
     <span class="n">function_name</span><span class="p">:</span> <span class="nb">str</span>
     
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">to_model</span><span class="p">(</span><span class="n">value</span><span class="p">:</span><span class="n">FUNCTION</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">to_model</span><span class="p">(</span><span class="n">value</span><span class="p">:</span><span class="n">FUNCTION</span><span class="p">):</span>
         
         <span class="n">model</span> <span class="o">=</span> <span class="n">FunctionModel</span><span class="p">(</span><span class="n">function_name</span><span class="o">=</span><span class="n">get_function_name</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
         
@@ -789,7 +833,7 @@
         <span class="k">return</span> <span class="n">model</span>
 
     <span class="nd">@classmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">check_function_whitelist</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">qualname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">check_function_whitelist</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">qualname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">qualname</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">FUNCTIONS_WHITELIST</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">FunctionWhitelistError</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;Function with name `</span><span class="si">{</span><span class="n">qualname</span><span class="si">}</span><span class="s2">` not in function whitelist.&quot;</span>
@@ -797,7 +841,7 @@
 
         <span class="k">return</span> <span class="n">qualname</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">DeserializeHandler</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FUNCTION</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">DeserializeHandler</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FUNCTION</span><span class="p">:</span>
 
         <span class="n">FunctionModel</span><span class="o">.</span><span class="n">check_function_whitelist</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">function_name</span><span class="p">)</span>
 
@@ -807,7 +851,7 @@
 
 <div class="viewcode-block" id="GraphModel">
 <a class="viewcode-back" href="../../../../../documentation/schema/#nnsight.schema.format.types.GraphModel">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">GraphModel</span><span class="p">(</span><span class="n">BaseNNsightModel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">GraphModel</span><span class="p">(</span><span class="n">BaseNNsightModel</span><span class="p">):</span>
 
     <span class="n">type_name</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;GRAPH&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;GRAPH&quot;</span>
 
@@ -817,11 +861,11 @@
     <span class="n">nodes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">MemoReferenceModel</span><span class="p">,</span> <span class="n">NodeType</span><span class="p">]]</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">to_model</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Graph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">to_model</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Graph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
 
         <span class="k">return</span> <span class="n">GraphModel</span><span class="p">(</span><span class="n">graph</span><span class="o">=</span><span class="n">value</span><span class="p">,</span> <span class="n">nodes</span><span class="o">=</span><span class="n">value</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">DeserializeHandler</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Graph</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">DeserializeHandler</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Graph</span><span class="p">:</span>
 
         <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
 
@@ -833,18 +877,18 @@
 
 <div class="viewcode-block" id="SubGraphModel">
 <a class="viewcode-back" href="../../../../../documentation/schema/#nnsight.schema.format.types.SubGraphModel">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">SubGraphModel</span><span class="p">(</span><span class="n">BaseNNsightModel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">SubGraphModel</span><span class="p">(</span><span class="n">BaseNNsightModel</span><span class="p">):</span>
 
     <span class="n">type_name</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;SUBGRAPH&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;SUBGRAPH&quot;</span>
 
     <span class="n">subset</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">to_model</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">SubGraph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">to_model</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">SubGraph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
 
         <span class="k">return</span> <span class="n">SubGraphModel</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="n">value</span><span class="o">.</span><span class="n">subset</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">DeserializeHandler</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Graph</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">DeserializeHandler</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Graph</span><span class="p">:</span>
 
         <span class="n">value</span> <span class="o">=</span> <span class="n">SubGraph</span><span class="p">(</span><span class="n">handler</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">subset</span><span class="p">)</span>
         
@@ -857,16 +901,16 @@
 
 <div class="viewcode-block" id="InterventionGraphModel">
 <a class="viewcode-back" href="../../../../../documentation/schema/#nnsight.schema.format.types.InterventionGraphModel">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">InterventionGraphModel</span><span class="p">(</span><span class="n">SubGraphModel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">InterventionGraphModel</span><span class="p">(</span><span class="n">SubGraphModel</span><span class="p">):</span>
 
     <span class="n">type_name</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;INTERVENTIONGRAPH&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;INTERVENTIONGRAPH&quot;</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">to_model</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">InterventionGraph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">to_model</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">InterventionGraph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
 
         <span class="k">return</span> <span class="n">InterventionGraphModel</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="n">value</span><span class="o">.</span><span class="n">subset</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">DeserializeHandler</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Graph</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">DeserializeHandler</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Graph</span><span class="p">:</span>
         <span class="n">value</span> <span class="o">=</span> <span class="n">InterventionGraph</span><span class="p">(</span><span class="n">handler</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">handler</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">subset</span><span class="p">)</span>
     
         <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
@@ -878,13 +922,13 @@
 
 <div class="viewcode-block" id="MemoReferenceModel">
 <a class="viewcode-back" href="../../../../../documentation/schema/#nnsight.schema.format.types.MemoReferenceModel">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">MemoReferenceModel</span><span class="p">(</span><span class="n">BaseNNsightModel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">MemoReferenceModel</span><span class="p">(</span><span class="n">BaseNNsightModel</span><span class="p">):</span>
 
     <span class="n">type_name</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;REFERENCE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;REFERENCE&quot;</span>
 
     <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">DeserializeHandler</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handler</span><span class="p">:</span> <span class="n">DeserializeHandler</span><span class="p">):</span>
         
         <span class="n">value</span> <span class="o">=</span> <span class="n">try_deserialize</span><span class="p">(</span><span class="n">handler</span><span class="o">.</span><span class="n">memo</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">],</span> <span class="n">handler</span><span class="p">)</span>
 
@@ -945,7 +989,7 @@
 <span class="p">]</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">check_memo</span><span class="p">(</span><span class="nb">object</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">check_memo</span><span class="p">(</span><span class="nb">object</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
 
     <span class="n">_id</span> <span class="o">=</span> <span class="nb">id</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
 
@@ -1024,8 +1068,8 @@
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1050,8 +1094,7 @@
       
         <div class="footer-item">
 <p class="theme-version">
-  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
 </p></div>
       
     </div>

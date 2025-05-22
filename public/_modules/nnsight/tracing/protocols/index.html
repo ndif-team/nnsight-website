@@ -1,0 +1,1739 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nnsight.tracing.protocols &#8212; nnsight</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=362ab14a" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../../_static/documentation_options.js?v=187304be"></script>
+    <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/nnsight/tracing/protocols';</script>
+    <script src="../../../../_static/js/custom.js?v=1e4be224"></script>
+    <script src="../../../../_static/js/code.js?v=34343d0c"></script>
+    <link rel="icon" href="../../../../_static/icon.ico"/>
+    <link rel="author" title="About these documents" href="../../../../about/" />
+    <link rel="index" title="Index" href="../../../../genindex/" />
+    <link rel="search" title="Search" href="../../../../search/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+<link href="../../../../_static/css/custom.css?v=1738361715" rel="stylesheet" type="text/css" />
+<link href="../../../../_static/css/home.css?v=1738361715" rel="stylesheet" type="text/css" />
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../../search/"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../../_static/nnsight_logo.svg" class="logo__image only-dark" alt="nnsight - Home"/>
+    <script>document.write(`<img src="../../../../_static/nnsight_logo.svg" class="logo__image only-light" alt="nnsight - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../start/">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../documentation/">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../features/">
+    Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../tutorials/">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../about/">
+    About
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item"><script>
+    fetch("https://ndif.dev/ping")
+        .then((response) => {
+            if (response.status == 200) {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#66800b', 'important');
+                    });
+                });
+            }
+            else {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#af3029', 'important');
+                    });
+                });
+                var statusIcon = document.querySelector('.ndif .fa-circle-check');
+                if (statusIcon) {
+                    // not here
+                    statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark'); 
+                }
+            }
+        })
+        .catch((response) => {
+            Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                    spanElement.style.setProperty('color', '#af3029', 'important');
+                });
+            });
+            var statusIcon = document.querySelector('.ndif .fa-circle-check');
+            if (statusIcon) {
+                statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark');
+            }
+        })
+</script></div>
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/status" title="Status: Unknown" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Status: Unknown</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discord</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../start/">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../documentation/">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../features/">
+    Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../tutorials/">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../about/">
+    About
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><script>
+    fetch("https://ndif.dev/ping")
+        .then((response) => {
+            if (response.status == 200) {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#66800b', 'important');
+                    });
+                });
+            }
+            else {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#af3029', 'important');
+                    });
+                });
+                var statusIcon = document.querySelector('.ndif .fa-circle-check');
+                if (statusIcon) {
+                    // not here
+                    statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark'); 
+                }
+            }
+        })
+        .catch((response) => {
+            Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                    spanElement.style.setProperty('color', '#af3029', 'important');
+                });
+            });
+            var statusIcon = document.querySelector('.ndif .fa-circle-check');
+            if (statusIcon) {
+                statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark');
+            }
+        })
+</script></div>
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/status" title="Status: Unknown" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Status: Unknown</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discord</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">nnsight.trac...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for nnsight.tracing.protocols</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">inspect</span>
+<span class="kn">import</span> <span class="nn">weakref</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch._subclasses.fake_tensor</span> <span class="kn">import</span> <span class="n">FakeCopyMode</span><span class="p">,</span> <span class="n">FakeTensorMode</span>
+<span class="kn">from</span> <span class="nn">torch.fx.experimental.symbolic_shapes</span> <span class="kn">import</span> <span class="n">ShapeEnv</span>
+
+<span class="kn">from</span> <span class="nn">nnsight.tracing.Node</span> <span class="kn">import</span> <span class="n">Node</span>
+
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">util</span>
+<span class="kn">from</span> <span class="nn">..contexts.Conditional</span> <span class="kn">import</span> <span class="n">ConditionalManager</span>
+<span class="kn">from</span> <span class="nn">.util</span> <span class="kn">import</span> <span class="n">validate</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">..contexts.backends.LocalBackend</span> <span class="kn">import</span> <span class="n">LocalMixin</span>
+    <span class="kn">from</span> <span class="nn">..contexts.Conditional</span> <span class="kn">import</span> <span class="n">Conditional</span>
+    <span class="kn">from</span> <span class="nn">..intervention</span> <span class="kn">import</span> <span class="n">InterventionProxy</span>
+    <span class="kn">from</span> <span class="nn">.Bridge</span> <span class="kn">import</span> <span class="n">Bridge</span>
+    <span class="kn">from</span> <span class="nn">.Graph</span> <span class="kn">import</span> <span class="n">Graph</span>
+    <span class="kn">from</span> <span class="nn">.Node</span> <span class="kn">import</span> <span class="n">Node</span>
+
+
+<div class="viewcode-block" id="Protocol">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.Protocol">[docs]</a>
+<span class="k">class</span> <span class="nc">Protocol</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A `Protocol` represents some complex action a user might want to create a `Node` and `Proxy` for as well as add to a `Graph`.</span>
+<span class="sd">    Unlike normal `Node` target execution, these have access to the `Node` itself and therefore the `Graph`, enabling more powerful functionality than with just functions and methods.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">redirect</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">condition</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+
+<div class="viewcode-block" id="Protocol.add">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.Protocol.add">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;InterventionProxy&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Class method to be implemented in order to add a Node of this Protocol to a Graph.&quot;&quot;&quot;</span>
+
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Protocol.execute">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.Protocol.execute">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="s2">&quot;Node&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Class method to be implemented which contains the actual execution logic of the Protocol. By default, does nothing</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            node (Node): Node to execute using this Protocols execution logic.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">compile</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="s2">&quot;Node&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+<div class="viewcode-block" id="Protocol.style">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.Protocol.style">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">style</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Visualization style for this protocol node.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            - Dict: dictionary style.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;node&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="s2">&quot;ellipse&quot;</span><span class="p">},</span>  <span class="c1"># Node display</span>
+            <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+            <span class="s2">&quot;arg&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span>
+                <span class="k">lambda</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="s2">&quot;box&quot;</span><span class="p">}</span>
+            <span class="p">),</span>  <span class="c1"># Non-node argument display</span>
+            <span class="s2">&quot;arg_kname&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="kc">None</span><span class="p">),</span>  <span class="c1"># Argument label key word</span>
+            <span class="s2">&quot;edge&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="s2">&quot;solid&quot;</span><span class="p">),</span>
+        <span class="p">}</span>  <span class="c1"># Argument edge display</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="ApplyModuleProtocol">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.ApplyModuleProtocol">[docs]</a>
+<span class="k">class</span> <span class="nc">ApplyModuleProtocol</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Protocol that references some root model, and calls its .forward() method given some input.</span>
+<span class="sd">    Using .forward() vs .__call__() means it wont trigger hooks.</span>
+<span class="sd">    Uses an attachment to the Graph to store the model.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">attachment_name</span> <span class="o">=</span> <span class="s2">&quot;nnsight_root_module&quot;</span>
+
+<div class="viewcode-block" id="ApplyModuleProtocol.add">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.ApplyModuleProtocol.add">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">graph</span><span class="p">:</span> <span class="s2">&quot;Graph&quot;</span><span class="p">,</span> <span class="n">module_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">hook</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;InterventionProxy&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates and adds an ApplyModuleProtocol to the Graph.</span>
+<span class="sd">        Assumes the attachment has already been added via ApplyModuleProtocol.set_module().</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            graph (Graph): Graph to add the Protocol to.</span>
+<span class="sd">            module_path (str): Module path (model.module1.module2 etc), of module to apply from the root module.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            InterventionProxy: ApplyModule Proxy.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">value</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">_empty</span>
+
+        <span class="c1"># If the Graph is validating, we need to compute the proxy_value for this node.</span>
+        <span class="k">if</span> <span class="n">graph</span><span class="o">.</span><span class="n">validate</span><span class="p">:</span>
+
+            <span class="kn">from</span> <span class="nn">.Node</span> <span class="kn">import</span> <span class="n">Node</span>
+
+            <span class="c1"># If the module has parameters, get its device to move input tensors to.</span>
+            <span class="n">module</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">fetch_attr</span><span class="p">(</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">get_module</span><span class="p">(</span><span class="n">graph</span><span class="p">),</span> <span class="n">module_path</span>
+            <span class="p">)</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">device</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">module</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span><span class="o">.</span><span class="n">device</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="n">device</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="c1"># Enter FakeMode for proxy_value computing.</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">validate</span><span class="p">(</span><span class="n">module</span><span class="o">.</span><span class="n">forward</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;hook&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hook</span>
+
+        <span class="c1"># Create and attach Node.</span>
+        <span class="k">return</span> <span class="n">graph</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">target</span><span class="o">=</span><span class="bp">cls</span><span class="p">,</span>
+            <span class="n">proxy_value</span><span class="o">=</span><span class="n">value</span><span class="p">,</span>
+            <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">module_path</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">args</span><span class="p">),</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ApplyModuleProtocol.execute">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.ApplyModuleProtocol.execute">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="s2">&quot;Node&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Executes the ApplyModuleProtocol on Node.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            node (Node): ApplyModule Node.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">module</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">fetch_attr</span><span class="p">(</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">get_module</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">graph</span><span class="p">),</span> <span class="n">node</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">device</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">module</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span><span class="o">.</span><span class="n">device</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">device</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">prepare_inputs</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">kwargs</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span>
+        <span class="p">)</span>
+
+        <span class="n">module_path</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span> <span class="o">=</span> <span class="n">args</span>
+
+        <span class="n">hook</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;hook&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">hook</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">module</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">module</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="n">node</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">output</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ApplyModuleProtocol.set_module">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.ApplyModuleProtocol.set_module">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">set_module</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">graph</span><span class="p">:</span> <span class="s2">&quot;Graph&quot;</span><span class="p">,</span> <span class="n">module</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the nnsight root module as an attachment on a Graph.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            graph (Graph): Graph.</span>
+<span class="sd">            module (torch.nn.Module): Root module.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">graph</span><span class="o">.</span><span class="n">attachments</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">attachment_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">module</span></div>
+
+
+<div class="viewcode-block" id="ApplyModuleProtocol.get_module">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.ApplyModuleProtocol.get_module">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_module</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">graph</span><span class="p">:</span> <span class="s2">&quot;Graph&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the nnsight root module from an attachment on a Graph.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            graph (Graph): Graph</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            torch.nn.Module: Root Module.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">graph</span><span class="o">.</span><span class="n">attachments</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">attachment_name</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="ApplyModuleProtocol.style">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.ApplyModuleProtocol.style">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">style</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Visualization style for this protocol node.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            - Dict: dictionary style.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;node&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;blue&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="s2">&quot;polygon&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;sides&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+            <span class="p">},</span>  <span class="c1"># Node display</span>
+            <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+            <span class="s2">&quot;arg&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span>
+                <span class="k">lambda</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="s2">&quot;box&quot;</span><span class="p">}</span>
+            <span class="p">),</span>  <span class="c1"># Non-node argument display</span>
+            <span class="s2">&quot;arg_kname&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="kc">None</span><span class="p">),</span>  <span class="c1"># Argument label word</span>
+            <span class="s2">&quot;edge&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="s2">&quot;solid&quot;</span><span class="p">),</span>
+        <span class="p">}</span>  <span class="c1"># Argument edge display</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="LockProtocol">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.LockProtocol">[docs]</a>
+<span class="k">class</span> <span class="nc">LockProtocol</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Simple Protocol who&#39;s .execute() method does nothing. This means not calling .set_value() on the Node, therefore  the Node won&#39;t be destroyed.&quot;&quot;&quot;</span>
+
+    <span class="n">redirect</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+
+<div class="viewcode-block" id="LockProtocol.add">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.LockProtocol.add">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="s2">&quot;Node&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;InterventionProxy&quot;</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">proxy_value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">target</span><span class="o">=</span><span class="bp">cls</span><span class="p">,</span>
+            <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">node</span><span class="p">],</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="LockProtocol.style">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.LockProtocol.style">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">style</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Visualization style for this protocol node.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            - Dict: dictionary style.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;node&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;brown&quot;</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="s2">&quot;ellipse&quot;</span><span class="p">},</span>  <span class="c1"># Node display</span>
+            <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+            <span class="s2">&quot;arg&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span>
+                <span class="k">lambda</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="s2">&quot;box&quot;</span><span class="p">}</span>
+            <span class="p">),</span>  <span class="c1"># Non-node argument display</span>
+            <span class="s2">&quot;arg_kname&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="kc">None</span><span class="p">),</span>  <span class="c1"># Argument lable key word</span>
+            <span class="s2">&quot;edge&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="s2">&quot;solid&quot;</span><span class="p">),</span>
+        <span class="p">}</span>  <span class="c1"># Argument edge display</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="GradProtocol">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.GradProtocol">[docs]</a>
+<span class="k">class</span> <span class="nc">GradProtocol</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Protocol which adds a backwards hook via .register_hook() to a Tensor. The hook injects the gradients into the node&#39;s value on hook execution.</span>
+<span class="sd">    Nodes created via this protocol are relative to the next time .backward() was called during tracing allowing separate .grads to reference separate backwards passes:</span>
+
+<span class="sd">    .. code-block:: python</span>
+<span class="sd">        with model.trace(...):</span>
+
+<span class="sd">            grad1 = model.module.output.grad.save()</span>
+
+<span class="sd">            model.output.sum().backward(retain_graph=True)</span>
+
+<span class="sd">            grad2 = model.module.output.grad.save()</span>
+
+<span class="sd">            model.output.sum().backward()</span>
+
+<span class="sd">    Uses an attachment to store number of times .backward() has been called during tracing so a given .grad hook is only value injected at the appropriate backwards pass.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">attachment_name</span> <span class="o">=</span> <span class="s2">&quot;nnsight_backward_idx&quot;</span>
+
+<div class="viewcode-block" id="GradProtocol.add">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.GradProtocol.add">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="s2">&quot;Node&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;InterventionProxy&quot;</span><span class="p">:</span>
+
+        <span class="c1"># Get number of times .backward() was called during tracing from an attachment. Use as Node argument.</span>
+        <span class="n">backward_idx</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">attachments</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">attachment_name</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">proxy_value</span><span class="o">=</span><span class="n">node</span><span class="o">.</span><span class="n">proxy_value</span><span class="p">,</span>
+            <span class="n">target</span><span class="o">=</span><span class="bp">cls</span><span class="p">,</span>
+            <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">node</span><span class="p">,</span> <span class="n">backward_idx</span><span class="p">],</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GradProtocol.execute">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.GradProtocol.execute">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="s2">&quot;Node&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">prepare_inputs</span><span class="p">((</span><span class="n">node</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">kwargs</span><span class="p">))</span>
+
+        <span class="c1"># First arg is the Tensor to add hook to.</span>
+        <span class="n">tensor</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># Second is which backward pass this Node refers to.</span>
+        <span class="n">backward_idx</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="c1"># Hook to remove when hook is executed at the appropriate backward pass.</span>
+        <span class="n">hook</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">def</span> <span class="nf">grad</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+
+            <span class="k">nonlocal</span> <span class="n">backward_idx</span>
+
+            <span class="c1"># If backward_idx == 0, this is the correct backward pass and we should actually execute.</span>
+            <span class="k">if</span> <span class="n">backward_idx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+
+                <span class="c1"># Set the value of the Node.</span>
+                <span class="n">node</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">attached</span><span class="p">():</span>
+
+                    <span class="c1"># There may be a swap Protocol executed during the resolution of this part of the graph.</span>
+                    <span class="c1"># If so get it and replace value with it.</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">SwapProtocol</span><span class="o">.</span><span class="n">get_swap</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+                <span class="c1"># Don&#39;t execute this hook again.</span>
+                <span class="n">backward_idx</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+                <span class="c1"># Remove hook (if this is not done memory issues occur)</span>
+                <span class="n">hook</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
+
+                <span class="k">return</span> <span class="n">value</span>
+
+            <span class="c1"># Otherwise decrement backward_idx</span>
+            <span class="k">else</span><span class="p">:</span>
+
+                <span class="n">backward_idx</span> <span class="o">-=</span> <span class="mi">1</span>
+
+                <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="c1"># Register hook.</span>
+        <span class="n">hook</span> <span class="o">=</span> <span class="n">tensor</span><span class="o">.</span><span class="n">register_hook</span><span class="p">(</span><span class="n">grad</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GradProtocol.increment">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.GradProtocol.increment">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">increment</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">graph</span><span class="p">:</span> <span class="s2">&quot;Graph&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Increments the backward_idx attachment to track the number of times .backward() is called in tracing for this Graph.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            graph (Graph): Graph.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">backward_idx</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">attachments</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">attachment_name</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">graph</span><span class="o">.</span><span class="n">attachments</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">attachment_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">backward_idx</span> <span class="o">+</span> <span class="mi">1</span></div>
+
+
+<div class="viewcode-block" id="GradProtocol.style">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.GradProtocol.style">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">style</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Visualization style for this protocol node.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            - Dict: dictionary style.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;node&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;green4&quot;</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="s2">&quot;box&quot;</span><span class="p">},</span>  <span class="c1"># Node display</span>
+            <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+            <span class="s2">&quot;arg&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span>
+                <span class="k">lambda</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="s2">&quot;box&quot;</span><span class="p">}</span>
+            <span class="p">),</span>  <span class="c1"># Non-node argument display</span>
+            <span class="s2">&quot;arg_kname&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="kc">None</span><span class="p">),</span>  <span class="c1"># Argument label key word</span>
+            <span class="s2">&quot;edge&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="s2">&quot;solid&quot;</span><span class="p">),</span>
+        <span class="p">}</span>  <span class="c1"># Argument edge display</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="SwapProtocol">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.SwapProtocol">[docs]</a>
+<span class="k">class</span> <span class="nc">SwapProtocol</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Protocol which adds an attachment to the Graph which can store some value. Used to replace (&#39;swap&#39;) a value with another value.&quot;&quot;&quot;</span>
+
+    <span class="n">attachment_name</span> <span class="o">=</span> <span class="s2">&quot;nnsight_swap&quot;</span>
+
+<div class="viewcode-block" id="SwapProtocol.add">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.SwapProtocol.add">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="s2">&quot;Node&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;InterventionProxy&quot;</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">cls</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">node</span><span class="p">,</span> <span class="n">value</span><span class="p">],</span> <span class="n">proxy_value</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SwapProtocol.execute">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.SwapProtocol.execute">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="s2">&quot;Node&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="c1"># In case there is already a swap, get it from attachments.</span>
+        <span class="n">swap</span><span class="p">:</span> <span class="s2">&quot;Node&quot;</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">attachments</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">attachment_name</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="c1"># And set it to False to destroy it.</span>
+        <span class="k">if</span> <span class="n">swap</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">swap</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># Set the swap to this Node.</span>
+        <span class="n">node</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">attachments</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">attachment_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span></div>
+
+
+<div class="viewcode-block" id="SwapProtocol.get_swap">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.SwapProtocol.get_swap">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_swap</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">graph</span><span class="p">:</span> <span class="s2">&quot;Graph&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks if a swap exists on a Graph. If so get and return it, otherwise return the given value.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            graph (Graph): Graph</span>
+<span class="sd">            value (Any): Default value.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Any: Default value or swap value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Tries to get the swap.</span>
+        <span class="n">swap</span><span class="p">:</span> <span class="s2">&quot;Node&quot;</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">attachments</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">attachment_name</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="c1"># If there was one:</span>
+        <span class="k">if</span> <span class="n">swap</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="n">device</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="k">def</span> <span class="nf">_device</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+                <span class="k">nonlocal</span> <span class="n">device</span>
+
+                <span class="n">device</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">device</span>
+
+            <span class="c1"># Get device of default value.</span>
+            <span class="n">util</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">_device</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span>
+
+            <span class="c1"># Get swap Node&#39;s value.</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">swap</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">swap</span><span class="p">))</span>
+
+            <span class="k">if</span> <span class="n">device</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+                <span class="k">def</span> <span class="nf">_to</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="n">value</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+                <span class="c1"># Move swap values to default value&#39;s device.</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">_to</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span>
+
+            <span class="c1"># Set value of &#39;swap&#39; node so it destroys itself and listeners.</span>
+            <span class="n">swap</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="c1"># Un-set swap.</span>
+            <span class="n">graph</span><span class="o">.</span><span class="n">attachments</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">attachment_name</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">return</span> <span class="n">value</span></div>
+
+
+<div class="viewcode-block" id="SwapProtocol.style">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.SwapProtocol.style">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">style</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Visualization style for this protocol node.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            - Dict: dictionary style.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;node&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;green4&quot;</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="s2">&quot;ellipse&quot;</span><span class="p">},</span>  <span class="c1"># Node display</span>
+            <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+            <span class="s2">&quot;arg&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span>
+                <span class="k">lambda</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="s2">&quot;box&quot;</span><span class="p">}</span>
+            <span class="p">),</span>  <span class="c1"># Non-node argument display</span>
+            <span class="s2">&quot;arg_kname&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="kc">None</span><span class="p">),</span>  <span class="c1"># Argument label key word</span>
+            <span class="s2">&quot;edge&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="s2">&quot;solid&quot;</span><span class="p">),</span>
+        <span class="p">}</span>  <span class="c1"># Argument edge key word</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="BridgeProtocol">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.BridgeProtocol">[docs]</a>
+<span class="k">class</span> <span class="nc">BridgeProtocol</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Protocol to connect two Graphs by grabbing a value from one and injecting it into another.</span>
+<span class="sd">    Uses an attachment to store a Bridge object which references all relevant Graphs and their ordering.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">attachment_name</span> <span class="o">=</span> <span class="s2">&quot;nnsight_bridge&quot;</span>
+    <span class="n">condition</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+
+<div class="viewcode-block" id="BridgeProtocol.BridgeException">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.BridgeProtocol.BridgeException">[docs]</a>
+    <span class="k">class</span> <span class="nc">BridgeException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="nb">super</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+                <span class="s2">&quot;Must define a Session context to make use of the Bridge&quot;</span>
+            <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BridgeProtocol.add">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.BridgeProtocol.add">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="s2">&quot;Node&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;InterventionProxy&quot;</span><span class="p">:</span>
+
+        <span class="n">bridge</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">get_bridge</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">graph</span><span class="p">)</span>
+        <span class="n">curr_graph</span> <span class="o">=</span> <span class="n">bridge</span><span class="o">.</span><span class="n">peek_graph</span><span class="p">()</span>
+        <span class="n">bridge_proxy</span> <span class="o">=</span> <span class="n">bridge</span><span class="o">.</span><span class="n">get_bridge_proxy</span><span class="p">(</span>
+            <span class="n">node</span><span class="p">,</span> <span class="n">curr_graph</span><span class="o">.</span><span class="n">id</span>
+        <span class="p">)</span>  <span class="c1"># a bridged node has a unique bridge node proxy per graph reference</span>
+
+        <span class="c1"># if the bridge node does not exist, create one</span>
+        <span class="k">if</span> <span class="n">bridge_proxy</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Adds a Lock Node. One, so the value from_node isn&#39;t destroyed until the to_nodes are done with it,</span>
+            <span class="c1"># and two acts as an easy reference to the from_node to get its value from the lock Node args.</span>
+            <span class="n">lock_node</span> <span class="o">=</span> <span class="n">LockProtocol</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">node</span>
+
+            <span class="c1"># Args for a Bridge Node are the id of the Graph and node name of the Lock Node.</span>
+            <span class="n">bridge_proxy</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                <span class="n">target</span><span class="o">=</span><span class="bp">cls</span><span class="p">,</span>
+                <span class="n">proxy_value</span><span class="o">=</span><span class="n">node</span><span class="o">.</span><span class="n">proxy_value</span><span class="p">,</span>
+                <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">lock_node</span><span class="o">.</span><span class="n">name</span><span class="p">],</span>
+            <span class="p">)</span>
+            <span class="n">bridge</span><span class="o">.</span><span class="n">add_bridge_proxy</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">bridge_proxy</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">bridge_proxy</span></div>
+
+
+<div class="viewcode-block" id="BridgeProtocol.execute">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.BridgeProtocol.execute">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="s2">&quot;Node&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="c1"># Gets Bridge object from the Node&#39;s Graph.</span>
+        <span class="n">bridge</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">get_bridge</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">graph</span><span class="p">)</span>
+
+        <span class="c1"># Args are Graph&#39;s id and name of the Lock Node on it.</span>
+        <span class="n">from_graph_id</span><span class="p">,</span> <span class="n">lock_node_name</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">args</span>
+
+        <span class="c1"># Gets the from_node&#39;s Graph via its id with the Bridge and get the Lock Node.</span>
+        <span class="n">lock_node</span> <span class="o">=</span> <span class="n">bridge</span><span class="o">.</span><span class="n">get_graph</span><span class="p">(</span><span class="n">from_graph_id</span><span class="p">)</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">lock_node_name</span><span class="p">]</span>
+
+        <span class="c1"># Value node is Lock Node&#39;s only arg</span>
+        <span class="n">value_node</span><span class="p">:</span> <span class="s2">&quot;Node&quot;</span> <span class="o">=</span> <span class="n">lock_node</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        
+        <span class="k">if</span> <span class="n">value_node</span><span class="o">.</span><span class="n">done</span><span class="p">():</span>
+
+            <span class="c1"># Set value to that of the value Node.</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">value_node</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+        <span class="c1"># Bridge.release tells this Protocol when to release all Lock Nodes as we no longer need the data (useful when running a Graph in a loop, only release on last iteration)</span>
+        <span class="k">if</span> <span class="n">bridge</span><span class="o">.</span><span class="n">release</span><span class="p">:</span>
+
+            <span class="n">lock_node</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BridgeProtocol.set_bridge">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.BridgeProtocol.set_bridge">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">set_bridge</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">graph</span><span class="p">:</span> <span class="s2">&quot;Graph&quot;</span><span class="p">,</span> <span class="n">bridge</span><span class="p">:</span> <span class="s2">&quot;Bridge&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets Bridge object as an attachment on a Graph.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            graph (Graph): Graph.</span>
+<span class="sd">            bridge (Bridge): Bridge.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">graph</span><span class="o">.</span><span class="n">attachments</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">attachment_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">proxy</span><span class="p">(</span><span class="n">bridge</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BridgeProtocol.get_bridge">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.BridgeProtocol.get_bridge">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_bridge</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">graph</span><span class="p">:</span> <span class="s2">&quot;Graph&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Bridge&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets Bridge object from a Graph. Assumes Bridge has been set as an attachment on this Graph via BridgeProtocol.set_bridge().</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            graph (Graph): Graph.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Bridge: Bridge.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">cls</span><span class="o">.</span><span class="n">has_bridge</span><span class="p">(</span><span class="n">graph</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="bp">cls</span><span class="o">.</span><span class="n">BridgeException</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">graph</span><span class="o">.</span><span class="n">attachments</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">attachment_name</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="BridgeProtocol.has_bridge">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.BridgeProtocol.has_bridge">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">has_bridge</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">graph</span><span class="p">:</span> <span class="s2">&quot;Graph&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks to see if a Bridge was added as an attachment on this Graph via BridgeProtocol.set_bridge().</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            graph (Graph): Graph</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: If Graph has Bridge attachment.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">attachment_name</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">attachments</span></div>
+
+
+<div class="viewcode-block" id="BridgeProtocol.peek_graph">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.BridgeProtocol.peek_graph">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">peek_graph</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">graph</span><span class="p">:</span> <span class="s2">&quot;Graph&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Graph&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns current Intervention Graph.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            - graph (Graph): Graph.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Graph: Graph.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">BridgeProtocol</span><span class="o">.</span><span class="n">has_bridge</span><span class="p">(</span><span class="n">graph</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">graph</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">bridge</span> <span class="o">=</span> <span class="n">BridgeProtocol</span><span class="o">.</span><span class="n">get_bridge</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">bridge</span><span class="o">.</span><span class="n">peek_graph</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="BridgeProtocol.style">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.BridgeProtocol.style">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">style</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Visualization style for this protocol node.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            - Dict: dictionary style.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;node&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;brown&quot;</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="s2">&quot;box&quot;</span><span class="p">},</span>  <span class="c1"># Node display</span>
+            <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+            <span class="s2">&quot;arg&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span>
+                <span class="k">lambda</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;gray&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="s2">&quot;box&quot;</span><span class="p">,</span>
+                <span class="p">},</span>  <span class="c1"># Non-node argument display</span>
+                <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="s2">&quot;box&quot;</span><span class="p">,</span> <span class="s2">&quot;style&quot;</span><span class="p">:</span> <span class="s2">&quot;dashed&quot;</span><span class="p">}},</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;arg_kname&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span>
+                <span class="k">lambda</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;graph_id&quot;</span><span class="p">}</span>
+            <span class="p">),</span>  <span class="c1"># Arugment label key word</span>
+            <span class="s2">&quot;edge&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="s2">&quot;solid&quot;</span><span class="p">,</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;dashed&quot;</span><span class="p">}),</span>
+        <span class="p">}</span>  <span class="c1"># Argument edge display</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="EarlyStopProtocol">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.EarlyStopProtocol">[docs]</a>
+<span class="k">class</span> <span class="nc">EarlyStopProtocol</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Protocol to stop the execution of a model early.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="EarlyStopProtocol.EarlyStopException">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.EarlyStopProtocol.EarlyStopException">[docs]</a>
+    <span class="k">class</span> <span class="nc">EarlyStopException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="EarlyStopProtocol.add">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.EarlyStopProtocol.add">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">graph</span><span class="p">:</span> <span class="s2">&quot;Graph&quot;</span><span class="p">,</span> <span class="n">stop_point_node</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;Node&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;InterventionProxy&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">graph</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">target</span><span class="o">=</span><span class="bp">cls</span><span class="p">,</span>
+            <span class="n">proxy_value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">args</span><span class="o">=</span><span class="p">([</span><span class="n">stop_point_node</span><span class="p">]</span> <span class="k">if</span> <span class="n">stop_point_node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[]),</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="EarlyStopProtocol.execute">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.EarlyStopProtocol.execute">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="s2">&quot;Node&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="n">node</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="k">raise</span> <span class="bp">cls</span><span class="o">.</span><span class="n">EarlyStopException</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="EarlyStopProtocol.style">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.EarlyStopProtocol.style">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">style</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Visualization style for this protocol node.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            - Dict: dictionary style.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;node&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="s2">&quot;polygon&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;sides&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+            <span class="p">},</span>  <span class="c1"># Node display</span>
+            <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+            <span class="s2">&quot;arg&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span>
+                <span class="k">lambda</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="s2">&quot;box&quot;</span><span class="p">}</span>
+            <span class="p">),</span>  <span class="c1"># Non-node argument display</span>
+            <span class="s2">&quot;arg_kname&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="kc">None</span><span class="p">),</span>  <span class="c1"># Argument label key word</span>
+            <span class="s2">&quot;edge&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="s2">&quot;solid&quot;</span><span class="p">),</span>
+        <span class="p">}</span>  <span class="c1"># Argument edge display</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="LocalBackendExecuteProtocol">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.LocalBackendExecuteProtocol">[docs]</a>
+<span class="k">class</span> <span class="nc">LocalBackendExecuteProtocol</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+
+<div class="viewcode-block" id="LocalBackendExecuteProtocol.add">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.LocalBackendExecuteProtocol.add">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="nb">object</span><span class="p">:</span> <span class="s2">&quot;LocalMixin&quot;</span><span class="p">,</span> <span class="n">graph</span><span class="p">:</span> <span class="s2">&quot;Graph&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;InterventionProxy&quot;</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">graph</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">cls</span><span class="p">,</span> <span class="n">proxy_value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="nb">object</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="LocalBackendExecuteProtocol.execute">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.LocalBackendExecuteProtocol.execute">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="nb">object</span><span class="p">:</span> <span class="s2">&quot;LocalMixin&quot;</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="nb">object</span><span class="o">.</span><span class="n">local_backend_execute</span><span class="p">()</span>
+
+        <span class="n">node</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="LocalBackendExecuteProtocol.style">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.LocalBackendExecuteProtocol.style">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">style</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Visualization style for this protocol node.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            - Dict: dictionary style.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;node&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;purple&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="s2">&quot;polygon&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;sides&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+            <span class="p">},</span>  <span class="c1"># Node display</span>
+            <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;ExecuteProtocol&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;arg&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span>
+                <span class="k">lambda</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="s2">&quot;box&quot;</span><span class="p">}</span>
+            <span class="p">),</span>  <span class="c1"># Non-node argument display</span>
+            <span class="s2">&quot;arg_kname&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="kc">None</span><span class="p">),</span>  <span class="c1"># Argument label key word</span>
+            <span class="s2">&quot;edge&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="s2">&quot;solid&quot;</span><span class="p">),</span>
+        <span class="p">}</span>  <span class="c1"># Argument edge display</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="ValueProtocol">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.ValueProtocol">[docs]</a>
+<span class="k">class</span> <span class="nc">ValueProtocol</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+
+<div class="viewcode-block" id="ValueProtocol.add">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.ValueProtocol.add">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">graph</span><span class="p">:</span> <span class="s2">&quot;Graph&quot;</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;InterventionProxy&quot;</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">graph</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">cls</span><span class="p">,</span> <span class="n">proxy_value</span><span class="o">=</span><span class="n">default</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">default</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="ValueProtocol.execute">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.ValueProtocol.execute">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        
+        <span class="n">node</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></div>
+
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="n">node</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+<div class="viewcode-block" id="ValueProtocol.style">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.ValueProtocol.style">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">style</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Visualization style for this protocol node.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            - Dict: dictionary style.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;node&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="s2">&quot;box&quot;</span><span class="p">},</span>  <span class="c1"># Node display</span>
+            <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+            <span class="s2">&quot;arg&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span>
+                <span class="k">lambda</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="s2">&quot;box&quot;</span><span class="p">}</span>
+            <span class="p">),</span>  <span class="c1"># Non-node argument</span>
+            <span class="s2">&quot;arg_kname&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="kc">None</span><span class="p">),</span>  <span class="c1"># Argument label key word</span>
+            <span class="s2">&quot;edge&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="s2">&quot;solid&quot;</span><span class="p">),</span>
+        <span class="p">}</span>  <span class="c1"># Argument edge display</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="ConditionalProtocol">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.ConditionalProtocol">[docs]</a>
+<span class="k">class</span> <span class="nc">ConditionalProtocol</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Protocol operating as a conditional statement.</span>
+<span class="sd">    Uses the ConditionalManager attachment to handle all visited Conditional contexts within a single Intervention Graph.</span>
+<span class="sd">    Evaluates the condition value of the Conditional as a boolean.</span>
+
+<span class="sd">    Example:</span>
+
+<span class="sd">        Setup:</span>
+<span class="sd">            .. code-block:: python</span>
+<span class="sd">                import torch</span>
+<span class="sd">                from collections import OrderedDict</span>
+
+<span class="sd">                input_size = 5</span>
+<span class="sd">                hidden_dims = 10</span>
+<span class="sd">                output_size = 2</span>
+
+<span class="sd">                model = nn.Sequential(OrderedDict([</span>
+<span class="sd">                    (&#39;layer1&#39;, torch.nn.Linear(input_size, hidden_dims)),</span>
+<span class="sd">                    (&#39;layer2&#39;, torch.nn.Linear(hidden_dims, output_size)),</span>
+<span class="sd">                ]))</span>
+
+<span class="sd">                input = torch.rand((1, input_size))    å</span>
+
+<span class="sd">        Ex 1: The .save() on the model output will only be executed if the condition (x &gt; 0) is evaluated to True.</span>
+
+<span class="sd">        .. code-block:: python</span>
+<span class="sd">            with model.trace(input) as tracer:</span>
+<span class="sd">                num = 5</span>
+<span class="sd">                with tracer.cond(x &gt; 0):</span>
+<span class="sd">                    out = model.output.save()</span>
+
+<span class="sd">        Ex 2: The condition is a tensor boolean operation on the Envoy&#39;s output InterventionProxy.</span>
+
+<span class="sd">        .. code-block:: python</span>
+<span class="sd">            with model.trace(input) as tracer:</span>
+<span class="sd">                l1_out = model.layer1.output</span>
+<span class="sd">                with tracer.cond(l1_out[:, 0] &gt; 0):</span>
+<span class="sd">                    out = model.output.save()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">attachment_name</span> <span class="o">=</span> <span class="s2">&quot;nnsight_conditional_manager&quot;</span>
+
+<div class="viewcode-block" id="ConditionalProtocol.add">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.ConditionalProtocol.add">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">graph</span><span class="p">:</span> <span class="s2">&quot;Graph&quot;</span><span class="p">,</span> <span class="n">condition</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;Node&quot;</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;InterventionProxy&quot;</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">graph</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">cls</span><span class="p">,</span> <span class="n">proxy_value</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">condition</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="ConditionalProtocol.execute">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.ConditionalProtocol.execute">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="s2">&quot;Node&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Evaluate the node condition to a boolean.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            node (Node): ConditionalProtocol node.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">cond_value</span> <span class="o">=</span> <span class="n">Node</span><span class="o">.</span><span class="n">prepare_inputs</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">cond_value</span><span class="p">:</span>
+            <span class="c1"># cond_value is True</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="k">def</span> <span class="nf">update_conditioned_nodes</span><span class="p">(</span><span class="n">conditioned_node</span><span class="p">:</span> <span class="s2">&quot;Node&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Recursively decrement the remaining listeners count of all the dependencies of conditioned nodes.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                - conditioned_node (Node): Conditioned Node</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">for</span> <span class="n">listener</span> <span class="ow">in</span> <span class="n">conditioned_node</span><span class="o">.</span><span class="n">listeners</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">listener_arg</span> <span class="ow">in</span> <span class="n">listener</span><span class="o">.</span><span class="n">arg_dependencies</span><span class="p">:</span>
+                    <span class="n">listener_arg</span><span class="o">.</span><span class="n">remaining_listeners</span> <span class="o">-=</span> <span class="mi">1</span>
+                    <span class="k">if</span> <span class="n">listener_arg</span><span class="o">.</span><span class="n">done</span><span class="p">()</span> <span class="ow">and</span> <span class="n">listener_arg</span><span class="o">.</span><span class="n">redundant</span><span class="p">():</span>
+                        <span class="n">listener_arg</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+                <span class="n">update_conditioned_nodes</span><span class="p">(</span><span class="n">listener</span><span class="p">)</span>
+
+        <span class="c1"># If the condition value is ignore or evaluated to False, update conditioned nodes</span>
+        <span class="n">update_conditioned_nodes</span><span class="p">(</span><span class="n">node</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ConditionalProtocol.has_conditional">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.ConditionalProtocol.has_conditional">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">has_conditional</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">graph</span><span class="p">:</span> <span class="s2">&quot;Graph&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks if the Intervention Graph has a ConditionalManager attached to it.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            graph (Graph): Intervention Graph.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: If graph has a ConditionalManager attachement.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">attachment_name</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">attachments</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="ConditionalProtocol.get_conditional">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.ConditionalProtocol.get_conditional">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_conditional</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">graph</span><span class="p">:</span> <span class="s2">&quot;Graph&quot;</span><span class="p">,</span> <span class="n">cond_node_name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Conditional&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets the ConditionalProtocol node by its name.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            graph (Graph): Intervention Graph.</span>
+<span class="sd">            cond_node_name (str): ConditionalProtocol name.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Node: ConditionalProtocol Node.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">graph</span><span class="o">.</span><span class="n">attachments</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">attachment_name</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cond_node_name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ConditionalProtocol.push_conditional">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.ConditionalProtocol.push_conditional">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">push_conditional</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="s2">&quot;Node&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Attaches a Conditional context to its graph.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            node (Node): ConditionalProtocol of the current Conditional context.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># All ConditionalProtocols associated with a graph are stored and managed by the ConditionalManager.</span>
+        <span class="c1"># Create a ConditionalManager attachement to the graph if this the first Conditional context to be entered.</span>
+        <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">attachment_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">attachments</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">attachments</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">attachment_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">ConditionalManager</span><span class="p">()</span>
+
+        <span class="c1"># Push the ConditionalProtocol node to the ConditionalManager</span>
+        <span class="n">node</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">attachments</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">attachment_name</span><span class="p">]</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">node</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ConditionalProtocol.pop_conditional">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.ConditionalProtocol.pop_conditional">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">pop_conditional</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">graph</span><span class="p">:</span> <span class="s2">&quot;Graph&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Pops latest ConditionalProtocol from the ConditionalManager attached to the graph.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            graph (Graph): Intervention Graph.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">graph</span><span class="o">.</span><span class="n">attachments</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">attachment_name</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="ConditionalProtocol.peek_conditional">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.ConditionalProtocol.peek_conditional">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">peek_conditional</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">graph</span><span class="p">:</span> <span class="s2">&quot;Graph&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Node&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets the ConditionalProtocol node of the current Conditional context.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            - graph (Graph): Graph.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Node: ConditionalProtocol of the current Conditional context.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">graph</span><span class="o">.</span><span class="n">attachments</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">attachment_name</span><span class="p">]</span><span class="o">.</span><span class="n">peek</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="ConditionalProtocol.add_conditioned_node">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.ConditionalProtocol.add_conditioned_node">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">add_conditioned_node</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="s2">&quot;Node&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Adds a conditioned Node the ConditionalManager attached to its graph.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            - node (Node): Conditioned Node.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">node</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">attachments</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">attachment_name</span><span class="p">]</span><span class="o">.</span><span class="n">add_conditioned_node</span><span class="p">(</span><span class="n">node</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ConditionalProtocol.is_node_conditioned">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.ConditionalProtocol.is_node_conditioned">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">is_node_conditioned</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="s2">&quot;Node&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks if the Node is conditoned by the current Conditional context.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            - node (Node): Conditioned Node.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: Whether the Node is conditioned.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">attachments</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">attachment_name</span><span class="p">]</span><span class="o">.</span><span class="n">is_node_conditioned</span><span class="p">(</span>
+            <span class="n">node</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ConditionalProtocol.style">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.ConditionalProtocol.style">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">style</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Visualization style for this protocol node.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            - Dict: dictionary style.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;node&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;#FF8C00&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="s2">&quot;polygon&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;sides&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+            <span class="p">},</span>  <span class="c1"># Node display</span>
+            <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+            <span class="s2">&quot;arg&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span>
+                <span class="k">lambda</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="s2">&quot;box&quot;</span><span class="p">}</span>
+            <span class="p">),</span>  <span class="c1"># Non-node argument</span>
+            <span class="s2">&quot;arg_kname&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="kc">None</span><span class="p">),</span>  <span class="c1"># Argument label key word</span>
+            <span class="s2">&quot;edge&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="s2">&quot;solid&quot;</span><span class="p">),</span>
+        <span class="p">}</span>  <span class="c1"># Argument edge display</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="UpdateProtocol">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.UpdateProtocol">[docs]</a>
+<span class="k">class</span> <span class="nc">UpdateProtocol</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Protocol to update the value of an InterventionProxy node.</span>
+
+<span class="sd">    .. codeb-block:: python</span>
+<span class="sd">        with model.trace(input) as tracer:</span>
+<span class="sd">            num = tracer.apply(int, 0)</span>
+<span class="sd">            num.update(5)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="UpdateProtocol.add">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.UpdateProtocol.add">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="s2">&quot;Node&quot;</span><span class="p">,</span> <span class="n">new_value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Node</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;InterventionProxy&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates an UpdateProtocol node.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            node (Node): Original node.</span>
+<span class="sd">            new_value (Union[Node, Any]): The update value.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            InterventionProxy: proxy.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">target</span><span class="o">=</span><span class="bp">cls</span><span class="p">,</span>
+            <span class="n">proxy_value</span><span class="o">=</span><span class="n">node</span><span class="o">.</span><span class="n">proxy_value</span><span class="p">,</span>
+            <span class="n">args</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">node</span><span class="p">,</span>
+                <span class="n">new_value</span><span class="p">,</span>
+            <span class="p">],</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="UpdateProtocol.execute">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.UpdateProtocol.execute">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="s2">&quot;Node&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the value of the original node to the new value.</span>
+<span class="sd">            If the original is defined outside the context, it uses the bridge to get the node.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            node (Node): UpdateProtocol node.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">value_node</span><span class="p">,</span> <span class="n">new_value</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">args</span>
+        <span class="n">new_value</span> <span class="o">=</span> <span class="n">Node</span><span class="o">.</span><span class="n">prepare_inputs</span><span class="p">(</span><span class="n">new_value</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">value_node</span><span class="o">.</span><span class="n">target</span> <span class="o">==</span> <span class="n">BridgeProtocol</span><span class="p">:</span>
+            <span class="n">value_node</span><span class="o">.</span><span class="n">_value</span> <span class="o">=</span> <span class="n">new_value</span>
+            <span class="n">bridge</span> <span class="o">=</span> <span class="n">BridgeProtocol</span><span class="o">.</span><span class="n">get_bridge</span><span class="p">(</span><span class="n">value_node</span><span class="o">.</span><span class="n">graph</span><span class="p">)</span>
+            <span class="n">lock_node</span> <span class="o">=</span> <span class="n">bridge</span><span class="o">.</span><span class="n">id_to_graph</span><span class="p">[</span><span class="n">value_node</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span>
+                <span class="n">value_node</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="p">]</span>
+            <span class="n">value_node</span> <span class="o">=</span> <span class="n">lock_node</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">value_node</span><span class="o">.</span><span class="n">_value</span> <span class="o">=</span> <span class="n">new_value</span>
+
+        <span class="n">node</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">new_value</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="UpdateProtocol.style">
+<a class="viewcode-back" href="../../../../documentation/tracing/#nnsight.tracing.protocols.UpdateProtocol.style">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">style</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Visualization style for this protocol node.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            - Dict: dictionary style.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;node&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="s2">&quot;ellipse&quot;</span><span class="p">},</span>  <span class="c1"># Node display</span>
+            <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+            <span class="s2">&quot;arg&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span>
+                <span class="k">lambda</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="s2">&quot;box&quot;</span><span class="p">}</span>
+            <span class="p">),</span>  <span class="c1"># Non-node argument</span>
+            <span class="s2">&quot;arg_kname&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="kc">None</span><span class="p">),</span>  <span class="c1"># Argument label key word</span>
+            <span class="s2">&quot;edge&quot;</span><span class="p">:</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="s2">&quot;solid&quot;</span><span class="p">),</span>
+        <span class="p">}</span>  <span class="c1"># Argument edge display</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024 NDIF.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
