@@ -1,0 +1,742 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nnsight.intervention.contexts.invoker &#8212; nnsight</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../../../_static/documentation_options.js?v=187304be"></script>
+    <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/nnsight/intervention/contexts/invoker';</script>
+    <script src="../../../../../_static/js/custom.js?v=1e4be224"></script>
+    <script src="../../../../../_static/js/code.js?v=34343d0c"></script>
+    <link rel="icon" href="../../../../../_static/icon.ico"/>
+    <link rel="author" title="About these documents" href="../../../../../about/" />
+    <link rel="index" title="Index" href="../../../../../genindex/" />
+    <link rel="search" title="Search" href="../../../../../search/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+<link href="../../../../../_static/css/custom.css?v=1752681933" rel="stylesheet" type="text/css" />
+<link href="../../../../../_static/css/home.css?v=1752681933" rel="stylesheet" type="text/css" />
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search/"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../../../_static/nnsight_logo.svg" class="logo__image only-dark" alt="nnsight - Home"/>
+    <img src="../../../../../_static/nnsight_logo.svg" class="logo__image only-light pst-js-only" alt="nnsight - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../start/">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../documentation/">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../features/">
+    Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../tutorials/">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../about/">
+    About
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><script>
+    fetch("https://ndif.dev/ping")
+        .then((response) => {
+            if (response.status == 200) {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#66800b', 'important');
+                    });
+                });
+            }
+            else {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#af3029', 'important');
+                    });
+                });
+                var statusIcon = document.querySelector('.ndif .fa-circle-check');
+                if (statusIcon) {
+                    // not here
+                    statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark'); 
+                }
+            }
+        })
+        .catch((response) => {
+            Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                    spanElement.style.setProperty('color', '#af3029', 'important');
+                });
+            });
+            var statusIcon = document.querySelector('.ndif .fa-circle-check');
+            if (statusIcon) {
+                statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark');
+            }
+        })
+</script></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/status" title="Status: Unknown" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Status: Unknown</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://discuss.ndif.us/" title="Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discourse fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Forum</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discord</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../start/">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../documentation/">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../features/">
+    Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../tutorials/">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../about/">
+    About
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><script>
+    fetch("https://ndif.dev/ping")
+        .then((response) => {
+            if (response.status == 200) {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#66800b', 'important');
+                    });
+                });
+            }
+            else {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#af3029', 'important');
+                    });
+                });
+                var statusIcon = document.querySelector('.ndif .fa-circle-check');
+                if (statusIcon) {
+                    // not here
+                    statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark'); 
+                }
+            }
+        })
+        .catch((response) => {
+            Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                    spanElement.style.setProperty('color', '#af3029', 'important');
+                });
+            });
+            var statusIcon = document.querySelector('.ndif .fa-circle-check');
+            if (statusIcon) {
+                statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark');
+            }
+        })
+</script></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/status" title="Status: Unknown" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Status: Unknown</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://discuss.ndif.us/" title="Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discourse fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Forum</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discord</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../../" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../../" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">nnsight.intervention.contexts.invoker</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for nnsight.intervention.contexts.invoker</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">contextlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">AbstractContextManager</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torch._subclasses.fake_tensor</span><span class="w"> </span><span class="kn">import</span> <span class="n">FakeCopyMode</span><span class="p">,</span> <span class="n">FakeTensorMode</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torch.fx.experimental.symbolic_shapes</span><span class="w"> </span><span class="kn">import</span> <span class="n">ShapeEnv</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">...</span><span class="w"> </span><span class="kn">import</span> <span class="n">util</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">...tracing.contexts.globals</span><span class="w"> </span><span class="kn">import</span> <span class="n">GlobalTracingContext</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">InterventionNode</span><span class="p">,</span> <span class="n">InterventionProxy</span><span class="p">,</span> <span class="n">InterventionProxyType</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">InterleavingTracer</span>
+
+
+<div class="viewcode-block" id="Invoker">
+<a class="viewcode-back" href="../../../../../documentation/intervention/#nnsight.intervention.contexts.invoker.Invoker">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Invoker</span><span class="p">(</span><span class="n">AbstractContextManager</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;An Invoker is meant to work in tandem with a :class:`nnsight.intervention.contexts.InterleavingTracer` to enter input and manage intervention tracing.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        tracer (nnsight.contexts.Tracer.Tracer): Tracer object to enter input and manage context.</span>
+<span class="sd">        inputs (tuple[Any]): Initially entered inputs, then post-processed inputs from model&#39;s ._prepare_inputs(...) method.</span>
+<span class="sd">        scan (bool): If to execute the model using `FakeTensor` in order to update the potential sizes/dtypes of all modules&#39; Envoys&#39; inputs/outputs as well as validate things work correctly.</span>
+<span class="sd">            Scanning is not free computation wise so you may want to turn this to false when running in a loop.</span>
+<span class="sd">            When making interventions, you made get shape errors if scan is false as it validates operations based on shapes so</span>
+<span class="sd">            for looped calls where shapes are consistent, you may want to have scan=True for the first loop. Defaults to False.</span>
+<span class="sd">        kwargs (Dict[str,Any]): Keyword arguments passed to the model&#39;s _prepare_inputs method.</span>
+<span class="sd">        scanning (bool): If currently scanning.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">tracer</span><span class="p">:</span> <span class="s2">&quot;InterleavingTracer&quot;</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+        <span class="n">scan</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span> <span class="o">=</span> <span class="n">tracer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span> <span class="o">=</span> <span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">scan</span> <span class="o">=</span> <span class="n">scan</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">scanning</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">invoker</span> <span class="o">=</span> <span class="bp">self</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Invoker</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Enters a new invocation context with a given input.</span>
+
+<span class="sd">        Calls the model&#39;s _prepare_inputs method using the input and other arguments.</span>
+<span class="sd">        If scan is True, uses the model&#39;s ._execute method to update and validate module Envoy&#39;s inputs/outputs using a fake mode.</span>
+<span class="sd">        Gets a batched version of the post processed input using the model&#39;s ._batched_inputs method to update the Tracer&#39;s</span>
+<span class="sd">            current batch_size and batched_input.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Invoker: Invoker.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">has_proxies_in_inputs</span> <span class="o">=</span> <span class="kc">False</span>
+        
+        <span class="k">def</span><span class="w"> </span><span class="nf">check_for_proxies</span><span class="p">(</span><span class="n">proxy</span><span class="p">:</span> <span class="n">InterventionProxyType</span><span class="p">):</span>
+
+            <span class="k">nonlocal</span> <span class="n">has_proxies_in_inputs</span>
+
+            <span class="n">has_proxies_in_inputs</span> <span class="o">=</span> <span class="kc">True</span>
+
+            <span class="k">return</span> <span class="n">proxy</span>
+
+        <span class="c1"># We need to check if there were any Proxies in the actual Invoker input. This might be True in a Session where values from one trace are used as an input to another.</span>
+        <span class="n">util</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="p">,</span> <span class="n">check_for_proxies</span><span class="p">,</span> <span class="n">InterventionProxy</span><span class="p">)</span>
+
+        <span class="c1"># We dont want to create new proxies during scanning/prepare_inputs so we exit the global tracing context.</span>
+        <span class="k">with</span> <span class="n">GlobalTracingContext</span><span class="o">.</span><span class="n">exit_global_tracing_context</span><span class="p">():</span>
+
+            <span class="c1"># If we dont have proxies we can immediately prepare the input so the user can see it and the batch_size.</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">has_proxies_in_inputs</span><span class="p">:</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">_prepare_input</span><span class="p">(</span>
+                    <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scan</span><span class="p">:</span>
+
+                <span class="nb">input</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span>
+
+                <span class="k">if</span> <span class="n">has_proxies_in_inputs</span><span class="p">:</span>
+
+                    <span class="nb">input</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">fake_value</span><span class="p">,</span> <span class="n">InterventionNode</span><span class="p">)</span>
+
+                    <span class="nb">input</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">_prepare_input</span><span class="p">(</span><span class="o">*</span><span class="nb">input</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">**</span><span class="nb">input</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+                <span class="c1"># Clear all fake inputs and outputs because were going to re-populate them.</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">_envoy</span><span class="o">.</span><span class="n">_clear</span><span class="p">()</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">scanning</span> <span class="o">=</span> <span class="kc">True</span>
+
+                <span class="k">with</span> <span class="n">util</span><span class="o">.</span><span class="n">Patcher</span><span class="p">()</span> <span class="k">as</span> <span class="n">patcher</span><span class="p">:</span>
+
+                    <span class="c1"># Some logic (like gpt-j rotary embeddings) gets &quot;poisoned&quot; by FakeTensors.</span>
+                    <span class="c1"># This does not happen when `torch._jit_internal.is_scripting() returns True.`</span>
+                    <span class="n">patcher</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+                        <span class="n">util</span><span class="o">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">_jit_internal</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;is_scripting&quot;</span><span class="p">)</span>
+                    <span class="p">)</span>
+
+                    <span class="k">with</span> <span class="n">FakeTensorMode</span><span class="p">(</span>
+                        <span class="n">allow_non_fake_inputs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="n">shape_env</span><span class="o">=</span><span class="n">ShapeEnv</span><span class="p">(</span><span class="n">assume_static_by_default</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+                    <span class="p">)</span> <span class="k">as</span> <span class="n">fake_mode</span><span class="p">:</span>
+                        <span class="k">with</span> <span class="n">FakeCopyMode</span><span class="p">(</span><span class="n">fake_mode</span><span class="p">):</span>
+                            <span class="n">fn</span> <span class="o">=</span> <span class="p">(</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">_execute</span>
+                                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span>
+                                <span class="k">else</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">_model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                            <span class="p">)</span>
+                            <span class="n">fn</span><span class="p">(</span>
+                                <span class="o">*</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="nb">input</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+                                <span class="o">**</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="nb">input</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+                                <span class="o">**</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">kwargs</span><span class="p">),</span>
+                            <span class="p">)</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">scanning</span> <span class="o">=</span> <span class="kc">False</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">_envoy</span><span class="o">.</span><span class="n">_reset</span><span class="p">()</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_val</span><span class="p">,</span> <span class="n">exc_tb</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">tracer</span><span class="o">.</span><span class="n">invoker</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">exc_val</span><span class="p">,</span> <span class="ne">BaseException</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">exc_val</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025 NDIF.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
