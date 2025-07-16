@@ -63,8 +63,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
-<link href="../../../_static/css/custom.css?v=1752690525" rel="stylesheet" type="text/css" />
-<link href="../../../_static/css/home.css?v=1752690525" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/custom.css?v=1752692101" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/home.css?v=1752692101" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -617,13 +617,13 @@
 <p><strong>Colab:</strong> <a class="reference external" href="https://colab.research.google.com/github/ndif-team/nnsight/blob/docs/docs/source/notebooks/tutorials/function_vectors.ipynb">exercises</a> <strong>|</strong> <a class="reference external" href="https://colab.research.google.com/github/ndif-team/nnsight/blob/docs/function_vectors_solutions.ipynb">solutions</a></p>
 </div></blockquote>
 <p>You can collapse each section so only the headers are visible, by clicking the arrow symbol on the left hand side of the markdown header cells.</p>
-<p><img alt="c1e533668c1e462a84c28f9ab148662b" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/headers/header-14-2.png" style="width: 350px;" /></p>
+<p><img alt="b1e562d9cdfb4d6fa7fa126f203fe1ce" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/headers/header-14-2.png" style="width: 350px;" /></p>
 </section>
 <section id="Introduction">
 <h1>Introduction<a class="headerlink" href="#Introduction" title="Link to this heading">#</a></h1>
 <p>These exercises serve as an exploration of the following question: <strong>can we steer a model to produce different outputs / have a different behaviour, by intervening on the model’s forward pass using vectors found by non gradient descent-based methods?</strong></p>
 <p>The majority of the exercises focus on <a class="reference external" href="https://functions.baulab.info/">function vectors</a>: vectors which are extracted from forward passes on in-context learning (ICL) tasks, and added to the residual stream in order to trigger the execution of this task from a zero-shot prompt. The diagram below illustrates this.</p>
-<p><img alt="25b8a56815fb425da6cd120e3c50f8c9" class="no-scaled-link" src="https://functions.baulab.info/images/Paper/fv-demonstrations.png" style="width: 650px;" /></p>
+<p><img alt="a8bdaef7e6aa49d0805e77eac3e64b4b" class="no-scaled-link" src="https://functions.baulab.info/images/Paper/fv-demonstrations.png" style="width: 650px;" /></p>
 <p>The exercises also take you through use of the <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> library, which is designed to support this kind of work (and other interpretability research) on very large language models - i.e. larger than models like GPT2-Small which you might be used to at this point in the course.</p>
 <p>The final set of exercises look at Alex Turner et al’s work on <a class="reference external" href="https://www.lesswrong.com/posts/5spBue2z2tw4JuDCx/steering-gpt-2-xl-by-adding-an-activation-vector">steering vectors</a>, which is conceptually related but has different aims and methodologies.</p>
 <section id="Content-&amp;-Learning-Objectives">
@@ -815,7 +815,7 @@
 </ol>
 <p>Note that the status page sometimes takes ~5 minutes to load all live models - click the dropdown below to see an example of what the status page should look like once the models have loaded. If you can’t see the model you’re looking for in this list, then you should set <code class="docutils literal notranslate"><span class="pre">REMOTE=False</span></code> for these exercises, or else make a request on the NDIF Discord to get the model live.</p>
 <details><summary><p>Example status page</p>
-</summary><p><img alt="69b63fc030a74de09dc86616ad67c7b3" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/ndif-status.png" style="width: 650px;" /></p>
+</summary><p><img alt="3932e3dc4ca442ee806685d116ce87a2" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/ndif-status.png" style="width: 650px;" /></p>
 </details></section>
 <section id="Important-syntax">
 <h2>Important syntax<a class="headerlink" href="#Important-syntax" title="Link to this heading">#</a></h2>
@@ -1613,12 +1613,12 @@ A:
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rprint</span><span class="p">(</span><span class="s2">&quot;[green]This is green text[/], this is default color&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><img alt="cd691534e1d14be69994be9b8cefdf09" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/rprint-1.png" style="width: 350px;" /></p>
+<p><img alt="edf2c9ccc6884d18b1e15fefb8ce05f5" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/rprint-1.png" style="width: 350px;" /></p>
 <p>and for making text bold / underlined:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rprint</span><span class="p">(</span><span class="s2">&quot;[u dark_orange]This is underlined[/], and [b cyan]this is bold[/].&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><img alt="8c39b6299d3148d9bef62394a2d50ed0" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/rprint-2.png" style="width: 350px;" /></p>
+<p><img alt="aa848f09887e4f1296dedb0c39eb6e99" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/rprint-2.png" style="width: 350px;" /></p>
 <p>It can also print tables:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">rich.table</span><span class="w"> </span><span class="kn">import</span> <span class="n">Table</span>
 
@@ -1629,7 +1629,7 @@ A:
 <span class="n">rprint</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><img alt="ba4af37a3ad0452db25913a606dd0214" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/rprint-3.png" style="width: 150px;" /></p>
+<p><img alt="6226cc33488742bb9ee2348663990db0" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/rprint-3.png" style="width: 150px;" /></p>
 <p>The text formatting (bold, underlined, colors, etc) is also supported within table cells.</p>
 </details></section>
 <section id="Task-encoding-vector">
@@ -1649,7 +1649,7 @@ A:
 <li><p>Run a forward pass on the model with the dataset prompts (i.e. the <code class="docutils literal notranslate"><span class="pre">.prompts</span></code> attribute), using the <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> syntax we’ve demonstrated previously,</p></li>
 <li><p>Return a tuple of the model’s output (i.e. a list of its string-token completions, one for each prompt in the batch) and the residual stream value at the end of layer <code class="docutils literal notranslate"><span class="pre">layer</span></code> (e.g. if <code class="docutils literal notranslate"><span class="pre">layer</span> <span class="pre">=</span> <span class="pre">-1</span></code>, this means the final value of the residual stream before we convert into logits).</p></li>
 </ul>
-<p><img alt="fcba82ccca624ecb94cd35cf73ce6956" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/h-intervention-1.png" style="width: 900px;" /></p>
+<p><img alt="0b68d1cc5ade4c9fbc1be157d80029ec" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/h-intervention-1.png" style="width: 900px;" /></p>
 <p>You should only return the residual stream values for the very last sequence position in each prompt, i.e. the last <code class="docutils literal notranslate"><span class="pre">-1</span></code> token (where the model makes the antonym prediction), and same for the completions.</p>
 <details><summary><p>Help - I’m not sure how to run (and index into) a batch of inputs.</p>
 </summary><p>If we pass a list of strings to the <code class="docutils literal notranslate"><span class="pre">generator.invoke</span></code> function, this will be tokenized with padding automatically.</p>
@@ -1865,7 +1865,7 @@ vigilant!</p>
 <li><p>Return the completions for no intervention and intervention cases respectively (see docstring).</p></li>
 </ul>
 <p>The diagram below shows how all of this should work, when combined with the <code class="docutils literal notranslate"><span class="pre">calculate_h</span></code> function.</p>
-<p><img alt="6602b1b7514b40bbb32d76a9db177922" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/h-intervention-2.png" style="width: 950px;" /></p>
+<p><img alt="b03227ed00ff41708b9e477ab0d9cd28" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/h-intervention-2.png" style="width: 950px;" /></p>
 <p>Hint - you can use <code class="docutils literal notranslate"><span class="pre">tokenizer.batch_decode</span></code> to turn a list of tokens into a list of strings.</p>
 <details><summary><p>Help - I’m not sure how best to get both the no-intervention and intervention completions.</p>
 </summary><p>You can use <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">tracer.invoke...</span></code> more than once within the same context manager, in order to add to your batch. This will eventually give you output of shape (2*N, seq_len), which can then be indexed and reshaped to get the completions in the no intervention &amp; intervention cases respectively.</p>
@@ -2116,7 +2116,7 @@ Completions with intervention:  [&#39; maximum&#39;, &#39; arrogant&#39;, &#39; 
 </div></blockquote>
 <p>One great feature of the <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> library is its ability to parallelize forward passes and perform complex interventions within a single context manager.</p>
 <p>In the code above, we had one function to extract the hidden states from the model, and another function where we intervened with those hidden states. But we can actually do both at once: we can compute <span class="math notranslate nohighlight">\(h\)</span> within our forward pass, and then intervene with it on a different forward pass (using our zero-shot prompts), all within the same <code class="docutils literal notranslate"><span class="pre">model.trace</span></code> context manager. In other words, <strong>we’ll be using ``with tracer.invoke…`` three times</strong> in this context manager.</p>
-<p><img alt="290b377539cb4bb98b3e88c0ba278987" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/h-intervention-3.png" style="width: 1000px;" /></p>
+<p><img alt="23b0b5a0ea1e4e65b09ffa836f2f25c5" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/h-intervention-3.png" style="width: 1000px;" /></p>
 <p>You should fill in the <code class="docutils literal notranslate"><span class="pre">calculate_h_and_intervene</span></code> function below, to do this. Mostly, this should involve combining your <code class="docutils literal notranslate"><span class="pre">calculate_h</span></code> and <code class="docutils literal notranslate"><span class="pre">intervene_with_h</span></code> functions, and wrapping the forward passes in the same context manager (plus a bit of code rewriting).</p>
 <p>Your output should be exactly the same as before (since the <code class="docutils literal notranslate"><span class="pre">ICLDataset</span></code> class is deterministic), hence we’ve not provided test functions in this case - you can just compare the table you get to the one before! However, this time around your code should run twice as fast, because you’re batching the operations of “compute <span class="math notranslate nohighlight">\(h\)</span>” and “intervene with <span class="math notranslate nohighlight">\(h\)</span>” together into a single forward pass.</p>
 <details><summary><p>Help - I’m not sure how to use the h vector inside the context manager.</p>
@@ -2458,7 +2458,7 @@ Completions with intervention:  [&#39; maximum&#39;, &#39; arrogant&#39;, &#39; 
 <section id="A-note-on-out_proj">
 <h3>A note on <code class="docutils literal notranslate"><span class="pre">out_proj</span></code><a class="headerlink" href="#A-note-on-out_proj" title="Link to this heading">#</a></h3>
 <p>First, a bit of a technical complication. Most HuggingFace models don’t have the nice attention head representations. What we have is the linear layer <code class="docutils literal notranslate"><span class="pre">out_proj</span></code> which implicitly combines the “projection per attention head” and the “sum over attention head” operations (if you can’t see how this is possible, see the section “Attention Heads are Independent and Additive” from Anthropic’s <a class="reference external" href="https://transformer-circuits.pub/2021/framework/index.html">Mathematical Framework</a>).</p>
-<p><img alt="873129eef6894225867f8247599c343b" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/rearrange-output-2.png" style="width: 950px;" /></p>
+<p><img alt="7c2bf38a78614bd8b3fd044b4758f4d0" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/rearrange-output-2.png" style="width: 950px;" /></p>
 <p>This presents some question for us, when it comes to causal interventions on attention heads. Use the dropdowns below to read them answer these questions (they’ll be important for the coming exercises).</p>
 <details><summary><p>If we want to do a causal intervention on a particular head, should we intervene on z (the input of out_proj) or on attn_output (the output of out_proj) ?</p>
 </summary><p>We should intervene on <code class="docutils literal notranslate"><span class="pre">z</span></code>, because we can just rearrange the <code class="docutils literal notranslate"><span class="pre">z</span></code> tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch,</span> <span class="pre">seq,</span> <span class="pre">d_model)</span></code> into <code class="docutils literal notranslate"><span class="pre">(batch,</span> <span class="pre">seq,</span> <span class="pre">n_heads,</span> <span class="pre">d_head)</span></code>, in other words separating out all the heads. On the other hand, we can’t do this with the <code class="docutils literal notranslate"><span class="pre">attn_output</span></code> because it’s <em>already</em> summed over heads and we can’t separate them out.</p>
@@ -2484,7 +2484,7 @@ Completions with intervention:  [&#39; maximum&#39;, &#39; arrogant&#39;, &#39; 
 </pre></div>
 </div>
 <p>Illustration:</p>
-<p><img alt="fe89e4619aaf48f5bf05ad8b0bfc1dbf" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/rearrange-output-ablated-2.png" style="width: 950px;" /></p>
+<p><img alt="ce1cf02b7a3f4b07a5ab145fe3603b83" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/rearrange-output-ablated-2.png" style="width: 950px;" /></p>
 <p>Note - this would actually fail if <code class="docutils literal notranslate"><span class="pre">out_proj</span></code> had a bias, because we want to just get an attention head’s output, not the bias term as well. But if you look at the <a class="reference external" href="https://huggingface.co/transformers/v4.11.3/_modules/transformers/models/gptj/modeling_gptj.html">documentation page</a> you’ll see that <code class="docutils literal notranslate"><span class="pre">out_proj</span></code> doesn’t have a bias term, so we’re all good!</p>
 </details></section>
 <section id="Exercise---implement-calculate_fn_vectors_and_intervene">
@@ -2510,7 +2510,7 @@ Completions with intervention:  [&#39; maximum&#39;, &#39; arrogant&#39;, &#39; 
 </ul>
 </li>
 </ul>
-<p><img alt="d71e650a29f945c38520c3689513a43c" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/cie-intervention.png" style="width: 1200px;" /></p>
+<p><img alt="3bb1adf54e234b5caba612a2a2d319f8" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/cie-intervention.png" style="width: 1200px;" /></p>
 <p>Before you actually start writing the code, it might be helpful to answer the following:</p>
 <details><summary><p>How many different invoke calls will you need in total?</p>
 </summary><p>You’ll need <code class="docutils literal notranslate"><span class="pre">(N_LAYERS</span> <span class="pre">*</span> <span class="pre">N_HEADS)</span> <span class="pre">+</span> <span class="pre">2</span></code>. To explain:</p>
@@ -2966,7 +2966,7 @@ All tests in `test_calculate_fn_vector` passed.
 <section id="Multi-token-generation">
 <h2>Multi-token generation<a class="headerlink" href="#Multi-token-generation" title="Link to this heading">#</a></h2>
 <p>We’re now going to replicate some of the results in Table 3, in the paper:</p>
-<p><img alt="9cf003e7165147dabfe809d0fb68d676" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/tab3.png" style="width: 700px;" /></p>
+<p><img alt="05e70c6ec0fb433183f6ca60f83d7db6" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/tab3.png" style="width: 700px;" /></p>
 <p>This will involve doing something we haven’t done before - <strong>intervening on multi-token prompt generation</strong>.</p>
 <p>Most of the interpretability exercises in this chapter have just consisted of running single forward passes, rather than autoregressive text generation. But we’re trying something different here: we’re adding the function vector to the final sequence position at each forward pass during text generation, and seeing if we can get the model to output a sentence with a different meaning.</p>
 <p>The results of Table 3 came from adding the function vector to the residual stream at the final sequence position of the original prompt, <strong>and the final sequence position for each subsequent generation.</strong> The reason we do this is to guide the model’s behaviour over time. Our hypothesis is that the function vector induces “next-token antonym behaviour” (because it was calculated by averaging attention head outputs at the sequence position before the model made its antonym prediction in the ICL

@@ -31,7 +31,7 @@ Tutorials
    :gutter: 3
 
    .. grid-item-card:: 
-      :link: walkthroughs
+      :link: /walkthroughs
       :class-card: surface
       :class-body: surface
 
@@ -49,7 +49,7 @@ Tutorials
 
 
    .. grid-item-card:: 
-      :link: applied_tutorials
+      :link: /applied_tutorials
       :class-card: surface
       :class-body: surface
 
