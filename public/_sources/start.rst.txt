@@ -53,12 +53,12 @@ Next Steps
    :gutter: 2
 
    .. grid-item-card:: Walkthrough
-      :link: notebooks/tutorials/walkthrough.ipynb
+      :link: notebooks/tutorials/get_started/walkthrough.ipynb
 
       Walk through the basic functionality of the package.
 
    .. grid-item-card:: Remote Access
-      :link: notebooks/features/remote_execution.ipynb
+      :link: notebooks/tutorials/get_started/start_remote_access.ipynb
 
       Configure API access for remote model execution.
 

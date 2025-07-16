@@ -14,6 +14,10 @@ html[data-theme="dark"] {
     --pst-color-border: #1C1B1A;
     --pst-color-panel-background: #1C1B1A;
     --output-bg-color: #343331;
+    --tutorial-category-get-started: #1a5c85;
+    --tutorial-category-probing: #4e5d93;
+    --tutorial-category-steering: #614183;
+    --tutorial-category-causal: #7d3484;
 }
 
 html[data-theme="light"] {
@@ -21,6 +25,10 @@ html[data-theme="light"] {
     --pst-color-primary: #4385be;
     --pst-color-secondary: #ce5d97;
     --pst-color-primary-highlight: #ce5d97;
+    --tutorial-category-get-started: #a8ddfe;
+    --tutorial-category-probing: #a5b5f1;
+    --tutorial-category-steering: #c29ee8;
+    --tutorial-category-causal: #e0a0e7;
 }
 
 
@@ -62,4 +70,8 @@ html[data-theme="light"] {
     background-color : transparent !important;
     border-color : var(--pst-color-on-surface) !important;
     color: var(--pst-color-on-surface) !important;
+}
+
+.bd-sidebar h2.sidebar-title {
+    font-weight: bold !important;
 }
