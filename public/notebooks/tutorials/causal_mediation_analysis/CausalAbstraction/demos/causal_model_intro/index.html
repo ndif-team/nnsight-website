@@ -1,0 +1,1028 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../../" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>What’s a causal model? &#8212; nnsight</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../../../../_static/documentation_options.js?v=187304be"></script>
+    <script src="../../../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/tutorials/causal_mediation_analysis/CausalAbstraction/demos/causal_model_intro';</script>
+    <script src="../../../../../../_static/js/custom.js?v=1e4be224"></script>
+    <script src="../../../../../../_static/js/code.js?v=34343d0c"></script>
+    <link rel="icon" href="../../../../../../_static/icon.ico"/>
+    <link rel="author" title="About these documents" href="../../../../../../about/" />
+    <link rel="index" title="Index" href="../../../../../../genindex/" />
+    <link rel="search" title="Search" href="../../../../../../search/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+<link href="../../../../../../_static/css/custom.css?v=1754348346" rel="stylesheet" type="text/css" />
+<link href="../../../../../../_static/css/home.css?v=1754348346" rel="stylesheet" type="text/css" />
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../../search/"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../../">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../../../../_static/nnsight_logo.svg" class="logo__image only-dark" alt="nnsight - Home"/>
+    <img src="../../../../../../_static/nnsight_logo.svg" class="logo__image only-light pst-js-only" alt="nnsight - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../start/">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../documentation/">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../features/">
+    Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../tutorials/">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../about/">
+    About
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><script>
+    fetch("https://ndif.dev/ping")
+        .then((response) => {
+            if (response.status == 200) {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#66800b', 'important');
+                    });
+                });
+            }
+            else {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#af3029', 'important');
+                    });
+                });
+                var statusIcon = document.querySelector('.ndif .fa-circle-check');
+                if (statusIcon) {
+                    // not here
+                    statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark'); 
+                }
+            }
+        })
+        .catch((response) => {
+            Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                    spanElement.style.setProperty('color', '#af3029', 'important');
+                });
+            });
+            var statusIcon = document.querySelector('.ndif .fa-circle-check');
+            if (statusIcon) {
+                statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark');
+            }
+        })
+</script></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/status" title="Status: Unknown" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Status: Unknown</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://discuss.ndif.us/" title="Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discourse fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Forum</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discord</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../start/">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../documentation/">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../features/">
+    Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../tutorials/">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../../about/">
+    About
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><script>
+    fetch("https://ndif.dev/ping")
+        .then((response) => {
+            if (response.status == 200) {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#66800b', 'important');
+                    });
+                });
+            }
+            else {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#af3029', 'important');
+                    });
+                });
+                var statusIcon = document.querySelector('.ndif .fa-circle-check');
+                if (statusIcon) {
+                    // not here
+                    statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark'); 
+                }
+            }
+        })
+        .catch((response) => {
+            Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                    spanElement.style.setProperty('color', '#af3029', 'important');
+                });
+            });
+            var statusIcon = document.querySelector('.ndif .fa-circle-check');
+            if (statusIcon) {
+                statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark');
+            }
+        })
+</script></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/status" title="Status: Unknown" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Status: Unknown</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://discuss.ndif.us/" title="Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discourse fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Forum</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discord</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../../../" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">What’s a causal model?</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="What's-a-causal-model?">
+<h1>What’s a causal model?<a class="headerlink" href="#What's-a-causal-model?" title="Link to this heading">#</a></h1>
+<p>Neural networks are complex and interesting systems – yet we have full control over their internals! Interpretability seeks to understand how manipulations of model internals affect their output. The theory of causality, which formalizes causal effects in causal graphs, is fundamental to the field of interpretability.</p>
+<p>But what exactly is a causal model? In this tutorial, we walk through a simple causal model with the <code class="docutils literal notranslate"><span class="pre">CausalAbstraction</span></code> library. Along the way, we’ll discuss</p>
+<ul class="simple">
+<li><p>The components of causal graphs,</p></li>
+<li><p>Operations we can perform on causal graphs,</p></li>
+<li><p>and abstractions between causal graphs.</p></li>
+</ul>
+<section id="Let's-set-up-a-causal-model">
+<h2>Let’s set up a causal model<a class="headerlink" href="#Let's-set-up-a-causal-model" title="Link to this heading">#</a></h2>
+<p>Imagine we trained a neural network to add three numbers, A, B, and C, together. How might it solve this problem?</p>
+<p>We can formalize our <strong>hypothesis</strong> as a <strong>causal graph</strong>. The code below sets up a causal graph for an algorithm that adds the three numbers left to right. The causal model first adds A and B together, and then adds C to their sum.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">)</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="c1"># we use the CausalAbstraction library to set up a causal model</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">causal.causal_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">CausalModel</span>
+
+<span class="n">DIGITS</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c1">######################</span>
+<span class="c1"># 1. variables       #</span>
+<span class="c1">######################</span>
+<span class="c1"># first we specify the variables of our causal model</span>
+<span class="c1"># A, B, C : the inputs to our model</span>
+<span class="c1"># A+B : the intermediate operation A + B</span>
+<span class="c1"># C&#39; : the intermediate value of C (copied from the input)</span>
+<span class="c1"># Y : the final sum, A + B + C</span>
+<span class="c1"># raw_input : the raw representation of the inputs (A, B, and C)</span>
+<span class="c1"># raw_output : the raw representation of the output (Y)</span>
+<span class="n">variables</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;A+B&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;C</span><span class="se">\&#39;</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Y&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;raw_input&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;raw_output&quot;</span>
+<span class="p">]</span>
+
+<span class="c1">######################</span>
+<span class="c1"># 2. values          #</span>
+<span class="c1">######################</span>
+<span class="c1"># what values can our variables take on?</span>
+<span class="c1"># in this case, let&#39;s imagine modular arithmetic, so all</span>
+<span class="c1"># of our variables (except the raw input/output strings)</span>
+<span class="c1"># can only take on a value from 0 to 9.</span>
+<span class="n">values</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="o">**</span><span class="p">{</span><span class="n">var</span><span class="p">:</span> <span class="n">DIGITS</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">},</span>
+    <span class="s2">&quot;raw_input&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;raw_output&quot;</span><span class="p">:</span> <span class="kc">None</span>
+<span class="p">}</span>
+
+<span class="c1">######################</span>
+<span class="c1"># 3. parents         #</span>
+<span class="c1">######################</span>
+<span class="c1"># this helps us specify the direction of our causal graph</span>
+<span class="c1"># A, B, C : no parents, bc they&#39;re inputs</span>
+<span class="c1"># A+B : parents are A and B</span>
+<span class="c1"># C&#39; : parent is C</span>
+<span class="c1"># Y : parents are A+B and C&#39; (NOT A, B, or C!)</span>
+<span class="c1"># raw_input : parents are A, B, and C</span>
+<span class="c1"># raw_output : parent is Y</span>
+<span class="n">parents</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s2">&quot;A+B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;C</span><span class="se">\&#39;</span><span class="s2">&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Y&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A+B&quot;</span><span class="p">,</span> <span class="s2">&quot;C</span><span class="se">\&#39;</span><span class="s2">&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;raw_input&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;raw_output&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Y&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="c1">######################</span>
+<span class="c1"># 4. mechanisms      #</span>
+<span class="c1">######################</span>
+<span class="c1"># HOW do the variables affect each other?</span>
+<span class="c1"># A, B, C : provide default values</span>
+<span class="c1"># A+B : computes A + B mod 10</span>
+<span class="c1"># C&#39; : copies over the value of C</span>
+<span class="c1"># Y : computes A+B + C&#39; mod 10 (NOTE: we&#39;re using the intermediate variables!)</span>
+<span class="c1"># raw_input : represents A+B+C as a list</span>
+<span class="c1"># raw_output : represents Y as an int</span>
+<span class="n">mechanisms</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">DIGITS</span><span class="p">),</span>
+    <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">DIGITS</span><span class="p">),</span>
+    <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">DIGITS</span><span class="p">),</span>
+    <span class="s2">&quot;A+B&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="o">%</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">&quot;C</span><span class="se">\&#39;</span><span class="s2">&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">c</span><span class="p">,</span>
+    <span class="s2">&quot;Y&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">a_plus_b</span><span class="p">,</span> <span class="n">c_</span><span class="p">:</span> <span class="p">(</span><span class="n">a_plus_b</span> <span class="o">+</span> <span class="n">c_</span><span class="p">)</span> <span class="o">%</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">&quot;raw_input&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">],</span>
+    <span class="s2">&quot;raw_output&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">y</span>
+<span class="p">}</span>
+
+<span class="c1"># put it all together!</span>
+<span class="n">causal_model</span> <span class="o">=</span> <span class="n">CausalModel</span><span class="p">(</span><span class="n">variables</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">parents</span><span class="p">,</span> <span class="n">mechanisms</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;Hierarchical addition&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Let’s visualize our causal graph. The arrows show which variables have a direct causal effect on each other. If we can take a path from variable <span class="math notranslate nohighlight">\(\alpha\)</span> to variable <span class="math notranslate nohighlight">\(\beta\)</span>, then we can say that <span class="math notranslate nohighlight">\(\alpha\)</span> <em>has a causal effect on</em> <span class="math notranslate nohighlight">\(\beta\)</span>. That is, changing the value of <span class="math notranslate nohighlight">\(\alpha\)</span> may change the value of <span class="math notranslate nohighlight">\(\beta\)</span>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">causal_model</span><span class="o">.</span><span class="n">display_structure</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<iframe
+    width="100%"
+    height="650"
+    src="http://127.0.0.1:8050/"
+    frameborder="0"
+    allowfullscreen
+
+></iframe></div>
+</div>
+<p>We can pass inputs into our causal model and <strong>run it “forward”</strong> to simulate the algorithm’s final output - as well as its intermediate values.</p>
+<p>In our visualization, we represent inputs as dark teal nodes, and the intermediate/output values as light teal nodes.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># play around with different inputs!</span>
+<span class="n">inputs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+
+<span class="n">causal_model</span><span class="o">.</span><span class="n">display_forward_pass</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<iframe
+    width="100%"
+    height="650"
+    src="http://127.0.0.1:8050/"
+    frameborder="0"
+    allowfullscreen
+
+></iframe></div>
+</div>
+<p>We can represent any causal process in a causal graph - including neural networks!</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="n">l1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">l2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">l3</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">variables</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;h1</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)],</span>
+    <span class="o">*</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;h2</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)],</span>
+    <span class="s1">&#39;h31&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;raw_input&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;raw_output&#39;</span>
+<span class="p">]</span>
+
+<span class="n">values</span> <span class="o">=</span> <span class="p">{</span><span class="n">var</span><span class="p">:</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">}</span>
+
+<span class="n">parents</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="o">**</span><span class="p">{</span><span class="sa">f</span><span class="s1">&#39;h1</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)},</span>
+    <span class="o">**</span><span class="p">{</span><span class="sa">f</span><span class="s1">&#39;h2</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;h11&#39;</span><span class="p">,</span> <span class="s1">&#39;h12&#39;</span><span class="p">,</span> <span class="s1">&#39;h13&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)},</span>
+    <span class="s1">&#39;h31&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;h21&#39;</span><span class="p">,</span> <span class="s1">&#39;h22&#39;</span><span class="p">,</span> <span class="s1">&#39;h23&#39;</span><span class="p">],</span>
+    <span class="s2">&quot;raw_input&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;raw_output&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;h31&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">mechanisms</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="o">**</span><span class="p">{</span><span class="sa">f</span><span class="s1">&#39;h1</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span> <span class="n">l1</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">]))</span><span class="o">.</span><span class="n">round</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)},</span>
+    <span class="o">**</span><span class="p">{</span><span class="sa">f</span><span class="s1">&#39;h2</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">h11</span><span class="p">,</span> <span class="n">h12</span><span class="p">,</span> <span class="n">h13</span><span class="p">:</span> <span class="n">l2</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">([</span><span class="n">h11</span><span class="p">,</span> <span class="n">h12</span><span class="p">,</span> <span class="n">h13</span><span class="p">]))</span><span class="o">.</span><span class="n">round</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)},</span>
+    <span class="s1">&#39;h31&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">h21</span><span class="p">,</span> <span class="n">h22</span><span class="p">,</span> <span class="n">h23</span><span class="p">:</span> <span class="n">l3</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">([</span><span class="n">h21</span><span class="p">,</span> <span class="n">h22</span><span class="p">,</span> <span class="n">h23</span><span class="p">]))</span><span class="o">.</span><span class="n">round</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span>
+    <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">DIGITS</span><span class="p">),</span>
+    <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">DIGITS</span><span class="p">),</span>
+    <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">DIGITS</span><span class="p">),</span>
+    <span class="s2">&quot;raw_input&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">],</span>
+    <span class="s2">&quot;raw_output&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">y</span>
+<span class="p">}</span>
+
+<span class="n">neural_network</span> <span class="o">=</span> <span class="n">CausalModel</span><span class="p">(</span><span class="n">variables</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">parents</span><span class="p">,</span> <span class="n">mechanisms</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;Hierarchical addition&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">neural_network</span><span class="o">.</span><span class="n">display_structure</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<iframe
+    width="100%"
+    height="650"
+    src="http://127.0.0.1:8050/"
+    frameborder="0"
+    allowfullscreen
+
+></iframe></div>
+</div>
+<p>Keep this in mind - we’ll come back to the idea of representing neural networks as causal models soon! For now, let’s see what we can actually do with a causal graph.</p>
+</section>
+<section id="Operations-on-causal-graphs">
+<h2>Operations on causal graphs<a class="headerlink" href="#Operations-on-causal-graphs" title="Link to this heading">#</a></h2>
+<p>Now that we know what a causal model looks like, let’s try playing around with it. The key operation we can perform on a causal graph is an <strong>intervention</strong>. When we perform an intervention, we <strong>change the value of a variable</strong> - this might have downstream effects on the model’s computation.</p>
+<section id="Intervening-on-a-causal-graph">
+<h3>Intervening on a causal graph<a class="headerlink" href="#Intervening-on-a-causal-graph" title="Link to this heading">#</a></h3>
+<p>For example, what if the model thought that 1 + 2 was actually 4 instead of 3?</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inputs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<span class="c1"># let&#39;s make the model think that 1 + 2 is 4!</span>
+<span class="n">intervention</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A+B&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+
+<span class="c1"># we &quot;run the model forward&quot; again,</span>
+<span class="c1"># but this time with an intervention changing A + B to 4</span>
+<span class="n">causal_model</span><span class="o">.</span><span class="n">display_forward_pass</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">intervention</span><span class="o">=</span><span class="n">intervention</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<iframe
+    width="100%"
+    height="650"
+    src="http://127.0.0.1:8050/"
+    frameborder="0"
+    allowfullscreen
+
+></iframe></div>
+</div>
+<p>As you might have predicted, the causal model’s new answer is 7 instead of 6.</p>
+<p><em>Visualization note: We color the intervention in dark magenta and the values it affects in either light magenta (if the intervention directly affected the value) or violet (if the value was caused by a mix of intervened and base values).</em></p>
+<p>We can choose any variable to intervene on! For example, we can intervene directly on the output.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inputs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<span class="c1"># let&#39;s make the model think that the answer is 10</span>
+<span class="n">intervention</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
+
+<span class="n">causal_model</span><span class="o">.</span><span class="n">display_forward_pass</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">intervention</span><span class="o">=</span><span class="n">intervention</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<iframe
+    width="100%"
+    height="650"
+    src="http://127.0.0.1:8050/"
+    frameborder="0"
+    allowfullscreen
+
+></iframe></div>
+</div>
+<p><em>Visualization note: since the ``raw_output`` only depends on the value of the intervened variable (and not the base inputs) we color it in magenta instead of violet.</em></p>
+<p>We can also intervene on parts of the input. For example, let’s change just the value of the variable <code class="docutils literal notranslate"><span class="pre">C</span></code> in the input.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inputs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<span class="c1"># let&#39;s replace the input C with 9</span>
+<span class="n">intervention</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">}</span>
+
+<span class="n">causal_model</span><span class="o">.</span><span class="n">display_forward_pass</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">intervention</span><span class="o">=</span><span class="n">intervention</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<iframe
+    width="100%"
+    height="650"
+    src="http://127.0.0.1:8050/"
+    frameborder="0"
+    allowfullscreen
+
+></iframe></div>
+</div>
+<p>Of course, we could’ve simulated the model’s output by just plugging in 9 for C. But the causal model still plays an important role here - it predicts what each intermediate value will turn out!</p>
+<p>We can also intervene on multiple variables at the same time. For example, let’s see what happens when we set <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">+</span> <span class="pre">B</span></code> to 8 and <code class="docutils literal notranslate"><span class="pre">C'</span></code> to 4.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inputs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<span class="c1"># let&#39;s intervene on all of the intermediate variables</span>
+<span class="n">intervention</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A+B&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;C</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+
+<span class="n">causal_model</span><span class="o">.</span><span class="n">display_forward_pass</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">intervention</span><span class="o">=</span><span class="n">intervention</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<iframe
+    width="100%"
+    height="650"
+    src="http://127.0.0.1:8050/"
+    frameborder="0"
+    allowfullscreen
+
+></iframe></div>
+</div>
+<p>At this point, we overrode the effects of the inputs! Nevertheless, we have a prediction of what the final output will be, given our interventions.</p>
+</section>
+<section id="Interchange-interventions">
+<h3>Interchange interventions<a class="headerlink" href="#Interchange-interventions" title="Link to this heading">#</a></h3>
+<p>Interventions are powerful when we know the intermediate values of our causal model. However, in the case of complex systems such as neural networks, the intermediate values might not be predictable or interpretable. For example, it’s hard to predict a reasonable value for an MLP activation.</p>
+<p>A very powerful operation we can perform on causal models is an <strong>interchange intervention</strong>. In an interchange intervention, we <strong>don’t specify intermediate values</strong>. Instead, we choose a <strong>set of inputs for the variable we want to change</strong>, and let the causal model <strong>infer</strong> the intermediate value from those causal variables.</p>
+<p>For example, let’s change the model to think that <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">+</span> <span class="pre">B</span></code> is 4 again. This time, we won’t specify 4 up front. Instead, we’ll <strong>get the value for ``A + B``</strong> from running a <strong>separate forward pass</strong> on the inputs <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">=</span> <span class="pre">3</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span> <span class="pre">=</span> <span class="pre">1</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inputs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+
+<span class="c1"># let&#39;s change the value of A + B to be 3 + 1!</span>
+<span class="n">counterfactual_inputs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;A+B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
+<span class="p">}</span>
+
+<span class="n">causal_model</span><span class="o">.</span><span class="n">display_interchange</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">counterfactual_inputs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<iframe
+    width="100%"
+    height="650"
+    src="http://127.0.0.1:8050/"
+    frameborder="0"
+    allowfullscreen
+
+></iframe></div>
+</div>
+<p>The result is the same as intervening on <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">+</span> <span class="pre">B</span></code> directly and setting it to 4. But this time around, we didn’t need to “magically” come up with the number 4 - instead, it came from the model’s evaluation on a separate set of inputs. By <strong>interchanging</strong> the value of a variable across two separate forward passes of our causal model, we can estimate its <strong>counterfactual behavior</strong> when we edit the value of one of its variables.</p>
+<p><em>Side note: just like with interventions, we can perform an interchange intervention on multiple variables! For each variable, we can specify a different source input that will specify its value.</em></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inputs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+
+<span class="c1"># let&#39;s change the value of A + B and C&#39; using different sources</span>
+<span class="n">counterfactual_inputs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;A+B&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span> <span class="c1"># make A + B = 3 + 1</span>
+    <span class="s1">&#39;C</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">},</span> <span class="c1"># make C&#39; = 8</span>
+<span class="p">}</span>
+
+<span class="n">causal_model</span><span class="o">.</span><span class="n">display_interchange</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">counterfactual_inputs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<iframe
+    width="100%"
+    height="650"
+    src="http://127.0.0.1:8050/"
+    frameborder="0"
+    allowfullscreen
+
+></iframe></div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Let's-set-up-a-causal-model">Let’s set up a causal model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Operations-on-causal-graphs">Operations on causal graphs</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Intervening-on-a-causal-graph">Intervening on a causal graph</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Interchange-interventions">Interchange interventions</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025 NDIF.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+   
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -82,6 +82,40 @@ Many researchers in interpretability write their experiments in :bdg-primary:`nn
                <p class="card-text">Steer models between tasks</p>
             </div>
          </div>
+   
+   .. grid-item-card:: 
+      :link: notebooks/mini-papers/huang_demystifying_memorization.ipynb
+      :class-card: surface
+      :class-body: surface
+
+      .. raw:: html
+
+         <div class="d-flex align-items-center">
+            <div class="d-flex justify-content-center" style="min-width: 50px; margin-right: 15px; height: 100%;">
+               <i class="fa-solid fa-copyright fa-2x"></i>
+            </div> 
+            <div>
+               <h5 class="card-title">Demystifying Memorization</h5>
+               <p class="card-text">When & how do LLMs memorize text?</p>
+            </div>
+         </div>
+
+   .. grid-item-card:: 
+      :link: notebooks/mini-papers/feucht_dual_route_induction.ipynb
+      :class-card: surface
+      :class-body: surface
+
+      .. raw:: html
+
+         <div class="d-flex align-items-center">
+            <div class="d-flex justify-content-center" style="min-width: 50px; margin-right: 15px; height: 100%;">
+               <i class="fa-solid fa-arrows-split-up-and-left fa-2x"></i>
+            </div> 
+            <div>
+               <h5 class="card-title">Concept Induction Heads</h5>
+               <p class="card-text">LLMs distinguish between tokens & concepts</p>
+            </div>
+         </div>
 
 Submit Your Own Ideas!
 ----------------------
@@ -115,3 +149,5 @@ We welcome contributions to our list of applied examples. If you have an example
    notebooks/mini-papers/csordas_llm_depth
    notebooks/mini-papers/marks_geometry_of_truth
    notebooks/mini-papers/todd_function_vectors
+   notebooks/mini-papers/huang_demystifying_memorization
+   notebooks/mini-papers/feucht_dual_route_induction

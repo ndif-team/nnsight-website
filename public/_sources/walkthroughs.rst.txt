@@ -231,6 +231,57 @@ Welcome! Follow the tutorials below to learn how to conduct interpretability res
          </div>
 
    .. grid-item-card:: 
+      :link: notebooks/tutorials/causal_mediation_analysis/causal_models_intro.ipynb
+      :class-card: surface
+      :class-body: surface causal
+
+      .. raw:: html
+
+         <div class="d-flex align-items-center">
+            <div class="d-flex justify-content-center" style="min-width: 50px; margin-right: 15px; height: 100%;">
+               <i class="fa-solid fa-circle-nodes fa-2x"></i>
+            </div> 
+            <div>
+               <h5 class="card-title">Causal Models</h5>
+               <p class="card-text">Intro to causal inference</p>
+            </div>
+         </div>
+
+   .. grid-item-card:: 
+      :link: notebooks/tutorials/causal_mediation_analysis/causal_mediation_analysis_i.ipynb
+      :class-card: surface
+      :class-body: surface causal
+
+      .. raw:: html
+
+         <div class="d-flex align-items-center">
+            <div class="d-flex justify-content-center" style="min-width: 50px; margin-right: 15px; height: 100%;">
+               <i class="fa-solid fa-share-nodes fa-2x"></i>
+            </div> 
+            <div>
+               <h5 class="card-title">Causal Mediation Analysis I</h5>
+               <p class="card-text">Use causal mediation to explain AI</p>
+            </div>
+         </div>
+
+   .. grid-item-card:: 
+      :link: notebooks/tutorials/causal_mediation_analysis/causal_mediation_analysis_ii.ipynb
+      :class-card: surface
+      :class-body: surface causal
+
+      .. raw:: html
+
+         <div class="d-flex align-items-center">
+            <div class="d-flex justify-content-center" style="min-width: 50px; margin-right: 15px; height: 100%;">
+               <i class="fa-solid fa-share-nodes fa-2x"></i>
+            </div> 
+            <div>
+               <h5 class="card-title">Causal Mediation Analysis II</h5>
+               <p class="card-text">Find causal mediators in LLMs</p>
+            </div>
+         </div>
+
+   .. grid-item-card:: 
       :link: notebooks/tutorials/causal_mediation_analysis/activation_patching.ipynb
       :class-card: surface
       :class-body: surface causal
@@ -308,6 +359,9 @@ Welcome! Follow the tutorials below to learn how to conduct interpretability res
    :maxdepth: 1
    :caption: Understand
 
+   Causal Models Intro <notebooks/tutorials/causal_mediation_analysis/causal_models_intro>
+   Causal Mediation Analysis I <notebooks/tutorials/causal_mediation_analysis/causal_mediation_analysis_i>
+   Causal Mediation Analysis II <notebooks/tutorials/causal_mediation_analysis/causal_mediation_analysis_ii>
    notebooks/tutorials/causal_mediation_analysis/activation_patching
    notebooks/tutorials/causal_mediation_analysis/attribution_patching
    DAS <notebooks/tutorials/causal_mediation_analysis/DAS>
