@@ -1,0 +1,967 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Supervised Feature Selection: choosing the right unit of computation &#8212; nnsight</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../../../_static/documentation_options.js?v=187304be"></script>
+    <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/tutorials/causal_mediation_analysis/nnsight-tutorials/1_feature_selection';</script>
+    <script src="../../../../../_static/js/custom.js?v=1e4be224"></script>
+    <script src="../../../../../_static/js/code.js?v=34343d0c"></script>
+    <link rel="icon" href="../../../../../_static/icon.ico"/>
+    <link rel="author" title="About these documents" href="../../../../../about/" />
+    <link rel="index" title="Index" href="../../../../../genindex/" />
+    <link rel="search" title="Search" href="../../../../../search/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+<link href="../../../../../_static/css/custom.css?v=1754348346" rel="stylesheet" type="text/css" />
+<link href="../../../../../_static/css/home.css?v=1754348346" rel="stylesheet" type="text/css" />
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search/"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../../../_static/nnsight_logo.svg" class="logo__image only-dark" alt="nnsight - Home"/>
+    <img src="../../../../../_static/nnsight_logo.svg" class="logo__image only-light pst-js-only" alt="nnsight - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../start/">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../documentation/">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../features/">
+    Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../tutorials/">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../about/">
+    About
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><script>
+    fetch("https://ndif.dev/ping")
+        .then((response) => {
+            if (response.status == 200) {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#66800b', 'important');
+                    });
+                });
+            }
+            else {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#af3029', 'important');
+                    });
+                });
+                var statusIcon = document.querySelector('.ndif .fa-circle-check');
+                if (statusIcon) {
+                    // not here
+                    statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark'); 
+                }
+            }
+        })
+        .catch((response) => {
+            Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                    spanElement.style.setProperty('color', '#af3029', 'important');
+                });
+            });
+            var statusIcon = document.querySelector('.ndif .fa-circle-check');
+            if (statusIcon) {
+                statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark');
+            }
+        })
+</script></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/status" title="Status: Unknown" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Status: Unknown</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://discuss.ndif.us/" title="Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discourse fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Forum</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discord</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../start/">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../documentation/">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../features/">
+    Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../tutorials/">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../../../about/">
+    About
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><script>
+    fetch("https://ndif.dev/ping")
+        .then((response) => {
+            if (response.status == 200) {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#66800b', 'important');
+                    });
+                });
+            }
+            else {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#af3029', 'important');
+                    });
+                });
+                var statusIcon = document.querySelector('.ndif .fa-circle-check');
+                if (statusIcon) {
+                    // not here
+                    statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark'); 
+                }
+            }
+        })
+        .catch((response) => {
+            Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                    spanElement.style.setProperty('color', '#af3029', 'important');
+                });
+            });
+            var statusIcon = document.querySelector('.ndif .fa-circle-check');
+            if (statusIcon) {
+                statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark');
+            }
+        })
+</script></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/status" title="Status: Unknown" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Status: Unknown</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://discuss.ndif.us/" title="Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discourse fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Forum</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discord</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../../../" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Supervised Feature Selection: choosing the right unit of computation</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="Supervised-Feature-Selection:-choosing-the-right-unit-of-computation">
+<h1>Supervised Feature Selection: choosing the right unit of computation<a class="headerlink" href="#Supervised-Feature-Selection:-choosing-the-right-unit-of-computation" title="Link to this heading">#</a></h1>
+<p>By manipulating the components of a neural network in real-time, we can discover how these components represent abstract concepts. But <strong>how do we know what unit of computation we should edit?</strong> Should we change the entire residual stream? Only certain attention heads? Or the individual neurons themselves?</p>
+<p>In this tutorial, we’ll look at the problem of <strong>supervised feature selection</strong>, or finding components in the model that localize specific concepts. We’ll build up to Distributed Alignment Search (DAS), which automatically searches for a set of linear subspaces that represent a particular concept.</p>
+<div style="background-color:#FF9999;padding:10px 10px;border-radius:20px"><p>Before we begin!</p>
+<p>These are good things to know before we begin the tutorial</p>
+<ul><li><p>Activation patching - check out the activation patching tutorial here!</p>
+</li></ul></div><div style="background-color:#C1E5F5;padding:10px 10px;border-radius:20px"><p>Things we’ll talk about</p>
+<p>In case you want to tell people what you learned today!</p>
+<ul><li><p>RAVEL - how to evaluate that we’re only editing the concept we’re looking for.</p>
+</li><li><p>DAS - method for finding linear subspaces of model representations that store a particular concept.</p>
+</li></ul><p>Let’s do this!</p>
+</div><div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">clear_output</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">google.colab</span>
+    <span class="n">is_colab</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">is_colab</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">if</span> <span class="n">is_colab</span><span class="p">:</span>
+    <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>nnsight
+    <span class="o">!</span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/AmirZur/nnsight-tutorials.git
+    <span class="o">%</span><span class="k">cd</span> nnsight-tutorials/
+
+<span class="n">clear_output</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<section id="Activation-Patching-Review---editing-a-model's-knowledge-of-geography">
+<h2>Activation Patching Review - editing a model’s knowledge of geography<a class="headerlink" href="#Activation-Patching-Review---editing-a-model's-knowledge-of-geography" title="Link to this heading">#</a></h2>
+<p>We’ll begin with a quick review of activation patching.</p>
+<p>When we tell an LLM we want to travel to Paris, the LLM knows that Paris is in France. Where is that information stored? In this notebook, we’ll try to find out <strong>where a language model stores the country information for a particular city.</strong></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load model</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nnsight</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">clear_output</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">nnsight</span><span class="o">.</span><span class="n">LanguageModel</span><span class="p">(</span><span class="s2">&quot;meta-llama/Llama-3.2-1B&quot;</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">)</span>
+<span class="n">clear_output</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># does our model know where Paris is?</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="n">base_prompt</span> <span class="o">=</span> <span class="s2">&quot;Paris is in the country of&quot;</span>
+
+<span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">base_prompt</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
+        <span class="n">base_tokens</span> <span class="o">=</span> <span class="n">tracer</span><span class="o">.</span><span class="n">invoker</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;input_ids&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># Get logits from the lm_head</span>
+        <span class="n">base_logits</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="n">base_logprobs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">base_logits</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">top_completions</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="n">base_logprobs</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="nb">sorted</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">top_completions</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">top_completions</span><span class="o">.</span><span class="n">indices</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">item</span><span class="p">())</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">v</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ France (0.65)
+ the (0.05)
+ love (0.01)
+</pre></div></div>
+</div>
+<p>Looks like our model knows that Paris is in France. Now let’s make the model think that Paris is elsewhere! We can do this by <strong>editing</strong> the model’s representation of Paris during its computation.</p>
+<p><img alt="two forward runs of a model, with an arrow between the residual stream activations of Rio and Paris. After the intervention is applied, the model outputs Brazil" src="https://github.com/AmirZur/nnsight-tutorials/blob/main/figures/patching_visualization.png?raw=true" /></p>
+<p>See the tutorial on activation patching for more details!</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># collect representations for a city from a different country</span>
+<span class="n">source_prompt</span> <span class="o">=</span> <span class="s2">&quot;Rio is in the country of&quot;</span>
+<span class="n">source_country</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="p">(</span><span class="s2">&quot; Brazil&quot;</span><span class="p">)[</span><span class="s2">&quot;input_ids&quot;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># includes a space</span>
+
+<span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">source_prompt</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
+        <span class="n">source_tokens</span> <span class="o">=</span> <span class="n">tracer</span><span class="o">.</span><span class="n">invoker</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;input_ids&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># Get hidden states of all layers in the network.</span>
+        <span class="c1"># We index the output at 0 because it&#39;s a tuple where the first index is the hidden state.</span>
+        <span class="n">source_hidden_states</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">layer</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span>
+        <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>This will take 1-2min, since we’re going through all layers and tokens in our prompt.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># activation patching intervention</span>
+<span class="n">patching_results</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># iterate through all the layers</span>
+<span class="k">for</span> <span class="n">layer_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">)):</span>
+    <span class="n">patching_results_per_layer</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># iterate through all tokens</span>
+    <span class="k">for</span> <span class="n">token_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">base_tokens</span><span class="p">)):</span>
+        <span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">base_prompt</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
+            <span class="c1"># apply the patch from the source hidden states to the base hidden states</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="n">layer_idx</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span> <span class="n">token_idx</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> \
+                <span class="n">source_hidden_states</span><span class="p">[</span><span class="n">layer_idx</span><span class="p">][:,</span> <span class="n">token_idx</span><span class="p">,</span> <span class="p">:]</span>
+
+            <span class="n">patched_logits</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+
+            <span class="n">patched_logprobs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">patched_logits</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="n">patching_results_per_layer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">patched_logprobs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">source_country</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">())</span>
+
+    <span class="n">patching_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">patching_results_per_layer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">plotly.express</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">px</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nnsight.tracing.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">Proxy</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_patching_results</span><span class="p">(</span>
+    <span class="n">patching_results</span><span class="p">,</span>
+    <span class="n">base_tokens</span><span class="p">,</span>
+    <span class="n">source_tokens</span>
+<span class="p">):</span>
+    <span class="c1"># get values from proxy variables</span>
+    <span class="n">patching_results</span> <span class="o">=</span> <span class="n">nnsight</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">patching_results</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">Proxy</span><span class="p">)</span>
+
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span>
+        <span class="n">patching_results</span><span class="p">,</span>
+        <span class="n">color_continuous_midpoint</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">color_continuous_scale</span><span class="o">=</span><span class="s2">&quot;RdBu&quot;</span><span class="p">,</span>
+        <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="s2">&quot;token&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="s2">&quot;layer&quot;</span><span class="p">,</span><span class="s2">&quot;color&quot;</span><span class="p">:</span><span class="s2">&quot;counterfactual logit&quot;</span><span class="p">},</span>
+        <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;&lt;span style=</span><span class="se">\&quot;</span><span class="s2">color: #156082</span><span class="se">\&quot;</span><span class="s2">&gt;</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">&lt;/span&gt;&lt;br&gt;&lt;/br&gt;&lt;span style=</span><span class="se">\&quot;</span><span class="s2">color: #E97132</span><span class="se">\&quot;</span><span class="s2">&gt;</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&lt;/span&gt;&quot;</span> <span class="k">for</span> <span class="n">b</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">base_tokens</span><span class="p">,</span> <span class="n">source_tokens</span><span class="p">)]</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fig</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">decoded_base_tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">token</span><span class="p">)</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">base_tokens</span><span class="p">]</span>
+<span class="n">decoded_source_tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">token</span><span class="p">)</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">source_tokens</span><span class="p">]</span>
+
+<span class="n">plot_patching_results</span><span class="p">(</span><span class="n">patching_results</span><span class="p">,</span> <span class="n">decoded_base_tokens</span><span class="p">,</span> <span class="n">decoded_source_tokens</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="admonition warning">
+<p>Data type cannot be displayed: application/vnd.plotly.v1+json</p>
+</div>
+</div>
+</div>
+<div style="background-color:#C1E5F5;padding:10px 10px;border-radius:20px"><p>Takeaway</p>
+<p>Look at the plot above. What can you tell from it about where the model represents the country of Paris?</p>
+<p>Notice how changing the model’s activations over the Paris token makes a different up until a certain layer. However, once we hit that layer, the information immediately gets transferred to the last token in the prompt.</p>
+<p>It’s likely then that the model “read” the country information of Paris around <strong>Layer 8</strong>. We’ll focus the rest of our analysis on this layer.</p>
+</div></section>
+<section id="Our-Challenge---disentangling-concepts-in-a-model's-representations">
+<h2>Our Challenge - disentangling concepts in a model’s representations<a class="headerlink" href="#Our-Challenge---disentangling-concepts-in-a-model's-representations" title="Link to this heading">#</a></h2>
+<p>Our patching experiments did the job! By swapping 8th layer’s activation for the Paris token with the activation for Rio, we successfully changed the country in question from France to Brazil.</p>
+<p>But <strong>how can we be sure that it’s really the country that we edited?</strong> It’s actually much likelier that we changed the <strong>entire city in question</strong>. If we ask the model follow-up questions, we’ll see that we changed not only the country that Paris is in, but also its continent, language, food, and other concepts that we didn’t look for…</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># by changing Paris&#39;s country, we also changed its continent!</span>
+<span class="n">TOKEN_INDEX</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">LAYER_INDEX</span> <span class="o">=</span> <span class="mi">8</span>
+
+<span class="n">new_base_prompt</span> <span class="o">=</span> <span class="s2">&quot;Paris is in the continent of&quot;</span>
+
+<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">new_base_prompt</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
+    <span class="c1"># apply the same patch we did before</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="n">LAYER_INDEX</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span> <span class="n">TOKEN_INDEX</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> \
+        <span class="n">source_hidden_states</span><span class="p">[</span><span class="n">LAYER_INDEX</span><span class="p">][:,</span> <span class="n">TOKEN_INDEX</span><span class="p">,</span> <span class="p">:]</span>
+
+    <span class="n">patched_logits</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+
+    <span class="n">patched_logprobs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">patched_logits</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="n">top_completions</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="n">patched_logprobs</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="nb">sorted</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">top_completions</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">top_completions</span><span class="o">.</span><span class="n">indices</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">item</span><span class="p">())</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">v</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ South (0.55)
+ America (0.11)
+ North (0.10)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># as well as its language!</span>
+<span class="n">new_base_prompt</span> <span class="o">=</span> <span class="s2">&quot;Paris is a city whose main language is&quot;</span>
+
+<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">new_base_prompt</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
+    <span class="c1"># apply the same patch we did before</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="n">LAYER_INDEX</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span> <span class="n">TOKEN_INDEX</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> \
+        <span class="n">source_hidden_states</span><span class="p">[</span><span class="n">LAYER_INDEX</span><span class="p">][:,</span> <span class="n">TOKEN_INDEX</span><span class="p">,</span> <span class="p">:]</span>
+
+    <span class="n">patched_logits</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+
+    <span class="n">patched_logprobs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">patched_logits</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="n">top_completions</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="n">patched_logprobs</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="nb">sorted</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">top_completions</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">top_completions</span><span class="o">.</span><span class="n">indices</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">item</span><span class="p">())</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">v</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ Portuguese (0.57)
+ Spanish (0.12)
+ English (0.10)
+</pre></div></div>
+</div>
+<div style="background-color:#C1E5F5;padding:10px 10px;border-radius:20px"><p>Takeaway</p>
+<p>We did too much!</p>
+<p>While it’s maybe not too surprising, when we intervene on the full residual stream over Paris, we edit more than just the country that it’s in. But we know that the model must somehow access the country of Paris from its memory. Can we edit Paris’s country without changing its continent or language?</p>
+</div><div style="background-color:#F2CFEE;padding:10px 10px;border-radius:20px"><p>Want to know more?</p>
+<p>Our example comes directly from the RAVEL dataset, which evaluates methods for disentangling language model representations. We won’t explore the entire RAVEL dataset or methods evaluated in this tutorial, so we strongly encourage you to go check it out!</p>
+</div></section>
+<section id="Looking-Ahead---what's-the-right-unit-to-patch?">
+<h2>Looking Ahead - what’s the right unit to patch?<a class="headerlink" href="#Looking-Ahead---what's-the-right-unit-to-patch?" title="Link to this heading">#</a></h2>
+<p>Our goal is to surgically edit the country of Paris without changing any of its other properties. What if by patching the entire residual stream activation we made too big of a cut?</p>
+<p>What are we actually patching? If we look at the residual stream, we see a list of numbers, which we can think of as a set of neurons.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">source_hidden_states</span><span class="p">[</span><span class="n">LAYER_INDEX</span><span class="p">][:,</span> <span class="n">TOKEN_INDEX</span><span class="p">,</span> <span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+tensor([[ 0.0111, -0.0206, -0.2613,  ..., -0.0281, -0.1300,  0.0346]])
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">source_hidden_states</span><span class="p">[</span><span class="n">LAYER_INDEX</span><span class="p">][:,</span> <span class="n">TOKEN_INDEX</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+torch.Size([1, 2048])
+</pre></div></div>
+</div>
+<p>Can we intervene on just a handful of these neurons?</p>
+<p><img alt="patching the first 3 neurons of the activations of Rio and Paris" src="https://github.com/AmirZur/nnsight-tutorials/blob/main/figures/patching_neurons_visualization.png?raw=true" /></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># change the list of indices to try a set of neurons to patch!</span>
+<span class="n">NEURON_INDICES</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+
+<span class="n">base_prompt</span> <span class="o">=</span> <span class="s2">&quot;Paris is in the country of&quot;</span>
+
+<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">base_prompt</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
+    <span class="c1"># Apply the patch from the source hidden states to the base hidden states</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="n">LAYER_INDEX</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span> <span class="n">TOKEN_INDEX</span><span class="p">,</span> <span class="n">NEURON_INDICES</span><span class="p">]</span> <span class="o">=</span> \
+        <span class="n">source_hidden_states</span><span class="p">[</span><span class="n">LAYER_INDEX</span><span class="p">][:,</span> <span class="n">TOKEN_INDEX</span><span class="p">,</span> <span class="n">NEURON_INDICES</span><span class="p">]</span>
+
+    <span class="n">patched_logits</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+
+    <span class="n">patched_logprobs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">patched_logits</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="n">top_completions</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="n">patched_logprobs</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="nb">sorted</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">top_completions</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">top_completions</span><span class="o">.</span><span class="n">indices</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">item</span><span class="p">())</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">v</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ France (0.64)
+ the (0.05)
+ love (0.01)
+</pre></div></div>
+</div>
+<p>This didn’t quite work - the first four neurons aren’t enough to edit France’s country.</p>
+<p>We can try to search over the neurons in the residual stream, but individual neurons are likely too small to make a difference, and there are far too many sets of neurons to search through…</p>
+<p>In the next section, we’ll think about a different unit of computation - a <strong>linear subspace</strong> in the model - and go through a method that automatically searches for the linear subspace that represents the concept we’re looking for.</p>
+<div style="background-color:#F2CFEE;padding:10px 10px;border-radius:20px"><p>Want to know more?</p>
+<p>Although we left it at “there are too many sets of neurons to search through”, there actually is a method for automatically selecting a subset of neurons! The method uses a differentiable binary mask (DBM) to find the right set of neurons to intervene on.</p>
+<p>In the next section we’ll go over DAS, whose search space encompasses DBM and which performs better on the RAVEL dataset.</p>
+<p>While we won’t cover DBM in this tutorial, we strongly encourage you to check it out!</p>
+</div></section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Activation-Patching-Review---editing-a-model's-knowledge-of-geography">Activation Patching Review - editing a model’s knowledge of geography</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Our-Challenge---disentangling-concepts-in-a-model's-representations">Our Challenge - disentangling concepts in a model’s representations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Looking-Ahead---what's-the-right-unit-to-patch?">Looking Ahead - what’s the right unit to patch?</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025 NDIF.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+   
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
