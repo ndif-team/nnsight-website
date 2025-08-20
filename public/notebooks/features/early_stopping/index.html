@@ -6,7 +6,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Early Stopping &#8212; nnsight</title>
   
@@ -16,38 +16,38 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=362ab14a" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../../../_static/documentation_options.js?v=187304be"></script>
-    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/features/early_stopping';</script>
     <script src="../../../_static/js/custom.js?v=1e4be224"></script>
     <script src="../../../_static/js/code.js?v=34343d0c"></script>
@@ -55,14 +55,13 @@
     <link rel="author" title="About these documents" href="../../../about/" />
     <link rel="index" title="Index" href="../../../genindex/" />
     <link rel="search" title="Search" href="../../../search/" />
-    <link rel="next" title="Editing" href="../editing_tutorial/" />
-    <link rel="prev" title="Custom Functions" href="../custom_functions/" />
+    <link rel="next" title="Getting" href="../getting/" />
+    <link rel="prev" title="Cross-Prompt Intervention and Batching" href="../cross_prompt/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
-<link href="../../../_static/css/custom.css?v=1754348346" rel="stylesheet" type="text/css" />
-<link href="../../../_static/css/home.css?v=1754348346" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/custom.css?v=1755731114" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/home.css?v=1755731114" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -79,8 +78,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../../../search/"
       method="get">
@@ -88,6 +98,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -95,8 +106,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -128,7 +139,7 @@
     
     
     <img src="../../../_static/nnsight_logo.svg" class="logo__image only-dark" alt="nnsight - Home"/>
-    <img src="../../../_static/nnsight_logo.svg" class="logo__image only-light pst-js-only" alt="nnsight - Home"/>
+    <script>document.write(`<img src="../../../_static/nnsight_logo.svg" class="logo__image only-light" alt="nnsight - Home"/>`);</script>
   
   
 </a></div>
@@ -188,11 +199,15 @@
         <div class="navbar-item navbar-persistent--container">
           
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
         </div>
       
       
@@ -234,11 +249,15 @@
       
         <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -301,14 +320,22 @@
   
     <div class="navbar-persistent--mobile">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
     </div>
   
 
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
   
 </div>
 
@@ -320,8 +347,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -418,11 +444,15 @@
         
           <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -488,24 +518,19 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../conditionals/">Conditional Interventions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cross_prompt/">Cross-Prompt Intervention</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../custom_functions/">Custom Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cross_prompt/">Cross-Prompt Intervention and Batching</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Early Stopping</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../editing_tutorial/">Editing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../getting/">Getting Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting/">Getting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gradients/">Gradients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../iterator/">Iterative Interventions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lora_training/">LoRA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../model_editing/">Model Editing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/">Modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../multiple_token/">Multiple Token Generation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../operations/">Operations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../remote_execution/">Remote Execution</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="../scan_validate/">Scan and Validate</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sessions/">Sessions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../setting/">Setting Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../setting/">Setting</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../skip/">Skipping Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/">Source Code Interventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../streaming/">Streaming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../vllm_support/">vLLM Support</a></li>
 </ul>
@@ -515,14 +540,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -540,6 +560,8 @@
       
         <div class="header-article-item">
 
+
+
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -551,7 +573,7 @@
     
     <li class="breadcrumb-item"><a href="../../../features/" class="nav-link">Features</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Early Stopping</span></li>
+    <li class="breadcrumb-item active" aria-current="page">Early Stopping</li>
   </ul>
 </nav>
 </div>
@@ -570,204 +592,71 @@
                   
   <section id="Early-Stopping">
 <h1>Early Stopping<a class="headerlink" href="#Early-Stopping" title="Link to this heading">#</a></h1>
-<p>If we are only interested in a model’s intermediate computations, we can halt a forward pass run at any module level, reducing runtime and conserving compute resources. One examples where this could be particularly useful would if we are working with SAEs - we can train an SAE on one layer and then stop the execution.</p>
+<section id="Summary">
+<h2>Summary<a class="headerlink" href="#Summary" title="Link to this heading">#</a></h2>
+<p>You can implement more efficient experiments with <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> by halting a model’s forward pass run early after accessing your values of interest. Calling <code class="docutils literal notranslate"><span class="pre">tracer.stop()</span></code> will interrup model execution and terminate tracing without going through the rest of the model’s execution.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
+   <span class="n">lk_out</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+   <span class="c1"># stop after layer k</span>
+   <span class="n">tracer</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="When-to-Use">
+<h2>When to Use<a class="headerlink" href="#When-to-Use" title="Link to this heading">#</a></h2>
+<p>Early stopping makes targeted experiments more efficient! You can break tracing early if you don’t need to complete the full forward pass or want to control the stopping point of multi-token generation.</p>
+<p>It can be particularly helpful for intensive interventions that only need to occur up to a certain layer, like training SAEs for a given layer of a model.</p>
+</section>
+<section id="How-to-Use">
+<h2>How to Use<a class="headerlink" href="#How-to-Use" title="Link to this heading">#</a></h2>
+<p>Calling <code class="docutils literal notranslate"><span class="pre">tracer.stop()</span></code> will interrupt tracing immediately at the most recent point of the model’s execution, which will be defined by the latest module being accessed above the stop call.</p>
+<p>Let’s try it out! We’ll save the output of layer 5 and then halt the execution.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nnsight</span><span class="w"> </span><span class="kn">import</span> <span class="n">LanguageModel</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
 
-<span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s1">&#39;openai-community/gpt2&#39;</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+  <span class="n">hs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 
-<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;The Eiffel Tower is in the city of&quot;</span><span class="p">):</span>
-   <span class="n">l1_out</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-   <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+  <span class="c1"># stop after layer 5</span>
+  <span class="n">tracer</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
 
-<span class="c1"># get the output of the first layer and stop tracing</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;L1 - Output: &quot;</span><span class="p">,</span> <span class="n">l1_out</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hs</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/opt/anaconda3/envs/nnsight/lib/python3.10/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
-  from .autonotebook import tqdm as notebook_tqdm
-</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-L1 - Output:  (tensor([[[ 0.1559, -0.7946,  0.3943,  ..., -1.7854, -0.4689,  0.1554],
-         [-0.0624, -0.3135,  0.7256,  ..., -1.5666, -0.4111, -0.5625],
-         [-0.3308, -0.3006, -0.9636,  ..., -1.3112, -0.5972,  0.3754],
+(tensor([[[ 0.1408, -1.4999,  0.9446,  ..., -1.5783, -0.6470, -0.1584],
+         [ 0.8697,  0.3205,  2.2336,  ..., -2.1563, -1.1537, -2.0113],
+         [ 1.4215,  2.9198, -0.3065,  ..., -1.1516, -0.2206,  3.1634],
          ...,
-         [-1.3608,  0.6902,  0.2851,  ...,  0.1985,  0.1965, -0.5839],
-         [-2.4975,  0.6122, -2.2314,  ...,  0.7751,  0.3189, -0.2851],
-         [ 1.6383,  0.9466,  0.6050,  ..., -0.2360,  0.1267,  0.2722]]],
-       device=&#39;mps:0&#39;, grad_fn=&lt;AddBackward0&gt;), (tensor([[[[-0.9420,  1.9023,  0.8722,  ..., -1.2703, -0.4792,  1.2469],
-          [-1.9590,  2.7141,  2.8423,  ..., -1.1633, -1.6173,  2.1507],
-          [-2.6123,  2.0937,  0.9679,  ..., -0.9763, -1.2243,  2.0279],
-          ...,
-          [-2.4282,  2.4462,  2.1550,  ..., -0.5916, -1.6641,  2.1119],
-          [-3.5624,  3.6804,  2.5053,  ..., -0.3572, -2.5960,  0.9592],
-          [-2.6021,  2.8035,  1.7291,  ..., -0.8557, -2.1589,  2.6881]],
-
-         [[ 0.1103,  0.6967, -1.1409,  ..., -0.1243,  1.8249, -0.1592],
-          [ 0.3364, -2.3421, -3.0033,  ..., -0.9075,  3.9665,  0.2082],
-          [-1.2822, -2.8345,  0.1537,  ...,  0.6516,  2.4424,  0.7518],
-          ...,
-          [-0.1554, -1.0321, -2.5109,  ..., -0.9747,  4.8222, -1.8171],
-          [-1.3993, -2.2428, -0.0644,  ..., -0.9444,  3.5096,  0.4326],
-          [ 0.5759, -0.8102, -1.8774,  ..., -1.4308,  3.0181, -2.2393]],
-
-         [[-0.0985, -0.0323,  0.7536,  ..., -1.1902, -1.6401,  0.6545],
-          [ 1.1513, -0.7019,  0.2992,  ..., -1.8075, -0.1072,  2.0486],
-          [-0.1089, -1.0244,  0.4639,  ..., -1.8416, -0.2348,  1.0322],
-          ...,
-          [ 0.3554,  0.3485,  0.0083,  ..., -3.3077,  0.8817,  1.4423],
-          [ 0.3027,  0.2488, -0.2483,  ..., -2.8617,  0.7589,  0.7380],
-          [ 0.5146, -0.1207,  0.6076,  ..., -2.7679,  1.1289,  1.7932]],
-
-         ...,
-
-         [[ 0.6009, -0.0877, -0.2693,  ...,  0.1756,  0.7995,  0.5978],
-          [ 0.0456,  0.2891, -0.1535,  ...,  1.0184,  1.0627,  0.3627],
-          [-0.0681, -0.5138,  0.5735,  ...,  0.7821,  0.8516,  0.4657],
-          ...,
-          [-0.0383, -0.2532,  0.0525,  ...,  1.2245,  0.5464,  0.4056],
-          [ 0.2111,  0.9947,  0.0403,  ...,  1.1817, -0.7079,  0.5290],
-          [ 0.1136, -0.0611,  0.1199,  ...,  1.2025,  0.4589,  0.6644]],
-
-         [[ 1.4709,  1.5225, -0.4336,  ..., -0.1837,  1.0947, -1.6615],
-          [ 0.7999,  0.0324, -1.5696,  ..., -0.7550,  1.4671, -1.1099],
-          [ 0.6255,  0.4108,  0.0984,  ..., -1.2564,  1.9016, -0.0603],
-          ...,
-          [ 1.1553,  0.5795, -0.6220,  ..., -0.7993,  0.4428, -0.6729],
-          [ 1.5863, -0.0730,  0.1822,  ..., -0.5310,  0.4560, -0.4558],
-          [ 0.9170, -0.7168, -0.4214,  ..., -0.8926,  0.4736, -0.0411]],
-
-         [[ 0.6260,  0.2122,  0.2527,  ..., -0.6377,  0.2275,  1.5142],
-          [-0.3332,  1.5151, -0.3315,  ...,  1.2160,  0.2653,  2.6735],
-          [ 0.1930,  0.0467, -0.3682,  ..., -0.1827,  0.1576,  0.5612],
-          ...,
-          [-0.1787,  1.2580, -0.2565,  ..., -0.6601,  1.2289,  0.2853],
-          [ 0.9067,  0.6444,  0.2020,  ...,  0.1291,  0.2002,  0.8276],
-          [-0.5779,  0.4654, -0.8867,  ...,  1.4954,  1.3435, -0.6073]]]],
-       device=&#39;mps:0&#39;, grad_fn=&lt;PermuteBackward0&gt;), tensor([[[[-1.3066e-02, -1.4464e-02,  1.2694e-01,  ..., -4.9182e-02,
-            1.0464e-01,  2.3067e-02],
-          [ 2.0469e-01, -1.3684e-02,  8.0588e-02,  ..., -1.9410e-02,
-            5.5186e-02,  7.3562e-02],
-          [ 7.2232e-03,  1.8508e-01,  1.0139e-01,  ..., -7.6448e-02,
-            2.9932e-01, -8.5229e-03],
-          ...,
-          [-1.6686e-01,  1.9638e-02,  1.2153e-01,  ...,  6.1965e-02,
-            9.3590e-02, -1.0460e-01],
-          [ 1.5657e-01,  1.5053e-01,  5.7654e-02,  ..., -4.2498e-01,
-           -5.2136e-02,  3.0045e-02],
-          [-1.0558e-02, -8.6992e-02, -7.6297e-02,  ..., -6.3531e-02,
-           -5.0926e-02,  1.9987e-01]],
-
-         [[ 5.9014e-01,  1.0051e-01, -2.0716e-01,  ..., -6.9383e-01,
-           -2.7763e-01,  2.0517e-01],
-          [ 6.3339e-01,  1.1631e-01,  2.4300e-01,  ...,  1.9035e-01,
-            8.8391e-02, -5.1286e-02],
-          [ 2.7510e-01, -7.9842e-02,  2.0712e-01,  ...,  2.0180e-01,
-            1.4190e-01, -1.3274e-01],
-          ...,
-          [ 8.3555e-01, -9.4205e-02,  7.4023e-02,  ..., -1.7617e-01,
-            1.3164e-01,  1.1117e-01],
-          [ 3.2692e-01,  4.5032e-02,  2.5904e-01,  ...,  7.9349e-02,
-            2.0154e-01, -5.9559e-03],
-          [ 6.5303e-01, -8.9489e-02, -4.5211e-01,  ...,  7.0380e-04,
-            4.9327e-01,  1.5887e-01]],
-
-         [[-2.8404e-02, -1.1449e-01, -2.1676e-02,  ...,  3.9217e-03,
-            7.8844e-02, -3.9935e-03],
-          [-4.9779e-02,  1.8518e-01, -1.9874e-01,  ..., -4.4753e-02,
-           -9.1101e-02, -2.1138e-02],
-          [ 4.4283e-02,  5.9255e-02,  5.3522e-02,  ..., -1.4617e-02,
-           -3.3558e-01,  1.7041e-01],
-          ...,
-          [-5.3011e-01, -6.1408e-04, -6.0240e-01,  ..., -1.9026e-01,
-           -7.1861e-02,  3.2019e-01],
-          [ 4.0913e-01, -1.1379e-01, -1.6436e-01,  ...,  8.2217e-02,
-           -1.0437e-01, -7.6691e-02],
-          [ 3.1223e-01,  3.6828e-01,  6.0183e-01,  ..., -2.8972e-02,
-            1.1367e-01, -2.5661e-01]],
-
-         ...,
-
-         [[-1.0771e-01, -2.1316e-01, -2.1841e-02,  ..., -2.3210e-01,
-            2.1270e-02, -6.6547e-02],
-          [-3.1855e-01,  4.4327e-01, -1.6764e-01,  ...,  5.3822e-02,
-           -7.5202e-02,  1.9941e-01],
-          [-1.4129e-01, -6.2872e-02,  2.3989e-01,  ...,  2.2710e-01,
-            1.2402e-01,  4.0053e-01],
-          ...,
-          [-1.0040e-01, -4.9095e-01,  2.2476e-02,  ...,  5.5608e-02,
-           -1.4735e-01,  2.3780e-01],
-          [-3.0879e-01,  7.1592e-01,  1.2739e-01,  ...,  2.9476e-02,
-           -1.5573e-01, -1.7634e-02],
-          [-1.6235e-01, -2.5231e-01, -6.0719e-02,  ..., -3.7746e-01,
-           -6.9727e-03, -2.2533e-01]],
-
-         [[ 9.3223e-02, -1.0404e-01, -2.1104e-01,  ...,  1.8502e-01,
-            2.2378e-01, -3.1989e-02],
-          [-4.5714e-01,  6.4180e-02, -1.5538e-01,  ..., -2.6815e-01,
-            2.0829e-01,  8.7156e-03],
-          [ 2.4635e-03,  1.8372e-01,  7.3724e-03,  ..., -4.8131e-01,
-            1.2558e-01,  6.1276e-02],
-          ...,
-          [-2.2317e-01,  1.2418e-01, -3.6774e-02,  ...,  2.8985e-01,
-            5.9641e-02, -8.6952e-03],
-          [-1.8944e-01, -1.7414e-02, -2.9084e-02,  ..., -4.5319e-02,
-           -5.7796e-02,  4.7680e-01],
-          [ 9.2804e-02,  9.9442e-02, -6.0471e-02,  ..., -7.9065e-02,
-           -1.6836e-01,  7.1764e-02]],
-
-         [[-2.4770e-02, -3.7828e-01,  1.1838e-01,  ...,  1.1582e-02,
-           -2.4843e-01, -1.1559e-01],
-          [ 5.8631e-02,  1.6256e-01,  1.3249e-01,  ...,  2.6460e-01,
-            9.5267e-02,  1.0518e-01],
-          [ 5.0756e-02, -1.4601e-01, -2.3191e-01,  ..., -2.2047e-01,
-            3.0730e-01,  2.6307e-01],
-          ...,
-          [ 2.8192e-02,  1.9202e-01, -8.7550e-02,  ...,  6.9838e-02,
-           -4.0262e-02, -5.9196e-03],
-          [ 2.6708e-01,  1.3450e-01, -8.2224e-02,  ..., -6.0217e-04,
-           -1.4364e-01,  1.5347e-01],
-          [ 1.5456e-01, -1.1916e-01,  2.8118e-01,  ...,  1.1415e-01,
-            2.5977e-01,  1.8767e-01]]]], device=&#39;mps:0&#39;,
-       grad_fn=&lt;PermuteBackward0&gt;)), None)
+         [ 0.0068,  2.2785, -0.7487,  ...,  0.2559,  0.7301,  0.6825],
+         [-2.4241,  1.7621, -5.4071,  ...,  3.3570, -0.6088, -0.2757],
+         [ 3.7067,  2.9246, -0.8595,  ...,  2.0726, -0.2367,  4.0470]]],
+       device=&#39;cuda:0&#39;, grad_fn=&lt;AddBackward0&gt;),)
 </pre></div></div>
 </div>
-<p>Interventions within the tracing context do not necessarily execute in the order they are defined. Instead, their execution is tied to the module they are associated with.</p>
-<p>As a result, if the forward pass is terminated early any interventions linked to modules beyond that point will be skipped, even if they were defined earlier in the context.</p>
-<p>In the example below, the output of layer 2 <strong>cannot</strong> be accessed since the model’s execution was stopped at layer 1.</p>
+<p>Keep in mind that <strong>Early Stopping</strong> means all subsequently defined interventions will never run.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;The Eiffel Tower is in the city of&quot;</span><span class="p">):</span>
-   <span class="n">l2_out</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-   <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
+  <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">output</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;L2 - Output: &quot;</span><span class="p">,</span> <span class="n">l2_out</span><span class="p">)</span>
+  <span class="n">tracer</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+
+  <span class="n">hs_1</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;L2 - Output: &quot;</span><span class="p">,</span> <span class="n">hs_1</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-L2 - Output:
-</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
@@ -775,42 +664,60 @@ L2 - Output:
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[2], line 5</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span>    l2_out <span style="color: rgb(98,98,98)">=</span> model<span style="color: rgb(98,98,98)">.</span>transformer<span style="color: rgb(98,98,98)">.</span>h[<span style="color: rgb(98,98,98)">1</span>]<span style="color: rgb(98,98,98)">.</span>output<span style="color: rgb(98,98,98)">.</span>save()
-<span class="ansi-green-intense-fg ansi-bold">      3</span>    model<span style="color: rgb(98,98,98)">.</span>transformer<span style="color: rgb(98,98,98)">.</span>h[<span style="color: rgb(98,98,98)">0</span>]<span style="color: rgb(98,98,98)">.</span>output<span style="color: rgb(98,98,98)">.</span>stop()
-<span class="ansi-green-fg">----&gt; 5</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">print</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">&#34;</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">L2 - Output: </span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">&#34;</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">l2_out</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">/tmp/ipython-input-3130486789.py</span> in <span class="ansi-cyan-fg">&lt;cell line: 0&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">      6</span>   hs_1 <span class="ansi-blue-fg">=</span> model<span class="ansi-blue-fg">.</span>transformer<span class="ansi-blue-fg">.</span>h<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">.</span>output<span class="ansi-blue-fg">.</span>save<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      7</span>
+<span class="ansi-green-fg">----&gt; 8</span><span class="ansi-red-fg"> </span>print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;L2 - Output: &#34;</span><span class="ansi-blue-fg">,</span> hs_1<span class="ansi-blue-fg">)</span>
 
-File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.10/site-packages/nnsight/tracing/graph/proxy.py:70</span>, in <span class="ansi-cyan-fg">Proxy.__str__</span><span class="ansi-blue-fg">(self)</span>
-<span class="ansi-green-intense-fg ansi-bold">     66</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> <span style="color: rgb(0,0,255)">__str__</span>(<span style="color: rgb(0,135,0)">self</span>) <span style="color: rgb(98,98,98)">-</span><span style="color: rgb(98,98,98)">&gt;</span> <span style="color: rgb(0,135,0)">str</span>:
-<span class="ansi-green-intense-fg ansi-bold">     68</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>node<span style="color: rgb(98,98,98)">.</span>attached:
-<span class="ansi-green-fg">---&gt; 70</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span style="color: rgb(0,135,0)">str</span>(<span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">value</span>)
-<span class="ansi-green-intense-fg ansi-bold">     72</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span style="color: rgb(175,0,0)">f</span><span style="color: rgb(175,0,0)">&#34;</span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span><span style="color: rgb(0,135,0)">type</span>(<span style="color: rgb(0,135,0)">self</span>)<span style="color: rgb(98,98,98)">.</span><span style="color: rgb(0,0,135)">__name__</span><span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span style="color: rgb(175,0,0)"> (</span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span><span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>node<span style="color: rgb(98,98,98)">.</span>target<span style="color: rgb(98,98,98)">.</span><span style="color: rgb(0,0,135)">__name__</span><span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span style="color: rgb(175,0,0)">)</span><span style="color: rgb(175,0,0)">&#34;</span>
-
-File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.10/site-packages/nnsight/tracing/graph/proxy.py:64</span>, in <span class="ansi-cyan-fg">Proxy.value</span><span class="ansi-blue-fg">(self)</span>
-<span class="ansi-green-intense-fg ansi-bold">     56</span> <span style="color: rgb(175,0,255)">@property</span>
-<span class="ansi-green-intense-fg ansi-bold">     57</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> <span style="color: rgb(0,0,255)">value</span>(<span style="color: rgb(0,135,0)">self</span>) <span style="color: rgb(98,98,98)">-</span><span style="color: rgb(98,98,98)">&gt;</span> Any:
-<span class="ansi-green-intense-fg ansi-bold">     58</span> <span style="color: rgb(188,188,188)">    </span><span style="color: rgb(175,0,0)">&#34;&#34;&#34;Property to return the value of this proxy&#39;s node.</span>
-<span class="ansi-green-intense-fg ansi-bold">     59</span>
-<span class="ansi-green-intense-fg ansi-bold">     60</span> <span style="color: rgb(175,0,0)">    Returns:</span>
-<span class="ansi-green-intense-fg ansi-bold">     61</span> <span style="color: rgb(175,0,0)">        Any: The stored value of the proxy, populated during execution of the model.</span>
-<span class="ansi-green-intense-fg ansi-bold">     62</span> <span style="color: rgb(175,0,0)">    &#34;&#34;&#34;</span>
-<span class="ansi-green-fg">---&gt; 64</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">node</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">value</span>
-
-File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.10/site-packages/nnsight/tracing/graph/node.py:143</span>, in <span class="ansi-cyan-fg">Node.value</span><span class="ansi-blue-fg">(self)</span>
-<span class="ansi-green-intense-fg ansi-bold">    133</span> <span style="color: rgb(175,0,0)">&#34;&#34;&#34;Property to return the value of this node.</span>
-<span class="ansi-green-intense-fg ansi-bold">    134</span>
-<span class="ansi-green-intense-fg ansi-bold">    135</span> <span style="color: rgb(175,0,0)">Returns:</span>
-<span class="ansi-green-fg">   (...)</span>
-<span class="ansi-green-intense-fg ansi-bold">    139</span> <span style="color: rgb(175,0,0)">    ValueError: If the underlying ._value is inspect._empty (therefore never set or was destroyed).</span>
-<span class="ansi-green-intense-fg ansi-bold">    140</span> <span style="color: rgb(175,0,0)">&#34;&#34;&#34;</span>
-<span class="ansi-green-intense-fg ansi-bold">    142</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>done:
-<span class="ansi-green-fg">--&gt; 143</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> <span class="ansi-bold" style="color: rgb(215,95,95)">ValueError</span>(<span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">Accessing value before it</span><span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">s been set.</span><span style="color: rgb(175,0,0)">&#34;</span>)
-<span class="ansi-green-intense-fg ansi-bold">    145</span> <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>_value
-
-<span class="ansi-red-fg">ValueError</span>: Accessing value before it&#39;s been set.
+<span class="ansi-red-fg">NameError</span>: name &#39;hs_1&#39; is not defined
 </pre></div></div>
 </div>
+<p>In the example above, the model’s execution was stopped at layer 1, so the output of layer 2 was never defined.</p>
+<section id="Time-Saving">
+<h3>Time Saving<a class="headerlink" href="#Time-Saving" title="Link to this heading">#</a></h3>
+<p>Early Stopping interrupts the model execution early, and hence, renders experiments more time-efficient.</p>
+<p>Let’s verify that the model is actually being interrupted and that the time gain is real.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># no stop tun</span>
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">prompt</span><span class="p">):</span>
+   <span class="n">hs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="n">no_stop_exc_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+
+
+<span class="c1"># early stop run</span>
+<span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
+   <span class="n">hs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+   <span class="c1"># stop after layer 5</span>
+   <span class="n">tracer</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+
+<span class="n">stop_exc_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Execution Time w/o Stop: </span><span class="si">{</span><span class="n">no_stop_exc_time</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Execution Time w/ Early Stop: </span><span class="si">{</span><span class="n">stop_exc_time</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Execution Time w/o Stop: 0.0295
+Execution Time w/ Early Stop: 0.0150
+</pre></div></div>
+</div>
+</section>
+</section>
 </section>
 
 
@@ -824,6 +731,28 @@ File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.10/site
             
             
               
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#When-to-Use">When to Use</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#How-to-Use">How to Use</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Time-Saving">Time Saving</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
             
           </div>
           <footer class="bd-footer-content">
@@ -835,8 +764,8 @@ File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.10/site
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -861,8 +790,7 @@ File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.10/site
       
         <div class="footer-item">
 <p class="theme-version">
-  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-   
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
 </p></div>
       
     </div>

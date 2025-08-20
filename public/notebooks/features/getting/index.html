@@ -6,9 +6,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Getting Values &#8212; nnsight</title>
+    <title>Getting &#8212; nnsight</title>
   
   
   
@@ -16,38 +16,38 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=362ab14a" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../../../_static/documentation_options.js?v=187304be"></script>
-    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/features/getting';</script>
     <script src="../../../_static/js/custom.js?v=1e4be224"></script>
     <script src="../../../_static/js/code.js?v=34343d0c"></script>
@@ -56,13 +56,12 @@
     <link rel="index" title="Index" href="../../../genindex/" />
     <link rel="search" title="Search" href="../../../search/" />
     <link rel="next" title="Gradients" href="../gradients/" />
-    <link rel="prev" title="Editing" href="../editing_tutorial/" />
+    <link rel="prev" title="Early Stopping" href="../early_stopping/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
-<link href="../../../_static/css/custom.css?v=1754348346" rel="stylesheet" type="text/css" />
-<link href="../../../_static/css/home.css?v=1754348346" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/custom.css?v=1755731114" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/home.css?v=1755731114" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -79,8 +78,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../../../search/"
       method="get">
@@ -88,6 +98,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -95,8 +106,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -128,7 +139,7 @@
     
     
     <img src="../../../_static/nnsight_logo.svg" class="logo__image only-dark" alt="nnsight - Home"/>
-    <img src="../../../_static/nnsight_logo.svg" class="logo__image only-light pst-js-only" alt="nnsight - Home"/>
+    <script>document.write(`<img src="../../../_static/nnsight_logo.svg" class="logo__image only-light" alt="nnsight - Home"/>`);</script>
   
   
 </a></div>
@@ -188,11 +199,15 @@
         <div class="navbar-item navbar-persistent--container">
           
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
         </div>
       
       
@@ -234,11 +249,15 @@
       
         <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -301,14 +320,22 @@
   
     <div class="navbar-persistent--mobile">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
     </div>
   
 
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
   
 </div>
 
@@ -320,8 +347,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -418,11 +444,15 @@
         
           <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -488,24 +518,19 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../conditionals/">Conditional Interventions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cross_prompt/">Cross-Prompt Intervention</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../custom_functions/">Custom Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cross_prompt/">Cross-Prompt Intervention and Batching</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../early_stopping/">Early Stopping</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../editing_tutorial/">Editing</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Getting Values</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Getting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gradients/">Gradients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../iterator/">Iterative Interventions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lora_training/">LoRA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../model_editing/">Model Editing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/">Modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../multiple_token/">Multiple Token Generation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../operations/">Operations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../remote_execution/">Remote Execution</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="../scan_validate/">Scan and Validate</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sessions/">Sessions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../setting/">Setting Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../setting/">Setting</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../skip/">Skipping Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/">Source Code Interventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../streaming/">Streaming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../vllm_support/">vLLM Support</a></li>
 </ul>
@@ -515,14 +540,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -540,6 +560,8 @@
       
         <div class="header-article-item">
 
+
+
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -551,7 +573,7 @@
     
     <li class="breadcrumb-item"><a href="../../../features/" class="nav-link">Features</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Getting Values</span></li>
+    <li class="breadcrumb-item active" aria-current="page">Getting</li>
   </ul>
 </nav>
 </div>
@@ -568,36 +590,43 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="Getting-Values">
-<h1>Getting Values<a class="headerlink" href="#Getting-Values" title="Link to this heading">#</a></h1>
-<p>Hidden states are exposed by accessing the desired module and calling its <code class="docutils literal notranslate"><span class="pre">.input</span></code> or <code class="docutils literal notranslate"><span class="pre">.output</span></code> attributes.</p>
-<p>Once accessed, you call <code class="docutils literal notranslate"><span class="pre">.save()</span></code> on it so it’s value is populated and not deleted after.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+  <section id="Getting">
+<h1>Getting<a class="headerlink" href="#Getting" title="Link to this heading">#</a></h1>
+<section id="Summary">
+<h2>Summary<a class="headerlink" href="#Summary" title="Link to this heading">#</a></h2>
+<p>NNsight gets values from model internals by accessing module inputs or outputs and assigning them to a variable.</p>
+<p>You can get model intermediate values within the tracing context by calling <code class="docutils literal notranslate"><span class="pre">.output</span></code> or <code class="docutils literal notranslate"><span class="pre">.input</span></code> on your module of interest and assigning it to a variable. If you want to access defined values after exiting the tracing context, you need to call <code class="docutils literal notranslate"><span class="pre">.save()</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># capturing interventions</span>
+<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span> <span class="c1"># enter the tracing context</span>
+    <span class="n">k_layer_output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layer</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span> <span class="c1"># access the output of layer[k] and save for later use</span>
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nnsight</span><span class="w"> </span><span class="kn">import</span> <span class="n">LanguageModel</span>
-
-<span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s1">&#39;openai-community/gpt2&#39;</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
-
-<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;The Eiffel Tower is in the city of&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
+</section>
+<section id="When-to-Use">
+<h2>When to Use<a class="headerlink" href="#When-to-Use" title="Link to this heading">#</a></h2>
+<p>Getting values is one of the most fundamental operations within NNsight. You will use this whenever you would like to access a hidden state within a model’s forward pass, such as activations.</p>
+</section>
+<section id="How-to-Use">
+<h2>How to Use<a class="headerlink" href="#How-to-Use" title="Link to this heading">#</a></h2>
+<p>Hidden states are exposed in NNsight by accessing the desired module and calling its input or output attributes.</p>
+<p>The input and output attributes can be accessed by calling <code class="docutils literal notranslate"><span class="pre">.input</span></code> or <code class="docutils literal notranslate"><span class="pre">.output</span></code> on a module (can also use <code class="docutils literal notranslate"><span class="pre">.inputs</span></code> or <code class="docutils literal notranslate"><span class="pre">.outputs</span></code>, which return more detailed information).</p>
+<details><summary><p>Note: .input/.output vs .inputs/.outputs</p>
+</summary><p>The <code class="docutils literal notranslate"><span class="pre">.inputs</span></code> and <code class="docutils literal notranslate"><span class="pre">.outputs</span></code> attributes return tuples of a tuple and a dictionary with the positional and keyword arguments <code class="docutils literal notranslate"><span class="pre">((args),{kwargs})</span></code>, respectively.</p>
+<p>On the other hand, <code class="docutils literal notranslate"><span class="pre">.input</span></code> and <code class="docutils literal notranslate"><span class="pre">.output</span></code> attributes return the first argument, which is usually positional. If there are only keyword arguments, then <code class="docutils literal notranslate"><span class="pre">.input</span></code> would return the first keyword. So, <code class="docutils literal notranslate"><span class="pre">.input</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">.inputs[0][0]</span></code>.</p>
+</details><p>Values defined within the tracing context are automatically deleted upon exiting the context, so you need to save variables that you plan to use later with <code class="docutils literal notranslate"><span class="pre">.save()</span></code>. Calling <code class="docutils literal notranslate"><span class="pre">.save()</span></code> on a variable ensures its value persists after exiting the tracing context.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;The Eiffel Tower is in the city of&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
 
     <span class="n">hidden_states</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/opt/anaconda3/envs/nnsight/lib/python3.10/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
-  from .autonotebook import tqdm as notebook_tqdm
-</pre></div></div>
-</div>
 <p>After exiting the tracing context, the <code class="docutils literal notranslate"><span class="pre">.value</span></code> attribute of the <code class="docutils literal notranslate"><span class="pre">hidden_states</span></code> object will be populated.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">hidden_states</span><span class="p">)</span>
@@ -620,6 +649,13 @@ tensor([[[ 0.0505, -0.1728, -0.1690,  ..., -1.0096,  0.1280, -1.0687],
 </pre></div></div>
 </div>
 </section>
+<section id="Related">
+<h2>Related<a class="headerlink" href="#Related" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Setting</p></li>
+</ul>
+</section>
+</section>
 
 
                 </article>
@@ -632,6 +668,26 @@ tensor([[[ 0.0505, -0.1728, -0.1690,  ..., -1.0096,  0.1280, -1.0687],
             
             
               
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#When-to-Use">When to Use</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#How-to-Use">How to Use</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Related">Related</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
             
           </div>
           <footer class="bd-footer-content">
@@ -643,8 +699,8 @@ tensor([[[ 0.0505, -0.1728, -0.1690,  ..., -1.0096,  0.1280, -1.0687],
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -669,8 +725,7 @@ tensor([[[ 0.0505, -0.1728, -0.1690,  ..., -1.0096,  0.1280, -1.0687],
       
         <div class="footer-item">
 <p class="theme-version">
-  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-   
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
 </p></div>
       
     </div>

@@ -6,7 +6,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Status &#8212; nnsight</title>
   
@@ -16,37 +16,35 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=362ab14a" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../_static/documentation_options.js?v=187304be"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'status';</script>
     <script src="../_static/js/custom.js?v=1e4be224"></script>
     <script src="../_static/js/code.js?v=34343d0c"></script>
@@ -57,9 +55,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
-<link href="../_static/css/custom.css?v=1754348346" rel="stylesheet" type="text/css" />
-<link href="../_static/css/home.css?v=1754348346" rel="stylesheet" type="text/css" />
+<link href="../_static/css/custom.css?v=1755731114" rel="stylesheet" type="text/css" />
+<link href="../_static/css/home.css?v=1755731114" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -76,8 +73,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../search/"
       method="get">
@@ -85,6 +93,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -92,8 +101,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -125,7 +134,7 @@
     
     
     <img src="../_static/nnsight_logo.svg" class="logo__image only-dark" alt="nnsight - Home"/>
-    <img src="../_static/nnsight_logo.svg" class="logo__image only-light pst-js-only" alt="nnsight - Home"/>
+    <script>document.write(`<img src="../_static/nnsight_logo.svg" class="logo__image only-light" alt="nnsight - Home"/>`);</script>
   
   
 </a></div>
@@ -185,11 +194,15 @@
         <div class="navbar-item navbar-persistent--container">
           
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
         </div>
       
       
@@ -231,11 +244,15 @@
       
         <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -298,11 +315,15 @@
   
     <div class="navbar-persistent--mobile">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
     </div>
   
 
@@ -319,8 +340,7 @@
       
         
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
         
 
   
@@ -417,11 +437,15 @@
         
           <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -483,14 +507,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -508,6 +527,8 @@
       
         <div class="header-article-item">
 
+
+
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -516,7 +537,7 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Status</span></li>
+    <li class="breadcrumb-item active" aria-current="page">Status</li>
   </ul>
 </nav>
 </div>
@@ -533,283 +554,1010 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <style>
-    .accordion-header {
-        margin: 0 !important;
+  <section id="status">
+<h1 class="sd-d-none">Status<a class="headerlink" href="#status" title="Link to this heading">#</a></h1>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    define = undefined;
+</script>
+<script src="https://unpkg.com/primevue/umd/primevue.min.js"></script>
+<script src="https://unpkg.com/@primeuix/themes/umd/aura.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/primeicons@latest/primeicons.css" />
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Electrolize&family=Zen+Dots&display=swap');
+
+    /* Main page styles from Sphinx */
+    
+    .bd-article-container,
+    .bd-page-width {
+        max-width: 100% !important;
     }
 
-    /* Custom accordion styles */
-    .custom-accordion-header {
-        background-color: var(--pst-color-surface);
-        /* Default state background color */
-        color: var(--pst-color-text-base);
-        /* Text color */
-        border-bottom: var(--pst-color-border);
-        /* Border color */
+    .bd-article {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
     }
 
-    .custom-accordion-header {
-        background-color: var(--pst-color-surface);
-        /* Default state background color */
-        color: var(--pst-color-text-base);
-        /* Text color */
-        border-bottom: var(--pst-color-border);
-        /* Border color */
+    .bd-header-article {
+        display: none !important;
     }
 
-    .accordion {
-        --bs-accordion-btn-icon: none;
-        --bs-accordion-btn-active-icon: none;
+    /* PrimeVue styles */
+
+    .p-paginator {
+        background: transparent !important;
     }
 
-    .custom-accordion-header.collapsed {
-        background-color: var(--pst-color-on-background);
-        /* Collapsed state background color */
-        color: var(--pst-color-text-base);
-        /* Text color */
+    .p-select-label {
+        padding: 4px 7px !important;
+        font-size: .9rem !important;
     }
 
-    .custom-accordion-header:not(.collapsed) {
-        background-color: var(--pst-color-surface);
-        /* Active/Expanded state background color */
-        color: var(--pst-color-text-base);
-        /* Text color */
+    .p-inputtext {
+        padding-block:4px !important;
+        font-size: .9rem !important;
     }
 
-    .custom-accordion-body {
-        background-color: var(--pst-color-on-background);
-        /* Body background color */
-        border-color: var(--pst-color-border);
-        /* Border color */
-        color: var(--pst-color-text-base);
-        /* Text color */
+    /* Core elements styles */
+
+    #app {
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        width: 100%;
+        justify-content: center;
+
+        --p-inputtext-background: var(--pst-color-on-background) !important;
+        --p-select-background: var(--pst-color-on-background) !important;
+        --p-floatlabel-on-active-background: var(--pst-color-on-background) !important;
+        --p-select-overlay-background: var(--pst-color-on-background) !important;
+        --p-card-background: var(--pst-color-on-background) !important;
+        --p-panel-background: var(--pst-color-on-background) !important;
+        --p-select-overlay-background: var(--pst-color-on-background) !important;
+
+        --p-select-color: var(--pst-color-text-base) !important;
+        --p-inputtext-color: var(--pst-color-text-base) !important;
+        --p-select-overlay-color: var(--pst-color-text-base) !important;
+        --p-card-color: var(--pst-color-text-base) !important;
+        --p-panel-color: var(--pst-color-text-base) !important;
+        --p-panel-header-color: var(--pst-color-text-base) !important;
+        --p-select-overlay-color: var(--pst-color-text-base) !important;
+    }
+    #status-display {
+        max-width: 1100px;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    #status-bar {
+        border-radius: 15px 15px 5px 5px;
+    }
+    #status-bar .sd-card-body{
+        border-radius: 15px 15px 5px 5px;
+    }
+    #status-sidebar {
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
     }
 
-    .sd-card {
-        border-radius: 0 !important;
+    #deployments {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
-    #loader {
-        width: 120px;
-        height: 120px;
-        display: inline-block;
-        position: relative;
+    #filter-bar {
+        display: flex;
+        flex-direction: row;
+        gap: .1rem;
+        align-items: center;
+        justify-content: space-between;
+
     }
-    #loader::after,
-    #loader::before {
-        content: '';
-        box-sizing: border-box;
-        width:120px;
-        height: 120px;
-        border-radius: 50%;
-        background: #FFF;
+
+    .filter-item {
+        display: flex;
+        flex-direction: row;
+
+    }
+
+    .filter-group {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 2rem;
+        justify-content: center;
+    }
+
+
+    .nn-deployment {
+        flex: 1 1 280px;
+        border-radius: .5rem;
+        max-width: 360px;
+    }
+
+    html[data-theme="dark"] .nn-deployment {
+        border: 1px solid grey;
+    }
+
+    .nn-deployment:hover {
+        z-index: 3;
+    }
+
+    .nn-card-body {
+        display: flex;
+        flex-direction: column;
+        border-radius: .5rem;
+        justify-content: space-between;
+        background-image: linear-gradient(to right, var(--pst-color-border), var(--pst-color-background)) !important;
+    }
+
+    .nn-deployment-badges {
+        
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .nn-deployment-other {
+        font-size: .7rem;
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        color: var(--pst-color-text-muted);
+        padding-top: 5px;
+
+    }
+
+    .nn-deployment-other-item {
+        display: flex;
+        flex-direction: row;
+        gap: 0.1rem;
+        align-items: center;
+    }
+
+    .nn-deployment-badges .sd-badge{
+        
+        white-space: wrap;
+    }
+
+    .nn-deployment-repo-id {
+        font-size: .85rem;
+        margin-bottom: 0.5rem;
+        margin-right: 0.5rem;
+        
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .nn-copy-button {
+        position: absolute !important;
+        right: 2.3%;
+        top: 4%
+    }
+
+    .nn-copy-button button {
+        z-index: 3;
+        opacity: 1;
+        top: 0 !important;
+        right: 0 !important;
+       
+
+    }
+
+    .nn-snippet{
+        display: none;
         position: absolute;
-        left: 0;
-        top: 0;
-        animation: animloader 2s linear infinite;
-    }
-    #loader::after {
-        animation-delay: 1s;
+        bottom: 100%; /* Position above the icon */
+        left: 0;       /* Align left edge of box with icon */
+        border: 2px solid var(--pst-color-link-hover);
     }
 
-    @keyframes animloader {
-        0% {
-            transform: scale(0);
-            opacity: 1;
-        }
-        100% {
-            transform: scale(1);
-            opacity: 0;
-        }
+    .nn-copy-button:hover .nn-snippet{
+        display: block;
     }
+
+    .nn-cluster-nodes {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .nn-cluster-node {
+        width: 50%;
+        border-style: solid;
+        border-width: 1px;
+    }
+
+
+    .nn-cluster-node .p-card-body {
+        padding: 0.8rem !important;
+    }
+
+    .nn-cluster-node-title {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        font-size: .85rem;
+    }
+
+    .electrolize {
+        font-family: "Electrolize", sans-serif;
+        font-weight: 1000;
+        font-style: normal;
+    }
+
+    [data-tooltip] {
+        position: relative;
+        cursor: help;
+        z-index: 3;
+    }
+
+    [data-tooltip]:hover::after {
+        content: attr(data-tooltip);
+        z-index: 6;
+        position: absolute;
+        bottom: calc(100% + 8px);
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 8px 12px;
+        background-color: var(--pst-color-surface);
+        color: var(--pst-color-text-base);
+        border: 1px solid var(--pst-color-border);
+        border-radius: 4px;
+        font-size: 12px;
+        white-space: normal;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        font-family: var(--pst-font-family-base);
+        font-weight: normal;
+        width: max-content;
+        max-width: 300px;
+        text-align: center;
+        pointer-events: none;
+    }
+
+    [data-tooltip]:hover::before {
+        content: '';
+        position: absolute;
+        bottom: calc(100% + 4px);
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 4px;
+        border-style: solid;
+        border-color: var(--pst-color-border) transparent transparent transparent;
+        pointer-events: none;
+    }
+
+    
+
 
 </style>
+<div id="app">
+    <div id="status-sidebar">
+        <div class="filter-group">
+            <a
+                v-if="calendar_id"
+                :href="'https://calendar.google.com/calendar/embed?src=' + encodeURIComponent(calendar_id)"
+                target="_blank"
+                title="View Dedicated Deployment Calendar"
+                style="display: inline-block;"
+            >
+                <i class="pi pi-calendar-clock" style="font-size: 3rem"></i>
+            </a>
+            <a
+                v-if="calendar_id"
+                :href="'https://calendar.google.com/calendar/embed?src=' + encodeURIComponent(calendar_id)"
+                target="_blank"
+                title="What is this?"
+                style="display: inline-block;"
+            >
+                <i class="pi pi-question-circle" style="font-size: 3rem"></i>
+            </a>
+        </div>
+        <cluster-component :cluster="cluster"></cluster-component>
+    </div>
+    <p-divider layout="vertical"></p-divider>
+    <div id="status-display">
+        <status-bar-component ref="statusbar" id="status-bar"></status-bar-component>
+        
+        <!-- Filter Bar -->
+        <div id="filter-bar">
+            <div class="filter-group">
+
+                <!-- <div class="filter-item">
+                    <p-select 
+                        v-model="selectedDeploymentLevel" 
+                        :options="deploymentLevelOptions" 
+                        option-label="label" 
+                        option-value="value"
+                        placeholder="Status"
+                        show-clear="true"
+                        @change="onDeploymentLevelChange"
+                    />
+                </div> -->
+                
+                <div class="filter-item">
+                    <p-floatlabel variant="on">
+                        <p-select 
+                            v-model="selectedSortBy" 
+                            :options="sortByOptions" 
+                            inputId="sort_by_label"
+                            option-label="label" 
+                            option-value="value"
+                            placeholder="Sort by"
+                            @change="onSortChange"
+                        ></p-select>
+                        <label for="sort_by_label">Sort</label>
+                </p-floatlabel>
+                </div>
+                <div class="filter-item">
+                    <p-iconfield>      
+                        <p-inputicon class="pi pi-search" ></p-inputicon>
+                        <p-inputtext 
+                            v-model="searchQuery" 
+                            placeholder="Search..."
+                            @input="onSearchChange"
+                        ></p-inputtext>
+                        
+                    </p-iconfield>
+                </div>
+            </div>
+            <div class="filter-group">
+                <p-paginator 
+                v-model:first="firstRecord" 
+                :rows="pageSize" 
+                :total-records="filteredDeployments.length"
+                @page="onPageChange"
+                template="PrevPageLink CurrentPageReport NextPageLink" >
+                </p-paginator>
+            </div>
+        </div>
+
+        <div id="deployments">
+            <deployment-component
+                v-for="(deployment, index) in paginatedDeployments"
+                :key="deployment.model_key"
+                :index="index"
+                :model_key="deployment.model_key"
+                :n_params="deployment.n_params"
+                :deployment_level="deployment.deployment_level"
+                :schedule="deployment.schedule"
+                :application_state="deployment.application_state"
+                :repo_id="deployment.repo_id"
+            ></deployment-component>
+            <p-skeleton
+                v-if="deployments.length === 0"
+                v-for="n in 18"
+                :key="n"
+                width="350px"
+                height="83px"
+            ></p-skeleton>
+        </div>
+        
+        <div v-if="totalPages > 1" class="pagination-container">
+            <p-paginator 
+                v-model:first="firstRecord" 
+                :rows="pageSize" 
+                :total-records="filteredDeployments.length"
+                @page="onPageChange"
+                :template="{ '640px': 'PrevPageLink PageLinks NextPageLink', '960px': 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink', '1300px': 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink' }"
+            ></p-paginator>
+        </div>
+    </div>
+    
+</div>
 
 
 <script>
 
-    let ndif_url = "https://ndif.dev"
-    let error_color = "#7e0000"
-    let success_color = "#66800b"
-    let warning_color = "#7d7106"
-
-    function autoFormatJsonString(jsonString) {
-        // Parse the JSON string into an object
-        let jsonObject = JSON.parse(jsonString);
-
-        // Convert the object back into a string with indentation
-        let prettyPrintedJson = JSON.stringify(jsonObject, null, 2);
-
-        // Replace keys in the JSON string with styled spans
-        prettyPrintedJson = prettyPrintedJson.replace(/"([^"]+)":/g, '<span style="background-color: lightgrey;">"$1":</span>');
-
-        // Set the formatted JSON string as the innerHTML of the element
-        document.getElementById('jsonContainer').innerHTML = `<pre>${prettyPrintedJson}</pre>`;
-    };
-
-    function update(message, color) {
-        document.querySelectorAll('div.sd-card-body.status-container').forEach(el => {
-            el.style.backgroundColor = color;
-            el.querySelectorAll('p.sd-card-text').forEach(el => {
-                el.textContent = message;
-            });
-        });
+    const StatusBarComponent = {
+        data(){
+            return {
+                text: 'Getting Status...',
+                cls: 'primary'
+            }
+        },
+        methods: {
+            update(text, cls){
+                this.text = text;
+                this.cls = cls;
+            }
+        },
+        template:  `<div class="sd-card sd-sphinx-override sd-shadow-none sd-text-center">
+                        <div :class="['sd-card-body', 'sd-bg-' + cls, 'sd-bg-text-' + cls]">
+                            <div class="sd-card-title sd-font-weight-bold ">{{ text }}</div>
+                        </div>
+                    </div>`
+                    
+    
     }
 
-    function loading(flag) {
-        document.getElementById("loader").style.display = flag ? "block" : "none";
+    const BadgeComponent = {
+        props: {
+            content: String,
+            bg: {
+                type: Boolean,
+                default: true
+            },
+            sdcls: String,
+            cls: {
+                type: String,
+                default: undefined
+            },
+            tooltip: {
+                type: String,
+                default: undefined
+            }
+        },
+
+        template: `<span class="sd-sphinx-override sd-badge" :class="['sd-' + (bg ? 'bg' : 'outline') + '-' + sdcls, 'sd-' + (bg ? 'bg-' : '') + 'text-' + sdcls, cls]" :data-tooltip="tooltip" v-html="content"></span>`
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
+    const DeploymentComponent = {
+        components: {
+            BadgeComponent
+        },
+        data(){
+            return {
+                deployment: {}
+            }
+        },
+        props: {
+            model_key: String,
+            deployment_level: String,
+            schedule: Object,
+            application_state: String,
+            repo_id: String,
+            n_params: Number,
+            index: Number
+        },
+        template: `
+        <div class="nn-deployment electrolize sd-card sd-sphinx-override sd-shadow-sm sd-card-hover" data-repo-id="{{repo_id}}" data-deployment-level="{{deployment_level}}" data-application-state="{{application_state}}" data-schedule="{{schedule}}">
+            <div class="sd-card-body nn-card-body">
+                <div v-if="model_key !== undefined && model_key !== null" class="nn-copy-button">
+                    <div class="nn-snippet">
+                        <div class="highlight">
+                            <pre tabindex="0" :id="'codecell' + index">
+                                <span v-html="getCodeSnippet()"></span>
+                            </pre>
+                        </div>
+                    </div>
+                    <div class="highlight">
+                        <button class="copybtn o-tooltip--left" :data-clipboard-target="'#codecell' + index">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <title>Copy to clipboard</title>
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+                                <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="nn-deployment-repo-id ">{{repo_id}}</div>
+                <div class="nn-deployment-badges">
+                    <badge-component v-if="schedule !== undefined && schedule !== null" v-bind="getScheduleInfoBadge()"></badge-component>
+                    <badge-component v-if="schedule !== undefined && schedule !== null" v-bind="getScheduleBadge()"></badge-component>
+                    <badge-component v-if="model_key !== undefined && model_key !== null" v-bind="getModelClassBadge()"></badge-component>
+                    <badge-component v-bind="getDeploymentLevelBadge()"></badge-component>
+                    <badge-component v-if="application_state !== undefined && application_state !== null" v-bind="getApplicationStateBadge()"></badge-component>
+                </div>
+                <div class="nn-deployment-other" v-if="hasInfo()">
+                    <div v-if="n_params !== undefined && n_params !== null" class="nn-deployment-other-item" data-tooltip="# Params">
+                        <i class="fa-solid fa-border-none"></i>
+                        <span>
+                            {{
+                                n_params / 1e9 < 1
+                                    ? (n_params / 1e9).toFixed(1) + 'B'
+                                    : Math.round(n_params / 1e9) + 'B'
+                            }}
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+            <a :href="'http://huggingface.co/' + repo_id" target="_blank" class="sd-stretched-link sd-hide-link-text"><span>HuggingFace Model Repository ↗</span></a>
+        </div>`,
+        methods: {
+            hasInfo(){
+                return this.n_params !== undefined && this.n_params !== null;
+            },
+            className(){
+                return this.model_key ? this.model_key.split(":")[0] : undefined;
+            },
+            getCodeSnippet(){
 
-        loading(true);
+                let class_name = this.className();
+                let parts = class_name.split('.');
+                let import_path = parts.slice(0, -1).join('.');
+                let obj_name = parts[parts.length - 1];
+                let repo_id = this.repo_id;
 
-        update("Fetching NDIF status...", warning_color);
-
-        fetch(ndif_url + "/ping")
-
-            .then((response) => {
-                if (response.status == 200) {
-
-                    update("NDIF is up. Fetching model status...", warning_color);
-
-                    console.log('Ping success');
-                    // Nested fetch to ndif.dev/stats
-                    fetch(ndif_url + "/stats")
-                        .then((statsResponse) => {
-
-                            loading(false);
-
-                            if (statsResponse.status == 200) {
-                                statsResponse.json().then((parsed) => {
-                                    // Initialize an empty string to accumulate information
-                                    let infoString = '';
-
-                                    let index = 0;
-
-                                    let modelSummary = {};
-
-                                    if (parsed.length === 0) {
-
-                                        update("NDIF is up but there are no models deployed. Seems unintentional.", error_color);
-
-                                        return
-                                    }
-
-
-                                    update("NDIF is operational.", success_color);
-
-                                    Object.values(parsed).forEach((value) => {
-                                        // Create a unique key for each model-config combination
-                                        let modelConfigKey = `${value.repo_id}`;
-
-                                        // Check if this model-config combination already exists in the summary
-                                        if (modelSummary[modelConfigKey]) {
-                                            // Increment the count if it does
-                                            modelSummary[modelConfigKey].number_of_copies += 1;
-                                        } else {
-                                            // Otherwise, add a new entry
-                                            modelSummary[modelConfigKey] = {
-                                                number_of_copies: 1,
-                                                config_string: value.config_json_string
-                                            };
-                                        }
-                                    });
-
-                                    // Now modelSummary contains the consolidated information
-                                    console.log(modelSummary);
-
-                                    // Iterate through the JSON dictionary and append information
-                                    // Iterate through the modelSummary dictionary and append information
-                                    Object.keys(modelSummary).forEach((key) => {
-                                        var headingId = 'heading' + (index + 1);
-                                        var collapseId = 'collapse' + (index + 1);
-
-                                        const summaryItem = modelSummary[key];
-                                        const configJsonString = summaryItem.config_string;
-
-                                        let jsonObject = JSON.parse(configJsonString);
-
-                                        // Convert the object back into a string with indentation
-                                        let prettyPrintedJson = JSON.stringify(jsonObject, null, 4);
-
-                                        prettyPrintedJson = prettyPrintedJson.replace(/"([^"]+)":/g, '"<b>$1</b>":');
-                                        let huggingFaceLink = `<a href="http://huggingface.co/${key}" target="_blank">HuggingFace Model Repository ↗</a>`;
-
-                                        infoString += `<div class="accordion-item">
-                                                <h2 class="accordion-header" id="${headingId}">
-                                                    <button class="accordion-button custom-accordion-header collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#${collapseId}" aria-expanded="false" aria-controls="${collapseId}">
-                                                        (${summaryItem.number_of_copies}x) ${key}
-                                                    </button>
-                                                </h2>
-                                                <div id="${collapseId}" class="accordion-collapse collapse" aria-labelledby="${headingId}" data-bs-parent="#accordionExample">
-                                                    <div class="accordion-body custom-accordion-body">${huggingFaceLink}<pre>${prettyPrintedJson}</pre></div>
-                                                </div>
-                                            </div>`;
-
-
-                                        index++;
-                                    });
-
-                                    var elm = document.getElementById("accordionHook");
-
-                                    elm.innerHTML = infoString;
+                let code = `
+ <span class="kn">from</span> <span class="nn">${import_path}</span> <span class="kn">import</span> <span class="n">${obj_name}</span>
+                    
+ <span class="n">model</span> <span class="o">=</span> <span class="n">${obj_name}</span><span class="p">(</span><span class="s1">"${repo_id}"</span><span class="p">)</span>
+                    
+ <span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">"The Eiffel Tower is in the city of"</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="s1">True</span><span class="p">)</span><span class="p">:</span>
+                    
+        <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>`                
 
 
-                                    console.log('Stats success');
-                                }).catch((jsonError) => {
-                                    console.log('JSON parsing error:', jsonError);
-                                });
-                            } else {
-                                update("Unable to get NDIF status.", error_color);
+                return code;
+            },
 
-                            }
-                        })
-                        .catch((statsError) => {
-                            update("Unable to get NDIF status.", error_color);
-                            loading(false);
-
-                            console.log('Stats error', statsError);
-                        });
-                } else {
-                    update("NDIF is unavailable", error_color);
-                    loading(false);
-                    console.log('Ping error');
+            getDeploymentLevelBadge(){
+                let tooltip = undefined;
+                let color = undefined;
+                let text = this.deployment_level
+    
+                switch(this.deployment_level) {
+                    case "HOT":
+                        tooltip = "This model is on GPU and ready to serve.";
+                        color = "success";
+                        text = `<i class="fa-solid fa-microchip"></i>  Hot`
+                        break;
+                    case "WARM":
+                        tooltip = "This model is cached on CPU and will be quickly loaded into GPU when requested assuming it can be accomodated.";
+                        color = "warning";
+                        text = `<i class="fa-solid fa-fire"></i>  Warm`
+                        break;
+                    case "COLD":
+                        tooltip = "This model is downloaded and will be slowly loaded into GPU when requested assuming it can be accomodated.";
+                        color = "primary";
+                        text = `<i class="fa-regular fa-snowflake"></i>  Cold`
+                        break;
                 }
-            })
-            .catch((pingError) => {
-                update("NDIF is unavailable", error_color);
-                loading(false);
-                console.error('Ping fetch failed:', pingError);
-            });
 
-    }, false);
-</script><section id="status">
-<h1 class="sd-d-none">Status<a class="headerlink" href="#status" title="Link to this heading">#</a></h1>
-<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-none docutils">
-<div class="sd-card-body status-container docutils">
-<p class="sd-card-text">Getting Status</p>
-</div>
-</div>
-<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-none docutils">
-<div class="sd-card-body docutils">
-<p class="sd-card-text">The library can be used to run local models without requiring a key. However, running experiments on remote models requires a free server API key. To obtain a key, register for an <a class="reference external" href="https://login.ndif.us">NDIF account</a> which allows you to manage and generate keys.
-For information on API key configuration and remote system limits, please refer to our <a class="reference external" href="https://nnsight.net/notebooks/features/remote_execution/">Remote Execution Tutorial</a>.</p>
-<p class="sd-card-text">We currently have engineers on call Monday to Friday from 9 AM to 5 PM ET to assist with any connectivity issues for our remote models. Please reach out to us on <a class="reference external" href="https://discord.com/invite/6uFJmCSwW7">Discord</a> or at <a class="reference external" href="mailto:info&#37;&#52;&#48;ndif&#46;us">mailto:info<span>&#64;</span>ndif<span>&#46;</span>us</a>.</p>
-</div>
-</div>
-<div style="
-    width:100%;
-    display: flex;
-    justify-content: center;
-    ">
-    <div id="loader"></div>
-</div>
+                return {
+                    content: text, 
+                    bg: true, 
+                    sdcls: color, 
+                    cls: "", 
+                    tooltip: tooltip
+                }
+            },
+
+            getApplicationStateBadge(){
+    
+                let color = undefined;
+                let text = undefined;
+    
+                switch(this.application_state) {
+                    case "NOT_STARTED":
+                        color = "warning";
+                        text = `<i class="fa-solid fa-gear fa-spin"></i>  Not Started`
+                        break;
+                    case "DEPLOYING":
+                        color = "warning";
+                        text = `<i class="fa-solid fa-gear fa-spin"></i>  Deploying`
+                        break;
+                    case "DEPLOY_FAILED":
+                        color = "danger";
+                        text = `<i class="fa-solid fa-xmark"></i>  Deploy Failed`
+                        break;
+                    case "RUNNING":
+                        color = "success";
+                        text = `<i class="fa-solid fa-check"></i>  Running`
+                        break;
+                    case "UNHEALTHY":
+                        color = "danger";
+                        text = `<i class="fa-solid fa-xmark"></i>  Unhealthy`
+                        break;
+                }
+
+                return {
+                    content: text, 
+                    bg: true, 
+                    sdcls: color, 
+                    cls: "", 
+                    tooltip: undefined
+                }
+            },
+
+            getModelClassBadge(){
+
+                let class_name = this.model_key.split(":")[0]
+
+                let text = undefined;
+                let color = "secondary"
+
+                switch(class_name) {
+                    case "nnsight.modeling.language.LanguageModel":
+                        text = `<i class="fa-solid fa-language"></i>  Language`
+                        break;
+                
+                }
+                return {
+                    content: text,
+                    bg: true,
+                    sdcls: color,
+                    cls: "",
+                    tooltip: undefined
+                }
+            },
+            formatTimeRemaining(endTime) {
+                let now = new Date();
+                let end = new Date(endTime);
+                
+                const diff = end - now;
+                
+                if (diff < 0) return "Ended";
+                
+                const hours = Math.floor(diff / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                return `${hours}h ${minutes}m remaining`;
+            },
+            getScheduleInfoBadge(){
+
+                let now = new Date();
+                let start = undefined;
+                let end = undefined;
+    
+                if (this.schedule.start_time) {
+                    start = new Date(this.schedule.start_time);
+                }
+                if (this.schedule.end_time) {
+                    end = new Date(this.schedule.end_time);
+                }
+                
+                if (!end || now > end) return "";
+    
+                if (start && now < start) {
+                    const startStr = start.toLocaleString(undefined, {
+                        timeZoneName: 'short',
+                        hour: 'numeric',
+                        minute: 'numeric',
+                        hour12: true
+                    });
+
+                    const duration = Math.round((end - start) / (1000 * 60 * 60));
+                    let text = `Starts ${startStr} (${duration}h duration)`
+
+                    return {
+                        content: text,
+                        bg: false,
+                        sdcls: "muted",
+                        cls: "",
+                        tooltip: "This model is scheduled to be deployed at a future time."
+                    }
+     
+                }
+                else {
+    
+                    let text = this.formatTimeRemaining(this.schedule.end_time);
+
+                    return {
+                        content: text,
+                        bg: false,
+                        sdcls: "muted",
+                        cls: "",
+                        tooltip: undefined
+                    }
+                }
+                
+            },
+            getScheduleBadge() {
+    
+                let now = new Date();
+                let start = undefined;
+                let end = undefined;
+    
+                if (this.schedule.start_time) {
+                    start = new Date(this.schedule.start_time);
+                }
+                if (this.schedule.end_time) {
+                    end = new Date(this.schedule.end_time);
+                }
+                
+                if (!end || now > end) return "";
+    
+                if (start && now < start) {
+
+                    return {
+                        content: `<i class="fa-solid fa-clock"></i>  Scheduled`,
+                        bg: true,
+                        sdcls: "info",
+                        cls: "",
+                        tooltip: "This model is scheduled to be deployed at a future time."
+                    }
+   
+                    let scheduled_badge = getBadge(`<i class="fa-solid fa-clock"></i>  Scheduled`, "info", bg=true, tooltip=tooltip, cls="electrolize")
+                }
+                else {
+
+                    return {
+                        content: `<i class="fa-solid fa-thumbtack"></i>  Pinned`,
+                        bg: true,
+                        sdcls: "info",
+                        cls: "",
+                        tooltip: "This model wont be evicted for the specified duration."
+                    }
+                }
+    
+            }
+        }
+    }
+
+    const ClusterComponent = {
+        components: {
+            BadgeComponent
+        },
+        props: {
+            cluster: Object
+        },
+
+        methods: {
+            getAvailableBadge(){
+                let total = 0;
+                let available = 0;
+                for (let node in this.cluster.nodes){
+                    total += this.cluster.nodes[node].resources.total_gpus;
+                    available += this.cluster.nodes[node].resources.available_gpus;
+                }
+                let percent = Math.round((available / total) * 100);
+
+                if (percent > 50){
+                    color = "success";
+                }
+                else if (percent > 10){
+                    color = "warning";
+                }
+                else {
+                    color = "danger";
+                }
+                return {
+                    content: percent + "%",
+                    bg: true,
+                    sdcls: color,
+                    cls: "",
+                    tooltip: "Percentage of available GPUs in the cluster."
+                }
+            },
+            getGpuBadge(available_gpus, index){
+                return {
+                    content: "GPU",
+                    bg: available_gpus > (index-1),
+                    sdcls: available_gpus > (index-1) ? "success" : "muted",
+                    cls: "",
+                    tooltip: available_gpus > (index-1) ? "GPU is available." : "GPU is not available."
+                }
+            }
+
+            
+        },
+
+
+        template:  `
+        <p-panel toggleable collapsed v-if="cluster !== null">
+            <template #header>
+            <span>
+                <span style="padding-right: 1rem;">Capacity:</span><badge-component v-bind="getAvailableBadge()"></badge-component>
+            </span>
+            </template>
+            <div class="nn-cluster-nodes">
+                <p-card v-for="(node, node_id) in cluster.nodes" :key="node_id" class="nn-cluster-node">
+                    <template #title>
+                       <div class="nn-cluster-node-title">{{ node_id }}</div>
+                    </template>
+                    <template #content>
+                        <badge-component v-for="i in node.resources.total_gpus" :key="i" v-bind="getGpuBadge(node.resources.available_gpus, i)" style="margin-right: 2px;"></badge-component>
+                    </template>
+                </p-card>
+            </div>
+        </p-panel>
+`
+    }
+
+    const WhitelistComponent = {
+        props: {
+            whitelist: Array
+        },
+        template: `
+        <p-panel toggleable collapsed v-if="whitelist.length > 0">
+            <template #header>
+            <span>
+                <span style="padding-right: 1rem;">Whitelist</span>
+            </span>
+            </template>
+            <div class="nn-whitelist">
+                <p-card v-for="(entry, entry_id) in whitelist" :key="entry_id" class="nn-whitelist-entry">
+                    <template #content>
+                        <span>{{ entry }}</span>
+                    </template>
+                </p-card>
+            </div>
+        </p-panel>
+        `
+    }
 
 
 
-<div class="accordion accordion-flush" id="accordionHook">
-</div></section>
+    const app = Vue.createApp({
+        components: {
+            StatusBarComponent,
+            DeploymentComponent,
+            ClusterComponent
+        },
+        data() {
+            return {
+                ndif_url: 'https://api.ndif.us',
+                deployments: [],
+                cluster: null,
+                currentPage: 1,
+                pageSize: 18,
+                selectedDeploymentLevel: null,
+                selectedSortBy: 'deployment_level',
+                searchQuery: '',
+                calendar_id: undefined,
+                deploymentLevelOptions: [
+                    { label: 'Hot', value: 'HOT' },
+                    { label: 'Warm', value: 'WARM' },
+                    { label: 'Cold', value: 'COLD' },
+                ],
+                sortByOptions: [
+                    { label: 'Status', value: 'deployment_level' },
+                    { label: 'Name', value: 'repo_id' },
+                    { label: 'Params', value: 'n_params' }
+                ]
+            }
+        },
+        computed: {
+            sortedAndFilteredDeployments() {
+                let filtered = [...this.deployments];
+
+                // Filter by deployment level
+                if (this.selectedDeploymentLevel !== null) {
+                    filtered = filtered.filter(deployment => 
+                        deployment.deployment_level === this.selectedDeploymentLevel
+                    );
+                }
+
+                // Filter by search query (repo ID)
+                if (this.searchQuery.trim() !== '') {
+                    const query = this.searchQuery.toLowerCase().trim();
+                    filtered = filtered.filter(deployment => 
+                        deployment.repo_id.toLowerCase().includes(query)
+                    );
+                }
+
+                // Sort the filtered deployments
+                if (this.selectedSortBy === 'deployment_level') {
+                    const deploymentOrder = ["DEDICATED", "HOT", "WARM", "SCHEDULED", "COLD"];
+                    filtered.sort((a, b) => {
+                        const aLevel = deploymentOrder.indexOf(a.deployment_level);
+                        const bLevel = deploymentOrder.indexOf(b.deployment_level);
+                        // If same level, sort by schedule existence then repo_id
+                        if (aLevel === bLevel) {
+                            const scheduleSort = (b.schedule ? 1 : 0) - (a.schedule ? 1 : 0);
+                            if (scheduleSort === 0) {
+                                return a.repo_id.localeCompare(b.repo_id);
+                            }
+                            return scheduleSort;
+                        }
+                        // If not found, put at the end
+                        return (aLevel === -1 ? deploymentOrder.length : aLevel) - (bLevel === -1 ? deploymentOrder.length : bLevel);
+                    });
+                } else if (this.selectedSortBy === 'repo_id') {
+                    filtered.sort((a, b) => a.repo_id.localeCompare(b.repo_id));
+                }
+                else if (this.selectedSortBy === 'n_params') {
+                    filtered.sort((a, b) => {
+                        // Treat null/undefined as -Infinity so they appear at the end (smallest)
+                        const aParams = (a.n_params === null || a.n_params === undefined) ? -Infinity : a.n_params;
+                        const bParams = (b.n_params === null || b.n_params === undefined) ? -Infinity : b.n_params;
+                        return bParams - aParams;
+                    });
+                }
+                return filtered;
+            },
+            filteredDeployments() {
+                return this.sortedAndFilteredDeployments;
+            },
+            paginatedDeployments() {
+                const start = (this.currentPage - 1) * this.pageSize;
+                const end = start + this.pageSize;
+                return this.filteredDeployments.slice(start, end);
+            },
+            totalPages() {
+                return Math.ceil(this.filteredDeployments.length / this.pageSize);
+            },
+            firstRecord() {
+                return (this.currentPage - 1) * this.pageSize;
+            }
+        },
+        methods: {
+            onDeploymentLevelChange() {
+                this.currentPage = 1; // Reset to first page when filtering
+            },
+
+            onSortChange() {
+                this.currentPage = 1; // Reset to first page when sorting changes
+            },
+
+            onSearchChange() {
+                this.currentPage = 1; // Reset to first page when search changes
+            },
+
+            onPageChange(event) {
+                this.currentPage = Math.floor(event.first / this.pageSize) + 1;
+            },
+
+            updateDeployments(data){
+                this.deployments = []; // Clear existing deployments
+                Object.entries(data.deployments)
+                    .forEach(([key, deployment]) => {
+                        this.deployments.push(deployment);
+                    });
+                // Note: Removed sorting logic from here since we now handle it in computed properties
+            },
+
+            getStatus(){
+
+                let statusbar = this.$refs.statusbar;
+
+                statusbar.update("Fetching NDIF status...", 'info');
+
+                fetch(this.ndif_url + "/ping")
+                    .then((response) => {
+                        if (response.status == 200) {
+                            statusbar.update("NDIF is up. Fetching model status...", 'info');
+
+                            fetch(this.ndif_url + "/status")
+                                .then((response) => {
+                                    if (response.status == 200) {
+                                        response.json().then((data) => {
+                                            console.log(data);
+                                            statusbar.update("NDIF is operational", 'success');
+                                            this.updateDeployments(data);
+                                            this.calendar_id = data.calendar_id;
+                                            this.cluster = data.cluster;
+                                        })
+                                    }
+                                    else{
+                                        statusbar.update("Unable to get NDIF status", 'danger');
+                                    }
+                                })
+                                .catch((error) => {
+                                    statusbar.update("Unable to get NDIF status", 'danger');
+                                })
+                        }
+                        else{
+                            statusbar.update("NDIF is unavailable", 'danger');
+                        }
+                    })
+                    .catch((error) => {
+                        statusbar.update("NDIF is unavailable", 'danger');
+                    })
+            }
+        },
+        mounted(){
+            this.getStatus();
+        }
+    })
+    app.use(PrimeVue.Config, { theme: { preset: PrimeUIX.Themes.Aura } });
+    app.component('p-paginator', PrimeVue.Paginator);
+    app.component('p-select', PrimeVue.Select);
+    app.component('p-inputtext', PrimeVue.InputText);
+    app.component('p-iconfield', PrimeVue.IconField);
+    app.component('p-inputicon', PrimeVue.InputIcon);
+    app.component('p-skeleton', PrimeVue.Skeleton);
+    app.component('p-divider', PrimeVue.Divider);
+    app.component('p-floatlabel', PrimeVue.FloatLabel);
+    app.component('p-panel', PrimeVue.Panel);
+    app.component('p-card', PrimeVue.Card);
+    
+    app.mount('#app')
+    
+</script></section>
 
 
                 </article>
@@ -833,8 +1581,8 @@ For information on API key configuration and remote system limits, please refer 
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -859,8 +1607,7 @@ For information on API key configuration and remote system limits, please refer 
       
         <div class="footer-item">
 <p class="theme-version">
-  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-   
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
 </p></div>
       
     </div>

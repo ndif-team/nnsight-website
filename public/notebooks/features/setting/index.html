@@ -6,9 +6,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Setting Values &#8212; nnsight</title>
+    <title>Setting &#8212; nnsight</title>
   
   
   
@@ -16,38 +16,38 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=362ab14a" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../../../_static/documentation_options.js?v=187304be"></script>
-    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/features/setting';</script>
     <script src="../../../_static/js/custom.js?v=1e4be224"></script>
     <script src="../../../_static/js/code.js?v=34343d0c"></script>
@@ -55,14 +55,13 @@
     <link rel="author" title="About these documents" href="../../../about/" />
     <link rel="index" title="Index" href="../../../genindex/" />
     <link rel="search" title="Search" href="../../../search/" />
-    <link rel="next" title="Streaming" href="../streaming/" />
-    <link rel="prev" title="Sessions" href="../sessions/" />
+    <link rel="next" title="Skipping Modules" href="../skip/" />
+    <link rel="prev" title="Scan and Validate" href="../scan_validate/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
-<link href="../../../_static/css/custom.css?v=1754348346" rel="stylesheet" type="text/css" />
-<link href="../../../_static/css/home.css?v=1754348346" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/custom.css?v=1755731114" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/home.css?v=1755731114" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -79,8 +78,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../../../search/"
       method="get">
@@ -88,6 +98,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -95,8 +106,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -128,7 +139,7 @@
     
     
     <img src="../../../_static/nnsight_logo.svg" class="logo__image only-dark" alt="nnsight - Home"/>
-    <img src="../../../_static/nnsight_logo.svg" class="logo__image only-light pst-js-only" alt="nnsight - Home"/>
+    <script>document.write(`<img src="../../../_static/nnsight_logo.svg" class="logo__image only-light" alt="nnsight - Home"/>`);</script>
   
   
 </a></div>
@@ -188,11 +199,15 @@
         <div class="navbar-item navbar-persistent--container">
           
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
         </div>
       
       
@@ -234,11 +249,15 @@
       
         <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -301,14 +320,22 @@
   
     <div class="navbar-persistent--mobile">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
     </div>
   
 
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
   
 </div>
 
@@ -320,8 +347,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -418,11 +444,15 @@
         
           <div class="navbar-item">
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button></div>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -488,24 +518,19 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../conditionals/">Conditional Interventions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cross_prompt/">Cross-Prompt Intervention</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../custom_functions/">Custom Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cross_prompt/">Cross-Prompt Intervention and Batching</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../early_stopping/">Early Stopping</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../editing_tutorial/">Editing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../getting/">Getting Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting/">Getting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../gradients/">Gradients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../iterator/">Iterative Interventions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lora_training/">LoRA</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../model_editing/">Model Editing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/">Modules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../multiple_token/">Multiple Token Generation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../operations/">Operations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../remote_execution/">Remote Execution</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="../scan_validate/">Scan and Validate</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sessions/">Sessions</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Setting Values</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Setting</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../skip/">Skipping Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/">Source Code Interventions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../streaming/">Streaming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../vllm_support/">vLLM Support</a></li>
 </ul>
@@ -515,14 +540,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -540,6 +560,8 @@
       
         <div class="header-article-item">
 
+
+
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -551,7 +573,7 @@
     
     <li class="breadcrumb-item"><a href="../../../features/" class="nav-link">Features</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Setting Values</span></li>
+    <li class="breadcrumb-item active" aria-current="page">Setting</li>
   </ul>
 </nav>
 </div>
@@ -568,39 +590,55 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="Setting-Values">
-<h1>Setting Values<a class="headerlink" href="#Setting-Values" title="Link to this heading">#</a></h1>
-<p>We often not only want to see whats happening during computation, but intervene and edit the flow of information.</p>
-<p>In this example, we create a tensor of noise to add to the hidden states. We then add it, use the assigment <code class="docutils literal notranslate"><span class="pre">=</span></code> operator to update the tensors of <code class="docutils literal notranslate"><span class="pre">.output[0][:]</span></code> with these new noised values.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+  <section id="Setting">
+<h1>Setting<a class="headerlink" href="#Setting" title="Link to this heading">#</a></h1>
+<section id="Summary">
+<h2>Summary<a class="headerlink" href="#Summary" title="Link to this heading">#</a></h2>
+<p>Setting is how you can intervene on a model and edit information as it flows throughout its computations.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">net</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+
+  <span class="c1"># setting all output values to 0</span>
+  <span class="n">net</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="p">[:]</span> <span class="o">=</span> <span class="mi">0</span>
+
+  <span class="n">l2_inp</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">layer2</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="k">assert</span> <span class="n">torch</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">l2_inp</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nnsight</span><span class="w"> </span><span class="kn">import</span> <span class="n">LanguageModel</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
-
-<span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s1">&#39;openai-community/gpt2&#39;</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
-
-<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s1">&#39;The Eiffel Tower is in the city of&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
-
-    <span class="n">hidden_states_pre</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-
-    <span class="n">noise</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.001</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span><span class="o">*</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">hidden_states_pre</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-
-    <span class="c1"># model.transformer.h[-1].output = (hidden_states_pre + noise, model.transformer.h[-1].output[1])</span>
-    <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][:]</span> <span class="o">=</span> <span class="n">hidden_states_pre</span> <span class="o">+</span> <span class="n">noise</span>
-
-    <span class="n">hidden_states_post</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<p>We can see the change in the results:</p>
+</section>
+<section id="When-to-Use">
+<h2>When to Use<a class="headerlink" href="#When-to-Use" title="Link to this heading">#</a></h2>
+<p>Setting is used when making interventions on the model, like during activation patching.</p>
+</section>
+<section id="How-to-Use">
+<h2>How to Use<a class="headerlink" href="#How-to-Use" title="Link to this heading">#</a></h2>
+<p>We often not only want to see whats happening during computation, but also to intervene and edit the flow of information in a model. We do this with the setting (<code class="docutils literal notranslate"><span class="pre">=</span></code>) operation.</p>
+<p>There are two ways to perform setting in NNsight: in-place, and not in-place:</p>
+<ul class="simple">
+<li><p><strong>In-place</strong> setting operations change the values of the tensor that the targeted output for the module is referencing (which has downstream implications for gradient operations!). In NNsight, in-place setting of a module’s value would look like <code class="docutils literal notranslate"><span class="pre">model.&lt;module_path&gt;.output[:]</span> <span class="pre">=</span> <span class="pre">new_tensor[:]</span></code>.</p></li>
+<li><p><strong>Not in-place</strong> setting operations assign a new tensor to the module instead of changing the values of the current tensor. In NNsight, not in-place setting of a module’s value would look like <code class="docutils literal notranslate"><span class="pre">model.&lt;module_path&gt;.output</span> <span class="pre">=</span> <span class="pre">new_tensor</span></code>.</p></li>
+</ul>
+<p>This is no different than standard Python syntax, just worth mentioning both are effective. Some objects are immutable (<code class="docutils literal notranslate"><span class="pre">tuples</span></code>) and would have to be replaced outright instead of in-place.</p>
+<section id="In-place-setting">
+<h3>In-place setting<a class="headerlink" href="#In-place-setting" title="Link to this heading">#</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">hidden_states_pre</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">hidden_states_post</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">tiny_model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+
+    <span class="c1"># Save the output before the edit to compare.</span>
+    <span class="c1"># Notice we apply .clone() before saving as the setting operation is in-place.</span>
+    <span class="n">l1_output_before</span> <span class="o">=</span> <span class="n">tiny_model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+    <span class="c1"># Access the 0th index of the hidden state dimension and set it to 0.</span>
+    <span class="n">tiny_model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Save the output after to see our edit.</span>
+    <span class="n">l1_output_after</span> <span class="o">=</span> <span class="n">tiny_model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Before:&quot;</span><span class="p">,</span> <span class="n">l1_output_before</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;After:&quot;</span><span class="p">,</span> <span class="n">l1_output_after</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -609,24 +647,121 @@
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-tensor([[[ 0.0505, -0.1728, -0.1690,  ..., -1.0096,  0.1280, -1.0687],
-         [ 8.7495,  2.9057,  5.3024,  ..., -8.0418,  1.2964, -2.8677],
-         [ 0.2960,  4.6686, -3.6642,  ...,  0.2391, -2.6064,  3.2263],
-         ...,
-         [ 2.1537,  6.8917,  3.8651,  ...,  0.0588, -1.9866,  5.9188],
-         [-0.4460,  7.4285, -9.3065,  ...,  2.0528, -2.7946,  0.5556],
-         [ 6.6286,  1.7258,  4.7969,  ...,  7.6714,  3.0682,  2.0481]]],
-       device=&#39;mps:0&#39;, grad_fn=&lt;CloneBackward0&gt;)
-tensor([[[ 0.1225, -0.1650, -0.1966,  ..., -1.0529,  0.1273, -1.0736],
-         [ 8.6914,  2.8702,  5.3589,  ..., -8.0615,  1.2423, -2.8655],
-         [ 0.3343,  4.6634, -3.6297,  ...,  0.2230, -2.6057,  3.1985],
-         ...,
-         [ 2.1307,  6.9048,  3.8257,  ...,  0.1329, -1.9910,  5.9815],
-         [-0.4599,  7.4705, -9.3246,  ...,  2.0739, -2.8393,  0.5849],
-         [ 6.6359,  1.7332,  4.7754,  ...,  7.6323,  2.9859,  2.0438]]],
-       device=&#39;mps:0&#39;, grad_fn=&lt;CopySlices&gt;)
+Before: tensor([[ 0.5857,  0.2823, -0.0138, -0.4004,  0.0133, -0.5596,  0.1553,  0.1798,
+         -0.4834,  0.2742]])
+After: tensor([[ 0.0000,  0.2823, -0.0138, -0.4004,  0.0133, -0.5596,  0.1553,  0.1798,
+         -0.4834,  0.2742]])
 </pre></div></div>
 </div>
+</section>
+<section id="Not-in-place-setting">
+<h3>Not in-place setting<a class="headerlink" href="#Not-in-place-setting" title="Link to this heading">#</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">tiny_model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+
+    <span class="c1"># Save the output before the edit to compare.</span>
+    <span class="c1"># No need to apply .clone() before saving, as we are not setting in-place.</span>
+    <span class="n">l1_output_before</span> <span class="o">=</span> <span class="n">tiny_model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+    <span class="n">edited_tensor</span> <span class="o">=</span> <span class="n">tiny_model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="n">edited_tensor</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Set the layer1 output equal to the edited tensor</span>
+    <span class="n">tiny_model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="n">edited_tensor</span>
+
+    <span class="c1"># Save the output after to see our edit.</span>
+    <span class="n">l1_output_after</span> <span class="o">=</span> <span class="n">tiny_model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Before:&quot;</span><span class="p">,</span> <span class="n">l1_output_before</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;After:&quot;</span><span class="p">,</span> <span class="n">l1_output_after</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Before: tensor([[ 0.5857,  0.2823, -0.0138, -0.4004,  0.0133, -0.5596,  0.1553,  0.1798,
+         -0.4834,  0.2742]])
+After: tensor([[ 0.0000,  0.2823, -0.0138, -0.4004,  0.0133, -0.5596,  0.1553,  0.1798,
+         -0.4834,  0.2742]])
+</pre></div></div>
+</div>
+</section>
+</section>
+</section>
+<section id="Order-Matters">
+<h1>Order Matters<a class="headerlink" href="#Order-Matters" title="Link to this heading">#</a></h1>
+<p>In NNsight, your intervention code is ran serially alongside the model’s normal execution. Therefore the order you interact with modules must match the order those modules are called in the original underlying model.</p>
+<p>For our tiny model above, if I wanted to interact with both layer1 and layer2, I must do layer1 first. In this example I make the mistake of doing layer 2 first, resulting in an <code class="docutils literal notranslate"><span class="pre">OutOfOrderError</span></code>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">tiny_model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+
+    <span class="n">l2_output</span> <span class="o">=</span> <span class="n">tiny_model</span><span class="o">.</span><span class="n">layer2</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+    <span class="n">l1_output</span> <span class="o">=</span> <span class="n">tiny_model</span><span class="o">.</span><span class="n">layer1</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Layer1:&quot;</span><span class="p">,</span> <span class="n">l1_output</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Layer2:&quot;</span><span class="p">,</span> <span class="n">l2_output</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NNsightException</span>                          Traceback (most recent call last)
+<span class="ansi-green-fg">/tmp/ipython-input-4160868438.py</span> in <span class="ansi-cyan-fg">&lt;cell line: 0&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">with</span> tiny_model<span class="ansi-blue-fg">.</span>trace<span class="ansi-blue-fg">(</span>input<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span>     l2_output <span class="ansi-blue-fg">=</span> tiny_model<span class="ansi-blue-fg">.</span>layer2<span class="ansi-blue-fg">.</span>output<span class="ansi-blue-fg">.</span>save<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span>     l1_output <span class="ansi-blue-fg">=</span> tiny_model<span class="ansi-blue-fg">.</span>layer1<span class="ansi-blue-fg">.</span>output<span class="ansi-blue-fg">.</span>save<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">/usr/local/lib/python3.11/dist-packages/nnsight/intervention/tracing/base.py</span> in <span class="ansi-cyan-fg">__exit__</span><span class="ansi-blue-fg">(self, exc_type, exc_val, exc_tb)</span>
+<span class="ansi-green-intense-fg ansi-bold">    414</span>
+<span class="ansi-green-intense-fg ansi-bold">    415</span>             <span class="ansi-red-fg"># Execute the traced code using the configured backend</span>
+<span class="ansi-green-fg">--&gt; 416</span><span class="ansi-red-fg">             </span>self<span class="ansi-blue-fg">.</span>backend<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    417</span>
+<span class="ansi-green-intense-fg ansi-bold">    418</span>             <span class="ansi-green-fg">return</span> <span class="ansi-green-fg">True</span>
+
+<span class="ansi-green-fg">/usr/local/lib/python3.11/dist-packages/nnsight/intervention/backends/execution.py</span> in <span class="ansi-cyan-fg">__call__</span><span class="ansi-blue-fg">(self, tracer)</span>
+<span class="ansi-green-intense-fg ansi-bold">     22</span>         <span class="ansi-green-fg">except</span> Exception <span class="ansi-green-fg">as</span> e<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     23</span>
+<span class="ansi-green-fg">---&gt; 24</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">raise</span> wrap_exception<span class="ansi-blue-fg">(</span>e<span class="ansi-blue-fg">,</span> tracer<span class="ansi-blue-fg">.</span>info<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">from</span> <span class="ansi-green-fg">None</span>
+<span class="ansi-green-intense-fg ansi-bold">     25</span>         <span class="ansi-green-fg">finally</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     26</span>             Globals<span class="ansi-blue-fg">.</span>exit<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">NNsightException</span>:
+
+Traceback (most recent call last):
+  File &#34;/tmp/ipython-input-4160868438.py&#34;, line 5, in &lt;cell line: 0&gt;
+    l1_output = tiny_model.layer1.output.save()
+  File &#34;/usr/local/lib/python3.11/dist-packages/nnsight/intervention/envoy.py&#34;, line 152, in output
+    return self._interleaver.current.request(
+  File &#34;/usr/local/lib/python3.11/dist-packages/nnsight/intervention/interleaver.py&#34;, line 781, in request
+    value = self.send(Events.VALUE, requester)
+  File &#34;/usr/local/lib/python3.11/dist-packages/nnsight/intervention/interleaver.py&#34;, line 766, in send
+    raise response
+
+OutOfOrderError: Value was missed for model.layer1.output.i0. Did you call an Envoy out of order?
+</pre></div></div>
+</div>
+<section id="Related">
+<h2>Related<a class="headerlink" href="#Related" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Getting</p></li>
+</ul>
+</section>
 </section>
 
 
@@ -640,6 +775,37 @@ tensor([[[ 0.1225, -0.1650, -0.1966,  ..., -1.0529,  0.1273, -1.0736],
             
             
               
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Setting</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#When-to-Use">When to Use</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#How-to-Use">How to Use</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#In-place-setting">In-place setting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#Not-in-place-setting">Not in-place setting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#Order-Matters">Order Matters</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Related">Related</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
             
           </div>
           <footer class="bd-footer-content">
@@ -651,8 +817,8 @@ tensor([[[ 0.1225, -0.1650, -0.1966,  ..., -1.0529,  0.1273, -1.0736],
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -677,8 +843,7 @@ tensor([[[ 0.1225, -0.1650, -0.1966,  ..., -1.0529,  0.1273, -1.0736],
       
         <div class="footer-item">
 <p class="theme-version">
-  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-   
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
 </p></div>
       
     </div>

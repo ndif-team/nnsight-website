@@ -77,25 +77,6 @@ Features
             </div>
          </div>
 
-
-   .. grid-item-card:: 
-      :link: notebooks/features/operations.ipynb
-      :class-card: surface
-      :class-body: surface
-
-
-      .. raw:: html
-
-         <div class="d-flex align-items-center">
-            <div class="d-flex justify-content-center" style="min-width: 50px; margin-right: 15px; height: 100%;">
-               <i class="fa-solid fa-glasses fa-2x"></i>
-            </div> 
-            <div>
-               <h5 class="card-title">Operations</h5>
-               <p class="card-text">Edit values</p>
-            </div>
-         </div>
-
    .. grid-item-card:: 
       :link: notebooks/features/modules.ipynb
       :class-card: surface
@@ -111,24 +92,6 @@ Features
             <div>
                <h5 class="card-title">Modules</h5>
                <p class="card-text">Apply modules</p>
-            </div>
-         </div>
-
-   .. grid-item-card:: 
-      :link: notebooks/features/custom_functions.ipynb
-      :class-card: surface
-      :class-body: surface
-
-
-      .. raw:: html
-
-         <div class="d-flex align-items-center">
-            <div class="d-flex justify-content-center" style="min-width: 50px; margin-right: 15px; height: 100%;">
-               <i class="fa-solid fa-atom fa-2x"></i>
-            </div> 
-            <div>
-               <h5 class="card-title">Custom Functions</h5>
-               <p class="card-text">Add thing to the Intervention Graph</p>
             </div>
          </div>
 
@@ -169,7 +132,7 @@ Features
          </div>
 
    .. grid-item-card:: 
-      :link: notebooks/features/conditionals.ipynb
+      :link: notebooks/features/skip.ipynb
       :class-card: surface
       :class-body: surface
 
@@ -178,11 +141,29 @@ Features
 
          <div class="d-flex align-items-center">
             <div class="d-flex justify-content-center" style="min-width: 50px; margin-right: 15px; height: 100%;">
-               <i class="fa-solid fa-code-branch fa-2x"></i>
+               <i class="fa-solid fa-forward fa-2x"></i>
             </div> 
             <div>
-               <h5 class="card-title">Conditional Interventions</h5>
-               <p class="card-text">Use If Needed</p>
+               <h5 class="card-title">Skip</h5>
+               <p class="card-text">Skip module execution</p>
+            </div>
+         </div>
+
+   .. grid-item-card:: 
+      :link: notebooks/features/source.ipynb
+      :class-card: surface
+      :class-body: surface
+
+
+      .. raw:: html
+
+         <div class="d-flex align-items-center">
+            <div class="d-flex justify-content-center" style="min-width: 50px; margin-right: 15px; height: 100%;">
+               <i class="fa-solid fa-xmarks-lines fa-2x"></i>
+            </div> 
+            <div>
+               <h5 class="card-title">Source</h5>
+               <p class="card-text">Access and intervene on intermediate values</p>
             </div>
          </div>
 
@@ -260,24 +241,6 @@ Features
          </div>
 
    .. grid-item-card:: 
-      :link: notebooks/features/sessions.ipynb
-      :class-card: surface
-      :class-body: surface
-
-   
-      .. raw:: html
-
-         <div class="d-flex align-items-center">
-            <div class="d-flex justify-content-center" style="min-width: 50px; margin-right: 15px; height: 100%;">
-               <i class="fa-solid fa-bars fa-2x"></i>
-            </div> 
-            <div>
-               <h5 class="card-title">Sessions</h5>
-               <p class="card-text">Do many traces in one request</p>
-            </div>
-         </div>
-
-   .. grid-item-card:: 
       :link: notebooks/features/streaming.ipynb
       :class-card: surface
       :class-body: surface
@@ -292,42 +255,6 @@ Features
             <div>
                <h5 class="card-title">Streaming</h5>
                <p class="card-text">Send remote values to local</p>
-            </div>
-         </div>
-
-   .. grid-item-card:: 
-      :link: notebooks/features/iterator.ipynb
-      :class-card: surface
-      :class-body: surface
-
-   
-      .. raw:: html
-
-         <div class="d-flex align-items-center">
-            <div class="d-flex justify-content-center" style="min-width: 50px; margin-right: 15px; height: 100%;">
-               <i class="fa-solid fa-arrow-rotate-left fa-2x"></i>
-            </div> 
-            <div>
-               <h5 class="card-title">Iterative Interventions</h5>
-               <p class="card-text">Make loops</p>
-            </div>
-         </div>
-
-   .. grid-item-card:: 
-      :link: notebooks/features/lora_training.ipynb
-      :class-card: surface
-      :class-body: surface
-
-   
-      .. raw:: html
-
-         <div class="d-flex align-items-center">
-            <div class="d-flex justify-content-center" style="min-width: 50px; margin-right: 15px; height: 100%;">
-               <i class="fa-solid fa-tower-broadcast fa-2x"></i>
-            </div> 
-            <div>
-               <h5 class="card-title">LORA</h5>
-               <p class="card-text">Train one</p>
             </div>
          </div>
 
