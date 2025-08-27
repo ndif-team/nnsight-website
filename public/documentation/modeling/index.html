@@ -60,8 +60,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
-<link href="../../_static/css/custom.css?v=1756264308" rel="stylesheet" type="text/css" />
-<link href="../../_static/css/home.css?v=1756264308" rel="stylesheet" type="text/css" />
+<link href="../../_static/css/custom.css?v=1756320119" rel="stylesheet" type="text/css" />
+<link href="../../_static/css/home.css?v=1756320119" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -309,10 +309,6 @@
   
 
   
-    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
-      <span class="fa-solid fa-outdent"></span>
-    </button>
-  
 </div>
 
     </header>
@@ -556,109 +552,8 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="module-nnsight.modeling">
-<span id="nnsight-modeling"></span><h1>nnsight.modeling<a class="headerlink" href="#module-nnsight.modeling" title="Link to this heading">#</a></h1>
-<dl class="py class" id="module-nnsight.modeling.language">
-<dt class="sig sig-object py" id="nnsight.modeling.language.LanguageModel">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.modeling.language.</span></span><span class="sig-name descname"><span class="pre">LanguageModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config:</span> <span class="pre">~transformers.configuration_utils.PretrainedConfig</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokenizer:</span> <span class="pre">~transformers.tokenization_utils.PreTrainedTokenizer</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">automodel:</span> <span class="pre">~typing.Type[~transformers.models.auto.modeling_auto.AutoModel]</span> <span class="pre">=</span> <span class="pre">&lt;class</span> <span class="pre">'transformers.models.auto.modeling_auto.AutoModelForCausalLM'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">import_edits:</span> <span class="pre">bool</span> <span class="pre">|</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/modeling/language/#LanguageModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.modeling.language.LanguageModel" title="Link to this definition">#</a></dt>
-<dd><p>LanguageModels are NNsight wrappers around transformers language models.</p>
-<dl class="simple">
-<dt>Inputs can be in the form of:</dt><dd><p>Prompt: (str)
-Prompts: (List[str])
-Batched prompts: (List[List[str]])
-Tokenized prompt: (Union[List[int], torch.Tensor])
-Tokenized prompts: (Union[List[List[int]], torch.Tensor])
-Direct input: (Dict[str,Any])</p>
-</dd>
-</dl>
-<p>If using a custom model, you also need to provide the tokenizer like <code class="docutils literal notranslate"><span class="pre">LanguageModel(custom_model,</span> <span class="pre">tokenizer=tokenizer)</span></code></p>
-<p>Calls to generate pass arguments downstream to <code class="xref py py-func docutils literal notranslate"><span class="pre">GenerationMixin.generate()</span></code></p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.modeling.language.LanguageModel.config">
-<span class="sig-name descname"><span class="pre">config</span></span><a class="headerlink" href="#nnsight.modeling.language.LanguageModel.config" title="Link to this definition">#</a></dt>
-<dd><p>Huggingface config file loaded from repository or checkpoint.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>PretrainedConfig</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.modeling.language.LanguageModel.tokenizer">
-<span class="sig-name descname"><span class="pre">tokenizer</span></span><a class="headerlink" href="#nnsight.modeling.language.LanguageModel.tokenizer" title="Link to this definition">#</a></dt>
-<dd><p>Tokenizer for LMs.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>PreTrainedTokenizer</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.modeling.language.LanguageModel.automodel">
-<span class="sig-name descname"><span class="pre">automodel</span></span><a class="headerlink" href="#nnsight.modeling.language.LanguageModel.automodel" title="Link to this definition">#</a></dt>
-<dd><p>AutoModel type from transformer auto models.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Type</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="nnsight.modeling.language.LanguageModel.model">
-<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#nnsight.modeling.language.LanguageModel.model" title="Link to this definition">#</a></dt>
-<dd><p>Meta version of underlying auto model.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>PreTrainedModel</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="nnsight.modeling.language.LanguageModel.Generator">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Generator</span></span><a class="reference internal" href="../../_modules/nnsight/modeling/language/#LanguageModel.Generator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.modeling.language.LanguageModel.Generator" title="Link to this definition">#</a></dt>
-<dd><dl class="py class">
-<dt class="sig sig-object py" id="nnsight.modeling.language.LanguageModel.Generator.Streamer">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Streamer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/modeling/language/#LanguageModel.Generator.Streamer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.modeling.language.LanguageModel.Generator.Streamer" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="nnsight.modeling.language.LanguageModel.export_edits">
-<span class="sig-name descname"><span class="pre">export_edits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">export_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variant</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'__default__'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/modeling/language/#LanguageModel.export_edits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.modeling.language.LanguageModel.export_edits" title="Link to this definition">#</a></dt>
-<dd><p>TODO</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
-<li><p><strong>export_dir</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
-<li><p><strong>variant</strong> (<em>str</em><em>, </em><em>optional</em>) – _description_. Defaults to ‘__default__’.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="nnsight.modeling.language.LanguageModel.import_edits">
-<span class="sig-name descname"><span class="pre">import_edits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">export_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variant</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'__default__'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/modeling/language/#LanguageModel.import_edits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.modeling.language.LanguageModel.import_edits" title="Link to this definition">#</a></dt>
-<dd><p>TODO</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
-<li><p><strong>export_dir</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
-<li><p><strong>variant</strong> (<em>str</em><em>, </em><em>optional</em>) – _description_. Defaults to ‘__default__’.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+  <section id="nnsight-modeling">
+<h1>nnsight.modeling<a class="headerlink" href="#nnsight-modeling" title="Link to this heading">#</a></h1>
 </section>
 
 
@@ -671,36 +566,6 @@ Direct input: (Dict[str,Any])</p>
             </div>
             
             
-              
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-<div
-    id="pst-page-navigation-heading-2"
-    class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.modeling.language.LanguageModel"><code class="docutils literal notranslate"><span class="pre">LanguageModel</span></code></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.modeling.language.LanguageModel.config"><code class="docutils literal notranslate"><span class="pre">LanguageModel.config</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.modeling.language.LanguageModel.tokenizer"><code class="docutils literal notranslate"><span class="pre">LanguageModel.tokenizer</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.modeling.language.LanguageModel.automodel"><code class="docutils literal notranslate"><span class="pre">LanguageModel.automodel</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.modeling.language.LanguageModel.model"><code class="docutils literal notranslate"><span class="pre">LanguageModel.model</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.modeling.language.LanguageModel.Generator"><code class="docutils literal notranslate"><span class="pre">LanguageModel.Generator</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.modeling.language.LanguageModel.Generator.Streamer"><code class="docutils literal notranslate"><span class="pre">LanguageModel.Generator.Streamer</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.modeling.language.LanguageModel.export_edits"><code class="docutils literal notranslate"><span class="pre">LanguageModel.export_edits()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.modeling.language.LanguageModel.import_edits"><code class="docutils literal notranslate"><span class="pre">LanguageModel.import_edits()</span></code></a></li>
-</ul>
-</li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>
