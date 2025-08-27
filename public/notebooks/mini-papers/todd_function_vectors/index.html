@@ -6,7 +6,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Function Vectors &#8212; nnsight</title>
   
@@ -16,36 +16,38 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=362ab14a" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css?v=2aa19091" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../../_static/documentation_options.js?v=187304be"></script>
-    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/mini-papers/todd_function_vectors';</script>
@@ -60,8 +62,9 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-<link href="../../../_static/css/custom.css?v=1755731114" rel="stylesheet" type="text/css" />
-<link href="../../../_static/css/home.css?v=1755731114" rel="stylesheet" type="text/css" />
+  <meta name="docsearch:version" content="" />
+<link href="../../../_static/css/custom.css?v=1756264308" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/home.css?v=1756264308" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -78,19 +81,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../../search/"
       method="get">
@@ -98,7 +90,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -106,8 +97,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -139,7 +130,7 @@
     
     
     <img src="../../../_static/nnsight_logo.svg" class="logo__image only-dark" alt="nnsight - Home"/>
-    <script>document.write(`<img src="../../../_static/nnsight_logo.svg" class="logo__image only-light" alt="nnsight - Home"/>`);</script>
+    <img src="../../../_static/nnsight_logo.svg" class="logo__image only-light pst-js-only" alt="nnsight - Home"/>
   
   
 </a></div>
@@ -199,15 +190,11 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
@@ -249,15 +236,11 @@
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -320,15 +303,11 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
@@ -347,7 +326,8 @@ document.write(`
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -444,15 +424,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -581,9 +557,14 @@ document.write(`
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -601,8 +582,6 @@ document.write(`
       
         <div class="header-article-item">
 
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -617,7 +596,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="../../../applied_tutorials/" class="nav-link">Mini Paper Tutorials</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">Function Vectors</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Function Vectors</span></li>
   </ul>
 </nav>
 </div>
@@ -642,13 +621,13 @@ document.write(`
 <p><strong>Colab:</strong> <a class="reference external" href="https://colab.research.google.com/github/ndif-team/nnsight/blob/docs/docs/source/notebooks/tutorials/function_vectors.ipynb">exercises</a> <strong>|</strong> <a class="reference external" href="https://colab.research.google.com/github/ndif-team/nnsight/blob/docs/function_vectors_solutions.ipynb">solutions</a></p>
 </div></blockquote>
 <p>You can collapse each section so only the headers are visible, by clicking the arrow symbol on the left hand side of the markdown header cells.</p>
-<p><img alt="e39445e4380940eeba5e09378e2f2a71" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/headers/header-14-2.png" style="width: 350px;" /></p>
+<p><img alt="d1f9c718537d48acbce2dbf305913d6e" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/headers/header-14-2.png" style="width: 350px;" /></p>
 </section>
 <section id="Introduction">
 <h1>Introduction<a class="headerlink" href="#Introduction" title="Link to this heading">#</a></h1>
 <p>These exercises serve as an exploration of the following question: <strong>can we steer a model to produce different outputs / have a different behaviour, by intervening on the model’s forward pass using vectors found by non gradient descent-based methods?</strong></p>
 <p>The majority of the exercises focus on <a class="reference external" href="https://functions.baulab.info/">function vectors</a>: vectors which are extracted from forward passes on in-context learning (ICL) tasks, and added to the residual stream in order to trigger the execution of this task from a zero-shot prompt. The diagram below illustrates this.</p>
-<p><img alt="5a7cc75f479c4bcd9cdcc42bda43bd69" class="no-scaled-link" src="https://functions.baulab.info/images/Paper/fv-demonstrations.png" style="width: 650px;" /></p>
+<p><img alt="a33b2c211f504fe78d100da89347c0fb" class="no-scaled-link" src="https://functions.baulab.info/images/Paper/fv-demonstrations.png" style="width: 650px;" /></p>
 <p>The exercises also take you through use of the <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> library, which is designed to support this kind of work (and other interpretability research) on very large language models - i.e. larger than models like GPT2-Small which you might be used to at this point in the course.</p>
 <p>The final set of exercises look at Alex Turner et al’s work on <a class="reference external" href="https://www.lesswrong.com/posts/5spBue2z2tw4JuDCx/steering-gpt-2-xl-by-adding-an-activation-vector">steering vectors</a>, which is conceptually related but has different aims and methodologies.</p>
 <section id="Content-&amp;-Learning-Objectives">
@@ -718,9 +697,9 @@ document.write(`
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
 <span class="n">IN_COLAB</span> <span class="o">=</span> <span class="s2">&quot;google.colab&quot;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span>
 
@@ -730,7 +709,7 @@ document.write(`
 
 <span class="c1"># Install dependencies</span>
 <span class="k">try</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">nnsight</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">nnsight</span>
 <span class="k">except</span><span class="p">:</span>
     <span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="n">openai</span><span class="o">&gt;=</span><span class="mf">1.56.2</span> <span class="n">nnsight</span> <span class="n">einops</span> <span class="n">jaxtyping</span> <span class="n">plotly</span> <span class="n">transformer_lens</span><span class="o">==</span><span class="mf">2.11.0</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">callummcdougall</span><span class="o">/</span><span class="n">CircuitsVis</span><span class="o">.</span><span class="n">git</span><span class="c1">#subdirectory=python gradio typing-extensions</span>
     <span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pydantic</span>
@@ -779,24 +758,24 @@ document.write(`
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
-<span class="kn">import</span> <span class="nn">circuitsvis</span> <span class="k">as</span> <span class="nn">cv</span>
-<span class="kn">import</span> <span class="nn">einops</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">torch</span> <span class="k">as</span> <span class="nn">t</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
-<span class="kn">from</span> <span class="nn">jaxtyping</span> <span class="kn">import</span> <span class="n">Float</span>
-<span class="kn">from</span> <span class="nn">nnsight</span> <span class="kn">import</span> <span class="n">CONFIG</span><span class="p">,</span> <span class="n">LanguageModel</span>
-<span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
-<span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="nb">print</span> <span class="k">as</span> <span class="n">rprint</span>
-<span class="kn">from</span> <span class="nn">rich.table</span> <span class="kn">import</span> <span class="n">Table</span>
-<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">Tensor</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">circuitsvis</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cv</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">einops</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">t</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">jaxtyping</span><span class="w"> </span><span class="kn">import</span> <span class="n">Float</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nnsight</span><span class="w"> </span><span class="kn">import</span> <span class="n">CONFIG</span><span class="p">,</span> <span class="n">LanguageModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rich</span><span class="w"> </span><span class="kn">import</span> <span class="nb">print</span> <span class="k">as</span> <span class="n">rprint</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rich.table</span><span class="w"> </span><span class="kn">import</span> <span class="n">Table</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torch</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tensor</span>
 
 <span class="c1"># Hide some info logging messages from nnsight</span>
 <span class="n">logging</span><span class="o">.</span><span class="n">disable</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">maxsize</span><span class="p">)</span>
@@ -811,9 +790,9 @@ document.write(`
 <span class="n">exercises_dir</span> <span class="o">=</span> <span class="n">root_dir</span> <span class="o">/</span> <span class="n">chapter</span> <span class="o">/</span> <span class="s2">&quot;exercises&quot;</span>
 <span class="n">section_dir</span> <span class="o">=</span> <span class="n">exercises_dir</span> <span class="o">/</span> <span class="n">section</span>
 
-<span class="kn">import</span> <span class="nn">part42_function_vectors_and_model_steering.solutions</span> <span class="k">as</span> <span class="nn">solutions</span>
-<span class="kn">import</span> <span class="nn">part42_function_vectors_and_model_steering.tests</span> <span class="k">as</span> <span class="nn">tests</span>
-<span class="kn">from</span> <span class="nn">plotly_utils</span> <span class="kn">import</span> <span class="n">imshow</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">part42_function_vectors_and_model_steering.solutions</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">solutions</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">part42_function_vectors_and_model_steering.tests</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tests</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">plotly_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">imshow</span>
 
 <span class="n">MAIN</span> <span class="o">=</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span>
 </pre></div>
@@ -840,7 +819,7 @@ document.write(`
 </ol>
 <p>Note that the status page sometimes takes ~5 minutes to load all live models - click the dropdown below to see an example of what the status page should look like once the models have loaded. If you can’t see the model you’re looking for in this list, then you should set <code class="docutils literal notranslate"><span class="pre">REMOTE=False</span></code> for these exercises, or else make a request on the NDIF Discord to get the model live.</p>
 <details><summary><p>Example status page</p>
-</summary><p><img alt="af381b7e8bad40cda9790482e909dc4b" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/ndif-status.png" style="width: 650px;" /></p>
+</summary><p><img alt="d0a1a8250822492eb9bd55b8f3a75dc8" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/ndif-status.png" style="width: 650px;" /></p>
 </details></section>
 <section id="Important-syntax">
 <h2>Important syntax<a class="headerlink" href="#Important-syntax" title="Link to this heading">#</a></h2>
@@ -1060,7 +1039,7 @@ I never could get the hang of Thursdays.
 
 <span class="k">if</span> <span class="n">IN_COLAB</span><span class="p">:</span>
     <span class="c1"># include your HuggingFace Token and NNsight API key on Colab secrets</span>
-    <span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">userdata</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">google.colab</span><span class="w"> </span><span class="kn">import</span> <span class="n">userdata</span>
     <span class="n">NDI</span>  <span class="n">F_API</span> <span class="o">=</span> <span class="n">userdata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;NDIF_API&#39;</span><span class="p">)</span>
     <span class="n">CONFIG</span><span class="o">.</span><span class="n">set_default_api_key</span><span class="p">(</span><span class="n">NDIF_API</span><span class="p">)</span>
 
@@ -1238,7 +1217,7 @@ Informative error message:
 <details><summary><p>Hint - what module you should get attention from</p>
 </summary><p>You want to extract attention from <code class="docutils literal notranslate"><span class="pre">model.transformer.h[0].attn.attn_dropout.input</span></code>. If you used <code class="docutils literal notranslate"><span class="pre">.output</span></code>, it would give you the same values (although they might differ by a dummy batch dimension). Both of these will return a single tensor, because dropout layers take just one input and return just one output.</p>
 </details><details><summary><p>Aside - GPT2 tokenizer uses special characters to represent space</p>
-</summary><p>GPT2 tokenizer uses “Ġ” to represent prepended space. So [“My”, ” name”, ” is”, ” James”] will be tokenized as [“My”, “Ġname”, “Ġis”, “ĠJames”]. Make sure you replace “Ġ” with an actual space.</p>
+</summary><p>GPT2 tokenizer uses “Ġ” to represent prepended space. So [“My”, “ name”, “ is”, “ James”] will be tokenized as [“My”, “Ġname”, “Ġis”, “ĠJames”]. Make sure you replace “Ġ” with an actual space.</p>
 </details><div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -1358,7 +1337,7 @@ Informative error message:
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
-<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_antonym_dataset</span><span class="p">(</span><span class="n">N</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">generate_antonym_dataset</span><span class="p">(</span><span class="n">N</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generates 100 pairs of antonyms, in the form of a list of 2-tuples.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1413,33 +1392,33 @@ Informative error message:
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
-<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ICLSequence</span><span class="p">:</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">ICLSequence</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class to store a single antonym sequence.</span>
 
 <span class="sd">    Uses the default template &quot;Q: {x}\nA: {y}&quot; (with separate pairs split by &quot;\n\n&quot;).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word_pairs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word_pairs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">word_pairs</span> <span class="o">=</span> <span class="n">word_pairs</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">word_pairs</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">word_pairs</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">word_pairs</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">prompt</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">prompt</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the prompt, which contains all but the second element in the last word pair.&quot;&quot;&quot;</span>
         <span class="n">p</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;Q: </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="se">\n</span><span class="s2">A: </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">word_pairs</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">p</span><span class="p">[:</span> <span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">completion</span><span class="p">())]</span>
 
-    <span class="k">def</span> <span class="nf">completion</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">completion</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the second element in the last word pair (with padded space).&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Prints a readable string representation of the prompt &amp; completion (indep of template).&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;(</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s1">)&#39;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="bp">self</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> -&gt;&quot;</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="p">)</span>
 
@@ -1481,7 +1460,7 @@ A:
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
-<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ICLDataset</span><span class="p">:</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">ICLDataset</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Dataset to create antonym pair prompts, in ICL task format. We use random seeds for consistency</span>
 <span class="sd">    between the corrupted and clean datasets.</span>
@@ -1501,7 +1480,7 @@ A:
 <span class="sd">            random seed, for consistency &amp; reproducibility</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">word_pairs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span>
         <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
@@ -1543,7 +1522,7 @@ A:
             <span class="bp">self</span><span class="o">.</span><span class="n">prompts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq</span><span class="o">.</span><span class="n">prompt</span><span class="p">())</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq</span><span class="o">.</span><span class="n">completion</span><span class="p">())</span>
 
-    <span class="k">def</span> <span class="nf">create_corrupted_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_corrupted_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates a corrupted version of the dataset (with same random seed).&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ICLDataset</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">word_pairs</span><span class="p">,</span>
@@ -1554,10 +1533,10 @@ A:
             <span class="n">seed</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">seed</span><span class="p">,</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
 
-    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">seqs</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -1638,14 +1617,14 @@ A:
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rprint</span><span class="p">(</span><span class="s2">&quot;[green]This is green text[/], this is default color&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><img alt="eef44db783f945b38fba4f8c28a8d38a" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/rprint-1.png" style="width: 350px;" /></p>
+<p><img alt="b5b52a28e9af4eadbae501d4f996f41d" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/rprint-1.png" style="width: 350px;" /></p>
 <p>and for making text bold / underlined:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rprint</span><span class="p">(</span><span class="s2">&quot;[u dark_orange]This is underlined[/], and [b cyan]this is bold[/].&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><img alt="ac4a279ba96b48ab87d099ccbf19c82f" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/rprint-2.png" style="width: 350px;" /></p>
+<p><img alt="233ac2f4f0b143c2bac22cf86f7f55e8" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/rprint-2.png" style="width: 350px;" /></p>
 <p>It can also print tables:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rich.table</span> <span class="kn">import</span> <span class="n">Table</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">rich.table</span><span class="w"> </span><span class="kn">import</span> <span class="n">Table</span>
 
 <span class="n">table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="s2">&quot;Col1&quot;</span><span class="p">,</span> <span class="s2">&quot;Col2&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Title&quot;</span><span class="p">)</span> <span class="c1"># title is optional</span>
 <span class="n">table</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
@@ -1654,7 +1633,7 @@ A:
 <span class="n">rprint</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><img alt="133951b0516e41bbbf88259de0d2cec3" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/rprint-3.png" style="width: 150px;" /></p>
+<p><img alt="5bee1789e0f14fdbba8c91bd1c941454" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/rprint-3.png" style="width: 150px;" /></p>
 <p>The text formatting (bold, underlined, colors, etc) is also supported within table cells.</p>
 </details></section>
 <section id="Task-encoding-vector">
@@ -1674,7 +1653,7 @@ A:
 <li><p>Run a forward pass on the model with the dataset prompts (i.e. the <code class="docutils literal notranslate"><span class="pre">.prompts</span></code> attribute), using the <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> syntax we’ve demonstrated previously,</p></li>
 <li><p>Return a tuple of the model’s output (i.e. a list of its string-token completions, one for each prompt in the batch) and the residual stream value at the end of layer <code class="docutils literal notranslate"><span class="pre">layer</span></code> (e.g. if <code class="docutils literal notranslate"><span class="pre">layer</span> <span class="pre">=</span> <span class="pre">-1</span></code>, this means the final value of the residual stream before we convert into logits).</p></li>
 </ul>
-<p><img alt="4107ac30282343ada3708b029d7e2f15" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/h-intervention-1.png" style="width: 900px;" /></p>
+<p><img alt="cdb33bc60af44b26a1abf32958fa7420" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/h-intervention-1.png" style="width: 900px;" /></p>
 <p>You should only return the residual stream values for the very last sequence position in each prompt, i.e. the last <code class="docutils literal notranslate"><span class="pre">-1</span></code> token (where the model makes the antonym prediction), and same for the completions.</p>
 <details><summary><p>Help - I’m not sure how to run (and index into) a batch of inputs.</p>
 </summary><p>If we pass a list of strings to the <code class="docutils literal notranslate"><span class="pre">generator.invoke</span></code> function, this will be tokenized with padding automatically.</p>
@@ -1683,7 +1662,7 @@ A:
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
-<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_h</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">LanguageModel</span><span class="p">,</span> <span class="n">dataset</span><span class="p">:</span> <span class="n">ICLDataset</span><span class="p">,</span> <span class="n">layer</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Tensor</span><span class="p">]:</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calculate_h</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">LanguageModel</span><span class="p">,</span> <span class="n">dataset</span><span class="p">:</span> <span class="n">ICLDataset</span><span class="p">,</span> <span class="n">layer</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Tensor</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Averages over the model&#39;s hidden representations on each of the prompts in `dataset` at layer `layer`, to produce</span>
 <span class="sd">    a single vector `h`.</span>
@@ -1724,7 +1703,7 @@ All tests in `test_calculate_h` passed.
 </pre></div></div>
 </div>
 <details><summary><p>Solution</p>
-</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_h</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">LanguageModel</span><span class="p">,</span> <span class="n">dataset</span><span class="p">:</span> <span class="n">ICLDataset</span><span class="p">,</span> <span class="n">layer</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Tensor</span><span class="p">]:</span>
+</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calculate_h</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">LanguageModel</span><span class="p">,</span> <span class="n">dataset</span><span class="p">:</span> <span class="n">ICLDataset</span><span class="p">,</span> <span class="n">layer</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Tensor</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Averages over the model&#39;s hidden representations on each of the prompts in `dataset` at layer `layer`, to produce</span>
 <span class="sd">    a single vector `h`.</span>
@@ -1759,7 +1738,7 @@ perform the task - but for these exercises, we won’t worry about this.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
-<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">display_model_completions_on_antonyms</span><span class="p">(</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">display_model_completions_on_antonyms</span><span class="p">(</span>
     <span class="n">model</span><span class="p">:</span> <span class="n">LanguageModel</span><span class="p">,</span>
     <span class="n">dataset</span><span class="p">:</span> <span class="n">ICLDataset</span><span class="p">,</span>
     <span class="n">completions</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
@@ -1890,7 +1869,7 @@ vigilant!</p>
 <li><p>Return the completions for no intervention and intervention cases respectively (see docstring).</p></li>
 </ul>
 <p>The diagram below shows how all of this should work, when combined with the <code class="docutils literal notranslate"><span class="pre">calculate_h</span></code> function.</p>
-<p><img alt="475addb9dcb448369d70f2f8c8777c9f" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/h-intervention-2.png" style="width: 950px;" /></p>
+<p><img alt="76a54d6b0a4d4bf5aead56dc659ccf97" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/h-intervention-2.png" style="width: 950px;" /></p>
 <p>Hint - you can use <code class="docutils literal notranslate"><span class="pre">tokenizer.batch_decode</span></code> to turn a list of tokens into a list of strings.</p>
 <details><summary><p>Help - I’m not sure how best to get both the no-intervention and intervention completions.</p>
 </summary><p>You can use <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">tracer.invoke...</span></code> more than once within the same context manager, in order to add to your batch. This will eventually give you output of shape (2*N, seq_len), which can then be indexed and reshaped to get the completions in the no intervention &amp; intervention cases respectively.</p>
@@ -1901,7 +1880,7 @@ vigilant!</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
-<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">intervene_with_h</span><span class="p">(</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">intervene_with_h</span><span class="p">(</span>
     <span class="n">model</span><span class="p">:</span> <span class="n">LanguageModel</span><span class="p">,</span>
     <span class="n">zero_shot_dataset</span><span class="p">:</span> <span class="n">ICLDataset</span><span class="p">,</span>
     <span class="n">h</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>
@@ -1969,7 +1948,7 @@ All tests in `test_intervene_with_h` passed.
 </pre></div></div>
 </div>
 <details><summary><p>Solution</p>
-</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">intervene_with_h</span><span class="p">(</span>
+</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">intervene_with_h</span><span class="p">(</span>
     <span class="n">model</span><span class="p">:</span> <span class="n">LanguageModel</span><span class="p">,</span>
     <span class="n">zero_shot_dataset</span><span class="p">:</span> <span class="n">ICLDataset</span><span class="p">,</span>
     <span class="n">h</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>
@@ -2062,7 +2041,7 @@ Completions with intervention:  [&#39; maximum&#39;, &#39; arrogant&#39;, &#39; 
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
-<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">display_model_completions_on_h_intervention</span><span class="p">(</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">display_model_completions_on_h_intervention</span><span class="p">(</span>
     <span class="n">dataset</span><span class="p">:</span> <span class="n">ICLDataset</span><span class="p">,</span>
     <span class="n">completions</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
     <span class="n">completions_intervention</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
@@ -2141,7 +2120,7 @@ Completions with intervention:  [&#39; maximum&#39;, &#39; arrogant&#39;, &#39; 
 </div></blockquote>
 <p>One great feature of the <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> library is its ability to parallelize forward passes and perform complex interventions within a single context manager.</p>
 <p>In the code above, we had one function to extract the hidden states from the model, and another function where we intervened with those hidden states. But we can actually do both at once: we can compute <span class="math notranslate nohighlight">\(h\)</span> within our forward pass, and then intervene with it on a different forward pass (using our zero-shot prompts), all within the same <code class="docutils literal notranslate"><span class="pre">model.trace</span></code> context manager. In other words, <strong>we’ll be using ``with tracer.invoke…`` three times</strong> in this context manager.</p>
-<p><img alt="a9874bf0e70b4d75ab77188d053945f8" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/h-intervention-3.png" style="width: 1000px;" /></p>
+<p><img alt="443069e861544911ad74ee2458f9b96a" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/h-intervention-3.png" style="width: 1000px;" /></p>
 <p>You should fill in the <code class="docutils literal notranslate"><span class="pre">calculate_h_and_intervene</span></code> function below, to do this. Mostly, this should involve combining your <code class="docutils literal notranslate"><span class="pre">calculate_h</span></code> and <code class="docutils literal notranslate"><span class="pre">intervene_with_h</span></code> functions, and wrapping the forward passes in the same context manager (plus a bit of code rewriting).</p>
 <p>Your output should be exactly the same as before (since the <code class="docutils literal notranslate"><span class="pre">ICLDataset</span></code> class is deterministic), hence we’ve not provided test functions in this case - you can just compare the table you get to the one before! However, this time around your code should run twice as fast, because you’re batching the operations of “compute <span class="math notranslate nohighlight">\(h\)</span>” and “intervene with <span class="math notranslate nohighlight">\(h\)</span>” together into a single forward pass.</p>
 <details><summary><p>Help - I’m not sure how to use the h vector inside the context manager.</p>
@@ -2154,7 +2133,7 @@ Completions with intervention:  [&#39; maximum&#39;, &#39; arrogant&#39;, &#39; 
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
 </pre></div>
 </div>
-<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_h_and_intervene</span><span class="p">(</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calculate_h_and_intervene</span><span class="p">(</span>
     <span class="n">model</span><span class="p">:</span> <span class="n">LanguageModel</span><span class="p">,</span>
     <span class="n">dataset</span><span class="p">:</span> <span class="n">ICLDataset</span><span class="p">,</span>
     <span class="n">zero_shot_dataset</span><span class="p">:</span> <span class="n">ICLDataset</span><span class="p">,</span>
@@ -2233,7 +2212,7 @@ Completions with intervention:  [&#39; maximum&#39;, &#39; arrogant&#39;, &#39; 
 </pre></div>
 </div>
 <details><summary><p>Solution</p>
-</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_h_and_intervene</span><span class="p">(</span>
+</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calculate_h_and_intervene</span><span class="p">(</span>
     <span class="n">model</span><span class="p">:</span> <span class="n">LanguageModel</span><span class="p">,</span>
     <span class="n">dataset</span><span class="p">:</span> <span class="n">ICLDataset</span><span class="p">,</span>
     <span class="n">zero_shot_dataset</span><span class="p">:</span> <span class="n">ICLDataset</span><span class="p">,</span>
@@ -2297,7 +2276,7 @@ Completions with intervention:  [&#39; maximum&#39;, &#39; arrogant&#39;, &#39; 
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
 </pre></div>
 </div>
-<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_h_and_intervene_logprobs</span><span class="p">(</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calculate_h_and_intervene_logprobs</span><span class="p">(</span>
     <span class="n">model</span><span class="p">:</span> <span class="n">LanguageModel</span><span class="p">,</span>
     <span class="n">dataset</span><span class="p">:</span> <span class="n">ICLDataset</span><span class="p">,</span>
     <span class="n">zero_shot_dataset</span><span class="p">:</span> <span class="n">ICLDataset</span><span class="p">,</span>
@@ -2328,7 +2307,7 @@ Completions with intervention:  [&#39; maximum&#39;, &#39; arrogant&#39;, &#39; 
 </div>
 </div>
 <details><summary><p>Solution</p>
-</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_h_and_intervene_logprobs</span><span class="p">(</span>
+</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calculate_h_and_intervene_logprobs</span><span class="p">(</span>
     <span class="n">model</span><span class="p">:</span> <span class="n">LanguageModel</span><span class="p">,</span>
     <span class="n">dataset</span><span class="p">:</span> <span class="n">ICLDataset</span><span class="p">,</span>
     <span class="n">zero_shot_dataset</span><span class="p">:</span> <span class="n">ICLDataset</span><span class="p">,</span>
@@ -2380,7 +2359,7 @@ Completions with intervention:  [&#39; maximum&#39;, &#39; arrogant&#39;, &#39; 
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
 </pre></div>
 </div>
-<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">display_model_logprobs_on_h_intervention</span><span class="p">(</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">display_model_logprobs_on_h_intervention</span><span class="p">(</span>
     <span class="n">dataset</span><span class="p">:</span> <span class="n">ICLDataset</span><span class="p">,</span>
     <span class="n">correct_logprobs_zero_shot</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
     <span class="n">correct_logprobs_intervention</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
@@ -2483,7 +2462,7 @@ Completions with intervention:  [&#39; maximum&#39;, &#39; arrogant&#39;, &#39; 
 <section id="A-note-on-out_proj">
 <h3>A note on <code class="docutils literal notranslate"><span class="pre">out_proj</span></code><a class="headerlink" href="#A-note-on-out_proj" title="Link to this heading">#</a></h3>
 <p>First, a bit of a technical complication. Most HuggingFace models don’t have the nice attention head representations. What we have is the linear layer <code class="docutils literal notranslate"><span class="pre">out_proj</span></code> which implicitly combines the “projection per attention head” and the “sum over attention head” operations (if you can’t see how this is possible, see the section “Attention Heads are Independent and Additive” from Anthropic’s <a class="reference external" href="https://transformer-circuits.pub/2021/framework/index.html">Mathematical Framework</a>).</p>
-<p><img alt="816d172a36134d73b4620c46a3ad7389" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/rearrange-output-2.png" style="width: 950px;" /></p>
+<p><img alt="be35ecef6202497f99bd45a1b37a2359" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/rearrange-output-2.png" style="width: 950px;" /></p>
 <p>This presents some question for us, when it comes to causal interventions on attention heads. Use the dropdowns below to read them answer these questions (they’ll be important for the coming exercises).</p>
 <details><summary><p>If we want to do a causal intervention on a particular head, should we intervene on z (the input of out_proj) or on attn_output (the output of out_proj) ?</p>
 </summary><p>We should intervene on <code class="docutils literal notranslate"><span class="pre">z</span></code>, because we can just rearrange the <code class="docutils literal notranslate"><span class="pre">z</span></code> tensor of shape <code class="docutils literal notranslate"><span class="pre">(batch,</span> <span class="pre">seq,</span> <span class="pre">d_model)</span></code> into <code class="docutils literal notranslate"><span class="pre">(batch,</span> <span class="pre">seq,</span> <span class="pre">n_heads,</span> <span class="pre">d_head)</span></code>, in other words separating out all the heads. On the other hand, we can’t do this with the <code class="docutils literal notranslate"><span class="pre">attn_output</span></code> because it’s <em>already</em> summed over heads and we can’t separate them out.</p>
@@ -2509,7 +2488,7 @@ Completions with intervention:  [&#39; maximum&#39;, &#39; arrogant&#39;, &#39; 
 </pre></div>
 </div>
 <p>Illustration:</p>
-<p><img alt="fd97ada7b43f4205baf1580e4edc2685" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/rearrange-output-ablated-2.png" style="width: 950px;" /></p>
+<p><img alt="2a8a4e7524ba46febcc45e031d9476db" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/rearrange-output-ablated-2.png" style="width: 950px;" /></p>
 <p>Note - this would actually fail if <code class="docutils literal notranslate"><span class="pre">out_proj</span></code> had a bias, because we want to just get an attention head’s output, not the bias term as well. But if you look at the <a class="reference external" href="https://huggingface.co/transformers/v4.11.3/_modules/transformers/models/gptj/modeling_gptj.html">documentation page</a> you’ll see that <code class="docutils literal notranslate"><span class="pre">out_proj</span></code> doesn’t have a bias term, so we’re all good!</p>
 </details></section>
 <section id="Exercise---implement-calculate_fn_vectors_and_intervene">
@@ -2535,7 +2514,7 @@ Completions with intervention:  [&#39; maximum&#39;, &#39; arrogant&#39;, &#39; 
 </ul>
 </li>
 </ul>
-<p><img alt="b414db19b957475b9349baacc162fff8" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/cie-intervention.png" style="width: 1200px;" /></p>
+<p><img alt="3212a5331a3f44408c3401740cea1223" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/cie-intervention.png" style="width: 1200px;" /></p>
 <p>Before you actually start writing the code, it might be helpful to answer the following:</p>
 <details><summary><p>How many different invoke calls will you need in total?</p>
 </summary><p>You’ll need <code class="docutils literal notranslate"><span class="pre">(N_LAYERS</span> <span class="pre">*</span> <span class="pre">N_HEADS)</span> <span class="pre">+</span> <span class="pre">2</span></code>. To explain:</p>
@@ -2563,7 +2542,7 @@ Completions with intervention:  [&#39; maximum&#39;, &#39; arrogant&#39;, &#39; 
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
 </pre></div>
 </div>
-<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_fn_vectors_and_intervene</span><span class="p">(</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calculate_fn_vectors_and_intervene</span><span class="p">(</span>
     <span class="n">model</span><span class="p">:</span> <span class="n">LanguageModel</span><span class="p">,</span>
     <span class="n">dataset</span><span class="p">:</span> <span class="n">ICLDataset</span><span class="p">,</span>
     <span class="n">layers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -2585,7 +2564,7 @@ Completions with intervention:  [&#39; maximum&#39;, &#39; arrogant&#39;, &#39; 
 </div>
 </div>
 <details><summary><p>Solution</p>
-</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_fn_vectors_and_intervene</span><span class="p">(</span>
+</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calculate_fn_vectors_and_intervene</span><span class="p">(</span>
     <span class="n">model</span><span class="p">:</span> <span class="n">LanguageModel</span><span class="p">,</span>
     <span class="n">dataset</span><span class="p">:</span> <span class="n">ICLDataset</span><span class="p">,</span>
     <span class="n">layers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -2665,7 +2644,7 @@ Completions with intervention:  [&#39; maximum&#39;, &#39; arrogant&#39;, &#39; 
 <div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">ICLDataset</span><span class="p">(</span><span class="n">ANTONYM_PAIRS</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">n_prepended</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">batch_process_layers</span><span class="p">(</span><span class="n">n_layers</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">batch_process_layers</span><span class="p">(</span><span class="n">n_layers</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_layers</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
         <span class="k">yield</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_layers</span><span class="p">)[</span><span class="n">i</span> <span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="n">batch_size</span><span class="p">]</span>
 
@@ -2869,7 +2848,7 @@ if (outputEl) {{
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
 </pre></div>
 </div>
-<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_fn_vector</span><span class="p">(</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calculate_fn_vector</span><span class="p">(</span>
     <span class="n">model</span><span class="p">:</span> <span class="n">LanguageModel</span><span class="p">,</span>
     <span class="n">dataset</span><span class="p">:</span> <span class="n">ICLDataset</span><span class="p">,</span>
     <span class="n">head_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>
@@ -2934,7 +2913,7 @@ All tests in `test_calculate_fn_vector` passed.
 </pre></div></div>
 </div>
 <details><summary><p>Solution</p>
-</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_fn_vector</span><span class="p">(</span>
+</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calculate_fn_vector</span><span class="p">(</span>
     <span class="n">model</span><span class="p">:</span> <span class="n">LanguageModel</span><span class="p">,</span>
     <span class="n">dataset</span><span class="p">:</span> <span class="n">ICLDataset</span><span class="p">,</span>
     <span class="n">head_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>
@@ -2991,7 +2970,7 @@ All tests in `test_calculate_fn_vector` passed.
 <section id="Multi-token-generation">
 <h2>Multi-token generation<a class="headerlink" href="#Multi-token-generation" title="Link to this heading">#</a></h2>
 <p>We’re now going to replicate some of the results in Table 3, in the paper:</p>
-<p><img alt="b7f586cc690048129e001d7188018a3e" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/tab3.png" style="width: 700px;" /></p>
+<p><img alt="ab3c24a938a24eadba5dd8e34f8db69d" class="no-scaled-link" src="https://raw.githubusercontent.com/info-arena/ARENA_img/main/misc/tab3.png" style="width: 700px;" /></p>
 <p>This will involve doing something we haven’t done before - <strong>intervening on multi-token prompt generation</strong>.</p>
 <p>Most of the interpretability exercises in this chapter have just consisted of running single forward passes, rather than autoregressive text generation. But we’re trying something different here: we’re adding the function vector to the final sequence position at each forward pass during text generation, and seeing if we can get the model to output a sentence with a different meaning.</p>
 <p>The results of Table 3 came from adding the function vector to the residual stream at the final sequence position of the original prompt, <strong>and the final sequence position for each subsequent generation.</strong> The reason we do this is to guide the model’s behaviour over time. Our hypothesis is that the function vector induces “next-token antonym behaviour” (because it was calculated by averaging attention head outputs at the sequence position before the model made its antonym prediction in the ICL
@@ -3120,7 +3099,7 @@ intervened on a sequence position which is no longer the final sequence position
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
 </pre></div>
 </div>
-<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">intervene_with_fn_vector</span><span class="p">(</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">intervene_with_fn_vector</span><span class="p">(</span>
     <span class="n">model</span><span class="p">:</span> <span class="n">LanguageModel</span><span class="p">,</span>
     <span class="n">word</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">layer</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
@@ -3156,7 +3135,7 @@ intervened on a sequence position which is no longer the final sequence position
 </div>
 </div>
 <details><summary><p>Solution</p>
-</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">intervene_with_fn_vector</span><span class="p">(</span>
+</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">intervene_with_fn_vector</span><span class="p">(</span>
     <span class="n">model</span><span class="p">:</span> <span class="n">LanguageModel</span><span class="p">,</span>
     <span class="n">word</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">layer</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
@@ -3472,7 +3451,7 @@ penalty to repeated tokens).</p>
 <span class="p">}</span>
 
 
-<span class="k">def</span> <span class="nf">calculate_and_apply_steering_vector</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calculate_and_apply_steering_vector</span><span class="p">(</span>
     <span class="n">model</span><span class="p">:</span> <span class="n">LanguageModel</span><span class="p">,</span>
     <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">activation_additions</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">]],</span>
@@ -3527,7 +3506,7 @@ penalty to repeated tokens).</p>
 <span class="p">}</span>
 
 
-<span class="k">def</span> <span class="nf">calculate_and_apply_steering_vector</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calculate_and_apply_steering_vector</span><span class="p">(</span>
     <span class="n">model</span><span class="p">:</span> <span class="n">LanguageModel</span><span class="p">,</span>
     <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">activation_additions</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">]],</span>
@@ -3912,7 +3891,8 @@ guarantee of safety.</em></p>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -4029,8 +4009,8 @@ guarantee of safety.</em></p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -4055,7 +4035,8 @@ guarantee of safety.</em></p>
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>
