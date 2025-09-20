@@ -14,6 +14,17 @@ nnsight.modeling
 .. automodule:: nnsight.modeling.vllm.vllm
    :members:
 
-.. automodule:: nnsight.modeling.vllm.sampling
+.. automodule:: nnsight.modeling.mixins
    :members:
+
+.. automodule:: nnsight.modeling.mixins.loadable
+   :members:
+
+.. automodule:: nnsight.modeling.mixins.meta
+   :members:
+
+.. automodule:: nnsight.modeling.mixins.remoteable
+   :members:
+
+
 

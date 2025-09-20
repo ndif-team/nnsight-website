@@ -54,7 +54,8 @@
       "cell_type": "markdown",
       "metadata": {},
       "source": [
-        "📗 Prefer to use Colab? Follow the tutorial [here](https://colab.research.google.com/drive/1F7L-6H7zgsdjguO2OD2br1PhgAprirpx)!"
+        "<br>\n",
+        "📗 Prefer to use Colab? Follow the tutorial [here](https://colab.research.google.com/github/ndif-team/nnsight-docs/blob/mini-papers/source/notebooks/mini-papers/huang_demystifying_memorization.ipynb)!"
       ]
     },
     {
@@ -89,13 +90,13 @@
         "from IPython.display import clear_output\n",
         "\n",
         "try:\n",
-        "  import google.colab\n",
-        "  is_colab = True\n",
+        "    import google.colab\n",
+        "    is_colab = True\n",
         "except ImportError:\n",
-        "  is_colab = False\n",
+        "    is_colab = False\n",
         "\n",
         "if is_colab:\n",
-        "  !pip install nnsight==0.5.0.dev\n",
+        "    !pip install nnsight\n",
         "\n",
         "clear_output()"
       ]
@@ -262,9 +263,9 @@
         "\n",
         "random_activations = []\n",
         "with torch.no_grad():\n",
-        "  with model.trace(random) as trace:\n",
-        "    for layer in model.gpt_neox.layers:\n",
-        "      random_activations.append(layer.output[0].save())\n",
+        "    with model.trace(random) as trace:\n",
+        "        for layer in model.gpt_neox.layers:\n",
+        "            random_activations.append(layer.output[0].save())\n",
         "\n",
         "random_activations[0].shape"
       ]

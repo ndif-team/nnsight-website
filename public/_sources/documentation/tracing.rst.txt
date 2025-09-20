@@ -1,41 +1,29 @@
-nnsight.tracing
+nnsight.intervention.tracing
 ---------------
 
-.. automodule:: nnsight.tracing
+.. automodule:: nnsight.intervention.tracing
    :members:
 
-.. automodule:: nnsight.tracing.graph.graph
+.. automodule:: nnsight.intervention.tracing.base
    :members:
 
-.. automodule:: nnsight.tracing.graph.node
+.. automodule:: nnsight.intervention.tracing.tracer
    :members:
 
-.. automodule:: nnsight.tracing.graph.proxy
+.. automodule:: nnsight.intervention.tracing.invoker
    :members:
 
-.. automodule:: nnsight.tracing.protocols.base
+.. automodule:: nnsight.intervention.tracing.util
    :members:
 
-.. automodule:: nnsight.tracing.protocols.lock
+.. automodule:: nnsight.intervention.tracing.backwards
    :members:
 
-.. automodule:: nnsight.tracing.protocols.stop
+.. automodule:: nnsight.intervention.tracing.editing
    :members:
 
-.. automodule:: nnsight.tracing.protocols.variable
+.. automodule:: nnsight.intervention.tracing.iterator
    :members:
 
-.. automodule:: nnsight.tracing.contexts.base
-   :members:
-
-.. automodule:: nnsight.tracing.contexts.conditional
-   :members:
-
-.. automodule:: nnsight.tracing.contexts.globals
-   :members:
-
-.. automodule:: nnsight.tracing.contexts.iterator
-   :members:
-
-.. automodule:: nnsight.tracing.contexts.tracer
+.. automodule:: nnsight.intervention.tracing.globals
    :members:

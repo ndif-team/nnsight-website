@@ -54,14 +54,14 @@
     <link rel="author" title="About these documents" href="../../about/" />
     <link rel="index" title="Index" href="../../genindex/" />
     <link rel="search" title="Search" href="../../search/" />
-    <link rel="next" title="nnsight.schema" href="../schema/" />
-    <link rel="prev" title="nnsight.tracing" href="../tracing/" />
+    <link rel="next" title="nnsight.intervention.backends" href="../backends/" />
+    <link rel="prev" title="nnsight.intervention.tracing" href="../tracing/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
-<link href="../../_static/css/custom.css?v=1756320119" rel="stylesheet" type="text/css" />
-<link href="../../_static/css/home.css?v=1756320119" rel="stylesheet" type="text/css" />
+<link href="../../_static/css/custom.css?v=1758332055" rel="stylesheet" type="text/css" />
+<link href="../../_static/css/home.css?v=1758332055" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -309,6 +309,10 @@
   
 
   
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
 </div>
 
     </header>
@@ -487,9 +491,11 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../envoy/">Envoy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modeling/">nnsight.modeling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tracing/">nnsight.tracing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tracing/">nnsight.intervention.tracing</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">nnsight.intervention</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backends/">nnsight.intervention.backends</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../schema/">nnsight.schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../util/">nnsight.util</a></li>
 </ul>
@@ -552,8 +558,350 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="nnsight-intervention">
-<h1>nnsight.intervention<a class="headerlink" href="#nnsight-intervention" title="Link to this heading">#</a></h1>
+  <section id="module-nnsight.intervention">
+<span id="nnsight-intervention"></span><h1>nnsight.intervention<a class="headerlink" href="#module-nnsight.intervention" title="Link to this heading">#</a></h1>
+<dl class="py exception" id="module-nnsight.intervention.interleaver">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Cancelation">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.intervention.interleaver.</span></span><span class="sig-name descname"><span class="pre">Cancelation</span></span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#Cancelation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.Cancelation" title="Link to this definition">#</a></dt>
+<dd><p>Exception raised when a request is canceled.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.EarlyStopException">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.intervention.interleaver.</span></span><span class="sig-name descname"><span class="pre">EarlyStopException</span></span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#EarlyStopException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.EarlyStopException" title="Link to this definition">#</a></dt>
+<dd><p>Exception raised to stop the execution of the model.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Events">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.intervention.interleaver.</span></span><span class="sig-name descname"><span class="pre">Events</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#Events"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.Events" title="Link to this definition">#</a></dt>
+<dd><p>Enum for different types of events in the interleaving process.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Interleaver">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.intervention.interleaver.</span></span><span class="sig-name descname"><span class="pre">Interleaver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invokers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#nnsight.intervention.interleaver.Mediator" title="nnsight.intervention.interleaver.Mediator"><span class="pre">Mediator</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tracer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../tracing/#nnsight.intervention.tracing.tracer.InterleavingTracer" title="nnsight.intervention.tracing.tracer.InterleavingTracer"><span class="pre">InterleavingTracer</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batcher</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Batcher</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_cache</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../tracing/#nnsight.intervention.tracing.tracer.Cache" title="nnsight.intervention.tracing.tracer.Cache"><span class="pre">Cache</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#Interleaver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.Interleaver" title="Link to this definition">#</a></dt>
+<dd><p>Manages the interleaving of model execution and interventions.</p>
+<p>This class coordinates the flow between the model’s forward pass and
+user-defined intervention functions, allowing for inspection and
+modification of intermediate values.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Interleaver.cancel">
+<span class="sig-name descname"><span class="pre">cancel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#Interleaver.cancel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.Interleaver.cancel" title="Link to this definition">#</a></dt>
+<dd><p>Cancel all intervention threads.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Interleaver.check_cache_full">
+<span class="sig-name descname"><span class="pre">check_cache_full</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#Interleaver.check_cache_full"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.Interleaver.check_cache_full" title="Link to this definition">#</a></dt>
+<dd><p>Print a warning if a module to be cached was missed.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Interleaver.current">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">current</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#nnsight.intervention.interleaver.Mediator" title="nnsight.intervention.interleaver.Mediator"><span class="pre">Mediator</span></a></em><a class="headerlink" href="#nnsight.intervention.interleaver.Interleaver.current" title="Link to this definition">#</a></dt>
+<dd><p>Get the current mediator.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Interleaver.handle">
+<span class="sig-name descname"><span class="pre">handle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">provider</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#Interleaver.handle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.Interleaver.handle" title="Link to this definition">#</a></dt>
+<dd><p>Handle a provider’s value, allowing mediators to consume and modify it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>provider</strong> – The identifier of the provider</p></li>
+<li><p><strong>value</strong> – The value being provided</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The original or modified value</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Interleaver.wrap_operation">
+<span class="sig-name descname"><span class="pre">wrap_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound_obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#Interleaver.wrap_operation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.Interleaver.wrap_operation" title="Link to this definition">#</a></dt>
+<dd><p>Wrap an operation to intercept inputs and outputs for intervention.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fn</strong> – The function to wrap</p></li>
+<li><p><strong>name</strong> – The name of the operation</p></li>
+<li><p><strong>bound_obj</strong> – The object fn is bound to if it is a method</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A wrapped version of the function</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Mediator">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.intervention.interleaver.</span></span><span class="sig-name descname"><span class="pre">Mediator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">intervention</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../tracing/#nnsight.intervention.tracing.base.Tracer.Info" title="nnsight.intervention.tracing.base.Tracer.Info"><span class="pre">Tracer.Info</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#Mediator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.Mediator" title="Link to this definition">#</a></dt>
+<dd><p>Mediates between the model execution and intervention functions.</p>
+<p>This class handles the communication between the model’s forward pass and
+user-defined intervention functions, allowing for inspection and
+modification of intermediate values.</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Mediator.OutOfOrderError">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">OutOfOrderError</span></span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#Mediator.OutOfOrderError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.Mediator.OutOfOrderError" title="Link to this definition">#</a></dt>
+<dd><p>Exception raised when interventions are defined out of order.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Mediator.cancel">
+<span class="sig-name descname"><span class="pre">cancel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#Mediator.cancel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.Mediator.cancel" title="Link to this definition">#</a></dt>
+<dd><p>Cancel the intervention thread and clear caches.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Mediator.end">
+<span class="sig-name descname"><span class="pre">end</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#Mediator.end"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.Mediator.end" title="Link to this definition">#</a></dt>
+<dd><p>Signal that execution should continue without further intervention.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Mediator.exception">
+<span class="sig-name descname"><span class="pre">exception</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exception</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Exception</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#Mediator.exception"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.Mediator.exception" title="Link to this definition">#</a></dt>
+<dd><p>Signal that an exception occurred during intervention.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>exception</strong> – The exception that occurred</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Mediator.frame">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">frame</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">FrameType</span></em><a class="headerlink" href="#nnsight.intervention.interleaver.Mediator.frame" title="Link to this definition">#</a></dt>
+<dd><p>Get the frame of the intervention function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The frame of the intervention function</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Mediator.handle">
+<span class="sig-name descname"><span class="pre">handle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">provider</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#Mediator.handle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.Mediator.handle" title="Link to this definition">#</a></dt>
+<dd><p>Handle events in the event queue and process provider values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>provider</strong> – The identifier of the provider</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The original or modified value</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Mediator.handle_barrier_event">
+<span class="sig-name descname"><span class="pre">handle_barrier_event</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">provider</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">participants</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#Mediator.handle_barrier_event"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.Mediator.handle_barrier_event" title="Link to this definition">#</a></dt>
+<dd><p>Handle a barrier event by setting a barrier.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Mediator.handle_end_event">
+<span class="sig-name descname"><span class="pre">handle_end_event</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#Mediator.handle_end_event"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.Mediator.handle_end_event" title="Link to this definition">#</a></dt>
+<dd><p>Handle an end event by stopping the mediator.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Mediator.handle_exception_event">
+<span class="sig-name descname"><span class="pre">handle_exception_event</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exception</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Exception</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#Mediator.handle_exception_event"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.Mediator.handle_exception_event" title="Link to this definition">#</a></dt>
+<dd><p>Handle an exception event by raising the exception.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>exception</strong> – The exception to raise</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Boolean indicating whether to continue processing events</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Mediator.handle_swap_event">
+<span class="sig-name descname"><span class="pre">handle_swap_event</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">provider</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">requester</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">swap_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#Mediator.handle_swap_event"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.Mediator.handle_swap_event" title="Link to this definition">#</a></dt>
+<dd><p>Handle a swap event by swapping the value if the provider matches the requester.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>requester</strong> – The identifier of the requester</p></li>
+<li><p><strong>provider</strong> – The identifier of the provider</p></li>
+<li><p><strong>swap_value</strong> – The value to swap in</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Boolean indicating whether to continue processing events</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Mediator.handle_value_event">
+<span class="sig-name descname"><span class="pre">handle_value_event</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">requester</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">provider</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#Mediator.handle_value_event"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.Mediator.handle_value_event" title="Link to this definition">#</a></dt>
+<dd><p>Handle a value event by providing the requested value or recording a missed provider.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>requester</strong> – The identifier of the requester</p></li>
+<li><p><strong>provider</strong> – The identifier of the provider</p></li>
+<li><p><strong>value</strong> – The value being provided</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Boolean indicating whether to continue processing events</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Mediator.iter">
+<span class="sig-name descname"><span class="pre">iter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mediator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.intervention.interleaver.Mediator" title="nnsight.intervention.interleaver.Mediator"><span class="pre">Mediator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">iteration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">slice</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#Mediator.iter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.Mediator.iter" title="Link to this definition">#</a></dt>
+<dd><p>Iterate a mediator a specified number of times.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mediator</strong> – The mediator to iterate</p></li>
+<li><p><strong>iteration</strong> – The number of iterations</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Mediator.pull">
+<span class="sig-name descname"><span class="pre">pull</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#Mediator.pull"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.Mediator.pull" title="Link to this definition">#</a></dt>
+<dd><p>Pull variables from the interleaver state to the frame globals.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Mediator.push">
+<span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#Mediator.push"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.Mediator.push" title="Link to this definition">#</a></dt>
+<dd><p>Push local variables to the interleaver state.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Mediator.request">
+<span class="sig-name descname"><span class="pre">request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">requester</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#Mediator.request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.Mediator.request" title="Link to this definition">#</a></dt>
+<dd><p>Request a value from a specific provider.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>requester</strong> – The identifier of the provider to request a value from</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The requested value</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Mediator.respond">
+<span class="sig-name descname"><span class="pre">respond</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#Mediator.respond"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.Mediator.respond" title="Link to this definition">#</a></dt>
+<dd><p>Set the value for a pending value request.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – The value to provide</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Mediator.send">
+<span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.intervention.interleaver.Events" title="nnsight.intervention.interleaver.Events"><span class="pre">Events</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">requester</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#Mediator.send"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.Mediator.send" title="Link to this definition">#</a></dt>
+<dd><p>Send an event to the event queue and wait for a response.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>event</strong> – The event to send</p></li>
+<li><p><strong>requester</strong> – The identifier of the requester</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The response from the provider</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Mediator.set_user_cache">
+<span class="sig-name descname"><span class="pre">set_user_cache</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../tracing/#nnsight.intervention.tracing.tracer.Cache" title="nnsight.intervention.tracing.tracer.Cache"><span class="pre">Cache</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#Mediator.set_user_cache"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.Mediator.set_user_cache" title="Link to this definition">#</a></dt>
+<dd><p>Set the user cache for this mediator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cache</strong> – The cache to set</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Mediator.start">
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interleaver</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nnsight.intervention.interleaver.Interleaver" title="nnsight.intervention.interleaver.Interleaver"><span class="pre">Interleaver</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#Mediator.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.Mediator.start" title="Link to this definition">#</a></dt>
+<dd><p>Start the mediator’s intervention thread.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>interleaver</strong> – The interleaver managing this mediator</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Mediator.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#Mediator.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.Mediator.stop" title="Link to this definition">#</a></dt>
+<dd><p>Stop the execution of the model by raising an EarlyStopException.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Mediator.swap">
+<span class="sig-name descname"><span class="pre">swap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">requester</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#Mediator.swap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.Mediator.swap" title="Link to this definition">#</a></dt>
+<dd><p>Set a value to swap during execution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>requester</strong> – The identifier of the requester</p></li>
+<li><p><strong>value</strong> – The value to swap in</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.Mediator.wait">
+<span class="sig-name descname"><span class="pre">wait</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#Mediator.wait"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.Mediator.wait" title="Link to this definition">#</a></dt>
+<dd><p>Wait for the next event to be set in the event queue.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="nnsight.intervention.interleaver.SkipException">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.intervention.interleaver.</span></span><span class="sig-name descname"><span class="pre">SkipException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/interleaver/#SkipException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.interleaver.SkipException" title="Link to this definition">#</a></dt>
+<dd><p>Exception raised to skip the execution of the model.</p>
+</dd></dl>
+
+<dl class="py class" id="module-nnsight.intervention.serialization">
+<span id="module-nnsight.intervention.batching"></span><dt class="sig sig-object py" id="nnsight.intervention.serialization.CustomCloudPickler">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.intervention.serialization.</span></span><span class="sig-name descname"><span class="pre">CustomCloudPickler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">protocol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/serialization/#CustomCloudPickler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.serialization.CustomCloudPickler" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nnsight.intervention.serialization.CustomCloudUnpickler">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.intervention.serialization.</span></span><span class="sig-name descname"><span class="pre">CustomCloudUnpickler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../envoy/#nnsight.intervention.envoy.Envoy" title="nnsight.intervention.envoy.Envoy"><span class="pre">Envoy</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FrameType</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/serialization/#CustomCloudUnpickler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.serialization.CustomCloudUnpickler" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class" id="module-nnsight.intervention.inject">
+<dt class="sig sig-object py" id="nnsight.intervention.inject.FunctionCallWrapper">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nnsight.intervention.inject.</span></span><span class="sig-name descname"><span class="pre">FunctionCallWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/nnsight/intervention/inject/#FunctionCallWrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nnsight.intervention.inject.FunctionCallWrapper" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
 </section>
 
 
@@ -566,6 +914,63 @@
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Cancelation"><code class="docutils literal notranslate"><span class="pre">Cancelation</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.EarlyStopException"><code class="docutils literal notranslate"><span class="pre">EarlyStopException</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Events"><code class="docutils literal notranslate"><span class="pre">Events</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Interleaver"><code class="docutils literal notranslate"><span class="pre">Interleaver</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Interleaver.cancel"><code class="docutils literal notranslate"><span class="pre">Interleaver.cancel()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Interleaver.check_cache_full"><code class="docutils literal notranslate"><span class="pre">Interleaver.check_cache_full()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Interleaver.current"><code class="docutils literal notranslate"><span class="pre">Interleaver.current</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Interleaver.handle"><code class="docutils literal notranslate"><span class="pre">Interleaver.handle()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Interleaver.wrap_operation"><code class="docutils literal notranslate"><span class="pre">Interleaver.wrap_operation()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Mediator"><code class="docutils literal notranslate"><span class="pre">Mediator</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Mediator.OutOfOrderError"><code class="docutils literal notranslate"><span class="pre">Mediator.OutOfOrderError</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Mediator.cancel"><code class="docutils literal notranslate"><span class="pre">Mediator.cancel()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Mediator.end"><code class="docutils literal notranslate"><span class="pre">Mediator.end()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Mediator.exception"><code class="docutils literal notranslate"><span class="pre">Mediator.exception()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Mediator.frame"><code class="docutils literal notranslate"><span class="pre">Mediator.frame</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Mediator.handle"><code class="docutils literal notranslate"><span class="pre">Mediator.handle()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Mediator.handle_barrier_event"><code class="docutils literal notranslate"><span class="pre">Mediator.handle_barrier_event()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Mediator.handle_end_event"><code class="docutils literal notranslate"><span class="pre">Mediator.handle_end_event()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Mediator.handle_exception_event"><code class="docutils literal notranslate"><span class="pre">Mediator.handle_exception_event()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Mediator.handle_swap_event"><code class="docutils literal notranslate"><span class="pre">Mediator.handle_swap_event()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Mediator.handle_value_event"><code class="docutils literal notranslate"><span class="pre">Mediator.handle_value_event()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Mediator.iter"><code class="docutils literal notranslate"><span class="pre">Mediator.iter()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Mediator.pull"><code class="docutils literal notranslate"><span class="pre">Mediator.pull()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Mediator.push"><code class="docutils literal notranslate"><span class="pre">Mediator.push()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Mediator.request"><code class="docutils literal notranslate"><span class="pre">Mediator.request()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Mediator.respond"><code class="docutils literal notranslate"><span class="pre">Mediator.respond()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Mediator.send"><code class="docutils literal notranslate"><span class="pre">Mediator.send()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Mediator.set_user_cache"><code class="docutils literal notranslate"><span class="pre">Mediator.set_user_cache()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Mediator.start"><code class="docutils literal notranslate"><span class="pre">Mediator.start()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Mediator.stop"><code class="docutils literal notranslate"><span class="pre">Mediator.stop()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Mediator.swap"><code class="docutils literal notranslate"><span class="pre">Mediator.swap()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.Mediator.wait"><code class="docutils literal notranslate"><span class="pre">Mediator.wait()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.interleaver.SkipException"><code class="docutils literal notranslate"><span class="pre">SkipException</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.serialization.CustomCloudPickler"><code class="docutils literal notranslate"><span class="pre">CustomCloudPickler</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.serialization.CustomCloudUnpickler"><code class="docutils literal notranslate"><span class="pre">CustomCloudUnpickler</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.intervention.inject.FunctionCallWrapper"><code class="docutils literal notranslate"><span class="pre">FunctionCallWrapper</span></code></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

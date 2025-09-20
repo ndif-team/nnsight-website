@@ -61,8 +61,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
-<link href="../../../_static/css/custom.css?v=1756320119" rel="stylesheet" type="text/css" />
-<link href="../../../_static/css/home.css?v=1756320119" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/custom.css?v=1758332055" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/home.css?v=1758332055" rel="stylesheet" type="text/css" />
 
   </head>
   
@@ -616,6 +616,7 @@
 <p>This notebook uses NDIF to reproduce the main results from the paper <a class="reference external" href="https://arxiv.org/abs/2505.13898">Do Language Models Use Their Depth Efficiently?</a> (Csordás et al.). This paper investigates how LLMs create their output across layers, finding that layers in the first half contribute significantly more than the second half. The authors found that deeper LLMs appear to use their additional layers for fine-grained adjustments to the residual stream rather than learning qualitatively new
 types of computation, potentially explaining why scaling transformer depth can have diminishing returns.</p>
 <p>Here, we show how to measure each layer’s relative contributions (Fig. 2a), cosine similarities to the residual (Fig. 2b), maximum effect on future computations (Fig. 3), refinement effects using LogitLens (Fig 4), residual erasure intervention (Fig 6b), and integrated gradients (Fig 6a).</p>
+<p>📗 Prefer to use Colab? Follow the tutorial <a class="reference external" href="https://colab.research.google.com/github/ndif-team/nnsight-docs/blob/mini-papers/source/notebooks/mini-papers/csordas_llm_depth.ipynb">here</a>!</p>
 <section id="Setup">
 <h2>Setup<a class="headerlink" href="#Setup" title="Link to this heading">#</a></h2>
 <p>Import libraries, load models, create helper functions</p>
@@ -639,7 +640,7 @@ types of computation, potentially explaining why scaling transformer depth can h
 </pre></div>
 </div>
 </div>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
@@ -657,14 +658,24 @@ types of computation, potentially explaining why scaling transformer depth can h
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/opt/anaconda3/envs/nnsight/lib/python3.12/site-packages/requests/__init__.py:86: RequestsDependencyWarning: Unable to find acceptable character detection dependency (chardet or charset_normalizer).
+  warnings.warn(
+Matplotlib is building the font cache; this may take a moment.
+</pre></div></div>
+</div>
 <p>As we are using NNsight, we have the option to access models remotely with NDIF. If you’d like to use NDIF to run this notebook, set <code class="docutils literal notranslate"><span class="pre">REMOTE</span> <span class="pre">=</span> <span class="pre">True</span></code>. You can set up remote access with NDIF using this tutorial: <a class="reference external" href="https://nnsight.net/notebooks/tutorials/start_remote_access/">https://nnsight.net/notebooks/tutorials/start_remote_access/</a></p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Model configuration. For loading a model not supported by NDIF, set REMOTE to False.</span>
 <span class="n">REMOTE</span> <span class="o">=</span> <span class="kc">True</span> <span class="c1"># set to True to use the NDIF hosted model</span>
-<span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;meta-llama/Meta-Llama-3.1-8B&quot;</span>
+<span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;meta-llama/Llama-3.1-8B&quot;</span>
 
 <span class="n">N_EXAMPLES</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># Number of examples for the future effect tests.</span>
 <span class="k">if</span> <span class="n">REMOTE</span><span class="p">:</span>
@@ -682,6 +693,24 @@ types of computation, potentially explaining why scaling transformer depth can h
 <span class="n">clear_output</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">KeyError</span>                                  Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[3], line 16</span>
+<span class="ansi-green-intense-fg ansi-bold">     14</span>         get_ipython()<span style="color: rgb(98,98,98)">.</span>system(<span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">huggingface-cli login -token HF_TOKEN</span><span style="color: rgb(175,0,0)">&#39;</span>)
+<span class="ansi-green-intense-fg ansi-bold">     15</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">else</span>:
+<span class="ansi-green-fg">---&gt; 16</span>         nnsight<span style="color: rgb(98,98,98)">.</span>CONFIG<span style="color: rgb(98,98,98)">.</span>API<span style="color: rgb(98,98,98)">.</span>APIKEY <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">os</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">environ</span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">&#34;</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">NDIF_API</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">&#34;</span><span class="ansi-yellow-bg">]</span>
+<span class="ansi-green-intense-fg ansi-bold">     18</span> clear_output()
+
+File <span class="ansi-green-fg">&lt;frozen os&gt;:714</span>, in <span class="ansi-cyan-fg">__getitem__</span><span class="ansi-blue-fg">(self, key)</span>
+
+<span class="ansi-red-fg">KeyError</span>: &#39;NDIF_API&#39;
+</pre></div></div>
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
@@ -701,30 +730,6 @@ types of computation, potentially explaining why scaling transformer depth can h
 <span class="nb">print</span><span class="p">(</span><span class="n">llm</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "ec47d7349e7a434fb406820470a5f592", "version_major": 2, "version_minor": 0}</script></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "a1c5f48d561140f8a9b69a85dfb56d65", "version_major": 2, "version_minor": 0}</script></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "39796ca29d80409e969a7772a1e092e8", "version_major": 2, "version_minor": 0}</script></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "b65cbc08dbca4880bebcc2c34717957a", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
@@ -901,52 +906,50 @@ LlamaForCausalLM(
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "36a6d120e2364e7f95df68f85c671c83", "version_major": 2, "version_minor": 0}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "f773905cf7ff4ef4bf862119e6a91b68", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "7b615b8048234dd483d188bf84bf7db0", "version_major": 2, "version_minor": 0}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "e6ea69ffae644434b8d0cd1746f66f9b", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "21a4d63b37dc40c0b9f96ee5605f55c7", "version_major": 2, "version_minor": 0}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "abed0de0a65545c0b7c36a17b722dcdc", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "3e847c7b60d04211b6ed4250160d927f", "version_major": 2, "version_minor": 0}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "6ee455c92cc541eaa44978f2fc3402c1", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "96aa2366b41d4188a3225aedb62b931d", "version_major": 2, "version_minor": 0}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "1b0e261e209848faaab96ce08d514805", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2025-07-03 16:39:17,131 c12991ff-bef0-4568-b171-8daa5c1124c9 - RECEIVED: Your job has been received and is waiting approval.
-INFO:nnsight_remote:c12991ff-bef0-4568-b171-8daa5c1124c9 - RECEIVED: Your job has been received and is waiting approval.
-2025-07-03 16:39:17,299 c12991ff-bef0-4568-b171-8daa5c1124c9 - APPROVED: Your job was approved and is waiting to be run.
-INFO:nnsight_remote:c12991ff-bef0-4568-b171-8daa5c1124c9 - APPROVED: Your job was approved and is waiting to be run.
-2025-07-03 16:39:18,015 c12991ff-bef0-4568-b171-8daa5c1124c9 - RUNNING: Your job has started running.
-INFO:nnsight_remote:c12991ff-bef0-4568-b171-8daa5c1124c9 - RUNNING: Your job has started running.
-2025-07-03 16:39:18,472 c12991ff-bef0-4568-b171-8daa5c1124c9 - COMPLETED: Your job has been completed.
-INFO:nnsight_remote:c12991ff-bef0-4568-b171-8daa5c1124c9 - COMPLETED: Your job has been completed.
+[2025-09-19 12:45:16] [34d6b941-520c-4674-a2f9-aa2e3f70ab39] RECEIVED   : Your job has been received and is waiting to be queued.
+[2025-09-19 12:45:16] [34d6b941-520c-4674-a2f9-aa2e3f70ab39] QUEUED     : Your job has been recieved by the coordinator and is waiting to be queued.
+[2025-09-19 12:45:16] [34d6b941-520c-4674-a2f9-aa2e3f70ab39] QUEUED     : Task 34d6b941-520c-4674-a2f9-aa2e3f70ab39 has been added to the queue. Currently at position 1
+[2025-09-19 12:45:16] [34d6b941-520c-4674-a2f9-aa2e3f70ab39] DISPATCHED : Dispatching task...
+[2025-09-19 12:45:17] [34d6b941-520c-4674-a2f9-aa2e3f70ab39] RUNNING    : Your job has started running.
+[2025-09-19 12:45:18] [34d6b941-520c-4674-a2f9-aa2e3f70ab39] COMPLETED  : Your job has been completed.
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "db67e29bfcbf4f8f8b7e2836a0adea33", "version_major": 2, "version_minor": 0}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "b9d6f1165032450f9f83a18fb74f4365", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
@@ -1003,7 +1006,7 @@ Text(0, 0.5, &#39;Mean Relative Contribution&#39;)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../../_images/notebooks_mini-papers_csordas_llm_depth_15_1.png" src="../../../_images/notebooks_mini-papers_csordas_llm_depth_15_1.png" />
+<img alt="../../../_images/notebooks_mini-papers_csordas_llm_depth_16_1.png" src="../../../_images/notebooks_mini-papers_csordas_llm_depth_16_1.png" />
 </div>
 </div>
 <p>We see reduced contribution in the second half of the layers.</p>
@@ -1029,7 +1032,7 @@ Text(0, 0.5, &#39;Cosine similarity&#39;)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../../_images/notebooks_mini-papers_csordas_llm_depth_17_1.png" src="../../../_images/notebooks_mini-papers_csordas_llm_depth_17_1.png" />
+<img alt="../../../_images/notebooks_mini-papers_csordas_llm_depth_18_1.png" src="../../../_images/notebooks_mini-papers_csordas_llm_depth_18_1.png" />
 </div>
 </div>
 <p>Negative cosine similarities indicate erasing information from the residual, while the positive ones indicate strengthening. Writing new features orthogonal to the current content does not show up in these plots. This intuition does not take into account features in superposition.</p>
@@ -1141,7 +1144,7 @@ Text(0, 0.5, &#39;Cosine similarity&#39;)
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_layer_diffs</span><span class="p">(</span><span class="n">dall</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">plt</span><span class="o">.</span><span class="n">Figure</span><span class="p">:</span>
@@ -1167,7 +1170,7 @@ Text(0, 0.5, &#39;Cosine similarity&#39;)
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_effects</span><span class="p">(</span><span class="n">llm</span><span class="p">:</span> <span class="n">LanguageModel</span><span class="p">,</span> <span class="n">n_examples</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">test_fn</span><span class="p">):</span>
@@ -1189,7 +1192,7 @@ Text(0, 0.5, &#39;Cosine similarity&#39;)
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_future_max_effect</span><span class="p">(</span><span class="n">llm</span><span class="p">:</span> <span class="n">LanguageModel</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">N_CHUNKS</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">):</span>
@@ -1211,56 +1214,129 @@ Text(0, 0.5, &#39;Cosine similarity&#39;)
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2025-07-03 16:43:42,476 4e99c4c1-cb86-4d00-a3e6-1781256d9263 - RECEIVED: Your job has been received and is waiting approval.
-INFO:nnsight_remote:4e99c4c1-cb86-4d00-a3e6-1781256d9263 - RECEIVED: Your job has been received and is waiting approval.
-2025-07-03 16:43:42,644 4e99c4c1-cb86-4d00-a3e6-1781256d9263 - APPROVED: Your job was approved and is waiting to be run.
-INFO:nnsight_remote:4e99c4c1-cb86-4d00-a3e6-1781256d9263 - APPROVED: Your job was approved and is waiting to be run.
-2025-07-03 16:43:49,496 4e99c4c1-cb86-4d00-a3e6-1781256d9263 - RUNNING: Your job has started running.
-INFO:nnsight_remote:4e99c4c1-cb86-4d00-a3e6-1781256d9263 - RUNNING: Your job has started running.
-2025-07-03 16:44:07,724 4e99c4c1-cb86-4d00-a3e6-1781256d9263 - COMPLETED: Your job has been completed.
-INFO:nnsight_remote:4e99c4c1-cb86-4d00-a3e6-1781256d9263 - COMPLETED: Your job has been completed.
+[2025-09-19 12:45:42] [584b0a78-27de-4917-8714-6f9790a514f0] RECEIVED   : Your job has been received and is waiting to be queued.
+[2025-09-19 12:45:42] [584b0a78-27de-4917-8714-6f9790a514f0] QUEUED     : Your job has been recieved by the coordinator and is waiting to be queued.
+[2025-09-19 12:45:42] [584b0a78-27de-4917-8714-6f9790a514f0] QUEUED     : Task 584b0a78-27de-4917-8714-6f9790a514f0 has been added to the queue. Currently at position 1
+[2025-09-19 12:45:43] [584b0a78-27de-4917-8714-6f9790a514f0] DISPATCHED : Dispatching task...
 </pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "7c53344e80444e05a04aff19f113a6fc", "version_major": 2, "version_minor": 0}</script></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-2025-07-03 16:45:10,225 8ab21f05-2bdc-4c20-bdec-5704d94a35d3 - RECEIVED: Your job has been received and is waiting approval.
-INFO:nnsight_remote:8ab21f05-2bdc-4c20-bdec-5704d94a35d3 - RECEIVED: Your job has been received and is waiting approval.
-2025-07-03 16:45:10,455 8ab21f05-2bdc-4c20-bdec-5704d94a35d3 - APPROVED: Your job was approved and is waiting to be run.
-INFO:nnsight_remote:8ab21f05-2bdc-4c20-bdec-5704d94a35d3 - APPROVED: Your job was approved and is waiting to be run.
-2025-07-03 16:45:17,354 8ab21f05-2bdc-4c20-bdec-5704d94a35d3 - RUNNING: Your job has started running.
-INFO:nnsight_remote:8ab21f05-2bdc-4c20-bdec-5704d94a35d3 - RUNNING: Your job has started running.
-2025-07-03 16:45:32,063 8ab21f05-2bdc-4c20-bdec-5704d94a35d3 - COMPLETED: Your job has been completed.
-INFO:nnsight_remote:8ab21f05-2bdc-4c20-bdec-5704d94a35d3 - COMPLETED: Your job has been completed.
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "57494fc48acc484a81bb67a431cfb389", "version_major": 2, "version_minor": 0}</script></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../../../_images/notebooks_mini-papers_csordas_llm_depth_24_4.png" src="../../../_images/notebooks_mini-papers_csordas_llm_depth_24_4.png" />
-</div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../../_images/notebooks_mini-papers_csordas_llm_depth_24_5.png" src="../../../_images/notebooks_mini-papers_csordas_llm_depth_24_5.png" />
-</div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ExitTracingException</span>                      Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[13], line 37</span>, in <span class="ansi-cyan-fg">test_effect</span><span class="ansi-blue-fg">(llm, prompt, positions, no_skip_front)</span>
+<span class="ansi-green-intense-fg ansi-bold">     35</span> <span class="ansi-bold" style="color: rgb(0,135,0)">with</span> llm<span style="color: rgb(98,98,98)">.</span>session(remote<span style="color: rgb(98,98,98)">=</span>REMOTE) <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> session:
+<span class="ansi-green-fg">---&gt; 37</span>     dall <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">torch</span><span style="color: rgb(98,98,98)">.</span>zeros(<span style="color: rgb(98,98,98)">1</span>)
+<span class="ansi-green-intense-fg ansi-bold">     38</span>     dall_out <span style="color: rgb(98,98,98)">=</span> torch<span style="color: rgb(98,98,98)">.</span>zeros(<span style="color: rgb(98,98,98)">1</span>)
+
+File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.12/site-packages/nnsight/intervention/tracing/base.py:403</span>, in <span class="ansi-cyan-fg">Tracer.__enter__.&lt;locals&gt;.skip</span><span class="ansi-blue-fg">(new_frame, event, arg)</span>
+<span class="ansi-green-intense-fg ansi-bold">    402</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>info<span style="color: rgb(98,98,98)">.</span>frame<span style="color: rgb(98,98,98)">.</span>f_trace <span style="color: rgb(98,98,98)">=</span> <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>
+<span class="ansi-green-fg">--&gt; 403</span> <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> ExitTracingException()
+
+<span class="ansi-red-fg">ExitTracingException</span>:
+
+During handling of the above exception, another exception occurred:
+
+<span class="ansi-red-fg">RemoteException</span>                           Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[16], line 11</span>
+<span class="ansi-green-intense-fg ansi-bold">      7</span>     positions <span style="color: rgb(98,98,98)">=</span> positions[:N_CHUNKS]
+<span class="ansi-green-intense-fg ansi-bold">      9</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> test_effect(llm, prompt, positions)
+<span class="ansi-green-fg">---&gt; 11</span> <span class="ansi-yellow-bg">plot_effects</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">llm</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">N_EXAMPLES</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">test_future_max_effect</span><span class="ansi-yellow-bg">)</span>
+
+Cell <span class="ansi-green-fg">In[15], line 7</span>, in <span class="ansi-cyan-fg">plot_effects</span><span class="ansi-blue-fg">(llm, n_examples, test_fn)</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span> max_future_out <span style="color: rgb(98,98,98)">=</span> torch<span style="color: rgb(98,98,98)">.</span>zeros([<span style="color: rgb(98,98,98)">1</span>])
+<span class="ansi-green-intense-fg ansi-bold">      6</span> <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> idx, prompt <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> <span style="color: rgb(0,135,0)">enumerate</span>(GSM8K()):
+<span class="ansi-green-fg">----&gt; 7</span>     diff_now, diff_out <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">test_fn</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">llm</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">prompt</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      8</span>     max_future_layer <span style="color: rgb(98,98,98)">=</span> torch<span style="color: rgb(98,98,98)">.</span>max(max_future_layer, diff_now)
+<span class="ansi-green-intense-fg ansi-bold">      9</span>     max_future_out <span style="color: rgb(98,98,98)">=</span> torch<span style="color: rgb(98,98,98)">.</span>max(max_future_out, diff_out)
+
+Cell <span class="ansi-green-fg">In[16], line 9</span>, in <span class="ansi-cyan-fg">test_future_max_effect</span><span class="ansi-blue-fg">(llm, prompt, N_CHUNKS)</span>
+<span class="ansi-green-intense-fg ansi-bold">      6</span> random<span style="color: rgb(98,98,98)">.</span>shuffle(positions)
+<span class="ansi-green-intense-fg ansi-bold">      7</span> positions <span style="color: rgb(98,98,98)">=</span> positions[:N_CHUNKS]
+<span class="ansi-green-fg">----&gt; 9</span> <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">test_effect</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">llm</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">prompt</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">positions</span><span class="ansi-yellow-bg">)</span>
+
+Cell <span class="ansi-green-fg">In[13], line 35</span>, in <span class="ansi-cyan-fg">test_effect</span><span class="ansi-blue-fg">(llm, prompt, positions, no_skip_front)</span>
+<span class="ansi-green-intense-fg ansi-bold">     22</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> <span style="color: rgb(0,0,255)">test_effect</span>(llm: LanguageModel, prompt: <span style="color: rgb(0,135,0)">str</span>, positions: List[Optional[<span style="color: rgb(0,135,0)">int</span>]], no_skip_front: <span style="color: rgb(0,135,0)">int</span> <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(98,98,98)">1</span>) <span style="color: rgb(98,98,98)">-</span><span style="color: rgb(98,98,98)">&gt;</span> <span style="color: rgb(0,135,0)">tuple</span>[torch<span style="color: rgb(98,98,98)">.</span>Tensor, torch<span style="color: rgb(98,98,98)">.</span>Tensor]:
+<span class="ansi-green-intense-fg ansi-bold">     23</span>     <span style="color: rgb(95,135,135)"># Test effect of skipping a layer on all future layers and the output probabilities.</span>
+<span class="ansi-green-intense-fg ansi-bold">     24</span>     <span style="color: rgb(95,135,135)"># If multiple positions are provided, the maximum is taken over all positions.</span>
+<span class="ansi-green-fg">   (...)</span>
+<span class="ansi-green-intense-fg ansi-bold">     31</span>     <span style="color: rgb(95,135,135)"># which can be very large. The output of matmul in bfloat16 is sensitive to the kernel used by cuBLAS,</span>
+<span class="ansi-green-intense-fg ansi-bold">     32</span>     <span style="color: rgb(95,135,135)"># which changes with the batch size. So run everything in a single batch.</span>
+<span class="ansi-green-intense-fg ansi-bold">     34</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">with</span> torch<span style="color: rgb(98,98,98)">.</span>no_grad():
+<span class="ansi-green-fg">---&gt; 35</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">with</span> llm<span style="color: rgb(98,98,98)">.</span>session(remote<span style="color: rgb(98,98,98)">=</span>REMOTE) <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> session:
+<span class="ansi-green-intense-fg ansi-bold">     37</span>             dall <span style="color: rgb(98,98,98)">=</span> torch<span style="color: rgb(98,98,98)">.</span>zeros(<span style="color: rgb(98,98,98)">1</span>)
+<span class="ansi-green-intense-fg ansi-bold">     38</span>             dall_out <span style="color: rgb(98,98,98)">=</span> torch<span style="color: rgb(98,98,98)">.</span>zeros(<span style="color: rgb(98,98,98)">1</span>)
+
+File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.12/site-packages/nnsight/intervention/tracing/base.py:433</span>, in <span class="ansi-cyan-fg">Tracer.__exit__</span><span class="ansi-blue-fg">(self, exc_type, exc_val, exc_tb)</span>
+<span class="ansi-green-intense-fg ansi-bold">    429</span> <span style="color: rgb(95,135,135)"># Suppress the ExitTracingException but let other exceptions propagate</span>
+<span class="ansi-green-intense-fg ansi-bold">    430</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> exc_type <span class="ansi-bold" style="color: rgb(175,0,255)">is</span> ExitTracingException:
+<span class="ansi-green-intense-fg ansi-bold">    431</span>
+<span class="ansi-green-intense-fg ansi-bold">    432</span>     <span style="color: rgb(95,135,135)"># Execute the traced code using the configured backend</span>
+<span class="ansi-green-fg">--&gt; 433</span>     <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">backend</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    435</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span class="ansi-bold" style="color: rgb(0,135,0)">True</span>
+<span class="ansi-green-intense-fg ansi-bold">    437</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>backend(<span style="color: rgb(0,135,0)">self</span>)
+
+File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.12/site-packages/nnsight/intervention/backends/remote.py:90</span>, in <span class="ansi-cyan-fg">RemoteBackend.__call__</span><span class="ansi-blue-fg">(self, tracer)</span>
+<span class="ansi-green-intense-fg ansi-bold">     85</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> <span style="color: rgb(0,0,255)">__call__</span>(<span style="color: rgb(0,135,0)">self</span>, tracer <span style="color: rgb(98,98,98)">=</span> <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>):
+<span class="ansi-green-intense-fg ansi-bold">     87</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>blocking:
+<span class="ansi-green-intense-fg ansi-bold">     88</span>
+<span class="ansi-green-intense-fg ansi-bold">     89</span>         <span style="color: rgb(95,135,135)"># Do blocking request.</span>
+<span class="ansi-green-fg">---&gt; 90</span>         result <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">blocking_request</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">tracer</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     92</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">else</span>:
+<span class="ansi-green-intense-fg ansi-bold">     93</span>
+<span class="ansi-green-intense-fg ansi-bold">     94</span>         <span style="color: rgb(95,135,135)"># Otherwise we are getting the status / result of the existing job.</span>
+<span class="ansi-green-intense-fg ansi-bold">     95</span>         result <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>non_blocking_request(tracer)
+
+File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.12/site-packages/nnsight/intervention/backends/remote.py:302</span>, in <span class="ansi-cyan-fg">RemoteBackend.blocking_request</span><span class="ansi-blue-fg">(self, tracer)</span>
+<span class="ansi-green-intense-fg ansi-bold">    298</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> result
+<span class="ansi-green-intense-fg ansi-bold">    300</span> <span class="ansi-bold" style="color: rgb(0,135,0)">except</span> <span class="ansi-bold" style="color: rgb(215,95,95)">Exception</span> <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> e:
+<span class="ansi-green-fg">--&gt; 302</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> e
+<span class="ansi-green-intense-fg ansi-bold">    304</span> <span class="ansi-bold" style="color: rgb(0,135,0)">finally</span>:
+<span class="ansi-green-intense-fg ansi-bold">    305</span>     LocalTracer<span style="color: rgb(98,98,98)">.</span>deregister()
+
+File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.12/site-packages/nnsight/intervention/backends/remote.py:295</span>, in <span class="ansi-cyan-fg">RemoteBackend.blocking_request</span><span class="ansi-blue-fg">(self, tracer)</span>
+<span class="ansi-green-intense-fg ansi-bold">    293</span> response <span style="color: rgb(98,98,98)">=</span> ResponseModel<span style="color: rgb(98,98,98)">.</span>unpickle(response)
+<span class="ansi-green-intense-fg ansi-bold">    294</span> <span style="color: rgb(95,135,135)"># Handle the response.</span>
+<span class="ansi-green-fg">--&gt; 295</span> result <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">handle_response</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">response</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">tracer</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg">tracer</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    296</span> <span style="color: rgb(95,135,135)"># Break when completed.</span>
+<span class="ansi-green-intense-fg ansi-bold">    297</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> result <span class="ansi-bold" style="color: rgb(175,0,255)">is</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>:
+
+File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.12/site-packages/nnsight/intervention/backends/remote.py:125</span>, in <span class="ansi-cyan-fg">RemoteBackend.handle_response</span><span class="ansi-blue-fg">(self, response, tracer)</span>
+<span class="ansi-green-intense-fg ansi-bold">    122</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>job_status <span style="color: rgb(98,98,98)">=</span> response<span style="color: rgb(98,98,98)">.</span>status
+<span class="ansi-green-intense-fg ansi-bold">    124</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> response<span style="color: rgb(98,98,98)">.</span>status <span style="color: rgb(98,98,98)">==</span> ResponseModel<span style="color: rgb(98,98,98)">.</span>JobStatus<span style="color: rgb(98,98,98)">.</span>ERROR:
+<span class="ansi-green-fg">--&gt; 125</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> RemoteException(<span style="color: rgb(175,0,0)">f</span><span style="color: rgb(175,0,0)">&#34;</span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>response<span style="color: rgb(98,98,98)">.</span>description<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-bold" style="color: rgb(175,95,0)">\n</span><span style="color: rgb(175,0,0)">Remote exception.</span><span style="color: rgb(175,0,0)">&#34;</span>)
+<span class="ansi-green-intense-fg ansi-bold">    127</span> <span style="color: rgb(95,135,135)"># Log response for user</span>
+<span class="ansi-green-intense-fg ansi-bold">    128</span> response<span style="color: rgb(98,98,98)">.</span>log(remote_logger)
+
+<span class="ansi-red-fg">RemoteException</span>: Traceback (most recent call last):
+  File &#34;/u/svcndifuser/ndif-deployment/repos/prod/ndif/src/services/ray/src/ray/deployments/modeling/base.py&#34;, line 190, in __call__
+    inputs = self.pre()
+             ^^^^^^^^^^
+  File &#34;/u/svcndifuser/miniconda3/envs/service/lib/python3.12/site-packages/ray/util/tracing/tracing_helper.py&#34;, line 463, in _resume_span
+    return method(self, *_args, **_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &#34;/u/svcndifuser/ndif-deployment/repos/prod/ndif/src/services/ray/src/ray/deployments/modeling/base.py&#34;, line 241, in pre
+    request = self.request.deserialize(self.protected_model)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &#34;/u/svcndifuser/ndif-deployment/repos/prod/ndif/src/services/ray/src/schema/request.py&#34;, line 64, in deserialize
+    return RequestModel.deserialize(model, request, self.zlib)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &#34;/u/svcndifuser/miniconda3/envs/service/lib/python3.12/site-packages/nnsight/schema/request.py&#34;, line 44, in deserialize
+    request:RequestModel = load(data.read(), model)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File &#34;/u/svcndifuser/miniconda3/envs/service/lib/python3.12/site-packages/nnsight/intervention/serialization.py&#34;, line 58, in load
+    return CustomCloudUnpickler(io.BytesIO(data), model, frame).load()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &#34;/u/svcndifuser/ndif-deployment/repos/prod/ndif/src/services/ray/src/ray/nn/security/protected_environment.py&#34;, line 153, in __call__
+    raise ImportError(f&#34;Module {name} is not whitelisted&#34;)
+ImportError: Module _operator is not whitelisted
+
+Module _operator is not whitelisted
+Remote exception.
+</pre></div></div>
 </div>
 <p>We can see that the second half of the layers does not have a significant effect on the computations in the future tokens. This indicates that they are not constructing reusable features that can be used compositionally in future computations.</p>
 <div class="nbinput docutils container">
@@ -1320,14 +1396,14 @@ INFO:nnsight_remote:7ed9e7ca-8f70-4ae1-ad93-9f56c971449d - COMPLETED: Your job h
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../../_images/notebooks_mini-papers_csordas_llm_depth_26_4.png" src="../../../_images/notebooks_mini-papers_csordas_llm_depth_26_4.png" />
+<img alt="../../../_images/notebooks_mini-papers_csordas_llm_depth_27_4.png" src="../../../_images/notebooks_mini-papers_csordas_llm_depth_27_4.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../../_images/notebooks_mini-papers_csordas_llm_depth_26_5.png" src="../../../_images/notebooks_mini-papers_csordas_llm_depth_26_5.png" />
+<img alt="../../../_images/notebooks_mini-papers_csordas_llm_depth_27_5.png" src="../../../_images/notebooks_mini-papers_csordas_llm_depth_27_5.png" />
 </div>
 </div>
 <p>The second half of the layers remain important for the current predictions. However, they seem to have a reduced effect on each other. This indicates that they are independently refining the final predictions.</p>
@@ -1336,7 +1412,7 @@ INFO:nnsight_remote:7ed9e7ca-8f70-4ae1-ad93-9f56c971449d - COMPLETED: Your job h
 <h2>Logit Lens<a class="headerlink" href="#Logit-Lens" title="Link to this heading">#</a></h2>
 <p>Here, we use logit lens to show that the second half of the layers is responsible for refining the final predictions for each layer, reproducing Fig 4. in the paper.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">run_logitlens</span><span class="p">(</span><span class="n">llm</span><span class="p">,</span> <span class="n">prompts</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
@@ -1347,6 +1423,7 @@ INFO:nnsight_remote:7ed9e7ca-8f70-4ae1-ad93-9f56c971449d - COMPLETED: Your job h
             <span class="n">res_kl_divs</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="n">res_overlaps</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">N_layers</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">llm</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">)</span>
 
             <span class="c1"># Iterate over all prompts.</span>
             <span class="k">for</span> <span class="n">prompt</span> <span class="ow">in</span> <span class="n">prompts</span><span class="p">:</span>
@@ -1400,7 +1477,7 @@ INFO:nnsight_remote:7ed9e7ca-8f70-4ae1-ad93-9f56c971449d - COMPLETED: Your job h
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res_kl_divs</span><span class="p">,</span> <span class="n">res_overlaps</span> <span class="o">=</span> <span class="n">run_logitlens</span><span class="p">(</span><span class="n">llm</span><span class="p">,</span> <span class="n">prompts</span><span class="p">)</span>
@@ -1412,21 +1489,138 @@ INFO:nnsight_remote:7ed9e7ca-8f70-4ae1-ad93-9f56c971449d - COMPLETED: Your job h
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2025-07-03 16:47:57,276 ffaaaf3c-00df-4210-a412-7e95820c089c - RECEIVED: Your job has been received and is waiting approval.
-INFO:nnsight_remote:ffaaaf3c-00df-4210-a412-7e95820c089c - RECEIVED: Your job has been received and is waiting approval.
-2025-07-03 16:47:57,443 ffaaaf3c-00df-4210-a412-7e95820c089c - APPROVED: Your job was approved and is waiting to be run.
-INFO:nnsight_remote:ffaaaf3c-00df-4210-a412-7e95820c089c - APPROVED: Your job was approved and is waiting to be run.
-2025-07-03 16:47:57,897 ffaaaf3c-00df-4210-a412-7e95820c089c - RUNNING: Your job has started running.
-INFO:nnsight_remote:ffaaaf3c-00df-4210-a412-7e95820c089c - RUNNING: Your job has started running.
-2025-07-03 16:47:58,694 ffaaaf3c-00df-4210-a412-7e95820c089c - COMPLETED: Your job has been completed.
-INFO:nnsight_remote:ffaaaf3c-00df-4210-a412-7e95820c089c - COMPLETED: Your job has been completed.
+[2025-09-19 13:03:58] [fca65770-b96c-4c53-b59e-e7e7fa97a52c] RECEIVED   : Your job has been received and is waiting to be queued.
+[2025-09-19 13:03:58] [fca65770-b96c-4c53-b59e-e7e7fa97a52c] QUEUED     : Your job has been recieved by the coordinator and is waiting to be queued.
+[2025-09-19 13:03:58] [fca65770-b96c-4c53-b59e-e7e7fa97a52c] QUEUED     : Task fca65770-b96c-4c53-b59e-e7e7fa97a52c has been added to the queue. Currently at position 1
+[2025-09-19 13:03:58] [fca65770-b96c-4c53-b59e-e7e7fa97a52c] DISPATCHED : Dispatching task...
+[2025-09-19 13:04:00] [fca65770-b96c-4c53-b59e-e7e7fa97a52c] RUNNING    : Your job has started running.
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "1e4d8617e10146be9b0e1423fc61ca08", "version_major": 2, "version_minor": 0}</script></div>
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ExitTracingException</span>                      Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[27], line 6</span>, in <span class="ansi-cyan-fg">run_logitlens</span><span class="ansi-blue-fg">(llm, prompts, K)</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span> <span class="ansi-bold" style="color: rgb(0,135,0)">with</span> llm<span style="color: rgb(98,98,98)">.</span>session(remote<span style="color: rgb(98,98,98)">=</span>REMOTE) <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> session:
+<span class="ansi-green-fg">----&gt; 6</span>     res_kl_divs <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg" style="color: rgb(98,98,98)">0</span>
+<span class="ansi-green-intense-fg ansi-bold">      7</span>     res_overlaps <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(98,98,98)">0</span>
+
+File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.12/site-packages/nnsight/intervention/tracing/base.py:403</span>, in <span class="ansi-cyan-fg">Tracer.__enter__.&lt;locals&gt;.skip</span><span class="ansi-blue-fg">(new_frame, event, arg)</span>
+<span class="ansi-green-intense-fg ansi-bold">    402</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>info<span style="color: rgb(98,98,98)">.</span>frame<span style="color: rgb(98,98,98)">.</span>f_trace <span style="color: rgb(98,98,98)">=</span> <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>
+<span class="ansi-green-fg">--&gt; 403</span> <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> ExitTracingException()
+
+<span class="ansi-red-fg">ExitTracingException</span>:
+
+During handling of the above exception, another exception occurred:
+
+<span class="ansi-red-fg">RemoteException</span>                           Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[28], line 1</span>
+<span class="ansi-green-fg">----&gt; 1</span> res_kl_divs, res_overlaps <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">run_logitlens</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">llm</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">prompts</span><span class="ansi-yellow-bg">)</span>
+
+Cell <span class="ansi-green-fg">In[27], line 4</span>, in <span class="ansi-cyan-fg">run_logitlens</span><span class="ansi-blue-fg">(llm, prompts, K)</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> <span style="color: rgb(0,0,255)">run_logitlens</span>(llm, prompts, K<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(98,98,98)">5</span>):
+<span class="ansi-green-intense-fg ansi-bold">      3</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">with</span> torch<span style="color: rgb(98,98,98)">.</span>no_grad():
+<span class="ansi-green-fg">----&gt; 4</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">with</span> llm<span style="color: rgb(98,98,98)">.</span>session(remote<span style="color: rgb(98,98,98)">=</span>REMOTE) <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> session:
+<span class="ansi-green-intense-fg ansi-bold">      6</span>             res_kl_divs <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(98,98,98)">0</span>
+<span class="ansi-green-intense-fg ansi-bold">      7</span>             res_overlaps <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(98,98,98)">0</span>
+
+File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.12/site-packages/nnsight/intervention/tracing/base.py:433</span>, in <span class="ansi-cyan-fg">Tracer.__exit__</span><span class="ansi-blue-fg">(self, exc_type, exc_val, exc_tb)</span>
+<span class="ansi-green-intense-fg ansi-bold">    429</span> <span style="color: rgb(95,135,135)"># Suppress the ExitTracingException but let other exceptions propagate</span>
+<span class="ansi-green-intense-fg ansi-bold">    430</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> exc_type <span class="ansi-bold" style="color: rgb(175,0,255)">is</span> ExitTracingException:
+<span class="ansi-green-intense-fg ansi-bold">    431</span>
+<span class="ansi-green-intense-fg ansi-bold">    432</span>     <span style="color: rgb(95,135,135)"># Execute the traced code using the configured backend</span>
+<span class="ansi-green-fg">--&gt; 433</span>     <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">backend</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    435</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span class="ansi-bold" style="color: rgb(0,135,0)">True</span>
+<span class="ansi-green-intense-fg ansi-bold">    437</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>backend(<span style="color: rgb(0,135,0)">self</span>)
+
+File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.12/site-packages/nnsight/intervention/backends/remote.py:90</span>, in <span class="ansi-cyan-fg">RemoteBackend.__call__</span><span class="ansi-blue-fg">(self, tracer)</span>
+<span class="ansi-green-intense-fg ansi-bold">     85</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> <span style="color: rgb(0,0,255)">__call__</span>(<span style="color: rgb(0,135,0)">self</span>, tracer <span style="color: rgb(98,98,98)">=</span> <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>):
+<span class="ansi-green-intense-fg ansi-bold">     87</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>blocking:
+<span class="ansi-green-intense-fg ansi-bold">     88</span>
+<span class="ansi-green-intense-fg ansi-bold">     89</span>         <span style="color: rgb(95,135,135)"># Do blocking request.</span>
+<span class="ansi-green-fg">---&gt; 90</span>         result <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">blocking_request</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">tracer</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     92</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">else</span>:
+<span class="ansi-green-intense-fg ansi-bold">     93</span>
+<span class="ansi-green-intense-fg ansi-bold">     94</span>         <span style="color: rgb(95,135,135)"># Otherwise we are getting the status / result of the existing job.</span>
+<span class="ansi-green-intense-fg ansi-bold">     95</span>         result <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>non_blocking_request(tracer)
+
+File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.12/site-packages/nnsight/intervention/backends/remote.py:302</span>, in <span class="ansi-cyan-fg">RemoteBackend.blocking_request</span><span class="ansi-blue-fg">(self, tracer)</span>
+<span class="ansi-green-intense-fg ansi-bold">    298</span>             <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> result
+<span class="ansi-green-intense-fg ansi-bold">    300</span> <span class="ansi-bold" style="color: rgb(0,135,0)">except</span> <span class="ansi-bold" style="color: rgb(215,95,95)">Exception</span> <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> e:
+<span class="ansi-green-fg">--&gt; 302</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> e
+<span class="ansi-green-intense-fg ansi-bold">    304</span> <span class="ansi-bold" style="color: rgb(0,135,0)">finally</span>:
+<span class="ansi-green-intense-fg ansi-bold">    305</span>     LocalTracer<span style="color: rgb(98,98,98)">.</span>deregister()
+
+File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.12/site-packages/nnsight/intervention/backends/remote.py:295</span>, in <span class="ansi-cyan-fg">RemoteBackend.blocking_request</span><span class="ansi-blue-fg">(self, tracer)</span>
+<span class="ansi-green-intense-fg ansi-bold">    293</span> response <span style="color: rgb(98,98,98)">=</span> ResponseModel<span style="color: rgb(98,98,98)">.</span>unpickle(response)
+<span class="ansi-green-intense-fg ansi-bold">    294</span> <span style="color: rgb(95,135,135)"># Handle the response.</span>
+<span class="ansi-green-fg">--&gt; 295</span> result <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">handle_response</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">response</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">tracer</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg">tracer</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    296</span> <span style="color: rgb(95,135,135)"># Break when completed.</span>
+<span class="ansi-green-intense-fg ansi-bold">    297</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> result <span class="ansi-bold" style="color: rgb(175,0,255)">is</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>:
+
+File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.12/site-packages/nnsight/intervention/backends/remote.py:125</span>, in <span class="ansi-cyan-fg">RemoteBackend.handle_response</span><span class="ansi-blue-fg">(self, response, tracer)</span>
+<span class="ansi-green-intense-fg ansi-bold">    122</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>job_status <span style="color: rgb(98,98,98)">=</span> response<span style="color: rgb(98,98,98)">.</span>status
+<span class="ansi-green-intense-fg ansi-bold">    124</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> response<span style="color: rgb(98,98,98)">.</span>status <span style="color: rgb(98,98,98)">==</span> ResponseModel<span style="color: rgb(98,98,98)">.</span>JobStatus<span style="color: rgb(98,98,98)">.</span>ERROR:
+<span class="ansi-green-fg">--&gt; 125</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> RemoteException(<span style="color: rgb(175,0,0)">f</span><span style="color: rgb(175,0,0)">&#34;</span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>response<span style="color: rgb(98,98,98)">.</span>description<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span class="ansi-bold" style="color: rgb(175,95,0)">\n</span><span style="color: rgb(175,0,0)">Remote exception.</span><span style="color: rgb(175,0,0)">&#34;</span>)
+<span class="ansi-green-intense-fg ansi-bold">    127</span> <span style="color: rgb(95,135,135)"># Log response for user</span>
+<span class="ansi-green-intense-fg ansi-bold">    128</span> response<span style="color: rgb(98,98,98)">.</span>log(remote_logger)
+
+<span class="ansi-red-fg">RemoteException</span>: Traceback (most recent call last):
+  File &#34;/u/svcndifuser/ndif-deployment/repos/prod/ndif/src/services/ray/src/ray/deployments/modeling/base.py&#34;, line 205, in __call__
+    result = await job_task
+             ^^^^^^^^^^^^^^
+  File &#34;/u/svcndifuser/miniconda3/envs/service/lib/python3.12/asyncio/threads.py&#34;, line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &#34;/u/svcndifuser/miniconda3/envs/service/lib/python3.12/concurrent/futures/thread.py&#34;, line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &#34;/u/svcndifuser/miniconda3/envs/service/lib/python3.12/site-packages/ray/util/tracing/tracing_helper.py&#34;, line 463, in _resume_span
+    return method(self, *_args, **_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &#34;/u/svcndifuser/ndif-deployment/repos/prod/ndif/src/services/ray/src/ray/deployments/modeling/base.py&#34;, line 275, in execute
+    result = RemoteExecutionBackend(request.interventions, self.execution_protector)(request.tracer)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &#34;/u/svcndifuser/ndif-deployment/repos/prod/ndif/src/services/ray/src/ray/nn/backend.py&#34;, line 27, in __call__
+    run(tracer, self.fn)
+  File &#34;/u/svcndifuser/ndif-deployment/repos/prod/ndif/src/services/ray/src/ray/nn/sandbox.py&#34;, line 16, in run
+    raise wrap_exception(e,tracer.info) from None
+nnsight.NNsightException:
+
+Traceback (most recent call last):
+  File &#34;/u/svcndifuser/ndif-deployment/repos/prod/ndif/src/services/ray/src/ray/nn/sandbox.py&#34;, line 14, in run
+    tracer.execute(fn)
+  File &#34;/u/svcndifuser/miniconda3/envs/service/lib/python3.12/site-packages/nnsight/intervention/tracing/base.py&#34;, line 312, in execute
+    fn(self, self.info)
+  File &#34;/u/svcndifuser/ndif-deployment/repos/prod/ndif/src/services/ray/src/ray/nn/sandbox.py&#34;, line 8, in run
+    N_layers = len(llm.model.layers)
+  File &#34;/u/svcndifuser/miniconda3/envs/service/lib/python3.12/site-packages/nnsight/intervention/envoy.py&#34;, line 898, in __len__
+    return len(self._module)
+  File &#34;/u/svcndifuser/ndif-deployment/repos/prod/ndif/src/services/ray/src/ray/nn/security/protected_objects.py&#34;, line 80, in __getattribute__
+    raise ValueError(f&#34;Attribute &#39;{name}&#39; is not allowed&#34;)
+
+ValueError: Attribute &#39;_module&#39; is not allowed
+
+
+
+Traceback (most recent call last):
+  File &#34;/u/svcndifuser/ndif-deployment/repos/prod/ndif/src/services/ray/src/ray/nn/sandbox.py&#34;, line 14, in run
+    tracer.execute(fn)
+  File &#34;/u/svcndifuser/miniconda3/envs/service/lib/python3.12/site-packages/nnsight/intervention/tracing/base.py&#34;, line 312, in execute
+    fn(self, self.info)
+  File &#34;/u/svcndifuser/ndif-deployment/repos/prod/ndif/src/services/ray/src/ray/nn/sandbox.py&#34;, line 8, in run
+    N_layers = len(llm.model.layers)
+  File &#34;/u/svcndifuser/miniconda3/envs/service/lib/python3.12/site-packages/nnsight/intervention/envoy.py&#34;, line 898, in __len__
+    return len(self._module)
+  File &#34;/u/svcndifuser/ndif-deployment/repos/prod/ndif/src/services/ray/src/ray/nn/security/protected_objects.py&#34;, line 80, in __getattribute__
+    raise ValueError(f&#34;Attribute &#39;{name}&#39; is not allowed&#34;)
+
+ValueError: Attribute &#39;_module&#39; is not allowed
+Remote exception.
+</pre></div></div>
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
@@ -1457,14 +1651,14 @@ Text(0.5, 0, &#39;Layer&#39;)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../../_images/notebooks_mini-papers_csordas_llm_depth_32_1.png" src="../../../_images/notebooks_mini-papers_csordas_llm_depth_32_1.png" />
+<img alt="../../../_images/notebooks_mini-papers_csordas_llm_depth_33_1.png" src="../../../_images/notebooks_mini-papers_csordas_llm_depth_33_1.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../../_images/notebooks_mini-papers_csordas_llm_depth_32_2.png" src="../../../_images/notebooks_mini-papers_csordas_llm_depth_32_2.png" />
+<img alt="../../../_images/notebooks_mini-papers_csordas_llm_depth_33_2.png" src="../../../_images/notebooks_mini-papers_csordas_llm_depth_33_2.png" />
 </div>
 </div>
 <p>This shows that at the same point where the contribution to the future computations drops, the KL divergence to the output also drops, and the overlap with the final predictions starts to grow rapidly, confirming our hypothesis that the second half of the layers are refining the output probability distributions.</p>
@@ -1607,7 +1801,7 @@ INFO:nnsight_remote:3e7dc3c5-8f32-4486-9c61-419aa1e4db6f - COMPLETED: Your job h
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../../_images/notebooks_mini-papers_csordas_llm_depth_39_0.png" src="../../../_images/notebooks_mini-papers_csordas_llm_depth_39_0.png" />
+<img alt="../../../_images/notebooks_mini-papers_csordas_llm_depth_40_0.png" src="../../../_images/notebooks_mini-papers_csordas_llm_depth_40_0.png" />
 </div>
 </div>
 <p>We see that each token is important until the same point in the residual, indicating that no high-level composition is happening.</p>
@@ -1743,7 +1937,7 @@ INFO:nnsight_remote:3bfc792f-2749-4e8b-b2df-4f2415b0eb2f - COMPLETED: Your job h
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../../_images/notebooks_mini-papers_csordas_llm_depth_45_0.png" src="../../../_images/notebooks_mini-papers_csordas_llm_depth_45_0.png" />
+<img alt="../../../_images/notebooks_mini-papers_csordas_llm_depth_46_0.png" src="../../../_images/notebooks_mini-papers_csordas_llm_depth_46_0.png" />
 </div>
 </div>
 <p>Now that you’ve completed this notebook, try testing a deeper model! If you’d like to use NDIF to remotely run these experiments, you can see NDIF-hosted models here: <a class="reference external" href="https://nnsight.net/status/">https://nnsight.net/status/</a></p>

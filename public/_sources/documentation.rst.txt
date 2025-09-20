@@ -4,9 +4,11 @@ Documentation
 .. toctree::
    :titlesonly:
 
+   documentation/envoy
    documentation/modeling
    documentation/tracing
    documentation/intervention
+   documentation/backends
    documentation/schema
    documentation/util
 
