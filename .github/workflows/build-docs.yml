@@ -46,16 +46,17 @@ jobs:
 
       - name: Build documentation
         run: |
-          rm -rf build public
+          rm -rf build deploy
           uv run sphinx-build -M dirhtml source build
-          cp -r build/dirhtml public
+          mkdir -p deploy/public
+          cp -r build/dirhtml/* deploy/public/
 
       - name: Deploy to gh-pages
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: ./deploy
           publish_branch: gh-pages
           force_orphan: true
           user_name: "github-actions[bot]"
