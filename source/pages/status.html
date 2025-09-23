@@ -488,11 +488,10 @@
                 </div>
                 <div class="nn-deployment-repo-id ">{{repo_id}}</div>
                 <div class="nn-deployment-badges">
-                    <badge-component v-if="schedule !== undefined && schedule !== null" v-bind="getScheduleInfoBadge()"></badge-component>
-                    <badge-component v-if="schedule !== undefined && schedule !== null" v-bind="getScheduleBadge()"></badge-component>
+                    <badge-component v-if="!isPinned()" v-bind="getPilotOnlyBadge()" @click="onPilotBadgeClick"></badge-component>
+                    <badge-component v-if="isPinned()" v-bind="getPinnedBadge()"></badge-component>
                     <badge-component v-if="model_key !== undefined && model_key !== null" v-bind="getModelClassBadge()"></badge-component>
                     <badge-component v-bind="getDeploymentLevelBadge()"></badge-component>
-                    <badge-component v-if="isPilotOnly()" v-bind="getPilotOnlyBadge()" @click="onPilotBadgeClick" style="cursor: pointer;"></badge-component>
                     <badge-component v-if="application_state !== undefined && application_state !== null" v-bind="getApplicationStateBadge()"></badge-component>
                 </div>
                 <div class="nn-deployment-other" v-if="hasInfo()">
@@ -723,24 +722,34 @@
         }
       },
 
-      isPilotOnly() {
+      isPinned() {
         // Models without schedules are pilot-only (hotswapped models)
-        return this.schedule == null;
+        return this.schedule != null;
       },
 
       getPilotOnlyBadge() {
         return {
           content: `<i class="fa-solid fa-lock"></i>  Pilot Only`,
           bg: true,
-          sdcls: "secondary",
+          sdcls: "muted",
           cls: "pilot-only-badge",
           tooltip:
-            "Only available to hotswapping pilot program users. Click to sign up!",
+            "This model is restricted to our hot-swapping pilot program. Click to sign up!",
         };
       },
 
       onPilotBadgeClick() {
         window.open("https://forms.gle/ZBtYvvnSdpiEdQEk6", "_blank");
+      },
+
+      getPinnedBadge() {
+        return {
+          content: `<i class="fa-solid fa-thumbtack"></i>  Pinned`,
+          bg: true,
+          sdcls: "info",
+          cls: "",
+          tooltip: "This model won't be evicted for the specified duration.",
+        };
       },
     },
   };
