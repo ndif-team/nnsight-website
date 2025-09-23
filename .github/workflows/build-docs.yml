@@ -70,11 +70,11 @@ jobs:
           mkdir -p deploy/public
           cp -r build/dirhtml/* deploy/public/
 
-      - name: Deploy to test branch
+      - name: Deploy to main branch
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./deploy
-          publish_branch: test
+          publish_branch: main
           force_orphan: true
           commit_message: "Deploy: ${{ github.event.head_commit.message }}"
