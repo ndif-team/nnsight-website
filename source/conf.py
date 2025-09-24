@@ -30,7 +30,6 @@ html_theme = "pydata_sphinx_theme"
 html_title = "nnsight"
 html_logo = "_static/images/nnsight_logo.svg"
 html_static_path = ["_static"]
-html_extra_path = ["_extra"]
 
 html_show_sphinx = False
 
