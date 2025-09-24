@@ -1,468 +1,461 @@
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <script>
-    define = undefined;
+  define = undefined;
 </script>
 <script src="https://unpkg.com/primevue/umd/primevue.min.js"></script>
 <script src="https://unpkg.com/@primeuix/themes/umd/aura.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/primeicons@latest/primeicons.css" />
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/primeicons@latest/primeicons.css"
+/>
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Electrolize&family=Zen+Dots&display=swap');
+  @import url("https://fonts.googleapis.com/css2?family=Electrolize&family=Zen+Dots&display=swap");
 
-    /* Main page styles from Sphinx */
-    
-    .bd-article-container,
-    .bd-page-width {
-        max-width: 100% !important;
-    }
+  /* Main page styles from Sphinx */
 
-    .bd-article {
-        padding-left: 0px !important;
-        padding-right: 0px !important;
-        padding-top: 0px !important;
-        padding-bottom: 0px !important;
-    }
+  .bd-article-container,
+  .bd-page-width {
+    max-width: 100% !important;
+  }
 
-    .bd-header-article {
-        display: none !important;
-    }
+  .bd-article {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+  }
 
-    /* PrimeVue styles */
+  .bd-header-article {
+    display: none !important;
+  }
 
-    .p-paginator {
-        background: transparent !important;
-    }
+  /* PrimeVue styles */
 
-    .p-select-label {
-        padding: 4px 7px !important;
-        font-size: .9rem !important;
-    }
+  .p-paginator {
+    background: transparent !important;
+  }
 
-    .p-inputtext {
-        padding-block:4px !important;
-        font-size: .9rem !important;
-    }
+  .p-select-label {
+    padding: 4px 7px !important;
+    font-size: 0.9rem !important;
+  }
 
-    /* Core elements styles */
+  .p-inputtext {
+    padding-block: 4px !important;
+    font-size: 0.9rem !important;
+  }
 
-    #app {
-        display: flex;
-        flex-direction: row;
-        height: 100%;
-        width: 100%;
-        justify-content: center;
+  /* Core elements styles */
 
-        --p-inputtext-background: var(--pst-color-on-background) !important;
-        --p-select-background: var(--pst-color-on-background) !important;
-        --p-floatlabel-on-active-background: var(--pst-color-on-background) !important;
-        --p-select-overlay-background: var(--pst-color-on-background) !important;
-        --p-card-background: var(--pst-color-on-background) !important;
-        --p-panel-background: var(--pst-color-on-background) !important;
-        --p-select-overlay-background: var(--pst-color-on-background) !important;
+  #app {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
 
-        --p-select-color: var(--pst-color-text-base) !important;
-        --p-inputtext-color: var(--pst-color-text-base) !important;
-        --p-select-overlay-color: var(--pst-color-text-base) !important;
-        --p-card-color: var(--pst-color-text-base) !important;
-        --p-panel-color: var(--pst-color-text-base) !important;
-        --p-panel-header-color: var(--pst-color-text-base) !important;
-        --p-select-overlay-color: var(--pst-color-text-base) !important;
-    }
-    #status-display {
-        max-width: 1100px;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-    #status-bar {
-        border-radius: 15px 15px 5px 5px;
-    }
-    #status-bar .sd-card-body{
-        border-radius: 15px 15px 5px 5px;
-    }
-    #status-sidebar {
-        width: 300px;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
+    --p-inputtext-background: var(--pst-color-on-background) !important;
+    --p-select-background: var(--pst-color-on-background) !important;
+    --p-floatlabel-on-active-background: var(
+      --pst-color-on-background
+    ) !important;
+    --p-select-overlay-background: var(--pst-color-on-background) !important;
+    --p-card-background: var(--pst-color-on-background) !important;
+    --p-panel-background: var(--pst-color-on-background) !important;
+    --p-select-overlay-background: var(--pst-color-on-background) !important;
 
-    #deployments {
-        display: flex;
-        flex-direction: row;
-        gap: 1rem;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+    --p-select-color: var(--pst-color-text-base) !important;
+    --p-inputtext-color: var(--pst-color-text-base) !important;
+    --p-select-overlay-color: var(--pst-color-text-base) !important;
+    --p-card-color: var(--pst-color-text-base) !important;
+    --p-panel-color: var(--pst-color-text-base) !important;
+    --p-panel-header-color: var(--pst-color-text-base) !important;
+    --p-select-overlay-color: var(--pst-color-text-base) !important;
+  }
+  #status-display {
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  #status-bar {
+    border-radius: 15px 15px 5px 5px;
+  }
+  #status-bar .sd-card-body {
+    border-radius: 15px 15px 5px 5px;
+  }
+  #status-sidebar {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
 
-    #filter-bar {
-        display: flex;
-        flex-direction: row;
-        gap: .1rem;
-        align-items: center;
-        justify-content: space-between;
+  #deployments {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
-    }
+  #filter-bar {
+    display: flex;
+    flex-direction: row;
+    gap: 0.1rem;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-    .filter-item {
-        display: flex;
-        flex-direction: row;
+  .filter-item {
+    display: flex;
+    flex-direction: row;
+  }
 
-    }
+  .filter-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    justify-content: center;
+  }
 
-    .filter-group {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 2rem;
-        justify-content: center;
-    }
+  .nn-deployment {
+    flex: 1 1 280px;
+    border-radius: 0.5rem;
+    max-width: 360px;
+  }
 
+  html[data-theme="dark"] .nn-deployment {
+    border: 1px solid grey;
+  }
 
-    .nn-deployment {
-        flex: 1 1 280px;
-        border-radius: .5rem;
-        max-width: 360px;
-    }
+  .nn-deployment:hover {
+    z-index: 3;
+  }
 
-    html[data-theme="dark"] .nn-deployment {
-        border: 1px solid grey;
-    }
+  .nn-card-body {
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.5rem;
+    justify-content: space-between;
+    background-image: linear-gradient(
+      to right,
+      var(--pst-color-border),
+      var(--pst-color-background)
+    ) !important;
+  }
 
-    .nn-deployment:hover {
-        z-index: 3;
-    }
+  .nn-deployment-badges {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
 
-    .nn-card-body {
-        display: flex;
-        flex-direction: column;
-        border-radius: .5rem;
-        justify-content: space-between;
-        background-image: linear-gradient(to right, var(--pst-color-border), var(--pst-color-background)) !important;
-    }
+  .nn-deployment-other {
+    font-size: 0.7rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    color: var(--pst-color-text-muted);
+    padding-top: 5px;
+  }
 
-    .nn-deployment-badges {
-        
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 6px;
-    }
+  .nn-deployment-other-item {
+    display: flex;
+    flex-direction: row;
+    gap: 0.1rem;
+    align-items: center;
+  }
 
-    .nn-deployment-other {
-        font-size: .7rem;
-        display: flex;
-        flex-direction: row;
-        gap: 1rem;
-        color: var(--pst-color-text-muted);
-        padding-top: 5px;
+  .nn-deployment-badges .sd-badge {
+    white-space: wrap;
+  }
 
-    }
+  .nn-deployment-repo-id {
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    margin-right: 0.5rem;
 
-    .nn-deployment-other-item {
-        display: flex;
-        flex-direction: row;
-        gap: 0.1rem;
-        align-items: center;
-    }
+    white-space: nowrap;
+    overflow: hidden;
+  }
 
-    .nn-deployment-badges .sd-badge{
-        
-        white-space: wrap;
-    }
+  .nn-copy-button {
+    position: absolute !important;
+    right: 2.3%;
+    top: 4%;
+  }
 
-    .nn-deployment-repo-id {
-        font-size: .85rem;
-        margin-bottom: 0.5rem;
-        margin-right: 0.5rem;
-        
-        white-space: nowrap;
-        overflow: hidden;
-    }
+  .nn-copy-button button {
+    z-index: 3;
+    opacity: 1;
+    top: 0 !important;
+    right: 0 !important;
+  }
 
-    .nn-copy-button {
-        position: absolute !important;
-        right: 2.3%;
-        top: 4%
-    }
+  .nn-snippet {
+    display: none;
+    position: absolute;
+    bottom: 100%; /* Position above the icon */
+    left: 0; /* Align left edge of box with icon */
+    border: 2px solid var(--pst-color-link-hover);
+  }
 
-    .nn-copy-button button {
-        z-index: 3;
-        opacity: 1;
-        top: 0 !important;
-        right: 0 !important;
-       
+  .nn-copy-button:hover .nn-snippet {
+    display: block;
+  }
 
-    }
+  .nn-cluster-nodes {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
 
-    .nn-snippet{
-        display: none;
-        position: absolute;
-        bottom: 100%; /* Position above the icon */
-        left: 0;       /* Align left edge of box with icon */
-        border: 2px solid var(--pst-color-link-hover);
-    }
+  .nn-cluster-node {
+    width: 50%;
+    border-style: solid;
+    border-width: 1px;
+  }
 
-    .nn-copy-button:hover .nn-snippet{
-        display: block;
-    }
+  .nn-cluster-node .p-card-body {
+    padding: 0.8rem !important;
+  }
 
-    .nn-cluster-nodes {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 1rem;
-    }
+  .nn-cluster-node-title {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 0.85rem;
+  }
 
-    .nn-cluster-node {
-        width: 50%;
-        border-style: solid;
-        border-width: 1px;
-    }
+  .electrolize {
+    font-family: "Electrolize", sans-serif;
+    font-weight: 1000;
+    font-style: normal;
+  }
 
+  [data-tooltip] {
+    position: relative;
+    cursor: help;
+    z-index: 3;
+  }
 
-    .nn-cluster-node .p-card-body {
-        padding: 0.8rem !important;
-    }
+  [data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    z-index: 6;
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 12px;
+    background-color: var(--pst-color-surface);
+    color: var(--pst-color-text-base);
+    border: 1px solid var(--pst-color-border);
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: normal;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: var(--pst-font-family-base);
+    font-weight: normal;
+    width: max-content;
+    max-width: 300px;
+    text-align: center;
+    pointer-events: none;
+  }
 
-    .nn-cluster-node-title {
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        font-size: .85rem;
-    }
-
-    .electrolize {
-        font-family: "Electrolize", sans-serif;
-        font-weight: 1000;
-        font-style: normal;
-    }
-
-    [data-tooltip] {
-        position: relative;
-        cursor: help;
-        z-index: 3;
-    }
-
-    [data-tooltip]:hover::after {
-        content: attr(data-tooltip);
-        z-index: 6;
-        position: absolute;
-        bottom: calc(100% + 8px);
-        left: 50%;
-        transform: translateX(-50%);
-        padding: 8px 12px;
-        background-color: var(--pst-color-surface);
-        color: var(--pst-color-text-base);
-        border: 1px solid var(--pst-color-border);
-        border-radius: 4px;
-        font-size: 12px;
-        white-space: normal;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        font-family: var(--pst-font-family-base);
-        font-weight: normal;
-        width: max-content;
-        max-width: 300px;
-        text-align: center;
-        pointer-events: none;
-    }
-
-    [data-tooltip]:hover::before {
-        content: '';
-        position: absolute;
-        bottom: calc(100% + 4px);
-        left: 50%;
-        transform: translateX(-50%);
-        border-width: 4px;
-        border-style: solid;
-        border-color: var(--pst-color-border) transparent transparent transparent;
-        pointer-events: none;
-    }
-
-    
-
-
+  [data-tooltip]:hover::before {
+    content: "";
+    position: absolute;
+    bottom: calc(100% + 4px);
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 4px;
+    border-style: solid;
+    border-color: var(--pst-color-border) transparent transparent transparent;
+    pointer-events: none;
+  }
 </style>
 <div id="app">
-    <div id="status-sidebar">
-        <div class="filter-group">
-            <a
-                v-if="calendar_id"
-                :href="'https://calendar.google.com/calendar/embed?src=' + encodeURIComponent(calendar_id)"
-                target="_blank"
-                title="View Dedicated Deployment Calendar"
-                style="display: inline-block;"
-            >
-                <i class="pi pi-calendar-clock" style="font-size: 3rem"></i>
-            </a>
-            <a
-                v-if="calendar_id"
-                :href="'https://calendar.google.com/calendar/embed?src=' + encodeURIComponent(calendar_id)"
-                target="_blank"
-                title="What is this?"
-                style="display: inline-block;"
-            >
-                <i class="pi pi-question-circle" style="font-size: 3rem"></i>
-            </a>
-        </div>
-        <cluster-component :cluster="cluster"></cluster-component>
+  <div id="status-sidebar">
+    <div class="filter-group">
+      <a
+        v-if="calendar_id"
+        :href="'https://calendar.google.com/calendar/embed?src=' + encodeURIComponent(calendar_id)"
+        target="_blank"
+        title="View Dedicated Deployment Calendar"
+        style="display: inline-block"
+      >
+        <i class="pi pi-calendar-clock" style="font-size: 3rem"></i>
+      </a>
+      <a
+        v-if="calendar_id"
+        :href="'https://calendar.google.com/calendar/embed?src=' + encodeURIComponent(calendar_id)"
+        target="_blank"
+        title="What is this?"
+        style="display: inline-block"
+      >
+        <i class="pi pi-question-circle" style="font-size: 3rem"></i>
+      </a>
     </div>
-    <p-divider layout="vertical"></p-divider>
-    <div id="status-display">
-        <status-bar-component ref="statusbar" id="status-bar"></status-bar-component>
-        
-        <!-- Filter Bar -->
-        <div id="filter-bar">
-            <div class="filter-group">
+    <cluster-component :cluster="cluster"></cluster-component>
+  </div>
+  <p-divider layout="vertical"></p-divider>
+  <div id="status-display">
+    <status-bar-component
+      ref="statusbar"
+      id="status-bar"
+    ></status-bar-component>
 
-                <!-- <div class="filter-item">
-                    <p-select 
-                        v-model="selectedDeploymentLevel" 
-                        :options="deploymentLevelOptions" 
-                        option-label="label" 
+    <!-- Filter Bar -->
+    <div id="filter-bar">
+      <div class="filter-group">
+        <!-- <div class="filter-item">
+                    <p-select
+                        v-model="selectedDeploymentLevel"
+                        :options="deploymentLevelOptions"
+                        option-label="label"
                         option-value="value"
                         placeholder="Status"
                         show-clear="true"
                         @change="onDeploymentLevelChange"
                     />
                 </div> -->
-                
-                <div class="filter-item">
-                    <p-floatlabel variant="on">
-                        <p-select 
-                            v-model="selectedSortBy" 
-                            :options="sortByOptions" 
-                            inputId="sort_by_label"
-                            option-label="label" 
-                            option-value="value"
-                            placeholder="Sort by"
-                            @change="onSortChange"
-                        ></p-select>
-                        <label for="sort_by_label">Sort</label>
-                </p-floatlabel>
-                </div>
-                <div class="filter-item">
-                    <p-iconfield>      
-                        <p-inputicon class="pi pi-search" ></p-inputicon>
-                        <p-inputtext 
-                            v-model="searchQuery" 
-                            placeholder="Search..."
-                            @input="onSearchChange"
-                        ></p-inputtext>
-                        
-                    </p-iconfield>
-                </div>
-            </div>
-            <div class="filter-group">
-                <p-paginator 
-                v-model:first="firstRecord" 
-                :rows="pageSize" 
-                :total-records="filteredDeployments.length"
-                @page="onPageChange"
-                template="PrevPageLink CurrentPageReport NextPageLink" >
-                </p-paginator>
-            </div>
-        </div>
 
-        <div id="deployments">
-            <deployment-component
-                v-for="(deployment, index) in paginatedDeployments"
-                :key="deployment.model_key"
-                :index="index"
-                :model_key="deployment.model_key"
-                :n_params="deployment.n_params"
-                :deployment_level="deployment.deployment_level"
-                :schedule="deployment.schedule"
-                :application_state="deployment.application_state"
-                :repo_id="deployment.repo_id"
-            ></deployment-component>
-            <p-skeleton
-                v-if="deployments.length === 0"
-                v-for="n in 18"
-                :key="n"
-                width="350px"
-                height="83px"
-            ></p-skeleton>
+        <div class="filter-item">
+          <p-floatlabel variant="on">
+            <p-select
+              v-model="selectedSortBy"
+              :options="sortByOptions"
+              inputId="sort_by_label"
+              option-label="label"
+              option-value="value"
+              placeholder="Sort by"
+              @change="onSortChange"
+            ></p-select>
+            <label for="sort_by_label">Sort</label>
+          </p-floatlabel>
         </div>
-        
-        <div v-if="totalPages > 1" class="pagination-container">
-            <p-paginator 
-                v-model:first="firstRecord" 
-                :rows="pageSize" 
-                :total-records="filteredDeployments.length"
-                @page="onPageChange"
-                :template="{ '640px': 'PrevPageLink PageLinks NextPageLink', '960px': 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink', '1300px': 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink' }"
-            ></p-paginator>
+        <div class="filter-item">
+          <p-iconfield>
+            <p-inputicon class="pi pi-search"></p-inputicon>
+            <p-inputtext
+              v-model="searchQuery"
+              placeholder="Search..."
+              @input="onSearchChange"
+            ></p-inputtext>
+          </p-iconfield>
         </div>
+      </div>
+      <div class="filter-group">
+        <p-paginator
+          v-model:first="firstRecord"
+          :rows="pageSize"
+          :total-records="filteredDeployments.length"
+          @page="onPageChange"
+          template="PrevPageLink CurrentPageReport NextPageLink"
+        >
+        </p-paginator>
+      </div>
     </div>
-    
+
+    <div id="deployments">
+      <deployment-component
+        v-for="(deployment, index) in paginatedDeployments"
+        :key="deployment.model_key"
+        :index="index"
+        :model_key="deployment.model_key"
+        :n_params="deployment.n_params"
+        :deployment_level="deployment.deployment_level"
+        :schedule="deployment.schedule"
+        :application_state="deployment.application_state"
+        :repo_id="deployment.repo_id"
+      ></deployment-component>
+      <p-skeleton
+        v-if="deployments.length === 0"
+        v-for="n in 18"
+        :key="n"
+        width="350px"
+        height="83px"
+      ></p-skeleton>
+    </div>
+
+    <div v-if="totalPages > 1" class="pagination-container">
+      <p-paginator
+        v-model:first="firstRecord"
+        :rows="pageSize"
+        :total-records="filteredDeployments.length"
+        @page="onPageChange"
+        :template="{ '640px': 'PrevPageLink PageLinks NextPageLink', '960px': 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink', '1300px': 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink' }"
+      ></p-paginator>
+    </div>
+  </div>
 </div>
 
-
 <script>
-
-    const StatusBarComponent = {
-        data(){
-            return {
-                text: 'Getting Status...',
-                cls: 'primary'
-            }
-        },
-        methods: {
-            update(text, cls){
-                this.text = text;
-                this.cls = cls;
-            }
-        },
-        template:  `<div class="sd-card sd-sphinx-override sd-shadow-none sd-text-center">
+  const StatusBarComponent = {
+    data() {
+      return {
+        text: "Getting Status...",
+        cls: "primary",
+      };
+    },
+    methods: {
+      update(text, cls) {
+        this.text = text;
+        this.cls = cls;
+      },
+    },
+    template: `<div class="sd-card sd-sphinx-override sd-shadow-none sd-text-center">
                         <div :class="['sd-card-body', 'sd-bg-' + cls, 'sd-bg-text-' + cls]">
                             <div class="sd-card-title sd-font-weight-bold ">{{ text }}</div>
                         </div>
-                    </div>`
-                    
-    
-    }
+                    </div>`,
+  };
 
-    const BadgeComponent = {
-        props: {
-            content: String,
-            bg: {
-                type: Boolean,
-                default: true
-            },
-            sdcls: String,
-            cls: {
-                type: String,
-                default: undefined
-            },
-            tooltip: {
-                type: String,
-                default: undefined
-            }
-        },
+  const BadgeComponent = {
+    props: {
+      content: String,
+      bg: {
+        type: Boolean,
+        default: true,
+      },
+      sdcls: String,
+      cls: {
+        type: String,
+        default: undefined,
+      },
+      tooltip: {
+        type: String,
+        default: undefined,
+      },
+    },
 
-        template: `<span class="sd-sphinx-override sd-badge" :class="['sd-' + (bg ? 'bg' : 'outline') + '-' + sdcls, 'sd-' + (bg ? 'bg-' : '') + 'text-' + sdcls, cls]" :data-tooltip="tooltip" v-html="content"></span>`
-    }
+    template: `<span class="sd-sphinx-override sd-badge" :class="['sd-' + (bg ? 'bg' : 'outline') + '-' + sdcls, 'sd-' + (bg ? 'bg-' : '') + 'text-' + sdcls, cls]" :data-tooltip="tooltip" v-html="content"></span>`,
+  };
 
-    const DeploymentComponent = {
-        components: {
-            BadgeComponent
-        },
-        data(){
-            return {
-                deployment: {}
-            }
-        },
-        props: {
-            model_key: String,
-            deployment_level: String,
-            schedule: Object,
-            application_state: String,
-            repo_id: String,
-            n_params: Number,
-            index: Number
-        },
-        template: `
+  const DeploymentComponent = {
+    components: {
+      BadgeComponent,
+    },
+    data() {
+      return {
+        deployment: {},
+      };
+    },
+    props: {
+      model_key: String,
+      deployment_level: String,
+      schedule: Object,
+      application_state: String,
+      repo_id: String,
+      n_params: Number,
+      index: Number,
+    },
+    template: `
         <div class="nn-deployment electrolize sd-card sd-sphinx-override sd-shadow-sm sd-card-hover" data-repo-id="{{repo_id}}" data-deployment-level="{{deployment_level}}" data-application-state="{{application_state}}" data-schedule="{{schedule}}">
             <div class="sd-card-body nn-card-body">
                 <div v-if="model_key !== undefined && model_key !== null" class="nn-copy-button">
@@ -504,281 +497,272 @@
                         </span>
                     </div>
                 </div>
-                
+
             </div>
             <a :href="'http://huggingface.co/' + repo_id" target="_blank" class="sd-stretched-link sd-hide-link-text"><span>HuggingFace Model Repository ↗</span></a>
         </div>`,
-        methods: {
-            hasInfo(){
-                return this.n_params !== undefined && this.n_params !== null;
-            },
-            className(){
-                return this.model_key ? this.model_key.split(":")[0] : undefined;
-            },
-            getCodeSnippet(){
+    methods: {
+      hasInfo() {
+        return this.n_params !== undefined && this.n_params !== null;
+      },
+      className() {
+        return this.model_key ? this.model_key.split(":")[0] : undefined;
+      },
+      getCodeSnippet() {
+        let class_name = this.className();
+        let parts = class_name.split(".");
+        let import_path = parts.slice(0, -1).join(".");
+        let obj_name = parts[parts.length - 1];
+        let repo_id = this.repo_id;
 
-                let class_name = this.className();
-                let parts = class_name.split('.');
-                let import_path = parts.slice(0, -1).join('.');
-                let obj_name = parts[parts.length - 1];
-                let repo_id = this.repo_id;
-
-                let code = `
+        let code = `
  <span class="kn">from</span> <span class="nn">${import_path}</span> <span class="kn">import</span> <span class="n">${obj_name}</span>
-                    
+
  <span class="n">model</span> <span class="o">=</span> <span class="n">${obj_name}</span><span class="p">(</span><span class="s1">"${repo_id}"</span><span class="p">)</span>
-                    
+
  <span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">"The Eiffel Tower is in the city of"</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="s1">True</span><span class="p">)</span><span class="p">:</span>
-                    
-        <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>`                
 
+        <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>`;
 
-                return code;
-            },
+        return code;
+      },
 
-            getDeploymentLevelBadge(){
-                let tooltip = undefined;
-                let color = undefined;
-                let text = this.deployment_level
-    
-                switch(this.deployment_level) {
-                    case "HOT":
-                        tooltip = "This model is on GPU and ready to serve.";
-                        color = "success";
-                        text = `<i class="fa-solid fa-microchip"></i>  Hot`
-                        break;
-                    case "WARM":
-                        tooltip = "This model is cached on CPU and will be quickly loaded into GPU when requested assuming it can be accomodated.";
-                        color = "warning";
-                        text = `<i class="fa-solid fa-fire"></i>  Warm`
-                        break;
-                    case "COLD":
-                        tooltip = "This model is downloaded and will be slowly loaded into GPU when requested assuming it can be accomodated.";
-                        color = "primary";
-                        text = `<i class="fa-regular fa-snowflake"></i>  Cold`
-                        break;
-                }
+      getDeploymentLevelBadge() {
+        let tooltip = undefined;
+        let color = undefined;
+        let text = this.deployment_level;
 
-                return {
-                    content: text, 
-                    bg: true, 
-                    sdcls: color, 
-                    cls: "", 
-                    tooltip: tooltip
-                }
-            },
-
-            getApplicationStateBadge(){
-    
-                let color = undefined;
-                let text = undefined;
-    
-                switch(this.application_state) {
-                    case "NOT_STARTED":
-                        color = "warning";
-                        text = `<i class="fa-solid fa-gear fa-spin"></i>  Not Started`
-                        break;
-                    case "DEPLOYING":
-                        color = "warning";
-                        text = `<i class="fa-solid fa-gear fa-spin"></i>  Deploying`
-                        break;
-                    case "DEPLOY_FAILED":
-                        color = "danger";
-                        text = `<i class="fa-solid fa-xmark"></i>  Deploy Failed`
-                        break;
-                    case "RUNNING":
-                        color = "success";
-                        text = `<i class="fa-solid fa-check"></i>  Running`
-                        break;
-                    case "UNHEALTHY":
-                        color = "danger";
-                        text = `<i class="fa-solid fa-xmark"></i>  Unhealthy`
-                        break;
-                }
-
-                return {
-                    content: text, 
-                    bg: true, 
-                    sdcls: color, 
-                    cls: "", 
-                    tooltip: undefined
-                }
-            },
-
-            getModelClassBadge(){
-
-                let class_name = this.model_key.split(":")[0]
-
-                let text = undefined;
-                let color = "secondary"
-
-                switch(class_name) {
-                    case "nnsight.modeling.language.LanguageModel":
-                        text = `<i class="fa-solid fa-language"></i>  Language`
-                        break;
-                
-                }
-                return {
-                    content: text,
-                    bg: true,
-                    sdcls: color,
-                    cls: "",
-                    tooltip: undefined
-                }
-            },
-            formatTimeRemaining(endTime) {
-                let now = new Date();
-                let end = new Date(endTime);
-                
-                const diff = end - now;
-                
-                if (diff < 0) return "Ended";
-                
-                const hours = Math.floor(diff / (1000 * 60 * 60));
-                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                return `${hours}h ${minutes}m remaining`;
-            },
-            getScheduleInfoBadge(){
-
-                let now = new Date();
-                let start = undefined;
-                let end = undefined;
-    
-                if (this.schedule.start_time) {
-                    start = new Date(this.schedule.start_time);
-                }
-                if (this.schedule.end_time) {
-                    end = new Date(this.schedule.end_time);
-                }
-                
-                if (!end || now > end) return "";
-    
-                if (start && now < start) {
-                    const startStr = start.toLocaleString(undefined, {
-                        timeZoneName: 'short',
-                        hour: 'numeric',
-                        minute: 'numeric',
-                        hour12: true
-                    });
-
-                    const duration = Math.round((end - start) / (1000 * 60 * 60));
-                    let text = `Starts ${startStr} (${duration}h duration)`
-
-                    return {
-                        content: text,
-                        bg: false,
-                        sdcls: "muted",
-                        cls: "",
-                        tooltip: "This model is scheduled to be deployed at a future time."
-                    }
-     
-                }
-                else {
-    
-                    let text = this.formatTimeRemaining(this.schedule.end_time);
-
-                    return {
-                        content: text,
-                        bg: false,
-                        sdcls: "muted",
-                        cls: "",
-                        tooltip: undefined
-                    }
-                }
-                
-            },
-            getScheduleBadge() {
-    
-                let now = new Date();
-                let start = undefined;
-                let end = undefined;
-    
-                if (this.schedule.start_time) {
-                    start = new Date(this.schedule.start_time);
-                }
-                if (this.schedule.end_time) {
-                    end = new Date(this.schedule.end_time);
-                }
-                
-                if (!end || now > end) return "";
-    
-                if (start && now < start) {
-
-                    return {
-                        content: `<i class="fa-solid fa-clock"></i>  Scheduled`,
-                        bg: true,
-                        sdcls: "info",
-                        cls: "",
-                        tooltip: "This model is scheduled to be deployed at a future time."
-                    }
-   
-                    let scheduled_badge = getBadge(`<i class="fa-solid fa-clock"></i>  Scheduled`, "info", bg=true, tooltip=tooltip, cls="electrolize")
-                }
-                else {
-
-                    return {
-                        content: `<i class="fa-solid fa-thumbtack"></i>  Pinned`,
-                        bg: true,
-                        sdcls: "info",
-                        cls: "",
-                        tooltip: "This model wont be evicted for the specified duration."
-                    }
-                }
-    
-            }
+        switch (this.deployment_level) {
+          case "HOT":
+            tooltip = "This model is on GPU and ready to serve.";
+            color = "success";
+            text = `<i class="fa-solid fa-microchip"></i>  Hot`;
+            break;
+          case "WARM":
+            tooltip =
+              "This model is cached on CPU and will be quickly loaded into GPU when requested assuming it can be accomodated.";
+            color = "warning";
+            text = `<i class="fa-solid fa-fire"></i>  Warm`;
+            break;
+          case "COLD":
+            tooltip =
+              "This model is downloaded and will be slowly loaded into GPU when requested assuming it can be accomodated.";
+            color = "primary";
+            text = `<i class="fa-regular fa-snowflake"></i>  Cold`;
+            break;
         }
-    }
 
-    const ClusterComponent = {
-        components: {
-            BadgeComponent
-        },
-        props: {
-            cluster: Object
-        },
+        return {
+          content: text,
+          bg: true,
+          sdcls: color,
+          cls: "",
+          tooltip: tooltip,
+        };
+      },
 
-        methods: {
-            getAvailableBadge(){
-                let total = 0;
-                let available = 0;
-                for (let node in this.cluster.nodes){
-                    total += this.cluster.nodes[node].resources.total_gpus;
-                    available += this.cluster.nodes[node].resources.available_gpus;
-                }
-                let percent = Math.round((available / total) * 100);
+      getApplicationStateBadge() {
+        let color = undefined;
+        let text = undefined;
 
-                if (percent > 50){
-                    color = "success";
-                }
-                else if (percent > 10){
-                    color = "warning";
-                }
-                else {
-                    color = "danger";
-                }
-                return {
-                    content: percent + "%",
-                    bg: true,
-                    sdcls: color,
-                    cls: "",
-                    tooltip: "Percentage of available GPUs in the cluster."
-                }
-            },
-            getGpuBadge(available_gpus, index){
-                return {
-                    content: "GPU",
-                    bg: available_gpus > (index-1),
-                    sdcls: available_gpus > (index-1) ? "success" : "muted",
-                    cls: "",
-                    tooltip: available_gpus > (index-1) ? "GPU is available." : "GPU is not available."
-                }
-            }
+        switch (this.application_state) {
+          case "NOT_STARTED":
+            color = "warning";
+            text = `<i class="fa-solid fa-gear fa-spin"></i>  Not Started`;
+            break;
+          case "DEPLOYING":
+            color = "warning";
+            text = `<i class="fa-solid fa-gear fa-spin"></i>  Deploying`;
+            break;
+          case "DEPLOY_FAILED":
+            color = "danger";
+            text = `<i class="fa-solid fa-xmark"></i>  Deploy Failed`;
+            break;
+          case "RUNNING":
+            color = "success";
+            text = `<i class="fa-solid fa-check"></i>  Running`;
+            break;
+          case "UNHEALTHY":
+            color = "danger";
+            text = `<i class="fa-solid fa-xmark"></i>  Unhealthy`;
+            break;
+        }
 
-            
-        },
+        return {
+          content: text,
+          bg: true,
+          sdcls: color,
+          cls: "",
+          tooltip: undefined,
+        };
+      },
 
+      getModelClassBadge() {
+        let class_name = this.model_key.split(":")[0];
 
-        template:  `
+        let text = undefined;
+        let color = "secondary";
+
+        switch (class_name) {
+          case "nnsight.modeling.language.LanguageModel":
+            text = `<i class="fa-solid fa-language"></i>  Language`;
+            break;
+        }
+        return {
+          content: text,
+          bg: true,
+          sdcls: color,
+          cls: "",
+          tooltip: undefined,
+        };
+      },
+      formatTimeRemaining(endTime) {
+        let now = new Date();
+        let end = new Date(endTime);
+
+        const diff = end - now;
+
+        if (diff < 0) return "Ended";
+
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        return `${hours}h ${minutes}m remaining`;
+      },
+      getScheduleInfoBadge() {
+        let now = new Date();
+        let start = undefined;
+        let end = undefined;
+
+        if (this.schedule.start_time) {
+          start = new Date(this.schedule.start_time);
+        }
+        if (this.schedule.end_time) {
+          end = new Date(this.schedule.end_time);
+        }
+
+        if (!end || now > end) return "";
+
+        if (start && now < start) {
+          const startStr = start.toLocaleString(undefined, {
+            timeZoneName: "short",
+            hour: "numeric",
+            minute: "numeric",
+            hour12: true,
+          });
+
+          const duration = Math.round((end - start) / (1000 * 60 * 60));
+          let text = `Starts ${startStr} (${duration}h duration)`;
+
+          return {
+            content: text,
+            bg: false,
+            sdcls: "muted",
+            cls: "",
+            tooltip: "This model is scheduled to be deployed at a future time.",
+          };
+        } else {
+          let text = this.formatTimeRemaining(this.schedule.end_time);
+
+          return {
+            content: text,
+            bg: false,
+            sdcls: "muted",
+            cls: "",
+            tooltip: undefined,
+          };
+        }
+      },
+      getScheduleBadge() {
+        let now = new Date();
+        let start = undefined;
+        let end = undefined;
+
+        if (this.schedule.start_time) {
+          start = new Date(this.schedule.start_time);
+        }
+        if (this.schedule.end_time) {
+          end = new Date(this.schedule.end_time);
+        }
+
+        if (!end || now > end) return "";
+
+        if (start && now < start) {
+          return {
+            content: `<i class="fa-solid fa-clock"></i>  Scheduled`,
+            bg: true,
+            sdcls: "info",
+            cls: "",
+            tooltip: "This model is scheduled to be deployed at a future time.",
+          };
+
+          let scheduled_badge = getBadge(
+            `<i class="fa-solid fa-clock"></i>  Scheduled`,
+            "info",
+            (bg = true),
+            (tooltip = tooltip),
+            (cls = "electrolize"),
+          );
+        } else {
+          return {
+            content: `<i class="fa-solid fa-thumbtack"></i>  Pinned`,
+            bg: true,
+            sdcls: "info",
+            cls: "",
+            tooltip: "This model wont be evicted for the specified duration.",
+          };
+        }
+      },
+    },
+  };
+
+  const ClusterComponent = {
+    components: {
+      BadgeComponent,
+    },
+    props: {
+      cluster: Object,
+    },
+
+    methods: {
+      getAvailableBadge() {
+        let total = 0;
+        let available = 0;
+        for (let node in this.cluster.nodes) {
+          total += this.cluster.nodes[node].resources.total_gpus;
+          available += this.cluster.nodes[node].resources.available_gpus;
+        }
+        let percent = Math.round((available / total) * 100);
+
+        if (percent > 50) {
+          color = "success";
+        } else if (percent > 10) {
+          color = "warning";
+        } else {
+          color = "danger";
+        }
+        return {
+          content: percent + "%",
+          bg: true,
+          sdcls: color,
+          cls: "",
+          tooltip: "Percentage of available GPUs in the cluster.",
+        };
+      },
+      getGpuBadge(available_gpus, index) {
+        return {
+          content: "GPU",
+          bg: available_gpus > index - 1,
+          sdcls: available_gpus > index - 1 ? "success" : "muted",
+          cls: "",
+          tooltip:
+            available_gpus > index - 1
+              ? "GPU is available."
+              : "GPU is not available.",
+        };
+      },
+    },
+
+    template: `
         <p-panel toggleable collapsed v-if="cluster !== null">
             <template #header>
             <span>
@@ -796,14 +780,14 @@
                 </p-card>
             </div>
         </p-panel>
-`
-    }
+`,
+  };
 
-    const WhitelistComponent = {
-        props: {
-            whitelist: Array
-        },
-        template: `
+  const WhitelistComponent = {
+    props: {
+      whitelist: Array,
+    },
+    template: `
         <p-panel toggleable collapsed v-if="whitelist.length > 0">
             <template #header>
             <span>
@@ -818,185 +802,193 @@
                 </p-card>
             </div>
         </p-panel>
-        `
-    }
+        `,
+  };
 
+  const app = Vue.createApp({
+    components: {
+      StatusBarComponent,
+      DeploymentComponent,
+      ClusterComponent,
+    },
+    data() {
+      return {
+        ndif_url: "https://api.ndif.us",
+        deployments: [],
+        cluster: null,
+        currentPage: 1,
+        pageSize: 18,
+        selectedDeploymentLevel: null,
+        selectedSortBy: "deployment_level",
+        searchQuery: "",
+        calendar_id: undefined,
+        deploymentLevelOptions: [
+          { label: "Hot", value: "HOT" },
+          { label: "Warm", value: "WARM" },
+          { label: "Cold", value: "COLD" },
+        ],
+        sortByOptions: [
+          { label: "Status", value: "deployment_level" },
+          { label: "Name", value: "repo_id" },
+          { label: "Params", value: "n_params" },
+        ],
+      };
+    },
+    computed: {
+      sortedAndFilteredDeployments() {
+        let filtered = [...this.deployments];
 
-
-    const app = Vue.createApp({
-        components: {
-            StatusBarComponent,
-            DeploymentComponent,
-            ClusterComponent
-        },
-        data() {
-            return {
-                ndif_url: 'https://api.ndif.us',
-                deployments: [],
-                cluster: null,
-                currentPage: 1,
-                pageSize: 18,
-                selectedDeploymentLevel: null,
-                selectedSortBy: 'deployment_level',
-                searchQuery: '',
-                calendar_id: undefined,
-                deploymentLevelOptions: [
-                    { label: 'Hot', value: 'HOT' },
-                    { label: 'Warm', value: 'WARM' },
-                    { label: 'Cold', value: 'COLD' },
-                ],
-                sortByOptions: [
-                    { label: 'Status', value: 'deployment_level' },
-                    { label: 'Name', value: 'repo_id' },
-                    { label: 'Params', value: 'n_params' }
-                ]
-            }
-        },
-        computed: {
-            sortedAndFilteredDeployments() {
-                let filtered = [...this.deployments];
-
-                // Filter by deployment level
-                if (this.selectedDeploymentLevel !== null) {
-                    filtered = filtered.filter(deployment => 
-                        deployment.deployment_level === this.selectedDeploymentLevel
-                    );
-                }
-
-                // Filter by search query (repo ID)
-                if (this.searchQuery.trim() !== '') {
-                    const query = this.searchQuery.toLowerCase().trim();
-                    filtered = filtered.filter(deployment => 
-                        deployment.repo_id.toLowerCase().includes(query)
-                    );
-                }
-
-                // Sort the filtered deployments
-                if (this.selectedSortBy === 'deployment_level') {
-                    const deploymentOrder = ["DEDICATED", "HOT", "WARM", "SCHEDULED", "COLD"];
-                    filtered.sort((a, b) => {
-                        const aLevel = deploymentOrder.indexOf(a.deployment_level);
-                        const bLevel = deploymentOrder.indexOf(b.deployment_level);
-                        // If same level, sort by schedule existence then repo_id
-                        if (aLevel === bLevel) {
-                            const scheduleSort = (b.schedule ? 1 : 0) - (a.schedule ? 1 : 0);
-                            if (scheduleSort === 0) {
-                                return a.repo_id.localeCompare(b.repo_id);
-                            }
-                            return scheduleSort;
-                        }
-                        // If not found, put at the end
-                        return (aLevel === -1 ? deploymentOrder.length : aLevel) - (bLevel === -1 ? deploymentOrder.length : bLevel);
-                    });
-                } else if (this.selectedSortBy === 'repo_id') {
-                    filtered.sort((a, b) => a.repo_id.localeCompare(b.repo_id));
-                }
-                else if (this.selectedSortBy === 'n_params') {
-                    filtered.sort((a, b) => {
-                        // Treat null/undefined as -Infinity so they appear at the end (smallest)
-                        const aParams = (a.n_params === null || a.n_params === undefined) ? -Infinity : a.n_params;
-                        const bParams = (b.n_params === null || b.n_params === undefined) ? -Infinity : b.n_params;
-                        return bParams - aParams;
-                    });
-                }
-                return filtered;
-            },
-            filteredDeployments() {
-                return this.sortedAndFilteredDeployments;
-            },
-            paginatedDeployments() {
-                const start = (this.currentPage - 1) * this.pageSize;
-                const end = start + this.pageSize;
-                return this.filteredDeployments.slice(start, end);
-            },
-            totalPages() {
-                return Math.ceil(this.filteredDeployments.length / this.pageSize);
-            },
-            firstRecord() {
-                return (this.currentPage - 1) * this.pageSize;
-            }
-        },
-        methods: {
-            onDeploymentLevelChange() {
-                this.currentPage = 1; // Reset to first page when filtering
-            },
-
-            onSortChange() {
-                this.currentPage = 1; // Reset to first page when sorting changes
-            },
-
-            onSearchChange() {
-                this.currentPage = 1; // Reset to first page when search changes
-            },
-
-            onPageChange(event) {
-                this.currentPage = Math.floor(event.first / this.pageSize) + 1;
-            },
-
-            updateDeployments(data){
-                this.deployments = []; // Clear existing deployments
-                Object.entries(data.deployments)
-                    .forEach(([key, deployment]) => {
-                        this.deployments.push(deployment);
-                    });
-                // Note: Removed sorting logic from here since we now handle it in computed properties
-            },
-
-            getStatus(){
-
-                let statusbar = this.$refs.statusbar;
-
-                statusbar.update("Fetching NDIF status...", 'info');
-
-                fetch(this.ndif_url + "/ping")
-                    .then((response) => {
-                        if (response.status == 200) {
-                            statusbar.update("NDIF is up. Fetching model status...", 'info');
-
-                            fetch(this.ndif_url + "/status")
-                                .then((response) => {
-                                    if (response.status == 200) {
-                                        response.json().then((data) => {
-                                            console.log(data);
-                                            statusbar.update("NDIF is operational", 'success');
-                                            this.updateDeployments(data);
-                                            this.calendar_id = data.calendar_id;
-                                            this.cluster = data.cluster;
-                                        })
-                                    }
-                                    else{
-                                        statusbar.update("Unable to get NDIF status", 'danger');
-                                    }
-                                })
-                                .catch((error) => {
-                                    statusbar.update("Unable to get NDIF status", 'danger');
-                                })
-                        }
-                        else{
-                            statusbar.update("NDIF is unavailable", 'danger');
-                        }
-                    })
-                    .catch((error) => {
-                        statusbar.update("NDIF is unavailable", 'danger');
-                    })
-            }
-        },
-        mounted(){
-            this.getStatus();
+        // Filter by deployment level
+        if (this.selectedDeploymentLevel !== null) {
+          filtered = filtered.filter(
+            (deployment) =>
+              deployment.deployment_level === this.selectedDeploymentLevel,
+          );
         }
-    })
-    app.use(PrimeVue.Config, { theme: { preset: PrimeUIX.Themes.Aura } });
-    app.component('p-paginator', PrimeVue.Paginator);
-    app.component('p-select', PrimeVue.Select);
-    app.component('p-inputtext', PrimeVue.InputText);
-    app.component('p-iconfield', PrimeVue.IconField);
-    app.component('p-inputicon', PrimeVue.InputIcon);
-    app.component('p-skeleton', PrimeVue.Skeleton);
-    app.component('p-divider', PrimeVue.Divider);
-    app.component('p-floatlabel', PrimeVue.FloatLabel);
-    app.component('p-panel', PrimeVue.Panel);
-    app.component('p-card', PrimeVue.Card);
-    
-    app.mount('#app')
-    
+
+        // Filter by search query (repo ID)
+        if (this.searchQuery.trim() !== "") {
+          const query = this.searchQuery.toLowerCase().trim();
+          filtered = filtered.filter((deployment) =>
+            deployment.repo_id.toLowerCase().includes(query),
+          );
+        }
+
+        // Sort the filtered deployments
+        if (this.selectedSortBy === "deployment_level") {
+          const deploymentOrder = [
+            "DEDICATED",
+            "HOT",
+            "WARM",
+            "SCHEDULED",
+            "COLD",
+          ];
+          filtered.sort((a, b) => {
+            const aLevel = deploymentOrder.indexOf(a.deployment_level);
+            const bLevel = deploymentOrder.indexOf(b.deployment_level);
+            // If same level, sort by schedule existence then repo_id
+            if (aLevel === bLevel) {
+              const scheduleSort = (b.schedule ? 1 : 0) - (a.schedule ? 1 : 0);
+              if (scheduleSort === 0) {
+                return a.repo_id.localeCompare(b.repo_id);
+              }
+              return scheduleSort;
+            }
+            // If not found, put at the end
+            return (
+              (aLevel === -1 ? deploymentOrder.length : aLevel) -
+              (bLevel === -1 ? deploymentOrder.length : bLevel)
+            );
+          });
+        } else if (this.selectedSortBy === "repo_id") {
+          filtered.sort((a, b) => a.repo_id.localeCompare(b.repo_id));
+        } else if (this.selectedSortBy === "n_params") {
+          filtered.sort((a, b) => {
+            // Treat null/undefined as -Infinity so they appear at the end (smallest)
+            const aParams =
+              a.n_params === null || a.n_params === undefined
+                ? -Infinity
+                : a.n_params;
+            const bParams =
+              b.n_params === null || b.n_params === undefined
+                ? -Infinity
+                : b.n_params;
+            return bParams - aParams;
+          });
+        }
+        return filtered;
+      },
+      filteredDeployments() {
+        return this.sortedAndFilteredDeployments;
+      },
+      paginatedDeployments() {
+        const start = (this.currentPage - 1) * this.pageSize;
+        const end = start + this.pageSize;
+        return this.filteredDeployments.slice(start, end);
+      },
+      totalPages() {
+        return Math.ceil(this.filteredDeployments.length / this.pageSize);
+      },
+      firstRecord() {
+        return (this.currentPage - 1) * this.pageSize;
+      },
+    },
+    methods: {
+      onDeploymentLevelChange() {
+        this.currentPage = 1; // Reset to first page when filtering
+      },
+
+      onSortChange() {
+        this.currentPage = 1; // Reset to first page when sorting changes
+      },
+
+      onSearchChange() {
+        this.currentPage = 1; // Reset to first page when search changes
+      },
+
+      onPageChange(event) {
+        this.currentPage = Math.floor(event.first / this.pageSize) + 1;
+      },
+
+      updateDeployments(data) {
+        this.deployments = []; // Clear existing deployments
+        Object.entries(data.deployments).forEach(([key, deployment]) => {
+          this.deployments.push(deployment);
+        });
+        // Note: Removed sorting logic from here since we now handle it in computed properties
+      },
+
+      getStatus() {
+        let statusbar = this.$refs.statusbar;
+
+        statusbar.update("Fetching NDIF status...", "info");
+
+        fetch(this.ndif_url + "/ping")
+          .then((response) => {
+            if (response.status == 200) {
+              statusbar.update("NDIF is up. Fetching model status...", "info");
+
+              fetch(this.ndif_url + "/status")
+                .then((response) => {
+                  if (response.status == 200) {
+                    response.json().then((data) => {
+                      console.log(data);
+                      statusbar.update("NDIF is operational", "success");
+                      this.updateDeployments(data);
+                      this.calendar_id = data.calendar_id;
+                      this.cluster = data.cluster;
+                    });
+                  } else {
+                    statusbar.update("Unable to get NDIF status", "danger");
+                  }
+                })
+                .catch((error) => {
+                  statusbar.update("Unable to get NDIF status", "danger");
+                });
+            } else {
+              statusbar.update("NDIF is unavailable", "danger");
+            }
+          })
+          .catch((error) => {
+            statusbar.update("NDIF is unavailable", "danger");
+          });
+      },
+    },
+    mounted() {
+      this.getStatus();
+    },
+  });
+  app.use(PrimeVue.Config, { theme: { preset: PrimeUIX.Themes.Aura } });
+  app.component("p-paginator", PrimeVue.Paginator);
+  app.component("p-select", PrimeVue.Select);
+  app.component("p-inputtext", PrimeVue.InputText);
+  app.component("p-iconfield", PrimeVue.IconField);
+  app.component("p-inputicon", PrimeVue.InputIcon);
+  app.component("p-skeleton", PrimeVue.Skeleton);
+  app.component("p-divider", PrimeVue.Divider);
+  app.component("p-floatlabel", PrimeVue.FloatLabel);
+  app.component("p-panel", PrimeVue.Panel);
+  app.component("p-card", PrimeVue.Card);
+
+  app.mount("#app");
 </script>
