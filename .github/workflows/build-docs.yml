@@ -63,16 +63,16 @@ jobs:
 
       - name: Build documentation
         run: |
-          rm -rf build deploy
+          rm -rf build
           uv run sphinx-build -M dirhtml source build
-          mkdir -p deploy/public
-          cp -r build/dirhtml/* deploy/public/
+          mkdir -p public
+          cp -r build/dirhtml/* public/
 
       - name: Deploy to main branch
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./deploy
+          publish_dir: ./public
           enable_jekyll: true
           publish_branch: main
           force_orphan: true
