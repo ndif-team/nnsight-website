@@ -1,0 +1,844 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Remote Execution &#8212; nnsight</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=187304be"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/features/remote_execution';</script>
+    <script src="../../../_static/js/custom.js?v=f64c75aa"></script>
+    <script src="../../../_static/js/code.js?v=34343d0c"></script>
+    <link rel="icon" href="../../../_static/icon.ico"/>
+    <link rel="author" title="About these documents" href="../../../about/" />
+    <link rel="index" title="Index" href="../../../genindex/" />
+    <link rel="search" title="Search" href="../../../search/" />
+    <link rel="next" title="Scan and Validate" href="../scan_validate/" />
+    <link rel="prev" title="Multiple Token Generation" href="../multiple_token/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+<link href="../../../_static/css/custom.css?v=1758727866" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/home.css?v=1758727866" rel="stylesheet" type="text/css" />
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search/"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../_static/nnsight_logo.svg" class="logo__image only-dark" alt="nnsight - Home"/>
+    <img src="../../../_static/nnsight_logo.svg" class="logo__image only-light pst-js-only" alt="nnsight - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../start/">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../documentation/">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../features/">
+    Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../about/">
+    About
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><script>
+    fetch("https://ndif.dev/ping")
+        .then((response) => {
+            if (response.status == 200) {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#66800b', 'important');
+                    });
+                });
+            }
+            else {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#af3029', 'important');
+                    });
+                });
+                var statusIcon = document.querySelector('.ndif .fa-circle-check');
+                if (statusIcon) {
+                    // not here
+                    statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark'); 
+                }
+            }
+        })
+        .catch((response) => {
+            Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                    spanElement.style.setProperty('color', '#af3029', 'important');
+                });
+            });
+            var statusIcon = document.querySelector('.ndif .fa-circle-check');
+            if (statusIcon) {
+                statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark');
+            }
+        })
+</script></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/status" title="Status: Unknown" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Status: Unknown</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://discuss.ndif.us/" title="Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discourse fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Forum</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discord</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../start/">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../documentation/">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../features/">
+    Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../about/">
+    About
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><script>
+    fetch("https://ndif.dev/ping")
+        .then((response) => {
+            if (response.status == 200) {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#66800b', 'important');
+                    });
+                });
+            }
+            else {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#af3029', 'important');
+                    });
+                });
+                var statusIcon = document.querySelector('.ndif .fa-circle-check');
+                if (statusIcon) {
+                    // not here
+                    statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark'); 
+                }
+            }
+        })
+        .catch((response) => {
+            Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                    spanElement.style.setProperty('color', '#af3029', 'important');
+                });
+            });
+            var statusIcon = document.querySelector('.ndif .fa-circle-check');
+            if (statusIcon) {
+                statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark');
+            }
+        })
+</script></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/status" title="Status: Unknown" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Status: Unknown</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://discuss.ndif.us/" title="Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discourse fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Forum</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discord</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../cross_prompt/">Cross-Prompt Intervention and Batching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../early_stopping/">Early Stopping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting/">Getting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gradients/">Gradients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model_editing/">Model Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../multiple_token/">Multiple Token Generation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Remote Execution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan_validate/">Scan and Validate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../setting/">Setting</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../skip/">Skipping Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/">Source Code Interventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../streaming/">Streaming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vllm_support/">vLLM Support</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../features/" class="nav-link">Features</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Remote Execution</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="Remote-Execution">
+<h1>Remote Execution<a class="headerlink" href="#Remote-Execution" title="Link to this heading">#</a></h1>
+<section id="Summary">
+<h2>Summary<a class="headerlink" href="#Summary" title="Link to this heading">#</a></h2>
+<p>NNsight is integrated with NDIF’s remote backend, allowing you to run experiments on large models without needing to worry about hosting them yourself! All you need is to register for an API key (<a class="reference external" href="https://login.ndif.us">https://login.ndif.us</a>) and ensure that your model from HuggingFace is hosted on NDIF (check out the live status of our remote models: <a class="reference external" href="https://nnsight.net/status/">https://nnsight.net/status/</a>).</p>
+<p>Accessing models remotely in NDIF is as simple as setting <code class="docutils literal notranslate"><span class="pre">remote</span> <span class="pre">=</span> <span class="pre">True</span></code> when you enter the tracing context. You can keep the same code you use in local experiments and run them remotely instead!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nnsight</span><span class="w"> </span><span class="kn">import</span> <span class="n">LanguageModel</span>
+<span class="c1"># We&#39;ll never actually load the parameters so no need to specify a device_map.</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s2">&quot;Model_from_HuggingFace&quot;</span><span class="p">)</span>
+
+<span class="c1"># All we need to specify using NDIF vs executing locally is remote=True.</span>
+<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;The Eiffel Tower is in the city of&quot;</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">hidden_states</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="When-to-Use">
+<h2>When to Use<a class="headerlink" href="#When-to-Use" title="Link to this heading">#</a></h2>
+<p>NDIF hosts a selection of models for remote access using NNsight. If you are low on compute or would like to scale your experiment to large models like <code class="docutils literal notranslate"><span class="pre">Llama-405B</span></code>, you can run experiments on NDIF remote models!</p>
+</section>
+<section id="How-to-Use">
+<h2>How to Use<a class="headerlink" href="#How-to-Use" title="Link to this heading">#</a></h2>
+<section id="1.-Configure-NDIF-API-Key">
+<h3>1. Configure NDIF API Key<a class="headerlink" href="#1.-Configure-NDIF-API-Key" title="Link to this heading">#</a></h3>
+<p>To access remote models, <code class="docutils literal notranslate"><span class="pre">NDIF</span></code> requires you to receive an API key. To get one, simply go to <a class="reference external" href="https://login.ndif.us">https://login.ndif.us</a> and sign up. Because NDIF hardware resources are provided by the US NSF funding, NDIF usage is restricted to US residents and their collaborators. If you are curious about your eligibility, please email <a class="reference external" href="mailto:info&#37;&#52;&#48;ndif&#46;us">info<span>&#64;</span>ndif<span>&#46;</span>us</a>.</p>
+<p>Once you have a valid NDIF API key, you then can configure <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> by doing the following:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nnsight</span><span class="w"> </span><span class="kn">import</span> <span class="n">CONFIG</span>
+
+<span class="n">CONFIG</span><span class="o">.</span><span class="n">set_default_api_key</span><span class="p">(</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>If you are running NNsight locally, this will save this API key as the default in a config file along with the <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> installation, meaning that this command only needs to be run once.</p>
+<details><summary><p>Configuring NNsight API key in Google Colab</p>
+</summary><p>If you are running in Google Colab, you will need to configure your workspace every time, so we recommend adding your API key as a Colab Secret. Check out <a class="reference external" href="https://medium.com/&#64;parthdasawant/how-to-use-secrets-in-google-colab-450c38e3ec75">this article</a> on configuring secrets.</p>
+<p>Once you’ve saved your API key as <code class="docutils literal notranslate"><span class="pre">NDIF_API</span></code> in Colab Secrets, you can add this code to your notebooks for remote NDIF access on Colab.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># include your NDIF API key on Colab secrets as NDIF_API</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">google.colab</span><span class="w"> </span><span class="kn">import</span> <span class="n">userdata</span>
+<span class="n">NDIF_API</span> <span class="o">=</span> <span class="n">userdata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;NDIF_API&#39;</span><span class="p">)</span>
+
+<span class="n">CONFIG</span><span class="o">.</span><span class="n">set_default_api_key</span><span class="p">(</span><span class="n">NDIF_API</span><span class="p">)</span>
+</pre></div>
+</div>
+</details></section>
+<section id="2.-Access-NDIF-hosted-Models-Remotely">
+<h3>2. Access NDIF-hosted Models Remotely<a class="headerlink" href="#2.-Access-NDIF-hosted-Models-Remotely" title="Link to this heading">#</a></h3>
+<p>Now that our API key is configured, let’s run a small experiment on <code class="docutils literal notranslate"><span class="pre">Llama-3.1-70b</span></code> remotely!</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="c1"># llama3.1 70b is a gated model and you need access via your huggingface token</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HF_TOKEN&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;YOUR_HUGGING_FACE_TOKEN&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nnsight</span><span class="w"> </span><span class="kn">import</span> <span class="n">LanguageModel</span>
+<span class="c1"># We&#39;ll never actually load the parameters so no need to specify a device_map.</span>
+<span class="n">llama</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s2">&quot;meta-llama/Meta-Llama-3.1-70B&quot;</span><span class="p">)</span>
+
+<span class="c1"># All we need to specify using NDIF vs executing locally is remote=True.</span>
+<span class="k">with</span> <span class="n">llama</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;The Eiffel Tower is in the city of&quot;</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
+
+    <span class="n">hidden_states</span> <span class="o">=</span> <span class="n">llama</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+    <span class="n">output</span> <span class="o">=</span> <span class="n">llama</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">hidden_states</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">[</span><span class="s2">&quot;logits&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2024-08-30 07:11:21,150 MainProcess nnsight_remote INFO     36ff46f0-d81a-4586-b7e7-eaf6f97d6c0b - RECEIVED: Your job has been received and is waiting approval.
+2024-08-30 07:11:21,184 MainProcess nnsight_remote INFO     36ff46f0-d81a-4586-b7e7-eaf6f97d6c0b - APPROVED: Your job was approved and is waiting to be run.
+2024-08-30 07:11:21,206 MainProcess nnsight_remote INFO     36ff46f0-d81a-4586-b7e7-eaf6f97d6c0b - RUNNING: Your job has started running.
+2024-08-30 07:11:21,398 MainProcess nnsight_remote INFO     36ff46f0-d81a-4586-b7e7-eaf6f97d6c0b - COMPLETED: Your job has been completed.
+Downloading result:   0%|          | 0.00/9.48M [00:00&lt;?, ?B/s]huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+        - Avoid using `tokenizers` before the fork if possible
+        - Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+Downloading result: 100%|██████████| 9.48M/9.48M [00:02&lt;00:00, 3.21MB/s]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(tensor([[[ 5.4688, -4.9062,  2.2344,  ..., -3.6875,  0.9609,  1.2578],
+         [ 1.5469, -0.6172, -1.4531,  ..., -1.1562, -0.1406, -2.1250],
+         [ 1.7812, -1.8906, -1.1875,  ...,  0.1680,  0.9609,  0.5625],
+         ...,
+         [ 0.9453, -0.3711,  1.3516,  ...,  1.3828, -0.7969, -1.9297],
+         [-0.8906,  0.3672,  0.2617,  ...,  2.4688, -0.4414, -0.6758],
+         [-1.6094,  1.0938,  1.7031,  ...,  1.8672, -1.1328, -0.5000]]],
+       dtype=torch.bfloat16), DynamicCache())
+tensor([[[ 6.3750,  8.6250, 13.0000,  ..., -4.1562, -4.1562, -4.1562],
+         [-2.8594, -2.2344, -3.0938,  ..., -8.6250, -8.6250, -8.6250],
+         [ 8.9375,  3.5938,  4.5000,  ..., -3.9375, -3.9375, -3.9375],
+         ...,
+         [ 3.5781,  3.4531,  0.0796,  ..., -6.5625, -6.5625, -6.5625],
+         [10.8750,  6.4062,  4.9375,  ..., -4.0000, -4.0000, -3.9844],
+         [ 7.2500,  6.1562,  3.5156,  ..., -4.7188, -4.7188, -4.7188]]])
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+<p>It really is as simple as <code class="docutils literal notranslate"><span class="pre">remote=True</span></code>! All of the techniques available in NNsight locally work just the same when running remotely.</p>
+</section>
+<section id="3.-Streamlining-Remote-Experiments-with-Sessions">
+<h3>3. Streamlining Remote Experiments with Sessions<a class="headerlink" href="#3.-Streamlining-Remote-Experiments-with-Sessions" title="Link to this heading">#</a></h3>
+<p>NDIF uses a queue to handle concurrent requests from multiple users. To optimize the execution of our experiments we can use the <code class="docutils literal notranslate"><span class="pre">session</span></code> context to efficiently package multiple interventions together as one single request to the server.</p>
+<p>This offers the following benefits:</p>
+<ol class="arabic simple">
+<li><p>All interventions within a session will be executed one after another without additional wait in the queue</p></li>
+<li><p>All intermediate outputs of each intervention are stored on the server and can be accessed by other interventions in the same session without moving the data back and forth between NDIF and the local machine.</p></li>
+</ol>
+<p>Let’s take a look:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">session</span><span class="p">(</span><span class="n">remote</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+
+  <span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;The Eiffel Tower is in the city of&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">t1</span><span class="p">:</span>
+    <span class="c1"># capture the hidden state from layer 11 at the last token</span>
+    <span class="n">hs_79</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">79</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="c1"># no .save()</span>
+    <span class="n">t1_tokens_out</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+  <span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;Buckingham Palace is in the city of&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">t2</span><span class="p">:</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">hs_79</span><span class="p">[:]</span>
+    <span class="n">t2_tokens_out</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">T1 - Original Prediction: &quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">t1_tokens_out</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;T2 - Modified Prediction: &quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">t2_tokens_out</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<p>In the example above, we are interested in replacing the hidden state of a later layer with an earlier one. Since we are using a <code class="docutils literal notranslate"><span class="pre">session</span></code>, we don’t have to save the hidden state from Tracer 1 to reference it in Tracer 2.</p>
+<p>It is important to note that all the traces defined within the <code class="docutils literal notranslate"><span class="pre">session</span></code> context are executed sequentially, strictly following the order of definition (i.e. <code class="docutils literal notranslate"><span class="pre">t2</span></code> being executed after <code class="docutils literal notranslate"><span class="pre">t1</span></code> and <code class="docutils literal notranslate"><span class="pre">t3</span></code> after <code class="docutils literal notranslate"><span class="pre">t2</span></code> etc.).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">session</span></code> context object has its own methods to log values and be terminated early.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">nnsight</span>
+<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">session</span><span class="p">(</span><span class="n">remote</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+
+  <span class="n">nnsight</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;-- Early Stop --&quot;</span><span class="p">)</span>
+  <span class="n">nnsight</span><span class="o">.</span><span class="n">stop</span>
+</pre></div>
+</div>
+</div>
+<p>In addition to the benefits mentioned above, the <code class="docutils literal notranslate"><span class="pre">session</span></code> context also enables interesting experiments not possible with other <code class="docutils literal notranslate"><span class="pre">nnsight</span></code> tools - since every trace is run on its own model, it means that within one session we can run interventions between different models – for example, we can swap activations between vanilla and instruct versions of the Llama model and compare the outputs. And <code class="docutils literal notranslate"><span class="pre">session</span></code> can also be used to run experiments entirely locally!</p>
+</section>
+<section id="4.-Remote-Model-Considerations-&amp;-System-Limits">
+<h3>4. Remote Model Considerations &amp; System Limits<a class="headerlink" href="#4.-Remote-Model-Considerations-&-System-Limits" title="Link to this heading">#</a></h3>
+<p>To view currently hosted models, please visit <a class="reference external" href="https://nnsight.net/status/">https://nnsight.net/status/</a>. All models except for <code class="docutils literal notranslate"><span class="pre">meta-llama/Meta-Llama-3.1-405B</span></code> and <code class="docutils literal notranslate"><span class="pre">meta-llama/Meta-Llama-3.1-405B-Instruct</span></code> are currently available for public access. If you are interested in running an experiment on Llama 405b, please reach out to us at <a class="reference external" href="mailto:info&#37;&#52;&#48;ndif&#46;us">info<span>&#64;</span>ndif<span>&#46;</span>us</a> .</p>
+<p>Our system is currently actively in development, so please be prepared for system outages, updates, and wait times. NDIF is running on <a class="reference external" href="https://delta.ncsa.illinois.edu">NCSA Delta</a>, so our services will be down during any of their planned and unplanned outages.</p>
+<p>We currently have job length timeouts in place to ensure equitable model access between users.</p>
+<ul class="simple">
+<li><p>Maximum Job Run Time: 1 hour</p></li>
+</ul>
+<p>Jobs violating these parameters will be automatically denied or aborted. Please plan your experiments accordingly. You can also reach out to our team at <a class="reference external" href="mailto:info&#37;&#52;&#48;ndif&#46;us">info<span>&#64;</span>ndif<span>&#46;</span>us</a> if you have a special research case and would like to request any changes!</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#When-to-Use">When to Use</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#How-to-Use">How to Use</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#1.-Configure-NDIF-API-Key">1. Configure NDIF API Key</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#2.-Access-NDIF-hosted-Models-Remotely">2. Access NDIF-hosted Models Remotely</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#3.-Streamlining-Remote-Experiments-with-Sessions">3. Streamlining Remote Experiments with Sessions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#4.-Remote-Model-Considerations-&amp;-System-Limits">4. Remote Model Considerations &amp; System Limits</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025 NDIF.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

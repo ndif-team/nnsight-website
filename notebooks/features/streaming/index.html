@@ -1,0 +1,1106 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" data-theme="dark">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Streaming &#8212; nnsight</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "dark";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=187304be"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/features/streaming';</script>
+    <script src="../../../_static/js/custom.js?v=f64c75aa"></script>
+    <script src="../../../_static/js/code.js?v=34343d0c"></script>
+    <link rel="icon" href="../../../_static/icon.ico"/>
+    <link rel="author" title="About these documents" href="../../../about/" />
+    <link rel="index" title="Index" href="../../../genindex/" />
+    <link rel="search" title="Search" href="../../../search/" />
+    <link rel="next" title="vLLM Support" href="../vllm_support/" />
+    <link rel="prev" title="Source Code Interventions" href="../source/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+<link href="../../../_static/css/custom.css?v=1758727866" rel="stylesheet" type="text/css" />
+<link href="../../../_static/css/home.css?v=1758727866" rel="stylesheet" type="text/css" />
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="dark">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search/"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../../../_static/nnsight_logo.svg" class="logo__image only-dark" alt="nnsight - Home"/>
+    <img src="../../../_static/nnsight_logo.svg" class="logo__image only-light pst-js-only" alt="nnsight - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../start/">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../documentation/">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../features/">
+    Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../about/">
+    About
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><script>
+    fetch("https://ndif.dev/ping")
+        .then((response) => {
+            if (response.status == 200) {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#66800b', 'important');
+                    });
+                });
+            }
+            else {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#af3029', 'important');
+                    });
+                });
+                var statusIcon = document.querySelector('.ndif .fa-circle-check');
+                if (statusIcon) {
+                    // not here
+                    statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark'); 
+                }
+            }
+        })
+        .catch((response) => {
+            Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                    spanElement.style.setProperty('color', '#af3029', 'important');
+                });
+            });
+            var statusIcon = document.querySelector('.ndif .fa-circle-check');
+            if (statusIcon) {
+                statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark');
+            }
+        })
+</script></div>
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/status" title="Status: Unknown" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Status: Unknown</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://discuss.ndif.us/" title="Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discourse fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Forum</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discord</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../start/">
+    Getting Started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../documentation/">
+    Documentation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../../features/">
+    Features
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials/">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../about/">
+    About
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><script>
+    fetch("https://ndif.dev/ping")
+        .then((response) => {
+            if (response.status == 200) {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#66800b', 'important');
+                    });
+                });
+            }
+            else {
+                Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                    Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                        spanElement.style.setProperty('color', '#af3029', 'important');
+                    });
+                });
+                var statusIcon = document.querySelector('.ndif .fa-circle-check');
+                if (statusIcon) {
+                    // not here
+                    statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark'); 
+                }
+            }
+        })
+        .catch((response) => {
+            Array.from(document.getElementsByClassName("ndif")).forEach((ndifElement) => {
+                Array.from(ndifElement.getElementsByTagName('span')).forEach((spanElement) => {
+                    spanElement.style.setProperty('color', '#af3029', 'important');
+                });
+            });
+            var statusIcon = document.querySelector('.ndif .fa-circle-check');
+            if (statusIcon) {
+                statusIcon.classList.replace('fa-circle-check', 'fa-circle-xmark');
+            }
+        })
+</script></div>
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="/status" title="Status: Unknown" class="ndif" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-circle-check fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Status: Unknown</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ndif-team/nnsight" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://discuss.ndif.us/" title="Forum" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discourse fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Forum</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://forms.gle/1Y6myaXYzSh3oHf56" title="Discord" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-discord fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discord</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../cross_prompt/">Cross-Prompt Intervention and Batching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../early_stopping/">Early Stopping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting/">Getting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gradients/">Gradients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model_editing/">Model Editing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../multiple_token/">Multiple Token Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../remote_execution/">Remote Execution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scan_validate/">Scan and Validate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../setting/">Setting</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../skip/">Skipping Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/">Source Code Interventions</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Streaming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vllm_support/">vLLM Support</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../../features/" class="nav-link">Features</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Streaming</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="Streaming">
+<h1>Streaming<a class="headerlink" href="#Streaming" title="Link to this heading">#</a></h1>
+<p>Streaming enables users apply functions and datasets locally during remote model execution. This allows users to stream results for immediate consumption (i.e., seeing tokens as they are generated) or applying non-whitelisted functions such as model tokenizers, large local datasets, and more!</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nnsight.local()</span></code> context sends values immediately to user’s local machine from server</p></li>
+<li><p>Intervention graph is executed locally on downstream nodes</p></li>
+<li><p>Exiting local context uploads data back to server</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;nnsight.trace</span></code> function decorator enables custom functions to be added to intervention graph when using <code class="docutils literal notranslate"><span class="pre">nnsight.local()</span></code></p></li>
+</ul>
+<section id="Setup">
+<h2>Setup<a class="headerlink" href="#Setup" title="Link to this heading">#</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># if running in Google Colab, install nnsight</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">google.colab</span>
+    <span class="n">is_colab</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">is_colab</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">if</span> <span class="n">is_colab</span><span class="p">:</span>
+    <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>nnsight
+</pre></div>
+</div>
+</div>
+</section>
+<section id="nnsight.local()">
+<h2><code class="docutils literal notranslate"><span class="pre">nnsight.local()</span></code><a class="headerlink" href="#nnsight.local()" title="Link to this heading">#</a></h2>
+<p>You may sometimes want to locally access and manipulate values during remote execution. Using <code class="docutils literal notranslate"><span class="pre">.local()</span></code> on a proxy, you can send remote content to your local machine and apply local functions. The intervention graph is then executed locally on downstream nodes (until you send execution back to the remote server by exiting the <code class="docutils literal notranslate"><span class="pre">.local()</span></code> context).</p>
+<p>There are a few use cases for streaming with <code class="docutils literal notranslate"><span class="pre">.local()</span></code>, including live chat generation and applying large datasets or non-whitelisted local functions to the intervention graph.</p>
+<p>Now let’s explore how streaming works. We’ll start by grabbing some hidden states of the model and printing their value using <code class="docutils literal notranslate"><span class="pre">tracer.log()</span></code>. Without calling <code class="docutils literal notranslate"><span class="pre">nnsight.local()</span></code>, these operations will all occur remotely.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nnsight</span><span class="w"> </span><span class="kn">import</span> <span class="n">CONFIG</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">clear_output</span>
+
+<span class="k">if</span> <span class="n">is_colab</span><span class="p">:</span>
+    <span class="c1"># include your HuggingFace Token and NNsight API key on Colab secrets</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">google.colab</span><span class="w"> </span><span class="kn">import</span> <span class="n">userdata</span>
+    <span class="n">NDIF_API</span> <span class="o">=</span> <span class="n">userdata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;NDIF_API&#39;</span><span class="p">)</span>
+    <span class="n">HF_TOKEN</span> <span class="o">=</span> <span class="n">userdata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;HF_TOKEN&#39;</span><span class="p">)</span>
+
+    <span class="n">CONFIG</span><span class="o">.</span><span class="n">set_default_api_key</span><span class="p">(</span><span class="n">NDIF_API</span><span class="p">)</span>
+    <span class="o">!</span>huggingface-cli<span class="w"> </span>login<span class="w"> </span>-token<span class="w"> </span>HF_TOKEN
+
+<span class="n">clear_output</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nnsight</span><span class="w"> </span><span class="kn">import</span> <span class="n">LanguageModel</span>
+<span class="n">llama</span> <span class="o">=</span> <span class="n">LanguageModel</span><span class="p">(</span><span class="s2">&quot;meta-llama/Meta-Llama-3.1-70B&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This will give you a remote LOG response because it&#39;s coming from the remote server</span>
+<span class="k">with</span> <span class="n">llama</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
+
+    <span class="n">hs</span> <span class="o">=</span> <span class="n">llama</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">tracer</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">hs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="n">out</span> <span class="o">=</span>  <span class="n">llama</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2025-03-17 15:10:19,417 270a6e4d-53a5-4929-9f1d-d82fdef7292d - RECEIVED: Your job has been received and is waiting approval.
+2025-03-17 15:10:20,756 270a6e4d-53a5-4929-9f1d-d82fdef7292d - APPROVED: Your job was approved and is waiting to be run.
+2025-03-17 15:10:21,638 270a6e4d-53a5-4929-9f1d-d82fdef7292d - RUNNING: Your job has started running.
+2025-03-17 15:10:23,319 270a6e4d-53a5-4929-9f1d-d82fdef7292d - LOG: tensor(5.4688, device=&#39;cuda:2&#39;)
+2025-03-17 15:10:25,060 270a6e4d-53a5-4929-9f1d-d82fdef7292d - COMPLETED: Your job has been completed.
+Downloading result:   0%|          | 0.00/514k [00:00&lt;?, ?B/s]huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+        - Avoid using `tokenizers` before the fork if possible
+        - Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+Downloading result: 100%|██████████| 514k/514k [00:00&lt;00:00, 1.92MB/s]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+tensor([[[ 6.3750,  8.6250, 13.0000,  ..., -4.1562, -4.1562, -4.1562],
+         [10.5000,  2.6406,  4.7812,  ..., -8.8750, -8.8750, -8.8750]]],
+       dtype=torch.bfloat16)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">nnsight</span>
+<span class="c1"># This will print locally because it&#39;s already local</span>
+<span class="k">with</span> <span class="n">llama</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
+
+    <span class="k">with</span> <span class="n">nnsight</span><span class="o">.</span><span class="n">local</span><span class="p">():</span>
+        <span class="n">hs</span> <span class="o">=</span> <span class="n">llama</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">tracer</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">hs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="n">out</span> <span class="o">=</span>  <span class="n">llama</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2025-03-17 15:10:42,787 1f677938-114a-4efe-8b5b-eabbb6090ebf - RECEIVED: Your job has been received and is waiting approval.
+2025-03-17 15:10:43,386 1f677938-114a-4efe-8b5b-eabbb6090ebf - APPROVED: Your job was approved and is waiting to be run.
+2025-03-17 15:10:43,690 1f677938-114a-4efe-8b5b-eabbb6090ebf - RUNNING: Your job has started running.
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+tensor(5.4688, dtype=torch.bfloat16)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2025-03-17 15:10:44,819 1f677938-114a-4efe-8b5b-eabbb6090ebf - COMPLETED: Your job has been completed.
+Downloading result: 100%|██████████| 514k/514k [00:00&lt;00:00, 1.77MB/s]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+tensor([[[ 6.3750,  8.6250, 13.0000,  ..., -4.1562, -4.1562, -4.1562],
+         [10.5000,  2.6406,  4.7812,  ..., -8.8750, -8.8750, -8.8750]]],
+       dtype=torch.bfloat16)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+</section>
+<section id="&#64;nnsight.trace-function-decorator">
+<h2><code class="docutils literal notranslate"><span class="pre">&#64;nnsight.trace</span></code> function decorator<a class="headerlink" href="#@nnsight.trace-function-decorator" title="Link to this heading">#</a></h2>
+<p>We can also use function decorators to create custom functions to be used during <code class="docutils literal notranslate"><span class="pre">.local</span></code> calls. This is a handy way to enable live streaming of a chat or to train probing classifiers on model hidden states.</p>
+<p>Let’s try out <code class="docutils literal notranslate"><span class="pre">&#64;nnsight.trace</span></code> and <code class="docutils literal notranslate"><span class="pre">nnsight.local()</span></code> to access a custom function during remote execution.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># first, let&#39;s define our function</span>
+<span class="nd">@nnsight</span><span class="o">.</span><span class="n">trace</span> <span class="c1"># decorator that enables this function to be added to the intervention graph</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">my_local_fn</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">value</span> <span class="o">*</span> <span class="mi">0</span>
+
+<span class="c1"># We use a local function to ablate some hidden states</span>
+<span class="c1"># This downloads the data for the .local context, and then uploads it back to set the value.</span>
+<span class="k">with</span> <span class="n">llama</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
+
+    <span class="n">hs</span> <span class="o">=</span> <span class="n">llama</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">with</span> <span class="n">nnsight</span><span class="o">.</span><span class="n">local</span><span class="p">():</span>
+
+        <span class="n">hs</span> <span class="o">=</span> <span class="n">my_local_fn</span><span class="p">(</span><span class="n">hs</span><span class="p">)</span>
+
+    <span class="n">llama</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][:]</span> <span class="o">=</span> <span class="n">hs</span>
+
+    <span class="n">out</span> <span class="o">=</span>  <span class="n">llama</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2025-03-17 15:10:50,961 bf34e807-2ae2-4ab4-be77-3ac0836c7e28 - RECEIVED: Your job has been received and is waiting approval.
+2025-03-17 15:10:54,240 bf34e807-2ae2-4ab4-be77-3ac0836c7e28 - APPROVED: Your job was approved and is waiting to be run.
+2025-03-17 15:10:54,244 bf34e807-2ae2-4ab4-be77-3ac0836c7e28 - RUNNING: Your job has started running.
+2025-03-17 15:10:54,842 bf34e807-2ae2-4ab4-be77-3ac0836c7e28 - COMPLETED: Your job has been completed.
+Downloading result: 100%|██████████| 258k/258k [00:00&lt;00:00, 1.14MB/s]
+</pre></div></div>
+</div>
+<p>Note that without calling <code class="docutils literal notranslate"><span class="pre">.local</span></code>, the remote API does not know about <code class="docutils literal notranslate"><span class="pre">my_local_fn</span></code> and will throw a whitelist error. A whitelist error occurs because you are being allowed access to the function.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">llama</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">tracer</span><span class="p">:</span>
+
+    <span class="n">hs</span> <span class="o">=</span> <span class="n">llama</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">hs</span> <span class="o">=</span> <span class="n">my_local_fn</span><span class="p">(</span><span class="n">hs</span><span class="p">)</span> <span class="c1"># no .local - will cause an error</span>
+
+    <span class="n">llama</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">output</span><span class="p">[</span><span class="mi">0</span><span class="p">][:]</span> <span class="o">=</span> <span class="n">hs</span> <span class="o">*</span> <span class="mi">2</span>
+
+    <span class="n">out</span> <span class="o">=</span>  <span class="n">llama</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">FunctionWhitelistError</span>                    Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[9], line 1</span>
+<span class="ansi-green-fg">----&gt; 1</span> <span class="ansi-bold" style="color: rgb(0,135,0)">with</span> llama<span style="color: rgb(98,98,98)">.</span>trace(<span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">hello</span><span style="color: rgb(175,0,0)">&#34;</span>, remote<span style="color: rgb(98,98,98)">=</span><span class="ansi-bold" style="color: rgb(0,135,0)">True</span>) <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> tracer:
+<span class="ansi-green-intense-fg ansi-bold">      3</span>     hs <span style="color: rgb(98,98,98)">=</span> llama<span style="color: rgb(98,98,98)">.</span>model<span style="color: rgb(98,98,98)">.</span>layers[<span style="color: rgb(98,98,98)">-</span><span style="color: rgb(98,98,98)">1</span>]<span style="color: rgb(98,98,98)">.</span>output[<span style="color: rgb(98,98,98)">0</span>]
+<span class="ansi-green-intense-fg ansi-bold">      5</span>     hs <span style="color: rgb(98,98,98)">=</span> my_local_fn(hs) <span style="color: rgb(95,135,135)"># no .local - will cause an error</span>
+
+File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.10/site-packages/nnsight/intervention/contexts/interleaving.py:96</span>, in <span class="ansi-cyan-fg">InterleavingTracer.__exit__</span><span class="ansi-blue-fg">(self, exc_type, exc_val, exc_tb)</span>
+<span class="ansi-green-intense-fg ansi-bold">     92</span>     <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>invoker<span style="color: rgb(98,98,98)">.</span><span style="color: rgb(0,0,255)">__exit__</span>(<span class="ansi-bold" style="color: rgb(0,135,0)">None</span>, <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>, <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>)
+<span class="ansi-green-intense-fg ansi-bold">     94</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>_model<span style="color: rgb(98,98,98)">.</span>_envoy<span style="color: rgb(98,98,98)">.</span>_reset()
+<span class="ansi-green-fg">---&gt; 96</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">super</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg" style="color: rgb(0,0,255)">__exit__</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">exc_type</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">exc_val</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">exc_tb</span><span class="ansi-yellow-bg">)</span>
+
+File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.10/site-packages/nnsight/tracing/contexts/tracer.py:25</span>, in <span class="ansi-cyan-fg">Tracer.__exit__</span><span class="ansi-blue-fg">(self, exc_type, exc_val, exc_tb)</span>
+<span class="ansi-green-intense-fg ansi-bold">     21</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span> <span class="ansi-bold" style="color: rgb(0,0,255)">.</span><span class="ansi-bold" style="color: rgb(0,0,255)">globals</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span> GlobalTracingContext
+<span class="ansi-green-intense-fg ansi-bold">     23</span> GlobalTracingContext<span style="color: rgb(98,98,98)">.</span>try_deregister(<span style="color: rgb(0,135,0)">self</span>)
+<span class="ansi-green-fg">---&gt; 25</span> <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">super</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg" style="color: rgb(0,0,255)">__exit__</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">exc_type</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">exc_val</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">exc_tb</span><span class="ansi-yellow-bg">)</span>
+
+File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.10/site-packages/nnsight/tracing/contexts/base.py:82</span>, in <span class="ansi-cyan-fg">Context.__exit__</span><span class="ansi-blue-fg">(self, exc_type, exc_val, exc_tb)</span>
+<span class="ansi-green-intense-fg ansi-bold">     78</span> graph <span style="color: rgb(98,98,98)">=</span> graph<span style="color: rgb(98,98,98)">.</span>stack<span style="color: rgb(98,98,98)">.</span>pop()
+<span class="ansi-green-intense-fg ansi-bold">     80</span> graph<span style="color: rgb(98,98,98)">.</span>alive <span style="color: rgb(98,98,98)">=</span> <span class="ansi-bold" style="color: rgb(0,135,0)">False</span>
+<span class="ansi-green-fg">---&gt; 82</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">backend</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">graph</span><span class="ansi-yellow-bg">)</span>
+
+File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.10/site-packages/nnsight/intervention/backends/remote.py:77</span>, in <span class="ansi-cyan-fg">RemoteBackend.__call__</span><span class="ansi-blue-fg">(self, graph)</span>
+<span class="ansi-green-intense-fg ansi-bold">     72</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> <span style="color: rgb(0,0,255)">__call__</span>(<span style="color: rgb(0,135,0)">self</span>, graph: Graph):
+<span class="ansi-green-intense-fg ansi-bold">     74</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>blocking:
+<span class="ansi-green-intense-fg ansi-bold">     75</span>
+<span class="ansi-green-intense-fg ansi-bold">     76</span>         <span style="color: rgb(95,135,135)"># Do blocking request.</span>
+<span class="ansi-green-fg">---&gt; 77</span>         result <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">blocking_request</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">graph</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     79</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">else</span>:
+<span class="ansi-green-intense-fg ansi-bold">     80</span>
+<span class="ansi-green-intense-fg ansi-bold">     81</span>         <span style="color: rgb(95,135,135)"># Otherwise we are getting the status / result of the existing job.</span>
+<span class="ansi-green-intense-fg ansi-bold">     82</span>         result <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>non_blocking_request(graph)
+
+File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.10/site-packages/nnsight/intervention/backends/remote.py:289</span>, in <span class="ansi-cyan-fg">RemoteBackend.blocking_request</span><span class="ansi-blue-fg">(self, graph)</span>
+<span class="ansi-green-intense-fg ansi-bold">    280</span> sio<span style="color: rgb(98,98,98)">.</span>connect(
+<span class="ansi-green-intense-fg ansi-bold">    281</span>     <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>ws_address,
+<span class="ansi-green-intense-fg ansi-bold">    282</span>     socketio_path<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">/ws/socket.io</span><span style="color: rgb(175,0,0)">&#34;</span>,
+<span class="ansi-green-intense-fg ansi-bold">    283</span>     transports<span style="color: rgb(98,98,98)">=</span>[<span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">websocket</span><span style="color: rgb(175,0,0)">&#34;</span>],
+<span class="ansi-green-intense-fg ansi-bold">    284</span>     wait_timeout<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(98,98,98)">10</span>,
+<span class="ansi-green-intense-fg ansi-bold">    285</span> )
+<span class="ansi-green-intense-fg ansi-bold">    287</span> remote_graph <span style="color: rgb(98,98,98)">=</span> preprocess(graph)
+<span class="ansi-green-fg">--&gt; 289</span> data, headers <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">request</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">remote_graph</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    291</span> headers[<span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">session_id</span><span style="color: rgb(175,0,0)">&#34;</span>] <span style="color: rgb(98,98,98)">=</span> sio<span style="color: rgb(98,98,98)">.</span>sid
+<span class="ansi-green-intense-fg ansi-bold">    293</span> <span style="color: rgb(95,135,135)"># Submit request via</span>
+
+File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.10/site-packages/nnsight/intervention/backends/remote.py:60</span>, in <span class="ansi-cyan-fg">RemoteBackend.request</span><span class="ansi-blue-fg">(self, graph)</span>
+<span class="ansi-green-intense-fg ansi-bold">     58</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> <span style="color: rgb(0,0,255)">request</span>(<span style="color: rgb(0,135,0)">self</span>, graph: Graph) <span style="color: rgb(98,98,98)">-</span><span style="color: rgb(98,98,98)">&gt;</span> Tuple[<span style="color: rgb(0,135,0)">bytes</span>, Dict[<span style="color: rgb(0,135,0)">str</span>, <span style="color: rgb(0,135,0)">str</span>]]:
+<span class="ansi-green-fg">---&gt; 60</span>     data <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">RequestModel</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">serialize</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">graph</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">format</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">self</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">zlib</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     62</span>     headers <span style="color: rgb(98,98,98)">=</span> {
+<span class="ansi-green-intense-fg ansi-bold">     63</span>         <span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">model_key</span><span style="color: rgb(175,0,0)">&#34;</span>: <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>model_key,
+<span class="ansi-green-intense-fg ansi-bold">     64</span>         <span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">format</span><span style="color: rgb(175,0,0)">&#34;</span>: <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>format,
+<span class="ansi-green-fg">   (...)</span>
+<span class="ansi-green-intense-fg ansi-bold">     67</span>         <span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">sent-timestamp</span><span style="color: rgb(175,0,0)">&#34;</span>: <span style="color: rgb(0,135,0)">str</span>(time<span style="color: rgb(98,98,98)">.</span>time()),
+<span class="ansi-green-intense-fg ansi-bold">     68</span>     }
+<span class="ansi-green-intense-fg ansi-bold">     70</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> data, headers
+
+File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.10/site-packages/nnsight/schema/request.py:43</span>, in <span class="ansi-cyan-fg">RequestModel.serialize</span><span class="ansi-blue-fg">(graph, format, _zlib)</span>
+<span class="ansi-green-intense-fg ansi-bold">     38</span> <span style="color: rgb(175,0,255)">@staticmethod</span>
+<span class="ansi-green-intense-fg ansi-bold">     39</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> <span style="color: rgb(0,0,255)">serialize</span>(graph: Graph, <span style="color: rgb(0,135,0)">format</span>:<span style="color: rgb(0,135,0)">str</span>, _zlib:<span style="color: rgb(0,135,0)">bool</span>) <span style="color: rgb(98,98,98)">-</span><span style="color: rgb(98,98,98)">&gt;</span> <span style="color: rgb(0,135,0)">bytes</span>:
+<span class="ansi-green-intense-fg ansi-bold">     41</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span style="color: rgb(0,135,0)">format</span> <span style="color: rgb(98,98,98)">==</span> <span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">json</span><span style="color: rgb(175,0,0)">&#34;</span>:
+<span class="ansi-green-fg">---&gt; 43</span>         data <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">RequestModel</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">graph</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg">graph</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     45</span>         json <span style="color: rgb(98,98,98)">=</span> data<span style="color: rgb(98,98,98)">.</span>model_dump(mode<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">json</span><span style="color: rgb(175,0,0)">&#34;</span>)
+<span class="ansi-green-intense-fg ansi-bold">     47</span>         data <span style="color: rgb(98,98,98)">=</span> msgspec<span style="color: rgb(98,98,98)">.</span>json<span style="color: rgb(98,98,98)">.</span>encode(json)
+
+File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.10/site-packages/nnsight/schema/request.py:30</span>, in <span class="ansi-cyan-fg">RequestModel.__init__</span><span class="ansi-blue-fg">(self, memo, *args, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">     28</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> <span style="color: rgb(0,0,255)">__init__</span>(<span style="color: rgb(0,135,0)">self</span>, <span style="color: rgb(98,98,98)">*</span>args, memo: Dict <span style="color: rgb(98,98,98)">=</span> <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>, <span style="color: rgb(98,98,98)">*</span><span style="color: rgb(98,98,98)">*</span>kwargs):
+<span class="ansi-green-fg">---&gt; 30</span>     <span class="ansi-yellow-bg" style="color: rgb(0,135,0)">super</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg" style="color: rgb(0,0,255)">__init__</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">*</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">memo</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg">memo</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg ansi-bold" style="color: rgb(175,0,255)">or</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(0,135,0)">dict</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">*</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">*</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     32</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> memo <span class="ansi-bold" style="color: rgb(175,0,255)">is</span> <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>:
+<span class="ansi-green-intense-fg ansi-bold">     34</span>         <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>memo <span style="color: rgb(98,98,98)">=</span> {<span style="color: rgb(98,98,98)">*</span><span style="color: rgb(98,98,98)">*</span>MEMO}
+
+    <span class="ansi-red-fg">[... skipping hidden 1 frame]</span>
+
+File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.10/site-packages/nnsight/schema/format/types.py:276</span>, in <span class="ansi-cyan-fg">GraphModel.to_model</span><span class="ansi-blue-fg">(value)</span>
+<span class="ansi-green-intense-fg ansi-bold">    273</span> <span style="color: rgb(175,0,255)">@staticmethod</span>
+<span class="ansi-green-intense-fg ansi-bold">    274</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> <span style="color: rgb(0,0,255)">to_model</span>(value: Graph) <span style="color: rgb(98,98,98)">-</span><span style="color: rgb(98,98,98)">&gt;</span> Self:
+<span class="ansi-green-fg">--&gt; 276</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">GraphModel</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">graph</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg">value</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">nodes</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg">value</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">nodes</span><span class="ansi-yellow-bg">)</span>
+
+    <span class="ansi-red-fg">[... skipping hidden 1 frame]</span>
+
+File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.10/site-packages/nnsight/schema/format/types.py:77</span>, in <span class="ansi-cyan-fg">memoized.&lt;locals&gt;.inner</span><span class="ansi-blue-fg">(value)</span>
+<span class="ansi-green-intense-fg ansi-bold">     75</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> <span style="color: rgb(0,0,255)">inner</span>(value):
+<span class="ansi-green-fg">---&gt; 77</span>     model <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">fn</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">value</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     79</span>     _id <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">id</span>(value)
+<span class="ansi-green-intense-fg ansi-bold">     81</span>     MEMO[_id] <span style="color: rgb(98,98,98)">=</span> model
+
+File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.10/site-packages/nnsight/schema/format/types.py:101</span>, in <span class="ansi-cyan-fg">NodeModel.to_model</span><span class="ansi-blue-fg">(value)</span>
+<span class="ansi-green-intense-fg ansi-bold">     97</span> <span style="color: rgb(175,0,255)">@staticmethod</span>
+<span class="ansi-green-intense-fg ansi-bold">     98</span> <span style="color: rgb(175,0,255)">@memoized</span>
+<span class="ansi-green-intense-fg ansi-bold">     99</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> <span style="color: rgb(0,0,255)">to_model</span>(value: Node) <span style="color: rgb(98,98,98)">-</span><span style="color: rgb(98,98,98)">&gt;</span> Self:
+<span class="ansi-green-fg">--&gt; 101</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">NodeModel</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">target</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg">value</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">target</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg">value</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">args</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">=</span><span class="ansi-yellow-bg">value</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span>
+
+    <span class="ansi-red-fg">[... skipping hidden 1 frame]</span>
+
+File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.10/site-packages/nnsight/schema/format/types.py:244</span>, in <span class="ansi-cyan-fg">FunctionModel.to_model</span><span class="ansi-blue-fg">(value)</span>
+<span class="ansi-green-intense-fg ansi-bold">    239</span> <span style="color: rgb(175,0,255)">@staticmethod</span>
+<span class="ansi-green-intense-fg ansi-bold">    240</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> <span style="color: rgb(0,0,255)">to_model</span>(value:FUNCTION):
+<span class="ansi-green-intense-fg ansi-bold">    242</span>     model <span style="color: rgb(98,98,98)">=</span> FunctionModel(function_name<span style="color: rgb(98,98,98)">=</span>get_function_name(value))
+<span class="ansi-green-fg">--&gt; 244</span>     <span class="ansi-yellow-bg">FunctionModel</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">check_function_whitelist</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">model</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">function_name</span><span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    246</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> model
+
+File <span class="ansi-green-fg">/opt/anaconda3/envs/nnsight/lib/python3.10/site-packages/nnsight/schema/format/types.py:251</span>, in <span class="ansi-cyan-fg">FunctionModel.check_function_whitelist</span><span class="ansi-blue-fg">(cls, qualname)</span>
+<span class="ansi-green-intense-fg ansi-bold">    248</span> <span style="color: rgb(175,0,255)">@classmethod</span>
+<span class="ansi-green-intense-fg ansi-bold">    249</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> <span style="color: rgb(0,0,255)">check_function_whitelist</span>(<span style="color: rgb(0,135,0)">cls</span>, qualname: <span style="color: rgb(0,135,0)">str</span>) <span style="color: rgb(98,98,98)">-</span><span style="color: rgb(98,98,98)">&gt;</span> <span style="color: rgb(0,135,0)">str</span>:
+<span class="ansi-green-intense-fg ansi-bold">    250</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> qualname <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> FUNCTIONS_WHITELIST:
+<span class="ansi-green-fg">--&gt; 251</span>         <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> FunctionWhitelistError(
+<span class="ansi-green-intense-fg ansi-bold">    252</span>             <span style="color: rgb(175,0,0)">f</span><span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">Function with name `</span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>qualname<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span style="color: rgb(175,0,0)">` not in function whitelist.</span><span style="color: rgb(175,0,0)">&#34;</span>
+<span class="ansi-green-intense-fg ansi-bold">    253</span>         )
+<span class="ansi-green-intense-fg ansi-bold">    255</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> qualname
+
+<span class="ansi-red-fg">FunctionWhitelistError</span>: Function with name `__main__.my_local_fn` not in function whitelist.
+</pre></div></div>
+</div>
+</section>
+<section id="Example:-Live-streaming-remote-chat">
+<h2>Example: Live-streaming remote chat<a class="headerlink" href="#Example:-Live-streaming-remote-chat" title="Link to this heading">#</a></h2>
+<p>Now that we can access data within the tracing context on our local computer, we can apply non-whitelisted functions, such as the model’s tokenizer, within our tracing context.</p>
+<p>Let’s build a decoding function that will decode tokens into words and print the result.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@nnsight</span><span class="o">.</span><span class="n">trace</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">my_decoding_function</span><span class="p">(</span><span class="n">tokens</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="c1"># Initialize state if not provided</span>
+    <span class="k">if</span> <span class="n">state</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;current_line&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;current_line_length&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+
+    <span class="n">token</span> <span class="o">=</span> <span class="n">tokens</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># only use last token</span>
+
+    <span class="c1"># Decode the token</span>
+    <span class="n">decoded_token</span> <span class="o">=</span> <span class="n">llama</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">token</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;unicode_escape&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">decoded_token</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">n&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">decoded_token</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">):</span>  <span class="c1"># Handle explicit newline tokens</span>
+        <span class="c1"># Print the current line and reset state</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">state</span><span class="p">[</span><span class="s1">&#39;current_line&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">state</span><span class="p">[</span><span class="s1">&#39;current_line_length&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Check if adding the token would exceed the max length</span>
+        <span class="k">if</span> <span class="n">state</span><span class="p">[</span><span class="s1">&#39;current_line_length&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">decoded_token</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">max_length</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">state</span><span class="p">[</span><span class="s1">&#39;current_line&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">decoded_token</span>  <span class="c1"># Start a new line with the current token</span>
+            <span class="n">state</span><span class="p">[</span><span class="s1">&#39;current_line_length&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">decoded_token</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;current_line&#39;</span><span class="p">],</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>  <span class="c1"># Print the current line</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Add a space if the line isn&#39;t empty and append the token</span>
+            <span class="k">if</span> <span class="n">state</span><span class="p">[</span><span class="s1">&#39;current_line&#39;</span><span class="p">]:</span>
+                <span class="n">state</span><span class="p">[</span><span class="s1">&#39;current_line&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">decoded_token</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">state</span><span class="p">[</span><span class="s1">&#39;current_line&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">decoded_token</span>
+            <span class="n">state</span><span class="p">[</span><span class="s1">&#39;current_line_length&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">decoded_token</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;current_line&#39;</span><span class="p">],</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>  <span class="c1"># Print the current line</span>
+
+    <span class="k">return</span> <span class="n">state</span>
+</pre></div>
+</div>
+</div>
+<p>Now we can decode and print our model outputs throughout token generation by accessing our decoding function through <code class="docutils literal notranslate"><span class="pre">nnsight.local()</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="n">nnsight</span><span class="o">.</span><span class="n">CONFIG</span><span class="o">.</span><span class="n">APP</span><span class="o">.</span><span class="n">REMOTE_LOGGING</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;A press release is an official statement delivered to members of the news media for the purpose of&quot;</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;The Eiffel Tower is in the city of&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prompt: &quot;</span><span class="p">,</span><span class="n">prompt</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+<span class="c1"># Initialize the state for decoding</span>
+<span class="n">state</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;current_line&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;current_line_length&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+
+<span class="k">with</span> <span class="n">llama</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_new_tokens</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span> <span class="k">as</span> <span class="n">generator</span><span class="p">:</span>
+    <span class="c1"># Call .all() to apply to each new token</span>
+    <span class="n">llama</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+
+    <span class="n">all_tokens</span> <span class="o">=</span> <span class="n">nnsight</span><span class="o">.</span><span class="n">list</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+    <span class="c1"># Access model output</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">llama</span><span class="o">.</span><span class="n">lm_head</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+    <span class="c1"># Apply softmax to obtain probabilities and save the result</span>
+    <span class="n">probs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">max_probs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">probs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="n">max_probs</span><span class="o">.</span><span class="n">indices</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="n">all_tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tokens</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+    <span class="k">with</span> <span class="n">nnsight</span><span class="o">.</span><span class="n">local</span><span class="p">():</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="n">my_decoding_function</span><span class="p">(</span><span class="n">tokens</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">llama</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="n">state</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Prompt:  The Eiffel Tower is in the city of
+ Paris, France. It is a very famous landmark. It is built in 1889. the
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Downloading result: 100%|██████████| 258k/258k [00:00&lt;00:00, 1.01MB/s]
+</pre></div></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Setup">Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nnsight.local()"><code class="docutils literal notranslate"><span class="pre">nnsight.local()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#@nnsight.trace-function-decorator"><code class="docutils literal notranslate"><span class="pre">@nnsight.trace</span></code> function decorator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Example:-Live-streaming-remote-chat">Example: Live-streaming remote chat</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025 NDIF.
+      <br/>
+    
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
