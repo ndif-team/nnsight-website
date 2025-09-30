@@ -197,15 +197,7 @@
   }
 
   .nn-snippet {
-    display: none;
-    position: absolute;
-    bottom: 100%; /* Position above the icon */
-    left: 0; /* Align left edge of box with icon */
-    border: 2px solid var(--pst-color-link-hover);
-  }
-
-  .nn-copy-button:hover .nn-snippet {
-    display: block;
+    max-width: 640px;
   }
 
   .nn-cluster-nodes {
@@ -281,6 +273,36 @@
     border-style: solid;
     border-color: var(--pst-color-border) transparent transparent transparent;
     pointer-events: none;
+  }
+
+  .p-popover {
+    background: var(--pst-color-on-background) !important;
+    color: var(--pst-color-text-base) !important;
+  }
+
+  .p-popover .p-popover-content {
+    background: var(--pst-color-on-background) !important;
+    border: 1px solid white !important;
+    border-radius: 4px !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  }
+
+  .p-popover::before {
+    border-bottom-color: var(--pst-color-on-background) !important;
+  }
+
+  .p-popover::after {
+    border-bottom-color: var(--pst-color-on-background) !important;
+  }
+
+  .p-popover .nn-snippet .highlight,
+  .p-popover .nn-snippet .highlight pre {
+    background: var(--pst-color-on-background) !important;
+  }
+
+  .p-popover::before,
+  .p-popover::after {
+    display: none !important;
   }
 </style>
 <div id="app">
@@ -463,15 +485,8 @@
         <div class="nn-deployment electrolize sd-card sd-sphinx-override sd-shadow-sm sd-card-hover" data-repo-id="{{repo_id}}" data-deployment-level="{{deployment_level}}" data-application-state="{{application_state}}" data-schedule="{{schedule}}">
             <div class="sd-card-body nn-card-body">
                 <div v-if="model_key !== undefined && model_key !== null" class="nn-copy-button">
-                    <div class="nn-snippet">
-                        <div class="highlight">
-                            <pre tabindex="0" :id="'codecell' + index">
-                                <span v-html="getCodeSnippet()"></span>
-                            </pre>
-                        </div>
-                    </div>
                     <div class="highlight">
-                        <button class="copybtn o-tooltip--left" :data-clipboard-target="'#codecell' + index">
+                        <button class="copybtn" :data-clipboard-target="'#codecell' + index" @mouseenter="showPopover" @mouseleave="hidePopover">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copy" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <title>Copy to clipboard</title>
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -480,6 +495,15 @@
                             </svg>
                         </button>
                     </div>
+                  <p-popover ref="popover">
+                    <div class="nn-snippet">
+                        <div class="highlight">
+                            <pre tabindex="0" :id="'codecell' + index">
+                                <span v-html="getCodeSnippet()"></span>
+                            </pre>
+                        </div>
+                    </div>
+                  </p-popover>
                 </div>
                 <div class="nn-deployment-repo-id ">{{repo_id}}</div>
                 <div class="nn-deployment-badges">
@@ -742,6 +766,14 @@
 
       onPilotBadgeClick() {
         window.open("https://forms.gle/ZBtYvvnSdpiEdQEk6", "_blank");
+      },
+
+      showPopover(event) {
+        this.$refs.popover.show(event);
+      },
+
+      hidePopover() {
+        this.$refs.popover.hide();
       },
     },
   };
@@ -1020,6 +1052,7 @@
   app.component("p-floatlabel", PrimeVue.FloatLabel);
   app.component("p-panel", PrimeVue.Panel);
   app.component("p-card", PrimeVue.Card);
+  app.component("p-popover", PrimeVue.Popover);
 
   app.mount("#app");
 </script>
