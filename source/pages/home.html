@@ -136,24 +136,36 @@
 
 
 <script>
+    // Wait for page to fully load to ensure banner height is calculated correctly
+    window.addEventListener('load', function() {
+        // Fix navbar to top of page, below the announcement banner
+        var navbar = document.querySelector('.navbar');
+        var banner = document.querySelector('.bd-header-announcement');
+        var hero = document.querySelector('.hero');
 
-    // Fix navbar to top of page
-    var navbar = document.querySelector('.navbar');
+        if (navbar && banner) {
+            navbar.style.position = 'fixed';
+            
+            // Position navbar below the announcement banner
+            var bannerHeight = banner.offsetHeight;
+            navbar.style.top = bannerHeight + 'px';
+            
+            // Adjust hero section padding to account for both banner and navbar
+            if (hero) {
+                var navbarHeight = navbar.offsetHeight;
+                var totalOffset = bannerHeight + navbarHeight;
+                hero.style.paddingTop = totalOffset + 'px';
+            }
+        } else if (navbar) {
+            navbar.style.position = 'fixed';
+        }
 
-    if (navbar) {
-        navbar.style.position = 'fixed';
-    } else {
-        console.log(".navbar element does not exist.");
-    }
+        // Remove article padding so content background is flush with sides
+        var article = document.querySelector('.bd-article');
 
-    // Remove article padding so content background is flush with sides
-    var article = document.querySelector('.bd-article');
-
-    if (article) {
-        article.style.paddingTop = '0';
-        article.style.paddingLeft = '0';
-    } else {
-        console.log(".article element does not exist.");
-    }
-
+        if (article) {
+            article.style.paddingTop = '0';
+            article.style.paddingLeft = '0';
+        }
+    });
 </script>

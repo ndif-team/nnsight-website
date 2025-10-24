@@ -44,6 +44,7 @@ html_context = {
 
 
 html_theme_options = {
+    "announcement": 'Try our Logit Lens interface at <a href="https://workbench.ndif.us" target="_blank" rel="noopener noreferrer"><u>workbench.ndif.us</u></a> →',
     "show_nav_level": 2,
     "navbar_end": ["ndif_status", "theme-switcher","navbar-icon-links"],
     "navbar_align": "left",
