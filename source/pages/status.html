@@ -54,6 +54,7 @@
     height: 100%;
     width: 100%;
     justify-content: center;
+    padding: 0 1rem;
 
     --p-inputtext-background: var(--pst-color-on-background) !important;
     --p-select-background: var(--pst-color-on-background) !important;
@@ -68,13 +69,14 @@
     --p-select-color: var(--pst-color-text-base) !important;
     --p-inputtext-color: var(--pst-color-text-base) !important;
     --p-select-overlay-color: var(--pst-color-text-base) !important;
-    --p-card-color: var(--pst-color-text-base) !important;
+    --p-card-background: var(--pst-color-on-background) !important;
     --p-panel-color: var(--pst-color-text-base) !important;
     --p-panel-header-color: var(--pst-color-text-base) !important;
     --p-select-overlay-color: var(--pst-color-text-base) !important;
   }
   #status-display {
     max-width: 1100px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -106,6 +108,7 @@
     gap: 0.1rem;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
   }
 
   .filter-item {
@@ -119,6 +122,7 @@
     align-items: center;
     gap: 2rem;
     justify-content: center;
+    flex-wrap: wrap;
   }
 
   .nn-deployment {
@@ -304,6 +308,75 @@
   .p-popover::after {
     display: none !important;
   }
+
+  .desktop-only {
+    display: block;
+  }
+
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    #app {
+      flex-direction: column;
+      padding: 0 0.5rem;
+    }
+
+    .desktop-only {
+      display: none !important;
+    }
+
+    #status-sidebar {
+      display: none !important;
+    }
+
+    #status-display {
+      max-width: 100%;
+    }
+
+    #filter-bar {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .filter-group {
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    #deployments {
+      justify-content: center;
+    }
+
+    .nn-deployment {
+      max-width: 100%;
+      flex: 1 1 auto;
+    }
+
+    .nn-deployment-other {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #app {
+      padding: 0 0.25rem;
+    }
+
+    .filter-group {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .filter-item {
+      width: 100%;
+    }
+
+    .filter-item .p-select,
+    .filter-item .p-inputtext {
+      width: 100%;
+    }
+  }
 </style>
 <div id="app">
   <div id="status-sidebar">
@@ -329,7 +402,7 @@
     </div>
     <cluster-component :cluster="cluster"></cluster-component>
   </div>
-  <p-divider layout="vertical"></p-divider>
+  <p-divider layout="vertical" class="desktop-only"></p-divider>
   <div id="status-display">
     <status-bar-component
       ref="statusbar"
@@ -361,6 +434,7 @@
               option-value="value"
               placeholder="Sort by"
               @change="onSortChange"
+              style="min-width: 120px"
             ></p-select>
             <label for="sort_by_label">Sort</label>
           </p-floatlabel>
@@ -372,6 +446,7 @@
               v-model="searchQuery"
               placeholder="Search..."
               @input="onSearchChange"
+              style="min-width: 200px"
             ></p-inputtext>
           </p-iconfield>
         </div>
@@ -830,7 +905,7 @@
     },
 
     template: `
-        <p-panel toggleable collapsed v-if="cluster !== null">
+        <p-panel toggleable collapsed v-if="false && cluster !== null">
             <template #header>
             <span>
                 <span style="padding-right: 1rem;">Capacity:</span><badge-component v-bind="getAvailableBadge()"></badge-component>

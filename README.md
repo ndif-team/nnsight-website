@@ -1,8 +1,12 @@
 # NNsight Docs
 
+Check the [wiki](https://github.com/ndif-team/nnsight-website/wiki) for all the info on how to update the docs using Sphinx.
+
+In short, this build is managed with Github Actions. Any changes you make to the source files will be built and automatically published to Github pages and served.
+
 ## Keeping in sync with NNsight
 
-In order to build and publish this site, the correct NNsight version needs to be downloaded to Github. If that version is not published, things will not work properly.
+In order to build and publish this site, the correct NNsight version needs to be released. If that version is not published, things will not work properly.
 
 ## Getting Started
 

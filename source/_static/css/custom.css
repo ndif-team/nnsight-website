@@ -1,5 +1,36 @@
 /* Website light and dark theme colors */
 
+/* Announcement Banner */
+.bd-header-announcement {
+    background-color: transparent !important;
+    background-image: linear-gradient(135deg, var(--pst-color-primary), var(--pst-color-secondary)) !important;
+    background: linear-gradient(135deg, var(--pst-color-primary), var(--pst-color-secondary)) !important;
+    padding: 6px 20px !important;
+    text-align: center !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1000 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    min-height: auto !important;
+}
+
+.bd-header-announcement__content,
+.bd-header-announcement a {
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    letter-spacing: 0.3px !important;
+    display: inline-block !important;
+    transition: transform 0.2s ease, opacity 0.2s ease !important;
+    line-height: 1.4 !important;
+}
+
+.bd-header-announcement a:hover {
+    transform: translateX(4px);
+    opacity: 0.9;
+}
+
 html[data-theme="dark"] {
     --pst-color-secondary: #a134eb;
     --pst-color-primary: #4385be;
