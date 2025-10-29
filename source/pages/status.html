@@ -170,7 +170,7 @@
   .nn-deployment-other-item {
     display: flex;
     flex-direction: row;
-    gap: 0.1rem;
+    gap: 0.3rem;
     align-items: center;
   }
 
@@ -475,6 +475,7 @@
         :schedule="deployment.schedule"
         :application_state="deployment.application_state"
         :repo_id="deployment.repo_id"
+        :revision="deployment.revision"
       ></deployment-component>
       <p-skeleton
         v-if="deployments.length === 0"
@@ -557,6 +558,7 @@
       repo_id: String,
       n_params: Number,
       index: Number,
+      revision: String,
     },
     template: `
         <div class="nn-deployment electrolize sd-card sd-sphinx-override sd-shadow-sm sd-card-hover" data-repo-id="{{repo_id}}" data-deployment-level="{{deployment_level}}" data-application-state="{{application_state}}" data-schedule="{{schedule}}">
@@ -592,6 +594,12 @@
                     <badge-component v-if="application_state !== undefined && application_state !== null" v-bind="getApplicationStateBadge()"></badge-component>
                 </div>
                 <div class="nn-deployment-other" v-if="hasInfo()">
+                  <div v-if="revision !== undefined && revision !== null" class="nn-deployment-other-item" data-tooltip="Revision">
+                    <i class="fa-regular fa-bookmark"></i>
+                    <span>
+                        {{ revision }}
+                    </span>
+                  </div>
                     <div v-if="n_params !== undefined && n_params !== null" class="nn-deployment-other-item" data-tooltip="# Params">
                         <i class="fa-solid fa-border-none"></i>
                         <span>
@@ -602,6 +610,7 @@
                             }}
                         </span>
                     </div>
+                    
                 </div>
 
             </div>
@@ -609,7 +618,7 @@
         </div>`,
     methods: {
       hasInfo() {
-        return this.n_params !== undefined && this.n_params !== null;
+        return this.n_params !== undefined && this.n_params !== null || this.revision !== undefined && this.revision !== null;
       },
       className() {
         return this.model_key ? this.model_key.split(":")[0] : undefined;
@@ -622,13 +631,13 @@
         let repo_id = this.repo_id;
 
         let code = `
- <span class="kn">from</span> <span class="nn">${import_path}</span> <span class="kn">import</span> <span class="n">${obj_name}</span>
+<span class="kn">from</span> <span class="nn">${import_path}</span> <span class="kn">import</span> <span class="n">${obj_name}</span>
 
- <span class="n">model</span> <span class="o">=</span> <span class="n">${obj_name}</span><span class="p">(</span><span class="s1">"${repo_id}"</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">${obj_name}</span><span class="p">(</span><span class="s1">"${repo_id}"</span><span class="p">)</span>
 
- <span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">"The Eiffel Tower is in the city of"</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="s1">True</span><span class="p">)</span><span class="p">:</span>
+<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">"The Eiffel Tower is in the city of"</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="s1">True</span><span class="p">)</span><span class="p">:</span>
 
-        <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>`;
+      <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>`;
 
         return code;
       },
@@ -763,14 +772,15 @@
 
         if (start && now < start) {
           const startStr = start.toLocaleString(undefined, {
-            timeZoneName: "short",
+            month: "short",
+            day: "numeric",
             hour: "numeric",
             minute: "numeric",
             hour12: true,
           });
 
           const duration = Math.round((end - start) / (1000 * 60 * 60));
-          let text = `Starts ${startStr} (${duration}h duration)`;
+          let text = `Starts ${startStr} `;
 
           return {
             content: text,
@@ -999,10 +1009,8 @@
         // Sort the filtered deployments
         if (this.selectedSortBy === "deployment_level") {
           const deploymentOrder = [
-            "DEDICATED",
             "HOT",
             "WARM",
-            "SCHEDULED",
             "COLD",
           ];
           filtered.sort((a, b) => {
