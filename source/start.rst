@@ -8,7 +8,21 @@ Getting Started
 Installation
 ------------
 
-To get started with NNsight, install it with ``pip``. 
+To get started with NNsight, ensure you have ``pytorch`` installed.
+
+We recommend using PyTorch with CPU if you are getting started, especially
+if you primarily plan to use NNsight with remote NDIF execution.
+It is also the recommended mode for Macs with Apple GPUs as it skips CUDA.
+
+First, install PyTorch with the CPU wheel...
+
+.. code-block:: console
+
+   pip install torch --index-url https://download.pytorch.org/whl/cpu
+
+...or just the standard ``pip install torch`` for CUDA. *For other environments (ROCm, etc.), see* https://pytorch.org/get-started/locally/.
+
+Next, install ``nnsight`` with ``pip``.
 
 .. code-block:: console
 
@@ -23,17 +37,17 @@ To remotely access LLMs through NDIF, you must sign up for an NDIF API key.
 
 :bdg-link-primary:`NDIF API Key Registration <https://login.ndif.us/>`
 
-NDIF hosts multiple LLMs, including various sizes of the Llama 3.1 models and DeepSeek-R1 models. 
-All of our models are open for public use, but you need to apply for access to the Llama-3.1-405B models. 
+NDIF hosts multiple LLMs, including various sizes of the Llama 3.1 models and DeepSeek-R1 models.
+All of our models are open for public use, but you need to apply for access to the Llama-3.1-405B models.
 You can view the full list of hosted models at https://nnsight.net/status/.
 
-If you have a clear research need for Llama-3.1-405B and would like more details about applying for access, 
+If you have a clear research need for Llama-3.1-405B and would like more details about applying for access,
 please refer to our  `405B pilot program application <https://ndif.us/405b.html>`_.
 
 Access LLM Internals
 --------------------
 
-Now that you have your NDIF API key, you can start exploring LLM internals with NDIF and NNsight. 
+Now that you have your NDIF API key, you can start exploring LLM internals with NDIF and NNsight.
 We've put together a Colab notebook to help you get started.
 
 :bdg-link-primary:`Open Colab <https://colab.research.google.com/github/ndif-team/ndif-website/blob/onboarding-fixes/public/notebooks/NDIFGetStarted.ipynb>`
@@ -49,7 +63,7 @@ This notebook will walk you through the following steps:
 Next Steps
 -----------
 
-.. grid:: 2 2 2 2 
+.. grid:: 2 2 2 2
    :gutter: 2
 
    .. grid-item-card:: Walkthrough
@@ -78,6 +92,3 @@ Next Steps
       :link: https://discuss.ndif.us/
 
       Discuss :bdg-primary:`nnsight`, NDIF, and more!
-
-
-
