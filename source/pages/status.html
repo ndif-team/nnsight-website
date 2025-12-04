@@ -610,7 +610,7 @@
                             }}
                         </span>
                     </div>
-                    
+
                 </div>
 
             </div>
@@ -618,7 +618,10 @@
         </div>`,
     methods: {
       hasInfo() {
-        return this.n_params !== undefined && this.n_params !== null || this.revision !== undefined && this.revision !== null;
+        return (
+          (this.n_params !== undefined && this.n_params !== null) ||
+          (this.revision !== undefined && this.revision !== null)
+        );
       },
       className() {
         return this.model_key ? this.model_key.split(":")[0] : undefined;
@@ -630,11 +633,15 @@
         let obj_name = parts[parts.length - 1];
         let repo_id = this.repo_id;
         let revision = this.revision;
+        const revisionCode =
+          revision != null
+            ? `<span class="p">,</span> <span class="n">revision</span><span class="o">=</span><span class="s1">"${revision}"</span>`
+            : "";
 
         let code = `
 <span class="kn">from</span> <span class="nn">${import_path}</span> <span class="kn">import</span> <span class="n">${obj_name}</span>
 
-<span class="n">model</span> <span class="o">=</span> <span class="n">${obj_name}</span><span class="p">(</span><span class="s1">"${repo_id}"</span><span class="p">,</span> <span class="n">revision</span><span class="o">=</span><span class="s1">"${revision}"</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">${obj_name}</span><span class="p">(</span><span class="s1">"${repo_id}"</span>${revisionCode}<span class="p">)</span>
 
 <span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">"The Eiffel Tower is in the city of"</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="s1">True</span><span class="p">)</span><span class="p">:</span>
 
@@ -643,7 +650,11 @@
         return code;
       },
       isPilotOnly() {
-        return !(this.schedule && (this.schedule.start_time !== undefined && this.schedule.start_time !== null));
+        return !(
+          this.schedule &&
+          this.schedule.start_time !== undefined &&
+          this.schedule.start_time !== null
+        );
       },
       getDeploymentLevelBadge() {
         let tooltip = undefined;
@@ -735,10 +746,8 @@
         };
       },
       formatTimeRemaining(endTime) {
-
         let now = new Date();
         let end = new Date(endTime);
-   
 
         const diff = end - now;
 
@@ -746,9 +755,9 @@
 
         let totalSeconds = Math.floor(diff / 1000);
         const days = Math.floor(totalSeconds / (24 * 60 * 60));
-        totalSeconds %= (24 * 60 * 60);
+        totalSeconds %= 24 * 60 * 60;
         const hours = Math.floor(totalSeconds / (60 * 60));
-        totalSeconds %= (60 * 60);
+        totalSeconds %= 60 * 60;
         const minutes = Math.floor(totalSeconds / 60);
         const seconds = totalSeconds % 60;
 
@@ -1009,11 +1018,7 @@
 
         // Sort the filtered deployments
         if (this.selectedSortBy === "deployment_level") {
-          const deploymentOrder = [
-            "HOT",
-            "WARM",
-            "COLD",
-          ];
+          const deploymentOrder = ["HOT", "WARM", "COLD"];
           filtered.sort((a, b) => {
             const aLevel = deploymentOrder.indexOf(a.deployment_level);
             const bLevel = deploymentOrder.indexOf(b.deployment_level);
