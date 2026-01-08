@@ -1,0 +1,3 @@
+# config
+
+::: nnsight.schema.config

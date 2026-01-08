@@ -1,0 +1,228 @@
+# Project information
+site_name: nnsight
+site_description: Documentation for the nnsight Python library
+site_url: https://nnsight.net
+
+# Repository
+repo_name: nnsight/nnsight
+repo_url: https://github.com/nnsight/nnsight
+
+# Theme configuration
+theme:
+  name: material
+  custom_dir: overrides
+  palette:
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  font:
+    text: Inter
+    code: JetBrains Mono
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.indexes
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+  logo: assets/logo.svg
+  favicon: assets/logo.svg
+  icon:
+    repo: fontawesome/brands/github
+
+# Plugins
+plugins:
+  - search
+  - tags
+  - mkdocs-jupyter:
+      include_source: true
+      execute: false
+      allow_errors: true
+      ignore_h1_titles: true
+      no_input: false
+      show_input: true
+      highlight_extra_classes: ""
+  - mkdocstrings:
+      enabled: true
+      default_handler: python
+      handlers:
+        python:
+          paths:
+            - ../nnsight/src
+          options:
+            docstring_style: google
+            docstring_options:
+              ignore_init_summary: true
+            merge_init_into_class: true
+            show_source: true
+            show_root_heading: true
+            show_root_full_path: false
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
+            members_order: source
+            heading_level: 2
+            show_signature_annotations: true
+            separate_signature: true
+            signature_crossrefs: true
+            allow_inspection: true
+
+# Extensions
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - admonition
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+# Page tree
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Installation: getting-started/installation.md
+    - Quick Start: getting-started/quickstart.md
+  - User Guide:
+    - Overview: guide/overview.md
+  - API Reference:
+    - api/index.md
+    - intervention:
+      - api/intervention/index.md
+      - envoy: api/intervention/envoy.md
+      - inject: api/intervention/inject.md
+      - batching: api/intervention/batching.md
+      - interleaver: api/intervention/interleaver.md
+      - serialization: api/intervention/serialization.md
+      - backends:
+        - api/intervention/backends/index.md
+        - base: api/intervention/backends/base.md
+        - editing: api/intervention/backends/editing.md
+        - execution: api/intervention/backends/execution.md
+        - remote: api/intervention/backends/remote.md
+      - tracing:
+        - api/intervention/tracing/index.md
+        - base: api/intervention/tracing/base.md
+        - backwards: api/intervention/tracing/backwards.md
+        - editing: api/intervention/tracing/editing.md
+        - globals: api/intervention/tracing/globals.md
+        - invoker: api/intervention/tracing/invoker.md
+        - iterator: api/intervention/tracing/iterator.md
+        - tracer: api/intervention/tracing/tracer.md
+        - util: api/intervention/tracing/util.md
+    - modeling:
+      - api/modeling/index.md
+      - base: api/modeling/base.md
+      - diffusion: api/modeling/diffusion.md
+      - huggingface: api/modeling/huggingface.md
+      - language: api/modeling/language.md
+      - transformers: api/modeling/transformers.md
+      - mixins:
+        - api/modeling/mixins/index.md
+        - loadable: api/modeling/mixins/loadable.md
+        - meta: api/modeling/mixins/meta.md
+        - remoteable: api/modeling/mixins/remoteable.md
+      - vllm:
+        - api/modeling/vllm/index.md
+        - vllm: api/modeling/vllm/vllm.md
+        - batching: api/modeling/vllm/batching.md
+        - sampling: api/modeling/vllm/sampling.md
+        - engines:
+          - api/modeling/vllm/engines/index.md
+          - engine: api/modeling/vllm/engines/engine.md
+        - model_runners:
+          - api/modeling/vllm/model_runners/index.md
+          - GPUModelRunner: api/modeling/vllm/model_runners/GPUModelRunner.md
+        - workers:
+          - api/modeling/vllm/workers/index.md
+          - GPUWorker: api/modeling/vllm/workers/GPUWorker.md
+    - schema:
+      - api/schema/index.md
+      - config: api/schema/config.md
+      - request: api/schema/request.md
+      - response: api/schema/response.md
+    - ndif: api/ndif.md
+    - util: api/util.md
+  - Features:
+    - Getting Activations: features/getting.ipynb
+    - Setting Activations: features/setting.ipynb
+    - Gradients: features/gradients.ipynb
+    - Cross-Prompt Intervention: features/cross_prompt.ipynb
+    - Multiple Token Generation: features/multiple_token.ipynb
+    - Model Editing: features/model_editing.ipynb
+    - Module Access: features/modules.ipynb
+    - Early Stopping: features/early_stopping.ipynb
+    - Streaming: features/streaming.ipynb
+    - Skip Execution: features/skip.ipynb
+    - Scan & Validate: features/scan_validate.ipynb
+    - Remote Execution: features/remote_execution.ipynb
+    - vLLM Support: features/vllm_support.ipynb
+    - Source Nodes: features/source.ipynb
+  - Tutorials:
+    - Getting Started:
+      - Walkthrough: tutorials/get_started/walkthrough.ipynb
+      - Chat Templates: tutorials/get_started/chat_templates.ipynb
+      - Remote Access: tutorials/get_started/start_remote_access.ipynb
+    - Causal Tracing:
+      - Causal Models Intro: tutorials/causal_mediation_analysis/causal_models_intro.ipynb
+      - Activation Patching: tutorials/causal_mediation_analysis/activation_patching.ipynb
+      - Attribution Patching: tutorials/causal_mediation_analysis/attribution_patching.ipynb
+      - Causal Mediation I: tutorials/causal_mediation_analysis/causal_mediation_analysis_i.ipynb
+      - Causal Mediation II: tutorials/causal_mediation_analysis/causal_mediation_analysis_ii.ipynb
+      - DAS: tutorials/causal_mediation_analysis/DAS.ipynb
+    - Probing:
+      - Logit Lens: tutorials/probing/logit_lens.ipynb
+      - Diffusion Lens: tutorials/probing/diffusion_lens.ipynb
+    - Steering:
+      - Dictionary Learning: tutorials/steering/dict_learning.ipynb
+      - LoRA Tutorial: tutorials/steering/LoRA_tutorial.ipynb
+    - Mini Papers:
+      - Function Vectors: mini-papers/todd_function_vectors.ipynb
+      - Geometry of Truth: mini-papers/marks_geometry_of_truth.ipynb
+      - LLM Depth: mini-papers/csordas_llm_depth.ipynb
+      - Dual Route Induction: mini-papers/feucht_dual_route_induction.ipynb
+      - Demystifying Memorization: mini-papers/huang_demystifying_memorization.ipynb
+
+# Custom CSS and JS
+extra_css:
+  - stylesheets/home.css
+
+extra_javascript:
+  - javascripts/vanta-home.js
+
+# Extra configuration
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/nnsight/nnsight
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/nnsight/
+  generator: false
+
+# Copyright
+copyright: Copyright &copy; 2024 nnsight
