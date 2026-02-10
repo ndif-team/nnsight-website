@@ -8,6 +8,7 @@ Use --folders to specify individual folders to run.
 """
 
 import argparse
+import shutil
 import sys
 from pathlib import Path
 from datetime import datetime
@@ -38,12 +39,18 @@ NOTEBOOKS_BASE = BASE_DIR / "source" / "notebooks"
 OUTPUT_DIR = BASE_DIR / "notebook_outputs"
 DEFAULT_FOLDERS = ["features"]
 
+# Directories that may be created by notebook execution and should be cleaned up
+ARTIFACT_DIRS = [
+    "CausalAbstraction",
+    "nnsight-tutorials",
+]
+
 
 def get_version_info() -> str:
     """Generate markdown content with package versions."""
     timestamp = datetime.now().strftime("%Y-%m-%d")
     return f"""
-**Execution Timestamp:** {timestamp}
+**Last Run:** {timestamp}
 
 **System Info:**
 
@@ -65,10 +72,13 @@ def add_version_cell(notebook_path: Path) -> None:
     nbformat.write(nb, notebook_path)
 
 
-def run_notebooks(folders: list[str], skip: list[str] = None, clean: bool = False):
+def run_notebooks(folders: list[str], skip: list[str] = None, only: list[str] = None, clean: bool = False, update: bool = False):
     """Run all notebooks in the specified folders and collect results."""
     skip = skip or []
+    only = only or []
     output_files = []  # Track output files for cleanup
+    # Track mapping from output path to source path for update mode
+    output_to_source: dict[Path, Path] = {}
     
     # Create output directory for executed notebooks
     OUTPUT_DIR.mkdir(exist_ok=True)
@@ -83,6 +93,19 @@ def run_notebooks(folders: list[str], skip: list[str] = None, clean: bool = Fals
         # Use recursive glob to find notebooks in subfolders too
         folder_notebooks = sorted(folder_path.glob("**/*.ipynb"))
         notebooks.extend(folder_notebooks)
+    
+    # Filter to only specified notebooks if --only is used
+    if only:
+        original_count = len(notebooks)
+        notebooks = [
+            nb for nb in notebooks
+            if any(only_name in nb.stem for only_name in only)
+        ]
+        if notebooks:
+            print(f"{Colors.CYAN}Running only {len(notebooks)} notebook(s) matching: {', '.join(only)}{Colors.RESET}")
+        else:
+            print(f"{Colors.YELLOW}No notebooks found matching: {', '.join(only)}{Colors.RESET}")
+            return 1
     
     # Filter out skipped notebooks
     skipped_notebooks = []
@@ -120,6 +143,9 @@ def run_notebooks(folders: list[str], skip: list[str] = None, clean: bool = Fals
         output_path = OUTPUT_DIR / str(rel_path).replace("/", "__")
         display_name = str(rel_path)
         
+        # Track mapping for update mode
+        output_to_source[output_path] = notebook_path
+        
         print(f"\n{Colors.CYAN}▶ Running: {display_name}{Colors.RESET}")
         print(f"{Colors.DIM}{'-' * 40}{Colors.RESET}")
         
@@ -133,16 +159,17 @@ def run_notebooks(folders: list[str], skip: list[str] = None, clean: bool = Fals
                 log_output=True,
             )
             
-            if not clean:
+            # Add version cell unless clean mode without update
+            if not clean or update:
                 add_version_cell(output_path)
             output_files.append(output_path)
             print(f"{Colors.GREEN}✓ PASSED: {display_name}{Colors.RESET}")
             results["passed"].append(display_name)
             
         except PapermillExecutionError as e:
-            # Still add version info to failed notebooks (unless clean mode)
+            # Still add version info to failed notebooks (unless clean mode without update)
             if output_path.exists():
-                if not clean:
+                if not clean or update:
                     add_version_cell(output_path)
                 output_files.append(output_path)
             print(f"{Colors.RED}✗ FAILED: {display_name}{Colors.RESET}")
@@ -196,15 +223,41 @@ def run_notebooks(folders: list[str], skip: list[str] = None, clean: bool = Fals
         for name in results["skipped"]:
             print(f"{Colors.YELLOW}  - {name}{Colors.RESET}")
     
-    # Clean up output files if requested
-    if clean and output_files:
+    # Update source notebooks if requested and all passed
+    updated = False
+    if update:
+        if results["failed"]:
+            print(f"\n{Colors.RED}Cannot update: {len(results['failed'])} notebook(s) failed{Colors.RESET}")
+        else:
+            print(f"\n{Colors.GREEN}All notebooks passed! Updating source files...{Colors.RESET}")
+            for output_file in output_files:
+                if output_file.exists() and output_file in output_to_source:
+                    source_file = output_to_source[output_file]
+                    shutil.copy2(output_file, source_file)
+                    print(f"{Colors.GREEN}  ✓ Updated: {source_file.relative_to(NOTEBOOKS_BASE)}{Colors.RESET}")
+            updated = True
+            print(f"{Colors.GREEN}Updated {len(output_files)} source notebook(s){Colors.RESET}")
+    
+    # Clean up output files if requested (or after successful update)
+    if (clean or updated) and output_files:
         for output_file in output_files:
             if output_file.exists():
                 output_file.unlink()
-        print(f"\n{Colors.DIM}Cleaned up {len(output_files)} output notebook(s){Colors.RESET}")
+        if clean:
+            print(f"\n{Colors.DIM}Cleaned up {len(output_files)} output notebook(s){Colors.RESET}")
+    
+    # Clean up artifact directories created by notebook execution
+    cleaned_artifacts = []
+    for artifact_name in ARTIFACT_DIRS:
+        artifact_path = BASE_DIR / artifact_name
+        if artifact_path.exists() and artifact_path.is_dir():
+            shutil.rmtree(artifact_path)
+            cleaned_artifacts.append(artifact_name)
+    if cleaned_artifacts:
+        print(f"{Colors.DIM}Cleaned up artifact directories: {', '.join(cleaned_artifacts)}{Colors.RESET}")
     
     print(f"\n{Colors.DIM}{'=' * 60}{Colors.RESET}")
-    if not clean:
+    if not clean and not updated:
         print(f"{Colors.CYAN}Executed notebooks saved to: {OUTPUT_DIR}{Colors.RESET}")
     print(f"{Colors.DIM}Finished at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}{Colors.RESET}")
     
@@ -229,7 +282,9 @@ Examples:
   python run_notebooks.py -f features tutorials mini-papers  # Run all
   python run_notebooks.py --skip vllm_support                # Skip vllm_support notebook
   python run_notebooks.py -s vllm_support remote_execution   # Skip multiple notebooks
+  python run_notebooks.py --only cross_prompt early_stopping # Run only specific notebooks
   python run_notebooks.py --clean                            # Don't keep output notebooks
+  python run_notebooks.py --update                           # Update source notebooks if all pass
         """
     )
     parser.add_argument(
@@ -249,13 +304,26 @@ Examples:
              "Matches any notebook containing the given name."
     )
     parser.add_argument(
+        "-o", "--only",
+        nargs="+",
+        default=[],
+        metavar="NOTEBOOK",
+        help="Run only these specific notebooks (without .ipynb extension). "
+             "Matches any notebook containing the given name."
+    )
+    parser.add_argument(
         "-c", "--clean",
         action="store_true",
         help="Delete output notebooks after execution (don't keep them)."
+    )
+    parser.add_argument(
+        "-u", "--update",
+        action="store_true",
+        help="If all notebooks pass, replace source notebooks with executed outputs."
     )
     return parser.parse_args()
 
 
 if __name__ == "__main__":
     args = parse_args()
-    sys.exit(run_notebooks(args.folders, args.skip, args.clean))
+    sys.exit(run_notebooks(args.folders, args.skip, args.only, args.clean, args.update))
