@@ -51,7 +51,7 @@ def get_version_info() -> str:
     timestamp = datetime.now().strftime("%Y-%m-%d")
     python_version = f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"
     return (
-        f"**Last Run:** {timestamp}\n\n"
+        f"**Last Executed:** {timestamp}\n\n"
         f"**System Info:**\n\n"
         f"| Package | Version |\n"
         f"|---------|---------|\n"
@@ -62,13 +62,24 @@ def get_version_info() -> str:
     )
 
 
+VERSION_CELL_MARKER = "**Last Executed:**"
+
+
 def add_version_cell(notebook_path: Path) -> None:
-    """Add a markdown cell with version info to the beginning of a notebook."""
+    """Add or update a markdown cell with version info at the beginning of a notebook."""
     nb = nbformat.read(notebook_path, as_version=4)
-    
-    version_cell = nbformat.v4.new_markdown_cell(get_version_info())
-    nb.cells.insert(0, version_cell)
-    
+
+    # Check if the first cell is already a version cell
+    if (
+        nb.cells
+        and nb.cells[0].cell_type == "markdown"
+        and VERSION_CELL_MARKER in nb.cells[0].source
+    ):
+        nb.cells[0].source = get_version_info()
+    else:
+        version_cell = nbformat.v4.new_markdown_cell(get_version_info())
+        nb.cells.insert(0, version_cell)
+
     nbformat.write(nb, notebook_path)
 
 
