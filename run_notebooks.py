@@ -51,16 +51,15 @@ def get_version_info() -> str:
     timestamp = datetime.now().strftime("%Y-%m-%d")
     python_version = f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"
     return (
-        f'<div align="left">\n\n'
         f"**Last Executed:** {timestamp}\n\n"
         f"**System Info:**\n\n"
-        f"| Package | Version |\n"
-        f"|---------|---------|\n"
-        f"| **nnsight** | **{nnsight.__version__}** |\n"
-        f"| Python | {python_version} |\n"
-        f"| torch | {torch.__version__} |\n"
-        f"| transformers | {transformers.__version__} |\n\n"
-        f"</div>\n"
+        f'<table style="margin-left: 0; text-align: left;">\n'
+        f"<tr><th>Package</th><th>Version</th></tr>\n"
+        f"<tr><td><b>nnsight</b></td><td><b>{nnsight.__version__}</b></td></tr>\n"
+        f"<tr><td>Python</td><td>{python_version}</td></tr>\n"
+        f"<tr><td>torch</td><td>{torch.__version__}</td></tr>\n"
+        f"<tr><td>transformers</td><td>{transformers.__version__}</td></tr>\n"
+        f"</table>\n"
     )
 
 
