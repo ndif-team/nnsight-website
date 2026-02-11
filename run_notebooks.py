@@ -65,9 +65,18 @@ def get_version_info() -> str:
 VERSION_CELL_MARKER = "**Last Executed:**"
 
 
+def strip_papermill_metadata(nb: nbformat.NotebookNode) -> None:
+    """Remove papermill metadata from notebook and cells."""
+    nb.metadata.pop("papermill", None)
+    for cell in nb.cells:
+        cell.metadata.pop("papermill", None)
+
+
 def add_version_cell(notebook_path: Path) -> None:
     """Add or update a markdown cell with version info at the beginning of a notebook."""
     nb = nbformat.read(notebook_path, as_version=4)
+
+    strip_papermill_metadata(nb)
 
     # Check if the first cell is already a version cell
     if (
