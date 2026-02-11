@@ -45,7 +45,7 @@ jobs:
         run: uv sync --extra tutorials
 
       - name: Run notebooks
-        run: uv run python run_notebooks.py -f features -o cross_prompt early_stopping -c -u
+        run: uv run python run_notebooks.py -f features -o cross_prompt -c -u
 
       - name: Commit updated notebooks
         run: |
