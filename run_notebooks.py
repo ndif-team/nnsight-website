@@ -66,6 +66,46 @@ def get_version_info() -> str:
 VERSION_CELL_MARKER = "**Last Executed:**"
 
 
+def get_current_versions() -> dict[str, str]:
+    """Return a dict of current system package versions."""
+    return {
+        "nnsight": nnsight.__version__,
+        "Python": f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}",
+        "torch": torch.__version__,
+        "transformers": transformers.__version__,
+    }
+
+
+def extract_versions_from_cell(cell_source: str) -> dict[str, str]:
+    """Extract package versions from an existing version info cell."""
+    import re
+    versions = {}
+    # Match HTML table rows: <tr><td>...</td><td>...</td></tr>
+    for match in re.finditer(r"<tr><td>(?:<b>)?(\w+)(?:</b>)?</td><td>(?:<b>)?([\w.+]+)(?:</b>)?</td></tr>", cell_source):
+        versions[match.group(1)] = match.group(2)
+    return versions
+
+
+def has_version_mismatch(notebook_path: Path) -> bool:
+    """Check if the notebook's recorded versions differ from current system versions."""
+    nb = nbformat.read(notebook_path, as_version=4)
+
+    if (
+        nb.cells
+        and nb.cells[0].cell_type == "markdown"
+        and VERSION_CELL_MARKER in nb.cells[0].source
+    ):
+        recorded = extract_versions_from_cell(nb.cells[0].source)
+        current = get_current_versions()
+        if recorded and recorded != current:
+            return True
+        # No mismatch (or no recorded versions found — treat as no mismatch)
+        return not recorded
+
+    # No version cell exists yet — treat as mismatch so it gets added
+    return True
+
+
 def strip_papermill_metadata(nb: nbformat.NotebookNode) -> None:
     """Remove papermill metadata from notebook and cells."""
     nb.metadata.pop("papermill", None)
@@ -93,7 +133,7 @@ def add_version_cell(notebook_path: Path) -> None:
     nbformat.write(nb, notebook_path)
 
 
-def run_notebooks(folders: list[str], skip: list[str] = None, only: list[str] = None, clean: bool = False, update: bool = False):
+def run_notebooks(folders: list[str], skip: list[str] = None, only: list[str] = None, clean: bool = False, update: bool = False, force_update: bool = False):
     """Run all notebooks in the specified folders and collect results."""
     skip = skip or []
     only = only or []
@@ -180,17 +220,17 @@ def run_notebooks(folders: list[str], skip: list[str] = None, only: list[str] = 
                 log_output=True,
             )
             
-            # Add version cell unless clean mode without update
-            if not clean or update:
+            # Add version cell unless clean mode without any update flag
+            if not clean or update or force_update:
                 add_version_cell(output_path)
             output_files.append(output_path)
             print(f"{Colors.GREEN}✓ PASSED: {display_name}{Colors.RESET}")
             results["passed"].append(display_name)
             
         except PapermillExecutionError as e:
-            # Still add version info to failed notebooks (unless clean mode without update)
+            # Still add version info to failed notebooks (unless clean mode without any update flag)
             if output_path.exists():
-                if not clean or update:
+                if not clean or update or force_update:
                     add_version_cell(output_path)
                 output_files.append(output_path)
             print(f"{Colors.RED}✗ FAILED: {display_name}{Colors.RESET}")
@@ -220,6 +260,10 @@ def run_notebooks(folders: list[str], skip: list[str] = None, only: list[str] = 
     print(f"\n{Colors.BOLD}{'=' * 60}")
     print("SUMMARY")
     print(f"{'=' * 60}{Colors.RESET}")
+    versions = get_current_versions()
+    for pkg, ver in versions.items():
+        print(f"{Colors.DIM}  {pkg}: {ver}{Colors.RESET}")
+    print()
     print(f"Total notebooks: {len(notebooks) + len(results['skipped'])}")
     print(f"{Colors.GREEN}Passed: {len(results['passed'])}{Colors.RESET}")
     print(f"{Colors.RED}Failed: {len(results['failed'])}{Colors.RESET}")
@@ -246,18 +290,28 @@ def run_notebooks(folders: list[str], skip: list[str] = None, only: list[str] = 
     
     # Update source notebooks if requested and all passed
     updated = False
-    if update:
+    if update or force_update:
         if results["failed"]:
             print(f"\n{Colors.RED}Cannot update: {len(results['failed'])} notebook(s) failed{Colors.RESET}")
         else:
-            print(f"\n{Colors.GREEN}All notebooks passed! Updating source files...{Colors.RESET}")
+            # Check which notebooks need updating based on version mismatch
+            files_to_update = []
             for output_file in output_files:
                 if output_file.exists() and output_file in output_to_source:
                     source_file = output_to_source[output_file]
+                    if force_update or has_version_mismatch(source_file):
+                        files_to_update.append((output_file, source_file))
+                    else:
+                        print(f"{Colors.DIM}  ⊘ Skipped (versions match): {source_file.relative_to(NOTEBOOKS_BASE)}{Colors.RESET}")
+
+            if files_to_update:
+                print(f"\n{Colors.GREEN}Updating {len(files_to_update)} source file(s)...{Colors.RESET}")
+                for output_file, source_file in files_to_update:
                     shutil.copy2(output_file, source_file)
                     print(f"{Colors.GREEN}  ✓ Updated: {source_file.relative_to(NOTEBOOKS_BASE)}{Colors.RESET}")
-            updated = True
-            print(f"{Colors.GREEN}Updated {len(output_files)} source notebook(s){Colors.RESET}")
+                updated = True
+            else:
+                print(f"\n{Colors.CYAN}All notebooks already up to date (versions match){Colors.RESET}")
     
     # Clean up output files if requested (or after successful update)
     if (clean or updated) and output_files:
@@ -305,7 +359,8 @@ Examples:
   python run_notebooks.py -s vllm_support remote_execution   # Skip multiple notebooks
   python run_notebooks.py --only cross_prompt early_stopping # Run only specific notebooks
   python run_notebooks.py --clean                            # Don't keep output notebooks
-  python run_notebooks.py --update                           # Update source notebooks if all pass
+  python run_notebooks.py --update                           # Update source if versions changed
+  python run_notebooks.py --force-update                     # Always update source notebooks
         """
     )
     parser.add_argument(
@@ -340,11 +395,16 @@ Examples:
     parser.add_argument(
         "-u", "--update",
         action="store_true",
-        help="If all notebooks pass, replace source notebooks with executed outputs."
+        help="If all notebooks pass, update source notebooks only when package versions differ."
+    )
+    parser.add_argument(
+        "--force-update",
+        action="store_true",
+        help="If all notebooks pass, always replace source notebooks with executed outputs."
     )
     return parser.parse_args()
 
 
 if __name__ == "__main__":
     args = parse_args()
-    sys.exit(run_notebooks(args.folders, args.skip, args.only, args.clean, args.update))
+    sys.exit(run_notebooks(args.folders, args.skip, args.only, args.clean, args.update, args.force_update))

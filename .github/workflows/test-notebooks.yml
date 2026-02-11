@@ -1,6 +1,8 @@
 name: Test Notebooks
 
 on:
+  pull_request:
+    branches: [docs]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -19,6 +21,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: ${{ github.head_ref || github.ref }}
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -45,7 +48,12 @@ jobs:
         run: uv sync --extra tutorials
 
       - name: Run notebooks
-        run: uv run python run_notebooks.py -f features -o cross_prompt -c -u
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            uv run python run_notebooks.py -f features -o cross_prompt -c --force-update
+          else
+            uv run python run_notebooks.py -f features -o cross_prompt -c -u
+          fi
 
       - name: Commit updated notebooks
         run: |
