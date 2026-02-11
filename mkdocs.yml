@@ -4,8 +4,8 @@ site_description: Documentation for the nnsight Python library
 site_url: https://nnsight.net
 
 # Repository
-repo_name: nnsight/nnsight
-repo_url: https://github.com/nnsight/nnsight
+repo_name: ndif-team/nnsight
+repo_url: https://github.com/ndif-team/nnsight
 
 # Theme configuration
 theme:
@@ -59,6 +59,9 @@ plugins:
       ignore_h1_titles: true
       no_input: false
       show_input: true
+      include_requirejs: true
+      kernel_name: python3
+      theme: dark
       highlight_extra_classes: ""
   - mkdocstrings:
       enabled: true
@@ -71,8 +74,9 @@ plugins:
             docstring_style: google
             docstring_options:
               ignore_init_summary: true
+            docstring_section_style: spacy
             merge_init_into_class: true
-            show_source: true
+            show_source: false
             show_root_heading: true
             show_root_full_path: false
             show_symbol_type_heading: true
@@ -83,6 +87,9 @@ plugins:
             separate_signature: true
             signature_crossrefs: true
             allow_inspection: true
+            show_signature: true
+            show_if_no_docstring: true
+            
 
 # Extensions
 markdown_extensions:
@@ -96,6 +103,9 @@ markdown_extensions:
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - admonition
   - attr_list
   - md_in_html
@@ -106,123 +116,135 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Getting Started:
+    - getting-started/index.md
     - Installation: getting-started/installation.md
     - Quick Start: getting-started/quickstart.md
-  - User Guide:
-    - Overview: guide/overview.md
-  - API Reference:
-    - api/index.md
+  - Documentation:
+    - documentation/index.md
     - intervention:
-      - api/intervention/index.md
-      - envoy: api/intervention/envoy.md
-      - inject: api/intervention/inject.md
-      - batching: api/intervention/batching.md
-      - interleaver: api/intervention/interleaver.md
-      - serialization: api/intervention/serialization.md
+      - documentation/intervention/index.md
+      - envoy: documentation/intervention/envoy.md
+      - inject: documentation/intervention/inject.md
+      - batching: documentation/intervention/batching.md
+      - interleaver: documentation/intervention/interleaver.md
+      - serialization: documentation/intervention/serialization.md
       - backends:
-        - api/intervention/backends/index.md
-        - base: api/intervention/backends/base.md
-        - editing: api/intervention/backends/editing.md
-        - execution: api/intervention/backends/execution.md
-        - remote: api/intervention/backends/remote.md
+        - documentation/intervention/backends/index.md
+        - base: documentation/intervention/backends/base.md
+        - editing: documentation/intervention/backends/editing.md
+        - execution: documentation/intervention/backends/execution.md
+        - remote: documentation/intervention/backends/remote.md
       - tracing:
-        - api/intervention/tracing/index.md
-        - base: api/intervention/tracing/base.md
-        - backwards: api/intervention/tracing/backwards.md
-        - editing: api/intervention/tracing/editing.md
-        - globals: api/intervention/tracing/globals.md
-        - invoker: api/intervention/tracing/invoker.md
-        - iterator: api/intervention/tracing/iterator.md
-        - tracer: api/intervention/tracing/tracer.md
-        - util: api/intervention/tracing/util.md
+        - documentation/intervention/tracing/index.md
+        - base: documentation/intervention/tracing/base.md
+        - backwards: documentation/intervention/tracing/backwards.md
+        - editing: documentation/intervention/tracing/editing.md
+        - globals: documentation/intervention/tracing/globals.md
+        - invoker: documentation/intervention/tracing/invoker.md
+        - iterator: documentation/intervention/tracing/iterator.md
+        - tracer: documentation/intervention/tracing/tracer.md
+        - util: documentation/intervention/tracing/util.md
     - modeling:
-      - api/modeling/index.md
-      - base: api/modeling/base.md
-      - diffusion: api/modeling/diffusion.md
-      - huggingface: api/modeling/huggingface.md
-      - language: api/modeling/language.md
-      - transformers: api/modeling/transformers.md
+      - documentation/modeling/index.md
+      - base: documentation/modeling/base.md
+      - diffusion: documentation/modeling/diffusion.md
+      - huggingface: documentation/modeling/huggingface.md
+      - language: documentation/modeling/language.md
+      - transformers: documentation/modeling/transformers.md
       - mixins:
-        - api/modeling/mixins/index.md
-        - loadable: api/modeling/mixins/loadable.md
-        - meta: api/modeling/mixins/meta.md
-        - remoteable: api/modeling/mixins/remoteable.md
+        - documentation/modeling/mixins/index.md
+        - loadable: documentation/modeling/mixins/loadable.md
+        - meta: documentation/modeling/mixins/meta.md
+        - remoteable: documentation/modeling/mixins/remoteable.md
       - vllm:
-        - api/modeling/vllm/index.md
-        - vllm: api/modeling/vllm/vllm.md
-        - batching: api/modeling/vllm/batching.md
-        - sampling: api/modeling/vllm/sampling.md
+        - documentation/modeling/vllm/index.md
+        - vllm: documentation/modeling/vllm/vllm.md
+        - batching: documentation/modeling/vllm/batching.md
+        - sampling: documentation/modeling/vllm/sampling.md
         - engines:
-          - api/modeling/vllm/engines/index.md
-          - engine: api/modeling/vllm/engines/engine.md
+          - documentation/modeling/vllm/engines/index.md
+          - engine: documentation/modeling/vllm/engines/engine.md
         - model_runners:
-          - api/modeling/vllm/model_runners/index.md
-          - GPUModelRunner: api/modeling/vllm/model_runners/GPUModelRunner.md
+          - documentation/modeling/vllm/model_runners/index.md
+          - GPUModelRunner: documentation/modeling/vllm/model_runners/GPUModelRunner.md
         - workers:
-          - api/modeling/vllm/workers/index.md
-          - GPUWorker: api/modeling/vllm/workers/GPUWorker.md
+          - documentation/modeling/vllm/workers/index.md
+          - GPUWorker: documentation/modeling/vllm/workers/GPUWorker.md
     - schema:
-      - api/schema/index.md
-      - config: api/schema/config.md
-      - request: api/schema/request.md
-      - response: api/schema/response.md
-    - ndif: api/ndif.md
-    - util: api/util.md
+      - documentation/schema/index.md
+      - config: documentation/schema/config.md
+      - request: documentation/schema/request.md
+      - response: documentation/schema/response.md
+    - ndif: documentation/ndif.md
+    - util: documentation/util.md
   - Features:
-    - Getting Activations: features/getting.ipynb
-    - Setting Activations: features/setting.ipynb
-    - Gradients: features/gradients.ipynb
-    - Cross-Prompt Intervention: features/cross_prompt.ipynb
-    - Multiple Token Generation: features/multiple_token.ipynb
-    - Model Editing: features/model_editing.ipynb
-    - Module Access: features/modules.ipynb
-    - Early Stopping: features/early_stopping.ipynb
-    - Streaming: features/streaming.ipynb
-    - Skip Execution: features/skip.ipynb
-    - Scan & Validate: features/scan_validate.ipynb
-    - Remote Execution: features/remote_execution.ipynb
-    - vLLM Support: features/vllm_support.ipynb
-    - Source Nodes: features/source.ipynb
+    - features/index.md
+    - Getting Activations: features/1_getting.ipynb
+    - Setting Activations: features/2_setting.ipynb
+    - Gradients: features/3_gradients.ipynb
+    - Multiple Token Generation: features/4_multiple_token.ipynb
+    - Module Access: features/5_modules.ipynb
+    - Model Editing: features/6_model_editing.ipynb
+    - Cross-Prompt Intervention: features/7_cross_prompt.ipynb
+    - Empty Invokers: features/8_empty_invokers.ipynb
+    - Intermediate Operations: features/9_source.ipynb
+    - Early Stopping: features/10_early_stopping.ipynb
+    - Skip Execution: features/11_skip.ipynb
+    - Scan: features/12_scan.ipynb
+    - Remote Execution: features/13_remote_execution.ipynb
+    - Streaming: features/14_streaming.ipynb
+    - vLLM Support: features/15_vllm_support.ipynb
   - Tutorials:
-    - Getting Started:
-      - Walkthrough: tutorials/get_started/walkthrough.ipynb
-      - Chat Templates: tutorials/get_started/chat_templates.ipynb
-      - Remote Access: tutorials/get_started/start_remote_access.ipynb
-    - Causal Tracing:
-      - Causal Models Intro: tutorials/causal_mediation_analysis/causal_models_intro.ipynb
-      - Activation Patching: tutorials/causal_mediation_analysis/activation_patching.ipynb
-      - Attribution Patching: tutorials/causal_mediation_analysis/attribution_patching.ipynb
-      - Causal Mediation I: tutorials/causal_mediation_analysis/causal_mediation_analysis_i.ipynb
-      - Causal Mediation II: tutorials/causal_mediation_analysis/causal_mediation_analysis_ii.ipynb
-      - DAS: tutorials/causal_mediation_analysis/DAS.ipynb
-    - Probing:
-      - Logit Lens: tutorials/probing/logit_lens.ipynb
-      - Diffusion Lens: tutorials/probing/diffusion_lens.ipynb
-    - Steering:
-      - Dictionary Learning: tutorials/steering/dict_learning.ipynb
-      - LoRA Tutorial: tutorials/steering/LoRA_tutorial.ipynb
+    - tutorials/index.md
+    - Tutorials:
+      - tutorials/tutorials/index.md
+      - Getting Started:
+        - Walkthrough: tutorials/tutorials/get_started/walkthrough.ipynb
+        - Chat Templates: tutorials/tutorials/get_started/chat_templates.ipynb
+        - Remote Access: tutorials/tutorials/get_started/start_remote_access.ipynb
+      - Causal Tracing:
+        - Causal Models Intro: tutorials/tutorials/causal_mediation_analysis/causal_models_intro.ipynb
+        - Activation Patching: tutorials/tutorials/causal_mediation_analysis/activation_patching.ipynb
+        - Attribution Patching: tutorials/tutorials/causal_mediation_analysis/attribution_patching.ipynb
+        - Causal Mediation I: tutorials/tutorials/causal_mediation_analysis/causal_mediation_analysis_i.ipynb
+        - Causal Mediation II: tutorials/tutorials/causal_mediation_analysis/causal_mediation_analysis_ii.ipynb
+        - DAS: tutorials/tutorials/causal_mediation_analysis/DAS.ipynb
+      - Probing:
+        - Logit Lens: tutorials/tutorials/probing/logit_lens.ipynb
+        - Diffusion Lens: tutorials/tutorials/probing/diffusion_lens.ipynb
+      - Steering:
+        - Dictionary Learning: tutorials/tutorials/steering/dict_learning.ipynb
+        - LoRA Tutorial: tutorials/tutorials/steering/LoRA_tutorial.ipynb
     - Mini Papers:
-      - Function Vectors: mini-papers/todd_function_vectors.ipynb
-      - Geometry of Truth: mini-papers/marks_geometry_of_truth.ipynb
-      - LLM Depth: mini-papers/csordas_llm_depth.ipynb
-      - Dual Route Induction: mini-papers/feucht_dual_route_induction.ipynb
-      - Demystifying Memorization: mini-papers/huang_demystifying_memorization.ipynb
+      - tutorials/mini-papers/index.md
+      - Function Vectors: tutorials/mini-papers/todd_function_vectors.ipynb
+      - Geometry of Truth: tutorials/mini-papers/marks_geometry_of_truth.ipynb
+      - LLM Depth: tutorials/mini-papers/csordas_llm_depth.ipynb
+      - Dual Route Induction: tutorials/mini-papers/feucht_dual_route_induction.ipynb
+      - Demystifying Memorization: tutorials/mini-papers/huang_demystifying_memorization.ipynb
+  - Status: status/index.md
+  - About:
+    - about/index.md
 
-# Custom CSS and JS
+# Extra CSS and JS
 extra_css:
-  - stylesheets/home.css
+  - stylesheets/extra.css
 
 extra_javascript:
-  - javascripts/vanta-home.js
+  - javascripts/extra.js
 
 # Extra configuration
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/nnsight/nnsight
+      link: https://github.com/ndif-team/nnsight
+    - icon: fontawesome/brands/discourse
+      link: https://discuss.ndif.us/
+    - icon: fontawesome/brands/discord
+      link: https://forms.gle/1Y6myaXYzSh3oHf56
     - icon: fontawesome/brands/python
       link: https://pypi.org/project/nnsight/
   generator: false
 
 # Copyright
-copyright: Copyright &copy; 2024 nnsight
+copyright: Copyright &copy; 2026 nnsight
