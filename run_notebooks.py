@@ -260,6 +260,10 @@ def run_notebooks(folders: list[str], skip: list[str] = None, only: list[str] = 
     print(f"\n{Colors.BOLD}{'=' * 60}")
     print("SUMMARY")
     print(f"{'=' * 60}{Colors.RESET}")
+    versions = get_current_versions()
+    for pkg, ver in versions.items():
+        print(f"{Colors.DIM}  {pkg}: {ver}{Colors.RESET}")
+    print()
     print(f"Total notebooks: {len(notebooks) + len(results['skipped'])}")
     print(f"{Colors.GREEN}Passed: {len(results['passed'])}{Colors.RESET}")
     print(f"{Colors.RED}Failed: {len(results['failed'])}{Colors.RESET}")
