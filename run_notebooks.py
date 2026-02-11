@@ -49,17 +49,17 @@ ARTIFACT_DIRS = [
 def get_version_info() -> str:
     """Generate markdown content with package versions."""
     timestamp = datetime.now().strftime("%Y-%m-%d")
-    return f"""
-**Last Run:** {timestamp}
-
-**System Info:**
-
-| Package | Version |
-|---------|---------|
-| **nnsight** | **{nnsight.__version__}** |
-| torch | {torch.__version__} |
-| transformers | {transformers.__version__} |
-"""
+    python_version = f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"
+    return (
+        f"**Last Run:** {timestamp}\n\n"
+        f"**System Info:**\n\n"
+        f"| Package | Version |\n"
+        f"|---------|---------|\n"
+        f"| **nnsight** | **{nnsight.__version__}** |\n"
+        f"| Python | {python_version} |\n"
+        f"| torch | {torch.__version__} |\n"
+        f"| transformers | {transformers.__version__} |\n"
+    )
 
 
 def add_version_cell(notebook_path: Path) -> None:
