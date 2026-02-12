@@ -20,10 +20,16 @@ Then, start a hotreloading webserver by running `bash run.sh`.
 
 `run_notebooks.py` executes Jupyter notebooks with [papermill](https://papermill.readthedocs.io/), reports pass/fail results, and optionally updates source files with executed outputs. Each notebook gets a version info cell (nnsight, Python, torch, transformers) prepended on execution.
 
+### Setup
+
+```bash
+uv sync --extra tutorials
+```
+
 ### Usage
 
 ```bash
-python run_notebooks.py [options]
+uv run python run_notebooks.py [options]
 ```
 
 ### Options
@@ -40,10 +46,10 @@ python run_notebooks.py [options]
 ### Examples
 
 ```bash
-python run_notebooks.py                                     # Run default (features)
-python run_notebooks.py -f features tutorials               # Run multiple folders
-python run_notebooks.py --only cross_prompt early_stopping  # Run specific notebooks
-python run_notebooks.py --skip vllm_support                 # Skip specific notebooks
-python run_notebooks.py -c -u                               # Clean outputs, update source if versions changed
-python run_notebooks.py -c --force-update                   # Clean outputs, always update source
+uv run python run_notebooks.py                                     # Run default (features)
+uv run python run_notebooks.py -f features tutorials               # Run multiple folders
+uv run python run_notebooks.py --only cross_prompt early_stopping  # Run specific notebooks
+uv run python run_notebooks.py --skip vllm_support                 # Skip specific notebooks
+uv run python run_notebooks.py -c -u                               # Clean outputs, update source if versions changed
+uv run python run_notebooks.py -c --force-update                   # Clean outputs, always update source
 ```
