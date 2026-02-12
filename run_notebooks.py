@@ -51,21 +51,20 @@ def get_version_info() -> str:
     timestamp = datetime.now().strftime("%Y-%m-%d")
     python_version = f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"
     return (
-        f"<div>\n"
-        f"<p><b>Last Executed:</b> {timestamp}</p>\n"
-        f"<p><b>System Info:</b></p>\n"
-        f'<table style="margin-left: 0; text-align: left;">\n'
-        f"<tr><th>Package</th><th>Version</th></tr>\n"
-        f"<tr><td><b>nnsight</b></td><td><b>{nnsight.__version__}</b></td></tr>\n"
-        f"<tr><td>Python</td><td>{python_version}</td></tr>\n"
-        f"<tr><td>torch</td><td>{torch.__version__}</td></tr>\n"
-        f"<tr><td>transformers</td><td>{transformers.__version__}</td></tr>\n"
-        f"</table>\n"
-        f"</div>\n"
+        f"**Last Execution:** {timestamp}\n\n"
+        f"<details>\n"
+        f"<summary><b>Info</b></summary>\n\n"
+        f"| Package | Version |\n"
+        f"|---------|---------|\n"
+        f"| **nnsight** | **{nnsight.__version__}** |\n"
+        f"| Python | {python_version} |\n"
+        f"| torch | {torch.__version__} |\n"
+        f"| transformers | {transformers.__version__} |\n\n"
+        f"</details>\n"
     )
 
 
-VERSION_CELL_MARKER = "**Last Executed:**"
+VERSION_CELL_MARKER = "**Last Execution:**"
 
 
 def get_current_versions() -> dict[str, str]:
@@ -82,9 +81,11 @@ def extract_versions_from_cell(cell_source: str) -> dict[str, str]:
     """Extract package versions from an existing version info cell."""
     import re
     versions = {}
-    # Match HTML table rows: <tr><td>...</td><td>...</td></tr>
-    for match in re.finditer(r"<tr><td>(?:<b>)?(\w+)(?:</b>)?</td><td>(?:<b>)?([\w.+]+)(?:</b>)?</td></tr>", cell_source):
-        versions[match.group(1)] = match.group(2)
+    # Match markdown table rows: | package | version |
+    for match in re.finditer(r"\|\s*\*{0,2}(\w+)\*{0,2}\s*\|\s*\*{0,2}([\w.+]+)\*{0,2}\s*\|", cell_source):
+        pkg, ver = match.group(1), match.group(2)
+        if pkg not in ("Package", ""):
+            versions[pkg] = ver
     return versions
 
 
