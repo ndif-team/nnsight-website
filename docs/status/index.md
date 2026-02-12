@@ -1,6 +1,5 @@
 ---
 hide:
-  - navigation
   - toc
   - path
   - title
@@ -40,9 +39,11 @@ hide:
     margin: 0 !important;
   }
   
-  /* Hide sidebar completely */
-  .md-sidebar {
-    display: none !important;
+  /* Hide sidebar on desktop only - keep mobile drawer working */
+  @media (min-width: 76.25em) {
+    .md-sidebar {
+      display: none !important;
+    }
   }
   
   /* Make grid full width */

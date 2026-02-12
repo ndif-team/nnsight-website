@@ -1,6 +1,5 @@
 ---
 hide:
-  - navigation
   - toc
   - path
   - title
@@ -24,8 +23,10 @@ hide:
     margin: 0 !important;
   }
 
-  .md-sidebar {
-    display: none !important;
+  @media (min-width: 76.25em) {
+    .md-sidebar {
+      display: none !important;
+    }
   }
 
   .md-grid {
