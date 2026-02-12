@@ -48,6 +48,9 @@ jobs:
         run: uv sync --extra tutorials
 
       - name: Run notebooks
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          NDIF_API_KEY: ${{ secrets.NDIF_API_KEY }}
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             uv run python run_notebooks.py -f features -s vllm_support -c --force-update
