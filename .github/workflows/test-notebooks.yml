@@ -50,9 +50,9 @@ jobs:
       - name: Run notebooks
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            uv run python run_notebooks.py -f features -o cross_prompt -c --force-update
+            uv run python run_notebooks.py -f features -s vllm_support -c --force-update
           else
-            uv run python run_notebooks.py -f features -o cross_prompt -c -u
+            uv run python run_notebooks.py -f features -s vllm_support -c -u
           fi
 
       - name: Commit updated notebooks
