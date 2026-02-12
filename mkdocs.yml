@@ -52,6 +52,7 @@ theme:
 plugins:
   - search
   - tags
+  - blog
   - mkdocs-jupyter:
       include_source: true
       execute: false
@@ -222,6 +223,8 @@ nav:
       - LLM Depth: tutorials/mini-papers/csordas_llm_depth.ipynb
       - Dual Route Induction: tutorials/mini-papers/feucht_dual_route_induction.ipynb
       - Demystifying Memorization: tutorials/mini-papers/huang_demystifying_memorization.ipynb
+  - Blog:
+    - blog/index.md
   - Status: status/index.md
   - About:
     - about/index.md

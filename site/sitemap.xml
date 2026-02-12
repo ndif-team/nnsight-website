@@ -2,366 +2,390 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://nnsight.net/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/about/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://nnsight.net/blog/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://nnsight.net/blog/2026/02/11/nnsight-06/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://nnsight.net/blog/2026/01/15/nnterp-integration/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/ndif/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/util/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/intervention/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/intervention/batching/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/intervention/envoy/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/intervention/inject/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/intervention/interleaver/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/intervention/serialization/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/intervention/backends/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/intervention/backends/base/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/intervention/backends/editing/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/intervention/backends/execution/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/intervention/backends/remote/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/intervention/tracing/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/intervention/tracing/backwards/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/intervention/tracing/base/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/intervention/tracing/editing/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/intervention/tracing/globals/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/intervention/tracing/invoker/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/intervention/tracing/iterator/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/intervention/tracing/tracer/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/intervention/tracing/util/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/modeling/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/modeling/base/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/modeling/diffusion/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/modeling/huggingface/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/modeling/language/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/modeling/transformers/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/modeling/mixins/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/modeling/mixins/loadable/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/modeling/mixins/meta/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/modeling/mixins/remoteable/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/modeling/vllm/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/modeling/vllm/batching/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/modeling/vllm/sampling/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/modeling/vllm/vllm/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/modeling/vllm/engines/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/modeling/vllm/engines/engine/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/modeling/vllm/model_runners/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/modeling/vllm/model_runners/GPUModelRunner/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/modeling/vllm/workers/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/modeling/vllm/workers/GPUWorker/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/schema/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/schema/config/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/schema/request/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/documentation/schema/response/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/features/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/features/10_early_stopping/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/features/11_skip/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/features/12_scan/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/features/13_remote_execution/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/features/14_streaming/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/features/15_vllm_support/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/features/1_getting/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/features/2_setting/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/features/3_gradients/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/features/4_multiple_token/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/features/5_modules/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/features/6_model_editing/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/features/7_cross_prompt/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/features/8_empty_invokers/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/features/9_source/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/getting-started/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/getting-started/installation/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/getting-started/quickstart/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/status/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/tutorials/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/tutorials/mini-papers/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/tutorials/mini-papers/csordas_llm_depth/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/tutorials/mini-papers/feucht_dual_route_induction/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/tutorials/mini-papers/huang_demystifying_memorization/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/tutorials/mini-papers/marks_geometry_of_truth/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/tutorials/mini-papers/todd_function_vectors/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/tutorials/tutorials/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/tutorials/tutorials/tutorial_price_tagging_utils/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/tutorials/tutorials/causal_mediation_analysis/DAS/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/tutorials/tutorials/causal_mediation_analysis/activation_patching/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/tutorials/tutorials/causal_mediation_analysis/attribution_patching/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/tutorials/tutorials/causal_mediation_analysis/causal_mediation_analysis_i/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/tutorials/tutorials/causal_mediation_analysis/causal_mediation_analysis_ii/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/tutorials/tutorials/causal_mediation_analysis/causal_models_intro/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/tutorials/tutorials/get_started/chat_templates/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/tutorials/tutorials/get_started/start_remote_access/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/tutorials/tutorials/get_started/walkthrough/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/tutorials/tutorials/probing/diffusion_lens/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/tutorials/tutorials/probing/logit_lens/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/tutorials/tutorials/steering/LoRA_tutorial/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
     </url>
     <url>
          <loc>https://nnsight.net/tutorials/tutorials/steering/dict_learning/</loc>
-         <lastmod>2026-02-11</lastmod>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://nnsight.net/blog/archive/2026/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://nnsight.net/blog/category/release/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://nnsight.net/blog/category/ecosystem/</loc>
+         <lastmod>2026-02-12</lastmod>
     </url>
 </urlset>

@@ -286,50 +286,34 @@
   opacity: 0.9;
 }
 
-/* ===== Status Sphere ===== */
+/* ===== NDIF Badge ===== */
 
-.nn-status-sphere {
+.nn-ndif-badge {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 1.4rem;
-  height: 1.4rem;
+  width: 1.6rem;
+  height: 1.6rem;
   border-radius: 50%;
   overflow: hidden;
   position: relative;
   margin: 0 0.5rem;
   flex-shrink: 0;
   cursor: pointer;
-  animation: nn-sphere-base 6s step-end infinite;
-  background-color: #4385be;
+  background: #228b22;
+  animation: nn-ndif-pulse 3s ease-in-out infinite;
 }
 
-.nn-status-sphere::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  animation: nn-sphere-sweep 6s ease-in-out infinite;
-}
-
-.nn-sphere-highlight {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.35), transparent 55%, rgba(0,0,0,0.2) 100%);
+.nn-ndif-badge img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: relative;
   z-index: 1;
 }
 
-@keyframes nn-sphere-base {
-  0% { background-color: #4385be; }
-  50% { background-color: #ce5d97; }
-}
-
-@keyframes nn-sphere-sweep {
-  0% { background-color: #ce5d97; clip-path: inset(100% 0 0 0); }
-  25% { background-color: #ce5d97; clip-path: inset(0 0 0 0); }
-  49.9% { background-color: #ce5d97; clip-path: inset(0 0 0 0); }
-  50% { background-color: #4385be; clip-path: inset(100% 0 0 0); }
-  75% { background-color: #4385be; clip-path: inset(0 0 0 0); }
-  100% { background-color: #4385be; clip-path: inset(0 0 0 0); }
+@keyframes nn-ndif-pulse {
+  0% { background-color: #228b22; }
+  50% { background-color: #32cd32; }
+  100% { background-color: #228b22; }
 }

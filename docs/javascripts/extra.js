@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
     { name: "Documentation", href: "/documentation/" },
     { name: "Features", href: "/features/" },
     { name: "Tutorials", href: "/tutorials/" },
+    { name: "Blog", href: "/blog/" },
     { name: "About", href: "/about/" }
   ];
   
@@ -76,12 +77,25 @@ document.addEventListener("DOMContentLoaded", function() {
     // Insert before the header source
     headerSource.parentNode.insertBefore(extraLinks, headerSource);
 
-    // Status sphere - rotating blue/pink sphere linking to status page
-    const sphereLink = document.createElement("a");
-    sphereLink.href = "/status/";
-    sphereLink.title = "NDIF Status";
-    sphereLink.className = "nn-status-sphere";
-    sphereLink.innerHTML = '<span class="nn-sphere-highlight"></span>';
-    headerSource.parentNode.insertBefore(sphereLink, headerSource.nextSibling);
+    // NDIF logo with animated gradient behind transparent areas
+    const ndifLink = document.createElement("a");
+    ndifLink.href = "/status/";
+    ndifLink.title = "NDIF Status";
+    ndifLink.className = "nn-ndif-badge";
+    const ndifImg = document.createElement("img");
+    ndifImg.alt = "NDIF";
+
+    function updateNdifLogo() {
+      var dark = document.body.getAttribute("data-md-color-scheme") === "slate";
+      ndifImg.src = dark ? "/assets/NDIF_Dark.png" : "/assets/NDIF_Light.png";
+    }
+    updateNdifLogo();
+
+    new MutationObserver(updateNdifLogo).observe(document.body, {
+      attributes: true, attributeFilter: ["data-md-color-scheme"]
+    });
+
+    ndifLink.appendChild(ndifImg);
+    headerSource.parentNode.insertBefore(ndifLink, headerSource.nextSibling);
   }
 });
