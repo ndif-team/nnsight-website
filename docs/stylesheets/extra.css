@@ -72,6 +72,58 @@
   fill: #1a1a1a !important;
 }
 
+/* ===== Jupyter notebook light mode overrides ===== */
+[data-md-color-scheme="default"] .jupyter-wrapper {
+  --jp-layout-color0: white;
+  --jp-layout-color1: white;
+  --jp-layout-color2: var(--md-grey-200);
+  --jp-layout-color3: var(--md-grey-400);
+  --jp-cell-editor-background: var(--md-grey-100);
+  --jp-cell-editor-border-color: var(--md-grey-300);
+  --jp-cell-editor-active-background: var(--jp-layout-color0);
+  --jp-ui-font-color0: rgba(0, 0, 0, 1);
+  --jp-ui-font-color1: rgba(0, 0, 0, 0.87);
+  --jp-ui-font-color2: rgba(0, 0, 0, 0.54);
+  --jp-ui-font-color3: rgba(0, 0, 0, 0.38);
+  --jp-content-font-color0: rgba(0, 0, 0, 1);
+  --jp-content-font-color1: rgba(0, 0, 0, 0.87);
+  --jp-content-font-color2: rgba(0, 0, 0, 0.54);
+  --jp-content-font-color3: rgba(0, 0, 0, 0.38);
+  --jp-content-link-color: var(--md-blue-700);
+  --jp-mirror-editor-keyword-color: #008000;
+  --jp-mirror-editor-atom-color: #88f;
+  --jp-mirror-editor-number-color: #080;
+  --jp-mirror-editor-def-color: #00f;
+  --jp-mirror-editor-variable-color: var(--md-grey-900);
+  --jp-mirror-editor-variable-2-color: #05a;
+  --jp-mirror-editor-variable-3-color: #085;
+  --jp-mirror-editor-punctuation-color: #05a;
+  --jp-mirror-editor-property-color: #05a;
+  --jp-mirror-editor-operator-color: #aa22ff;
+  --jp-mirror-editor-comment-color: #408080;
+  --jp-mirror-editor-string-color: #ba2121;
+  --jp-mirror-editor-string-2-color: #708;
+  --jp-mirror-editor-meta-color: #aa22ff;
+  --jp-mirror-editor-qualifier-color: #555;
+  --jp-mirror-editor-builtin-color: #008000;
+  --jp-mirror-editor-bracket-color: #997;
+  --jp-mirror-editor-tag-color: #170;
+  --jp-mirror-editor-attribute-color: #00c;
+  --jp-mirror-editor-header-color: blue;
+  --jp-mirror-editor-quote-color: #090;
+  --jp-mirror-editor-link-color: #00c;
+  --jp-mirror-editor-error-color: #f00;
+  --jp-editor-cursor-color: var(--jp-ui-font-color0);
+  --jp-rendermime-error-background: #fdd;
+  --jp-rendermime-table-row-background: var(--md-grey-100);
+  --jp-border-color0: var(--md-grey-400);
+  --jp-border-color1: var(--md-grey-400);
+  --jp-border-color2: var(--md-grey-300);
+  --jp-border-color3: var(--md-grey-200);
+  --jp-input-background: var(--md-grey-100);
+  --jp-cell-prompt-not-active-font-color: var(--md-grey-700);
+}
+
 /* Dark mode */
 [data-md-color-scheme="slate"] {
   --md-default-bg-color: #0f0f0f;
@@ -116,7 +168,7 @@
   flex-shrink: 0;
 }
 
-/* Style for inline navigation - we'll add this via JS */
+/* Style for inline navigation */
 .header-nav {
   display: flex;
   align-items: center;
@@ -139,6 +191,13 @@
 .header-nav a:hover,
 .header-nav a.active {
   opacity: 1;
+}
+
+/* Mobile: hide custom nav, Material's drawer handles it */
+@media (max-width: 960px) {
+  .header-nav {
+    display: none;
+  }
 }
 
 /* ===== Custom header icons styling ===== */
@@ -201,8 +260,7 @@
   background: linear-gradient(135deg, #4385be, #a134eb);
   padding: 6px 20px;
   text-align: center;
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 1000;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   color: #ffffff;

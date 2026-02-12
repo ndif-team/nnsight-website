@@ -49,24 +49,13 @@ hide:
     overflow: hidden;
   }
 
-  #nn-shader-bg {
+  .fixed-background {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     z-index: 0;
-  }
-
-  /* Ensure the Shader component and all its wrappers fill the container */
-  #nn-shader-bg > *,
-  #nn-shader-bg canvas {
-    width: 100% !important;
-    height: 100% !important;
-    display: block !important;
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
   }
 
   .nn-hero-content {
@@ -78,7 +67,7 @@ hide:
     gap: 4rem;
     max-width: 1400px;
     padding: 2rem;
-    background: color-mix(in srgb, var(--md-default-bg-color) 80%, transparent);
+    background: transparent;
     border-radius: 0.5rem;
   }
 
@@ -144,7 +133,7 @@ hide:
     max-width: 1600px;
     margin: 0 auto;
     padding: 3rem 2rem 4rem;
-    background: var(--md-default-bg-color);
+    background: transparent;
   }
 
   .nn-home-content h2 {
@@ -169,7 +158,18 @@ hide:
     font-size: 0.85rem;
   }
 
-  /* Responsive */
+  /* Responsive - intermediate */
+  @media (max-width: 1100px) {
+    .nn-hero-logo img {
+      width: 400px;
+    }
+
+    .nn-hero-content {
+      gap: 2rem;
+    }
+  }
+
+  /* Responsive - mobile */
   @media (max-width: 768px) {
     .nn-hero-content {
       flex-direction: column-reverse;
@@ -191,7 +191,7 @@ hide:
   }
 </style>
 
-<div id="nn-shader-bg"></div>
+<div class="fixed-background"></div>
 
 <div class="nn-hero">
   <div class="nn-hero-content">
@@ -255,36 +255,48 @@ print(model.tokenizer.decode(output.logits.argmax(dim=-1)[0]))
 
 </div>
 
-<link rel="preconnect" href="https://esm.sh" crossorigin>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.dots.min.js"></script>
 
-<script type="importmap">
-{
-  "imports": {
-    "vue": "/assets/js/vue.runtime.esm-browser.prod.js",
-    "shaders/vue": "https://esm.sh/shaders@2/vue?external=vue&exports=Shader,Ascii,Bulge,Checkerboard,CursorTrail,Group,Ripples,TiltShift"
+<script>
+var vantaEffect = null;
+
+function initVanta() {
+  if (vantaEffect) {
+    vantaEffect.destroy();
   }
+
+  var darkMode = document.body.getAttribute('data-md-color-scheme') === 'slate'
+    || document.documentElement.getAttribute('data-md-color-scheme') === 'slate';
+
+  vantaEffect = VANTA.DOTS({
+    el: ".fixed-background",
+    THREE: THREE,
+    mouseControls: false,
+    touchControls: false,
+    gyroControls: false,
+    minHeight: 200.00,
+    minWidth: 200.00,
+    scale: 1.00,
+    scaleMobile: 1.00,
+    color: darkMode ? 0xCECDC3 : 0x000000,
+    color2: darkMode ? 0xCECDC3 : 0x000000,
+    backgroundColor: darkMode ? 0x100F0F : 0xFFFFFF,
+    size: darkMode ? 0.50 : 1.00,
+    spacing: 10.00,
+    showLines: false
+  });
 }
-</script>
 
-<script type="module">
-import { createApp, h } from 'vue';
-import {
-  Shader, Ascii, Bulge, Checkerboard,
-  CursorTrail, Group, Ripples, TiltShift
-} from 'shaders/vue';
+document.addEventListener('DOMContentLoaded', function() {
+  initVanta();
 
-createApp({
-  render() {
-    return h(Shader, null, () => [
-      h(Group, null, () => [
-        h(Checkerboard, { cells: 22, 'color-b': '#383e42' }),
-        h(Ripples, { 'blend-mode': 'overlay', frequency: 23.8, opacity: 0.32, speed: 0, thickness: 0.3 }),
-        h(CursorTrail),
-        h(Ascii, { 'cell-size': 60, characters: '\u2989\u298A' }),
-        h(Bulge, { edges: 'mirror', falloff: 1, radius: 2.6, strength: -0.29, transform: { edges: 'mirror', rotation: 35 } }),
-      ]),
-      h(TiltShift, { angle: 90, falloff: 0.26, intensity: 10, width: 0.29 }),
-    ]);
-  }
-}).mount('#nn-shader-bg');
+  new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.attributeName === 'data-md-color-scheme') {
+        initVanta();
+      }
+    });
+  }).observe(document.body, { attributes: true, attributeFilter: ['data-md-color-scheme'] });
+});
 </script>
