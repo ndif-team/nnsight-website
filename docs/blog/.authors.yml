@@ -3,3 +3,7 @@ authors:
     name: Jaden Fiotto-Kaufman
     description: Creator of NNsight
     avatar: https://github.com/JadenFiotto-Kaufman.png
+  ndif-team:
+    name: NDIF Team
+    description: National Deep Inference Fabric
+    avatar: ../assets/NDIF_Favicon_color.png
