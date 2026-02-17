@@ -1,0 +1,67 @@
+name: Test Notebooks
+
+on:
+  pull_request:
+    branches: [docs]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: "test-notebooks"
+  cancel-in-progress: false
+
+jobs:
+  test-notebooks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref || github.ref }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v2
+        with:
+          version: "latest"
+          enable-cache: true
+
+      - name: Cache uv dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/uv
+            .venv
+          key: ${{ runner.os }}-uv-${{ hashFiles('**/pyproject.toml', '**/uv.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-uv-
+
+      - name: Install dependencies
+        run: uv sync --extra test
+
+      - name: Run notebooks
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          NDIF_API_KEY: ${{ secrets.NDIF_API_KEY }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            uv run python run_notebooks.py -f features -s vllm_support -c --force-update
+          else
+            uv run python run_notebooks.py -f features -s vllm_support -c -u
+          fi
+
+      - name: Commit updated notebooks
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add source/notebooks/
+          git diff --cached --quiet || git commit -m "Update executed notebooks"
+          git push
