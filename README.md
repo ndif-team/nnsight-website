@@ -42,7 +42,7 @@ Output is written to `site/`. This is what gets deployed.
 ### Setup
 
 ```bash
-uv sync --extra tutorials
+uv sync --extra test
 ```
 
 ### Usage
@@ -66,9 +66,9 @@ uv run python run_notebooks.py [options]
 
 ```bash
 uv run python run_notebooks.py                                     # Run default (features)
-uv run python run_notebooks.py -f features tutorials               # Run multiple folders
-uv run python run_notebooks.py --only cross_prompt early_stopping  # Run specific notebooks
-uv run python run_notebooks.py --skip vllm_support                 # Skip specific notebooks
+uv run python run_notebooks.py -f features tutorials/tutorials               # Run multiple folders
+uv run python run_notebooks.py --only 7_cross_prompt 10_early_stopping  # Run specific notebooks
+uv run python run_notebooks.py --skip 15_vllm_support                 # Skip specific notebooks
 uv run python run_notebooks.py -c -u                               # Clean outputs, update source if versions changed
 uv run python run_notebooks.py -c --force-update                   # Clean outputs, always update source
 ```
