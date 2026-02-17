@@ -20,7 +20,7 @@ pip install -r requirements.txt
 Start a local dev server with hot reload:
 
 ```bash
-mkdocs serve
+mkdocs serve --livereload
 ```
 
 The site will be available at `http://127.0.0.1:8000`.
