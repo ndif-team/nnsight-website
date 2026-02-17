@@ -171,15 +171,115 @@ Where the savings come from:
 
 NNsight now has first-class support for AI coding agents. We've built a [skills repository](https://github.com/ndif-team/skills) that integrates with Claude Code and OpenAI Codex—install it once and your agent knows how to write nnsight code. We also support [Context7](https://github.com/upstash/context7) as an MCP server, so any MCP-compatible LLM client can pull up-to-date nnsight documentation on the fly. For agents that work with raw context files, the repo includes [CLAUDE.md](https://github.com/ndif-team/nnsight/blob/main/CLAUDE.md) and [NNsight.md](https://github.com/ndif-team/nnsight/blob/main/NNsight.md)—comprehensive guides covering the full API, common patterns, gotchas, and debugging tips. The goal is to make nnsight as easy for agents to use as it is for humans.
 
+### VisionLanguageModel
+
+NNsight now supports vision-language models out of the box. The new `VisionLanguageModel` class extends `LanguageModel` with an `AutoProcessor` that handles both text tokenization and image preprocessing. You can trace, intervene on, and generate from models like LLaVA, Qwen2-VL, and other HuggingFace VLMs with the same API you already know:
+
+```python
+from nnsight import VisionLanguageModel
+from PIL import Image
+
+model = VisionLanguageModel(
+    "llava-hf/llava-interleave-qwen-0.5b-hf",
+    device_map="auto",
+    dispatch=True,
+)
+img = Image.open("photo.jpg")
+
+# Trace with text + image
+with model.trace("<image>\nDescribe this image", images=[img]):
+    hidden = model.model.language_model.layers[-1].output.save()
+
+# Generation
+with model.generate("<image>\nDescribe this image", images=[img], max_new_tokens=50):
+    output = model.generator.output.save()
+```
+
+When no `images` are passed, it falls back to standard text-only tokenization—so you can use the same model object for both modalities. Batching across invokes handles `pixel_values` alongside `input_ids`, and all existing nnsight features (scan, edit, barriers, caching) work as expected.
+
+### DiffusionModel
+
+NNsight now supports diffusion pipelines as first-class citizens. The new `DiffusionModel` class wraps any `diffusers.DiffusionPipeline`—UNet-based (Stable Diffusion) and transformer-based (Flux, DiT) alike—so you can trace, intervene on, and iterate over denoising steps with the same API as language models.
+
+```python
+from nnsight import DiffusionModel
+
+sd = DiffusionModel("stabilityai/stable-diffusion-2-1")
+
+# Quick single-step trace
+with sd.trace("A cat"):
+    denoiser_out = sd.unet.output.save()
+
+# Full generation with step-by-step access
+with sd.generate("A cat", num_inference_steps=50) as tracer:
+    denoiser_outputs = list().save()
+    for step in tracer.iter[:]:
+        denoiser_outputs.append(sd.unet.output[0].clone())
+```
+
+`.trace()` defaults to a single denoising step for fast exploration; `.generate()` runs the full pipeline with whatever step count you specify. The code is architecture-agnostic—the denoiser is accessible as whatever attribute the pipeline exposes (`sd.unet` for Stable Diffusion, `flux.transformer` for Flux).
+
+With `dispatch=False`, only lightweight config files are downloaded and the model architecture is created with meta tensors—no GPU memory used until the first `.trace()` or `.generate()` call triggers auto-dispatch. This also means diffusion models on NDIF are coming soon.
+
+### vLLM Integration
+
+The vLLM integration got a major upgrade. nnsight now supports the full range of vLLM deployment configurations—single GPU, multi-GPU tensor parallelism, Ray distributed execution, and multi-node inference—all with the same tracing API.
+
+Single GPU works like any other nnsight model:
+
+```python
+from nnsight.modeling.vllm import VLLM
+
+model = VLLM("meta-llama/Llama-3.1-8B", dispatch=True)
+
+with model.trace("The Eiffel Tower is in the city of", temperature=0.0):
+    hidden = model.model.layers[16].output[0].save()
+    logits = model.logits.output.save()
+```
+
+Scale up to multiple GPUs by setting `tensor_parallel_size`. Intervention code always sees complete, unsharded tensors—nnsight gathers shards before your code runs and re-shards afterward:
+
+```python
+model = VLLM("meta-llama/Llama-3.1-8B", tensor_parallel_size=2, dispatch=True)
+
+with model.trace("The Eiffel Tower is in the city of", temperature=0.0):
+    hidden = model.model.layers[16].output[0].save()
+```
+
+For distributed setups, pass `distributed_executor_backend="ray"` and nnsight handles the rest. Ray workers use the same intervention pipeline as local multiprocessing—mediators, batch groups, and saved values all work identically.
+
+For multi-node inference where TP workers are on different machines, point `RAY_ADDRESS` at an existing Ray cluster:
+
+```bash
+export RAY_ADDRESS="head-node:6379"
+```
+
+```python
+model = VLLM(
+    "meta-llama/Llama-3.1-70B",
+    tensor_parallel_size=8,
+    distributed_executor_backend="ray",
+    dispatch=True,
+)
+
+with model.trace("Hello world", temperature=0.0):
+    hidden = model.model.layers[40].output[0].save()
+```
+
+nnsight joins the cluster as a driver-only node (no GPUs consumed on the client machine) and places workers across available nodes. If no cluster exists and `RAY_ADDRESS` isn't set, a fresh local Ray cluster is started instead.
+
+The [vLLM integration README](https://github.com/ndif-team/nnsight/blob/main/src/nnsight/modeling/vllm/README.md) covers the full architecture. The [`examples/multi_node_with_ray/`](https://github.com/ndif-team/nnsight/blob/main/src/nnsight/modeling/vllm/examples/multi_node_with_ray/) directory has a runnable Docker-based multi-node setup you can use as a starting point.
+
 ### Other Changes
 
-- **vLLM 0.14.1 support.** Updated integration for the latest vLLM. If you need fast token generation with interventions, vLLM is the way to go—nnsight hooks into its execution path the same way it does with HuggingFace models.
 - **Multiple wrappers on the same model.** You can now wrap the same PyTorch model with multiple `NNsight` instances without breaking hooks.
 - **`python -c` support.** `python -c "from nnsight import ..."` now works.
 - **Compressed NDIF results.** Results are compressed with zstandard for smaller downloads.
 - **Memory leak fixes.** Fixed reference loops in the interleaver and tracer.
 
 ### Breaking Changes
+
+The v0.4 compatibility layer has been removed. If you're still using `nnsight.apply()`, `nnsight.list`, `nnsight.cond()`, or the `trace=False` parameter, you'll need to update. These were deprecated in v0.5.0 with warnings pointing to the replacements — standard Python builtins and calling methods without a `with` context. `model.iter`, `model.all()`, and `model.next()` still work but now emit deprecation warnings — use `tracer.iter`, `tracer.all()`, and `tracer.next()` instead. The `with tracer.iter[...]:` block syntax is also deprecated in favor of the faster `for step in tracer.iter[...]:` form. The full list is in the [release notes](https://github.com/ndif-team/nnsight/blob/main/0.6.0.md).
 
 If you have custom model classes that implement `_prepare_input` or `_batch`, you may need to update them to match the new signature in `nnsight/intervention/batching.py`.
 
