@@ -7,6 +7,15 @@ By default, runs notebooks in both 'features' and 'tutorials' folders.
 Use --folders to specify individual folders to run.
 """
 
+import os
+os.environ["TQDM_DISABLE"] = "1"
+os.environ["HF_HUB_DISABLE_PROGRESS_BARS"] = "1"
+os.environ["PYDEVD_DISABLE_FILE_VALIDATION"] = "1"
+# Suppress "IProgress not found" warning from tqdm in notebook kernels
+import warnings
+warnings.filterwarnings("ignore", message="IProgress not found")
+os.environ["PYTHONWARNINGS"] = "ignore:IProgress not found::tqdm.auto"
+
 import argparse
 import shutil
 import sys
@@ -35,7 +44,7 @@ class Colors:
 
 # Configuration
 BASE_DIR = Path(__file__).parent
-NOTEBOOKS_BASE = BASE_DIR / "source" / "notebooks"
+NOTEBOOKS_BASE = BASE_DIR / "docs"
 OUTPUT_DIR = BASE_DIR / "notebook_outputs"
 DEFAULT_FOLDERS = ["features"]
 
@@ -51,9 +60,9 @@ def get_version_info() -> str:
     timestamp = datetime.now().strftime("%Y-%m-%d")
     python_version = f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"
     return (
-        f"**Last Execution:** {timestamp}\n\n"
         f"<details>\n"
         f"<summary><b>Info</b></summary>\n\n"
+        f"**Last Execution:** {timestamp}\n\n"
         f"| Package | Version |\n"
         f"|---------|---------|\n"
         f"| **nnsight** | **{nnsight.__version__}** |\n"
@@ -345,7 +354,7 @@ def run_notebooks(folders: list[str], skip: list[str] = None, only: list[str] = 
 
 def parse_args():
     """Parse command line arguments."""
-    available_folders = ["features", "tutorials", "mini-papers"]
+    available_folders = ["features", "tutorials/tutorials", "tutorials/mini-papers"]
     parser = argparse.ArgumentParser(
         description="Run Jupyter notebooks and report results.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -354,10 +363,10 @@ Available folders: {', '.join(available_folders)}
 
 Examples:
   python run_notebooks.py                    # Run notebooks in {DEFAULT_FOLDERS}
-  python run_notebooks.py -f tutorials       # Run only tutorials notebooks
-  python run_notebooks.py -f mini-papers     # Run only mini-papers notebooks
-  python run_notebooks.py -f features tutorials              # Run features + tutorials
-  python run_notebooks.py -f features tutorials mini-papers  # Run all
+  python run_notebooks.py -f tutorials/tutorials       # Run only tutorials notebooks
+  python run_notebooks.py -f tutorials/mini-papers     # Run only mini-papers notebooks
+  python run_notebooks.py -f features tutorials/tutorials              # Run features + tutorials
+  python run_notebooks.py -f features tutorials/tutorials tutorials/mini-papers  # Run all
   python run_notebooks.py --skip vllm_support                # Skip vllm_support notebook
   python run_notebooks.py -s vllm_support remote_execution   # Skip multiple notebooks
   python run_notebooks.py --only cross_prompt early_stopping # Run only specific notebooks
