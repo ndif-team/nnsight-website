@@ -9,11 +9,11 @@ nnsight wraps PyTorch models to enable tracing and intervention. For language mo
 ```python
 from nnsight import LanguageModel
 
-model = LanguageModel('openai-community/gpt2', device_map='auto', dispatch=True)
+model = LanguageModel('gpt2', device_map='auto', dispatch=True)
 ```
 
-!!! info "Model Loading"
-    The `dispatch=True` argument loads the model weights immediately. Without it, the model is loaded in a meta state for faster initialization when you only need to inspect the architecture.
+!!! info "Model Dispatching"
+    Setting `dispatch=True` loads the model weights immediately. Otherwise, the model is loaded on a [meta device](https://docs.pytorch.org/docs/stable/meta.html) for faster initialization.
 
 ## Your First Trace
 
@@ -33,29 +33,27 @@ print(model.tokenizer.decode(output.logits.argmax(dim=-1)[0]))
 ```
 
 !!! warning "Always use `.save()`"
-    Values you want to access after the trace exits **must** be saved with `.save()`. Without it, tensors are garbage collected when the context ends.
+    Values you want to access after the trace exits **must** be saved with `.save()`. Without it, tensors are garbage collected at the end of the trace context.
 
 ## Accessing Activations
 
-Access any module's input or output during the forward pass:
+Access any module's input or output during the forward pass. Check your model's architecture to understand its output structure. For example, layers in [:hugging_face: `transformers`](https://github.com/huggingface/transformers) models typically return tuples, where the first element contains the hidden states.
 
 ```python
 with model.trace("The Eiffel Tower is in the city of"):
-    # Access attention output
-    attn_output = model.transformer.h[0].attn.output[0].save()
+    attn_output = model.transformer.h[0].attn.output[0].save() # (1)!
     
-    # Access MLP output
-    mlp_output = model.transformer.h[0].mlp.output.save()
+    mlp_output = model.transformer.h[0].mlp.output.save() # (2)!
 
-    # Access any layer's output
+    # Access the full layer output
     layer_output = model.transformer.h[5].output[0].save()
     
-    # Access final logits
+    # Access the final logits
     logits = model.lm_head.output.save()
 ```
 
-!!! note "Tuple Outputs"
-    GPT-2 transformer layers return tuples where index `[0]` contains the hidden states. Check your model's architecture to understand its output structure.
+1. The output of the attention module is a tuple
+2. The MLP output is a single tensor, so we can save it directly without indexing
 
 ## Modifying Activations
 

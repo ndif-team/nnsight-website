@@ -32,6 +32,7 @@ theme:
     text: Inter
     code: JetBrains Mono
   features:
+    - navigation.expand
     - navigation.instant
     - navigation.instant.progress
     - navigation.tracking
@@ -47,6 +48,7 @@ theme:
   favicon: assets/logo.svg
   icon:
     repo: fontawesome/brands/github
+    annotation: material/plus-circle
 
 # Plugins
 plugins:

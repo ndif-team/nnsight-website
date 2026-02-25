@@ -20,7 +20,11 @@ pip install -r requirements.txt
 Start a local dev server with hot reload:
 
 ```bash
+# Rebuild everything at every change (slow)
 mkdocs serve --livereload
+
+# Only rebuild changed files (fast but may miss some changes, e.g. in notebooks)
+mkdocs serve --livereload --dirtyreload
 ```
 
 The site will be available at `http://127.0.0.1:8000`.

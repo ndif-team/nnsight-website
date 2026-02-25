@@ -1,10 +1,10 @@
 # Getting Started
 
-Welcome to nnsight! This section will help you get up and running quickly.
+Welcome to NNsight! This section will help you get up and running quickly.
 
 ## :material-download: [Installation](installation.md)
 
-Install nnsight and set up your environment.
+Install NNsight and set up your environment.
 
 ## :material-rocket-launch: [Quick Start](quickstart.md)
 

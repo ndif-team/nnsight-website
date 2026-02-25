@@ -2,12 +2,12 @@
 
 ## Requirements
 
-- Python 3.9 or higher
-- PyTorch 2.0 or higher
+- Python 3.10 or higher
+- PyTorch 2.4 or higher
 
 ## Install from PyPI
 
-The simplest way to install nnsight is via pip:
+The simplest way to install NNsight is via pip:
 
 ```bash
 pip install nnsight
@@ -33,7 +33,7 @@ pip install -e .
 
 ### vLLM Support
 
-For high-performance inference with vLLM:
+For high-performance inference with [vLLM](https://github.com/vllm-project/vllm), install the `vllm` extra:
 
 ```bash
 pip install nnsight[vllm]

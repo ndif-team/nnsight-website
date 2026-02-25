@@ -72,6 +72,14 @@ hide:
     border-radius: 0.5rem;
   }
 
+  .nn-hero-texts {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .nn-hero-text {
     display: flex;
     flex-direction: column;
@@ -96,8 +104,8 @@ hide:
 
   .nn-hero-links a {
     padding: 0.5rem 1.2rem;
-    border-radius: 4px;
-    font-size: 0.9rem;
+    border-radius: 20px;
+    font-size: 0.78rem;
     font-weight: 600;
     text-decoration: none;
     transition: opacity 0.2s;
@@ -108,7 +116,7 @@ hide:
   }
 
   .nn-hero-links .nn-btn-primary {
-    background: linear-gradient(135deg, #8a8cc4, #49a5d2);
+    background: linear-gradient(135deg, #a134eb, #4385be);
     color: #fff;
   }
 
@@ -122,8 +130,16 @@ hide:
     flex-shrink: 0;
   }
 
+  .nn-hero-title h1 {
+    display: block !important;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20pt;
+    color: var(--md-default-fg-color);
+  }
+
   .nn-hero-logo img {
-    width: 650px;
+    width: 550px;
     height: auto;
   }
 
@@ -196,15 +212,20 @@ hide:
 
 <div class="nn-hero">
   <div class="nn-hero-content">
-    <div class="nn-hero-text">
-      <p class="nn-hero-desc">
-        <strong>NNsight</strong> (/ɛn.saɪt/) is a package for interpreting and manipulating the internals of deep learning models.
-      </p>
-      <div class="nn-hero-links">
-        <a href="getting-started/" class="nn-btn-primary">Get Started</a>
-        <a href="documentation/" class="nn-btn-secondary">Docs</a>
-        <a href="features/" class="nn-btn-secondary">Features</a>
-        <a href="about/" class="nn-btn-secondary">About</a>
+    <div class="nn-hero-texts">
+      <div class="nn-hero-title">
+        <h1>Interpretability for Neural Networks</h1>
+      </div>
+      <div class="nn-hero-text">
+        <p class="nn-hero-desc">
+          <strong>NNsight</strong> (/ɛn.saɪt/) is a package for interpreting and manipulating the internals of deep learning models.
+        </p>
+        <div class="nn-hero-links">
+          <a href="getting-started/" class="nn-btn-primary">Get Started</a>
+          <a href="documentation/" class="nn-btn-secondary">Docs</a>
+          <a href="features/" class="nn-btn-secondary">Features</a>
+          <a href="about/" class="nn-btn-secondary">About</a>
+        </div>
       </div>
     </div>
     <div class="nn-hero-logo">
@@ -213,22 +234,22 @@ hide:
   </div>
 </div>
 
-<div class="nn-home-content md-typeset" markdown>
+<div id="content" class="nn-home-content md-typeset" markdown>
 
-## What is nnsight?
+## What is NNsight?
 
-**nnsight** is a Python library that enables interpreting and intervening on the internals of deep learning models. It provides a clean, Pythonic interface for:
+**NNsight** is a Python library that enables interpreting and intervening on the internals of deep learning models. It provides a clean, Pythonic interface for:
 
 - :material-magnify: **Accessing activations** at any layer during forward passes
 - :material-pencil: **Modifying activations** to study causal effects
 - :material-chart-line: **Computing gradients** with respect to intermediate values
 - :material-layers-triple: **Batching interventions** across multiple inputs efficiently
 
-Originally developed by the [NDIF team](https://ndif.us/) at Northeastern University, nnsight supports local execution on any PyTorch model and remote execution on large models via the NDIF infrastructure.
+Originally developed by the [NDIF team](https://ndif.us/) at Northeastern University, NNsight supports local execution on any PyTorch model and remote execution on large models via the NDIF infrastructure.
 
 ## What does that look like?
 
-Install nnsight:
+Install NNSight:
 
 ```bash
 pip install nnsight
