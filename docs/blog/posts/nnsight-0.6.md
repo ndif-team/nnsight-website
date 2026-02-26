@@ -1,5 +1,5 @@
 ---
-date: 2026-02-11
+date: 2026-02-26
 authors:
   - jaden
 categories:
@@ -226,6 +226,23 @@ with model.trace("Hello world", temperature=0.0):
 ```
 
 NNsight joins the cluster as a driver-only node (no GPUs consumed on the client machine) and places workers across available nodes. If no cluster exists and `RAY_ADDRESS` isn't set, a fresh local Ray cluster is started instead.
+
+On top of all this, NNsight now supports **async mode** with real-time token streaming. Pass `mode="async"` to get an async interface powered by vLLM's `AsyncLLM`. Interventions are set up in the trace block, then tokens stream back as they're generated:
+
+```python
+model = VLLM("meta-llama/Llama-3.1-8B-Instruct", dispatch=True, mode="async")
+
+with model.trace(prompt, temperature=0.7, max_tokens=256) as tracer:
+    # Interventions apply on every forward pass during generation
+    model.model.layers[16].output[0][:] += steering_vector
+
+# Tokens stream back as they're generated
+async for output in tracer.backend():
+    if output.outputs:
+        print(output.outputs[0].text)
+```
+
+This makes it straightforward to build interactive applications—chat interfaces, real-time visualization tools, or anything else that benefits from streaming output—while still applying interventions on every forward pass. Async mode works with all executor backends: single GPU, multiprocessing TP, and Ray. For a hands-on example, check out our [nnsight-vllm-demos](https://github.com/ndif-team/nnsight-vllm-demos) repo, which includes an async chat interface with SAE-based feature steering.
 
 The [vLLM integration README](https://github.com/ndif-team/nnsight/blob/main/src/nnsight/modeling/vllm/README.md) covers the full architecture. The [`examples/multi_node_with_ray/`](https://github.com/ndif-team/nnsight/blob/main/src/nnsight/modeling/vllm/examples/multi_node_with_ray/) directory has a runnable Docker-based multi-node setup you can use as a starting point.
 

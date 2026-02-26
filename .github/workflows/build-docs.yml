@@ -38,17 +38,6 @@ jobs:
           version: "latest"
           enable-cache: true
 
-      - name: Cache apt packages
-        uses: actions/cache@v4
-        with:
-          path: /var/cache/apt
-          key: ${{ runner.os }}-apt-${{ hashFiles('**/build-docs.yml') }}
-          restore-keys: |
-            ${{ runner.os }}-apt-
-
-      - name: Install Pandoc
-        run: sudo apt-get update && sudo apt-get install -y pandoc
-
       - name: Cache uv dependencies
         uses: actions/cache@v4
         with:
@@ -63,11 +52,7 @@ jobs:
         run: uv sync
 
       - name: Build documentation
-        run: |
-          rm -rf build
-          uv run sphinx-build -M dirhtml source build
-          mkdir -p public
-          cp -r build/dirhtml/* public/
+        run: uv run mkdocs build
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -75,7 +60,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public
+          path: ./site
 
   deploy:
     environment:
