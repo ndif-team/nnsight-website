@@ -1225,7 +1225,7 @@ document.addEventListener('DOMContentLoaded', function() {
     components: { DeploymentComponent },
     data() {
       return {
-        ndif_url: "https://cookie-colour-gulf-split.trycloudflare.com",
+        ndif_url: "https://api.ndif.us",
         status: 'loading',
         deployments: [],
         cluster: null,
