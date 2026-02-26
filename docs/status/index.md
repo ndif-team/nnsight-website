@@ -964,11 +964,20 @@ hide:
             <div v-for="node in clusterInfo.nodes" :key="node.id" class="nn-node">
               <span class="nn-node-id">{{ node.id }}</span>
               <div class="nn-node-gpus">
-                <div v-for="g in node.totalGpus" :key="g"
-                     class="nn-gpu-block"
-                     :class="{ used: g <= node.usedGpus }"
-                     :data-nn-tooltip="g <= node.usedGpus ? 'In use' : 'Available'">
-                </div>
+                <template v-if="node.gpuDetails">
+                  <div v-for="g in node.gpuDetails" :key="g.index"
+                       class="nn-gpu-block"
+                       :class="{ used: g.isUsed }"
+                       :data-nn-tooltip="g.isUsed ? 'GPU ' + g.index + ': ' + formatBytes(g.usedBytes) + ' / ' + formatBytes(g.memoryBytes) + (g.model ? ' (' + g.model + ')' : '') : 'GPU ' + g.index + ': Available'">
+                  </div>
+                </template>
+                <template v-else>
+                  <div v-for="g in node.totalGpus" :key="g"
+                       class="nn-gpu-block"
+                       :class="{ used: g <= node.usedGpus }"
+                       :data-nn-tooltip="g <= node.usedGpus ? 'In use' : 'Available'">
+                  </div>
+                </template>
               </div>
               <span class="nn-node-vram">{{ node.vram }}</span>
             </div>
@@ -1216,7 +1225,7 @@ document.addEventListener('DOMContentLoaded', function() {
     components: { DeploymentComponent },
     data() {
       return {
-        ndif_url: "https://api.ndif.us",
+        ndif_url: "https://cookie-colour-gulf-split.trycloudflare.com",
         status: 'loading',
         deployments: [],
         cluster: null,
@@ -1246,29 +1255,74 @@ document.addEventListener('DOMContentLoaded', function() {
       clusterInfo() {
         if (!this.cluster || !this.cluster.nodes) return null;
         const entries = Object.entries(this.cluster.nodes);
-        let totalGpus = 0, availableGpus = 0, totalVramBytes = 0;
+        let totalGpus = 0, usedGpusCount = 0, totalVramBytes = 0;
         const nodes = entries.map(([id, node]) => {
           const res = node.resources;
-          const t = Math.round(res.total_gpus);
-          const a = res.available_gpus.length;
-          totalGpus += t;
-          availableGpus += a;
-          totalVramBytes += res.gpu_memory_bytes;
-          const vramGb = res.gpu_memory_bytes / 1e9;
-          return {
-            id: id.slice(0, 6),
-            totalGpus: t,
-            usedGpus: t - a,
-            vram: vramGb >= 100 ? Math.round(vramGb) + 'G' : vramGb.toFixed(0) + 'G',
-          };
+          if (res.gpu_details) {
+            const gpus = res.gpu_details;
+            const t = gpus.length;
+            const deployedGpuIndices = new Set();
+            if (node.deployments) {
+              Object.values(node.deployments).forEach(dep => {
+                if (dep.gpus) Object.keys(dep.gpus).forEach(idx => deployedGpuIndices.add(parseInt(idx)));
+              });
+            }
+            const used = deployedGpuIndices.size;
+            const vramBytes = gpus.reduce((sum, g) => sum + g.memory_bytes, 0);
+            totalGpus += t;
+            usedGpusCount += used;
+            totalVramBytes += vramBytes;
+            const vramGb = vramBytes / 1e9;
+            const gpuDetails = gpus.map(g => {
+              const usedBytes = g.memory_bytes - g.available_memory_bytes;
+              let modelOnGpu = null;
+              if (node.deployments) {
+                for (const [modelKey, dep] of Object.entries(node.deployments)) {
+                  if (dep.gpus && dep.gpus[String(g.index)] !== undefined) {
+                    const repoMatch = modelKey.match(/"repo_id":\s*"([^"]+)"/);
+                    modelOnGpu = repoMatch ? repoMatch[1].split('/').pop() : modelKey.split(':').pop();
+                    break;
+                  }
+                }
+              }
+              return {
+                index: g.index,
+                memoryBytes: g.memory_bytes,
+                usedBytes,
+                usedPct: Math.round((usedBytes / g.memory_bytes) * 100),
+                isUsed: usedBytes > 0,
+                model: modelOnGpu,
+              };
+            });
+            return {
+              id: id.slice(0, 6),
+              totalGpus: t,
+              usedGpus: used,
+              vram: vramGb >= 100 ? Math.round(vramGb) + 'G' : vramGb.toFixed(0) + 'G',
+              gpuDetails,
+            };
+          } else {
+            const t = Math.round(res.total_gpus);
+            const a = res.available_gpus.length;
+            totalGpus += t;
+            usedGpusCount += (t - a);
+            totalVramBytes += res.gpu_memory_bytes;
+            const vramGb = res.gpu_memory_bytes / 1e9;
+            return {
+              id: id.slice(0, 6),
+              totalGpus: t,
+              usedGpus: t - a,
+              vram: vramGb >= 100 ? Math.round(vramGb) + 'G' : vramGb.toFixed(0) + 'G',
+              gpuDetails: null,
+            };
+          }
         }).sort((a, b) => b.totalGpus - a.totalGpus);
-        const usedGpus = totalGpus - availableGpus;
         const totalVramTb = totalVramBytes / 1e12;
         return {
           totalGpus,
-          usedGpus,
+          usedGpus: usedGpusCount,
           totalVram: totalVramTb >= 1 ? totalVramTb.toFixed(1) + ' TB' : Math.round(totalVramBytes / 1e9) + ' GB',
-          utilizationPct: totalGpus > 0 ? Math.round((usedGpus / totalGpus) * 100) : 0,
+          utilizationPct: totalGpus > 0 ? Math.round((usedGpusCount / totalGpus) * 100) : 0,
           nodes,
         };
       },
@@ -1298,6 +1352,11 @@ document.addEventListener('DOMContentLoaded', function() {
       },
     },
     methods: {
+      formatBytes(bytes) {
+        if (bytes >= 1e9) return (bytes / 1e9).toFixed(1) + ' GB';
+        if (bytes >= 1e6) return Math.round(bytes / 1e6) + ' MB';
+        return Math.round(bytes / 1e3) + ' KB';
+      },
       toggleLevel(level) {
         this.selectedLevel = this.selectedLevel === level ? null : level;
         this.currentPage = 1;
@@ -1313,7 +1372,7 @@ document.addEventListener('DOMContentLoaded', function() {
               fetch(this.ndif_url + "/status")
                 .then(r => r.status === 200
                   ? r.json().then(d => {
-                      this.deployments = Object.values(d.deployments);
+                      this.deployments = Object.values(d.deployments).filter(dep => dep.repo_id);
                       this.calendar_id = d.calendar_id;
                       this.cluster = d.cluster;
                       this.status = 'success';
