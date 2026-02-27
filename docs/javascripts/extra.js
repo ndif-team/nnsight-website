@@ -95,6 +95,11 @@ document.addEventListener("DOMContentLoaded", function() {
       attributes: true, attributeFilter: ["data-md-color-scheme"]
     });
 
+    ndifLink.addEventListener("click", function(e) {
+      e.preventDefault();
+      window.location.href = ndifLink.href;
+    });
+
     ndifLink.appendChild(ndifImg);
     headerSource.parentNode.insertBefore(ndifLink, headerSource.nextSibling);
   }
