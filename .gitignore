@@ -3,3 +3,4 @@ site/
 notebook_outputs/
 overrides/**
 !overrides/.gitkeep
+.env
