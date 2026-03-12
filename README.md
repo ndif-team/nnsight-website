@@ -6,13 +6,12 @@ Live at [nnsight.net](https://nnsight.net).
 
 ## Prerequisites
 
-- Python 3.11+
-- [Pandoc](https://pandoc.org/installing.html) (required for notebook rendering)
+- Python 3.12+
 
 ## Setup
 
 ```bash
-pip install -r requirements.txt
+pip install .
 ```
 
 ## Development
@@ -46,13 +45,13 @@ Output is written to `site/`. This is what gets deployed.
 ### Setup
 
 ```bash
-uv sync --extra test
+pip install ".[test]"
 ```
 
 ### Usage
 
 ```bash
-uv run python run_notebooks.py [options]
+python run_notebooks.py [options]
 ```
 
 ### Options
@@ -69,10 +68,10 @@ uv run python run_notebooks.py [options]
 ### Examples
 
 ```bash
-uv run python run_notebooks.py                                     # Run default (features)
-uv run python run_notebooks.py -f features tutorials/tutorials               # Run multiple folders
-uv run python run_notebooks.py --only 7_cross_prompt 10_early_stopping  # Run specific notebooks
-uv run python run_notebooks.py --skip 15_vllm_support                 # Skip specific notebooks
-uv run python run_notebooks.py -c -u                               # Clean outputs, update source if versions changed
-uv run python run_notebooks.py -c --force-update                   # Clean outputs, always update source
+python run_notebooks.py                                          # Run default (features)
+python run_notebooks.py -f features tutorials/tutorials          # Run multiple folders
+python run_notebooks.py --only 7_cross_prompt 10_early_stopping  # Run specific notebooks
+python run_notebooks.py --skip 15_vllm_support                   # Skip specific notebooks
+python run_notebooks.py -c -u                                    # Clean outputs, update source if versions changed
+python run_notebooks.py -c --force-update                        # Clean outputs, always update source
 ```
