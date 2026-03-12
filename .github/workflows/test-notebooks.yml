@@ -28,24 +28,16 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@v2
-        with:
-          version: "latest"
-          enable-cache: true
-
-      - name: Cache uv dependencies
+      - name: Cache pip dependencies
         uses: actions/cache@v4
         with:
-          path: |
-            ~/.cache/uv
-            .venv
-          key: ${{ runner.os }}-uv-${{ hashFiles('**/pyproject.toml', '**/uv.lock') }}
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-test-${{ hashFiles('pyproject.toml') }}
           restore-keys: |
-            ${{ runner.os }}-uv-
+            ${{ runner.os }}-pip-test-
 
       - name: Install dependencies
-        run: uv sync --extra test
+        run: pip install ".[test]"
 
       - name: Run notebooks
         env:
@@ -53,9 +45,9 @@ jobs:
           NDIF_API_KEY: ${{ secrets.NDIF_API_KEY }}
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            uv run python run_notebooks.py -f features -s vllm_support -c --force-update
+            python run_notebooks.py -f features -s vllm_support -c --force-update
           else
-            uv run python run_notebooks.py -f features -s vllm_support -c -u
+            python run_notebooks.py -f features -s vllm_support -c -u
           fi
 
       - name: Commit updated notebooks

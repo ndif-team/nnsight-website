@@ -30,29 +30,21 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.11"
+          python-version: "3.12"
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@v2
-        with:
-          version: "latest"
-          enable-cache: true
-
-      - name: Cache uv dependencies
+      - name: Cache pip dependencies
         uses: actions/cache@v4
         with:
-          path: |
-            ~/.cache/uv
-            .venv
-          key: ${{ runner.os }}-uv-${{ hashFiles('**/pyproject.toml', '**/uv.lock') }}
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('pyproject.toml') }}
           restore-keys: |
-            ${{ runner.os }}-uv-
+            ${{ runner.os }}-pip-
 
       - name: Install dependencies
-        run: uv sync
+        run: pip install .
 
       - name: Build documentation
-        run: uv run mkdocs build
+        run: mkdocs build
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
