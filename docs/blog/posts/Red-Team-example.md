@@ -1,3 +1,11 @@
+---
+date: 2026-03-24
+authors:
+  - ndif-team
+categories:
+  - Ecosystem
+---
+
 # Calling all Lies
 
 ## AI Deception Is More Than Just Getting Facts Wrong
