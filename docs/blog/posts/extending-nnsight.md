@@ -1,7 +1,7 @@
 ---
 date: 2026-04-16
 authors:
-  - Jaden Fiotto-Kaufman
+  - jaden
 categories:
   - Guide
 ---
