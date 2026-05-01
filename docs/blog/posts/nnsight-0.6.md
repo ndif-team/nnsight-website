@@ -31,6 +31,8 @@ with model.trace("The Eiffel Tower is in"):
 
 Under the hood, NNsight uses deferred execution. When you enter `with model.trace(...)`, your code [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree) is extracted, compiled into a function, and run in a worker thread. When that thread accesses `.output`, it waits until the model's forward pass reaches the selected module, extracting the desired output tensor through a PyTorch hook. This means your intervention code is fully aligned with the forward pass—no proxies, no fake tensors. You're working with real PyTorch values!
 
+<!-- more -->
+
 ### Remote Execution with NDIF
 
 NNsight is fully integrated with the [National Deep Inference Fabric (NDIF)](https://ndif.us), our research computing platform enabling the remote execution of large models hosted remotely. You don't need a local GPU to run your analyses with NNsight! Just add `remote=True`, and your interventions will automatically run on NDIF's infrastructure:
