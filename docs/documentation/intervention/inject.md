@@ -1,3 +1,0 @@
-# inject
-
-::: nnsight.intervention.inject

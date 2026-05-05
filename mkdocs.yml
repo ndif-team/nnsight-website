@@ -125,7 +125,7 @@ nav:
     - intervention:
       - documentation/intervention/index.md
       - envoy: documentation/intervention/envoy.md
-      - inject: documentation/intervention/inject.md
+      - source: documentation/intervention/source.md
       - batching: documentation/intervention/batching.md
       - interleaver: documentation/intervention/interleaver.md
       - serialization: documentation/intervention/serialization.md
