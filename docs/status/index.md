@@ -911,13 +911,6 @@ hide:
         </div>
         <div class="nn-panel-body" :class="{ collapsed: !panels.resources }">
           <div class="nn-sidebar-links">
-            <a v-if="calendar_id"
-               :href="'https://calendar.google.com/calendar/embed?src=' + encodeURIComponent(calendar_id)"
-               target="_blank"
-               class="nn-sidebar-link"
-               title="Deployment Calendar">
-              <i class="pi pi-calendar"></i>
-            </a>
             <a href="/features/13_remote_execution/" target="_blank"
                class="nn-sidebar-link"
                title="How do I use NDIF?">
@@ -1047,7 +1040,7 @@ hide:
           :key="deployment.model_key"
           :index="index"
           :model_key="deployment.model_key"
-          :dedicated="deployment.dedicated"
+          :pinned="deployment.pinned"
           :n_params="deployment.n_params"
           :deployment_level="deployment.deployment_level"
           :schedule="deployment.schedule"
@@ -1096,7 +1089,7 @@ document.addEventListener('DOMContentLoaded', function() {
       return { copied: false };
     },
     props: {
-      model_key: String, deployment_level: String, dedicated: Boolean,
+      model_key: String, deployment_level: String, pinned: Boolean,
       schedule: Object, application_state: String, repo_id: String,
       n_params: Number, index: Number, revision: String,
     },
@@ -1126,8 +1119,8 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
           <div class="nn-repo-id">{{ repo_id }}</div>
           <div class="nn-badges">
-            <badge-component v-if="schedule" v-bind="getScheduleInfoBadge()"></badge-component>
-            <badge-component v-if="schedule" v-bind="getScheduleBadge()"></badge-component>
+            <badge-component v-if="pinned" v-bind="getPinnedBadge()"></badge-component>
+            <badge-component v-if="hasAutoEvictWindow()" v-bind="getAutoEvictBadge()"></badge-component>
             <badge-component v-if="isPilotOnly()" v-bind="getPilotOnlyBadge()" @click="onPilotBadgeClick"></badge-component>
             <badge-component v-if="model_key" v-bind="getModelClassBadge()"></badge-component>
             <badge-component v-bind="getDeploymentLevelBadge()"></badge-component>
@@ -1154,7 +1147,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const rev = this.revision ? `<span class="p">,</span> <span class="n">revision</span><span class="o">=</span><span class="s1">"${this.revision}"</span>` : "";
         return `<span class="kn">from</span> <span class="nn">${imp}</span> <span class="kn">import</span> <span class="n">${obj}</span>\n\n<span class="n">model</span> <span class="o">=</span> <span class="n">${obj}</span><span class="p">(</span><span class="s1">"${this.repo_id}"</span>${rev}<span class="p">)</span>\n\n<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">"The Eiffel Tower is in the city of"</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="s1">True</span><span class="p">)</span><span class="p">:</span>\n    <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>`;
       },
-      isPilotOnly() { return !(this.schedule && this.schedule.start_time); },
+      // Models that aren't currently pinned require the hotswap tier to use.
+      isPilotOnly() { return !this.pinned; },
+      hasAutoEvictWindow() {
+        // The non-pinned HOT path may carry a schedule.end_time meaning
+        // "eligible for eviction after this timestamp" (NDIF_MINIMUM_DEPLOYMENT_TIME_SECONDS window).
+        return !this.pinned
+            && this.schedule
+            && this.schedule.end_time
+            && new Date() < new Date(this.schedule.end_time);
+      },
       getDeploymentLevelBadge() {
         const m = {
           HOT: ["This model is on GPU and ready.", "success", '<i class="fa-solid fa-microchip"></i> Hot'],
@@ -1187,19 +1189,19 @@ document.addEventListener('DOMContentLoaded', function() {
         let h = Math.floor(s/3600); s %= 3600; let m = Math.floor(s/60);
         return d > 10 ? ">10d remaining" : `${d}d ${h}h ${m}m remaining`;
       },
-      getScheduleInfoBadge() {
-        if (!this.schedule.end_time || new Date() > new Date(this.schedule.end_time)) return { content: "" };
-        if (this.schedule.start_time && new Date() < new Date(this.schedule.start_time)) {
-          const s = new Date(this.schedule.start_time).toLocaleString(undefined, { month:"short", day:"numeric", hour:"numeric", minute:"numeric", hour12:true });
-          return { content: `Starts ${s}`, bg: false, sdcls: "muted", tooltip: "Scheduled for later." };
-        }
-        return { content: this.formatTimeRemaining(this.schedule.end_time), bg: false, sdcls: "muted" };
+      getPinnedBadge() {
+        return {
+          content: '<i class="fa-solid fa-thumbtack"></i> Pinned',
+          bg: true, sdcls: "info",
+          tooltip: "Pinned deployment — kept HOT, no hotswap-tier required.",
+        };
       },
-      getScheduleBadge() {
-        if (!this.schedule.end_time || new Date() > new Date(this.schedule.end_time)) return { content: "" };
-        return this.schedule.start_time && new Date() < new Date(this.schedule.start_time)
-          ? { content: '<i class="fa-solid fa-clock"></i> Scheduled', bg: true, sdcls: "info", tooltip: "Scheduled for later." }
-          : { content: '<i class="fa-solid fa-thumbtack"></i> Pinned', bg: true, sdcls: "info", tooltip: "Pinned deployment." };
+      getAutoEvictBadge() {
+        return {
+          content: this.formatTimeRemaining(this.schedule.end_time),
+          bg: false, sdcls: "muted",
+          tooltip: "Hot-swap deployment — eligible for eviction after this window ends.",
+        };
       },
       getPilotOnlyBadge() {
         return { content: '<i class="fa-solid fa-lock"></i> Pilot Only', bg: true, sdcls: "muted", cls: "cursor-pointer", tooltip: "Restricted to pilot program. Click to sign up!" };
@@ -1229,7 +1231,6 @@ document.addEventListener('DOMContentLoaded', function() {
         status: 'loading',
         deployments: [],
         cluster: null,
-        calendar_id: undefined,
         currentPage: 1,
         pageSize: 18,
         selectedLevel: null,
@@ -1334,7 +1335,7 @@ document.addEventListener('DOMContentLoaded', function() {
           const o = ["HOT", "WARM", "COLD"];
           f.sort((a, b) => {
             const al = o.indexOf(a.deployment_level), bl = o.indexOf(b.deployment_level);
-            if (al === bl) return (b.schedule ? 1 : 0) - (a.schedule ? 1 : 0) || a.repo_id.localeCompare(b.repo_id);
+            if (al === bl) return (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0) || a.repo_id.localeCompare(b.repo_id);
             return (al === -1 ? o.length : al) - (bl === -1 ? o.length : bl);
           });
         } else if (this.selectedSortBy === "repo_id") {
@@ -1373,7 +1374,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(r => r.status === 200
                   ? r.json().then(d => {
                       this.deployments = Object.values(d.deployments).filter(dep => dep.repo_id);
-                      this.calendar_id = d.calendar_id;
                       this.cluster = d.cluster;
                       this.status = 'success';
                     })
