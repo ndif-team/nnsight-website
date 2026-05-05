@@ -7,7 +7,7 @@ Core intervention system for tracing and modifying model internals.
 ## Submodules
 
 - [envoy](envoy.md) - Envoy proxy system for module access
-- [inject](inject.md) - Injection utilities
+- [source](source.md) - Source utilities
 - [batching](batching.md) - Batching support
 - [interleaver](interleaver.md) - Interleaving execution
 - [serialization](serialization.md) - Serialization utilities
