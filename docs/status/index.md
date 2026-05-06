@@ -1178,9 +1178,19 @@ document.addEventListener('DOMContentLoaded', function() {
         return { content: x, bg: true, sdcls: c };
       },
       getModelClassBadge() {
-        return this.model_key.includes("LanguageModel")
-          ? { content: '<i class="fa-solid fa-language"></i> Language', bg: true, sdcls: "secondary" }
-          : { content: "", bg: true, sdcls: "secondary" };
+        // Match on the bare class name parsed from the model_key prefix
+        // (e.g. "nnsight.modeling.vlm.VisionLanguageModel:..." → "VisionLanguageModel").
+        // ``includes("LanguageModel")`` was substring-matching so VLMs were
+        // labeled "Language" alongside plain LMs — this map keeps them
+        // distinct and is easy to extend for new envoy types.
+        const cn = this.className();
+        const base = cn ? cn.split(".").pop() : null;
+        const map = {
+          LanguageModel: { content: '<i class="fa-solid fa-language"></i> Language', bg: true, sdcls: "secondary" },
+          VisionLanguageModel: { content: '<i class="fa-solid fa-eye"></i> Vision-Language', bg: true, sdcls: "secondary" },
+          DiffusionModel: { content: '<i class="fa-solid fa-wand-magic-sparkles"></i> Diffusion', bg: true, sdcls: "secondary" },
+        };
+        return map[base] || { content: "", bg: true, sdcls: "secondary" };
       },
       formatTimeRemaining(endTime) {
         const diff = new Date(endTime) - new Date();
