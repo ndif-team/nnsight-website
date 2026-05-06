@@ -50,9 +50,21 @@ theme:
     repo: fontawesome/brands/github
     annotation: material/plus-circle
 
+# Hooks
+hooks:
+  - hooks/social_meta.py
+
 # Plugins
 plugins:
   - search
+  - social:
+      cards_layout: nnsight
+      cards_layout_options:
+        background_image: docs/assets/social-card-bg.svg
+        background_color: transparent
+        color: "#ffffff"
+        font_family: Inter
+        logo: docs/assets/logo-white.svg
   - tags
   - blog
   - mkdocs-jupyter:

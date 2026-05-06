@@ -1,0 +1,224 @@
+# Custom social card layout for nnsight.
+#   * Logo + wordmark grouped as a header unit on the top-left
+#   * Content type label ("Guide", "API", ...) in the top-right
+#   * Title takes the visual center of the card
+#   * Page-specific subtitle (first-paragraph value prop) below the title
+#   * Site domain anchored bottom-right for branding
+
+definitions:
+
+  - &background_image >-
+    {{ layout.background_image | x }}
+
+  - &background_color >-
+    {%- if layout.background_color -%}
+      {{ layout.background_color }}
+    {%- else -%}
+      transparent
+    {%- endif -%}
+
+  - &color >-
+    {%- if layout.color -%}
+      {{ layout.color }}
+    {%- else -%}
+      #ffffff
+    {%- endif -%}
+
+  - &color_muted >-
+    {%- if layout.color_muted -%}
+      {{ layout.color_muted }}
+    {%- else -%}
+      #ecdcff
+    {%- endif -%}
+
+  - &font_family >-
+    {%- if layout.font_family -%}
+      {{ layout.font_family }}
+    {%- elif config.theme.font is mapping -%}
+      {{ config.theme.font.get("text", "Inter") }}
+    {%- else -%}
+      Inter
+    {%- endif -%}
+
+  - &font_variant >-
+    {%- if layout.font_variant -%}
+      {{ layout.font_variant }}
+    {%- endif -%}
+
+  - &site_name >-
+    {{ config.site_name }}
+
+  - &site_domain >-
+    {%- if layout.domain -%}
+      {{ layout.domain }}
+    {%- elif config.site_url -%}
+      {{ config.site_url | replace("https://", "") | replace("http://", "") | replace("/", "") }}
+    {%- endif -%}
+
+  - &card_type >-
+    {%- set ct = page.meta.get("card_type") -%}
+    {%- if ct -%}
+      {{ ct | upper }}
+    {%- endif -%}
+
+  - &api_path >-
+    {%- set ap = page.meta.get("api_path") -%}
+    {%- if ap -%}
+      {{ ap }}
+    {%- endif -%}
+
+  - &author_avatar >-
+    {%- set aa = page.meta.get("author_avatar") -%}
+    {%- if aa -%}
+      {{ aa }}
+    {%- endif -%}
+
+  - &author_name >-
+    {%- set an = page.meta.get("author_name") -%}
+    {%- if an -%}
+      {{ an }}
+    {%- endif -%}
+
+  - &page_title >-
+    {%- if layout.title -%}
+      {{ layout.title }}
+    {%- else -%}
+      {{ page.meta.get("title", page.title) }}
+    {%- endif -%}
+
+  - &page_title_with_site_name >-
+    {%- if not page.is_homepage -%}
+      {{ page.meta.get("title", page.title) }} - {{ config.site_name }}
+    {%- else -%}
+      {{ config.site_name }}
+    {%- endif -%}
+
+  - &page_description >-
+    {%- if layout.description -%}
+      {{ layout.description }}
+    {%- else -%}
+      {{ page.meta.get("description", config.site_description) | x }}
+    {%- endif -%}
+
+  - &logo >-
+    {%- if layout.logo -%}
+      {{ layout.logo }}
+    {%- elif config.theme.logo -%}
+      {{ config.docs_dir }}/{{ config.theme.logo }}
+    {%- endif -%}
+
+# Open Graph + Twitter meta tags
+tags:
+  og:type: website
+  og:title: *page_title_with_site_name
+  og:description: *page_description
+  og:image: "{{ image.url }}"
+  og:image:type: "{{ image.type }}"
+  og:image:width: "{{ image.width }}"
+  og:image:height: "{{ image.height }}"
+  og:url: "{{ page.canonical_url }}"
+
+  twitter:card: summary_large_image
+  twitter:title: *page_title_with_site_name
+  twitter:description: *page_description
+  twitter:image: "{{ image.url }}"
+
+size: { width: 1200, height: 630 }
+layers:
+
+  # Background gradient (loaded from cards_layout_options.background_image)
+  - background:
+      image: *background_image
+      color: *background_color
+
+  # Page title — top-left, dominant focal point
+  - size: { width: 920, height: 260 }
+    offset: { x: 64, y: 80 }
+    typography:
+      content: *page_title
+      align: start top
+      color: *color
+      line:
+        amount: 3
+        height: 1.18
+      font:
+        family: *font_family
+        variant: *font_variant
+        style: Bold
+
+  # API qualified path (only renders for documentation/* pages),
+  # placed just below the title as a breadcrumb. Positioned for the common
+  # case of a single-line API title.
+  - size: { width: 920, height: 30 }
+    offset: { x: 64, y: 168 }
+    typography:
+      content: *api_path
+      align: start top
+      color: *color_muted
+      line:
+        amount: 1
+        height: 1.0
+      font:
+        family: JetBrains Mono
+        style: Medium
+
+  # Logo — white wordmark in the bottom-right, baseline-aligned with the
+  # bottom-left content-type label (label box bottom is at y=586).
+  - size: { width: 261, height: 160 }
+    offset: { x: 875, y: 426 }
+    background:
+      image: *logo
+
+  # Author byline — avatar + name, placed directly under the title as a
+  # newspaper-style byline. Empty layers (no image/no content) for non-blog
+  # pages, so they're invisible there.
+  - size: { width: 96, height: 96 }
+    offset: { x: 64, y: 332 }
+    background:
+      image: *author_avatar
+
+  - size: { width: 800, height: 64 }
+    offset: { x: 180, y: 348 }
+    typography:
+      content: *author_name
+      align: start center
+      color: *color_muted
+      line:
+        amount: 1
+        height: 1.0
+      font:
+        family: *font_family
+        variant: *font_variant
+        style: SemiBold
+
+  # Content-type label — bottom-left
+  - size: { width: 400, height: 44 }
+    offset: { x: 64, y: 542 }
+    typography:
+      content: *card_type
+      align: start bottom
+      color: *color_muted
+      line:
+        amount: 1
+        height: 1.0
+      font:
+        family: *font_family
+        variant: *font_variant
+        style: Bold
+
+  # Status page URL footer (bottom-left, status/* only)
+  - size: { width: 600, height: 36 }
+    offset: { x: 64, y: 550 }
+    typography:
+      content: >-
+        {%- if page.file.src_uri.startswith("status/") -%}
+          nnsight.net/status
+        {%- endif -%}
+      align: start bottom
+      color: *color
+      line:
+        amount: 1
+        height: 1.0
+      font:
+        family: JetBrains Mono
+        style: Bold

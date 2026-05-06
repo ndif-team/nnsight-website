@@ -3,6 +3,10 @@ hide:
   - toc
   - path
   - title
+card_type: ""
+social:
+  cards_layout_options:
+    title: "What's hot on NDIF?"
 ---
 
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>

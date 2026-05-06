@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "cairosvg>=2.7",
     "mkdocs>=1.6.0",
     "mkdocs-autorefs>=1.0.0",
     "mkdocs-jupyter>=0.25.0",
@@ -12,6 +13,7 @@ dependencies = [
     "mkdocstrings>=0.26.0",
     "mkdocstrings-python>=1.12.0",
     "nnsight",
+    "pillow>=10",
 ]
 
 [project.optional-dependencies]

@@ -4,3 +4,6 @@ notebook_outputs/
 overrides/**
 !overrides/.gitkeep
 .env
+.cache/
+__pycache__/
+*.py[cod]
