@@ -17,6 +17,8 @@ This competition is inspired by Liars’ Bench from Cadenza Labs. Their benchmar
 In response to our RFP, we want red teams to cultivate a variety of creative and diverse deception scenarios, which blue teams will then use to build novel and robust lie detector method(s). In this blog post, we walk through an example red team project to inspire creative proposal submissions.   
 ---
 
+<!-- more -->
+
 ## "Imposter Syndrome" Red Team Example
 
 Games are one of many set ups that red teams could use to construct conditions where a model lies. **Imposter Syndrome** is a social-deduction game where multiple LLMs play—and lie—through an interrogation. 

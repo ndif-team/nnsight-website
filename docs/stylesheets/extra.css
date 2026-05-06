@@ -345,3 +345,5 @@
   50% { background-color: #32cd32; }
   100% { background-color: #228b22; }
 }
+
+.plot-blog img { border-radius: 12px; }
