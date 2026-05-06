@@ -27,3 +27,8 @@ test = [
     "plotly>=6.5.2",
     "papermill>=2.6.0",
 ]
+
+# This project ships docs, not Python packages. Without this, setuptools'
+# flat-layout autodiscovery sees hooks/, layouts/, overrides/ and bails.
+[tool.setuptools]
+packages = []
