@@ -1041,7 +1041,7 @@ social:
 
         <deployment-component
           v-for="(deployment, index) in paginatedDeployments"
-          :key="deployment.model_key"
+          :key="deployment.model_key || deployment.repo_id"
           :index="index"
           :model_key="deployment.model_key"
           :pinned="deployment.pinned"
@@ -1051,6 +1051,7 @@ social:
           :application_state="deployment.application_state"
           :repo_id="deployment.repo_id"
           :revision="deployment.revision"
+          :replicas_count="deployment.replicas_count"
           :style="{ 'animation-delay': (index * 30) + 'ms' }"
         ></deployment-component>
 
@@ -1096,6 +1097,9 @@ document.addEventListener('DOMContentLoaded', function() {
       model_key: String, deployment_level: String, pinned: Boolean,
       schedule: Object, application_state: String, repo_id: String,
       n_params: Number, index: Number, revision: String,
+      // Total HOT+WARM replicas behind this card (post-aggregation in
+      // the parent app). 0 for COLD HF-cache shadows.
+      replicas_count: { type: Number, default: 0 },
     },
     computed: {
       levelClass() {
@@ -1138,12 +1142,16 @@ document.addEventListener('DOMContentLoaded', function() {
               <i class="fa-solid fa-border-none"></i>
               <span>{{ formatParams(n_params) }}</span>
             </div>
+            <div v-if="replicas_count > 1" class="nn-meta-item" data-nn-tooltip="HOT/WARM replicas serving this model">
+              <i class="fa-solid fa-layer-group"></i>
+              <span>{{ replicas_count }} replicas</span>
+            </div>
           </div>
         </div>
         <a :href="'http://huggingface.co/' + repo_id" target="_blank" class="nn-stretched-link"><span>HuggingFace</span></a>
       </div>`,
     methods: {
-      hasInfo() { return this.n_params || this.revision; },
+      hasInfo() { return this.n_params || this.revision || this.replicas_count > 1; },
       className() { return this.model_key ? this.model_key.split(":")[0] : undefined; },
       formatParams(n) { return n / 1e9 < 1 ? (n / 1e9).toFixed(1) + 'B' : Math.round(n / 1e9) + 'B'; },
       getCodeSnippet() {
@@ -1379,6 +1387,46 @@ document.addEventListener('DOMContentLoaded', function() {
       onPageChange(e) {
         this.currentPage = Math.floor(e.first / this.pageSize) + 1;
       },
+      // Collapse one-entry-per-replica into one-entry-per-model_key.
+      // Mirrors the dashboard backend's _aggregate_by_model_key (see
+      // src/ndif/services/dashboard/backend/routers/deploy.py) so the
+      // public status page stays consistent with the admin view: HOT
+      // outranks WARM outranks COLD, RUNNING outranks DEPLOYING etc.
+      // COLD HF-cache entries have no model_key and pass through as-is.
+      aggregateByModelKey(entries) {
+        const LEVEL_RANK = { HOT: 0, WARM: 1, COLD: 2 };
+        const STATE_RANK = { RUNNING: 0, DEPLOYING: 1, NOT_STARTED: 2, UNHEALTHY: 3 };
+        const out = new Map();
+        for (const e of entries) {
+          const mk = e.model_key;
+          if (!mk) {
+            out.set(e.repo_id, { ...e, replicas_count: 0 });
+            continue;
+          }
+          let card = out.get(mk);
+          if (!card) {
+            card = { ...e, replicas_count: 0 };
+            out.set(mk, card);
+          }
+          const newLevel = e.deployment_level;
+          if (newLevel && (LEVEL_RANK[newLevel] ?? 99) < (LEVEL_RANK[card.deployment_level] ?? 99)) {
+            card.deployment_level = newLevel;
+          }
+          const newState = e.application_state;
+          if (newState && (
+            !card.application_state ||
+            (STATE_RANK[newState] ?? 99) < (STATE_RANK[card.application_state] ?? 99)
+          )) {
+            card.application_state = newState;
+          }
+          if (e.pinned) {
+            card.pinned = true;
+            if (e.schedule && !card.schedule) card.schedule = e.schedule;
+          }
+          card.replicas_count += 1;
+        }
+        return Array.from(out.values());
+      },
       getStatus() {
         this.status = 'loading';
         fetch(this.ndif_url + "/ping")
@@ -1387,7 +1435,8 @@ document.addEventListener('DOMContentLoaded', function() {
               fetch(this.ndif_url + "/status")
                 .then(r => r.status === 200
                   ? r.json().then(d => {
-                      this.deployments = Object.values(d.deployments).filter(dep => dep.repo_id);
+                      const raw = Object.values(d.deployments).filter(dep => dep.repo_id);
+                      this.deployments = this.aggregateByModelKey(raw);
                       this.cluster = d.cluster;
                       this.status = 'success';
                     })
