@@ -26,6 +26,7 @@ test = [
     "pandas>=3.0.0",
     "plotly>=6.5.2",
     "papermill>=2.6.0",
+    "nnsightful @ git+https://github.com/AdamBelfki3/nnsightful.git"
 ]
 
 # This project ships docs, not Python packages. Without this, setuptools'
