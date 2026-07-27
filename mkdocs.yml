@@ -205,7 +205,6 @@ nav:
     - Skip Execution: features/11_skip.ipynb
     - Scan: features/12_scan.ipynb
     - Remote Execution: features/13_remote_execution.ipynb
-    - Streaming: features/14_streaming.ipynb
     - vLLM Support: features/15_vllm_support.ipynb
   - Tutorials:
     - tutorials/index.md

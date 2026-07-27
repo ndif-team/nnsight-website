@@ -82,7 +82,6 @@ nnsight uses deferred execution with thread-based synchronization. Code inside `
 - [Skip Execution](https://nnsight.net/features/11_skip/): Skip parts of model execution
 - [Scan](https://nnsight.net/features/12_scan/): Infer shapes without full execution
 - [Remote Execution](https://nnsight.net/features/13_remote_execution/): Run on NDIF's remote infrastructure
-- [Streaming](https://nnsight.net/features/14_streaming/): Stream outputs during generation
 - [vLLM Support](https://nnsight.net/features/15_vllm_support/): High-performance inference with vLLM
 
 ## API Documentation

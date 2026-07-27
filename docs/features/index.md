@@ -17,6 +17,5 @@ Explore nnsight's capabilities in depth through interactive notebooks.
 - **[Skip Execution](11_skip.ipynb)** - Skip parts of model execution
 - **[Scan](12_scan.ipynb)** - Infer shapes without full execution
 - **[Remote Execution](13_remote_execution.ipynb)** - Run on NDIF's remote infrastructure
-- **[Streaming](14_streaming.ipynb)** - Stream outputs during generation
 - **[vLLM Support](15_vllm_support.ipynb)** - High-performance inference with vLLM
 - **[Cache](16_cache.ipynb)** - Bulk-collect activations from many modules in one pass
