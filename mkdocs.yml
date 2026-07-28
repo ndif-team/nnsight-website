@@ -196,16 +196,18 @@ nav:
     - Setting Activations: features/2_setting.ipynb
     - Gradients: features/3_gradients.ipynb
     - Multiple Token Generation: features/4_multiple_token.ipynb
-    - Module Access: features/5_modules.ipynb
-    - Model Editing: features/6_model_editing.ipynb
-    - Cross-Prompt Intervention: features/7_cross_prompt.ipynb
-    - Empty Invokers: features/8_empty_invokers.ipynb
-    - Intermediate Operations: features/9_source.ipynb
-    - Early Stopping: features/10_early_stopping.ipynb
-    - Skip Execution: features/11_skip.ipynb
-    - Scan: features/12_scan.ipynb
-    - Remote Execution: features/13_remote_execution.ipynb
-    - vLLM Support: features/15_vllm_support.ipynb
+    - Loading a Model: features/5_loading.ipynb
+    - Module Access: features/6_modules.ipynb
+    - Model Editing: features/7_model_editing.ipynb
+    - Batching: features/8_batching.ipynb
+    - Empty Invokers: features/9_empty_invokers.ipynb
+    - Cache: features/10_cache.ipynb
+    - Intermediate Operations: features/11_source.ipynb
+    - Early Stopping: features/12_early_stopping.ipynb
+    - Skip Execution: features/13_skip.ipynb
+    - Scan: features/14_scan.ipynb
+    - Remote Execution: features/15_remote_execution.ipynb
+    - vLLM Support: features/16_vllm_support.ipynb
   - Tutorials:
     - tutorials/index.md
     - Tutorials:

@@ -73,16 +73,18 @@ nnsight uses deferred execution with thread-based synchronization. Code inside `
 - [Setting Activations](https://nnsight.net/features/2_setting/): Modify activations to study causal effects
 - [Gradients](https://nnsight.net/features/3_gradients/): Compute gradients with respect to intermediate values
 - [Multiple Token Generation](https://nnsight.net/features/4_multiple_token/): Work with autoregressive generation
-- [Module Access](https://nnsight.net/features/5_modules/): Navigate and access model components
-- [Model Editing](https://nnsight.net/features/6_model_editing/): Create persistent model modifications
-- [Cross-Prompt Intervention](https://nnsight.net/features/7_cross_prompt/): Transfer activations between different prompts
-- [Empty Invokers](https://nnsight.net/features/8_empty_invokers/): Run interventions without input data
-- [Intermediate Operations](https://nnsight.net/features/9_source/): Access intermediate operations inside modules via .source
-- [Early Stopping](https://nnsight.net/features/10_early_stopping/): Stop computation early for efficiency
-- [Skip Execution](https://nnsight.net/features/11_skip/): Skip parts of model execution
-- [Scan](https://nnsight.net/features/12_scan/): Infer shapes without full execution
-- [Remote Execution](https://nnsight.net/features/13_remote_execution/): Run on NDIF's remote infrastructure
-- [vLLM Support](https://nnsight.net/features/15_vllm_support/): High-performance inference with vLLM
+- [Loading a Model](https://nnsight.net/features/5_loading/): Constructor options, meta-model dispatch, and device placement
+- [Module Access](https://nnsight.net/features/6_modules/): Navigate and access model components
+- [Model Editing](https://nnsight.net/features/7_model_editing/): Create persistent model modifications
+- [Batching](https://nnsight.net/features/8_batching/): Combine multiple prompts in one forward pass and move values between them
+- [Empty Invokers](https://nnsight.net/features/9_empty_invokers/): Run interventions without input data
+- [Cache](https://nnsight.net/features/10_cache/): Bulk-collect activations from many modules in one pass
+- [Intermediate Operations](https://nnsight.net/features/11_source/): Access intermediate operations inside modules via .source
+- [Early Stopping](https://nnsight.net/features/12_early_stopping/): Stop computation early for efficiency
+- [Skip Execution](https://nnsight.net/features/13_skip/): Skip parts of model execution
+- [Scan](https://nnsight.net/features/14_scan/): Infer shapes without full execution
+- [Remote Execution](https://nnsight.net/features/15_remote_execution/): Run on NDIF's remote infrastructure
+- [vLLM Support](https://nnsight.net/features/16_vllm_support/): High-performance inference with vLLM
 
 ## API Documentation
 
