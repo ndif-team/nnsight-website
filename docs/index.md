@@ -258,9 +258,9 @@ pip install nnsight
 Intervene:
 
 ```python
-from nnsight import LanguageModel
+from nnsight import TransformersModel
 
-model = LanguageModel('openai-community/gpt2', device_map='auto', dispatch=True)
+model = TransformersModel('openai-community/gpt2', device_map='auto', dispatch=True)
 
 with model.trace('The Eiffel Tower is in the city of', remote=True/False):
     # Intervene on activations

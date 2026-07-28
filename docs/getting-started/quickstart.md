@@ -2,14 +2,16 @@
 
 This guide walks you through your first nnsight intervention in just a few minutes.
 
+For an in-depth walkthrough, see the [Walkthrough](../tutorials/tutorials/get_started/walkthrough.ipynb).
+
 ## Loading a Model
 
-nnsight wraps PyTorch models to enable tracing and intervention. For language models, use `LanguageModel`:
+nnsight wraps PyTorch models to enable tracing and intervention. For language models, use `TransformersModel`:
 
 ```python
-from nnsight import LanguageModel
+from nnsight import TransformersModel
 
-model = LanguageModel('gpt2', device_map='auto', dispatch=True)
+model = TransformersModel('gpt2', device_map='auto', dispatch=True)
 ```
 
 !!! info "Model Dispatching"
@@ -154,6 +156,7 @@ print(layer1_out.shape)  # torch.Size([1, 10])
 
 You've learned the basics of nnsight! Continue exploring:
 
+- **[Walkthrough](../tutorials/tutorials/get_started/walkthrough.ipynb)** — the full guided introduction to nnsight
 - **[Features](../features/index.md)** — Deep dives into specific capabilities
 - **[Tutorials](../tutorials/index.md)** — Step-by-step guides for common tasks
 - **[Documentation](../documentation/index.md)** — Comprehensive reference material
