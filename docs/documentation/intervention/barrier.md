@@ -1,0 +1,3 @@
+# barrier
+
+::: nnsight.intervention.barrier

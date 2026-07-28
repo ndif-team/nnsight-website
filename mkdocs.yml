@@ -136,58 +136,70 @@ nav:
     - documentation/index.md
     - intervention:
       - documentation/intervention/index.md
-      - envoy: documentation/intervention/envoy.md
-      - source: documentation/intervention/source.md
-      - batching: documentation/intervention/batching.md
-      - interleaver: documentation/intervention/interleaver.md
-      - serialization: documentation/intervention/serialization.md
       - backends:
         - documentation/intervention/backends/index.md
-        - base: documentation/intervention/backends/base.md
-        - editing: documentation/intervention/backends/editing.md
-        - execution: documentation/intervention/backends/execution.md
+        - display: documentation/intervention/backends/display.md
+        - local: documentation/intervention/backends/local.md
         - remote: documentation/intervention/backends/remote.md
-      - tracing:
-        - documentation/intervention/tracing/index.md
-        - base: documentation/intervention/tracing/base.md
-        - backwards: documentation/intervention/tracing/backwards.md
-        - editing: documentation/intervention/tracing/editing.md
-        - globals: documentation/intervention/tracing/globals.md
-        - invoker: documentation/intervention/tracing/invoker.md
-        - iterator: documentation/intervention/tracing/iterator.md
-        - tracer: documentation/intervention/tracing/tracer.md
-        - util: documentation/intervention/tracing/util.md
+      - backward: documentation/intervention/backward.md
+      - barrier: documentation/intervention/barrier.md
+      - batching: documentation/intervention/batching.md
+      - cache: documentation/intervention/cache.md
+      - editing: documentation/intervention/editing.md
+      - envoy: documentation/intervention/envoy.md
+      - eproperty: documentation/intervention/eproperty.md
+      - errors: documentation/intervention/errors.md
+      - interleaver: documentation/intervention/interleaver.md
+      - iterator: documentation/intervention/iterator.md
+      - serialization: documentation/intervention/serialization.md
+      - source: documentation/intervention/source.md
+      - tracer: documentation/intervention/tracer.md
+      - util: documentation/intervention/util.md
     - modeling:
       - documentation/modeling/index.md
       - base: documentation/modeling/base.md
       - diffusion: documentation/modeling/diffusion.md
       - huggingface: documentation/modeling/huggingface.md
       - language: documentation/modeling/language.md
-      - transformers: documentation/modeling/transformers.md
       - mixins:
         - documentation/modeling/mixins/index.md
         - loadable: documentation/modeling/mixins/loadable.md
         - meta: documentation/modeling/mixins/meta.md
-        - remoteable: documentation/modeling/mixins/remoteable.md
+        - remotable: documentation/modeling/mixins/remotable.md
+      - transformers: documentation/modeling/transformers.md
       - vllm:
         - documentation/modeling/vllm/index.md
-        - vllm: documentation/modeling/vllm/vllm.md
+        - async_backend: documentation/modeling/vllm/async_backend.md
         - batching: documentation/modeling/vllm/batching.md
-        - sampling: documentation/modeling/vllm/sampling.md
         - engines:
           - documentation/modeling/vllm/engines/index.md
           - engine: documentation/modeling/vllm/engines/engine.md
         - model_runners:
           - documentation/modeling/vllm/model_runners/index.md
           - GPUModelRunner: documentation/modeling/vllm/model_runners/GPUModelRunner.md
+        - serve:
+          - documentation/modeling/vllm/serve/index.md
+          - backend: documentation/modeling/vllm/serve/backend.md
+          - cli: documentation/modeling/vllm/serve/cli.md
+          - server: documentation/modeling/vllm/serve/server.md
+        - tracer: documentation/modeling/vllm/tracer.md
+        - vllm: documentation/modeling/vllm/vllm.md
         - workers:
           - documentation/modeling/vllm/workers/index.md
           - GPUWorker: documentation/modeling/vllm/workers/GPUWorker.md
+      - vlm: documentation/modeling/vlm.md
     - schema:
       - documentation/schema/index.md
       - config: documentation/schema/config.md
       - request: documentation/schema/request.md
       - response: documentation/schema/response.md
+    - tracing:
+      - documentation/tracing/index.md
+      - backend: documentation/tracing/backend.md
+      - globals: documentation/tracing/globals.md
+      - hint: documentation/tracing/hint.md
+      - tracer: documentation/tracing/tracer.md
+      - util: documentation/tracing/util.md
     - ndif: documentation/ndif.md
     - util: documentation/util.md
   - Features:

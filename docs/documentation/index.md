@@ -1,25 +1,14 @@
-# Documentation
+# API Reference
 
-API reference documentation for nnsight, auto-generated from source docstrings.
+Auto-generated reference for the `nnsight` package, organized to mirror the
+source tree. Most users only need the model classes and the tracing API; the
+rest documents the internals.
 
-## Modules
+## Sections
 
-### :material-layers-triple: [intervention](intervention/index.md)
-
-Core intervention system for tracing and modifying model internals.
-
-### :material-cube-outline: [modeling](modeling/index.md)
-
-Model wrappers for different frameworks (HuggingFace, vLLM, etc.).
-
-### :material-file-document-outline: [schema](schema/index.md)
-
-Data schemas for configuration, requests, and responses.
-
-### :material-function: [ndif](ndif.md)
-
-NDIF remote execution client.
-
-### :material-tools: [util](util.md)
-
-Utility functions.
+- **[intervention](intervention/index.md)** — the tracing/interleaving engine: `Envoy`, the tracer and invoker, batching, caching, gradients, editing, and the local/remote backends.
+- **[modeling](modeling/index.md)** — model wrappers: `NNsight`, `TransformersModel`, `LanguageModel`, `VisionLanguageModel`, `DiffusionModel`, the loadable/meta/remotable mixins, and the vLLM backend.
+- **[tracing](tracing/index.md)** — the model-agnostic tracing layer the intervention engine builds on (base `Tracer`, `Backend`, globals, hints).
+- **[schema](schema/index.md)** — the config singleton and the request/response wire models.
+- **[ndif](ndif.md)** — top-level NDIF helpers: `login`, `status`, `compare`, `register`.
+- **[util](util.md)** — general utilities.

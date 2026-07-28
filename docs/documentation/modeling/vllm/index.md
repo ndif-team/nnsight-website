@@ -1,14 +1,14 @@
 # vllm
 
-vLLM integration for high-performance inference.
-
 ::: nnsight.modeling.vllm
 
 ## Submodules
 
-- [vllm](vllm.md) - Main VLLM wrapper
-- [batching](batching.md) - Batching support
-- [sampling](sampling.md) - Sampling utilities
-- [engines](engines/index.md) - Engine implementations
-- [model_runners](model_runners/index.md) - Model runners
-- [workers](workers/index.md) - Worker implementations
+- [async_backend](async_backend.md)
+- [batching](batching.md)
+- [engines](engines/index.md)
+- [model_runners](model_runners/index.md)
+- [serve](serve/index.md)
+- [tracer](tracer.md)
+- [vllm](vllm.md)
+- [workers](workers/index.md)
