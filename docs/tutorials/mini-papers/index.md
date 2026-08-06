@@ -7,3 +7,12 @@ Reproductions of key research papers using nnsight.
 - **[LLM Depth](csordas_llm_depth.ipynb)** - Csordás et al. on LLM computational depth
 - **[Dual Route Induction](feucht_dual_route_induction.ipynb)** - Feucht et al. on induction heads
 - **[Demystifying Memorization](huang_demystifying_memorization.ipynb)** - Huang et al. on memorization
+- **[Jacobian Lens](jacobian-lens.ipynb)** - Gurnee et al. on reading the residual stream through its causal effect on the output
+- **[Patchscopes](patchscopes.ipynb)** - Ghandeharioun et al. on decoding hidden states with the model itself
+- **[IOI Path Patching](ioi-path-patching.ipynb)** - Wang et al. on the indirect object identification circuit, at the edge level
+- **[Progress Measures for Grokking](grokking-progress-measures.ipynb)** - Nanda et al. on the circuit that forms during grokking, trained from scratch in the notebook
+- **[Emergent World Models](othello-world-models.ipynb)** - Li et al. and Nanda et al. on the board Othello-GPT keeps in its head
+- **[Concept Attention](concept-attention.ipynb)** - Helbling et al. on per-concept heatmaps from a diffusion transformer's own attention
+- **[The Logit Lens Over Image Tokens](vlm-logit-lens.ipynb)** - Neo et al. on reading a VLM's image patches as language
+- **[Base-10 Arithmetic Behind Cyclic Reasoning](cyclic-arithmetic.ipynb)** - Feucht et al. on how Llama does month and weekday arithmetic in base 10
+- **[Gaze Heads](gaze-heads.ipynb)** - Gandikota & Bau on the attention heads a VLM looks through, and steering what it describes

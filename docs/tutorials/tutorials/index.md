@@ -26,3 +26,7 @@ Comprehensive tutorials covering core concepts and research techniques.
 
 - **[Dictionary Learning](steering/dict_learning.ipynb)** - Learning interpretable feature dictionaries
 - **[LoRA Tutorial](steering/LoRA_tutorial.ipynb)** - Low-rank adaptation with nnsight
+
+## Vision
+
+- **[Cross-Attention Ablation](vision/cross-attention-ablation.ipynb)** - Localising where a prompt attaches in Stable Diffusion

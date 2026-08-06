@@ -53,6 +53,8 @@ theme:
 # Hooks
 hooks:
   - hooks/social_meta.py
+  - hooks/notebook_links.py
+  - hooks/page_meta.py
 
 # Plugins
 plugins:
@@ -75,6 +77,10 @@ plugins:
       no_input: false
       show_input: true
       include_requirejs: true
+      # Without this, mkdocs-jupyter emits <script src=""> and MathJax never loads,
+      # so every $...$ in every notebook renders as raw TeX. The nbconvert template
+      # that ships with the plugin configures the MathJax 2 API, so this must be a 2.x build.
+      custom_mathjax_url: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML-full,Safe"
       kernel_name: python3
       theme: dark
       highlight_extra_classes: ""
@@ -241,6 +247,8 @@ nav:
       - Steering:
         - Dictionary Learning: tutorials/tutorials/steering/dict_learning.ipynb
         - LoRA Tutorial: tutorials/tutorials/steering/LoRA_tutorial.ipynb
+      - Vision:
+        - Cross-Attention Ablation: tutorials/tutorials/vision/cross-attention-ablation.ipynb
     - Mini Papers:
       - tutorials/mini-papers/index.md
       - Function Vectors: tutorials/mini-papers/todd_function_vectors.ipynb
@@ -248,6 +256,15 @@ nav:
       - LLM Depth: tutorials/mini-papers/csordas_llm_depth.ipynb
       - Dual Route Induction: tutorials/mini-papers/feucht_dual_route_induction.ipynb
       - Demystifying Memorization: tutorials/mini-papers/huang_demystifying_memorization.ipynb
+      - Jacobian Lens: tutorials/mini-papers/jacobian-lens.ipynb
+      - Patchscopes: tutorials/mini-papers/patchscopes.ipynb
+      - IOI Path Patching: tutorials/mini-papers/ioi-path-patching.ipynb
+      - Progress Measures for Grokking: tutorials/mini-papers/grokking-progress-measures.ipynb
+      - Emergent World Models: tutorials/mini-papers/othello-world-models.ipynb
+      - Concept Attention: tutorials/mini-papers/concept-attention.ipynb
+      - VLM Logit Lens: tutorials/mini-papers/vlm-logit-lens.ipynb
+      - Cyclic Arithmetic: tutorials/mini-papers/cyclic-arithmetic.ipynb
+      - Gaze Heads: tutorials/mini-papers/gaze-heads.ipynb
   - Blog:
     - blog/index.md
   - Status: status/index.md
