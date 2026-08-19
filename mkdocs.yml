@@ -246,14 +246,29 @@ nav:
       - Probing:
         - Logit Lens: tutorials/tutorials/probing/logit_lens.ipynb
         - Diffusion Lens: tutorials/tutorials/probing/diffusion_lens.ipynb
+        - Concept Erasure: tutorials/tutorials/probing/concept_erasure.ipynb
+      - Attention:
+        - Attention Patterns and Per-Head Detection: tutorials/tutorials/attention/attention_heads.ipynb
+      - Circuits:
+        - Attribution Graphs: tutorials/tutorials/circuits/attribution_graphs.ipynb
+      - Architectures:
+        - MoE Routing: tutorials/tutorials/architectures/moe_routing.ipynb
+        - State-Space Models: tutorials/tutorials/architectures/state_space_models.ipynb
+      - Engineering:
+        - Dataset-Scale Activation Caching: tutorials/tutorials/engineering/activation_caching.ipynb
       - Steering:
         - Dictionary Learning: tutorials/tutorials/steering/dict_learning.ipynb
+        - Evaluating SAEs: tutorials/tutorials/steering/evaluating_saes.ipynb
         - LoRA Tutorial: tutorials/tutorials/steering/LoRA_tutorial.ipynb
       - Vision:
         - Cross-Attention Ablation: tutorials/tutorials/vision/cross-attention-ablation.ipynb
     - Mini Papers:
       - tutorials/mini-papers/index.md
       - Function Vectors: tutorials/mini-papers/todd_function_vectors.ipynb
+      - Massive Activations: tutorials/mini-papers/massive-activations.ipynb
+      - Induction Heads and the ICL Phase Change: tutorials/mini-papers/induction-heads-phase-change.ipynb
+      - Under-trained Tokens: tutorials/mini-papers/under-trained-tokens.ipynb
+      - Chain-of-Thought Faithfulness: tutorials/mini-papers/cot-faithfulness.ipynb
       - Geometry of Truth: tutorials/mini-papers/marks_geometry_of_truth.ipynb
       - LLM Depth: tutorials/mini-papers/csordas_llm_depth.ipynb
       - Dual Route Induction: tutorials/mini-papers/feucht_dual_route_induction.ipynb

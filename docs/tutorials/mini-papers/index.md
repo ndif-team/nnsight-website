@@ -16,3 +16,7 @@ Reproductions of key research papers using nnsight.
 - **[The Logit Lens Over Image Tokens](vlm-logit-lens.ipynb)** - Neo et al. on reading a VLM's image patches as language
 - **[Base-10 Arithmetic Behind Cyclic Reasoning](cyclic-arithmetic.ipynb)** - Feucht et al. on how Llama does month and weekday arithmetic in base 10
 - **[Gaze Heads](gaze-heads.ipynb)** - Gandikota & Bau on the attention heads a VLM looks through, and steering what it describes
+- **[Massive Activations](massive-activations.ipynb)** - Sun et al. on the handful of residual-stream dimensions that carry enormous magnitude, and what breaks without them
+- **[Induction Heads and the ICL Phase Change](induction-heads-phase-change.ipynb)** - Olsson et al. on induction heads forming in a single interval of training, and the in-context learning jump that accompanies it
+- **[Under-trained Tokens](under-trained-tokens.ipynb)** - Land & Bartolo on finding the tokens training never touched, from the unembedding alone
+- **[Chain-of-Thought Faithfulness](cot-faithfulness.ipynb)** - Lanham et al. on whether a reasoning model's stated reasoning actually drives its answer
