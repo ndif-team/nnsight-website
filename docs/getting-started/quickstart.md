@@ -24,7 +24,7 @@ The `.trace()` context manager runs a forward pass while giving you access to in
 ```python
 with model.trace('The Eiffel Tower is in the city of'):
     # Access hidden states from the last layer
-    hidden_states = model.transformer.h[-1].output[0].save()
+    hidden_states = model.transformer.h[-1].output.save()
     
     # Get the model's output
     output = model.output.save()
@@ -39,7 +39,20 @@ print(model.tokenizer.decode(output.logits.argmax(dim=-1)[0]))
 
 ## Accessing Activations
 
-Access any module's input or output during the forward pass. Check your model's architecture to understand its output structure. For example, layers in [:hugging_face: `transformers`](https://github.com/huggingface/transformers) models typically return tuples, where the first element contains the hidden states.
+Access any module's input or output during the forward pass. A module's `.output` **is the object that module really returns** — sometimes a tensor, sometimes a tuple — so it varies per module, not per model.
+
+!!! warning "Tuple or tensor? Check, don't assume"
+    In [:hugging_face: `transformers`](https://github.com/huggingface/transformers) **5.x**, a decoder block (`GPT2Block`, `LlamaDecoderLayer`) returns a **bare tensor**, while an attention submodule still returns a **tuple**. In **4.x** blocks returned tuples too, which is why a great deal of nnsight code you will find online indexes them with `[0]`.
+
+    That matters because indexing a tensor with `[0]` **does not raise** — it silently gives you the first element of the *batch*, shape `[seq, hidden]` instead of `[batch, seq, hidden]`, and everything downstream is quietly wrong.
+
+    One line settles it for any module:
+
+    ```python
+    with model.trace("hello"):
+        print(type(model.transformer.h[0].output))       # <class 'torch.Tensor'>
+        print(type(model.transformer.h[0].attn.output))  # <class 'tuple'>
+    ```
 
 ```python
 with model.trace("The Eiffel Tower is in the city of"):
@@ -47,8 +60,8 @@ with model.trace("The Eiffel Tower is in the city of"):
     
     mlp_output = model.transformer.h[0].mlp.output.save() # (2)!
 
-    # Access the full layer output
-    layer_output = model.transformer.h[5].output[0].save()
+    # Access the full layer output (a tensor on transformers 5.x -- no [0])
+    layer_output = model.transformer.h[5].output.save()
     
     # Access the final logits
     logits = model.lm_head.output.save()
@@ -64,10 +77,10 @@ Intervene on the model by modifying activations in-place:
 ```python
 with model.trace("Hello"):
     # Zero out all activations at layer 0
-    model.transformer.h[0].output[0][:] = 0
+    model.transformer.h[0].output[:] = 0
     
     # Modify only the last token position
-    model.transformer.h[1].output[0][:, -1, :] = 0
+    model.transformer.h[1].output[:, -1, :] = 0
     
     output = model.output.save()
 ```

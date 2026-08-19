@@ -234,6 +234,8 @@ nav:
         - Walkthrough: tutorials/tutorials/get_started/walkthrough.ipynb
         - Chat Templates: tutorials/tutorials/get_started/chat_templates.ipynb
         - Remote Access: tutorials/tutorials/get_started/start_remote_access.ipynb
+      - Migrating:
+        - From TransformerLens: tutorials/tutorials/migrating/from_transformerlens.ipynb
       - Causal Tracing:
         - Causal Models Intro: tutorials/tutorials/causal_mediation_analysis/causal_models_intro.ipynb
         - Activation Patching: tutorials/tutorials/causal_mediation_analysis/activation_patching.ipynb

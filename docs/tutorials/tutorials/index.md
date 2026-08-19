@@ -8,6 +8,10 @@ Comprehensive tutorials covering core concepts and research techniques.
 - **[Chat Templates](get_started/chat_templates.ipynb)** - Working with chat-formatted models
 - **[Remote Access](get_started/start_remote_access.ipynb)** - Getting started with NDIF
 
+## Migrating
+
+- **[From TransformerLens](migrating/from_transformerlens.ipynb)** - Port a TransformerLens script: the hook-name/module-path table, and the weight-processing conventions that make a correct port produce different numbers
+
 ## Causal Tracing
 
 - **[Causal Models Intro](causal_mediation_analysis/causal_models_intro.ipynb)** - Introduction to causal modeling
