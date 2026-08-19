@@ -20,3 +20,4 @@ Reproductions of key research papers using nnsight.
 - **[Induction Heads and the ICL Phase Change](induction-heads-phase-change.ipynb)** - Olsson et al. on induction heads forming in a single interval of training, and the in-context learning jump that accompanies it
 - **[Under-trained Tokens](under-trained-tokens.ipynb)** - Land & Bartolo on finding the tokens training never touched, from the unembedding alone
 - **[Chain-of-Thought Faithfulness](cot-faithfulness.ipynb)** - Lanham et al. on whether a reasoning model's stated reasoning actually drives its answer
+- **[Belief Lookbacks](belief-lookbacks.ipynb)** - Prakash et al. on how a model tracks a character's belief when it diverges from reality, reproduced at 8B

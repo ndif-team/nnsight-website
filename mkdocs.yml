@@ -269,6 +269,7 @@ nav:
       - Induction Heads and the ICL Phase Change: tutorials/mini-papers/induction-heads-phase-change.ipynb
       - Under-trained Tokens: tutorials/mini-papers/under-trained-tokens.ipynb
       - Chain-of-Thought Faithfulness: tutorials/mini-papers/cot-faithfulness.ipynb
+      - Belief Lookbacks: tutorials/mini-papers/belief-lookbacks.ipynb
       - Geometry of Truth: tutorials/mini-papers/marks_geometry_of_truth.ipynb
       - LLM Depth: tutorials/mini-papers/csordas_llm_depth.ipynb
       - Dual Route Induction: tutorials/mini-papers/feucht_dual_route_induction.ipynb
