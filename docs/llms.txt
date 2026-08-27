@@ -98,6 +98,29 @@ nnsight uses deferred execution with thread-based synchronization. Code inside `
 - [NDIF](https://nnsight.net/documentation/ndif/): NDIF remote execution utilities
 - [Util](https://nnsight.net/documentation/util/): Utility functions
 
+## vLLM
+
+One page per job, every snippet run against Qwen/Qwen3-8B on vLLM 0.27:
+
+- [Start here](https://nnsight.net/vllm/): install, read one activation, steer one layer
+- [Locations](https://nnsight.net/vllm/locations/): the module tree as the vocabulary; tuples and the residual stream; clone what you keep
+- [Loading models](https://nnsight.net/vllm/loading/): eager, CUDA-graph taps, async; what nnsight forces and why
+- [Capabilities and limits](https://nnsight.net/vllm/capabilities/): refusals, what is not on vLLM, versions
+- [Capture](https://nnsight.net/vllm/capture/): one location, every layer, every step, many prompts, MoE routing
+- [Attention](https://nnsight.net/vllm/attention/): q/k/v, rebuilt patterns, per-head outputs
+- [Logit lens](https://nnsight.net/vllm/logit-lens/): the model's own norm and unembed, in the worker
+- [Steering](https://nnsight.net/vllm/steering/): add, ablate, cap, mask positions, write anywhere, the sampler
+- [Generation](https://nnsight.net/vllm/generation/): sampling, per-step logits/samples, tracer.result, n > 1
+- [Chat and tokens](https://nnsight.net/vllm/chat/): templates, token-id prompts, spans
+- [Async and servers](https://nnsight.net/vllm/serving/): mode="async", nnsight-serve, model.edit()
+- [Tensor parallelism](https://nnsight.net/vllm/tensor-parallel/): sharded models read whole
+- [Causal tracing](https://nnsight.net/vllm/examples/causal-tracing/): ROME-style patching, one request per (layer, position), batched
+- [Jacobian lens](https://nnsight.net/vllm/examples/jacobian-lens/): Neuronpedia's pre-fitted J-lens read out in the worker
+- [A linear probe](https://nnsight.net/vllm/examples/probe/): contrastive extraction with one installed block, then a probe that runs inside the model
+- [Concept directions](https://nnsight.net/vllm/examples/emotion-tracker/): emotion directions, tracked per generated token
+- [Performance](https://nnsight.net/vllm/performance/): eager vs graph taps, measured
+- [Comparisons](https://nnsight.net/vllm/comparisons/): the same jobs in interp-engine and vLLM-Lens, one throughput grid
+
 ## Tutorials
 
 ### Getting Started

@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
     { name: "Getting Started", href: "/getting-started/" },
     { name: "Documentation", href: "/documentation/" },
     { name: "Features", href: "/features/" },
+    { name: "vLLM", href: "/vllm/" },
     { name: "Tutorials", href: "/tutorials/" },
     { name: "Blog", href: "/blog/" },
     { name: "About", href: "/about/" }

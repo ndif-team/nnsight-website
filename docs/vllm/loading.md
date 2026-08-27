@@ -1,0 +1,143 @@
+# Loading models
+
+One class, a HuggingFace repo id, and vLLM's own engine keywords. Which engine you get is decided
+by two constructor arguments.
+
+| | `VLLM(repo)` | `VLLM(repo, taps=[...])` | `VLLM(repo, mode="async")` |
+| --- | --- | --- | --- |
+| vLLM engine | `LLM`, `enforce_eager=True` | `LLM`, CUDA graphs on | `AsyncLLM` |
+| Locations served | every one | the declared taps, plus `logits` / `samples` / `result` | as the sync engine |
+| Speed | vanilla eager | ≈ vanilla vLLM ([measured](performance.md)) | as the sync engine |
+| Result | saves land in your variables | same | stream `tracer.backend`; saves on the finished output |
+
+## Eager (default)
+
+```python
+from nnsight.modeling.vllm import VLLM
+
+model = VLLM("Qwen/Qwen3-8B", dispatch=True)
+print(model.dispatched, type(model.vllm_entrypoint).__name__)
+# True LLM
+```
+
+Every module location is reachable. This is the engine every page in this section uses unless it
+says otherwise.
+
+## CUDA graphs, at declared taps
+
+CUDA-graph replay runs no Python, so an ordinary hook never fires under it. `taps=` names the
+locations that get recorded *into* the graph and served on every replay; everything else runs as
+vanilla vLLM.
+
+```python
+from nnsight.modeling.vllm import VLLM
+
+model = VLLM(
+    "Qwen/Qwen3-8B",
+    dispatch=True,
+    taps=["model.layers.*.output", "model.layers.10.mlp.input"],
+)
+print(len(model.taps), model.taps[:2])
+# 37 ('model.model.layers.0.output', 'model.model.layers.1.output')
+```
+
+`*` matches one path segment. A tap that names no module is refused at construction, and a read of
+any *other* location fails when the request ends, naming the location. Edits at a tap land in place
+and a kept value must be cloned — see [Performance](performance.md) for the rules and the numbers.
+
+## Async
+
+```python
+import asyncio
+from nnsight.modeling.vllm import VLLM
+
+
+async def main():
+    model = VLLM("Qwen/Qwen3-8B", dispatch=True, mode="async")
+    with model.trace("The capital of France is", temperature=0.0, max_tokens=8) as tracer:
+        logits = model.logits.save()
+    last = await tracer.backend          # drains the stream; saves ride the finished output
+    print(last.outputs[0].text, last.saves["logits"].shape)
+    # Paris. The capital of Italy is Rome torch.Size([1, 151936])
+
+
+asyncio.run(main())
+```
+
+Mode is fixed at construction. Streaming, concurrency and servers are on
+[Async and servers](serving.md).
+
+## A GPU-less client
+
+Without `dispatch=True` the constructor builds only a meta-device copy of the module tree — enough
+to write and serialize a trace, no GPU touched. That is the client half of
+[`nnsight-serve`](serving.md#nnsight-serve).
+
+```python
+from nnsight.modeling.vllm import VLLM
+
+model = VLLM("Qwen/Qwen3-8B")            # no weights, no GPU
+print(model.dispatched, model.model.layers[10].mlp)
+# False Qwen2MLP(
+#   (gate_up_proj): MergedColumnParallelLinear(in_features=4096, output_features=24576, ...)
+#   (down_proj): RowParallelLinear(in_features=12288, output_features=4096, ...)
+#   (act_fn): SiluAndMul()
+# )
+```
+
+Any trace on a non-dispatched model without `serve=`/`remote=` dispatches it first.
+
+## Engine keywords
+
+Everything else goes verbatim to `vllm.LLM` / `AsyncEngineArgs`.
+
+<!-- norun -->
+```python
+from nnsight.modeling.vllm import VLLM
+
+model = VLLM(
+    "Qwen/Qwen3-8B",
+    dispatch=True,
+    tensor_parallel_size=2,             # shard across GPUs; see Tensor parallelism
+    gpu_memory_utilization=0.5,         # KV-cache budget; default 0.9
+    max_model_len=4096,
+    dtype="bfloat16",
+    enable_prefix_caching=False,        # required for model.edit(); see below
+)
+```
+
+## What nnsight forces, and why
+
+| Setting | Value | Why |
+| --- | --- | --- |
+| `enforce_eager` | `True` unless `taps` | A replayed graph runs no Python, so no location can be served from one. Passing it yourself is refused if it contradicts `taps`. |
+| `enable_chunked_prefill` | `False` unless you pass it | A block must see its prompt whole. A prompt that does not fit one step's budget waits a step instead of being split. If you turn chunking on, a request whose prompt *does* get chunked comes back with an error rather than a slice of its activations. |
+| Prefix cache, traced requests | skipped | A cached token is served from the KV cache without a forward, so nothing fires for it. Traces ask for a recompute of their own prompt; plain requests on the same engine still hit the cache. An engine-wide [`edit()`](serving.md#edit-the-engine) cannot ask, so it needs `enable_prefix_caching=False` at construction. |
+| `VLLM_USE_V2_MODEL_RUNNER` | `0` | nnsight instruments vLLM 0.27's V1 `GPUModelRunner`; the worker refuses any other runner rather than coming up uninstrumented. |
+| `worker_cls` | nnsight's | Where the block runs. |
+
+## Lifecycle
+
+- `dispatch=True` builds the engine in the constructor; `dispatch=False` (the default) defers it to
+  the first trace.
+- vLLM starts its engine core as a **spawned** subprocess, so a script needs the usual guard —
+  without it the child re-runs your top level and raises a bootstrapping `RuntimeError`. Notebooks
+  are fine.
+
+    <!-- norun -->
+    ```python
+    from nnsight.modeling.vllm import VLLM
+
+    def main():
+        model = VLLM("Qwen/Qwen3-8B", dispatch=True)
+        ...
+
+    if __name__ == "__main__":
+        main()
+    ```
+
+- There is no `shutdown()`. An engine lives as long as its process; nnsight registers the
+  distributed teardown with `atexit`.
+- Tested against vLLM **0.16 through 0.27**. vLLM starts its workers with `spawn` once CUDA has
+  been initialised in the parent; if it complains about forking after CUDA initialisation, set
+  `VLLM_WORKER_MULTIPROC_METHOD=spawn` yourself (vLLM's requirement, not nnsight's).

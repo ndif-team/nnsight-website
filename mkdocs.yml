@@ -155,6 +155,7 @@ nav:
       - envoy: documentation/intervention/envoy.md
       - eproperty: documentation/intervention/eproperty.md
       - errors: documentation/intervention/errors.md
+      - fragments: documentation/intervention/fragments.md
       - interleaver: documentation/intervention/interleaver.md
       - iterator: documentation/intervention/iterator.md
       - serialization: documentation/intervention/serialization.md
@@ -177,12 +178,17 @@ nav:
         - documentation/modeling/vllm/index.md
         - async_backend: documentation/modeling/vllm/async_backend.md
         - batching: documentation/modeling/vllm/batching.md
+        - collect: documentation/modeling/vllm/collect.md
+        - envoys: documentation/modeling/vllm/envoys.md
         - engines:
           - documentation/modeling/vllm/engines/index.md
           - engine: documentation/modeling/vllm/engines/engine.md
+        - fragments: documentation/modeling/vllm/fragments.md
+        - interleaver: documentation/modeling/vllm/interleaver.md
         - model_runners:
           - documentation/modeling/vllm/model_runners/index.md
           - GPUModelRunner: documentation/modeling/vllm/model_runners/GPUModelRunner.md
+        - registration: documentation/modeling/vllm/registration.md
         - serve:
           - documentation/modeling/vllm/serve/index.md
           - backend: documentation/modeling/vllm/serve/backend.md
@@ -226,6 +232,36 @@ nav:
     - Scan: features/14_scan.ipynb
     - Remote Execution: features/15_remote_execution.ipynb
     - vLLM Support: features/16_vllm_support.ipynb
+  - vLLM:
+    - vllm/index.md
+    - Locations: vllm/locations.md
+    - Models:
+      - Loading models: vllm/loading.md
+      - Capabilities and limits: vllm/capabilities.md
+    - Reading:
+      - Capture: vllm/capture.md
+      - Attention: vllm/attention.md
+      - Logit lens: vllm/logit-lens.md
+    - Writing:
+      - Steering: vllm/steering.md
+      - Activation patching: vllm/patching.md
+      - Ablation: vllm/ablation.md
+      - Direct logit attribution: vllm/attribution.md
+      - Conditional interventions: vllm/conditional.md
+      - SAE features: vllm/sae.md
+    - Generating:
+      - Generation: vllm/generation.md
+      - Chat and tokens: vllm/chat.md
+    - Serving:
+      - Async and servers: vllm/serving.md
+      - Tensor parallelism: vllm/tensor-parallel.md
+    - Examples:
+      - Causal tracing: vllm/examples/causal-tracing.md
+      - Jacobian lens: vllm/examples/jacobian-lens.md
+      - A linear probe: vllm/examples/probe.md
+      - Concept directions: vllm/examples/emotion-tracker.md
+    - Performance: vllm/performance.md
+    - Comparisons: vllm/comparisons.md
   - Tutorials:
     - tutorials/index.md
     - Tutorials:

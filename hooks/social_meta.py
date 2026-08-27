@@ -24,6 +24,7 @@ from PIL import Image, ImageDraw
 _TYPE_BY_PREFIX = (
     ("tutorials/", "Tutorial"),
     ("features/", "Feature"),
+    ("vllm/", "vLLM"),
     ("documentation/", "API"),
     ("getting-started/", "Guide"),
     ("about/", "About"),
