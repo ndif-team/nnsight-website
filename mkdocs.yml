@@ -238,7 +238,6 @@ nav:
     - Models:
       - Loading models: vllm/loading.md
       - Capabilities and limits: vllm/capabilities.md
-      - Editing the engine: vllm/editing.md
     - Reading:
       - Capture: vllm/capture.md
       - Attention: vllm/attention.md
@@ -250,6 +249,7 @@ nav:
       - Direct logit attribution: vllm/attribution.md
       - Conditional interventions: vllm/conditional.md
       - SAE features: vllm/sae.md
+    - Editing the engine: vllm/editing.md
     - Generating:
       - Generation: vllm/generation.md
       - Chat and tokens: vllm/chat.md
