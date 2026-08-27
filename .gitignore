@@ -7,3 +7,9 @@ overrides/**
 .cache/
 __pycache__/
 *.py[cod]
+
+# Data the mini-papers fetch for themselves on first run, guarded by an
+# existence check -- caches, not inputs.
+docs/tutorials/mini-papers/comics/
+docs/tutorials/mini-papers/dual-route-induction/
+*.egg-info/
