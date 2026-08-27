@@ -69,6 +69,7 @@ print(out.outputs[0].text)
 | [Locations](locations.md) | What can be asked for, and how it is named on a vLLM module tree |
 | [Loading models](loading.md) | Eager, CUDA-graph and async engines; what nnsight forces and why |
 | [Capabilities and limits](capabilities.md) | What refuses, what is missing, how errors surface |
+| [Editing the engine](editing.md) | `model.edit()`: install a block once, choose edits per request with `edits=`, invokes, async, serve |
 | [Capture](capture.md) | Read activations: one location, every layer, every step, many prompts |
 | [Attention](attention.md) | q/k/v, per-head outputs, the attention pattern the paged kernel never forms |
 | [Logit lens](logit-lens.md) | Send a residual through the unembed, inside the worker |

@@ -238,6 +238,7 @@ nav:
     - Models:
       - Loading models: vllm/loading.md
       - Capabilities and limits: vllm/capabilities.md
+      - Editing the engine: vllm/editing.md
     - Reading:
       - Capture: vllm/capture.md
       - Attention: vllm/attention.md

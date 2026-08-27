@@ -154,7 +154,8 @@ request through its generated tokens. On an async engine, `async with model.edit
 so an installed block would see a short prompt and no error. A trace can ask for its own recompute;
 an edit rides requests it did not create and cannot.
 
-When to edit rather than trace: a sweep over many prompts (the block is serialized once, not per
+The full behaviour — named edits chosen per request with `edits=`, invokes, the async engine, errors — is on
+[Editing the engine](editing.md). When to edit rather than trace: a sweep over many prompts (the block is serialized once, not per
 request), or instrumenting traffic you do not write. When to trace: one-off experiments, and
 whenever you want the values back as your own variables.
 
