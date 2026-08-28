@@ -182,14 +182,6 @@ What the grid says about interp-engine:
 - **Gradients are the one row interp-engine leads**, on its eager HuggingFace backend: one
   forward+backward at 70B takes 531 ms there against 1,216 ms on nnsight's `TransformersModel`.
 
-### Choosing
-
-Reach for interp-engine when a fixed, family-normalized point vocabulary is the interface you
-want to ship — a serving pod exposing `resid_post` and a steering spec to many callers, validated
-against three other engines. Reach for nnsight on vLLM when the experiment is the code: a
-head-slice ablation, a token override, a probe deciding a write mid-generation, a lens computed
-where the weights are — and when the thing being instrumented is traffic you did not write.
-
 ---
 
 ## vLLM-Lens
@@ -333,15 +325,6 @@ using it inside is what the grid shows. Invisible in a single trace, decisive in
   interp-engine lose nothing, and every-layer capture drops to 37 (nnsight eager 58, taps 208).
   At 70B/tp=4 the same shape: plain generation and one-layer capture on par or slightly ahead,
   steering, probe and lens at 18–19 tok/s against the eager engines' 27–29.
-
-### Choosing
-
-vLLM-Lens is the right tool when the deployment is a `vllm serve` and the instrumentation has to
-arrive through the OpenAI API — a serving stack, an Inspect evaluation, a client in another
-language — and the residual stream at layer boundaries is what you need. nnsight is the right
-tool when the experiment needs a location vLLM-Lens does not have (a head, a neuron, the router,
-the sampler), when it needs computation between locations in the same forward, or when the
-per-request cost of a hook matters at generation length.
 
 ---
 
