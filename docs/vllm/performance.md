@@ -34,6 +34,12 @@ print(len(model.taps), model.taps[:2])
 refused at construction. The same trace syntax, per-request scoping, `tracer.iter`, `model.logits`
 and `model.samples` all work unchanged. What changes:
 
+- **A tap can reach inside a forward.** `taps=["model.layers.10.self_attn.source.qkv_split_0.output"]`
+  taps a [`.source` op](locations.md#inside-a-forward): the worker instruments that module's
+  forward before recording the graphs, and the op is served on every replay — q after the
+  projection split, k after rope, whatever the forward names. Verified on Qwen3-8B: reads equal
+  the eager engine's exactly, and zeroing q through the tap changes the text identically. An op
+  the forward does not have is refused at load with the list of ones it has.
 - **Only taps are reachable.** A read of any other module location fails when the request ends
   with `'...' is not a tap on this engine`. Keep the set small: each tap splits the graph.
 - **Edits land in place.** `x[:] += v` is exactly right. A replacement (`layer.output = t`) is
