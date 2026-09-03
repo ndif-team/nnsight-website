@@ -113,7 +113,7 @@ For a logit lens under TP use the model's own logits processor, which gathers th
 - Rank 0 reports the saves.
 - vLLM starts its workers with `spawn` once CUDA is initialised in the parent, which is what
   dispatching an engine does, and it sets `VLLM_WORKER_MULTIPROC_METHOD` itself. What that
-  costs you is the [`__main__` guard](loading.md#in-a-py-file-build-the-engine-under-a-main-guard)
+  costs you is the [`__main__` guard](loading.md#main-guard)
   in a script, at any shard count.
 
 ## Mixture of experts

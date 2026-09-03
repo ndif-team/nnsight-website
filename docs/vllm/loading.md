@@ -23,7 +23,7 @@ print(model.dispatched, type(model.vllm_entrypoint).__name__)
 Every module location is reachable. This is the engine every page in this section uses unless it
 says otherwise.
 
-## In a `.py` file, build the engine under a `__main__` guard
+## In a `.py` file, build the engine under a `__main__` guard {#main-guard}
 
 Every snippet in this section is written flat, the way you would type it into a notebook. Saved to
 a file and run with `python`, the same code needs one wrapper:
@@ -162,22 +162,7 @@ model = VLLM(
 
 - `dispatch=True` builds the engine in the constructor; `dispatch=False` (the default) defers it to
   the first trace.
-- vLLM starts its engine core as a **spawned** subprocess, so a script needs the usual guard —
-  without it the child re-runs your top level and raises a bootstrapping `RuntimeError`. Notebooks
-  are fine.
-
-    <!-- norun -->
-    ```python
-    from nnsight.modeling.vllm import VLLM
-
-    def main():
-        model = VLLM("Qwen/Qwen3-8B", dispatch=True)
-        ...
-
-    if __name__ == "__main__":
-        main()
-    ```
-
+- A script needs the [`__main__` guard](#main-guard) above; a notebook does not.
 - There is no `shutdown()`. An engine lives as long as its process; nnsight registers the
   distributed teardown with `atexit`.
 - Tested against vLLM **0.16 through 0.27**. vLLM starts its workers with `spawn` once CUDA has
