@@ -45,6 +45,17 @@ print(len(model.taps), model.taps[:2])
 any *other* location fails when the request ends, naming the location. Edits at a tap land in place
 and a kept value must be cloned — see [Performance](performance.md) for the rules and the numbers.
 
+A tap is written against the same path `model.get(...)` takes, so it carries whatever prefix the
+checkpoint's tree has. On a vision-language checkpoint the decoder sits under the language model,
+and `taps=["model.layers.*.output"]` names no module: write
+`taps=["language_model.model.layers.*.output"]`. `print(model)` on the meta tree settles it before
+the engine is built.
+
+A tap naming no module is caught against the meta tree and raises where you wrote it. A `.source`
+op is checked later, in the worker that instruments the forward, so a name that forward does not
+have surfaces as `RuntimeError: Engine core initialization failed. See root cause above.` — the
+message listing the ops it *does* have is in the `(EngineCore pid=...)` lines above it.
+
 ## Async
 
 ```python
@@ -111,7 +122,7 @@ model = VLLM(
 | Setting | Value | Why |
 | --- | --- | --- |
 | `enforce_eager` | `True` unless `taps` | A replayed graph runs no Python, so no location can be served from one. Passing it yourself is refused if it contradicts `taps`. |
-| `enable_chunked_prefill` | `False` unless you pass it | A block must see its prompt whole. A prompt that does not fit one step's budget waits a step instead of being split. If you turn chunking on, a request whose prompt *does* get chunked comes back with an error rather than a slice of its activations. |
+| `enable_chunked_prefill` | `False` unless you pass it | A block must see its prompt whole. A prompt that does not fit one step's budget waits a step instead of being split. If you turn chunking on, a request whose prompt *does* get chunked comes back with an error rather than a slice of its activations. The `Chunked prefill is enabled with max_num_batched_tokens=...` line printed at construction comes from the meta tree built first, not from the engine you get; the engine's own arguments are logged a few lines later as `non-default args: {...}`. |
 | Prefix cache, traced requests | skipped | A cached token is served from the KV cache without a forward, so nothing fires for it. Traces ask for a recompute of their own prompt; plain requests on the same engine still hit the cache. An engine-wide [`edit()`](serving.md#edit-the-engine) cannot ask, so it needs `enable_prefix_caching=False` at construction. |
 | `VLLM_USE_V2_MODEL_RUNNER` | `0` | nnsight instruments vLLM 0.27's V1 `GPUModelRunner`; the worker refuses any other runner rather than coming up uninstrumented. |
 | `worker_cls` | nnsight's | Where the block runs. |
@@ -138,6 +149,10 @@ model = VLLM(
 
 - There is no `shutdown()`. An engine lives as long as its process; nnsight registers the
   distributed teardown with `atexit`.
-- Tested against vLLM **0.16 through 0.27**. vLLM starts its workers with `spawn` once CUDA has
-  been initialised in the parent; if it complains about forking after CUDA initialisation, set
-  `VLLM_WORKER_MULTIPROC_METHOD=spawn` yourself (vLLM's requirement, not nnsight's).
+- nnsight targets vLLM's **V1** engine and imports its internals directly, so the release matters.
+  The `vllm` extra carries no upper bound: `pip install "nnsight[vllm]"` takes the current release,
+  and one that has moved an imported name fails at `import nnsight.modeling.vllm`. This section was
+  run on **0.27.1**.
+- vLLM starts its workers with `spawn` once CUDA has been initialised in the parent; if it
+  complains about forking after CUDA initialisation, set `VLLM_WORKER_MULTIPROC_METHOD=spawn`
+  yourself (vLLM's requirement, not nnsight's).
