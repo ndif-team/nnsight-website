@@ -6,4 +6,4 @@
 
 ## :material-rocket-launch: [Quick Start](quickstart.md)
 
-Load a model, read a hidden state, change one, and get the values back out — in one page.
+Load a model, read a hidden state, change one, and get the values back out.

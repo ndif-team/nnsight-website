@@ -6,10 +6,9 @@
 - PyTorch 2.4 or higher
 - `transformers` 5.x, if you are working with HuggingFace models
 
-`pip install nnsight` pulls in a `transformers` but does not pin its major version. Your code
-cares even where nnsight does not: what a module returns changed between `transformers` 4 and
-5. On 5.x a decoder block hands back a bare tensor; on 4.x it handed back
-a one-element tuple, which is why so much nnsight code you will find online writes
+`pip install nnsight` pulls in a `transformers` but does not pin its major version, and the two
+majors differ in what a module returns. On 5.x a decoder block hands back a bare tensor; on 4.x
+it hands back a one-element tuple, which is why so much nnsight code you will find online writes
 `.output[0]`. These docs are written for 5.x throughout. Check what you have:
 
 ```python

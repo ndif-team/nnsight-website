@@ -34,7 +34,7 @@ print(model.tokenizer.decode(output.logits.argmax(dim=-1)[0]))
 ```
 
 !!! warning "Always use `.save()`"
-    The body of a trace does not run where you wrote it — nnsight compiles it and runs it in a
+    The body of a trace does not run where you wrote it. nnsight compiles it and runs it in a
     worker alongside the forward pass, then copies back only the values you marked. So a value
     you want after the block **must** be `.save()`d, and it comes back under the name you bound
     it to. Reading an unsaved name afterwards is a `NameError` in a script, an
@@ -108,14 +108,14 @@ with model.trace("Hello"):
 Every tensor you build inside a trace has to land where the activation already is. `torch.randn`
 gives you a CPU tensor, and adding one to a CUDA activation is a
 `RuntimeError: Expected all tensors to be on the same device`. Reading `device=` and `dtype=`
-off the activation itself, as above, is right under `device_map` sharding and mixed precision
-too — the alternatives are not.
+off the activation itself, as above, also stays correct when `device_map` has sharded the model
+across devices or the layers are in mixed precision.
 
-One more thing separates the two forms above. `output[:] = v` writes through the tensor the
-model is holding; `output = v` hands the model a different one. Both take effect, but a
-replacement built from scratch — `torch.zeros_like(...)`, a fresh `torch.randn(...)` — is a
-tensor autograd has never seen, so it cuts the graph and any later gradient read fails. Derive
-the new value from the old one, as `hs + noise` does, or write in place.
+The two forms differ in more than style. `output[:] = v` writes through the tensor the model is
+holding; `output = v` hands the model a different one. Both take effect, but a replacement built
+from scratch, such as `torch.zeros_like(...)` or a fresh `torch.randn(...)`, is a tensor autograd
+has never seen, so it cuts the graph and any later gradient read fails. Derive the new value from
+the old one, as `hs + noise` does, or write in place.
 
 ## Understanding Module Hierarchy
 
@@ -163,8 +163,8 @@ Everything you read or write on a module goes through one of these:
 
 Within one trace you have to touch modules in the order the model runs them. Your code is a
 worker that parks until the model produces each value, so reading layer 11 and then writing
-layer 0 raises `OutOfOrderError` — layer 0 has already gone by. Put reads and writes in
-forward order, or give each one its own `tracer.invoke(...)`.
+layer 0 raises `OutOfOrderError`: layer 0 has already gone by. Put reads and writes in forward
+order, or give each one its own `tracer.invoke(...)`.
 
 ## Using with Any PyTorch Model
 
