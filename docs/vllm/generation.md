@@ -96,15 +96,17 @@ sampled. Logits at every prompt position come from the [logit lens](logit-lens.m
 leaves one warning on stderr, naming the first location the body reads:
 
 ```
-UserWarning: 'model.logits.i6' was never reached: an open `tracer.iter[:]` / `tracer.all()`
-loop ends by asking for a step the run does not make. Values saved inside the loop are kept;
-the statements after it did not run.
+UserWarning: 'model.logits.i6' was never reached: the loop asked for a step the run did not
+make, so it was cut short — values saved inside the loop are kept, and the statements after
+it did not run. An open `tracer.iter[:]` / `tracer.all()` loop ends this way by design. ...
 ```
 
 Every step that ran is in `steps`. What does not run is anything the block does after the loop, so
 when you want a per-step read *and* something afterwards — `tracer.result`, say — bound the loop
 with `tracer.iter[:N]` and hold the request to `N` steps with `ignore_eos=True` or vLLM's
-`min_tokens=N`. A bounded loop the request cannot supply raises rather than warning.
+`min_tokens=N`. A bounded loop the request cannot supply is cut short the same way, with the same
+warning — and since the warning stays on the engine, the short result is the only thing your
+process sees. Check the `len()` of what you collected.
 
 ## Forcing the draw
 

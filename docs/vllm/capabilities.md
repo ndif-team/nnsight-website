@@ -1,8 +1,9 @@
 # Capabilities and limits
 
-There is no capability table to consult: any module on the tree is a location, and what the engine
-cannot do it refuses with an error that names the location and the fix. What is worth knowing is
-which questions to ask up front, and which errors mean what.
+There is no capability table to consult: any module on the tree is a location, and most of what
+the engine cannot do it refuses with an error that names the location and the fix. What is worth
+knowing is which questions to ask up front, which errors mean what — and the two constraints
+nothing enforces for you.
 
 ## Ask the model
 
@@ -28,7 +29,10 @@ print(model.model.layers[10])        # what is there to read
 
 ## Refusals
 
-Nothing degrades silently. Each row is a real error, reproduced on this model.
+What the engine cannot do it refuses loudly. Each row is a real error, reproduced on this
+model. Two cases are not refusals and are covered below: a write that changes the request's
+row count reaches the model unchecked, and a `tracer.iter` loop that outruns the request is
+cut short with a warning.
 
 | You did | You get |
 | --- | --- |
@@ -43,9 +47,8 @@ Nothing degrades silently. Each row is a real error, reproduced on this model.
 | `enable_chunked_prefill=True` and a prompt that got chunked | the request's error: prompt split across steps, so no block could see it whole |
 | `.backward()`, `.grad` | `NotImplementedError`: the forward runs under `torch.inference_mode`, so there is no autograd graph |
 | `.scan()` | `NotImplementedError: scan is unavailable on vLLM: it runs the model's forward under a fake-tensor mode ... Trace a prompt and read the shapes off the activations it serves.` |
-| a replacement with a different number of rows (`layer.output = t`) | `ValueError: A batched write has to keep its rows: this block owns rows 0:5 of 5, so the replacement must be (5, 4096), not (2, 4096).` |
 | an exception in your block (`1/0`) | re-raised in your process with the block's own traceback; the engine keeps serving |
-| `tracer.iter[:20]` on a request that made 4 steps | `OutOfOrderError: 'model.samples.i4' was never reached: the loop asked for iteration 4 of 'model.samples' and the run reached it 4 times, so the loop was cut short and nothing after it ran.` Hold the run to the count with `ignore_eos=True` or `min_tokens=N`, or loop with `tracer.all()` and put the trailing statements after the `with` block. |
+| `tracer.iter[:20]` on a request that made 4 steps | not a refusal: the loop is cut short at step 4 with `UserWarning: 'model.samples.i4' was never reached ...` — emitted in the EngineCore subprocess, not yours. The 4 reached steps come home; the statements after the loop never run. Hold the run to the count with `ignore_eos=True` or `min_tokens=N`, and check the `len()` of what you collected. |
 
 ```python
 from nnsight.modeling.vllm import VLLM
@@ -66,35 +69,20 @@ print(model.tokenizer.decode(ok))
 # Paris
 ```
 
-A bad block errors *its* request. Other clients' requests in the same batch, and every request
-after, are unaffected — this is what makes [engine-wide edits](serving.md#edit-the-engine) and
-shared servers safe to run. The invokes of one trace are not separate that way: they are one
-block, and it raises as a whole, so a sweep loses the invokes that were fine along with the one
-that was not.
+An ordinary Python error in a block — an exception the block itself raises — errors *its*
+request. Other clients' requests in the same batch, and every request after, are unaffected —
+this is what makes [engine-wide edits](serving.md#edit-the-engine) and shared servers safe to
+run. The invokes of one trace are not separate that way: they are one block, and it raises as a
+whole, so a sweep loses the invokes that were fine along with the one that was not.
 
-The case worth knowing is the last row of the table, because a patching sweep is where you meet
-it. A replacement is spliced back into the rows the block owns, so it has to keep them; a donor
-activation captured at a different prompt length is the usual source of a short one. Slice the
-donor to the rows you are writing instead.
-
-```python
-from nnsight.modeling.vllm import VLLM
-
-model = VLLM("Qwen/Qwen3-8B", dispatch=True)
-
-try:
-    with model.trace("The capital of France is", temperature=0.0, max_tokens=1):
-        out = model.model.layers[10].output
-        model.model.layers[10].output = (out[0][:2], out[1][:2])
-except Exception as e:
-    print(type(e).__name__, str(e).splitlines()[0])
-# RuntimeError ValueError: A batched write has to keep its rows: this block owns rows 0:5 of 5, so the replacement must be (5, 4096), not (2, 4096).
-
-with model.trace("The capital of France is", temperature=0.0):      # the engine is fine
-    ok = model.logits.argmax(-1).save()
-print(model.tokenizer.decode(ok))
-# Paris
-```
+That isolation covers what happens *in the block*. What the block hands the model is another
+matter: a replacement (`layer.output = t`) is spliced back into the rows the block owns, and it
+must keep the request's row count — nothing checks it for you. A wrong-height replacement
+reaches the next kernels as given, and a shape mismatch there can land as a device-side assert,
+which poisons the CUDA context and takes the engine down with every request in it. A patching
+sweep is where you meet this: a donor activation captured at a different prompt length is the
+usual source of a short one. Slice the donor to the rows you are writing
+(`served[POS] = donor[POS]`) rather than assigning a shorter tensor.
 
 ## Where the message is
 
@@ -107,9 +95,10 @@ Two things do not come home, because they happen in vLLM's EngineCore subprocess
 - **Warnings.** A `warnings.catch_warnings()` around a trace records nothing; the text is in the
   engine's own output, prefixed `(EngineCore pid=...)`. This is the one place the vLLM path is not
   the local one — the same block warns catchably against a HuggingFace model. What you will meet
-  here is an open `tracer.iter[:]` / `tracer.all()` loop that outruns the request: it warns that
-  the statements after the loop did not run, and keeps what the loop saved. A *bounded*
-  `tracer.iter[:N]` that outruns the request is an error, and that one does come home.
+  here is a `tracer.iter` loop — bounded or open — that outruns the request: the warning that it
+  was cut short stays on the engine, what the loop saved comes home, and the statements after the
+  loop never run. Your process sees a result that looks complete, so check the `len()` of what
+  you collected.
 - **Anything that fails while the engine builds**, including a bad `taps=` entry. The caller sees
   `RuntimeError: Engine core initialization failed. See root cause above.`; the message that names
   the ops a forward actually has is in the `(EngineCore pid=...)` lines above it. The same shape
