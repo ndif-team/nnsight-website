@@ -262,18 +262,25 @@ from nnsight import TransformersModel
 
 model = TransformersModel('openai-community/gpt2', device_map='auto', dispatch=True)
 
-with model.trace('The Eiffel Tower is in the city of', remote=True/False):
-    # Intervene on activations
-    model.transformer.h[0].output[0][:] = 0
+prompt = 'The Eiffel Tower is in the city of'
 
-    # Access and save hidden states
-    hidden_states = model.transformer.h[-1].output[0].save()
+with model.trace(prompt):
+    # Read a hidden state out of the forward pass
+    hidden_states = model.transformer.h[-1].output.save()
+    clean = model.output.logits[0, -1].argmax(dim=-1).save()
 
-    # Get model output
-    output = model.output.save()
+with model.trace(prompt):
+    # Zero one layer at the last position and see what changes
+    model.transformer.h[5].output[:, -1, :] = 0
+    ablated = model.output.logits[0, -1].argmax(dim=-1).save()
 
-print(model.tokenizer.decode(output.logits.argmax(dim=-1)[0]))
+print(hidden_states.shape)                       # torch.Size([1, 10, 768])
+print(model.tokenizer.decode(clean))             # ' Paris'
+print(model.tokenizer.decode(ablated))           # ','
 ```
+
+Add `remote=True` to run the same code on a model too big for your machine, hosted by
+[NDIF](https://ndif.us/).
 
 </div>
 
