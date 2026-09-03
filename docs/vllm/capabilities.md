@@ -45,6 +45,7 @@ Nothing degrades silently. Each row is a real error, reproduced on this model.
 | `.scan()` | `NotImplementedError: scan is unavailable on vLLM: it runs the model's forward under a fake-tensor mode ... Trace a prompt and read the shapes off the activations it serves.` |
 | a replacement with a different number of rows (`layer.output = t`) | `ValueError: A batched write has to keep its rows: this block owns rows 0:5 of 5, so the replacement must be (5, 4096), not (2, 4096).` |
 | an exception in your block (`1/0`) | re-raised in your process with the block's own traceback; the engine keeps serving |
+| `tracer.iter[:20]` on a request that made 4 steps | `OutOfOrderError: 'model.samples.i4' was never reached: the loop asked for iteration 4 of 'model.samples' and the run reached it 4 times, so the loop was cut short and nothing after it ran.` Hold the run to the count with `ignore_eos=True` or `min_tokens=N`, or loop with `tracer.all()` and put the trailing statements after the `with` block. |
 
 ```python
 from nnsight.modeling.vllm import VLLM
@@ -104,9 +105,11 @@ type rides the message rather than the class, catch `RuntimeError` and match on 
 Two things do not come home, because they happen in vLLM's EngineCore subprocess:
 
 - **Warnings.** A `warnings.catch_warnings()` around a trace records nothing; the text is in the
-  engine's own output. A `tracer.iter[:N]` that outruns the request is the one you are likely to
-  meet — the loop is cut short and the statements after it do not run. Hold the run to the count
-  you loop over (`min_new_tokens=N`, or `ignore_eos=True`) rather than watching for the warning.
+  engine's own output, prefixed `(EngineCore pid=...)`. This is the one place the vLLM path is not
+  the local one — the same block warns catchably against a HuggingFace model. What you will meet
+  here is an open `tracer.iter[:]` / `tracer.all()` loop that outruns the request: it warns that
+  the statements after the loop did not run, and keeps what the loop saved. A *bounded*
+  `tracer.iter[:N]` that outruns the request is an error, and that one does come home.
 - **Anything that fails while the engine builds**, including a bad `taps=` entry. The caller sees
   `RuntimeError: Engine core initialization failed. See root cause above.`; the message that names
   the ops a forward actually has is in the `(EngineCore pid=...)` lines above it. The same shape
@@ -122,6 +125,11 @@ logged a few lines later as `non-default args: {... 'enable_chunked_prefill': Fa
 - **Tensors alias engine memory.** Clone what you keep ([Locations](locations.md#clone-what-you-keep)).
 - **One prompt per invoke, no barrier.** Prompts become separate requests the scheduler batches;
   cross-prompt patching is a *saved* value from one trace used in the next, not a barrier.
+- **Numbers depend on the batch a request was scheduled with.** Reduction order inside a fused
+  kernel follows the batch, and in bf16 that moves the last digit, so a sweep on this page
+  reproduces to about a part in a hundred rather than exactly, and a nearly-tied greedy argmax
+  can land differently between runs. `temperature=0.0` pins the sampler, not the arithmetic.
+  Read paired differences taken inside one trace rather than differencing two runs.
 
 ## Not on vLLM
 
