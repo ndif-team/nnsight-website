@@ -114,7 +114,14 @@ across devices or the layers are in mixed precision.
 The two forms differ in more than style. `output[:] = v` writes through the tensor the model is
 holding; `output = v` hands the model a different one. Both take effect, but a replacement built
 from scratch, such as `torch.zeros_like(...)` or a fresh `torch.randn(...)`, is a tensor autograd
-has never seen, so it cuts the graph and any later gradient read fails. Derive the new value from
+has never seen, so it cuts the graph at that point — and what a later gradient read does depends
+on what else survives the cut. Replace a whole block's output and every path is severed: an
+upstream `.grad` read fails loudly with an `OutOfOrderError` (so does reading the fresh tensor's
+own `.grad`). But replace a submodule's output, as here — the residual stream and the attention
+branch route around the MLP — and an upstream `.grad` read *succeeds*, silently returning a
+gradient that is missing the MLP path's contribution. Measured on gpt2: swapping `h[3].mlp.output`
+for a detached copy of the very same values leaves the forward pass bit-identical, yet shifts the
+layer-0 gradient by 45% in L2 norm (125,659 → 130,349) with no warning. Derive the new value from
 the old one, as `hs + noise` does, or write in place.
 
 ## Understanding Module Hierarchy
