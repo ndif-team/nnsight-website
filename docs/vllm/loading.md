@@ -23,6 +23,48 @@ print(model.dispatched, type(model.vllm_entrypoint).__name__)
 Every module location is reachable. This is the engine every page in this section uses unless it
 says otherwise.
 
+## In a `.py` file, build the engine under a `__main__` guard {#main-guard}
+
+Every snippet in this section is written flat, the way you would type it into a notebook. Saved to
+a file and run with `python`, the same code needs one wrapper:
+
+<!-- norun -->
+```python
+from nnsight.modeling.vllm import VLLM
+
+
+def main():
+    model = VLLM("Qwen/Qwen3-8B", dispatch=True)
+    with model.trace("The capital of France is", temperature=0.0, max_tokens=1):
+        logits = model.logits.save()
+    print(model.tokenizer.decode(logits.argmax(-1)))
+
+
+if __name__ == "__main__":
+    main()
+```
+
+Dispatching the engine initialises CUDA in your process, so vLLM starts its workers with `spawn`
+rather than `fork` and logs why:
+
+```
+WARNING [system_utils.py:157] We must use the `spawn` multiprocessing start method.
+Overriding VLLM_WORKER_MULTIPROC_METHOD to 'spawn'. ... Reasons: CUDA is initialized
+```
+
+Spawning re-imports the main module, so a `VLLM(..., dispatch=True)` sitting at the top level of
+that module runs again in the child and the engine core dies:
+
+```
+RuntimeError: An attempt has been made to start a new process before the current process has
+finished its bootstrapping phase.
+RuntimeError: Engine core initialization failed.
+```
+
+This holds for one GPU and `mode="sync"` as much as for eight and `mode="async"`. Notebooks have
+no main module to re-import, which is why the snippets run there as written; plain `vllm.LLM` at
+module level works for the same reason, since nothing has touched CUDA before the fork.
+
 ## CUDA graphs, at declared taps
 
 CUDA-graph replay runs no Python, so an ordinary hook never fires under it. `taps=` names the
@@ -131,22 +173,7 @@ model = VLLM(
 
 - `dispatch=True` builds the engine in the constructor; `dispatch=False` (the default) defers it to
   the first trace.
-- vLLM starts its engine core as a **spawned** subprocess, so a script needs the usual guard —
-  without it the child re-runs your top level and raises a bootstrapping `RuntimeError`. Notebooks
-  are fine.
-
-    <!-- norun -->
-    ```python
-    from nnsight.modeling.vllm import VLLM
-
-    def main():
-        model = VLLM("Qwen/Qwen3-8B", dispatch=True)
-        ...
-
-    if __name__ == "__main__":
-        main()
-    ```
-
+- A script needs the [`__main__` guard](#main-guard) above; a notebook does not.
 - There is no `shutdown()`. An engine lives as long as its process; nnsight registers the
   distributed teardown with `atexit`.
 - nnsight targets vLLM's **V1** engine and imports its internals directly, so the release matters.

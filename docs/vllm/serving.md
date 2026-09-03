@@ -38,6 +38,13 @@ Every yielded `RequestOutput` carries the cumulative text; only the last (`finis
 returns that last output. Closing the stream early aborts the request. One prompt per async
 trace — for many, fire many.
 
+**Saved names live on the output, not in your variables.** This is the one backend that does not
+push them back: `resid` above is still unbound after the stream, and the tensor is
+`output.saves["resid"]`. The name you save under is the key you read. Two more edges of the same
+stream: a second `await tracer.backend` returns `None` rather than raising, so the failure shows
+up later as an `AttributeError` on `.outputs`; and `model.generate(...)` on an async engine
+returns a coroutine to await, not outputs.
+
 **One engine, one event loop.** `AsyncLLM` binds to the loop that built it, which is where it
 keeps its output handler and its per-request futures. Build the model inside the coroutine you
 will await it from — as `main()` does above — not at import time followed by two `asyncio.run()`
@@ -82,17 +89,31 @@ asyncio.run(main())
 
 ## `nnsight-serve`
 
-A single-model FastAPI server around a dispatched async engine. The CLI mirrors `vllm serve`;
-trailing flags are vLLM engine args.
+A single-model FastAPI server around a dispatched async engine. `--host`, `--port` and
+`--api-key` are the server's own; every other `--flag value` is handed to vLLM's `EngineArgs` as
+`flag=value`.
 
 ```bash
 nnsight-serve Qwen/Qwen3-8B --port 6677 --gpu-memory-utilization 0.5
 nnsight-serve Qwen/Qwen3-8B --port 6677 --api-key SECRET --tensor-parallel-size 2
 ```
 
+That forwarding is literal, and three of its edges are quiet:
+
+- **Booleans take a value.** `--enable-prefix-caching False` is the spelling; vLLM's own
+  `--no-enable-prefix-caching` arrives as `no_enable_prefix_caching=True` and the server stops
+  with `TypeError: EngineArgs.__init__() got an unexpected keyword argument`.
+- **Short flags are dropped.** `-tp 2` prints `Ignoring unknown argument: -tp` to stderr and the
+  server comes up at `tensor_parallel_size=1`. Write `--tensor-parallel-size 2`.
+- **Every value arrives as one string**, so there is no way to spell `taps=`.
+  `--taps model.layers.*.output` hands the engine a string, which it walks one character at a
+  time and refuses with `ValueError: Tap 'm' names no module`. A tapped engine has to be built in
+  Python.
+
 It binds to `127.0.0.1` by default and executes client-supplied code, so only expose it on a
-network you trust; `--api-key` requires the header on every request. `GET /health` reports
-readiness. (An editable install may not register the console script — `python -m
+network you trust; `--api-key` requires the header on every request, and a client without it gets
+`ConnectionError: nnsight-serve returned 401: Invalid API key`. `GET /health` answers without a
+key and reports readiness. (An editable install may not register the console script — `python -m
 nnsight.modeling.vllm.serve.cli` is the same thing.)
 
 ### A GPU-less client

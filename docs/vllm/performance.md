@@ -8,10 +8,20 @@ keep CUDA-graph replay.
 vLLM's decode throughput comes largely from replaying CUDA graphs, and a replayed graph runs no
 Python — so nothing can be served from inside one. The default `VLLM(...)` therefore builds the
 engine with `enforce_eager=True`, where every module's forward runs as Python and any location is
-reachable. On one GPU that costs little (Llama-3.1-8B: 86 tok/s against vanilla vLLM's 92, and
-79 while capturing a layer every step). Under tensor parallelism it costs a lot: the per-module
-handoff runs serially on the driver while the GPUs wait, and an eager engine sits near 70 tok/s
-however many cards it has.
+reachable.
+
+**That price is vLLM's eager mode, not nnsight.** Built back to back and asked to generate with no
+trace running, plain `vllm.LLM(..., enforce_eager=True)` and a dispatched `VLLM(...)` measure the
+same thing every time: 69.6 against 69.7 tok/s, 70.7 against 71.2, 52.1 against 54.1 on a loaded
+host, and 39.3 against 39.0 at `tensor_parallel_size=2`. What a reachable location costs is what an
+eager engine costs.
+
+An eager engine spends a Python round trip per module call on the driver, so its throughput
+follows whatever CPU the host has to spare. Llama-3.1-8B generates at 86 tok/s on a quiet
+A100-80GB and at 54 on the same machine with other tenants running. A tapped engine waits on
+the GPU instead and does not move: 89 tok/s on the quiet measurement, 89 on the busy one. So the
+eager column below is a **ratio** to plain eager vLLM, which holds across hosts, while the
+vanilla and taps columns are tokens per second, which reproduce.
 
 ## Graph taps
 
@@ -78,35 +88,45 @@ print(len(hs), hs[0].shape, repr(out.outputs[0].text))
 ## Measured
 
 Llama-3.1-8B and Llama-3.1-70B, bf16, A100-80GB, vLLM 0.27.1, 512-token prompt, 128 new tokens,
-greedy, prefix caching off on every engine, mean of 9 timed runs. Tokens per second.
+greedy, prefix caching off on every engine, mean of 9 timed runs.
 
-**One request, one GPU (8B).**
+**One request, one GPU (8B).** The vanilla and taps columns are tokens per second. The eager
+column is a share of plain vLLM with `enforce_eager=True` doing the same generation, which is what
+the eager engine matches on the first row.
 
 | workload | vanilla vLLM | `VLLM(...)` eager | `VLLM(..., taps=)` |
 | --- | ---: | ---: | ---: |
-| generate | 92 | 86 | 89 |
-| generate inside an empty trace | · | 80 | 89 |
-| capture one layer, every step | · | 79 | 89 |
-| capture every layer, every step | · | 68 | 88 |
-| additive steering at one layer | · | 78 | 89 |
-| logit lens every step, in the worker | · | 78 | 84 |
-| zero one head every step | · | 79 | 89 |
-| override the sampled token every step | · | 79 | 89 |
-| 8 concurrent, capture one layer | 618 (plain) | 529 | 577 |
+| generate | 92 tok/s | 1.00 | 89 tok/s |
+| generate inside an empty trace | · | 0.93 | 89 |
+| capture one layer, every step | · | 0.92 | 89 |
+| capture every layer, every step | · | 0.79 | 88 |
+| additive steering at one layer | · | 0.91 | 89 |
+| logit lens every step, in the worker | · | 0.91 | 84 |
+| zero one head every step | · | 0.92 | 89 |
+| override the sampled token every step | · | 0.92 | 89 |
+| 8 concurrent, capture one layer | 618 tok/s (plain) | 0.92 | 577 tok/s |
+
+An eager engine with a block installed keeps 0.79 to 0.93 of what the same engine does with nothing
+installed, so the block is cheap next to eager mode itself. A tapped engine holds 84 to 89 tok/s
+against vanilla's 92 whatever the block does, including the every-layer capture that costs the
+eager engine a fifth.
 
 **Scaling with tensor parallelism** — capture one layer every step, as a share of vanilla vLLM at
 the same settings.
 
 | | vanilla | eager | taps |
 | --- | ---: | ---: | ---: |
-| 8B, 1 GPU | 92 | 79 (85%) | 89 (96%) |
-| 8B, tp=2 | 148 | 67 (45%) | 140 (95%) |
-| 8B, tp=4 | 229 | 67 (29%) | 213 (93%) |
-| 8B, tp=8 | 313 | 64 (20%) | 284 (91%) |
-| 70B, tp=4 | 37 | 27 (75%) | 35 (97%) |
-| 70B, tp=8 | 61 | 28 (46%) | 58 (95%) |
+| 8B, 1 GPU | 92 | 85% | 89 (96%) |
+| 8B, tp=2 | 148 | 45% | 140 (95%) |
+| 8B, tp=4 | 229 | 29% | 213 (93%) |
+| 8B, tp=8 | 313 | 20% | 284 (91%) |
+| 70B, tp=4 | 37 | 75% | 35 (97%) |
+| 70B, tp=8 | 61 | 46% | 58 (95%) |
 
-Graph replay is what scales. Where the eager engine is fine — one GPU, a notebook — it is the
+Graph replay is what scales. An eager engine's rate barely moves as cards are added — the
+per-module handoff runs on the driver while the GPUs wait — and that ceiling belongs to eager mode
+rather than to the block: measured back to back at `tensor_parallel_size=2`, plain eager vLLM gives
+39.3 tok/s and `VLLM(...)` 39.0. Where the eager engine is fine — one GPU, a notebook — it is the
 simpler choice because every location is served; where the GPUs outnumber the driver's ability to
 hand off, declare taps.
 
