@@ -1,23 +1,9 @@
 # Getting Started
 
-Welcome to NNsight! This section will help you get up and running quickly.
-
 ## :material-download: [Installation](installation.md)
 
-Install NNsight and set up your environment.
+`pip install nnsight`, the optional extras, and what to install alongside it.
 
 ## :material-rocket-launch: [Quick Start](quickstart.md)
 
-Learn the basics with a hands-on example.
-
----
-
-## What You'll Learn
-
-After completing this section, you'll be able to:
-
-- Install nnsight in your Python environment
-- Load a language model and run your first trace
-- Access hidden states and activations
-- Modify activations to study causal effects
-- Save values for analysis outside the trace context
+Load a model, read a hidden state, change one, and get the values back out — in one page.
