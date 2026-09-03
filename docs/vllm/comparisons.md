@@ -347,7 +347,7 @@ number, the run count and the range.
 
 **Every panel was measured in one session on one machine, which is what makes the libraries
 comparable; the absolute tok/s of an eager row is not.** A graph engine is bound by the GPU and
-reproduces: re-run on the same machine with four other jobs on it, vanilla vLLM gives 91.8 tok/s
+reproduces: re-run on the same machine while other tenants are running, vanilla vLLM gives 91.8 tok/s
 against the 92 below and `nnsight taps` 88.6 against 89. An eager engine spends a Python round
 trip per module call on the driver, so its throughput follows whatever CPU the host has left, and
 the whole `nnsight eager` column on that re-run came back between 44 and 58 tok/s instead of 68 to

@@ -18,10 +18,10 @@ eager engine costs.
 
 An eager engine spends a Python round trip per module call on the driver, so its throughput
 follows whatever CPU the host has to spare. Llama-3.1-8B generates at 86 tok/s on a quiet
-A100-80GB and at 54 on the same box carrying four other jobs. A tapped engine waits on the GPU
-instead and does not move: 89 tok/s on the quiet measurement, 89 on the busy one. So the eager
-column below is a **ratio** to plain eager vLLM, which holds across hosts, while the vanilla and
-taps columns are tokens per second, which reproduce.
+A100-80GB and at 54 on the same machine with other tenants running. A tapped engine waits on
+the GPU instead and does not move: 89 tok/s on the quiet measurement, 89 on the busy one. So the
+eager column below is a **ratio** to plain eager vLLM, which holds across hosts, while the
+vanilla and taps columns are tokens per second, which reproduce.
 
 ## Graph taps
 
