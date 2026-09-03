@@ -111,9 +111,10 @@ For a logit lens under TP use the model's own logits processor, which gathers th
 - **Sampling must agree across ranks** — greedy, or seeded — since every rank runs the block
   against its own sampled ids.
 - Rank 0 reports the saves.
-- vLLM spawns its workers once CUDA is initialised in the parent; set
-  `VLLM_WORKER_MULTIPROC_METHOD=spawn` only if it complains about forking after CUDA
-  initialisation. Not nnsight's requirement.
+- vLLM starts its workers with `spawn` once CUDA is initialised in the parent, which is what
+  dispatching an engine does, and it sets `VLLM_WORKER_MULTIPROC_METHOD` itself. What that
+  costs you is the [`__main__` guard](loading.md#in-a-py-file-build-the-engine-under-a-main-guard)
+  in a script, at any shard count.
 
 ## Mixture of experts
 
@@ -150,5 +151,13 @@ the default v2 executor is.
 
 ## Not covered
 
-Pipeline parallelism (`pipeline_parallel_size > 1`): the first stage never sees the logits, and
-a block spanning stages is not shipped between them. Shard with tensor parallelism instead.
+Pipeline parallelism (`pipeline_parallel_size > 1`). Each stage holds part of the trunk, while a
+block is written against the whole tree and sent to every worker, so a stage that does not hold a
+module cannot resolve it. The engine builds, then every trace on it ends in
+
+```
+RuntimeError: UnknownPersistentIdError: Module:model.model.layers.12.self_attn
+```
+
+naming a layer on the other stage — including a block that only reads layers the receiving stage
+does have. Shard with tensor parallelism instead.

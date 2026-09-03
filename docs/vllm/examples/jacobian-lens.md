@@ -21,7 +21,7 @@ import nnsight
 from huggingface_hub import hf_hub_download
 from nnsight.modeling.vllm import VLLM
 
-model = VLLM("Qwen/Qwen3-8B", dispatch=True)
+model = VLLM("Qwen/Qwen3-8B", dispatch=True, enable_prefix_caching=False)   # the edit below needs it off
 tok = model.tokenizer
 
 path = hf_hub_download("neuronpedia/jacobian-lens",

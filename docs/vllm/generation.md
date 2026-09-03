@@ -92,6 +92,13 @@ for step, drawn, p, greedy in steps:
 Both are per *request*, not per token: vLLM computes `lm_head` only for the position being
 sampled. Logits at every prompt position come from the [logit lens](logit-lens.md).
 
+`tracer.all()` finds the end of a generation by asking for one step past it, so every such loop
+leaves one warning on stderr — `'model.logits.i6' was never reached: the model ran fewer
+iterations than the loop requested. Values from reached iterations are kept.` — naming the first
+location the body reads. Every step that ran is in `steps`; what does not run is anything written
+after the loop. When you need a per-step read *and* something afterwards, bound the loop with
+`tracer.iter[:N]` and hold the request to `N` steps with `ignore_eos=True` or `min_tokens=N`.
+
 ## Forcing the draw
 
 Assign `model.samples` and the engine continues from that token; assign `model.logits` and the

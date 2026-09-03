@@ -345,6 +345,17 @@ exact two-sided Mann-Whitney U test at p < 0.05 and at least 3% apart is **bold*
 a bold nnsight cell beat every counterpart in its row by the same test. Hover a dot for the
 number, the run count and the range.
 
+**Every panel was measured in one session on one machine, which is what makes the libraries
+comparable; the absolute tok/s of an eager row is not.** A graph engine is bound by the GPU and
+reproduces: re-run on the same machine with four other jobs on it, vanilla vLLM gives 91.8 tok/s
+against the 92 below and `nnsight taps` 88.6 against 89. An eager engine spends a Python round
+trip per module call on the driver, so its throughput follows whatever CPU the host has left, and
+the whole `nnsight eager` column on that re-run came back between 44 and 58 tok/s instead of 68 to
+86. Plain vLLM with `enforce_eager=True` and nothing attached moves with it (52.1 tok/s there,
+against nnsight's 54.1), which is the reason the eager rows on
+[Performance](performance.md#measured) are published as a share of that engine rather than as a
+rate.
+
 ### Other models and scenarios
 
 The same grid on more models and two more workload shapes (three processes each; the
