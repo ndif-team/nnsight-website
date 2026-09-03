@@ -140,6 +140,9 @@ nav:
     - Quick Start: getting-started/quickstart.md
   - Documentation:
     - documentation/index.md
+    - _c:
+      - documentation/_c/index.md
+      - backtrace: documentation/_c/backtrace.md
     - intervention:
       - documentation/intervention/index.md
       - backends:
@@ -173,6 +176,12 @@ nav:
         - loadable: documentation/modeling/mixins/loadable.md
         - meta: documentation/modeling/mixins/meta.md
         - remotable: documentation/modeling/mixins/remotable.md
+      - quantization: documentation/modeling/quantization.md
+      - tp:
+        - documentation/modeling/tp/index.md
+        - envoys: documentation/modeling/tp/envoys.md
+        - fragments: documentation/modeling/tp/fragments.md
+        - plan: documentation/modeling/tp/plan.md
       - transformers: documentation/modeling/transformers.md
       - vllm:
         - documentation/modeling/vllm/index.md
@@ -193,6 +202,7 @@ nav:
           - documentation/modeling/vllm/serve/index.md
           - backend: documentation/modeling/vllm/serve/backend.md
           - cli: documentation/modeling/vllm/serve/cli.md
+          - http: documentation/modeling/vllm/serve/http.md
           - server: documentation/modeling/vllm/serve/server.md
         - tracer: documentation/modeling/vllm/tracer.md
         - vllm: documentation/modeling/vllm/vllm.md
@@ -231,7 +241,9 @@ nav:
     - Skip Execution: features/13_skip.ipynb
     - Scan: features/14_scan.ipynb
     - Remote Execution: features/15_remote_execution.ipynb
-    - vLLM Support: features/16_vllm_support.ipynb
+    - vLLM: features/16_vllm_support.ipynb
+    - Tensor Parallelism: features/17_tensor_parallel.ipynb
+    - Quantization: features/18_quantization.ipynb
   - vLLM:
     - vllm/index.md
     - Locations: vllm/locations.md

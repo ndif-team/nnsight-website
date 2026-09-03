@@ -20,3 +20,5 @@ Explore nnsight's capabilities in depth through interactive notebooks.
 - **[Scan](14_scan.ipynb)** - Infer shapes without full execution
 - **[Remote Execution](15_remote_execution.ipynb)** - Run on NDIF's remote infrastructure
 - **[vLLM Support](16_vllm_support.ipynb)** - High-performance inference with vLLM (the [vLLM section](../vllm/index.md) has one page per job)
+- **[Tensor Parallelism](17_tensor_parallel.ipynb)** - Trace a model sharded across several GPUs with `transformers` tensor parallelism
+- **[Quantization](18_quantization.ipynb)** - Hold a model in 4 or 8 bits: the names, what a trace sees, and what memory, accuracy and speed cost

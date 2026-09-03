@@ -4,6 +4,17 @@
 
 - Python 3.10 or higher
 - PyTorch 2.4 or higher
+- `transformers` 5.x, if you are working with HuggingFace models
+
+`pip install nnsight` pulls in a `transformers` but does not pin its major version, and the two
+majors differ in what a module returns. On 5.x a decoder block hands back a bare tensor; on 4.x
+it hands back a one-element tuple, which is why so much nnsight code you will find online writes
+`.output[0]`. These docs are written for 5.x throughout. Check what you have:
+
+```python
+import transformers
+print(transformers.__version__)
+```
 
 ## Install from PyPI
 
@@ -39,15 +50,23 @@ For high-performance inference with [vLLM](https://github.com/vllm-project/vllm)
 pip install nnsight[vllm]
 ```
 
-## Verify Installation
+### Quantized models
 
-Verify your installation by running:
+Loading a checkpoint in 4 or 8 bits — `TransformersModel(..., dtype="nf4")` and friends — goes
+through `bitsandbytes` and `accelerate`. Neither is a dependency of nnsight, so a plain
+`pip install nnsight` leaves you without them:
+
+```bash
+pip install bitsandbytes accelerate
+```
+
+## Verify Installation
 
 ```python
 import nnsight
-print(nnsight.__version__)
+print(nnsight.__version__)      # 0.8.0
 ```
 
 ## Next Steps
 
-Once installed, head to the [Quick Start](quickstart.md) guide to run your first intervention!
+Head to the [Quick Start](quickstart.md) and run your first intervention.

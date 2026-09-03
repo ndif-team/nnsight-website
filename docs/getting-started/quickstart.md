@@ -1,8 +1,7 @@
 # Quick Start
 
-This guide walks you through your first nnsight intervention in just a few minutes.
-
-For an in-depth walkthrough, see the [Walkthrough](../tutorials/tutorials/get_started/walkthrough.ipynb).
+Your first nnsight intervention, end to end. For the longer version, see the
+[Walkthrough](../tutorials/tutorials/get_started/walkthrough.ipynb).
 
 ## Loading a Model
 
@@ -35,7 +34,11 @@ print(model.tokenizer.decode(output.logits.argmax(dim=-1)[0]))
 ```
 
 !!! warning "Always use `.save()`"
-    Values you want to access after the trace exits **must** be saved with `.save()`. Without it, tensors are garbage collected at the end of the trace context.
+    The body of a trace does not run where you wrote it. nnsight compiles it and runs it in a
+    worker alongside the forward pass, then copies back only the values you marked. So a value
+    you want after the block **must** be `.save()`d, and it comes back under the name you bound
+    it to. Reading an unsaved name afterwards is a `NameError` in a script, an
+    `UnboundLocalError` inside a function.
 
 ## Accessing Activations
 
@@ -50,9 +53,12 @@ Access any module's input or output during the forward pass. A module's `.output
 
     ```python
     with model.trace("hello"):
-        print(type(model.transformer.h[0].output))       # <class 'torch.Tensor'>
         print(type(model.transformer.h[0].attn.output))  # <class 'tuple'>
+        print(type(model.transformer.h[0].output))       # <class 'torch.Tensor'>
     ```
+
+    (Attention first: it runs inside the block, so it produces its output before the block
+    produces its own.)
 
 ```python
 with model.trace("The Eiffel Tower is in the city of"):
@@ -93,11 +99,30 @@ import torch
 with model.trace("Hello"):
     # Add noise to MLP output
     hs = model.transformer.h[-1].mlp.output.clone()
-    noise = 0.01 * torch.randn(hs.shape)
+    noise = 0.01 * torch.randn(hs.shape, device=hs.device, dtype=hs.dtype)
     model.transformer.h[-1].mlp.output = hs + noise
-    
+
     result = model.transformer.h[-1].mlp.output.save()
 ```
+
+Every tensor you build inside a trace has to land where the activation already is. `torch.randn`
+gives you a CPU tensor, and adding one to a CUDA activation is a
+`RuntimeError: Expected all tensors to be on the same device`. Reading `device=` and `dtype=`
+off the activation itself, as above, also stays correct when `device_map` has sharded the model
+across devices or the layers are in mixed precision.
+
+The two forms differ in more than style. `output[:] = v` writes through the tensor the model is
+holding; `output = v` hands the model a different one. Both take effect, but a replacement built
+from scratch, such as `torch.zeros_like(...)` or a fresh `torch.randn(...)`, is a tensor autograd
+has never seen, so it cuts the graph at that point — and what a later gradient read does depends
+on what else survives the cut. Replace a whole block's output and every path is severed: an
+upstream `.grad` read fails loudly with an `OutOfOrderError` (so does reading the fresh tensor's
+own `.grad`). But replace a submodule's output, as here — the residual stream and the attention
+branch route around the MLP — and an upstream `.grad` read *succeeds*, silently returning a
+gradient that is missing the MLP path's contribution. Measured on gpt2: swapping `h[3].mlp.output`
+for a detached copy of the very same values leaves the forward pass bit-identical, yet shifts the
+layer-0 gradient by 45% in L2 norm (125,659 → 130,349) with no warning. Derive the new value from
+the old one, as `hs + noise` does, or write in place.
 
 ## Understanding Module Hierarchy
 
@@ -133,15 +158,20 @@ Access any module using the same dotted path notation:
 - `model.transformer.h[-1].mlp` — MLP in last block
 - `model.lm_head` — Final language modeling head
 
-## Key Properties
+## The three properties
 
-Every module has these special properties for accessing values:
+Everything you read or write on a module goes through one of these:
 
-| Property | Description |
-|----------|-------------|
-| `.output` | The module's forward pass output |
-| `.input` | First positional argument to the module |
-| `.inputs` | All inputs as `(args_tuple, kwargs_dict)` |
+| Property | Is | Assignable |
+|----------|----|----|
+| `.output` | the module's forward-pass return value | yes |
+| `.input` | its first positional argument (or first keyword one) | yes |
+| `.inputs` | `(args, kwargs)` — everything it was called with | yes |
+
+Within one trace you have to touch modules in the order the model runs them. Your code is a
+worker that parks until the model produces each value, so reading layer 11 and then writing
+layer 0 raises `OutOfOrderError`: layer 0 has already gone by. Put reads and writes in forward
+order, or give each one its own `tracer.invoke(...)`.
 
 ## Using with Any PyTorch Model
 
@@ -167,9 +197,7 @@ print(layer1_out.shape)  # torch.Size([1, 10])
 
 ## Next Steps
 
-You've learned the basics of nnsight! Continue exploring:
-
-- **[Walkthrough](../tutorials/tutorials/get_started/walkthrough.ipynb)** — the full guided introduction to nnsight
-- **[Features](../features/index.md)** — Deep dives into specific capabilities
-- **[Tutorials](../tutorials/index.md)** — Step-by-step guides for common tasks
-- **[Documentation](../documentation/index.md)** — Comprehensive reference material
+- **[Walkthrough](../tutorials/tutorials/get_started/walkthrough.ipynb)** — the full guided introduction
+- **[Features](../features/index.md)** — one page per capability
+- **[Tutorials](../tutorials/index.md)** — worked interpretability experiments
+- **[Documentation](../documentation/index.md)** — the reference

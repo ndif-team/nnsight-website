@@ -6,4 +6,5 @@
 
 - [backend](backend.md)
 - [cli](cli.md)
+- [http](http.md)
 - [server](server.md)

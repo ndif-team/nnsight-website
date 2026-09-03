@@ -11,4 +11,5 @@ rest documents the internals.
 - **[tracing](tracing/index.md)** — the model-agnostic tracing layer the intervention engine builds on (base `Tracer`, `Backend`, globals, hints).
 - **[schema](schema/index.md)** — the config singleton and the request/response wire models.
 - **[ndif](ndif.md)** — top-level NDIF helpers: `login`, `status`, `compare`, `register`.
+- **[_c](_c/index.md)** — the optional C extensions: the `.save()` mount and the glibc `backtrace()` neutralizer.
 - **[util](util.md)** — general utilities.
