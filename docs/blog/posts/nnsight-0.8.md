@@ -8,9 +8,38 @@ categories:
 
 # NNsight 0.8
 
-NNsight 0.8 is a ground-up rewrite of the library's execution engine. The way you use NNsight has not changed. You still open a `with model.trace(...)` block and read, edit, and `.save()` a model's internals as ordinary Python. What changed is the machinery underneath, and a lot of things that were hard or impossible in v0.7 fall out of it.
+We spent the summer rebuilding NNsight from the inside, and it's finally ready. v0.8 is the
+biggest release the library has had: the execution engine is rewritten from scratch, and a lot
+of what was hard or impossible in v0.7 falls out of that. The way you use NNsight hasn't changed
+at all. You still open a `with model.trace(...)` block and read, edit, and `.save()` a model's
+internals as ordinary Python.
 
-This is a pre-release. You can install it and use it locally today. The full release lands next month, when v0.8 goes live on NDIF and remote execution comes with it.
+The parts we're most excited about:
+
+- **One class for everything in `transformers`.** `TransformersModel` is backed by a
+  `transformers.pipeline`, so any task the pipeline factory can build is now traceable with the
+  same code you write for GPT-2. Whisper and the audio models, LLaVA and Qwen3-VL, BERT and the
+  encoder tasks, classifiers, and PEFT adapters applied at load. Interpretability on speech and
+  vision models stops being a porting exercise.
+
+- **Speed was a big focus.** Your code and the forward pass now interleave as greenlets rather than
+  OS threads. NNsight's own overhead is cheaper and, more to the point, stays flat as you touch
+  more of the model: per read it is 3x flatter than v0.7, per batched prompt 6x. Caching every
+  layer, sweeping every head, and running big batches stop being the slow path.
+
+- **NNsight :handshake: vLLM is now the fastest and most complete way to do interpretability at
+  scale.** Interventions run inside the engine worker and survive CUDA graph replay, so you keep
+  91% to 96% of vanilla vLLM's throughput while tracing it. You can install a block on the engine
+  itself and serve it over HTTP to clients that have no GPU of their own.
+
+- **And plenty more,** like tensor parallelism for models too big for one card, quantization by
+  naming it where you would name a dtype, and `.source`, which opens up the operations inside a
+  forward pass that never had a module to attach to.
+
+This is a pre-release. You can install it and use it locally today. The full release lands next
+month, when v0.8 goes live on NDIF and remote execution comes with it.
+
+<!-- more -->
 
 ## What NNsight does
 
@@ -32,8 +61,6 @@ with model.trace("The Eiffel Tower is in the city of"):
 ```
 
 Inside the block you aren't running the model. You're describing what to do when it runs. Reading `.output` hands you the real tensor once the forward pass reaches that module, and assigning to it splices your value in. There are no proxies or fake tensors involved, and you never register a hook. The one rule is that your block has to touch the model in the order the model runs, top to bottom, which is why layer 0 comes before layer 6 above.
-
-<!-- more -->
 
 ## One class for every Hugging Face Transformers model
 
@@ -357,10 +384,31 @@ warnings.filterwarnings("ignore", category=nnsight.NNsightDeprecationWarning)
 
 NNsight registers no filters of its own. The full mapping is in [`docs/reference/version-history.md`](https://github.com/ndif-team/nnsight/blob/0.8/docs/reference/version-history.md).
 
+## What's next
+
+Everything above is available today as a pre-release: `pip install nnsight --pre`. It runs
+locally, on your own hardware, and we would like you to break it before the full release does.
+
+**The full release is at the beginning of October**, when v0.8 goes live on NDIF. That is the
+piece the pre-release is missing: `remote=True`, and with it the models you cannot host yourself.
+Until then, remote execution stays on v0.7.
+
+NDIF is getting more than a version bump alongside it, and that deserves its own post rather than
+a paragraph here. [Join the Discord](https://discord.gg/6uFJmCSwW7) if you want to hear about it
+first, and keep an eye on this blog.
+
+**Found a bug?** Please tell us. A pre-release is exactly when it is most useful to hear, and
+[GitHub issues](https://github.com/ndif-team/nnsight/issues) is the best place, since we can tie
+it to a fix. Porting problems from v0.7 count as bugs, especially the silent kind in
+[Upgrading from v0.7](#upgrading-from-v07).
+
+**Office hours.** We are running two sessions to help people port code, talk through the new
+API, and answer whatever comes up. Both are at 11am Eastern on
+[this Zoom link](https://northeastern.zoom.us/j/97460947245):
+
+- Tuesday, September 15
+- Tuesday, September 22
+
 ---
 
-NNsight 0.8 is available now as a pre-release: `pip install nnsight --pre`. It runs locally today, and the full release next month brings it to NDIF with remote execution.
-
-If you hit something, the forum and Discord are the fastest way to reach us.
-
-Docs: [nnsight.net](https://nnsight.net) · GitHub: [github.com/ndif-team/nnsight](https://github.com/ndif-team/nnsight) · Forum: [discuss.ndif.us](https://discuss.ndif.us) · Discord: [discord.gg/6uFJmCSwW7](https://discord.gg/6uFJmCSwW7)
+Docs: [nnsight.net](https://nnsight.net) · GitHub: [github.com/ndif-team/nnsight](https://github.com/ndif-team/nnsight) · Discord: [discord.gg/6uFJmCSwW7](https://discord.gg/6uFJmCSwW7)
