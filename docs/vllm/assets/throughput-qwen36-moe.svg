@@ -1,0 +1,201 @@
+<div class="viz-wrap">
+<svg class="viz" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 478" width="100%" role="img" aria-label="Qwen3.6-35B-A3B (mixture of experts), tensor-parallel 2: throughput of each library as a share of plain vLLM">
+<style>.viz{--surface:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--muted:#898781;--grid:#e1e0d9;--axis:#c3c2b7;--blue:#2a78d6;--orange:#eb6834;--aqua:#1baf7a;font-family:system-ui,-apple-system,'Segoe UI',sans-serif}@media (prefers-color-scheme: dark){:root:not([data-md-color-scheme=default]) .viz{--surface:#1a1a19;--ink:#ffffff;--ink2:#c3c2b7;--muted:#898781;--grid:#2c2c2a;--axis:#383835;--blue:#3987e5;--orange:#d95926;--aqua:#199e70}}[data-md-color-scheme=slate] .viz{--surface:#1a1a19;--ink:#ffffff;--ink2:#c3c2b7;--muted:#898781;--grid:#2c2c2a;--axis:#383835;--blue:#3987e5;--orange:#d95926;--aqua:#199e70}.viz text{fill:var(--ink2);font-size:12px}.viz .t{fill:var(--ink);font-size:14px;font-weight:600}.viz .m{fill:var(--muted);font-size:11px}.viz .g{stroke:var(--grid);stroke-width:1}.viz .ref{stroke:var(--axis);stroke-width:1.5}.viz .hit{fill:transparent}.viz .hit:hover + circle{r:7}</style>
+<rect width="860" height="478" fill="var(--surface)" rx="6"/>
+<text class="t" x="16" y="26">Qwen3.6-35B-A3B (mixture of experts), tensor-parallel 2</text>
+<text class="m" x="16" y="44">Throughput as a share of plain vLLM doing the same generation with nothing attached (100% = vanilla).</text>
+<text class="m" x="16" y="60">Hollow = eager, filled = CUDA graphs. Whisker = min–max over runs. nnsight dots are smaller and in front, so a tie shows both. ✗ = cannot express.</text>
+<text class="m" x="16" y="76">Hover a dot for the number, its run count and range, and whether it is significantly faster than its nnsight counterpart (exact Mann-Whitney U, p&lt;0.05, ≥3% apart).</text>
+<circle cx="22" cy="96" r="5" fill="var(--surface)" stroke="var(--blue)" stroke-width="2"/>
+<text x="32" y="100">nnsight eager</text>
+<circle cx="143.8" cy="96" r="5" fill="var(--blue)" stroke="var(--blue)" stroke-width="2"/>
+<text x="153.8" y="100">nnsight taps (CUDA graphs)</text>
+<circle cx="351.4" cy="96" r="5.8" fill="var(--surface)" stroke="var(--orange)" stroke-width="2"/>
+<text x="361.4" y="100">interp-engine vllm</text>
+<circle cx="506.2" cy="96" r="5.8" fill="var(--orange)" stroke="var(--orange)" stroke-width="2"/>
+<text x="516.2" y="100">interp-engine vllm-static</text>
+<circle cx="707.2" cy="96" r="5.8" fill="var(--aqua)" stroke="var(--aqua)" stroke-width="2"/>
+<text x="717.2" y="100">vLLM-Lens</text>
+<line class="g" x1="470.4" y1="120" x2="470.4" y2="432"/>
+<text class="m" x="470.4" y="448" text-anchor="middle">25%</text>
+<line class="g" x1="570.9" y1="120" x2="570.9" y2="432"/>
+<text class="m" x="570.9" y="448" text-anchor="middle">50%</text>
+<line class="g" x1="671.3" y1="120" x2="671.3" y2="432"/>
+<text class="m" x="671.3" y="448" text-anchor="middle">75%</text>
+<line class="ref" x1="771.8" y1="120" x2="771.8" y2="432"/>
+<text class="m" x="771.8" y="448" text-anchor="middle">100%</text>
+<text class="m" x="771.8" y="464" text-anchor="middle">vanilla vLLM</text>
+<text x="358" y="137.0" text-anchor="end">generate</text>
+<line x1="404.0" y1="133.0" x2="404.9" y2="133.0" stroke="var(--orange)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="404.5" cy="133.0" r="12"><title>interp-engine vllm: 16 (9% of vanilla; 9 runs, 15–16); significantly faster than the counterpart (p&lt;0.05)</title></circle>
+<circle cx="404.5" cy="133.0" r="5.8" fill="var(--surface)" stroke="var(--orange)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="604.9" y1="133.0" x2="608.2" y2="133.0" stroke="var(--orange)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="607.5" cy="133.0" r="12"><title>interp-engine vllm-static: 108 (59% of vanilla; 9 runs, 106–108); significantly slower than the counterpart (p&lt;0.05)</title></circle>
+<circle cx="607.5" cy="133.0" r="5.8" fill="var(--orange)" stroke="var(--orange)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="403.6" y1="133.0" x2="404.9" y2="133.0" stroke="var(--aqua)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="404.1" cy="133.0" r="12"><title>vLLM-Lens: 15 (8% of vanilla; 9 runs, 15–16); significantly faster than the counterpart (p&lt;0.05)</title></circle>
+<circle cx="404.1" cy="133.0" r="5.8" fill="var(--aqua)" stroke="var(--aqua)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="402.5" y1="133.0" x2="403.1" y2="133.0" stroke="var(--blue)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="402.8" cy="133.0" r="12"><title>nnsight eager: 15 (8% of vanilla; 9 runs, 15–15)</title></circle>
+<circle cx="402.8" cy="133.0" r="5" fill="var(--surface)" stroke="var(--blue)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="630.8" y1="133.0" x2="633.0" y2="133.0" stroke="var(--blue)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="631.8" cy="133.0" r="12"><title>nnsight taps (CUDA graphs): 119 (65% of vanilla; 9 runs, 118–119); significantly faster than every counterpart (p&lt;0.05)</title></circle>
+<circle cx="631.8" cy="133.0" r="5" fill="var(--blue)" stroke="var(--blue)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<text x="358" y="163.0" text-anchor="end">generate, 8 concurrent</text>
+<line x1="432.2" y1="159.0" x2="434.4" y2="159.0" stroke="var(--orange)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="433.3" cy="159.0" r="12"><title>interp-engine vllm: 115 (16% of vanilla; 9 runs, 113–117); significantly faster than the counterpart (p&lt;0.05)</title></circle>
+<circle cx="433.3" cy="159.0" r="5.8" fill="var(--surface)" stroke="var(--orange)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="633.1" y1="159.0" x2="644.6" y2="159.0" stroke="var(--orange)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="639.8" cy="159.0" r="12"><title>interp-engine vllm-static: 491 (67% of vanilla; 9 runs, 479–500); significantly slower than the counterpart (p&lt;0.05)</title></circle>
+<circle cx="639.8" cy="159.0" r="5.8" fill="var(--orange)" stroke="var(--orange)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="433.1" y1="159.0" x2="434.9" y2="159.0" stroke="var(--aqua)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="434.2" cy="159.0" r="12"><title>vLLM-Lens: 117 (16% of vanilla; 9 runs, 115–118); significantly faster than the counterpart (p&lt;0.05)</title></circle>
+<circle cx="434.2" cy="159.0" r="5.8" fill="var(--aqua)" stroke="var(--aqua)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="429.9" y1="159.0" x2="433.1" y2="159.0" stroke="var(--blue)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="431.2" cy="159.0" r="12"><title>nnsight eager: 112 (15% of vanilla; 9 runs, 109–115)</title></circle>
+<circle cx="431.2" cy="159.0" r="5" fill="var(--surface)" stroke="var(--blue)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="661.1" y1="159.0" x2="675.9" y2="159.0" stroke="var(--blue)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="669.4" cy="159.0" r="12"><title>nnsight taps (CUDA graphs): 545 (75% of vanilla; 9 runs, 530–557); significantly faster than every counterpart (p&lt;0.05)</title></circle>
+<circle cx="669.4" cy="159.0" r="5" fill="var(--blue)" stroke="var(--blue)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<text x="358" y="189.0" text-anchor="end">capture 1 layer, every step</text>
+<line x1="404.0" y1="185.0" x2="404.9" y2="185.0" stroke="var(--orange)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="404.5" cy="185.0" r="12"><title>interp-engine vllm: 16 (9% of vanilla; 9 runs, 15–16); significantly faster than the counterpart (p&lt;0.05)</title></circle>
+<circle cx="404.5" cy="185.0" r="5.8" fill="var(--surface)" stroke="var(--orange)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="606.0" y1="185.0" x2="606.5" y2="185.0" stroke="var(--orange)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="606.2" cy="185.0" r="12"><title>interp-engine vllm-static: 107 (59% of vanilla; 9 runs, 107–107); significantly slower than the counterpart (p&lt;0.05)</title></circle>
+<circle cx="606.2" cy="185.0" r="5.8" fill="var(--orange)" stroke="var(--orange)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="398.0" y1="185.0" x2="399.1" y2="185.0" stroke="var(--aqua)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="398.6" cy="185.0" r="12"><title>vLLM-Lens: 13 (7% of vanilla; 9 runs, 13–13); significantly slower than the counterpart (p&lt;0.05)</title></circle>
+<circle cx="398.6" cy="185.0" r="5.8" fill="var(--aqua)" stroke="var(--aqua)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="400.9" y1="185.0" x2="402.2" y2="185.0" stroke="var(--blue)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="401.8" cy="185.0" r="12"><title>nnsight eager: 14 (8% of vanilla; 9 runs, 14–15)</title></circle>
+<circle cx="401.8" cy="185.0" r="5" fill="var(--surface)" stroke="var(--blue)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="624.3" y1="185.0" x2="627.2" y2="185.0" stroke="var(--blue)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="625.8" cy="185.0" r="12"><title>nnsight taps (CUDA graphs): 116 (64% of vanilla; 9 runs, 115–116); significantly faster than every counterpart (p&lt;0.05)</title></circle>
+<circle cx="625.8" cy="185.0" r="5" fill="var(--blue)" stroke="var(--blue)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<text x="358" y="215.0" text-anchor="end">capture every layer, every step</text>
+<line x1="398.5" y1="211.0" x2="398.9" y2="211.0" stroke="var(--orange)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="398.7" cy="211.0" r="12"><title>interp-engine vllm: 13 (7% of vanilla; 9 runs, 13–13); significantly slower than the counterpart (p&lt;0.05)</title></circle>
+<circle cx="398.7" cy="211.0" r="5.8" fill="var(--surface)" stroke="var(--orange)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="527.9" y1="211.0" x2="537.1" y2="211.0" stroke="var(--orange)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="532.5" cy="211.0" r="12"><title>interp-engine vllm-static: 74 (40% of vanilla; 9 runs, 72–76); significantly slower than the counterpart (p&lt;0.05)</title></circle>
+<circle cx="532.5" cy="211.0" r="5.8" fill="var(--orange)" stroke="var(--orange)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="394.7" y1="211.0" x2="396.1" y2="211.0" stroke="var(--aqua)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="395.4" cy="211.0" r="12"><title>vLLM-Lens: 12 (6% of vanilla; 9 runs, 11–12); significantly slower than the counterpart (p&lt;0.05)</title></circle>
+<circle cx="395.4" cy="211.0" r="5.8" fill="var(--aqua)" stroke="var(--aqua)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="399.6" y1="211.0" x2="400.9" y2="211.0" stroke="var(--blue)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="400.3" cy="211.0" r="12"><title>nnsight eager: 14 (8% of vanilla; 9 runs, 13–14); significantly faster than every counterpart (p&lt;0.05)</title></circle>
+<circle cx="400.3" cy="211.0" r="5" fill="var(--surface)" stroke="var(--blue)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="620.6" y1="211.0" x2="622.4" y2="211.0" stroke="var(--blue)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="621.2" cy="211.0" r="12"><title>nnsight taps (CUDA graphs): 114 (63% of vanilla; 9 runs, 114–114); significantly faster than every counterpart (p&lt;0.05)</title></circle>
+<circle cx="621.2" cy="211.0" r="5" fill="var(--blue)" stroke="var(--blue)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<text x="358" y="241.0" text-anchor="end">capture 1 layer, 8 concurrent</text>
+<line x1="433.2" y1="237.0" x2="434.1" y2="237.0" stroke="var(--orange)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="433.6" cy="237.0" r="12"><title>interp-engine vllm: 116 (16% of vanilla; 9 runs, 115–117); significantly faster than the counterpart (p&lt;0.05)</title></circle>
+<circle cx="433.6" cy="237.0" r="5.8" fill="var(--surface)" stroke="var(--orange)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="637.5" y1="237.0" x2="643.3" y2="237.0" stroke="var(--orange)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="640.0" cy="237.0" r="12"><title>interp-engine vllm-static: 492 (67% of vanilla; 9 runs, 487–498)</title></circle>
+<circle cx="640.0" cy="237.0" r="5.8" fill="var(--orange)" stroke="var(--orange)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="420.5" y1="237.0" x2="423.2" y2="237.0" stroke="var(--aqua)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="422.4" cy="237.0" r="12"><title>vLLM-Lens: 95 (13% of vanilla; 9 runs, 92–97); significantly slower than the counterpart (p&lt;0.05)</title></circle>
+<circle cx="422.4" cy="237.0" r="5.8" fill="var(--aqua)" stroke="var(--aqua)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="426.1" y1="237.0" x2="428.3" y2="237.0" stroke="var(--blue)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="427.4" cy="237.0" r="12"><title>nnsight eager: 105 (14% of vanilla; 9 runs, 102–106)</title></circle>
+<circle cx="427.4" cy="237.0" r="5" fill="var(--surface)" stroke="var(--blue)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="635.5" y1="237.0" x2="639.9" y2="237.0" stroke="var(--blue)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="637.2" cy="237.0" r="12"><title>nnsight taps (CUDA graphs): 487 (67% of vanilla; 9 runs, 483–491)</title></circle>
+<circle cx="637.2" cy="237.0" r="5" fill="var(--blue)" stroke="var(--blue)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<text x="358" y="267.0" text-anchor="end">additive steering, 1 layer</text>
+<line x1="404.4" y1="263.0" x2="404.9" y2="263.0" stroke="var(--orange)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="404.6" cy="263.0" r="12"><title>interp-engine vllm: 16 (9% of vanilla; 9 runs, 16–16); significantly faster than the counterpart (p&lt;0.05)</title></circle>
+<circle cx="404.6" cy="263.0" r="5.8" fill="var(--surface)" stroke="var(--orange)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="605.8" y1="263.0" x2="607.1" y2="263.0" stroke="var(--orange)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="606.4" cy="263.0" r="12"><title>interp-engine vllm-static: 107 (59% of vanilla; 9 runs, 107–107); significantly slower than the counterpart (p&lt;0.05)</title></circle>
+<circle cx="606.4" cy="263.0" r="5.8" fill="var(--orange)" stroke="var(--orange)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="396.5" y1="263.0" x2="397.8" y2="263.0" stroke="var(--aqua)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="397.2" cy="263.0" r="12"><title>vLLM-Lens: 12 (7% of vanilla; 9 runs, 12–13); significantly slower than the counterpart (p&lt;0.05)</title></circle>
+<circle cx="397.2" cy="263.0" r="5.8" fill="var(--aqua)" stroke="var(--aqua)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="400.7" y1="263.0" x2="402.2" y2="263.0" stroke="var(--blue)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="401.6" cy="263.0" r="12"><title>nnsight eager: 14 (8% of vanilla; 9 runs, 14–15)</title></circle>
+<circle cx="401.6" cy="263.0" r="5" fill="var(--surface)" stroke="var(--blue)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="617.5" y1="263.0" x2="626.1" y2="263.0" stroke="var(--blue)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="624.0" cy="263.0" r="12"><title>nnsight taps (CUDA graphs): 115 (63% of vanilla; 9 runs, 112–116); significantly faster than every counterpart (p&lt;0.05)</title></circle>
+<circle cx="624.0" cy="263.0" r="5" fill="var(--blue)" stroke="var(--blue)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<text x="358" y="293.0" text-anchor="end">logit lens every step</text>
+<line x1="396.7" y1="289.0" x2="397.6" y2="289.0" stroke="var(--orange)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="397.2" cy="289.0" r="12"><title>interp-engine vllm: 12 (7% of vanilla; 9 runs, 12–12); significantly slower than the counterpart (p&lt;0.05)</title></circle>
+<circle cx="397.2" cy="289.0" r="5.8" fill="var(--surface)" stroke="var(--orange)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="451.5" y1="289.0" x2="454.8" y2="289.0" stroke="var(--orange)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="453.5" cy="289.0" r="12"><title>interp-engine vllm-static: 38 (21% of vanilla; 9 runs, 37–38); significantly slower than the counterpart (p&lt;0.05)</title></circle>
+<circle cx="453.5" cy="289.0" r="5.8" fill="var(--orange)" stroke="var(--orange)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="395.8" y1="289.0" x2="397.4" y2="289.0" stroke="var(--aqua)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="396.6" cy="289.0" r="12"><title>vLLM-Lens: 12 (7% of vanilla; 9 runs, 12–12); significantly slower than the counterpart (p&lt;0.05)</title></circle>
+<circle cx="396.6" cy="289.0" r="5.8" fill="var(--aqua)" stroke="var(--aqua)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="400.9" y1="289.0" x2="402.0" y2="289.0" stroke="var(--blue)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="401.6" cy="289.0" r="12"><title>nnsight eager: 14 (8% of vanilla; 9 runs, 14–14); significantly faster than every counterpart (p&lt;0.05)</title></circle>
+<circle cx="401.6" cy="289.0" r="5" fill="var(--surface)" stroke="var(--blue)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="612.6" y1="289.0" x2="616.4" y2="289.0" stroke="var(--blue)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="615.0" cy="289.0" r="12"><title>nnsight taps (CUDA graphs): 111 (61% of vanilla; 9 runs, 110–112); significantly faster than every counterpart (p&lt;0.05)</title></circle>
+<circle cx="615.0" cy="289.0" r="5" fill="var(--blue)" stroke="var(--blue)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<text x="358" y="319.0" text-anchor="end">linear probe every step</text>
+<line x1="403.1" y1="315.0" x2="404.7" y2="315.0" stroke="var(--orange)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="404.2" cy="315.0" r="12"><title>interp-engine vllm: 15 (9% of vanilla; 9 runs, 15–16); significantly faster than the counterpart (p&lt;0.05)</title></circle>
+<circle cx="404.2" cy="315.0" r="5.8" fill="var(--surface)" stroke="var(--orange)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="594.1" y1="315.0" x2="606.5" y2="315.0" stroke="var(--orange)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="603.8" cy="315.0" r="12"><title>interp-engine vllm-static: 106 (58% of vanilla; 9 runs, 102–107); significantly slower than the counterpart (p&lt;0.05)</title></circle>
+<circle cx="603.8" cy="315.0" r="5.8" fill="var(--orange)" stroke="var(--orange)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="396.5" y1="315.0" x2="398.0" y2="315.0" stroke="var(--aqua)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="397.2" cy="315.0" r="12"><title>vLLM-Lens: 12 (7% of vanilla; 9 runs, 12–13); significantly slower than the counterpart (p&lt;0.05)</title></circle>
+<circle cx="397.2" cy="315.0" r="5.8" fill="var(--aqua)" stroke="var(--aqua)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="400.9" y1="315.0" x2="402.2" y2="315.0" stroke="var(--blue)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="401.8" cy="315.0" r="12"><title>nnsight eager: 14 (8% of vanilla; 9 runs, 14–15)</title></circle>
+<circle cx="401.8" cy="315.0" r="5" fill="var(--surface)" stroke="var(--blue)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="622.8" y1="315.0" x2="624.8" y2="315.0" stroke="var(--blue)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="623.9" cy="315.0" r="12"><title>nnsight taps (CUDA graphs): 115 (63% of vanilla; 9 runs, 114–115); significantly faster than every counterpart (p&lt;0.05)</title></circle>
+<circle cx="623.9" cy="315.0" r="5" fill="var(--blue)" stroke="var(--blue)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<text x="358" y="345.0" text-anchor="end">zero one attention head every step</text>
+<circle cx="380" cy="341.0" r="3.5" fill="var(--surface)" stroke="var(--orange)" stroke-width="1.5" opacity="0.7"><title>interp-engine vllm: no write to z / o_proj input: steering ops are add, orthogonal, projection_cap at residual points</title></circle>
+<text class="m" x="380" y="345.0" text-anchor="middle" font-size="9">✗</text>
+<circle cx="396" cy="341.0" r="3.5" fill="var(--orange)" stroke="var(--orange)" stroke-width="1.5" opacity="0.7"><title>interp-engine vllm-static: no write to z / o_proj input: steering ops are add, orthogonal, projection_cap at residual points</title></circle>
+<text class="m" x="396" y="345.0" text-anchor="middle" font-size="9">✗</text>
+<circle cx="412" cy="341.0" r="3.5" fill="var(--aqua)" stroke="var(--aqua)" stroke-width="1.5" opacity="0.7"><title>vLLM-Lens: hooks fire on decoder-layer outputs (and inputs) only; o_proj's input is not a hook point</title></circle>
+<text class="m" x="412" y="345.0" text-anchor="middle" font-size="9">✗</text>
+<line x1="401.1" y1="341.0" x2="402.2" y2="341.0" stroke="var(--blue)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="401.6" cy="341.0" r="12"><title>nnsight eager: 14 (8% of vanilla; 9 runs, 14–15)</title></circle>
+<circle cx="401.6" cy="341.0" r="5" fill="var(--surface)" stroke="var(--blue)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<circle cx="428" cy="341.0" r="3.5" fill="var(--blue)" stroke="var(--blue)" stroke-width="1.5" opacity="0.7"><title>nnsight taps (CUDA graphs): o_proj is not tapped on this engine (taps carry layer outputs only)</title></circle>
+<text class="m" x="428" y="345.0" text-anchor="middle" font-size="9">✗</text>
+<text x="358" y="371.0" text-anchor="end">override the sampled token every step</text>
+<circle cx="380" cy="367.0" r="3.5" fill="var(--surface)" stroke="var(--orange)" stroke-width="1.5" opacity="0.7"><title>interp-engine vllm: no hook on sampling: generation is the engine's own</title></circle>
+<text class="m" x="380" y="371.0" text-anchor="middle" font-size="9">✗</text>
+<circle cx="396" cy="367.0" r="3.5" fill="var(--orange)" stroke="var(--orange)" stroke-width="1.5" opacity="0.7"><title>interp-engine vllm-static: no hook on sampling: generation is the engine's own</title></circle>
+<text class="m" x="396" y="371.0" text-anchor="middle" font-size="9">✗</text>
+<circle cx="412" cy="367.0" r="3.5" fill="var(--aqua)" stroke="var(--aqua)" stroke-width="1.5" opacity="0.7"><title>vLLM-Lens: no hook on sampling: generation is the engine's own</title></circle>
+<text class="m" x="412" y="371.0" text-anchor="middle" font-size="9">✗</text>
+<line x1="400.7" y1="367.0" x2="402.2" y2="367.0" stroke="var(--blue)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="401.5" cy="367.0" r="12"><title>nnsight eager: 14 (8% of vanilla; 9 runs, 14–15)</title></circle>
+<circle cx="401.5" cy="367.0" r="5" fill="var(--surface)" stroke="var(--blue)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="621.3" y1="367.0" x2="627.2" y2="367.0" stroke="var(--blue)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="625.2" cy="367.0" r="12"><title>nnsight taps (CUDA graphs): 116 (64% of vanilla; 9 runs, 114–116)</title></circle>
+<circle cx="625.2" cy="367.0" r="5" fill="var(--blue)" stroke="var(--blue)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<text x="358" y="397.0" text-anchor="end">sweep: 1024 × 1 token, capture 1 layer, per request</text>
+<line x1="561.4" y1="393.0" x2="607.1" y2="393.0" stroke="var(--aqua)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="571.9" cy="393.0" r="12"><title>vLLM-Lens: 1.62 s (50% of vanilla; 9 runs, 1.38 s–1.71 s); significantly faster than the counterpart (p&lt;0.05)</title></circle>
+<circle cx="571.9" cy="393.0" r="5.8" fill="var(--aqua)" stroke="var(--aqua)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="499.1" y1="393.0" x2="545.4" y2="393.0" stroke="var(--blue)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="514.2" cy="393.0" r="12"><title>nnsight eager: 2.27 s (36% of vanilla; 9 runs, 1.87 s–2.54 s)</title></circle>
+<circle cx="514.2" cy="393.0" r="5" fill="var(--surface)" stroke="var(--blue)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="515.0" y1="393.0" x2="547.0" y2="393.0" stroke="var(--blue)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="525.4" cy="393.0" r="12"><title>nnsight taps (CUDA graphs): 2.11 s (39% of vanilla; 9 runs, 1.85 s–2.26 s)</title></circle>
+<circle cx="525.4" cy="393.0" r="5" fill="var(--blue)" stroke="var(--blue)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<text x="358" y="423.0" text-anchor="end">sweep: 1024 × 1 token, capture 1 layer, edit() once</text>
+<circle cx="380" cy="419.0" r="3.5" fill="var(--aqua)" stroke="var(--aqua)" stroke-width="1.5" opacity="0.7"><title>vLLM-Lens: no persistent-block equivalent for capture; persistent hooks cover the hook path</title></circle>
+<text class="m" x="380" y="423.0" text-anchor="middle" font-size="9">✗</text>
+<line x1="563.0" y1="419.0" x2="622.0" y2="419.0" stroke="var(--blue)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="575.4" cy="419.0" r="12"><title>nnsight eager: 1.59 s (51% of vanilla; 9 runs, 1.30 s–1.70 s)</title></circle>
+<circle cx="575.4" cy="419.0" r="5" fill="var(--surface)" stroke="var(--blue)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+<line x1="566.0" y1="419.0" x2="627.4" y2="419.0" stroke="var(--blue)" stroke-width="2" opacity="0.45"/>
+<circle class="hit" cx="585.0" cy="419.0" r="12"><title>nnsight taps (CUDA graphs): 1.52 s (54% of vanilla; 9 runs, 1.27 s–1.67 s)</title></circle>
+<circle cx="585.0" cy="419.0" r="5" fill="var(--blue)" stroke="var(--blue)" stroke-width="2" style="paint-order:stroke" pointer-events="none"/>
+</svg>
+</div>

@@ -53,6 +53,8 @@ theme:
 # Hooks
 hooks:
   - hooks/social_meta.py
+  - hooks/notebook_links.py
+  - hooks/page_meta.py
 
 # Plugins
 plugins:
@@ -75,6 +77,10 @@ plugins:
       no_input: false
       show_input: true
       include_requirejs: true
+      # Without this, mkdocs-jupyter emits <script src=""> and MathJax never loads,
+      # so every $...$ in every notebook renders as raw TeX. The nbconvert template
+      # that ships with the plugin configures the MathJax 2 API, so this must be a 2.x build.
+      custom_mathjax_url: "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML-full,Safe"
       kernel_name: python3
       theme: dark
       highlight_extra_classes: ""
@@ -134,60 +140,88 @@ nav:
     - Quick Start: getting-started/quickstart.md
   - Documentation:
     - documentation/index.md
+    - _c:
+      - documentation/_c/index.md
+      - backtrace: documentation/_c/backtrace.md
     - intervention:
       - documentation/intervention/index.md
-      - envoy: documentation/intervention/envoy.md
-      - source: documentation/intervention/source.md
-      - batching: documentation/intervention/batching.md
-      - interleaver: documentation/intervention/interleaver.md
-      - serialization: documentation/intervention/serialization.md
       - backends:
         - documentation/intervention/backends/index.md
-        - base: documentation/intervention/backends/base.md
-        - editing: documentation/intervention/backends/editing.md
-        - execution: documentation/intervention/backends/execution.md
+        - display: documentation/intervention/backends/display.md
+        - local: documentation/intervention/backends/local.md
         - remote: documentation/intervention/backends/remote.md
-      - tracing:
-        - documentation/intervention/tracing/index.md
-        - base: documentation/intervention/tracing/base.md
-        - backwards: documentation/intervention/tracing/backwards.md
-        - editing: documentation/intervention/tracing/editing.md
-        - globals: documentation/intervention/tracing/globals.md
-        - invoker: documentation/intervention/tracing/invoker.md
-        - iterator: documentation/intervention/tracing/iterator.md
-        - tracer: documentation/intervention/tracing/tracer.md
-        - util: documentation/intervention/tracing/util.md
+      - backward: documentation/intervention/backward.md
+      - barrier: documentation/intervention/barrier.md
+      - batching: documentation/intervention/batching.md
+      - cache: documentation/intervention/cache.md
+      - editing: documentation/intervention/editing.md
+      - envoy: documentation/intervention/envoy.md
+      - eproperty: documentation/intervention/eproperty.md
+      - errors: documentation/intervention/errors.md
+      - fragments: documentation/intervention/fragments.md
+      - interleaver: documentation/intervention/interleaver.md
+      - iterator: documentation/intervention/iterator.md
+      - serialization: documentation/intervention/serialization.md
+      - source: documentation/intervention/source.md
+      - tracer: documentation/intervention/tracer.md
+      - util: documentation/intervention/util.md
     - modeling:
       - documentation/modeling/index.md
       - base: documentation/modeling/base.md
       - diffusion: documentation/modeling/diffusion.md
       - huggingface: documentation/modeling/huggingface.md
       - language: documentation/modeling/language.md
-      - transformers: documentation/modeling/transformers.md
       - mixins:
         - documentation/modeling/mixins/index.md
         - loadable: documentation/modeling/mixins/loadable.md
         - meta: documentation/modeling/mixins/meta.md
-        - remoteable: documentation/modeling/mixins/remoteable.md
+        - remotable: documentation/modeling/mixins/remotable.md
+      - quantization: documentation/modeling/quantization.md
+      - tp:
+        - documentation/modeling/tp/index.md
+        - envoys: documentation/modeling/tp/envoys.md
+        - fragments: documentation/modeling/tp/fragments.md
+        - plan: documentation/modeling/tp/plan.md
+      - transformers: documentation/modeling/transformers.md
       - vllm:
         - documentation/modeling/vllm/index.md
-        - vllm: documentation/modeling/vllm/vllm.md
+        - async_backend: documentation/modeling/vllm/async_backend.md
         - batching: documentation/modeling/vllm/batching.md
-        - sampling: documentation/modeling/vllm/sampling.md
+        - collect: documentation/modeling/vllm/collect.md
+        - envoys: documentation/modeling/vllm/envoys.md
         - engines:
           - documentation/modeling/vllm/engines/index.md
           - engine: documentation/modeling/vllm/engines/engine.md
+        - fragments: documentation/modeling/vllm/fragments.md
+        - interleaver: documentation/modeling/vllm/interleaver.md
         - model_runners:
           - documentation/modeling/vllm/model_runners/index.md
           - GPUModelRunner: documentation/modeling/vllm/model_runners/GPUModelRunner.md
+        - registration: documentation/modeling/vllm/registration.md
+        - serve:
+          - documentation/modeling/vllm/serve/index.md
+          - backend: documentation/modeling/vllm/serve/backend.md
+          - cli: documentation/modeling/vllm/serve/cli.md
+          - http: documentation/modeling/vllm/serve/http.md
+          - server: documentation/modeling/vllm/serve/server.md
+        - tracer: documentation/modeling/vllm/tracer.md
+        - vllm: documentation/modeling/vllm/vllm.md
         - workers:
           - documentation/modeling/vllm/workers/index.md
           - GPUWorker: documentation/modeling/vllm/workers/GPUWorker.md
+      - vlm: documentation/modeling/vlm.md
     - schema:
       - documentation/schema/index.md
       - config: documentation/schema/config.md
       - request: documentation/schema/request.md
       - response: documentation/schema/response.md
+    - tracing:
+      - documentation/tracing/index.md
+      - backend: documentation/tracing/backend.md
+      - globals: documentation/tracing/globals.md
+      - hint: documentation/tracing/hint.md
+      - tracer: documentation/tracing/tracer.md
+      - util: documentation/tracing/util.md
     - ndif: documentation/ndif.md
     - util: documentation/util.md
   - Features:
@@ -196,17 +230,51 @@ nav:
     - Setting Activations: features/2_setting.ipynb
     - Gradients: features/3_gradients.ipynb
     - Multiple Token Generation: features/4_multiple_token.ipynb
-    - Module Access: features/5_modules.ipynb
-    - Model Editing: features/6_model_editing.ipynb
-    - Cross-Prompt Intervention: features/7_cross_prompt.ipynb
-    - Empty Invokers: features/8_empty_invokers.ipynb
-    - Intermediate Operations: features/9_source.ipynb
-    - Early Stopping: features/10_early_stopping.ipynb
-    - Skip Execution: features/11_skip.ipynb
-    - Scan: features/12_scan.ipynb
-    - Remote Execution: features/13_remote_execution.ipynb
-    - Streaming: features/14_streaming.ipynb
-    - vLLM Support: features/15_vllm_support.ipynb
+    - Loading a Model: features/5_loading.ipynb
+    - Module Access: features/6_modules.ipynb
+    - Model Editing: features/7_model_editing.ipynb
+    - Batching: features/8_batching.ipynb
+    - Empty Invokers: features/9_empty_invokers.ipynb
+    - Cache: features/10_cache.ipynb
+    - Intermediate Operations: features/11_source.ipynb
+    - Early Stopping: features/12_early_stopping.ipynb
+    - Skip Execution: features/13_skip.ipynb
+    - Scan: features/14_scan.ipynb
+    - Remote Execution: features/15_remote_execution.ipynb
+    - vLLM: features/16_vllm_support.ipynb
+    - Tensor Parallelism: features/17_tensor_parallel.ipynb
+    - Quantization: features/18_quantization.ipynb
+  - vLLM:
+    - vllm/index.md
+    - Locations: vllm/locations.md
+    - Models:
+      - Loading models: vllm/loading.md
+      - Capabilities and limits: vllm/capabilities.md
+    - Reading:
+      - Capture: vllm/capture.md
+      - Attention: vllm/attention.md
+      - Logit lens: vllm/logit-lens.md
+    - Writing:
+      - Steering: vllm/steering.md
+      - Activation patching: vllm/patching.md
+      - Ablation: vllm/ablation.md
+      - Direct logit attribution: vllm/attribution.md
+      - Conditional interventions: vllm/conditional.md
+      - SAE features: vllm/sae.md
+    - Editing the engine: vllm/editing.md
+    - Generating:
+      - Generation: vllm/generation.md
+      - Chat and tokens: vllm/chat.md
+    - Serving:
+      - Async and servers: vllm/serving.md
+      - Tensor parallelism: vllm/tensor-parallel.md
+    - Examples:
+      - Causal tracing: vllm/examples/causal-tracing.md
+      - Jacobian lens: vllm/examples/jacobian-lens.md
+      - A linear probe: vllm/examples/probe.md
+      - Concept directions: vllm/examples/emotion-tracker.md
+    - Performance: vllm/performance.md
+    - Comparisons: vllm/comparisons.md
   - Tutorials:
     - tutorials/index.md
     - Tutorials:
@@ -215,6 +283,8 @@ nav:
         - Walkthrough: tutorials/tutorials/get_started/walkthrough.ipynb
         - Chat Templates: tutorials/tutorials/get_started/chat_templates.ipynb
         - Remote Access: tutorials/tutorials/get_started/start_remote_access.ipynb
+      - Migrating:
+        - From TransformerLens: tutorials/tutorials/migrating/from_transformerlens.ipynb
       - Causal Tracing:
         - Causal Models Intro: tutorials/tutorials/causal_mediation_analysis/causal_models_intro.ipynb
         - Activation Patching: tutorials/tutorials/causal_mediation_analysis/activation_patching.ipynb
@@ -225,16 +295,43 @@ nav:
       - Probing:
         - Logit Lens: tutorials/tutorials/probing/logit_lens.ipynb
         - Diffusion Lens: tutorials/tutorials/probing/diffusion_lens.ipynb
+        - Concept Erasure: tutorials/tutorials/probing/concept_erasure.ipynb
+      - Attention:
+        - Attention Patterns and Per-Head Detection: tutorials/tutorials/attention/attention_heads.ipynb
+      - Circuits:
+        - Attribution Graphs: tutorials/tutorials/circuits/attribution_graphs.ipynb
+      - Architectures:
+        - MoE Routing: tutorials/tutorials/architectures/moe_routing.ipynb
+        - State-Space Models: tutorials/tutorials/architectures/state_space_models.ipynb
+      - Engineering:
+        - Dataset-Scale Activation Caching: tutorials/tutorials/engineering/activation_caching.ipynb
       - Steering:
         - Dictionary Learning: tutorials/tutorials/steering/dict_learning.ipynb
+        - Evaluating SAEs: tutorials/tutorials/steering/evaluating_saes.ipynb
         - LoRA Tutorial: tutorials/tutorials/steering/LoRA_tutorial.ipynb
+      - Vision:
+        - Cross-Attention Ablation: tutorials/tutorials/vision/cross-attention-ablation.ipynb
     - Mini Papers:
       - tutorials/mini-papers/index.md
       - Function Vectors: tutorials/mini-papers/todd_function_vectors.ipynb
+      - Massive Activations: tutorials/mini-papers/massive-activations.ipynb
+      - Induction Heads and the ICL Phase Change: tutorials/mini-papers/induction-heads-phase-change.ipynb
+      - Under-trained Tokens: tutorials/mini-papers/under-trained-tokens.ipynb
+      - Chain-of-Thought Faithfulness: tutorials/mini-papers/cot-faithfulness.ipynb
+      - Belief Lookbacks: tutorials/mini-papers/belief-lookbacks.ipynb
       - Geometry of Truth: tutorials/mini-papers/marks_geometry_of_truth.ipynb
       - LLM Depth: tutorials/mini-papers/csordas_llm_depth.ipynb
       - Dual Route Induction: tutorials/mini-papers/feucht_dual_route_induction.ipynb
       - Demystifying Memorization: tutorials/mini-papers/huang_demystifying_memorization.ipynb
+      - Jacobian Lens: tutorials/mini-papers/jacobian-lens.ipynb
+      - Patchscopes: tutorials/mini-papers/patchscopes.ipynb
+      - IOI Path Patching: tutorials/mini-papers/ioi-path-patching.ipynb
+      - Progress Measures for Grokking: tutorials/mini-papers/grokking-progress-measures.ipynb
+      - Emergent World Models: tutorials/mini-papers/othello-world-models.ipynb
+      - Concept Attention: tutorials/mini-papers/concept-attention.ipynb
+      - VLM Logit Lens: tutorials/mini-papers/vlm-logit-lens.ipynb
+      - Cyclic Arithmetic: tutorials/mini-papers/cyclic-arithmetic.ipynb
+      - Gaze Heads: tutorials/mini-papers/gaze-heads.ipynb
   - Blog:
     - blog/index.md
   - Status: status/index.md

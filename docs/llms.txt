@@ -73,17 +73,18 @@ nnsight uses deferred execution with thread-based synchronization. Code inside `
 - [Setting Activations](https://nnsight.net/features/2_setting/): Modify activations to study causal effects
 - [Gradients](https://nnsight.net/features/3_gradients/): Compute gradients with respect to intermediate values
 - [Multiple Token Generation](https://nnsight.net/features/4_multiple_token/): Work with autoregressive generation
-- [Module Access](https://nnsight.net/features/5_modules/): Navigate and access model components
-- [Model Editing](https://nnsight.net/features/6_model_editing/): Create persistent model modifications
-- [Cross-Prompt Intervention](https://nnsight.net/features/7_cross_prompt/): Transfer activations between different prompts
-- [Empty Invokers](https://nnsight.net/features/8_empty_invokers/): Run interventions without input data
-- [Intermediate Operations](https://nnsight.net/features/9_source/): Access intermediate operations inside modules via .source
-- [Early Stopping](https://nnsight.net/features/10_early_stopping/): Stop computation early for efficiency
-- [Skip Execution](https://nnsight.net/features/11_skip/): Skip parts of model execution
-- [Scan](https://nnsight.net/features/12_scan/): Infer shapes without full execution
-- [Remote Execution](https://nnsight.net/features/13_remote_execution/): Run on NDIF's remote infrastructure
-- [Streaming](https://nnsight.net/features/14_streaming/): Stream outputs during generation
-- [vLLM Support](https://nnsight.net/features/15_vllm_support/): High-performance inference with vLLM
+- [Loading a Model](https://nnsight.net/features/5_loading/): Constructor options, meta-model dispatch, and device placement
+- [Module Access](https://nnsight.net/features/6_modules/): Navigate and access model components
+- [Model Editing](https://nnsight.net/features/7_model_editing/): Create persistent model modifications
+- [Batching](https://nnsight.net/features/8_batching/): Combine multiple prompts in one forward pass and move values between them
+- [Empty Invokers](https://nnsight.net/features/9_empty_invokers/): Run interventions without input data
+- [Cache](https://nnsight.net/features/10_cache/): Bulk-collect activations from many modules in one pass
+- [Intermediate Operations](https://nnsight.net/features/11_source/): Access intermediate operations inside modules via .source
+- [Early Stopping](https://nnsight.net/features/12_early_stopping/): Stop computation early for efficiency
+- [Skip Execution](https://nnsight.net/features/13_skip/): Skip parts of model execution
+- [Scan](https://nnsight.net/features/14_scan/): Infer shapes without full execution
+- [Remote Execution](https://nnsight.net/features/15_remote_execution/): Run on NDIF's remote infrastructure
+- [vLLM Support](https://nnsight.net/features/16_vllm_support/): High-performance inference with vLLM
 
 ## API Documentation
 
@@ -96,6 +97,29 @@ nnsight uses deferred execution with thread-based synchronization. Code inside `
 - [Schema](https://nnsight.net/documentation/schema/): Config, request, response schemas
 - [NDIF](https://nnsight.net/documentation/ndif/): NDIF remote execution utilities
 - [Util](https://nnsight.net/documentation/util/): Utility functions
+
+## vLLM
+
+One page per job, every snippet run against Qwen/Qwen3-8B on vLLM 0.27:
+
+- [Start here](https://nnsight.net/vllm/): install, read one activation, steer one layer
+- [Locations](https://nnsight.net/vllm/locations/): the module tree as the vocabulary; tuples and the residual stream; clone what you keep
+- [Loading models](https://nnsight.net/vllm/loading/): eager, CUDA-graph taps, async; what nnsight forces and why
+- [Capabilities and limits](https://nnsight.net/vllm/capabilities/): refusals, what is not on vLLM, versions
+- [Capture](https://nnsight.net/vllm/capture/): one location, every layer, every step, many prompts, MoE routing
+- [Attention](https://nnsight.net/vllm/attention/): q/k/v, rebuilt patterns, per-head outputs
+- [Logit lens](https://nnsight.net/vllm/logit-lens/): the model's own norm and unembed, in the worker
+- [Steering](https://nnsight.net/vllm/steering/): add, ablate, cap, mask positions, write anywhere, the sampler
+- [Generation](https://nnsight.net/vllm/generation/): sampling, per-step logits/samples, tracer.result, n > 1
+- [Chat and tokens](https://nnsight.net/vllm/chat/): templates, token-id prompts, spans
+- [Async and servers](https://nnsight.net/vllm/serving/): mode="async", nnsight-serve, model.edit()
+- [Tensor parallelism](https://nnsight.net/vllm/tensor-parallel/): sharded models read whole
+- [Causal tracing](https://nnsight.net/vllm/examples/causal-tracing/): ROME-style patching, one request per (layer, position), batched
+- [Jacobian lens](https://nnsight.net/vllm/examples/jacobian-lens/): Neuronpedia's pre-fitted J-lens read out in the worker
+- [A linear probe](https://nnsight.net/vllm/examples/probe/): contrastive extraction with one installed block, then a probe that runs inside the model
+- [Concept directions](https://nnsight.net/vllm/examples/emotion-tracker/): emotion directions, tracked per generated token
+- [Performance](https://nnsight.net/vllm/performance/): eager vs graph taps, measured
+- [Comparisons](https://nnsight.net/vllm/comparisons/): the same jobs in interp-engine and vLLM-Lens, one throughput grid
 
 ## Tutorials
 

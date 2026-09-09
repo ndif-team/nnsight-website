@@ -45,9 +45,9 @@ jobs:
           NDIF_API_KEY: ${{ secrets.NDIF_API_KEY }}
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            python run_notebooks.py -f features -s vllm_support -c --force-update
+            python run_notebooks.py -f features -s vllm_support tensor_parallel 18_quantization -c --force-update
           else
-            python run_notebooks.py -f features -s vllm_support -c -u
+            python run_notebooks.py -f features -s vllm_support tensor_parallel 18_quantization -c -u
           fi
 
       - name: Commit updated notebooks

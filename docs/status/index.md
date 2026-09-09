@@ -717,7 +717,8 @@ social:
     border: 1px solid var(--nn-card-border);
     border-radius: var(--nn-radius-sm);
     font-size: 0.72rem;
-    white-space: normal;
+    white-space: pre-line;
+    line-height: 1.5;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     font-family: var(--nn-font-body);
     font-weight: normal;
@@ -832,18 +833,27 @@ social:
   }
 
   .nn-gpu-block {
+    position: relative;
     flex: 1;
     height: 18px;
     border-radius: 3px;
     background: var(--nn-chip-bg);
-    transition: background var(--nn-ease);
   }
 
-  .nn-gpu-block.used {
+  /* Width tracks allocated memory, so a half-full GPU reads as half full
+     rather than looking identical to a saturated one. */
+  .nn-gpu-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    min-width: 2px;
+    border-radius: 3px;
     background: var(--nn-cold);
+    transition: width var(--nn-ease);
   }
 
-  .nn-gpu-block.used:hover {
+  .nn-gpu-block.used:hover .nn-gpu-fill {
     opacity: 0.8;
   }
 
@@ -854,6 +864,20 @@ social:
     width: 3rem;
     flex-shrink: 0;
     text-align: right;
+  }
+
+  /* Shown only under 768px, where the full cluster panel is hidden. */
+  .nn-cluster-compact {
+    display: none;
+    width: 100%;
+    padding: 0.5rem 0.7rem;
+    border: 1px solid var(--nn-card-border);
+    border-radius: var(--nn-radius-sm);
+    background: var(--nn-card-bg);
+    font-family: var(--nn-font-mono);
+    font-size: 0.7rem;
+    color: var(--md-default-fg-color);
+    text-align: center;
   }
 
   /* ===== Responsive ===== */
@@ -874,6 +898,7 @@ social:
 
     .nn-panel { flex: 1; min-width: 200px; }
     .nn-cluster-section { display: none !important; }
+    .nn-cluster-compact { display: block; }
 
     #filter-bar {
       flex-direction: column;
@@ -915,7 +940,7 @@ social:
         </div>
         <div class="nn-panel-body" :class="{ collapsed: !panels.resources }">
           <div class="nn-sidebar-links">
-            <a href="/features/13_remote_execution/" target="_blank"
+            <a href="/features/15_remote_execution/" target="_blank"
                class="nn-sidebar-link"
                title="How do I use NDIF?">
               <i class="pi pi-question-circle"></i>
@@ -941,31 +966,32 @@ social:
               <div class="nn-cluster-metric-label">GPUs</div>
             </div>
             <div class="nn-cluster-metric">
-              <div class="nn-cluster-metric-value">{{ clusterInfo.usedGpus }}</div>
-              <div class="nn-cluster-metric-label">In Use</div>
+              <div class="nn-cluster-metric-value">{{ clusterInfo.busyGpus }}</div>
+              <div class="nn-cluster-metric-label">Holding a model</div>
             </div>
             <div class="nn-cluster-metric">
               <div class="nn-cluster-metric-value">{{ clusterInfo.totalVram }}</div>
-              <div class="nn-cluster-metric-label">VRAM</div>
+              <div class="nn-cluster-metric-label">Total VRAM</div>
             </div>
           </div>
           <div class="nn-cluster-bar-label">
-            <span>GPU Utilization</span>
-            <span>{{ clusterInfo.utilizationPct }}%</span>
+            <span data-nn-tooltip="Share of the cluster's total GPU memory currently holding model weights.">GPU memory allocated</span>
+            <span>{{ clusterInfo.memoryPct }}%</span>
           </div>
           <div class="nn-cluster-bar">
-            <div class="nn-cluster-bar-fill" :style="{ width: clusterInfo.utilizationPct + '%' }"></div>
+            <div class="nn-cluster-bar-fill" :style="{ width: clusterInfo.memoryPct + '%' }"></div>
           </div>
           <div class="nn-panel-title" style="margin-bottom: 0.6rem;">Nodes</div>
           <div class="nn-node-list">
             <div v-for="node in clusterInfo.nodes" :key="node.id" class="nn-node">
-              <span class="nn-node-id">{{ node.id }}</span>
+              <span class="nn-node-id" :data-nn-tooltip="node.tooltip">{{ node.label }}</span>
               <div class="nn-node-gpus">
                 <template v-if="node.gpuDetails">
                   <div v-for="g in node.gpuDetails" :key="g.index"
                        class="nn-gpu-block"
                        :class="{ used: g.isUsed }"
-                       :data-nn-tooltip="g.isUsed ? 'GPU ' + g.index + ': ' + formatBytes(g.usedBytes) + ' / ' + formatBytes(g.memoryBytes) + (g.model ? ' (' + g.model + ')' : '') : 'GPU ' + g.index + ': Available'">
+                       :data-nn-tooltip="g.tooltip">
+                    <div class="nn-gpu-fill" :style="{ width: g.usedPct + '%' }"></div>
                   </div>
                 </template>
                 <template v-else>
@@ -973,6 +999,7 @@ social:
                        class="nn-gpu-block"
                        :class="{ used: g <= node.usedGpus }"
                        :data-nn-tooltip="g <= node.usedGpus ? 'In use' : 'Available'">
+                    <div class="nn-gpu-fill" :style="{ width: g <= node.usedGpus ? '100%' : '0%' }"></div>
                   </div>
                 </template>
               </div>
@@ -980,6 +1007,11 @@ social:
             </div>
           </div>
         </div>
+      </div>
+
+      <div v-if="clusterInfo" class="nn-cluster-compact">
+        {{ clusterInfo.totalGpus }} GPUs &middot; {{ clusterInfo.nodes.length }} nodes &middot;
+        {{ clusterInfo.totalVram }} &middot; {{ clusterInfo.memoryPct }}% allocated
       </div>
     </div>
 
@@ -1278,74 +1310,102 @@ document.addEventListener('DOMContentLoaded', function() {
       clusterInfo() {
         if (!this.cluster || !this.cluster.nodes) return null;
         const entries = Object.entries(this.cluster.nodes);
-        let totalGpus = 0, usedGpusCount = 0, totalVramBytes = 0;
+        let totalGpus = 0, busyGpus = 0, totalVramBytes = 0, allocatedBytes = 0;
+
+        const repoOf = (modelKey) => {
+          const m = modelKey.match(/"repo_id":\s*"([^"]+)"/);
+          return m ? m[1] : modelKey.split(":").pop();
+        };
+
+        // node.deployments is model_key -> replica_id -> { gpus: {index: bytes} }.
+        // Returns gpu index -> [{repo, bytes}], because several models can share
+        // one GPU and the panel should name all of them.
+        const occupantsByGpu = (node) => {
+          const byIndex = {};
+          Object.entries(node.deployments || {}).forEach(([modelKey, replicas]) => {
+            Object.values(replicas || {}).forEach((replica) => {
+              const gpus = replica && replica.gpus;
+              if (!gpus) return;
+              Object.entries(gpus).forEach(([idx, bytes]) => {
+                (byIndex[idx] = byIndex[idx] || []).push({
+                  repo: repoOf(modelKey),
+                  bytes: Number(bytes) || 0,
+                });
+              });
+            });
+          });
+          Object.values(byIndex).forEach((list) => list.sort((a, b) => b.bytes - a.bytes));
+          return byIndex;
+        };
+
         const nodes = entries.map(([id, node]) => {
           const res = node.resources;
           if (res.gpu_details) {
             const gpus = res.gpu_details;
-            const t = gpus.length;
-            const deployedGpuIndices = new Set();
-            if (node.deployments) {
-              Object.values(node.deployments).forEach(dep => {
-                if (dep.gpus) Object.keys(dep.gpus).forEach(idx => deployedGpuIndices.add(parseInt(idx)));
-              });
-            }
-            const used = deployedGpuIndices.size;
+            const occupants = occupantsByGpu(node);
             const vramBytes = gpus.reduce((sum, g) => sum + g.memory_bytes, 0);
-            totalGpus += t;
-            usedGpusCount += used;
+            totalGpus += gpus.length;
             totalVramBytes += vramBytes;
-            const vramGb = vramBytes / 1e9;
-            const gpuDetails = gpus.map(g => {
-              const usedBytes = g.memory_bytes - g.available_memory_bytes;
-              let modelOnGpu = null;
-              if (node.deployments) {
-                for (const [modelKey, dep] of Object.entries(node.deployments)) {
-                  if (dep.gpus && dep.gpus[String(g.index)] !== undefined) {
-                    const repoMatch = modelKey.match(/"repo_id":\s*"([^"]+)"/);
-                    modelOnGpu = repoMatch ? repoMatch[1].split('/').pop() : modelKey.split(':').pop();
-                    break;
-                  }
-                }
-              }
+
+            const gpuDetails = gpus.map((g) => {
+              const usedBytes = Math.max(0, g.memory_bytes - g.available_memory_bytes);
+              const isUsed = usedBytes > 0;
+              if (isUsed) busyGpus += 1;
+              allocatedBytes += usedBytes;
+              const here = occupants[String(g.index)] || [];
+              const head = "GPU " + g.index + " \u00b7 " + (isUsed
+                ? this.formatBytes(usedBytes) + " of " + this.formatBytes(g.memory_bytes) + " in use"
+                : "free \u00b7 " + this.formatBytes(g.memory_bytes));
+              const lines = here.map((o) => o.repo + "  " + this.formatBytes(o.bytes));
               return {
                 index: g.index,
                 memoryBytes: g.memory_bytes,
                 usedBytes,
-                usedPct: Math.round((usedBytes / g.memory_bytes) * 100),
-                isUsed: usedBytes > 0,
-                model: modelOnGpu,
+                usedPct: g.memory_bytes ? Math.round((usedBytes / g.memory_bytes) * 100) : 0,
+                isUsed,
+                models: here,
+                tooltip: [head].concat(lines).join("\n"),
               };
             });
+
             return {
-              id: id.slice(0, 6),
-              totalGpus: t,
-              usedGpus: used,
-              vram: vramGb >= 100 ? Math.round(vramGb) + 'G' : vramGb.toFixed(0) + 'G',
+              rawId: id,
+              totalGpus: gpus.length,
+              usedGpus: gpuDetails.filter((g) => g.isUsed).length,
+              vram: this.formatVram(vramBytes),
               gpuDetails,
             };
-          } else {
-            const t = Math.round(res.total_gpus);
-            const a = res.available_gpus.length;
-            totalGpus += t;
-            usedGpusCount += (t - a);
-            totalVramBytes += res.gpu_memory_bytes;
-            const vramGb = res.gpu_memory_bytes / 1e9;
-            return {
-              id: id.slice(0, 6),
-              totalGpus: t,
-              usedGpus: t - a,
-              vram: vramGb >= 100 ? Math.round(vramGb) + 'G' : vramGb.toFixed(0) + 'G',
-              gpuDetails: null,
-            };
           }
+          const t = Math.round(res.total_gpus);
+          const a = (res.available_gpus || []).length;
+          totalGpus += t;
+          busyGpus += t - a;
+          totalVramBytes += res.gpu_memory_bytes;
+          return {
+            rawId: id,
+            totalGpus: t,
+            usedGpus: t - a,
+            vram: this.formatVram(res.gpu_memory_bytes),
+            gpuDetails: null,
+          };
         }).sort((a, b) => b.totalGpus - a.totalGpus);
+
+        // Ray node ids are 56 hex characters and change on restart, so they are
+        // labelled by position and the real id lives in the tooltip.
+        nodes.forEach((node, i) => {
+          node.label = "Node " + (i + 1);
+          const size = node.gpuDetails && node.gpuDetails.length
+            ? " \u00b7 " + this.formatBytes(node.gpuDetails[0].memoryBytes) + " each"
+            : "";
+          node.tooltip = node.totalGpus + " GPUs" + size + "\n" + node.rawId;
+        });
+
         const totalVramTb = totalVramBytes / 1e12;
         return {
           totalGpus,
-          usedGpus: usedGpusCount,
-          totalVram: totalVramTb >= 1 ? totalVramTb.toFixed(1) + ' TB' : Math.round(totalVramBytes / 1e9) + ' GB',
-          utilizationPct: totalGpus > 0 ? Math.round((usedGpusCount / totalGpus) * 100) : 0,
+          busyGpus,
+          totalVram: totalVramTb >= 1 ? totalVramTb.toFixed(1) + " TB" : Math.round(totalVramBytes / 1e9) + " GB",
+          memoryPct: totalVramBytes > 0 ? Math.round((allocatedBytes / totalVramBytes) * 100) : 0,
           nodes,
         };
       },
@@ -1379,6 +1439,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (bytes >= 1e9) return (bytes / 1e9).toFixed(1) + ' GB';
         if (bytes >= 1e6) return Math.round(bytes / 1e6) + ' MB';
         return Math.round(bytes / 1e3) + ' KB';
+      },
+      // Compact, for the node row: 1.2T / 192G.
+      formatVram(bytes) {
+        const gb = bytes / 1e9;
+        return gb >= 1000 ? (gb / 1000).toFixed(1) + 'T' : Math.round(gb) + 'G';
       },
       toggleLevel(level) {
         this.selectedLevel = this.selectedLevel === level ? null : level;

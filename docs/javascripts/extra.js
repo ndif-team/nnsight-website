@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
     { name: "Getting Started", href: "/getting-started/" },
     { name: "Documentation", href: "/documentation/" },
     { name: "Features", href: "/features/" },
+    { name: "vLLM", href: "/vllm/" },
     { name: "Tutorials", href: "/tutorials/" },
     { name: "Blog", href: "/blog/" },
     { name: "About", href: "/about/" }
@@ -104,3 +105,14 @@ document.addEventListener("DOMContentLoaded", function() {
     headerSource.parentNode.insertBefore(ndifLink, headerSource.nextSibling);
   }
 });
+
+// Re-typeset math after Material's instant navigation swaps the page content.
+// The MathJax loader that mkdocs-jupyter injects only runs on a full page load,
+// so without this, math renders on reload but not when navigating via the sidebar.
+if (typeof document$ !== "undefined") {
+  document$.subscribe(function () {
+    if (window.MathJax && window.MathJax.Hub) {
+      window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub]);
+    }
+  });
+}
