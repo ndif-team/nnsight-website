@@ -91,6 +91,36 @@ the tensor they returned. DeepSeek's MLA attention rotates the `q_proj` output i
 module returns, so `q_proj.output[0].save()` on one rank comes back rotated while the same read
 under tensor parallelism (a fresh gather) does not — `.clone()` makes both the linear's output.
 
+### Cloning every read, engine-wide
+
+`.clone()` at each site is easy to forget, and forgetting is silent. Setting
+`NNSIGHT_VLLM_CLONE_READS=1` makes the engine serve every value to a block as a private copy
+instead, so `.save()`, `tracer.cache()` and appends under `tracer.iter` all keep what was computed
+with no clone at the call site:
+
+```bash
+NNSIGHT_VLLM_CLONE_READS=1 python sweep.py
+```
+
+Set it in the environment, not in `CONFIG`. The copies are made in the engine's worker process, so
+the variable has to be set before `VLLM(...)` builds the engine. Falsy spellings (`0`, `false`,
+`no`, `off`) leave it off, which is the default.
+
+**In-place edits do not survive it.** With a copy served there is nothing aliasing the engine's
+memory, so `layers[10].output[0][:] += v` writes to the copy and the model never sees it. Assign
+the edited value back instead, which lands under either setting:
+
+<!-- norun -->
+```python
+out = model.model.layers[10].output
+out[0][:] += v
+model.model.layers[10].output = out
+```
+
+The copy is of your request's own tokens, not the whole batch, but it is still one allocation per
+module read per step. Leave it off for a throughput run; turn it on for a sweep whose saved values
+matter more than its speed.
+
 ## Qwen3-8B, by name
 
 Every location below was read on `Qwen/Qwen3-8B` (36 layers, `d_model` 4096, 32 query heads, 8

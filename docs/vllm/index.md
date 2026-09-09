@@ -40,7 +40,8 @@ Three things differ from a HuggingFace trace, and every page below leans on them
 - **A decoder layer returns a tuple.** `layers[i].output` is `(hidden_states, residual)`, and the
   residual stream leaving the block is their **sum**. See [Locations](locations.md).
 - **Clone what you keep.** vLLM reuses and overwrites activation buffers in place; `.clone()` before
-  `.save()` or the value you get back may belong to a later layer.
+  `.save()` or the value you get back may belong to a later layer. To have the engine copy every
+  read for you, see [`NNSIGHT_VLLM_CLONE_READS`](locations.md#cloning-every-read-engine-wide).
 
 ## Steer one layer
 
