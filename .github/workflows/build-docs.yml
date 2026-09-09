@@ -41,7 +41,7 @@ jobs:
             ${{ runner.os }}-pip-
 
       - name: Install dependencies
-        run: pip install .
+        run: pip install --pre .
 
       - name: Build documentation
         run: mkdocs build

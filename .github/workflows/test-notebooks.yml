@@ -37,7 +37,7 @@ jobs:
             ${{ runner.os }}-pip-test-
 
       - name: Install dependencies
-        run: pip install ".[test]"
+        run: pip install --pre ".[test]"
 
       - name: Run notebooks
         env:
