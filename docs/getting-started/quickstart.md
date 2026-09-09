@@ -10,8 +10,16 @@ nnsight wraps PyTorch models to enable tracing and intervention. For language mo
 ```python
 from nnsight import TransformersModel
 
-model = TransformersModel('gpt2', device_map='auto', dispatch=True)
+model = TransformersModel(
+    'openai-community/gpt2',
+    task='text-generation',
+    device_map='auto',
+    dispatch=True,
+)
 ```
+
+Leaving `task=` off infers it from the checkpoint, which asks the Hub, so pass it explicitly if
+you are offline.
 
 !!! info "Model Dispatching"
     Setting `dispatch=True` loads the model weights immediately. Otherwise, the model is loaded on a [meta device](https://docs.pytorch.org/docs/stable/meta.html) for faster initialization.
@@ -112,17 +120,20 @@ off the activation itself, as above, also stays correct when `device_map` has sh
 across devices or the layers are in mixed precision.
 
 The two forms differ in more than style. `output[:] = v` writes through the tensor the model is
-holding; `output = v` hands the model a different one. Both take effect, but a replacement built
-from scratch, such as `torch.zeros_like(...)` or a fresh `torch.randn(...)`, is a tensor autograd
-has never seen, so it cuts the graph at that point — and what a later gradient read does depends
-on what else survives the cut. Replace a whole block's output and every path is severed: an
-upstream `.grad` read fails loudly with an `OutOfOrderError` (so does reading the fresh tensor's
-own `.grad`). But replace a submodule's output, as here — the residual stream and the attention
-branch route around the MLP — and an upstream `.grad` read *succeeds*, silently returning a
-gradient that is missing the MLP path's contribution. Measured on gpt2: swapping `h[3].mlp.output`
-for a detached copy of the very same values leaves the forward pass bit-identical, yet shifts the
-layer-0 gradient by 45% in L2 norm (125,659 → 130,349) with no warning. Derive the new value from
-the old one, as `hs + noise` does, or write in place.
+holding; `output = v` hands the model a different one. Both take effect, but a tensor built from
+scratch, such as `torch.zeros_like(...)` or a fresh `torch.randn(...)`, is one autograd has never
+seen, so a replacement cuts the graph at that point.
+
+What that costs you depends on what the cut severs. Replace a whole block's output and every path
+through it is gone, so a later `.grad` read on an earlier layer fails loudly with
+`OutOfOrderError`. Replace a submodule's output, as here, and the residual stream and the
+attention branch route around the MLP: the read succeeds and quietly returns a gradient that is
+missing the MLP path's contribution. On gpt2, swapping `h[3].mlp.output` for a detached copy of
+the very same values leaves the forward pass bit-identical, but the layer-0 gradient of
+`logits.sum()` on "The Eiffel Tower is in the city of" comes back 53% different in L2. Its norm
+barely moves (934,880 against 897,234), which is what makes it easy to miss.
+
+Derive the new value from the old one, as `hs + noise` does, or write in place.
 
 ## Understanding Module Hierarchy
 

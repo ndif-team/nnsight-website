@@ -3,13 +3,12 @@
 ## Requirements
 
 - Python 3.10 or higher
-- PyTorch 2.4 or higher
-- `transformers` 5.x, if you are working with HuggingFace models
+- PyTorch (installed automatically)
+- `transformers` 5.x, if you are working with Hugging Face models
 
-`pip install nnsight` pulls in a `transformers` but does not pin its major version, and the two
-majors differ in what a module returns. On 5.x a decoder block hands back a bare tensor; on 4.x
-it hands back a one-element tuple, which is why so much nnsight code you will find online writes
-`.output[0]`. These docs are written for 5.x throughout. Check what you have:
+Model implementations and architectures change from one `transformers` version to the next, and
+`pip install nnsight` does not pin the major. These docs are written against 5.x, so check what
+you have:
 
 ```python
 import transformers
@@ -29,13 +28,13 @@ pip install nnsight
 For the latest development version, install directly from GitHub:
 
 ```bash
-pip install git+https://github.com/nnsight/nnsight.git
+pip install git+https://github.com/ndif-team/nnsight.git
 ```
 
 Or clone the repository and install in editable mode:
 
 ```bash
-git clone https://github.com/nnsight/nnsight.git
+git clone https://github.com/ndif-team/nnsight.git
 cd nnsight
 pip install -e .
 ```
@@ -48,6 +47,23 @@ For high-performance inference with [vLLM](https://github.com/vllm-project/vllm)
 
 ```bash
 pip install nnsight[vllm]
+```
+
+### Serving
+
+`nnsight-serve` puts one vLLM engine behind HTTP so that clients without a GPU can trace it. The
+extra pulls in vLLM plus the server dependencies:
+
+```bash
+pip install nnsight[serve]
+```
+
+### Running the tests
+
+The `dev` extra is everything the test suite needs on top of the core install:
+
+```bash
+pip install nnsight[dev]
 ```
 
 ### Quantized models
