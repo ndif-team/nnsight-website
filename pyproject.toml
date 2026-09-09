@@ -12,13 +12,18 @@ dependencies = [
     "mkdocs-material>=9.5.0",
     "mkdocstrings>=0.26.0",
     "mkdocstrings-python>=1.12.0",
-    "nnsight",
+    # PyPI's newest nnsight is 0.8.0rc1, a frozen release candidate that these
+    # pages have already moved past, so `--pre` resolves to a tree older than
+    # what they document and the snippets fail on whatever landed after the rc.
+    # Track the branch instead. Switch to `"nnsight>=0.8"` once 0.8 ships.
+    "nnsight @ git+https://github.com/ndif-team/nnsight@0.8",
     "pillow>=10",
 ]
 
 [project.optional-dependencies]
 test = [
-    "nnsight",
+    # Same branch pin as above, and for the same reason.
+    "nnsight @ git+https://github.com/ndif-team/nnsight@0.8",
     # 18_quantization.ipynb loads 4- and 8-bit models; neither is an nnsight
     # dependency, and both are needed to run that notebook locally.
     "accelerate>=1.14.0",
