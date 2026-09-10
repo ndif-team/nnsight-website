@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block scripts %}
+  {{ super() }}
+  <!-- Context7 docs chatbot: a floating button that answers questions from the
+       nnsight library and links the pages it used. It only loads on the domains
+       allowlisted in the Context7 dashboard, so it will not appear on localhost. -->
+  <script src="https://context7.com/widget.js" data-library="/ndif-team/nnsight"></script>
+{% endblock %}
