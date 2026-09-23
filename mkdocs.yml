@@ -332,6 +332,7 @@ nav:
       - VLM Logit Lens: tutorials/mini-papers/vlm-logit-lens.ipynb
       - Cyclic Arithmetic: tutorials/mini-papers/cyclic-arithmetic.ipynb
       - Gaze Heads: tutorials/mini-papers/gaze-heads.ipynb
+      - Matryoshka Attribution: tutorials/mini-papers/matryoshka-attribution.ipynb
   - Blog:
     - blog/index.md
   - Status: status/index.md
