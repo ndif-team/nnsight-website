@@ -106,13 +106,27 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
-// Re-typeset math after Material's instant navigation swaps the page content.
-// The MathJax loader that mkdocs-jupyter injects only runs on a full page load,
-// so without this, math renders on reload but not when navigating via the sidebar.
+// Math after Material's instant navigation. mkdocs-jupyter injects a MathJax 2
+// loader plus a `text/x-mathjax-config` block into every notebook page. On a full
+// page load MathJax evaluates that block at startup and `$...$` renders. After an
+// instant navigation the loader is re-executed but the config block is not picked
+// up, so MathJax starts with its defaults, which recognise `$$...$$` and `\(...\)`
+// only; display math renders and inline math stays raw. Apply the same delimiters
+// here: as the author config if MathJax has not loaded yet, or through the Hub if
+// it has, and then typeset the swapped-in content.
+var MATHJAX_TEX2JAX = {
+  inlineMath: [["$", "$"], ["\\(", "\\)"]],
+  displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+  processEscapes: true,
+  processEnvironments: true,
+};
 if (typeof document$ !== "undefined") {
   document$.subscribe(function () {
     if (window.MathJax && window.MathJax.Hub) {
+      window.MathJax.Hub.Config({ tex2jax: MATHJAX_TEX2JAX });
       window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub]);
+    } else if (document.querySelector('script[src*="mathjax"]')) {
+      window.MathJax = { tex2jax: MATHJAX_TEX2JAX, messageStyle: "none" };
     }
   });
 }
