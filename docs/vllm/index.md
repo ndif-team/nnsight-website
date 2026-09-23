@@ -86,7 +86,7 @@ print(out.outputs[0].text)
 | [Tensor parallelism](tensor-parallel.md) | Sharded models read as whole tensors |
 | [Examples](examples/causal-tracing.md) | Causal tracing, the Jacobian lens, a linear probe, concept directions — end to end |
 | [Performance](performance.md) | Eager vs graph taps, measured |
-| [Comparisons](comparisons.md) | The same jobs in interp-engine and vLLM-Lens, with one throughput grid |
+| [Comparisons](comparisons.md) | The same jobs in interp-engine, vLLM-Lens and TransformerLens, with one throughput grid |
 
 The longer, narrative version of all this is the [vLLM Support](../features/16_vllm_support.ipynb)
 notebook; the design is written up in

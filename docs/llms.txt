@@ -119,7 +119,7 @@ One page per job, every snippet run against Qwen/Qwen3-8B on vLLM 0.27:
 - [A linear probe](https://nnsight.net/vllm/examples/probe/): contrastive extraction with one installed block, then a probe that runs inside the model
 - [Concept directions](https://nnsight.net/vllm/examples/emotion-tracker/): emotion directions, tracked per generated token
 - [Performance](https://nnsight.net/vllm/performance/): eager vs graph taps, measured
-- [Comparisons](https://nnsight.net/vllm/comparisons/): the same jobs in interp-engine and vLLM-Lens, one throughput grid
+- [Comparisons](https://nnsight.net/vllm/comparisons/): the same jobs in interp-engine, vLLM-Lens and TransformerLens, one throughput grid
 
 ## Tutorials
 

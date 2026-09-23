@@ -34,8 +34,15 @@ SERIES = [
     ("ie_vllm", "interp-engine vllm", "orange", False),
     ("ie_static", "interp-engine vllm-static", "orange", True),
     ("lens_vllm", "vLLM-Lens", "aqua", True),
+    ("tl_batched", "TransformerLens batched", "yellow", False),
+    ("tl_vllm", "TransformerLens (compile + CUDA graphs)", "yellow", True),
 ]
-HUE = {"blue": ("#2a78d6", "#3987e5"), "orange": ("#eb6834", "#d95926"), "aqua": ("#1baf7a", "#199e70")}
+# The vanilla column a series is read against. TransformerLens pins vllm<0.21, so its columns ran
+# on vLLM 0.20.2 and are a share of plain vLLM 0.20.2 measured in that same environment.
+REF = {"tl_batched": "vanilla_v20", "tl_vllm": "vanilla_v20"}
+# Results that live in their own file, merged into the panels of the models they cover.
+EXTRA = {"results-tl.jsonl": {"llama-8b", "llama-1b", "qwen3-8b", "llama-8b-tp2"}}
+HUE = {"blue": ("#2a78d6", "#3987e5"), "orange": ("#eb6834", "#d95926"), "aqua": ("#1baf7a", "#199e70"), "yellow": ("#eda100", "#c98500")}
 # rows: key, label, reference row on the vanilla column, lower-is-better?
 ROWS = [
     ("gen", "generate", "gen", False),
@@ -48,10 +55,11 @@ ROWS = [
     ("probe", "linear probe every step", "gen", False),
     ("ablate", "zero one attention head every step", "gen", False),
     ("force", "override the sampled token every step", "gen", False),
+    ("prefill_cap", "one forward over 512 tokens, capture 1 layer", "prefill_cap", True),
     ("sweep_cap", "sweep: 1024 × 1 token, capture 1 layer, per request", "sweep_cap", True),
     ("sweep_cap_edit", "sweep: 1024 × 1 token, capture 1 layer, edit() once", "sweep_cap", True),
 ]
-TABLE_COLS = [("vanilla", "vanilla vLLM")] + [(k, l) for k, l, _, _ in SERIES]
+TABLE_COLS = [("vanilla", "vanilla vLLM")] + [(k, l) for k, l, _, _ in SERIES[:5]] + [("vanilla_v20", "vanilla vLLM 0.20.2")] + [(k, l) for k, l, _, _ in SERIES[5:]]
 
 
 def load(path):
@@ -102,6 +110,8 @@ def mann_whitney_p(a, b):
 
 
 COUNTERPART = {"ie_vllm": "ns_vllm", "lens_vllm": "ns_vllm", "ie_static": "ns_taps"}
+# TransformerLens is left out of the significance marks: its columns ran on another vLLM version,
+# so only its share of that version's vanilla is comparable, not its absolute time.
 ALPHA = 0.05
 MIN_EFFECT = 0.03   # a significant difference under 3% is real but not worth a highlight
 
@@ -109,6 +119,8 @@ MIN_EFFECT = 0.03   # a significant difference under 3% is real but not worth a 
 def fmt(v, row):
     if v is None:
         return "·"
+    if row == "prefill_cap":
+        return f"{v:,.0f} ms"
     if row.startswith("sweep"):
         return f"{v / 1000:.2f} s"
     return f"{v:,.0f}"
@@ -121,8 +133,8 @@ def svg(config, title, res, relabel=None):
     plot_w = W - LEFT - RIGHT
     xmax = 1.12
     for row, _, refrow, lower in rows:
-        van = value(res.get(("vanilla", refrow)))[0]
         for key, *_ in SERIES:
+            van = value(res.get((REF.get(key, "vanilla"), refrow)))[0]
             v = value(res.get((key, row)))[0]
             if v and van:
                 xmax = max(xmax, ((van / v) if lower else (v / van)) + 0.08)
@@ -133,10 +145,10 @@ def svg(config, title, res, relabel=None):
 
     light = {"surface": "#fcfcfb", "ink": "#0b0b0b", "ink2": "#52514e", "muted": "#898781", "grid": "#e1e0d9", "axis": "#c3c2b7"}
     dark = {"surface": "#1a1a19", "ink": "#ffffff", "ink2": "#c3c2b7", "muted": "#898781", "grid": "#2c2c2a", "axis": "#383835"}
-    css = [".viz{--surface:%s;--ink:%s;--ink2:%s;--muted:%s;--grid:%s;--axis:%s;--blue:%s;--orange:%s;--aqua:%s;font-family:system-ui,-apple-system,'Segoe UI',sans-serif}" % (
-        light["surface"], light["ink"], light["ink2"], light["muted"], light["grid"], light["axis"], HUE["blue"][0], HUE["orange"][0], HUE["aqua"][0])]
-    darkvars = "--surface:%s;--ink:%s;--ink2:%s;--muted:%s;--grid:%s;--axis:%s;--blue:%s;--orange:%s;--aqua:%s" % (
-        dark["surface"], dark["ink"], dark["ink2"], dark["muted"], dark["grid"], dark["axis"], HUE["blue"][1], HUE["orange"][1], HUE["aqua"][1])
+    css = [".viz{--surface:%s;--ink:%s;--ink2:%s;--muted:%s;--grid:%s;--axis:%s;--blue:%s;--orange:%s;--aqua:%s;--yellow:%s;font-family:system-ui,-apple-system,'Segoe UI',sans-serif}" % (
+        light["surface"], light["ink"], light["ink2"], light["muted"], light["grid"], light["axis"], HUE["blue"][0], HUE["orange"][0], HUE["aqua"][0], HUE["yellow"][0])]
+    darkvars = "--surface:%s;--ink:%s;--ink2:%s;--muted:%s;--grid:%s;--axis:%s;--blue:%s;--orange:%s;--aqua:%s;--yellow:%s" % (
+        dark["surface"], dark["ink"], dark["ink2"], dark["muted"], dark["grid"], dark["axis"], HUE["blue"][1], HUE["orange"][1], HUE["aqua"][1], HUE["yellow"][1])
     css.append("@media (prefers-color-scheme: dark){:root:not([data-md-color-scheme=default]) .viz{%s}}" % darkvars)
     css.append("[data-md-color-scheme=slate] .viz{%s}" % darkvars)
     css.append(".viz text{fill:var(--ink2);font-size:12px}.viz .t{fill:var(--ink);font-size:14px;font-weight:600}.viz .m{fill:var(--muted);font-size:11px}"
@@ -176,7 +188,7 @@ def svg(config, title, res, relabel=None):
         y = TOP + i * ROWH + ROWH / 2
         out.append(f'<text x="{LEFT - 12}" y="{y + 4:.1f}" text-anchor="end">{label}</text>')
         van, vstat, _, _ = value(res.get(("vanilla", refrow)))
-        cells = {"vanilla": fmt(value(res.get(("vanilla", row)))[0], row)}
+        cells = {c: fmt(value(res.get((c, row)))[0], row) for c in ("vanilla", "vanilla_v20")}
         vals = {key: value(res.get((key, row))) for key, *_ in SERIES}
         # significance against the nnsight counterpart (two-sided exact Mann-Whitney U)
         sig = {}
@@ -205,6 +217,7 @@ def svg(config, title, res, relabel=None):
                 out.append(f'<text class="m" x="{LEFT + 10 + nx * 16}" y="{y + 4:.1f}" text-anchor="middle" font-size="9">✗</text>')
                 nx += 1
                 continue
+            van = value(res.get((REF.get(key, "vanilla"), refrow)))[0]
             if v is None or van is None:
                 continue
             frac = (van / v) if lower else (v / van)
@@ -212,7 +225,7 @@ def svg(config, title, res, relabel=None):
             fill = f"var(--{hue})" if filled else "var(--surface)"
             lo_s, hi_s = min(samples), max(samples)
             f_lo, f_hi = sorted(((van / lo_s) if lower else (lo_s / van), (van / hi_s) if lower else (hi_s / van)))
-            tip = f"{slabel}: {fmt(v, row)} ({frac * 100:.0f}% of vanilla; {len(samples)} runs, {fmt(lo_s, row)}–{fmt(hi_s, row)})"
+            tip = f"{slabel}: {fmt(v, row)} ({frac * 100:.0f}% of {"vanilla vLLM 0.20.2" if key in REF else "vanilla"}; {len(samples)} runs, {fmt(lo_s, row)}–{fmt(hi_s, row)})"
             if key in sig:
                 tip += f"; significantly {sig[key]} than {'the counterpart' if key != 'ns_vllm' and key != 'ns_taps' else 'every counterpart'} (p&lt;{ALPHA})"
             out.append(f'<line x1="{X(min(f_lo, xmax)):.1f}" y1="{y:.1f}" x2="{X(min(f_hi, xmax)):.1f}" y2="{y:.1f}" stroke="var(--{hue})" stroke-width="2" opacity="0.45"/>')
@@ -226,10 +239,17 @@ def svg(config, title, res, relabel=None):
 for slug, key, fname, title, relabel in CONFIGS:
     if not (RESULTS / fname).exists():
         continue
-    res = load(RESULTS / fname)
     alias = {"llama-70b-lens": "llama-70b"}          # the vLLM-Lens 70B job ran under its own key
-    res = {k: [e for e in v if alias.get(e["model"], e["model"]) == key] for k, v in res.items()}
-    res = {k: v for k, v in res.items() if v}
+    def for_model(res):
+        res = {k: [e for e in v if alias.get(e["model"], e["model"]) == key] for k, v in res.items()}
+        return {k: v for k, v in res.items() if v}
+    res = for_model(load(RESULTS / fname))
+    for extra, models in EXTRA.items():
+        if key in models and slug == key and (RESULTS / extra).exists():
+            for k, v in for_model(load(RESULTS / extra)).items():
+                if k in res:   # a panel's own session stays the reference for its own columns
+                    continue
+                res[k] = v
     if not res.get(("vanilla", "gen")) and not res.get(("vanilla", "gen_x8")):
         continue
     s, table = svg(slug, title, res, relabel)
