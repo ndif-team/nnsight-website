@@ -41,7 +41,7 @@ SERIES = [
 # on vLLM 0.20.2 and are a share of plain vLLM 0.20.2 measured in that same environment.
 REF = {"tl_batched": "vanilla_v20", "tl_vllm": "vanilla_v20"}
 # Results that live in their own file, merged into the panels of the models they cover.
-EXTRA = {"results-tl.jsonl": {"llama-8b", "llama-1b", "qwen3-8b", "llama-8b-tp2"}}
+EXTRA = {"results-tl.jsonl": {"llama-8b", "llama-1b", "qwen3-8b", "llama-8b-tp2", "llama-8b-tp4", "qwen-moe"}}
 HUE = {"blue": ("#2a78d6", "#3987e5"), "orange": ("#eb6834", "#d95926"), "aqua": ("#1baf7a", "#199e70"), "yellow": ("#eda100", "#c98500")}
 # rows: key, label, reference row on the vanilla column, lower-is-better?
 ROWS = [

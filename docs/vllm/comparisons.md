@@ -392,8 +392,12 @@ front (`non_fireable_hook_points`), asking for one raises `this backend cannot f
 'blocks.8.attn.hook_z'; use boot_transformers()`, a hook that installed on no rank fails the
 boot, and a tensor-parallel boot cross-checks that every rank's copy of a capture agrees. One
 architecture overlay covers every decoder-only model by vLLM's conventional module paths
-(`model.layers.{i}`, `.self_attn`, `.mlp`), so a family that nests its trunk elsewhere fails
-that boot check rather than reading zeros.
+(`model.layers.{i}`, `.self_attn`, `.mlp`), and the models that fall outside it fail at boot
+rather than reading zeros: Qwen3.5-0.8B, whose composite multimodal config has no
+`hidden_size`, fails before the engine is built on either path, and Qwen1.5-MoE-A2.7B fails
+on the compiled path when `torch.compile` rejects the graph with the hooks in it
+(`ConstraintViolationError` on the token dimension; plain vLLM compiles the same model, and
+the eager batched path runs it).
 
 ### Reading
 
@@ -487,11 +491,17 @@ vanilla the other libraries are read against.
   vLLM 0.20.2 and 53 ms for an nnsight trace on 0.27.1; the compiled hooks add an affine and a
   gated copy at every hook point whether or not anything was asked for. With the defaults on
   it is about 370 ms.
-- **Tensor parallelism does not help it.** At `tensor_parallel_size=2` plain vLLM's single
-  forward drops from 37 to 25 ms and the one-per-call sweep from 15–19 s to 9 s; TransformerLens's
-  forward goes the other way, 62 to 74 ms, because every capture read now crosses two ranks and
-  is merged on the client, and its sweep comes down only with the engine (16.9 s). nnsight's
-  trace follows vanilla (53 → 45 ms; 1.6 → 1.3 s).
+- **Tensor parallelism makes it slower.** From one card to `tensor_parallel_size=4`, plain
+  vLLM's single forward drops 37 → 25 → 19 ms and its one-per-call sweep 15–19 → 9 → 6 s;
+  TransformerLens's forward goes the other way, 62 → 73 → 101 ms, because every capture read
+  now crosses every rank and is merged on the client, and its sweep comes down only with the
+  engine (25.9 → 14.1 → 12.6 s). nnsight's trace follows vanilla (53 → 45 → 39 ms;
+  1.6 → 1.3 → 1.2 s).
+- **The mixture of experts is its best panel, on the path that survives.** On
+  Qwen1.5-MoE-A2.7B the compiled path does not boot (above), but the eager batched path is
+  closer to nnsight than anywhere else: 2.8 s for the sweep against nnsight's 1.4 s
+  (0.7 s with `edit()`), and 62 ms for a single forward against 46 ms. An MoE forward is
+  expensive relative to the hook's fixed per-request copy, so the copy shows less.
 - **Every other row is ✗**, for one of three reasons recorded in the tables' hover text: no
   generation through the bridge; no hook point inside the attention block or on the sampler;
   no backward pass.
