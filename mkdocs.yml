@@ -55,6 +55,7 @@ hooks:
   - hooks/social_meta.py
   - hooks/notebook_links.py
   - hooks/page_meta.py
+  - hooks/plotly_mathjax.py
 
 # Plugins
 plugins:
