@@ -1083,6 +1083,7 @@ social:
           :application_state="deployment.application_state"
           :repo_id="deployment.repo_id"
           :revision="deployment.revision"
+          :task="deployment.task"
           :replicas_count="deployment.replicas_count"
           :style="{ 'animation-delay': (index * 30) + 'ms' }"
         ></deployment-component>
@@ -1128,7 +1129,7 @@ document.addEventListener('DOMContentLoaded', function() {
     props: {
       model_key: String, deployment_level: String, pinned: Boolean,
       schedule: Object, application_state: String, repo_id: String,
-      n_params: Number, index: Number, revision: String,
+      n_params: Number, index: Number, revision: String, task: String,
       // Total HOT+WARM replicas behind this card (post-aggregation in
       // the parent app). 0 for COLD HF-cache shadows.
       replicas_count: { type: Number, default: 0 },
@@ -1167,6 +1168,9 @@ document.addEventListener('DOMContentLoaded', function() {
             <badge-component v-if="application_state" v-bind="getApplicationStateBadge()"></badge-component>
           </div>
           <div class="nn-meta" v-if="hasInfo()">
+            <div v-if="task" class="nn-meta-item" data-nn-tooltip="Task">
+              <i class="fa-solid fa-list-check"></i><span>{{ task }}</span>
+            </div>
             <div v-if="revision" class="nn-meta-item" data-nn-tooltip="Revision">
               <i class="fa-regular fa-bookmark"></i><span>{{ revision }}</span>
             </div>
@@ -1183,13 +1187,16 @@ document.addEventListener('DOMContentLoaded', function() {
         <a :href="'http://huggingface.co/' + repo_id" target="_blank" class="nn-stretched-link"><span>HuggingFace</span></a>
       </div>`,
     methods: {
-      hasInfo() { return this.n_params || this.revision || this.replicas_count > 1; },
+      hasInfo() { return this.task || this.n_params || this.revision || this.replicas_count > 1; },
       className() { return this.model_key ? this.model_key.split(":")[0] : undefined; },
       formatParams(n) { return n / 1e9 < 1 ? (n / 1e9).toFixed(1) + 'B' : Math.round(n / 1e9) + 'B'; },
       getCodeSnippet() {
         let cn = this.className(), parts = cn.split("."), imp = parts.slice(0,-1).join("."), obj = parts[parts.length-1];
         const rev = this.revision ? `<span class="p">,</span> <span class="n">revision</span><span class="o">=</span><span class="s1">"${this.revision}"</span>` : "";
-        return `<span class="kn">from</span> <span class="nn">${imp}</span> <span class="kn">import</span> <span class="n">${obj}</span>\n\n<span class="n">model</span> <span class="o">=</span> <span class="n">${obj}</span><span class="p">(</span><span class="s1">"${this.repo_id}"</span>${rev}<span class="p">)</span>\n\n<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">"The Eiffel Tower is in the city of"</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="s1">True</span><span class="p">)</span><span class="p">:</span>\n    <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>`;
+        // The task is part of the deployment's identity: without it the client
+        // resolves the checkpoint's default task and may target another deployment.
+        const task = this.task ? `<span class="p">,</span> <span class="n">task</span><span class="o">=</span><span class="s1">"${this.task}"</span>` : "";
+        return `<span class="kn">from</span> <span class="nn">${imp}</span> <span class="kn">import</span> <span class="n">${obj}</span>\n\n<span class="n">model</span> <span class="o">=</span> <span class="n">${obj}</span><span class="p">(</span><span class="s1">"${this.repo_id}"</span>${task}${rev}<span class="p">)</span>\n\n<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">"The Eiffel Tower is in the city of"</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="s1">True</span><span class="p">)</span><span class="p">:</span>\n    <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>`;
       },
       // Models that aren't currently pinned require the hotswap tier to use.
       isPilotOnly() { return !this.pinned; },
@@ -1263,7 +1270,8 @@ document.addEventListener('DOMContentLoaded', function() {
       getPlainTextSnippet() {
         let cn = this.className(), parts = cn.split("."), imp = parts.slice(0,-1).join("."), obj = parts[parts.length-1];
         const rev = this.revision ? `, revision="${this.revision}"` : "";
-        return `from ${imp} import ${obj}\n\nmodel = ${obj}("${this.repo_id}"${rev})\n\nwith model.trace("The Eiffel Tower is in the city of", remote=True):\n    output = model.output.save()`;
+        const task = this.task ? `, task="${this.task}"` : "";
+        return `from ${imp} import ${obj}\n\nmodel = ${obj}("${this.repo_id}"${task}${rev})\n\nwith model.trace("The Eiffel Tower is in the city of", remote=True):\n    output = model.output.save()`;
       },
       copySnippet() {
         navigator.clipboard.writeText(this.getPlainTextSnippet()).then(() => {
@@ -1316,6 +1324,11 @@ document.addEventListener('DOMContentLoaded', function() {
           const m = modelKey.match(/"repo_id":\s*"([^"]+)"/);
           return m ? m[1] : modelKey.split(":").pop();
         };
+        // One checkpoint can be deployed under several tasks, each its own
+        // model_key; name the task from the /status entry so they stay apart.
+        const taskByKey = {};
+        this.deployments.forEach((d) => { if (d.model_key && d.task) taskByKey[d.model_key] = d.task; });
+        const labelOf = (modelKey) => repoOf(modelKey) + (taskByKey[modelKey] ? " (" + taskByKey[modelKey] + ")" : "");
 
         // node.deployments is model_key -> replica_id -> { gpus: {index: bytes} }.
         // Returns gpu index -> [{repo, bytes}], because several models can share
@@ -1328,7 +1341,7 @@ document.addEventListener('DOMContentLoaded', function() {
               if (!gpus) return;
               Object.entries(gpus).forEach(([idx, bytes]) => {
                 (byIndex[idx] = byIndex[idx] || []).push({
-                  repo: repoOf(modelKey),
+                  repo: labelOf(modelKey),
                   bytes: Number(bytes) || 0,
                 });
               });
@@ -1412,16 +1425,19 @@ document.addEventListener('DOMContentLoaded', function() {
       filteredDeployments() {
         let f = [...this.deployments];
         if (this.selectedLevel) f = f.filter(d => d.deployment_level === this.selectedLevel);
-        if (this.searchQuery.trim()) f = f.filter(d => d.repo_id.toLowerCase().includes(this.searchQuery.toLowerCase().trim()));
+        if (this.searchQuery.trim()) {
+          const q = this.searchQuery.toLowerCase().trim();
+          f = f.filter(d => d.repo_id.toLowerCase().includes(q) || (d.task || "").toLowerCase().includes(q));
+        }
         if (this.selectedSortBy === "deployment_level") {
           const o = ["HOT", "WARM", "COLD"];
           f.sort((a, b) => {
             const al = o.indexOf(a.deployment_level), bl = o.indexOf(b.deployment_level);
-            if (al === bl) return (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0) || a.repo_id.localeCompare(b.repo_id);
+            if (al === bl) return (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0) || a.repo_id.localeCompare(b.repo_id) || (a.task || "").localeCompare(b.task || "");
             return (al === -1 ? o.length : al) - (bl === -1 ? o.length : bl);
           });
         } else if (this.selectedSortBy === "repo_id") {
-          f.sort((a, b) => a.repo_id.localeCompare(b.repo_id));
+          f.sort((a, b) => a.repo_id.localeCompare(b.repo_id) || (a.task || "").localeCompare(b.task || ""));
         } else if (this.selectedSortBy === "n_params") {
           f.sort((a, b) => (b.n_params || 0) - (a.n_params || 0));
         }
@@ -1452,7 +1468,9 @@ document.addEventListener('DOMContentLoaded', function() {
       onPageChange(e) {
         this.currentPage = Math.floor(e.first / this.pageSize) + 1;
       },
-      // Collapse one-entry-per-replica into one-entry-per-model_key.
+      // Collapse one-entry-per-replica into one-entry-per-model_key. The key
+      // carries the pipeline task, so one repo deployed under several tasks
+      // stays one card per task.
       // Mirrors the dashboard backend's _aggregate_by_model_key (see
       // src/ndif/services/dashboard/backend/routers/deploy.py) so the
       // public status page stays consistent with the admin view: HOT

@@ -157,7 +157,8 @@ NDIF is the backend service that lets you run nnsight interventions on large mod
 
 - Get an account: https://login.ndif.us
 - Status page: https://nnsight.net/status/
-- Check model availability: `nnsight.ndif_status()` or `nnsight.is_model_running("model-name")`
+- Check model availability: `nnsight.status()` or `nnsight.is_model_running("model-name", task=None)`
+- A deployment is one checkpoint under one pipeline task: the same repo id can be live under several tasks, each listed separately; pass `task=` to `is_model_running` to check one
 - Compare environments: `from nnsight import ndif; ndif.compare()`
 - Register custom code: `ndif.register(mymodule)` — serializes by value, not reference
 - No Python version matching required — serialization supports Python 3.9+
