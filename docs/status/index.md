@@ -702,7 +702,6 @@ social:
     z-index: 3;
   }
 
-  [data-nn-tooltip].cursor-pointer { cursor: pointer; }
 
   [data-nn-tooltip]:hover::after {
     content: attr(data-nn-tooltip);
@@ -1162,7 +1161,6 @@ document.addEventListener('DOMContentLoaded', function() {
           <div class="nn-badges">
             <badge-component v-if="pinned" v-bind="getPinnedBadge()"></badge-component>
             <badge-component v-if="hasAutoEvictWindow()" v-bind="getAutoEvictBadge()"></badge-component>
-            <badge-component v-if="isPilotOnly()" v-bind="getPilotOnlyBadge()" @click="onPilotBadgeClick"></badge-component>
             <badge-component v-if="model_key" v-bind="getModelClassBadge()"></badge-component>
             <badge-component v-bind="getDeploymentLevelBadge()"></badge-component>
             <badge-component v-if="application_state" v-bind="getApplicationStateBadge()"></badge-component>
@@ -1198,8 +1196,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const task = this.task ? `<span class="p">,</span> <span class="n">task</span><span class="o">=</span><span class="s1">"${this.task}"</span>` : "";
         return `<span class="kn">from</span> <span class="nn">${imp}</span> <span class="kn">import</span> <span class="n">${obj}</span>\n\n<span class="n">model</span> <span class="o">=</span> <span class="n">${obj}</span><span class="p">(</span><span class="s1">"${this.repo_id}"</span>${task}${rev}<span class="p">)</span>\n\n<span class="k">with</span> <span class="n">model</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="s2">"The Eiffel Tower is in the city of"</span><span class="p">,</span> <span class="n">remote</span><span class="o">=</span><span class="s1">True</span><span class="p">)</span><span class="p">:</span>\n    <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>`;
       },
-      // Models that aren't currently pinned require the hotswap tier to use.
-      isPilotOnly() { return !this.pinned; },
       hasAutoEvictWindow() {
         // The non-pinned HOT path may carry a schedule.end_time meaning
         // "eligible for eviction after this timestamp" (NDIF_MINIMUM_DEPLOYMENT_TIME_SECONDS window).
@@ -1254,7 +1250,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return {
           content: '<i class="fa-solid fa-thumbtack"></i> Pinned',
           bg: true, sdcls: "info",
-          tooltip: "Pinned deployment — kept HOT, no hotswap-tier required.",
+          tooltip: "Pinned deployment — always kept HOT.",
         };
       },
       getAutoEvictBadge() {
@@ -1263,9 +1259,6 @@ document.addEventListener('DOMContentLoaded', function() {
           bg: false, sdcls: "muted",
           tooltip: "Hot-swap deployment — eligible for eviction after this window ends.",
         };
-      },
-      getPilotOnlyBadge() {
-        return { content: '<i class="fa-solid fa-lock"></i> Pilot Only', bg: true, sdcls: "muted", cls: "cursor-pointer", tooltip: "Restricted to pilot program. Click to sign up!" };
       },
       getPlainTextSnippet() {
         let cn = this.className(), parts = cn.split("."), imp = parts.slice(0,-1).join("."), obj = parts[parts.length-1];
@@ -1279,7 +1272,6 @@ document.addEventListener('DOMContentLoaded', function() {
           setTimeout(() => { this.copied = false; }, 1500);
         });
       },
-      onPilotBadgeClick() { window.open("https://forms.gle/ZBtYvvnSdpiEdQEk6", "_blank"); },
       showPopover(e) { this.$refs.popover.show(e); },
       hidePopover() { this.$refs.popover.hide(); },
     },
