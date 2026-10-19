@@ -1326,9 +1326,13 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         // One checkpoint can be deployed under several tasks, each its own
         // model_key; name the task from the /status entry so they stay apart.
-        const taskByKey = {};
-        this.deployments.forEach((d) => { if (d.model_key && d.task) taskByKey[d.model_key] = d.task; });
-        const labelOf = (modelKey) => repoOf(modelKey) + (taskByKey[modelKey] ? " (" + taskByKey[modelKey] + ")" : "");
+        const fieldsByKey = {};
+        this.deployments.forEach((d) => {
+          if (!d.model_key) return;
+          const fields = [d.task, d.trust_remote_code ? "trust_remote_code" : null].filter(Boolean);
+          if (fields.length) fieldsByKey[d.model_key] = fields.join(", ");
+        });
+        const labelOf = (modelKey) => repoOf(modelKey) + (fieldsByKey[modelKey] ? " (" + fieldsByKey[modelKey] + ")" : "");
 
         // node.deployments is model_key -> replica_id -> { gpus: {index: bytes} }.
         // Returns gpu index -> [{repo, bytes}], because several models can share
