@@ -29,7 +29,9 @@ hide:
     }
   }
 
-  .md-grid {
+  /* The header's inner container is an .md-grid too; scope this to the page body so the
+     header keeps its max-width on wide screens. */
+  .md-main .md-grid {
     max-width: 100% !important;
     margin: 0 !important;
   }
