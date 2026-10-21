@@ -965,6 +965,8 @@ social:
 
   @media (max-width: 768px) {
     #status-main { padding: 0.75rem; }
+    /* Phones: every sidebar item spans the full width. */
+    .nn-panel.nn-resources { flex: 1 1 100%; }
     .nn-cluster-section { display: none !important; }
     .nn-cluster-compact { display: block; }
 
