@@ -17,13 +17,13 @@ To teach an LLM agent how to use nnsight, use one of these methods:
 ```
 claude
 /plugin marketplace add https://github.com/ndif-team/skills.git
-/plugin install nnsight@skills
+/plugin install nnsight@ndif-team
 ```
 
 ### OpenAI Codex Skills
 ```
 codex
-skill-installer install https://github.com/ndif-team/skills.git
+$skill-installer install https://github.com/ndif-team/skills
 ```
 
 ### Context7 MCP
