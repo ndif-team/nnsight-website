@@ -37,7 +37,12 @@ jobs:
             ${{ runner.os }}-pip-test-
 
       - name: Install dependencies
-        run: pip install --pre ".[test]"
+        # Pre-releases for nnsight only, so the docs build against the nnsight
+        # they document; allowed for everything, a mkdocs pre-release pulled in
+        # an httpx 1.0 preview that nnsight's remote client can't run on.
+        run: |
+          pip install ".[test]"
+          pip install --pre --upgrade nnsight
 
       - name: Run notebooks
         env:
