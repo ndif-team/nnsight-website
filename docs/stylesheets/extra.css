@@ -163,6 +163,11 @@
   display: none !important;
 }
 
+/* The title is left empty, so its margins only take width from the row */
+.md-header__title {
+  margin: 0 !important;
+}
+
 /* Hide the separate tabs bar */
 .md-tabs {
   display: none !important;
@@ -177,7 +182,19 @@
 
 /* Add navigation tabs inline after logo */
 .md-header__button.md-logo {
-  margin-right: 1rem;
+  margin-right: 0.25rem;
+}
+
+/* Material drops the logo where its burger appears, which would leave the
+   row nearly empty now that the links go at the same width */
+@media screen and (min-width: 60em) {
+  .md-header__button.md-logo {
+    display: inline-block;
+  }
+
+  .md-header__button[for="__drawer"] {
+    order: -1;
+  }
 }
 
 /* Inject tabs into header via flexbox order */
@@ -210,8 +227,8 @@
   opacity: 1;
 }
 
-/* Mobile: hide custom nav, Material's drawer handles it */
-@media (max-width: 960px) {
+/* Hand the links to Material's drawer exactly where its burger appears */
+@media screen and (max-width: 76.234375em) {
   .header-nav {
     display: none;
   }
@@ -222,6 +239,11 @@
 /* Remove default margin from header source to align icons */
 .md-header__source {
   margin-left: 0 !important;
+  width: 8.2rem;
+}
+
+.md-header__source .md-source__repository {
+  max-width: 100%;
 }
 
 .md-header__button.md-icon {
@@ -265,6 +287,19 @@
 /* Adjust search to not take too much space */
 .md-search {
   margin-left: auto;
+}
+
+/* The search box gives up width first, so the row can't overflow and push
+   the NDIF badge off-screen */
+@media screen and (min-width: 60em) {
+  .md-header .md-header__inner > .md-search {
+    flex: 0 1 11.7rem;
+    min-width: 6rem;
+  }
+
+  .md-search__inner {
+    width: 100%;
+  }
 }
 
 .md-search__input {
