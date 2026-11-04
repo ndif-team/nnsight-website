@@ -57,6 +57,7 @@ nnsight uses deferred execution with thread-based synchronization. Code inside `
 - Single forward pass: `with model.trace("input"): ...`
 - Multi-token generation: `with model.generate("input", max_new_tokens=N) as tracer: ...`
 - Batching: use `tracer.invoke("input1")` and `tracer.invoke("input2")` inside `model.trace()`
+- Sweeps: loop inside `model.trace()` with one `tracer.invoke(prompt)` per variant, writing results into a `nnsight.save({})` dict keyed by variant; for an index sweep (neurons, positions), repeat the prompt as a list and edit row by row with `act[torch.arange(n), :, idx] = 0`
 - Cross-prompt patching: use sessions (`model.session()`) or barriers
 - Shape inspection without execution: `with model.scan("input"): ...`
 - Persistent model modifications: `with model.edit() as edited: ...`
@@ -76,7 +77,7 @@ nnsight uses deferred execution with thread-based synchronization. Code inside `
 - [Loading a Model](https://nnsight.net/features/5_loading/): Constructor options, meta-model dispatch, and device placement
 - [Module Access](https://nnsight.net/features/6_modules/): Navigate and access model components
 - [Model Editing](https://nnsight.net/features/7_model_editing/): Create persistent model modifications
-- [Batching](https://nnsight.net/features/8_batching/): Combine multiple prompts in one forward pass and move values between them
+- [Batching](https://nnsight.net/features/8_batching/): Combine multiple prompts in one forward pass, run a sweep of interventions in it, and move values between them
 - [Empty Invokers](https://nnsight.net/features/9_empty_invokers/): Run interventions without input data
 - [Cache](https://nnsight.net/features/10_cache/): Bulk-collect activations from many modules in one pass
 - [Intermediate Operations](https://nnsight.net/features/11_source/): Access intermediate operations inside modules via .source

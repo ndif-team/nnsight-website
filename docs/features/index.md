@@ -11,7 +11,7 @@ Explore nnsight's capabilities in depth through interactive notebooks.
 - **[Loading a Model](5_loading.ipynb)** - Constructor options, meta-model dispatch, and device placement
 - **[Module Access](6_modules.ipynb)** - Navigate and access model components
 - **[Model Editing](7_model_editing.ipynb)** - Create persistent model modifications
-- **[Batching](8_batching.ipynb)** - Combine multiple prompts in one forward pass and move values between them
+- **[Batching](8_batching.ipynb)** - Combine multiple prompts in one forward pass, run a sweep of interventions in it, and move values between them
 - **[Empty Invokers](9_empty_invokers.ipynb)** - Run interventions without input data
 - **[Cache](10_cache.ipynb)** - Bulk-collect activations from many modules in one pass
 - **[Intermediate Operations](11_source.ipynb)** - Access intermediate operations inside modules
