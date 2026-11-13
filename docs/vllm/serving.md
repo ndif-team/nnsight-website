@@ -1,13 +1,17 @@
-# Async and servers
+# Async and serving
 
-Three ways to put an engine behind more than one caller: the async engine in your own process, a
-standalone `nnsight-serve` that GPU-less clients submit traces to, and an edit installed on the
-engine that runs for every request it serves.
+There are three ways to put an engine behind more than one caller.
+
+| | Engine in your process | `nnsight-serve` | NDIF (`remote=True`) |
+| --- | --- | --- | --- |
+| Who holds the GPU | You | One server, one model | A shared cluster |
+| Clients | This process | Any machine, no GPU | Any machine, no GPU |
+| Fits | Notebooks and scripts | A team on one model | Many models and users |
 
 ## The async engine
 
-`mode="async"` builds vLLM's `AsyncLLM`. The block is written exactly as before; on exit the
-request is submitted and `tracer.backend` is the stream.
+`mode="async"` builds vLLM's `AsyncLLM`. The block is the same. When the `with` block exits,
+the request is submitted and `tracer.backend` is its stream.
 
 ```python
 import asyncio
@@ -18,11 +22,11 @@ async def main():
     model = VLLM("Qwen/Qwen3-8B", dispatch=True, mode="async")
 
     with model.trace("The capital of France is", temperature=0.0, max_tokens=8) as tracer:
-        resid = sum(model.model.layers[10].output).save()
+        stream = sum(model.model.layers[10].output).save()
 
     async for output in tracer.backend:
         print(repr(output.outputs[0].text), output.finished)
-    print(output.saves["resid"].shape)                 # saves ride the finished output
+    print(output.saves["stream"].shape)
     # ' Paris' False
     # ' Paris.' False
     # ...
@@ -33,28 +37,14 @@ async def main():
 asyncio.run(main())
 ```
 
-Every yielded `RequestOutput` carries the cumulative text; only the last (`finished`) carries
-`.saves`, keyed by the variable names you saved. `await tracer.backend` drains the stream and
-returns that last output. Closing the stream early aborts the request. One prompt per async
-trace — for many, fire many.
+- **Saved values are on the finished output**, under the name you saved them as. The async
+  engine does not put them back in your variables.
+- `await tracer.backend` waits for the stream to end and returns the last output.
+- An async trace takes one prompt. For several, start several traces.
+- Build the model inside the coroutine that uses it. `AsyncLLM` belongs to the event loop that
+  built it.
 
-**Saved names live on the output, not in your variables.** This is the one backend that does not
-push them back: `resid` above is still unbound after the stream, and the tensor is
-`output.saves["resid"]`. The name you save under is the key you read. Two more edges of the same
-stream: a second `await tracer.backend` returns `None` rather than raising, so the failure shows
-up later as an `AttributeError` on `.outputs`; and `model.generate(...)` on an async engine
-returns a coroutine to await, not outputs.
-
-**One engine, one event loop.** `AsyncLLM` binds to the loop that built it, which is where it
-keeps its output handler and its per-request futures. Build the model inside the coroutine you
-will await it from — as `main()` does above — not at import time followed by two `asyncio.run()`
-calls; the second loop never hears back from the engine. In a server, that means building it in
-the app's startup (FastAPI's `lifespan`), on the loop that will serve requests.
-
-## Concurrency
-
-vLLM batches concurrent requests; each block sees only its own rows, and an edit in one request
-never leaks into a neighbour.
+Concurrent traces are batched by vLLM. Each block sees only its own request's rows.
 
 ```python
 import asyncio
@@ -89,104 +79,41 @@ asyncio.run(main())
 
 ## `nnsight-serve`
 
-A single-model FastAPI server around a dispatched async engine. `--host`, `--port` and
-`--api-key` are the server's own; every other `--flag value` is handed to vLLM's `EngineArgs` as
-`flag=value`.
+`nnsight-serve` is a server that holds one engine and runs traces sent to it.
 
 ```bash
 nnsight-serve Qwen/Qwen3-8B --port 6677 --gpu-memory-utilization 0.5
-nnsight-serve Qwen/Qwen3-8B --port 6677 --api-key SECRET --tensor-parallel-size 2
 ```
 
-That forwarding is literal, and three of its edges are quiet:
+`--host`, `--port` and `--api-key` belong to the server. Every other `--flag value` goes to
+vLLM's engine arguments. A boolean needs a value (`--enable-lora True`), only long flags are
+read (`--tensor-parallel-size 2`, not `-tp 2`), and `taps` cannot be given on the command line.
 
-- **Booleans take a value.** `--enable-prefix-caching False` is the spelling; vLLM's own
-  `--no-enable-prefix-caching` arrives as `no_enable_prefix_caching=True` and the server stops
-  with `TypeError: EngineArgs.__init__() got an unexpected keyword argument`.
-- **Short flags are dropped.** `-tp 2` prints `Ignoring unknown argument: -tp` to stderr and the
-  server comes up at `tensor_parallel_size=1`. Write `--tensor-parallel-size 2`.
-- **Every value arrives as one string**, so there is no way to spell `taps=`.
-  `--taps model.layers.*.output` hands the engine a string, which it walks one character at a
-  time and refuses with `ValueError: Tap 'm' names no module`. A tapped engine has to be built in
-  Python.
-
-It binds to `127.0.0.1` by default and executes client-supplied code, so only expose it on a
-network you trust; `--api-key` requires the header on every request, and a client without it gets
-`ConnectionError: nnsight-serve returned 401: Invalid API key`. `GET /health` answers without a
-key and reports readiness. (An editable install may not register the console script — `python -m
-nnsight.modeling.vllm.serve.cli` is the same thing.)
-
-### A GPU-less client
-
-The client builds only the meta tree, writes a trace, and adds `serve=`. Saved values are pushed
-back into your variables exactly as they are locally.
+A client builds the model without `dispatch=True`, which needs no GPU, and adds `serve=` to a
+trace. Saved values come back into your variables as they do locally.
 
 ```python
 from nnsight.modeling.vllm import VLLM
 
-model = VLLM("Qwen/Qwen3-8B")                       # no GPU, never dispatched
+model = VLLM("Qwen/Qwen3-8B")                       # the module tree only
 
 with model.trace("The capital of France is", temperature=0.0, max_tokens=8,
                  serve="http://127.0.0.1:6677") as tracer:
     model.model.layers[10].output[0][:] = 0         # runs on the server
-    resid = sum(model.model.layers[20].output).save()
+    stream = sum(model.model.layers[20].output).save()
     out = tracer.result.save()
 
-print(resid.shape, repr(out.outputs[0].text))
+print(stream.shape, repr(out.outputs[0].text))
 # torch.Size([5, 4096]) ' a country, and the capital of Germany'
 ```
 
-Save `tracer.result` if you want the generation — the server returns saved values only. A
-build or runtime error comes back with its real type and traceback; a transport failure is a
-`ConnectionError`. Pass `api_key="SECRET"` when the server requires one.
+- The server returns saved values only. Save `tracer.result` to get the generated text.
+- The server runs code that clients send. It listens on `127.0.0.1` by default. Expose it only
+  to a network you trust, and set `--api-key` (clients then pass `api_key=`).
+- It is not an OpenAI-compatible server. It serves nnsight traces and
+  [edits](editing.md) (`model.edit(serve=url)`).
+- `GET /health` reports when the engine is ready.
 
-## Edit the engine
+## NDIF
 
-A trace carries its block on one request. `model.edit()` installs a block on the engine itself,
-once, to run on **every** request from then on — traced or not, yours or another tenant's. Its
-saves ride each request's own output.
-
-```python
-from nnsight.modeling.vllm import VLLM
-
-model = VLLM("Qwen/Qwen3-8B", dispatch=True, enable_prefix_caching=False)
-
-with model.edit() as (tracer, edit):
-    resid = sum(model.model.layers[10].output).save()
-
-outputs = model.generate(["The capital of France is", "The capital of Japan is"],
-                         temperature=0.0, max_tokens=4)          # plain requests, no trace
-print([tuple(o.saves["resid"].shape) for o in outputs])
-# [(5, 4096), (5, 4096)]
-
-with model.trace("The capital of Peru is", temperature=0.0, max_tokens=4) as tracer:
-    out = tracer.result.save()
-print(out.saves["resid"].shape)                                  # a traced request gets it too
-# torch.Size([5, 4096])
-
-edit.clear()                                                     # or model.clear_edits()
-```
-
-The block is written like a trace body with no `invoke`; `tracer.all()` inside it follows each
-request through its generated tokens. On an async engine, `async with model.edit()` and
-`await edit.aclear()`. Over the wire, `model.edit(serve=url)` installs it on a server's engine.
-
-**Prefix caching must be off** on an engine you edit: a cached token is served without a forward,
-so an installed block would see a short prompt and no error. A trace can ask for its own recompute;
-an edit rides requests it did not create and cannot.
-
-The full behaviour — named edits chosen per request with `edits=`, invokes, the async engine, errors — is on
-[Editing the engine](editing.md). When to edit rather than trace: a sweep over many prompts (the block is serialized once, not per
-request), or instrumenting traffic you do not write. When to trace: one-off experiments, and
-whenever you want the values back as your own variables.
-
-## Which to pick
-
-| | Engine per process | `nnsight-serve` | NDIF (`remote=True`) |
-| --- | --- | --- | --- |
-| Who owns the GPU | you | one server, one model | a shared cluster |
-| Clients | this process | any host, no GPU | any host, no GPU |
-| Scheduling | vLLM's | vLLM's | queued, multi-tenant |
-| Fit | notebooks, scripts | a team on one model | many models, many users |
-
-`VLLM` is `Remotable`, so `trace(..., remote=True)` submits to NDIF like any other model.
+`VLLM` models also run on NDIF: `model.trace(..., remote=True)`.

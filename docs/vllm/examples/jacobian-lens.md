@@ -1,19 +1,19 @@
 # Jacobian lens
 
-The logit lens reads a layer's residual through the final norm and unembedding as if the layers
-after it did nothing. The Jacobian lens (Anthropic's *Verbalizable Representations Form a Global
-Workspace*, 2026) first transports the residual into the final layer's basis with a pre-fitted
-average Jacobian `J_l = E[∂h_final / ∂h_l]`, then unembeds — reading out what the model is
-*disposed to say* from layer `l`, not what it would say if it stopped there.
+The [logit lens](logit-lens.md) reads a layer's residual stream as if the later layers did
+nothing. The Jacobian lens (Anthropic, *Verbalizable Representations Form a Global Workspace*,
+2026) first maps the residual stream into the final layer's basis with a fitted matrix
+`J_l`, the average Jacobian of the final hidden state with respect to layer `l`, and then
+unembeds.
 
-Fitting `J_l` needs a backward pass, which vLLM does not have; Neuronpedia publishes fitted
-lenses for many models, including `Qwen/Qwen3-8B`. The readout is a matmul, so it runs inside
-the worker like the [logit lens](../logit-lens.md).
+Fitting `J_l` needs gradients, which vLLM does not have. Neuronpedia publishes fitted lenses,
+including one for `Qwen/Qwen3-8B`. Reading with a lens is a matrix product, so it runs in the
+worker.
 
 ## Load the lens
 
-Every layer's `J_l` is a `[d_model, d_model]` matrix (32 MB in fp16 for Qwen3-8B), and whatever
-the block references travels to the worker with it — so load only the layers you will read.
+Each `J_l` is a `[4096, 4096]` matrix. Whatever a block uses is sent to the worker with it, so
+load only the layers you read.
 
 ```python
 import torch
@@ -21,7 +21,7 @@ import nnsight
 from huggingface_hub import hf_hub_download
 from nnsight.modeling.vllm import VLLM
 
-model = VLLM("Qwen/Qwen3-8B", dispatch=True, enable_prefix_caching=False)   # the edit below needs it off
+model = VLLM("Qwen/Qwen3-8B", dispatch=True)
 tok = model.tokenizer
 
 path = hf_hub_download("neuronpedia/jacobian-lens",
@@ -36,8 +36,8 @@ J = {l: lens["J"][l].to("cuda", torch.bfloat16) for l in LAYERS}    # [4096, 409
 
 ## Read it out
 
-`x @ J_l.T` moves the residual into the final basis; the model's own `norm` and
-`logits_processor` do the rest, exactly as in the logit lens. Top-k is taken on the worker.
+`h @ J_l.T` maps the residual stream into the final basis. The model's own `norm` and
+`logits_processor` do the rest, as in the logit lens.
 
 ```python
 prompt = "The Eiffel Tower is located in the city of"
@@ -69,24 +69,12 @@ for l in LAYERS:
 #   logit lens:        '玿'    'ureka'       'el'   ' Tower'      ' is'    ' made'      ' in'   ' Paris'    ' city'      ' of'   ' Paris'
 ```
 
-At layer 20 the J-lens already reads `巴黎` (Paris) over the subject and `French` after it,
-where the logit lens reads `Tower` and `famously`; by 32 both say `Paris`.
-
-## The last position, top-k
-
-```python
-for l in LAYERS:
-    ids_l, p_l = jlens[l]
-    print(f"layer {l}:", [(tok.decode(i), round(p, 3)) for i, p in zip(ids_l[-1].tolist(), p_l[-1].tolist())])
-# layer 20: [('____', 0.415), (' ______', 0.135), (' ____', 0.135), (' __', 0.072), ('________', 0.03)]
-# layer 26: [('____', 0.726), (' ______', 0.126), (' __', 0.046), (' ____', 0.032), ('________', 0.022)]
-# layer 32: [(' Paris', 0.979), ('巴黎', 0.018), ('Paris', 0.001), ('____', 0.001), (' ______', 0.0)]
-```
+At layer 20 the Jacobian lens already reads `巴黎` (Paris) at the subject and `French` after
+it, where the logit lens reads `Tower` and `famously`. By layer 32 both read `Paris`.
 
 ## Every step of a generation
 
-Under `tracer.iter` the readout follows the running token: what the model is disposed to say at
-layer 26 *while* it writes.
+Under `tracer.iter` the lens follows each generated token.
 
 ```python
 with model.trace(prompt, temperature=0.0, max_tokens=8) as tracer:
@@ -103,11 +91,10 @@ print([tok.decode(t) for t in disposed])
 # ['____', ' France', ' France', '.', ' Its', '是一座', ' famous', ' famous']
 ```
 
-## Installing it for every request
+## Install it for every request
 
-A served model can carry the readout permanently: put the same block in `model.edit()` and
-the per-request top-k rides every output, traced or not — the "live J-space chat" pattern,
-without a per-request upload of the lens.
+Put the same block in [`model.edit()`](../editing.md) and every request returns its own
+readout. The lens is sent once, with the edit.
 
 ```python
 with model.edit() as (tracer, edit):
@@ -124,5 +111,3 @@ for o in outputs:
 # ' 100' [['温度', ' temperatures', 'Temperature'], ['温度', ' boiling', '高温']]
 edit.clear()
 ```
-
-The lens is shipped once, with the edit; each request pays only its own readout.

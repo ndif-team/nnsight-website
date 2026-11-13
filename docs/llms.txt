@@ -101,26 +101,23 @@ nnsight uses deferred execution with thread-based synchronization. Code inside `
 
 ## vLLM
 
-One page per job, every snippet run against Qwen/Qwen3-8B on vLLM 0.27:
+nnsight on the vLLM inference engine. Snippets were run against Qwen/Qwen3-8B on vLLM 0.33:
 
-- [Start here](https://nnsight.net/vllm/): install, read one activation, steer one layer
-- [Locations](https://nnsight.net/vllm/locations/): the module tree as the vocabulary; tuples and the residual stream; clone what you keep
-- [Loading models](https://nnsight.net/vllm/loading/): eager, CUDA-graph taps, async; what nnsight forces and why
-- [Capabilities and limits](https://nnsight.net/vllm/capabilities/): refusals, what is not on vLLM, versions
-- [Capture](https://nnsight.net/vllm/capture/): one location, every layer, every step, many prompts, MoE routing
-- [Attention](https://nnsight.net/vllm/attention/): q/k/v, rebuilt patterns, per-head outputs
-- [Logit lens](https://nnsight.net/vllm/logit-lens/): the model's own norm and unembed, in the worker
-- [Steering](https://nnsight.net/vllm/steering/): add, ablate, cap, mask positions, write anywhere, the sampler
-- [Generation](https://nnsight.net/vllm/generation/): sampling, per-step logits/samples, tracer.result, n > 1
-- [Chat and tokens](https://nnsight.net/vllm/chat/): templates, token-id prompts, spans
-- [Async and servers](https://nnsight.net/vllm/serving/): mode="async", nnsight-serve, model.edit()
-- [Tensor parallelism](https://nnsight.net/vllm/tensor-parallel/): sharded models read whole
-- [Causal tracing](https://nnsight.net/vllm/examples/causal-tracing/): ROME-style patching, one request per (layer, position), batched
-- [Jacobian lens](https://nnsight.net/vllm/examples/jacobian-lens/): Neuronpedia's pre-fitted J-lens read out in the worker
-- [A linear probe](https://nnsight.net/vllm/examples/probe/): contrastive extraction with one installed block, then a probe that runs inside the model
-- [Concept directions](https://nnsight.net/vllm/examples/emotion-tracker/): emotion directions, tracked per generated token
-- [Performance](https://nnsight.net/vllm/performance/): eager vs graph taps, measured
-- [Comparisons](https://nnsight.net/vllm/comparisons/): the same jobs in interp-engine, vLLM-Lens and TransformerLens, one throughput grid
+- [Overview](https://nnsight.net/vllm/): install, read an activation, change one, what differs from a HuggingFace trace
+- [Choosing a setup](https://nnsight.net/vllm/setup/): which engine to build per use case; taps, LoRA, the settings nnsight sets
+- [Writing a block](https://nnsight.net/vllm/blocks/): shapes, the (hidden, residual) pair, cloning, logits/samples/result, generation steps, several prompts
+- [Engine-wide edits](https://nnsight.net/vllm/editing/): model.edit(), named edits chosen per request
+- [Async and serving](https://nnsight.net/vllm/serving/): mode="async", nnsight-serve, clients without a GPU
+- [Tensor parallelism](https://nnsight.net/vllm/tensor-parallel/): a model sharded across GPUs
+- [Limits and errors](https://nnsight.net/vllm/limits/): what is refused, what nothing checks, where an error message appears
+- [Logit lens](https://nnsight.net/vllm/examples/logit-lens/): the model's own norm and unembedding, in the worker
+- [Steering](https://nnsight.net/vllm/examples/steering/): a contrast direction added during generation
+- [Activation patching](https://nnsight.net/vllm/examples/patching/): layer and head sweeps batched as invokes
+- [Attention patterns](https://nnsight.net/vllm/examples/attention/): rebuilt from queries and keys
+- [A probe inside the model](https://nnsight.net/vllm/examples/probe/): train a probe, then score every generated token
+- [Jacobian lens](https://nnsight.net/vllm/examples/jacobian-lens/): a fitted lens read out in the worker
+- [Performance](https://nnsight.net/vllm/performance/): the default engine and the tapped engine, measured
+- [Comparisons](https://nnsight.net/vllm/comparisons/): how interp-engine, vLLM-Lens and TransformerLens differ
 
 ## Tutorials
 

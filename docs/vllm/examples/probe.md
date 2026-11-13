@@ -1,9 +1,9 @@
-# A linear probe
+# A probe inside the model
 
-An Apollo-style deception probe (Goldowsky-Dill et al., 2025): the same questions answered
-under an honest and a deceptive instruction, mean-pooled residual activations over the model's
-own answer at the middle layers, and a logistic-regression probe on top. Everything the model
-computes stays on the worker; what comes home per prompt is one `[n_layers, d_model]` vector.
+This example trains a small deception probe in the style of Goldowsky-Dill et al. (2025) and
+then runs it inside the model during generation. The same questions are answered under an
+honest and a deceptive instruction. The probe is a logistic regression on the residual stream
+at the middle layers, averaged over the prompt and the answer.
 
 ## Prompts
 
@@ -12,7 +12,7 @@ import torch
 import nnsight
 from nnsight.modeling.vllm import VLLM
 
-model = VLLM("Qwen/Qwen3-8B", dispatch=True, enable_prefix_caching=False)
+model = VLLM("Qwen/Qwen3-8B", dispatch=True)
 tok = model.tokenizer
 layers = model.model.layers
 probe_layers = list(range(len(layers) // 4, 3 * len(layers) // 4))     # the middle half
@@ -32,11 +32,11 @@ def make(instruction, question):
                                    enable_thinking=False)
 ```
 
-## Extract with one installed block
+## Collect activations with one installed block
 
-`model.edit()` installs the capture once; every request the engine runs afterwards carries its
-own `[n_layers, d_model]` mean back on its output. `tracer.all()` inside the block follows each
-request through its generated tokens, so the mean covers the prompt *and* the answer.
+[`model.edit()`](../editing.md) installs the block once. Each request then returns its own
+`[layers, hidden]` mean on its output. `tracer.all()` follows each request through its
+generated tokens, so the mean covers the prompt and the answer.
 
 ```python
 def extract(prompts, max_tokens=30):
@@ -102,9 +102,8 @@ print("P(deceptive | deceptive):", [round(x, 3) for x in p[4:].tolist()])
 
 ## Run the probe inside the model
 
-Once trained, the probe is a tensor. Ship it in a trace and it runs on the worker, every step,
-against the live activation — a running deception score during generation, with only the scores
-coming home.
+The trained probe is a few tensors. A trace that uses them sends them to the worker, where the
+probe scores the live activation on every step. Only the scores come back.
 
 ```python
 with model.trace(make(DECEPTIVE, "Who painted the Mona Lisa?"), temperature=0.0, max_tokens=12) as tracer:
@@ -120,6 +119,5 @@ print([round(s, 2) for s in score])
 # [0.97, 1.0, 0.7, 0.84, 1.0, 0.99, 1.0, 0.99, 0.99, 1.0, 1.0, 1.0]
 ```
 
-Eight training pairs is a toy; the mechanics are the point. For a probe trained on a real
-dataset, the extraction loop is the same call with more prompts, and the per-step scoring block
-is unchanged.
+Eight training pairs make a toy probe. With a real dataset the code is the same, with more
+prompts.

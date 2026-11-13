@@ -247,33 +247,19 @@ nav:
     - Quantization: features/18_quantization.ipynb
   - vLLM:
     - vllm/index.md
-    - Locations: vllm/locations.md
-    - Models:
-      - Loading models: vllm/loading.md
-      - Capabilities and limits: vllm/capabilities.md
-    - Reading:
-      - Capture: vllm/capture.md
-      - Attention: vllm/attention.md
-      - Logit lens: vllm/logit-lens.md
-    - Writing:
-      - Steering: vllm/steering.md
-      - Activation patching: vllm/patching.md
-      - Ablation: vllm/ablation.md
-      - Direct logit attribution: vllm/attribution.md
-      - Conditional interventions: vllm/conditional.md
-      - SAE features: vllm/sae.md
-    - Editing the engine: vllm/editing.md
-    - Generating:
-      - Generation: vllm/generation.md
-      - Chat and tokens: vllm/chat.md
-    - Serving:
-      - Async and servers: vllm/serving.md
-      - Tensor parallelism: vllm/tensor-parallel.md
+    - Choosing a setup: vllm/setup.md
+    - Writing a block: vllm/blocks.md
+    - Engine-wide edits: vllm/editing.md
+    - Async and serving: vllm/serving.md
+    - Tensor parallelism: vllm/tensor-parallel.md
+    - Limits and errors: vllm/limits.md
     - Examples:
-      - Causal tracing: vllm/examples/causal-tracing.md
+      - Logit lens: vllm/examples/logit-lens.md
+      - Steering: vllm/examples/steering.md
+      - Activation patching: vllm/examples/patching.md
+      - Attention patterns: vllm/examples/attention.md
+      - A probe inside the model: vllm/examples/probe.md
       - Jacobian lens: vllm/examples/jacobian-lens.md
-      - A linear probe: vllm/examples/probe.md
-      - Concept directions: vllm/examples/emotion-tracker.md
     - Performance: vllm/performance.md
     - Comparisons: vllm/comparisons.md
   - Tutorials:

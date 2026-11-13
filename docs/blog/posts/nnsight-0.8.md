@@ -197,7 +197,7 @@ async for output in tracer.backend:       # an attribute, not a call
 
 ### The full breakdown
 
-There's now a whole section of the docs for this, at [nnsight on vLLM](../../vllm/index.md): 23 pages covering locations, capture, attention patterns the paged kernel never forms, steering, activation patching, ablation, SAE features, conditional interventions, generation, tensor parallelism, async and serving, four worked end-to-end examples, the measured performance grid, and a comparison against interp-engine and vLLM-Lens. Every snippet in it was run against Qwen3-8B on an A100, and the outputs shown are what came back.
+There's now a whole section of the docs for this, at [nnsight on vLLM](../../vllm/index.md): choosing a setup, writing a block, engine-wide edits, async and serving, tensor parallelism, worked examples, measured performance, and a comparison against interp-engine, vLLM-Lens and TransformerLens. Its snippets were run against Qwen3-8B on an A100, and the outputs shown are what came back.
 
 If you want the design rather than the recipes, Zikai wrote it up in [NNsight × vLLM: Interpretability at Production Scale](vllm-integration.md).
 

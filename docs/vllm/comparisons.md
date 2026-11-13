@@ -1,709 +1,244 @@
 # Comparisons
 
-Three other libraries put interpretability on vLLM: [interp-engine](https://interp-engine.org)
-(Neuronpedia / Decode Research), [vLLM-Lens](https://github.com/UKGovernmentBEIS/vllm-lens)
-(UK AISI) and [TransformerLens](https://github.com/TransformerLensOrg/TransformerLens) 4.0,
-whose bridge can boot a vLLM engine. This page compares nnsight's vLLM integration with each,
-job by job, and ends with one throughput grid run over all of them on the same machine. Every
-other page in this section avoids comparison; this one is nothing else.
+Three other libraries put interpretability on vLLM:
+[interp-engine](https://interp-engine.org) (Neuronpedia),
+[vLLM-Lens](https://github.com/UKGovernmentBEIS/vllm-lens) (UK AISI) and
+[TransformerLens](https://github.com/TransformerLensOrg/TransformerLens), whose bridge can run
+on a vLLM engine. This page says where each one's approach differs from nnsight's, and what
+that lets you do or not do.
 
----
+The main difference is the same in all three. nnsight runs a Python block that you write
+inside the engine, at any module. The others offer a fixed set of places and operations, and
+in exchange give you things a general block does not.
+
+The capability comparison was made from the source of interp-engine 1.14.3, vLLM-Lens 1.3.0
+and TransformerLens 4.4.0.
+
+## At a glance
+
+| | nnsight | interp-engine | vLLM-Lens | TransformerLens |
+| --- | --- | --- | --- | --- |
+| You write | A Python block that runs in the worker | Requests for named points, and steering specs | Capture and steering arguments on a request, or a pickled Python hook | Hook names to cache, and edit specs |
+| It reaches | Any module, operations inside a forward, the logits, the sampled token | 28 named points: residual stream, attention, MLP, router | The residual stream at each layer. Queries and keys, read-only | The outputs of the embedding, each layer, attention block and MLP, and the final norm |
+| A write can be | Any expression | One of six fixed operations | A steering vector, or any expression in a hook | One of four fixed operations, with values set before the forward |
+| Copy an activation from another run | Yes | No | Yes, in a hook | One vector per hook point |
+| Logits and the sampled token | Read and write | No | No | Logits, read-only, rebuilt on the client |
+| During generation | Yes | Yes | Yes | No, one forward pass per call |
+| Several requests in one batch | Yes | Yes | Yes | Only in eager mode |
+| CUDA graphs | With taps | With its `vllm-static` backend | No, always eager | Yes, with `torch.compile` |
+| Tensor parallelism | Yes | Yes | Yes | Yes, one prompt per forward |
+| A server | `nnsight-serve`, its own protocol | Its own HTTP server | Stock `vllm serve`, through the OpenAI API | None |
+| Something that runs on every request | `model.edit()`, any block | `set_steering`, steering only | Persistent hooks | No |
+| vLLM version | 0.33 | 0.28.0 | 0.30.0 | 0.20 |
+
+None of the four takes gradients through a vLLM forward pass.
 
 ## interp-engine
 
-[interp-engine](https://interp-engine.org) is the interpretability engine behind Neuronpedia: a
-fixed vocabulary of 34 named *points* (`resid_post.10`, `mlp_act.5`, ...) served on a hooked vLLM
-backend, a CUDA-graph `vllm-static` backend, and a HuggingFace eager backend, with a validator
-that checks its captures against TransformerLens and nnsight across 50+ architectures. It is
-good, careful software, and this section deliberately follows the shape of
-[its documentation](https://www.interp-engine.org/docs/) page for page so the two can be read
-side by side.
+interp-engine exposes a fixed vocabulary of named points, such as `resid_post.10` and
+`mlp_out.5`, and a fixed set of steering operations. It has a hooked eager backend and a
+`vllm-static` backend that keeps CUDA graphs, built on the same vLLM mechanism as nnsight's
+taps.
 
-This page is the comparison the others avoid. It was written against interp-engine 1.3.4 and
-nnsight 0.8 on the same machine, and the throughput table at the bottom is one grid run over
-both.
+What it gives you that nnsight does not:
 
-### The one-sentence difference
+- **Point names that mean the same tensor on every model family.** With nnsight you address
+  vLLM's module tree for the model you loaded, and read the tree to know what a module returns.
+- **An answer, before any forward pass, about which points a checkpoint serves.**
+- **Steering inside full CUDA graphs**, through a compiled kernel. nnsight's taps need piecewise
+  graphs.
+- **Built-in tools:** a Jacobian lens that runs on the worker, probe and SAE projections,
+  helpers for chat-message token spans, and a validator that checks its points against
+  TransformerLens and nnsight.
+- **A server that takes JSON**, so clients do not send code.
 
-interp-engine answers a **closed question well**: *give me point P, steered by spec S.* nnsight
-runs **your Python inside the engine's forward**: any module, any computation, any write, on the
-same request path. Most of what follows is that difference worked through each job.
+What nnsight gives you that it does not:
 
-### Addressing
-
-| | interp-engine | nnsight |
-| --- | --- | --- |
-| Unit | `Address(name, layer[, stream])`, 34 canonical names | a module on the tree + a side (`.input`, `.output`, `.inputs`, `.source.<op>`) |
-| Layer index | flattened forward order | the tree's own indices (`layers[10]`) |
-| Discovery | `model.points()`, the visualizer, `SUPPORTED_POINTS.md` | `print(model)` on the meta tree, `.source` for the ops inside a forward |
-| Portability across families | the point means the same tensor on every family (`attn_out_post` vs `attn_out` on sandwich-norm models is handled for you) | you address vLLM's module for *this* family; the sum of a layer's tuple is the residual on the standard families, and you read the tree to know |
-| Missing on vLLM | `mlp_pre`, `mlp_pre_linear`, `lm_head`, `attn_gate`, `expert_weights`, `expert_indices` (fused away); `attn_scores`/`attn_probs` by recompute | `gate_up_proj.output` split in two is `mlp_pre` and `mlp_pre_linear`; `logits_processor(lm_head, h)` is the unembed; the pattern is a recompute here too; expert *selection* is inside the fused kernel for both |
-
-The table on [Locations](locations.md#qwen3-8b-by-name) is, in effect, interp-engine's point
-list rewritten as nnsight locations on Qwen3-8B.
-
-### Loading
-
-| interp-engine | nnsight |
-| --- | --- |
-| `load_model(id, backend="vllm")` — hooked, eager, every point | `VLLM(id)` — every location |
-| `backend="vllm-static", static_points=[...]` — graphs on, declared taps | `VLLM(id, taps=[...])` — graphs on, declared taps |
-| `backend="vllm-generate"` — graphs + compile, no capture | plain `vllm.LLM`, or `model.generate(...)` outside a block on any engine |
-| `backend="eager"` (HuggingFace; gradients, batches, `attn_probs`) | `TransformersModel(id)` — the same block, with gradients |
-| `warmup()` / `shutdown()` | `dispatch=True` / process exit |
-| `num_gpus=4` | `tensor_parallel_size=4` |
-| `configure_static(points)` after construction | taps are fixed at construction |
-
-Both static/tapped engines sit on the same seam — vLLM's breakable CUDA graphs, a callable
-recorded at capture and run on every replay — and both turn `torch.compile` off to get it.
-interp-engine's `"auto"` static set is `resid_post` at every layer, read *and* write;
-nnsight's taps are whatever module locations you name, read and write.
-
-### Capabilities
-
-interp-engine asks first: `model.hooks_available`, `model.points()`, `model.grad_support`,
-`CapabilityUnsupported` naming the capability and an alternative. nnsight has less to ask
-because there is no point table to be absent from — the tree is the capability — and refuses
-in the same spirit: a non-tap read, a barrier, a chunked prompt, a misspelled sampling keyword
-and a typo'd tap each raise with the location and the fix
-([Capabilities and limits](capabilities.md)).
-
-### Reading
-
-| Job | interp-engine | nnsight |
-| --- | --- | --- |
-| one point | `run_with_cache(model, tokens, [point])` | `x = loc.clone().save()` in a trace |
-| every layer | a list of 36 addresses | a loop over `model.model.layers` |
-| while generating | `capture_generation(...)` | `tracer.all()` |
-| a batch | eager only | many invokes, on vLLM, batched by the scheduler |
-| MoE routing | `router_logits`; selection eager-only | `mlp.gate.output`; selection fused, same |
-| per-head contributions | `head_contributions(model, cache, 10)` | `z[:, h*d:(h+1)*d] @ W_O[:, h*d:(h+1)*d].T` in the block |
-| direct logit attribution | client-side, from captured points | every layer and head in one forward, in the worker ([Attribution](attribution.md)) |
-| SAE features | capture the point, encode on the client | the same, or a feature's live activation in the worker from two rows ([SAE features](sae.md)) |
-| gradients | eager only | HuggingFace path only |
-
-Where the two differ in *kind*: interp-engine's cache is assembled on the client from what the
-worker shipped; nnsight's block runs on the worker and ships what you saved. Capturing every layer
-of a 70B model at every step costs interp-engine 3.5× its single-layer rate and nnsight nothing
-measurable (table below), because the clones never leave the worker until the end.
-
-### Attention
-
-Neither library has the attention pattern as a hook on vLLM — the paged kernel never forms it.
-interp-engine rebuilds it inside `capture_attention` from captured q/k; on nnsight you rebuild it
-in the block from `self_attn.attn.inputs`, in a dozen lines, and both match HuggingFace's eager
-attention to bf16 noise. interp-engine additionally ships `per_head_value`, `attn_out_gate` and
-`split_fused_qkv` for the family-specific layouts; on nnsight those are slices you write, and the
-[Attention](attention.md) page gives them for Qwen3. Under tensor parallelism the two part ways:
-interp-engine's per-head `z` and direct attribution are single-GPU only (`num_gpus > 1` shards the
-heads across ranks and its off-kernel recompute sees one shard), while nnsight gathers `o_proj.input`
-whole before the block reads it, so the per-head material above works at any `tensor_parallel_size`.
-
-### Logit lens
-
-interp-engine's `decode_residuals` is a method that applies the family's post-unembed arithmetic
-and runs on the client from captured residuals (a `topk` variant runs on the worker). nnsight
-calls the model's own `norm` and `logits_processor` in the block, on the worker, so the vocab-wide
-tensor never travels unless you save it — and it works at every layer in one forward on vLLM,
-where interp-engine's `layer_logits` is eager-only.
-
-### Writing
-
-| | interp-engine | nnsight |
-| --- | --- | --- |
-| Operations | `AddSpec`, `OrthogonalDecompSpec`, `ProjectionCapSpec`, in order per layer | any expression |
-| Where | `resid_post` by default; `point="z"` and the stream points | any location — a head's slice of `o_proj.input`, a router logit, the logits, the sampled id |
-| Positions | `position_mask`, `SteerMask.SPECIAL_TOKENS` | a boolean mask on the rows |
-| During generation | the spec is applied every step | put the edit under `tracer.iter[:N]` |
-| Conditional / stateful | no | yes: `if step == 3`, a running estimate, a probe's output deciding the write ([Conditional interventions](conditional.md)) |
-| Activation patching | no write of another run's activation | a saved tensor written at a position, per layer or per head, batched as invokes ([Activation patching](patching.md)) |
-| Ablate a component | no write off the residual points | `mlp.output[:] = 0`, a head's slice of `o_proj.input`, a neuron, a router logit ([Ablation](ablation.md)) |
-| SAE feature clamp | add a fixed decoder direction | scale the feature's *live* activation through generation ([SAE features](sae.md)) |
-
-The `ablate` and `force` rows of the grid — zeroing a head's slice of `o_proj.input`, and
-overriding the sampled token — are the two the interp-engine harness could not express on any
-backend.
-
-### Generating
-
-`generate_stream` yields a `GenStep` per token with `n_logprobs`; on vLLM its `.logits` is
-`None` because the sampler never ships the tensor out of the worker. nnsight's `model.logits` is
-that tensor, on the worker, readable *and writable* every step, and `logprobs=k` rides
-`tracer.result` for the portable case. Streaming text is `generate_stream` on both backends in
-interp-engine and `mode="async"` in nnsight; `generate_full` and `tracer.result` are the same
-vLLM `RequestOutput`.
-
-### Chat and tokens
-
-interp-engine's `Tokenize` helper is the richer one: `message_partition`, `message_spans`,
-`GeneratedTurnSpans`, `compose_assistant_turns`, with the DeepSeek-V4 template quirks handled.
-nnsight hands you the HuggingFace tokenizer and the [Chat and tokens](chat.md) page shows
-offset-mapping spans in a few lines.
-
-### Serving
-
-| | interp-engine | nnsight |
-| --- | --- | --- |
-| In-process async | every method is `async`; `sync_model` facade | `mode="async"`; `tracer.backend` streams |
-| Concurrency | `asyncio.gather` over `capture(...)` | `asyncio.gather` over traces |
-| A server | your FastAPI app, model built in `lifespan` | `nnsight-serve`, or your app around `VLLM` |
-| Clients without a GPU | your API | `VLLM(id)` meta tree + `trace(..., serve=url)` |
-| Instrument every request | a spec in a `steer()` context | `model.edit()` — one block, every request, any tenant |
-
-### Correctness
-
-interp-engine's validator compares its points against TransformerLens and nnsight/nnterp across
-50+ architectures at early, middle and late layers, with the results checked into the
-repository; that is a level of cross-engine validation nnsight does not have. nnsight's vLLM path
-is covered by ~195 tests on two GPUs, and every value shown in this section was checked against
-a HuggingFace forward of the same checkpoint. Its sharded path is checked value by value against
-a one-rank engine of the same checkpoint — Qwen2.5 at `tp=2`, DeepSeek-V2-Lite at `tp=2` and at
-`tp=4, dcp=2` — and the request accounting under preemption, `n > 1`, aborted streams and foreign
-tenants sharing the batch has a test each. Both libraries note the same trap: a value that is the
-right shape from the wrong place raises nothing.
-
-### Throughput {#throughput}
-
-See [Throughput, measured](#throughput-measured) at the end of the page — one grid over all
-three libraries. The interp-engine columns there are `vllm` (hooked, eager) and `vllm-static`
-(CUDA graphs, declared taps); `vllm-generate` is left out because it is vanilla vLLM under
-another name (its numbers matched the vanilla column to within 1%), and the eager HuggingFace
-backends are compared in the text below rather than plotted.
-
-What the grid says about interp-engine:
-
-- **Under graphs the two are the same engine.** `nnsight taps` and `IE vllm-static` are within
-  noise of each other and of vanilla vLLM on plain generation and single-layer capture, at every
-  size and parallelism — as they should be, sitting on the same vLLM seam.
-- **Both eager engines pay the same tax**, and it is the driver's: 86 vs 86 tok/s on one GPU,
-  ~70 tok/s flat as GPUs are added.
-- **Where the computation happens is the difference that scales.** Every-layer capture and the
-  logit lens ship tensors to interp-engine's client per request; nnsight keeps them on the
-  worker. At 70B: 35 vs 10 tok/s for every-layer capture, 35 vs 22 for the lens.
-- **Gradients are the one row interp-engine leads**, on its eager HuggingFace backend: one
-  forward+backward at 70B takes 531 ms there against 1,216 ms on nnsight's `TransformersModel`.
-
----
+- **Any computation at any module.** interp-engine's six operations add, scale, project out,
+  cap or swap along fixed directions. A write that depends on a condition, on state from an
+  earlier step, or on another run's activation is not expressible.
+- **Component ablation.** There is no operation that zeroes or replaces a head or an MLP.
+- **The logits and the sampled token.** On vLLM, interp-engine returns top log-probabilities
+  only.
 
 ## vLLM-Lens
 
-[vLLM-Lens](https://github.com/UKGovernmentBEIS/vllm-lens) (UK AISI, MIT) is a vLLM *plugin*: it
-registers through vLLM's `general_plugins` entry point, so an unmodified `vllm serve` or offline
-`LLM` gains activation capture, steering vectors and Garçon-style hooks the moment the package is
-installed, driven by `SamplingParams.extra_args` (offline) or `vllm_xargs` (over the OpenAI API).
-It also ships an Inspect AI model provider and a set of examples — causal tracing, logit and
-Jacobian lens, a deception probe, an emotion tracker, an activation oracle. This section was
-written against vLLM-Lens 1.2.1 on vLLM 0.27.1, the same engine version as the rest of this site.
+vLLM-Lens is a vLLM plugin. Once it is installed, a stock `vllm serve` or `LLM` accepts
+capture, steering-vector and hook arguments on each request. Its hooks are on the residual
+stream at each decoder layer, and a hook can be a pickled Python function.
 
-The [Examples](examples/causal-tracing.md) group of this section is the vLLM-Lens example set
-redone in nnsight, so each can be read against its original.
+What it gives you that nnsight does not:
 
-### The one-sentence difference
+- **The OpenAI-compatible API.** Any OpenAI client can ask for activations or steering, with
+  chat templates and tool calling, and it ships a provider for Inspect AI evals.
+  `nnsight-serve` speaks its own protocol.
+- **Steering without code on the server.** A steering vector is sent as JSON.
+- **Pipeline parallelism.**
+- **Attention patterns built in**, from captured queries and keys.
 
-vLLM-Lens exposes **one seam** — a decoder layer's residual stream, on the way in (pre-hook) or
-out (post-hook) — and lets you capture it, add to it, or run a pickled function on it. nnsight
-exposes **every module** and runs your block interleaved with the forward: the attention
-projections, the per-head outputs, the router, the logits, the sampled id, and the residual
-stream are all locations, and the same block reads and writes any of them.
+What nnsight gives you that it does not:
 
-### Where a hook can fire
-
-| | vLLM-Lens | nnsight |
-| --- | --- | --- |
-| Residual stream leaving a block | `output_residual_stream=[l]`, `Hook(layer_indices=[l])` | `sum(layers[l].output)` |
-| Residual stream entering a block | `Hook(..., pre=True)` | `layers[l].input_layernorm.output[1]`, `embed_tokens.output` |
-| q / k / v, per-head `z`, `o_proj` input, MLP neurons, the router | — | any of them ([Locations](locations.md)) |
-| Pre-sampling logits, the sampled id | — (logprobs through the API) | `model.logits`, `model.samples`, both writable |
-| Inside a module's forward | — | `.source` ops |
-
-Both libraries take the residual stream to be vLLM's `(hidden, residual)` summed, and both
-clone before handing it to user code (vLLM-Lens clones for you; on nnsight a kept reference
-must be cloned — [Locations](locations.md#clone-what-you-keep)).
-
-### Reading
-
-| Job | vLLM-Lens | nnsight |
-| --- | --- | --- |
-| Capture layers | `extra_args={"output_residual_stream": [15, 20]}` → `out.activations["residual_stream"]`, `(layers, pos, d)` | `.save()` on the location; `tracer.cache()` |
-| Every step of a generation | captured per forward pass, stacked | `tracer.all()` / `tracer.iter` |
-| Compute on the worker | `Hook(fn)`; results in `ctx.saved`, returned as `hook_results` | the block itself |
-| Parameters under TP / PP | `ctx.get_parameter(name)` gathers; `prefetch_params` for PP | activations are gathered; `logits_processor(lm_head, h)` for the unembed ([Tensor parallelism](tensor-parallel.md)) |
-| A sweep of many prompts | `register_hooks` once, `generate` per prompt, `collect_hook_results` | `model.edit()` once, `generate(prompts)`, values on each output |
-| Batch of prompts | `llm.generate(prompts, params)` | `generate(prompts)` (plain) or one invoke per prompt (traced) |
-
-### Writing
-
-| | vLLM-Lens | nnsight |
-| --- | --- | --- |
-| Additive steering | `SteeringVector(activations, layer_indices, scale, norm_match, position_indices)` | `layers[l].output[0][:] += scale * v` under `tracer.iter` |
-| Norm-matched | `norm_match=True`: `h += scale · ‖h‖ · v/‖v‖` | `h += scale * h.norm(dim=-1, keepdim=True) * v / v.norm()` |
-| Position-specific | 3-D activations + `position_indices` | index the rows |
-| Anything else | return a tensor from a `Hook` — at a layer boundary | any expression at any location, including the sampler |
-| Persistent | `register_hooks` | `model.edit()` |
-
-### Serving
-
-This is where vLLM-Lens is strongest. It lives *inside* `vllm serve`: the OpenAI-compatible
-completions and chat endpoints accept `vllm_xargs` for capture, steering and hooks, the server
-gains `/v1/hooks/*` for persistent hooks and parameter prefetch, activations come back base64-
-encoded in the response, and any OpenAI client — or Inspect, through the bundled provider — can
-drive it. nnsight's equivalent is [`nnsight-serve`](serving.md#nnsight-serve), a single-model
-server that runs nnsight traces submitted by GPU-less clients and installs engine-wide edits;
-it does not speak the OpenAI API. An edit installed on an nnsight engine does run on every
-request the engine serves, whoever sent it, which is the persistent-hook pattern; but the
-front door for OpenAI-style traffic is vLLM-Lens's.
-
-| | vLLM-Lens | nnsight |
-| --- | --- | --- |
-| Server | `vllm serve` + plugin | `nnsight-serve` |
-| Client protocol | OpenAI API + `vllm_xargs`; `VLLMLensClient` | nnsight traces over HTTP (`serve=url`) |
-| Code on the server | cloudpickled hook functions (arbitrary code; trusted clients only) | serialized trace blocks (likewise) |
-| Persistent instrumentation | `/v1/hooks/register` | `model.edit(serve=url)` |
-| Inspect AI | provider built in | — |
-| Streaming | the API's | `mode="async"` |
-
-### Parallelism and engines
-
-| | vLLM-Lens | nnsight |
-| --- | --- | --- |
-| Tensor parallel | steering and hooks on every rank; capture on rank 0; a hook that saves Python lists sees them `tp_size`× | every rank runs the block; reads are gathered whole; rank 0 reports |
-| Pipeline parallel | yes (`prefetch_params` for cross-stage weights) | no |
-| Expert parallel / MoE | yes | yes, incl. MoE partial-sum gather |
-| CUDA graphs | never — the plugin forces `enforce_eager` for every engine in the process | `taps=` keeps replay ([Performance](performance.md)) |
-| LoRA | yes (`lora_request`; the activation-oracle example) | yes (`lora_request` in the sampling kwargs) |
-| Installed alongside other engines | `VLLM_LENS_DISABLE=1` to make it a no-op | nothing is patched until `VLLM(...)` is built |
-
-The last row matters operationally: vLLM-Lens patches `EngineArgs.create_engine_config` and
-`LLM.generate` at import, so every vLLM engine in a process that has it installed runs eager
-with the worker extension attached — including one you did not mean to instrument.
-
-### The examples
-
-| vLLM-Lens example | Mechanism there | On nnsight |
-| --- | --- | --- |
-| `causal_tracing.py` | pre-hook noise on the subject embeddings, post-hook restore, one HTTP request per `(layer, position)` | [Causal tracing](examples/causal-tracing.md) — one trace per layer, one invoke per position, batched by the scheduler |
-| `logit_lens.py` | hook with `ctx.get_parameter("lm_head.weight")`, manual RMSNorm | [Logit lens](logit-lens.md) — the model's own `norm` and `logits_processor` |
-| `jacobian_lens.py`, `jacobian_lens_chat.py` | hook applying a fitted `J_l`, prefetched weights; lens fit separately on prime-rl | [Jacobian lens](examples/jacobian-lens.md) — Neuronpedia's fitted lens, read out per step; `edit()` for the chat pattern |
-| `deception_probe.py` | persistent hooks over contrastive prompts, LBFGS probe | [A linear probe](examples/probe.md) — `edit()` over the prompts; then the probe runs *inside* the model every step |
-| `emotion_tracker.py` | persistent hooks for direction vectors, per-token projections via chat | [Concept directions](examples/emotion-tracker.md) |
-| `activation_oracle.py` | capture, then norm-matched positional steering under a LoRA oracle | expressible (norm-matched positional write + `lora_request`); not reproduced here — it needs the 70B oracle adapter |
-| `extract_residual_stream.ipynb` | per-request and persistent capture, offline and HTTP | [Capture](capture.md), [Async and servers](serving.md) |
-
-### Throughput {#vllm-lens-throughput}
-
-vLLM-Lens is the fifth series in [Throughput, measured](#throughput-measured); its column ran
-in its own environment (the plugin forces eager mode on every engine in a process) on the same
-cards, and the grid gained one row for it: a **sweep** of 1024 short prompts at one token each,
-capturing one layer — the activation-extraction workload vLLM-Lens is built for.
-
-- **Plain generation and single-layer capture are a wash.** Both libraries hook the same seam
-  and both run the engine eagerly by default: 86–87 tok/s plain, 77–79 capturing one layer.
-  nnsight's taps column is the only one that keeps CUDA graphs, and the only one within a few
-  percent of vanilla.
-- **vLLM-Lens pays per layer and per hook.** Its hooks are installed on every decoder layer and
-  each does its bookkeeping for every in-flight request on every step, and a steering vector or
-  hook clones the layer's output: capturing all 32 layers halves throughput (37 vs nnsight's 68
-  tok/s), and a steering vector, a probe or a lens each cost about 40% (48–49 vs 78). nnsight's
-  block visits only the locations it names.
-- **The sweep is close.** vLLM-Lens's capture rides the request with little per-request setup
-  (1.32 s over 1024 prompts, 1.8× vanilla). An nnsight trace serializes a block per invoke and
-  collects per step (1.6 s, 2.1×); the intended shape for a sweep is
-  [`model.edit()`](serving.md#edit-the-engine), which installs the block once — 1.1 s eager,
-  1.0 s under taps, the fastest capture of the three.
-- **Two rows vLLM-Lens cannot express**: an ablation inside the attention block and an override
-  of the sampled token, because its hook points are layer boundaries and it has no hook on the
-  sampler.
-
-A trap found while measuring, worth knowing on the nnsight side: writing
-`model.model.layers[16].output` *inside* the block references the model, and each of the 1024
-invokes then serializes it — 8.6 s for the sweep. Binding the layer envoy before the trace and
-using it inside is what the grid shows. Invisible in a single trace, decisive in a sweep
-([Performance](performance.md#what-else-moves-the-number)).
-
-- **Tensor parallelism.** vLLM-Lens installs its hooks on every rank; at tp=4 plain generation
-  matches the other eager engines (76 tok/s vs 69–72), single-layer capture too (69), but a
-  steering vector or probe costs a quarter (58, 57) where the eager nnsight engine and
-  interp-engine lose nothing, and every-layer capture drops to 37 (nnsight eager 58, taps 208).
-  At 70B/tp=4 the same shape: plain generation and one-layer capture on par or slightly ahead,
-  steering, probe and lens at 18–19 tok/s against the eager engines' 27–29.
-
----
+- **Locations other than the residual stream.** vLLM-Lens has no hook on an MLP, a head's
+  output, the router, the logits or the sampled token.
+- **CUDA graphs.** vLLM-Lens sets `enforce_eager` on every engine in a process where it is
+  loaded.
+- **Errors returned to the caller.** vLLM-Lens logs an exception in a hook and skips the hook.
+- **Cost that follows what you use.** vLLM-Lens installs its hooks on every layer and runs
+  them for every request in the batch. An nnsight block visits only the modules it names.
 
 ## TransformerLens
 
-[TransformerLens](https://github.com/TransformerLensOrg/TransformerLens) 4.0 adds vLLM as a
-*source* for its bridge: `RemoteBridge.boot_vllm(id)` returns an object with the familiar
-`run_with_cache`, `run_with_hooks` and `hook_dict`, under the canonical TransformerLens hook
-names, with a vLLM engine doing the forward. The same driver backs an
-[Inspect AI](https://inspect.aisi.org.uk) provider (`tl_bridge_vllm`). This section was written
-against TransformerLens 4.0.0, which pins `vllm>=0.20.2,<0.21`; it was run there, and tried on
-vLLM 0.27.1, the engine version of the rest of this site: the default compiled path works
-unmodified and captures bit-identical activations, and the batched path fails at boot
-(`'GPUModelRunner' object has no attribute 'input_batch'`), which is the drift the pin is for.
+`RemoteBridge.boot_vllm` gives you TransformerLens's `run_with_cache` over a vLLM engine. Its
+hooks are installed before vLLM compiles the model, so they become part of the compiled graph.
+Each hook copies its output into a buffer and applies `output * scale + bias`. An edit changes
+`scale` and `bias` between forward passes.
 
-### The one-sentence difference
+What it gives you that nnsight does not:
 
-TransformerLens uses vLLM as a **fast prefill for a cache**: one forward over a prompt, a fixed
-set of module outputs copied into preallocated buffers, and a four-word vocabulary of affine
-edits. nnsight runs **your Python inside the engine's forward, through generation**: any module,
-any expression, every decode step, many requests in one batch.
+- **`torch.compile` and full CUDA graphs, with reads and writes inside them.** nnsight's taps
+  turn `torch.compile` off.
+- **TransformerLens's hook names and API.** The same code runs on its HuggingFace backend.
+- **Logits for the whole sequence**, and so a per-token loss, from one forward pass.
+- **Pipeline parallelism.**
 
-### How it hooks the engine
+What nnsight gives you that it does not:
 
-This is the most interesting part of the design, and it is the opposite bet to nnsight's. The
-package registers a `vllm.general_plugins` entry point that patches `Worker.load_model`, and
-installs its forward hooks *after the weights load and before vLLM compiles the model*, so the
-hooks are traced **into** the `torch.compile` graph and captured in the CUDA graphs. A hook can
-therefore hold no Python: it writes `output * scale + bias` into a preallocated
-`(max_num_batched_tokens, width)` buffer through a first-write-wins gate made of `torch.where`,
-and an intervention is a swap of the contents of `scale` and `bias` between forwards. The
-engine keeps compilation *and* graphs, which neither nnsight's taps nor interp-engine's static
-backend do (both turn `torch.compile` off).
+- **Generation.** The bridge runs one forward pass per call.
+- **Python in the forward pass.** A write is `suppress`, `scale`, `add` or `set` with a value
+  fixed in advance, so it cannot depend on the activation.
+- **Module inputs, queries, keys and values, each head's output, and the sampled token.**
+- **Batching with compiled graphs.** The compiled path takes one prompt per forward. Its
+  batched mode is eager, and it is refused under tensor parallelism.
+- **A persistent edit, and a server.**
+- **Recent vLLM.** TransformerLens pins `vllm<0.21`.
 
-The cost is everything the graph cannot express, which is the rest of this section.
+## Throughput
 
-| | TransformerLens | nnsight |
-| --- | --- | --- |
-| Hooks live | inside the compiled graph, fixed at boot | eager: Python per module call; taps: a callable at declared graph breaks |
-| `torch.compile` | kept (compile cache disabled, so every boot recompiles) | off under taps; off when eager |
-| Hook set | every hook point, always — `3 × layers + 2` buffers allocated and written on every forward, whatever you asked for | only the locations a block names |
-| Buffer memory | `(3L + 2) × max_num_batched_tokens × d_model`: 1.6 GB on Llama-8B at the default 2048 tokens, doubled again by `enable_position_interventions` | none resident |
-| Requests per forward | one (`batch_size=1`); `enable_batching=True` lifts it by switching the engine to `enforce_eager` | many invokes, batched by the scheduler, either mode |
-| Prefix caching | forced off | on by default: a trace asks for a recompute of its own prompt, plain requests still hit the cache; only an engine-wide `edit()` needs it off |
-| In other engines in the process | the patch is inert unless `boot_vllm` set its spec channel | nothing is patched until `VLLM(...)` is built |
+One harness ran the same workloads on every library, on the same machine: bf16, A100-80GB,
+a 512-token prompt, 128 new tokens, greedy decoding, prefix caching off.
 
-### Where a hook can fire
+These measurements are older than the capability comparison above. They used nnsight 0.8,
+interp-engine 1.3.4 and vLLM-Lens 1.2.1 on vLLM 0.27.1, and TransformerLens 4.0.0 on vLLM
+0.20.2. interp-engine has since moved more work onto the worker, which these numbers do not
+show.
 
-| | TransformerLens | nnsight |
-| --- | --- | --- |
-| Residual stream leaving a block | `blocks.{i}.hook_out` (the `(hidden, residual)` pair summed for you) | `sum(layers[i].output)` |
-| Attention and MLP output | `blocks.{i}.attn.hook_out`, `blocks.{i}.mlp.hook_out` | `self_attn.output`, `mlp.output` |
-| Embedding, final norm | `embed.hook_out`, `ln_final.hook_normalized` (un-folded to the pre-weight value so it matches the HuggingFace bridge) | `embed_tokens.output`, `norm.output` |
-| Block, attention and MLP *inputs* | not fireable | `.input` on any module |
-| q / k / v, per-head `z`, rotary q/k | not fireable | `qkv_proj.output`, `o_proj.input`, `self_attn.attn.inputs` ([Locations](locations.md)) |
-| Attention pattern and scores | not fireable | a recompute in the block ([Attention](attention.md)) |
-| MLP neurons, the router | — | `gate_up_proj.output`, `mlp.gate.output` |
-| Logits | reconstructed on the *client* as `ln_final @ W_U` in fp32, full sequence — so `return_type="loss"` works | `model.logits` on the worker, readable and writable |
-| The sampled id | — | `model.samples` |
-| Inside a module's forward | — | `.source` ops |
-
-TransformerLens is careful about what it cannot do: every unavailable name is declared up
-front (`non_fireable_hook_points`), asking for one raises `this backend cannot fire
-'blocks.8.attn.hook_z'; use boot_transformers()`, a hook that installed on no rank fails the
-boot, and a tensor-parallel boot cross-checks that every rank's copy of a capture agrees. One
-architecture overlay covers every decoder-only model by vLLM's conventional module paths
-(`model.layers.{i}`, `.self_attn`, `.mlp`), and the models that fall outside it fail at boot
-rather than reading zeros: Qwen3.5-0.8B, whose composite multimodal config has no
-`hidden_size`, fails before the engine is built on either path, and Qwen1.5-MoE-A2.7B fails
-on the compiled path when `torch.compile` rejects the graph with the hooks in it
-(`ConstraintViolationError` on the token dimension; plain vLLM compiles the same model, and
-the eager batched path runs it).
-
-### Reading
-
-| Job | TransformerLens | nnsight |
-| --- | --- | --- |
-| One point, one prompt | `run_with_cache(tokens, names_filter=[name])` | `x = loc.clone().save()` in a trace |
-| Every layer | `names_filter=` a list; without one, all `3L + 2` captures cross to the client | a loop over `model.model.layers` |
-| A batch of prompts | `enable_batching=True` (eager); right-padded `(batch, seq, width)` cache | one invoke per prompt, eager or under taps |
-| While generating | no: the driver raises on `max_new_tokens != 1`, and `RemoteBridge` has no `generate()` | `tracer.all()` / `tracer.iter` |
-| Compute on the worker | no: captures are shipped, and everything else runs on the client | the block itself |
-| Logit lens, DLA, probes | client-side from the cache, with TransformerLens's own `ActivationCache` helpers | on the worker, per step ([Logit lens](logit-lens.md), [Attribution](attribution.md)) |
-| Gradients | no (`bwd_hooks`, `incl_bwd` raise) — use `boot_transformers` | HuggingFace path only |
-
-Two defaults are worth knowing before timing anything. A `run_with_cache` with no
-`names_filter` copies every hook point to the client, and every forward rebuilds full-sequence
-logits on the CPU unless you pass `return_logits=False`, a driver argument the bridge passes
-through. On Llama-3.2-1B with a 512-token prompt: 1,571 ms by default, 217 ms
-for one hook with logits, 32 ms for one hook without. The batched path has a third: its eager
-hook copies *every* hook point of every request to the CPU as it fires, and `names_filter`
-only trims what is concatenated afterwards.
-
-### Writing
-
-| | TransformerLens | nnsight |
-| --- | --- | --- |
-| Operations | `suppress`, `scale`, `add`, `set` — `intervene={name: {"op": "add", "value": v}}` | any expression |
-| A Python function | rejected (`vLLM accepts intervention specs (dict), not callables`) | the block is Python |
-| `run_with_hooks(fwd_hooks=...)` | runs *after* the forward on the captured tensors, read-only; a returned tensor is discarded, with a warning | — |
-| Where | the five module-output families above | any location, the logits and the sampled id included |
-| Positions | `"pos": [3, 4]`, behind `enable_position_interventions=True` at boot (compiled path only) | index the rows |
-| A value that depends on the activation | no: `scale` and `bias` are fixed before the forward | yes — norm-matched steering, projection, a probe deciding the write |
-| Patching another run's activation | `set` with a width-shaped value, one position at a time per `pos` row | a saved tensor written at any rows, batched as invokes ([Activation patching](patching.md)) |
-| Ablate a head | no (`hook_z` is not fireable) | a slice of `o_proj.input` ([Ablation](ablation.md)) |
-| During generation | no generation | `tracer.iter[:N]` |
-| Persistent | no: the full spec set is pushed, and reset, every forward | `model.edit()` |
-
-An `add` does what it should — a steering vector at layer 8 of Llama-3.2-1B moves the top
-prediction after *The Eiffel Tower is in the city of* off ` Paris` — and the write is carried
-into the next layer by returning `(modified − residual, residual)`, exact at identity and
-bf16-rounded under an edit.
-
-### Generating, serving, parallelism
-
-| | TransformerLens | nnsight |
-| --- | --- | --- |
-| Generation | none through the bridge; the Inspect provider generates, clearing interventions first and capturing the *prompt's* activations only | `model.generate`, `tracer.iter`, `mode="async"` |
-| A server | none; Inspect AI provider (`tl_bridge_vllm`, single GPU) for capture inside evals | `nnsight-serve`, `trace(..., serve=url)` |
-| Tensor parallel | yes, compiled path: hook points are post-all-reduce, captures are deduplicated across ranks and checked once | yes, either mode; reads gathered whole |
-| Pipeline parallel | yes, compiled path | no |
-| Tensor parallel with many requests per forward | refused (`enable_batching` with TP/PP raises) | yes |
-| Multi-node | no (the hook spec travels in an environment variable) | through Ray |
-| vLLM versions | pinned `<0.21`; one `internals.py` isolates the engine walks | tracks current vLLM (0.27.1 here) |
-
-### Correctness
-
-On Llama-3.2-1B against a HuggingFace forward of the same checkpoint, TransformerLens's vLLM
-captures agree at every hook family (cosine 0.9998–1.0000; block output exact to bf16
-rounding), its reconstructed logits pick the same top token at every position, and the
-captures are bit-identical between vLLM 0.20.2 and 0.27.1. The library's own end-to-end check
-of the compiled mutation path is a notebook run by hand on a GPU; its CI covers the dispatch
-protocol.
-
-### Throughput {#transformerlens-throughput}
-
-TransformerLens is the yellow pair in [Throughput, measured](#throughput-measured), on the
-panels it was run on, and most of its cells are ✗: the grid is built around generation — a
-512-token prompt and 128 new tokens, with something read or written at every step — and the
-bridge does one forward per call. The rows it can express are the single forward with a
-capture and the 1024-prompt sweep. Its columns ran in their own environment on vLLM 0.20.2,
-the version it pins, so each dot is a share of plain vLLM 0.20.2 measured in that same
-environment (the `vanilla vLLM 0.20.2` column of the tables) rather than of the 0.27.1
-vanilla the other libraries are read against.
-
-- **Two engines, neither of which is both fast and batched.** The default path keeps
-  `torch.compile` and CUDA graphs but takes one prompt per forward, so the sweep is 1,024
-  sequential `generate` calls, each bracketed by two RPCs to push the intervention state and
-  open the capture gates and one to read the buffer back: 25.9 s on Llama-8B (23.8 s on
-  Qwen3-8B, 7.7 s on Llama-1B), against 0.76 s for plain vLLM 0.20.2 given the same prompts as
-  one batch and 1.6 s for an nnsight trace. Most of that is the shape rather than the hook —
-  plain vLLM driven one prompt per call, nothing attached, takes 15–19 s — and the same path
-  on vLLM 0.27.1 is 20% slower again (29.8 s). `enable_batching=True` submits the sweep as one
-  batch, and gives up compilation and graphs to do it: 7.2 s, 4.5× nnsight's per-request trace
-  and 6.6× its `edit()`.
-- **The batched hook copies everything.** On the eager path every hook point of every request
-  is sliced and moved to the CPU as it fires — 98 tensors per request on Llama-8B — and
-  `names_filter` is applied afterwards, so asking for one layer costs the same as asking for
-  all of them. It shows most on the small model: a single forward on Llama-1B is 72 ms
-  batched against 13 ms compiled and 9 ms for plain vLLM.
-- **A single forward is where it is closest**, provided the two defaults above are turned
-  off (`names_filter=[...]`, `return_logits=False`): 62 ms on Llama-8B against 37 ms for plain
-  vLLM 0.20.2 and 53 ms for an nnsight trace on 0.27.1; the compiled hooks add an affine and a
-  gated copy at every hook point whether or not anything was asked for. With the defaults on
-  it is about 370 ms.
-- **Tensor parallelism makes it slower.** From one card to `tensor_parallel_size=4`, plain
-  vLLM's single forward drops 37 → 25 → 19 ms and its one-per-call sweep 15–19 → 9 → 6 s;
-  TransformerLens's forward goes the other way, 62 → 73 → 101 ms, because every capture read
-  now crosses every rank and is merged on the client, and its sweep comes down only with the
-  engine (25.9 → 14.1 → 12.6 s). nnsight's trace follows vanilla (53 → 45 → 39 ms;
-  1.6 → 1.3 → 1.2 s).
-- **The mixture of experts is its best panel, on the path that survives.** On
-  Qwen1.5-MoE-A2.7B the compiled path does not boot (above), but the eager batched path is
-  closer to nnsight than anywhere else: 2.8 s for the sweep against nnsight's 1.4 s
-  (0.7 s with `edit()`), and 62 ms for a single forward against 46 ms. An MoE forward is
-  expensive relative to the hook's fixed per-request copy, so the copy shows less.
-- **Every other row is ✗**, for one of three reasons recorded in the tables' hover text: no
-  generation through the bridge; no hook point inside the attention block or on the sampler;
-  no backward pass.
-
----
-
-## Throughput, measured {#throughput-measured}
-
-One harness, every library, the same machine: bf16, A100-80GB, vLLM 0.27.1 (TransformerLens
-on the 0.20.2 it pins, read against that version's vanilla),
-transformers 5.15, 512-token prompt, 128 new tokens, greedy, prefix caching off on every
-engine, 3 processes × 3 timed runs per cell (mean; std ≤ 2% except the HuggingFace-eager rows,
-which are not plotted). Each dot is a library's throughput on a workload as a **share of plain
-vLLM** doing the same generation with nothing attached — vanilla `generate` for single-stream
-rows, vanilla 8-concurrent `generate` for the ×8 rows, and vanilla's own sweep time for the
-sweep rows (where less time is more). Hollow dots are eager engines, filled dots keep CUDA
-graphs; hue is the library. The whisker through each dot is the min–max over its repeated runs
-(nine for most cells: three processes × three timed runs; the 70B and tp=8 panels have six).
-A cell that is statistically significantly faster than its nnsight counterpart — the eager
-engines and vLLM-Lens against `nnsight eager`, `vllm-static` against `nnsight taps` — by an
-exact two-sided Mann-Whitney U test at p < 0.05 and at least 3% apart is **bold** in the tables;
-a bold nnsight cell beat every counterpart in its row by the same test. Hover a dot for the
-number, the run count and the range.
-
-**Every panel was measured in one session on one machine, which is what makes the libraries
-comparable; the absolute tok/s of an eager row is not.** A graph engine is bound by the GPU and
-reproduces: re-run on the same machine while other tenants are running, vanilla vLLM gives 91.8 tok/s
-against the 92 below and `nnsight taps` 88.6 against 89. An eager engine spends a Python round
-trip per module call on the driver, so its throughput follows whatever CPU the host has left, and
-the whole `nnsight eager` column on that re-run came back between 44 and 58 tok/s instead of 68 to
-86. Plain vLLM with `enforce_eager=True` and nothing attached moves with it (52.1 tok/s there,
-against nnsight's 54.1), which is the reason the eager rows on
-[Performance](performance.md#measured) are published as a share of that engine rather than as a
-rate.
-
-### Other models and scenarios
-
-The same grid on more models and two more workload shapes (three processes each; the
-DeepSeek panel has no interp-engine column, whose runner was not pointed at it):
-
-- **Qwen3-8B** (36 layers with QK-norm, the model this section's examples use). The eager
-  engines are all at ~74% of vanilla on plain generation (67–69 tok/s vs 91) where on
-  Llama-8B they were at 93%: the eager tax scales with the number of module calls per layer, and
-  Qwen3 has more of them. The graph engines are unaffected (nnsight taps 88, interp-engine
-  static 88). Everything else has the Llama shape — nnsight leads on every-layer capture and the
-  lens, interp-engine's hooked engine leads by ~10% on single-layer capture, steering and the
-  probe, vLLM-Lens pays ~35% for a hook or steering vector.
-- **Qwen1.5-MoE-A2.7B** (60 experts, 4 active). The eager engines collapse to 20% of vanilla
-  (40 tok/s vs 210): an MoE layer is many small kernels, and each is a Python round trip on an
-  eager path. nnsight's taps keep 98% (205); interp-engine's static engine 86% (181); vLLM-Lens
-  is an eager engine and sits with the eager nnsight and interp-engine at 40–42. At 8 concurrent
-  requests nnsight taps (1,091) and interp-engine static (874) both *exceed* vanilla (671),
-  which turns out to be vLLM's `torch.compile` path losing on this model — see the note under
-  the MoE chart.
-- **DeepSeek-V2-Lite** (MLA attention + MoE, 27 layers, 16B). Same picture, stronger:
-  eager engines at 19% of vanilla (31 vs 164), nnsight taps at 98% (161). The MLA path
-  (`kv_a_proj`, `kv_b_proj`, the absorbed decode kernel) adds module calls that only a
-  graph engine hides.
-- **Llama-3.2-1B.** With a small model the fixed per-step Python cost dominates: the eager
-  engines are at 37–39% of vanilla, the graph engines at 94–95%, and vLLM-Lens's hook costs
-  show most clearly (steering 116 vs interp-engine 145, every-layer capture 96 vs nnsight 119).
-- **Long context** (2048-token prompt, 512 new tokens, Llama-8B). Longer decode amortizes
-  per-step overheads: every eager engine moves up a few points relative to the 512/128 grid, the
-  ordering is unchanged, and vLLM-Lens's per-hook cost persists (steering 50, probe 49 vs the
-  eager engines' 75–84).
-- **32 concurrent requests** (Llama-8B). Plain generation is a wash for every engine
-  (1,430–1,470 tok/s vs vanilla 1,523). Capturing one layer on all 32 streams costs nnsight
-  6–10% (1,330 eager, 1,367 taps), interp-engine 4–8% (1,408 static, 1,371 hooked) and
-  vLLM-Lens 25% (1,100): at this batch size the per-request bookkeeping that all three do on
-  every step is what shows, and the graph engines' decode advantage is mostly spent.
+Each dot is a library's throughput as a share of plain vLLM doing the same generation.
+Hollow dots are eager engines and filled dots keep CUDA graphs. TransformerLens is read
+against plain vLLM 0.20.2.
 
 --8<-- "docs/vllm/assets/throughput-llama-8b.svg"
 
-??? note "The numbers — Llama-3.1-8B, one GPU (tok/s; sweeps in seconds)"
+??? note "The numbers: Llama-3.1-8B, one GPU (tokens per second, sweeps in seconds)"
 
     --8<-- "docs/vllm/assets/throughput-llama-8b.md"
 
---8<-- "docs/vllm/assets/throughput-llama-8b-tp2.svg"
+In the tables, a bold cell is significantly faster than its nnsight counterpart, `·` means not
+measured, and `✗` means the library cannot express the workload.
 
-??? note "The numbers — Llama-3.1-8B, tp=2"
+What the measurements showed:
+
+- **With CUDA graphs, nnsight's taps and interp-engine's static backend ran at the same
+  speed**, within a few percent of plain vLLM. They use the same vLLM mechanism.
+- **Every eager engine paid the same cost for eager mode**: 86 tokens per second against plain
+  vLLM's 92 on one GPU, and no gain from more GPUs.
+- **Work kept on the worker was faster.** Reading every layer on every step ran at 68 tokens
+  per second on nnsight's default engine and 88 with taps, against 48 and 71 for
+  interp-engine's two backends and 37 for vLLM-Lens.
+- **A vLLM-Lens hook or steering vector cost about 40%** (49 tokens per second against 78),
+  because its hooks run on every layer for every request.
+- **TransformerLens ran the single-forward rows only.** One forward over 512 tokens took 62 ms
+  against nnsight's 53 ms. A sweep of 1,024 prompts took 25.9 s on its compiled path, which
+  takes one prompt at a time, and 7.2 s on its batched path, against nnsight's 1.6 s.
+
+### Other models and settings
+
+??? note "Llama-3.1-8B, 2 GPUs"
+
+    --8<-- "docs/vllm/assets/throughput-llama-8b-tp2.svg"
 
     --8<-- "docs/vllm/assets/throughput-llama-8b-tp2.md"
 
---8<-- "docs/vllm/assets/throughput-llama-8b-tp4.svg"
+??? note "Llama-3.1-8B, 4 GPUs"
 
-??? note "The numbers — Llama-3.1-8B, tp=4"
+    --8<-- "docs/vllm/assets/throughput-llama-8b-tp4.svg"
 
     --8<-- "docs/vllm/assets/throughput-llama-8b-tp4.md"
 
---8<-- "docs/vllm/assets/throughput-llama-70b.svg"
+??? note "Llama-3.1-8B, 8 GPUs"
 
-??? note "The numbers — Llama-3.1-70B, tp=4"
-
-    --8<-- "docs/vllm/assets/throughput-llama-70b.md"
-
---8<-- "docs/vllm/assets/throughput-qwen3-8b.svg"
-
-??? note "The numbers — Qwen3-8B, one GPU"
-
-    --8<-- "docs/vllm/assets/throughput-qwen3-8b.md"
-
---8<-- "docs/vllm/assets/throughput-qwen-moe.svg"
-
-The vanilla column on this model is vLLM's default engine: CUDA graphs *and* `torch.compile`.
-On this MoE the compiled path is the slow one at 8 concurrent requests. Measured directly on
-plain vLLM, same prompts and settings: eager 315 tok/s; `torch.compile` alone 245 (the
-compiled forward is *slower* than eager on this model); compile + CUDA graphs, the default,
-669; CUDA graphs with compilation off 1,095 (1,099 in the breakable-graph mode nnsight's taps
-use). Enabling vLLM's own custom kernels under compile (`custom_ops=all`) changes nothing
-(668), so it is the inductor-compiled forward itself, not a missing fused op. nnsight taps
-(1,091) and interp-engine static (874) are therefore not beating vLLM; they run the un-compiled
-graph path that vLLM's default loses to on this model. Single-request generation is unaffected
-(210 default vs 205 taps).
-
-??? note "The numbers — Qwen1.5-MoE-A2.7B, one GPU"
-
-    --8<-- "docs/vllm/assets/throughput-qwen-moe.md"
-
---8<-- "docs/vllm/assets/throughput-llama-1b.svg"
-
-??? note "The numbers — Llama-3.2-1B, one GPU"
-
-    --8<-- "docs/vllm/assets/throughput-llama-1b.md"
-
---8<-- "docs/vllm/assets/throughput-llama-8b-long.svg"
-
-??? note "The numbers — Llama-3.1-8B, 2048-token prompt, 512 new tokens"
-
-    --8<-- "docs/vllm/assets/throughput-llama-8b-long.md"
-
---8<-- "docs/vllm/assets/throughput-llama-8b-x32.svg"
-
-??? note "The numbers — Llama-3.1-8B, 32 concurrent"
-
-    --8<-- "docs/vllm/assets/throughput-llama-8b-x32.md"
-
---8<-- "docs/vllm/assets/throughput-deepseek-v2-lite.svg"
-
-??? note "The numbers — DeepSeek-V2-Lite, one GPU"
-
-    --8<-- "docs/vllm/assets/throughput-deepseek-v2-lite.md"
-
---8<-- "docs/vllm/assets/throughput-qwen35-08b.svg"
-
-??? note "The numbers — Qwen3.5-0.8B, one GPU"
-
-    --8<-- "docs/vllm/assets/throughput-qwen35-08b.md"
-
---8<-- "docs/vllm/assets/throughput-qwen35-4b.svg"
-
-??? note "The numbers — Qwen3.5-4B, one GPU"
-
-    --8<-- "docs/vllm/assets/throughput-qwen35-4b.md"
-
---8<-- "docs/vllm/assets/throughput-qwen36-moe.svg"
-
-??? note "The numbers — Qwen3.6-35B-A3B (MoE), tp=2"
-
-    --8<-- "docs/vllm/assets/throughput-qwen36-moe.md"
-
-The three panels above are **hybrid gated-delta-net trunks** (Qwen3.5-0.8B: 18 of 24 layers are
-recurrent), and they needed a correctness fix before any taps number could be published: a full
-CUDA graph captured over such a trunk silently miscomputes prefill (plain vLLM does, with
-compilation off — the recurrent layers branch on the batch's prefill/decode composition), so a
-tapped nnsight engine now pins `cudagraph_mode="FULL_DECODE_ONLY"` on any model vLLM reports as
-hybrid or attention-free: prefill runs eagerly, decode keeps replay, and tapped generation
-matches eager exactly. Two consequences show in the numbers. The taps-to-vanilla gap is wider
-here (60–76%) than on standard trunks (93–97%), because vanilla's `torch.compile` genuinely pays
-on these new architectures and taps run without it — yet taps still lead every graph-mode
-alternative on these models. And the eager engines collapse hardest of any model measured
-(8–25% of vanilla, identically for all three libraries): a recurrent layer is many small kernels,
-each a Python round trip, and vanilla is very fast. The head-ablation row is ✗ under taps here
-because only layer outputs are tapped on these trunks.
-
---8<-- "docs/vllm/assets/throughput-llama-8b-tp8.svg"
-
-??? note "The numbers — Llama-3.1-8B, tp=8"
+    --8<-- "docs/vllm/assets/throughput-llama-8b-tp8.svg"
 
     --8<-- "docs/vllm/assets/throughput-llama-8b-tp8.md"
 
---8<-- "docs/vllm/assets/throughput-llama-70b-tp8.svg"
+??? note "Llama-3.1-70B, 4 GPUs"
 
-??? note "The numbers — Llama-3.1-70B, tp=8"
+    --8<-- "docs/vllm/assets/throughput-llama-70b.svg"
+
+    --8<-- "docs/vllm/assets/throughput-llama-70b.md"
+
+??? note "Llama-3.1-70B, 8 GPUs"
+
+    --8<-- "docs/vllm/assets/throughput-llama-70b-tp8.svg"
 
     --8<-- "docs/vllm/assets/throughput-llama-70b-tp8.md"
 
-The two panels above extend the tensor-parallel series to **all eight cards** (three trials for
-8B, two for 70B, on a shared node — runs that overlapped another user's job were dropped, and
-the trials that remain agree within 3%). The trend from tp=2 and tp=4 simply continues. Plain
-vLLM keeps scaling (8B: 92 → 148 → 229 → 313 tok/s from one to eight cards; 70B: 37 → 61 from
-four to eight), and the graph engines follow it: capturing a layer every step, nnsight taps
-hold 91% of vanilla on 8B and 95% on 70B, interp-engine static 80% and 90%. The eager engines
-do not move at all — nnsight eager, interp-engine's hooked engine and vLLM-Lens sit at 64–74
-tok/s on 8B at *every* card count, which is now 20–24% of vanilla, and at 28–32 on 70B (46–53%;
-the heavier step hides more of the per-module handoff). Where the libraries differ is what they
-serve under graphs: every-layer capture on 70B is 57 tok/s under taps against 5–10 for the
-three engines that gather the tensors out of the worker. One number goes the other way: the
-`edit()`-once sweep, the fastest capture on one GPU, gets slower with every rank added while the
-per-request trace does not — on 8B, 1.05 s at tp=2, 1.35–1.46 s at tp=4, 2.2 s at tp=8, against
-a per-request trace steady at 1.2–1.4 s (70B/tp=8: 5.7 against 5.1). An installed block runs
-its saves on every rank; a per-request one collects once. Past four cards, trace the sweep.
+??? note "Llama-3.1-8B, 2,048-token prompt and 512 new tokens"
 
-The harness (`ie-bench/`: one runner per library, `common.py` for the rows, `report.py` and the
-chart script), the raw `results-*.jsonl` and every log live alongside nnsight's tests; every
-number above was produced by it.
+    --8<-- "docs/vllm/assets/throughput-llama-8b-long.svg"
+
+    --8<-- "docs/vllm/assets/throughput-llama-8b-long.md"
+
+??? note "Llama-3.1-8B, 32 concurrent requests"
+
+    --8<-- "docs/vllm/assets/throughput-llama-8b-x32.svg"
+
+    --8<-- "docs/vllm/assets/throughput-llama-8b-x32.md"
+
+??? note "Llama-3.2-1B, one GPU"
+
+    --8<-- "docs/vllm/assets/throughput-llama-1b.svg"
+
+    --8<-- "docs/vllm/assets/throughput-llama-1b.md"
+
+??? note "Qwen3-8B, one GPU"
+
+    --8<-- "docs/vllm/assets/throughput-qwen3-8b.svg"
+
+    --8<-- "docs/vllm/assets/throughput-qwen3-8b.md"
+
+??? note "Qwen1.5-MoE-A2.7B (mixture of experts), one GPU"
+
+    --8<-- "docs/vllm/assets/throughput-qwen-moe.svg"
+
+    At 8 concurrent requests the engines that keep CUDA graphs exceed plain vLLM. On this
+    model vLLM's compiled path is slower than its graph path without compilation (669 against
+    1,095 tokens per second), and plain vLLM uses the compiled path.
+
+    --8<-- "docs/vllm/assets/throughput-qwen-moe.md"
+
+??? note "DeepSeek-V2-Lite (mixture of experts), one GPU"
+
+    --8<-- "docs/vllm/assets/throughput-deepseek-v2-lite.svg"
+
+    --8<-- "docs/vllm/assets/throughput-deepseek-v2-lite.md"
+
+??? note "Qwen3.5-0.8B, one GPU"
+
+    --8<-- "docs/vllm/assets/throughput-qwen35-08b.svg"
+
+    Qwen3.5 and Qwen3.6 mix recurrent layers with attention layers. On vLLM 0.27.1 a tapped
+    engine replayed CUDA graphs on these models for generation steps only.
+
+    --8<-- "docs/vllm/assets/throughput-qwen35-08b.md"
+
+??? note "Qwen3.5-4B, one GPU"
+
+    --8<-- "docs/vllm/assets/throughput-qwen35-4b.svg"
+
+    --8<-- "docs/vllm/assets/throughput-qwen35-4b.md"
+
+??? note "Qwen3.6-35B-A3B (mixture of experts), 2 GPUs"
+
+    --8<-- "docs/vllm/assets/throughput-qwen36-moe.svg"
+
+    --8<-- "docs/vllm/assets/throughput-qwen36-moe.md"

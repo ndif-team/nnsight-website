@@ -1,24 +1,23 @@
 # nnsight on vLLM
 
 `VLLM("repo")` is an nnsight model whose forward pass is a [vLLM](https://github.com/vllm-project/vllm)
-engine. You write the same `with model.trace(...)` block you would write against a HuggingFace
-model; nnsight serializes it onto the request, runs it *inside* vLLM's worker interleaved with the
-forward, and hands the saved values back on the finished output. Every module in the model is
-reachable — `.input`, `.output`, `.source` ops, the pre-sampling `model.logits`, the drawn
-`model.samples` — and an edit lands in the running model. You keep PagedAttention, continuous
-batching, tensor parallelism and, with [taps](performance.md), CUDA-graph replay.
+engine. You write the same `with model.trace(...)` block as for a HuggingFace model. nnsight sends
+the block with the request, runs it inside vLLM's worker as the model computes, and returns what
+you saved. You keep vLLM's continuous batching, tensor parallelism and, with
+[taps](setup.md#cuda-graphs-with-taps), CUDA-graph replay.
 
-Every snippet in this section was run against `Qwen/Qwen3-8B` on an A100 with vLLM 0.27.1;
-the outputs shown are what came back.
+Use it for throughput over many prompts, models that need several GPUs, streamed tokens, or a
+served engine. For gradients, `.scan()` or image inputs, use `TransformersModel`. The block is
+the same.
 
 ## Install
 
 ```bash
-pip install "nnsight[vllm]"     # nnsight + vLLM, CUDA required
-pip install "nnsight[serve]"    # also the nnsight-serve server (FastAPI, uvicorn)
+pip install "nnsight[vllm]"     # nnsight and vLLM; needs a CUDA GPU
+pip install "nnsight[serve]"    # adds the nnsight-serve server
 ```
 
-## Read one activation
+## Read an activation
 
 ```python
 from nnsight.modeling.vllm import VLLM
@@ -26,24 +25,14 @@ from nnsight.modeling.vllm import VLLM
 model = VLLM("Qwen/Qwen3-8B", dispatch=True)
 
 with model.trace("The capital of France is", temperature=0.0):
-    resid = model.model.layers[10].output[0].clone().save()   # [pos, d_model]
-    logits = model.logits.save()                              # [1, vocab]
+    hidden = model.model.layers[10].output[0].clone().save()   # [tokens, hidden]
+    logits = model.logits.save()                               # [1, vocab]
 
-print(resid.shape, model.tokenizer.decode(logits.argmax(-1)))
+print(hidden.shape, model.tokenizer.decode(logits.argmax(-1)))
 # torch.Size([5, 4096])  Paris
 ```
 
-Three things differ from a HuggingFace trace, and every page below leans on them:
-
-- **No batch axis.** vLLM packs every in-flight request's tokens into one `[total_tokens, hidden]`
-  slab; nnsight narrows your block to its own request's rows, so you see `[pos, d_model]`.
-- **A decoder layer returns a tuple.** `layers[i].output` is `(hidden_states, residual)`, and the
-  residual stream leaving the block is their **sum**. See [Locations](locations.md).
-- **Clone what you keep.** vLLM reuses and overwrites activation buffers in place; `.clone()` before
-  `.save()` or the value you get back may belong to a later layer. To have the engine copy every
-  read for you, see [`NNSIGHT_VLLM_CLONE_READS`](locations.md#cloning-every-read-engine-wide).
-
-## Steer one layer
+## Change an activation
 
 ```python
 import torch
@@ -55,7 +44,7 @@ vector = torch.randn(4096, dtype=torch.bfloat16, device="cuda")
 vector = vector / vector.norm()
 
 with model.trace("The capital of France is", temperature=0.0, max_tokens=16) as tracer:
-    for _ in tracer.iter[:16]:                              # every step, prompt included
+    for _ in tracer.iter[:16]:                               # every step, the prompt included
         model.model.layers[10].output[0][:] += 60.0 * vector
     out = tracer.result.save()
 
@@ -63,31 +52,31 @@ print(out.outputs[0].text)
 # a city called Paris, and the capital of Belgium is a city called Brussels.
 ```
 
-## Where to go
+## What differs from a HuggingFace trace
 
-| Page | For |
+- **No batch axis.** A value is `[tokens, hidden]` for your request: every prompt token on the
+  first step, then one row per generated token.
+- **A decoder layer returns a pair.** `layers[i].output` is `(hidden, residual)`, and the residual
+  stream after the layer is their sum.
+- **Clone what you keep.** A value is a view of the engine's memory, which later layers overwrite.
+  Call `.clone()` before `.save()`.
+- **One prompt per invoke.** Several prompts are several invokes, which vLLM batches.
+
+[Writing a block](blocks.md) covers each of these.
+
+## Pages
+
+| Page | What it covers |
 | --- | --- |
-| [Locations](locations.md) | What can be asked for, and how it is named on a vLLM module tree |
-| [Loading models](loading.md) | Eager, CUDA-graph and async engines; what nnsight forces and why |
-| [Capabilities and limits](capabilities.md) | What refuses, what is missing, how errors surface |
-| [Editing the engine](editing.md) | `model.edit()`: install a block once, choose edits per request with `edits=`, invokes, async, serve |
-| [Capture](capture.md) | Read activations: one location, every layer, every step, many prompts |
-| [Attention](attention.md) | q/k/v, per-head outputs, the attention pattern the paged kernel never forms |
-| [Logit lens](logit-lens.md) | Send a residual through the unembed, inside the worker |
-| [Steering](steering.md) | Add, ablate, project, cap, mask positions, write anywhere |
-| [Activation patching](patching.md) | Clean into corrupt: layer × position sweeps and one head, batched as invokes |
-| [Ablation](ablation.md) | Zero every MLP, every head, in one trace |
-| [Direct logit attribution](attribution.md) | What each layer and head wrote toward the answer |
-| [Conditional interventions](conditional.md) | Decide in the worker, every step: gate, replace, stop |
-| [SAE features](sae.md) | Find features with the full SAE once; clamp them in the worker with two rows |
-| [Generation](generation.md) | Sampling, per-step logits and samples, the finished request, `n > 1` |
-| [Chat and tokens](chat.md) | Templates, token-id prompts, spans |
-| [Async and servers](serving.md) | `mode="async"`, concurrency, `nnsight-serve`, GPU-less clients, engine-wide edits |
-| [Tensor parallelism](tensor-parallel.md) | Sharded models read as whole tensors |
-| [Examples](examples/causal-tracing.md) | Causal tracing, the Jacobian lens, a linear probe, concept directions — end to end |
-| [Performance](performance.md) | Eager vs graph taps, measured |
-| [Comparisons](comparisons.md) | The same jobs in interp-engine, vLLM-Lens and TransformerLens, with one throughput grid |
+| [Choosing a setup](setup.md) | Which engine to build for your use case, and the settings that go with it |
+| [Writing a block](blocks.md) | What a block reads and writes: shapes, logits, generation steps, several prompts |
+| [Engine-wide edits](editing.md) | `model.edit()`: install a block once and run it on every request |
+| [Async and serving](serving.md) | `mode="async"`, `nnsight-serve` and clients without a GPU |
+| [Tensor parallelism](tensor-parallel.md) | A model sharded across GPUs |
+| [Limits and errors](limits.md) | What is refused, what nothing checks, and where an error message appears |
+| [Examples](examples/logit-lens.md) | Logit lens, steering, activation patching, attention patterns, a probe, the Jacobian lens |
+| [Performance](performance.md) | What the eager engine and the tapped engine cost, measured |
+| [Comparisons](comparisons.md) | How interp-engine, vLLM-Lens and TransformerLens differ from this |
 
-The longer, narrative version of all this is the [vLLM Support](../features/16_vllm_support.ipynb)
-notebook; the design is written up in
-[NNsight × vLLM: Interpretability at Production Scale](../blog/posts/vllm-integration.md).
+The snippets in this section were run on `Qwen/Qwen3-8B` with vLLM 0.33 on one A100, unless a
+page says otherwise. The outputs shown are what came back.
