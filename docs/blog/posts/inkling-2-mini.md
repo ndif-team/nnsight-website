@@ -68,8 +68,15 @@ A logit lens projects an intermediate state through the final normalization and 
 
 The example below is complete: without downloading the 26B weights locally, it loads the model's module tree, dispatches the trace to [NDIF](https://ndif.us/) with `remote=True`, and returns each readout's top predicted token across all 48 visits alongside the model's final prediction:
 
+!!! note "Install `transformers` from the `add-inkling2-mini` branch"
+    Inkling 2 Mini is not in an official `transformers` release yet. Until it is, pin `transformers` to the [`add-inkling2-mini`](https://github.com/huggingface/transformers/tree/add-inkling2-mini) branch:
+
+    ```bash
+    pip install nnsight==0.8.3 "transformers @ git+https://github.com/huggingface/transformers.git@add-inkling2-mini"
+    ```
+
 ```python
-# pip install nnsight==0.8.3, and a transformers version that includes Looped Inkling 2
+# Needs nnsight 0.8.3 and transformers from the add-inkling2-mini branch (see the note above).
 import torch, nnsight
 from nnsight import CONFIG, TransformersModel
 
