@@ -11,7 +11,7 @@ categories:
 
 # Opening the box of Inkling 2 Mini using NNsight+NDIF
 
-The **[National Deep Inference Fabric (NDIF)](https://ndif.us/)** is hosting Thinking Machines Lab's newly released **[Inkling 2 Mini](https://thinkingmachines.ai/news/inkling-2-mini/)** and **[TML-d24-varloop-research](https://huggingface.co/thinkingmachines/TML-d24-varloop-research)** looped transformer models for remote white-box inference. Through [NNsight](https://nnsight.net), researchers can inspect, patch, steer, and differentiate the models' internal activations across every loop iteration remotely without downloading the 26B weights or provisioning local GPUs. To run the examples below on [NDIF](https://ndif.us/), grab a free API key at [login.ndif.us](https://login.ndif.us) and load `"thinkingmachines/inkling-2-mini"` (or `"thinkingmachines/TML-d24-varloop-research"`) with `TransformersModel`.
+The **[National Deep Inference Fabric (NDIF)](https://ndif.us/)** is hosting Thinking Machines Lab's newly released **[Inkling 2 Mini](https://thinkingmachines.ai/news/inkling-2-mini/)** and **[TML-d24-varloop-research](https://huggingface.co/thinkingmachines/TML-d24-varloop-research)** looped transformer models for remote white-box inference. Through [NNsight](https://nnsight.net), researchers can inspect, patch, steer, and differentiate the models' internal activations across every loop iteration remotely without downloading the 26B weights or provisioning local GPUs. Grab a free API key at [login.ndif.us](https://login.ndif.us) to trace and patch activations on [NDIF](https://ndif.us/) by loading `"thinkingmachines/inkling-2-mini"` (or `"thinkingmachines/TML-d24-varloop-research"`) with `TransformersModel` (backward passes and direct parameter reads on NDIF require trusted access).
 
 !!! abstract "TL;DR"
     - **Remote white-box access on NDIF:** **[Inkling 2 Mini](https://thinkingmachines.ai/news/inkling-2-mini/)** ([`thinkingmachines/inkling-2-mini`](https://huggingface.co/thinkingmachines/inkling-2-mini)) and **[TML-d24-varloop-research](https://huggingface.co/thinkingmachines/TML-d24-varloop-research)** ([`thinkingmachines/TML-d24-varloop-research`](https://huggingface.co/thinkingmachines/TML-d24-varloop-research)) are live on [NDIF](https://ndif.us/) for remote activation readout, patching, steering, and gradients via [NNsight](https://nnsight.net).
@@ -69,14 +69,14 @@ A logit lens projects an intermediate state through the final normalization and 
 The example below is complete: without downloading the 26B weights locally, it loads the model's module tree, dispatches the trace to [NDIF](https://ndif.us/) with `remote=True`, and returns each readout's top predicted token across all 48 visits alongside the model's final prediction:
 
 !!! note "Install `transformers` from the `add-inkling2-mini` branch"
-    Inkling 2 Mini is not in an official `transformers` release yet. Until it is, pin `transformers` to the [`add-inkling2-mini`](https://github.com/huggingface/transformers/tree/add-inkling2-mini) branch:
+    Inkling 2 Mini is not in an official `transformers` release yet. Until it is, pin `transformers` to the commit deployed on NDIF from the [`add-inkling2-mini`](https://github.com/huggingface/transformers/tree/add-inkling2-mini) branch:
 
     ```bash
-    pip install nnsight==0.8.3 "transformers @ git+https://github.com/huggingface/transformers.git@add-inkling2-mini"
+    pip install nnsight==0.8.3 "transformers @ git+https://github.com/huggingface/transformers.git@e3a65e2c21abb9c25a03704f2f25852f9ad03a18"
     ```
 
 ```python
-# Needs nnsight 0.8.3 and transformers from the add-inkling2-mini branch (see the note above).
+# Needs nnsight 0.8.3 and transformers pinned to the commit above.
 import torch, nnsight
 from nnsight import CONFIG, TransformersModel
 
@@ -84,7 +84,7 @@ CONFIG.set_default_api_key("YOUR_NDIF_API_KEY")
 
 # No dispatch: only the config, tokenizer and module tree are loaded locally.
 MODEL_ID = "thinkingmachines/inkling-2-mini"
-model = TransformersModel(MODEL_ID, task="text-generation")
+model = TransformersModel(MODEL_ID, task="image-text-to-text")
 llm = model.model.language_model
 prompt = "The capital of France is"
 
@@ -138,7 +138,7 @@ To explore those questions in NNsight, use `for _ in tracer.iter[:3]:` to step t
 
 Because there is no single cumulative residual tensor at layer *L*, standard interpretability operations act on the active block, the completed blocks, and the cross-pass messages together rather than on `layers[L].output` alone.
 
-The snippets below reuse `model`, `llm`, and `prompt` from Section 2. Add `remote=True` to any trace to run it on [NDIF](https://ndif.us/), or load the weights locally with `TransformersModel(MODEL_ID, task="text-generation", dispatch=True, dtype=torch.bfloat16, device_map="auto")`.
+The snippets below reuse `model`, `llm`, and `prompt` from Section 2. Add `remote=True` to any trace to run it on [NDIF](https://ndif.us/), or load the weights locally with `TransformersModel(MODEL_ID, task="image-text-to-text", dispatch=True, dtype=torch.bfloat16, device_map="auto")`. The activation steering and gradient examples below require trusted access when run remotely on NDIF (because untrusted sandbox requests do not expose parameter weights or backward passes).
 
 ### Reading Intermediate States
 
@@ -156,7 +156,7 @@ with model.trace(prompt) as tracer:
 
 ### Activation Patching
 
-Overwriting `llm.layers[i].output` alone only replaces the active block, leaving downstream sublayers to continue reading the unpatched completed blocks and messages. To replace the complete forward state at a middle-block visit, overwrite the layer's three inputs as well as the two previous-pass blocks in `llm.message_input` that later layers in the same pass read their messages from:
+Overwriting `llm.layers[i].output` alone only replaces the active block, leaving downstream sublayers to continue reading the unpatched completed blocks and messages. To replace the complete forward state at a middle-block visit, overwrite the two previous-pass blocks in `llm.message_input` (which later layers in the same pass read their messages from) and the layer's three inputs where each is read:
 
 ```python
 clean_prompt   = "Then, Henry and Phil were at the harbor. Phil gave a basket to"
@@ -174,8 +174,12 @@ with model.trace(clean_prompt) as tracer:
     clean = nnsight.save(clean)
 
 with model.trace(corrupt_prompt) as tracer:
-    for target, source in zip(state_at_layer_12_pass_3(tracer), clean):
-        target[:] = source
+    for _ in tracer.iter[18]:                 # call 18 of message_input: Pass 3, layer 12 (calls 0..11 are Pass 2)
+        for target, source in zip(llm.message_input.inputs[0][:2], clean[:2]):
+            target[:] = source
+    for _ in tracer.iter[2]:                  # Pass 3, layer 12 (visit 36)
+        for target, source in zip(llm.layers[12].inputs[0], clean[2:]):
+            target[:] = source
     patched_logits = model.output.logits[0, -1].save()
 ```
 
